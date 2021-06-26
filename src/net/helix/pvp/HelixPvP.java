@@ -39,9 +39,6 @@ public class HelixPvP extends JavaPlugin implements Listener {
 		registerClanFile();
 		saveClanFile();
 		
-		registerLavaFile();
-		saveLavaFile();
-		
 		registerMedalhaFile();
 		saveMedalhaFile();
 		
