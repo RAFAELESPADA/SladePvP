@@ -17,8 +17,8 @@ import net.helix.pvp.scoreboard.ScoreboardBuilder;
 
 public class HelixPvP extends JavaPlugin implements Listener {
 	
-	public void teste() {
-		
+	public void test2() {
+		System.out.println("testando");
 	}
 	
 	
