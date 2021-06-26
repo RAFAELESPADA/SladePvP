@@ -4,18 +4,17 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-
 import net.helix.core.bukkit.HelixBukkit;
 import net.helix.core.bukkit.api.HelixTitle;
 import net.helix.pvp.util.DamageUtil;
 import net.helix.pvp.warp.provider.*;
-
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
 public enum HelixWarp {
 
-	FPS("Fps", new Fps(), Material.GLASS);
+	FPS("Fps", new Fps(), Material.GLASS),
+	KNOCKBACK("Knockback", new Knockback(), Material.STICK);
 	
 	private final String name;
 	private final WarpHandle handler;
