@@ -17,6 +17,10 @@ import net.helix.pvp.scoreboard.ScoreboardBuilder;
 
 public class HelixPvP extends JavaPlugin implements Listener {
 	
+	public void teste() {
+		
+	}
+	
 	
 	public static HelixPvP getInstance() {
 		return getPlugin(HelixPvP.class);
