@@ -2,7 +2,8 @@
 .idea/
 
 .metadata
-bin/
+./bin/
+/bin/
 tmp/
 *.tmp
 *.bak
