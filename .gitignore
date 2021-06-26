@@ -1,8 +1,17 @@
 # User-specific stuff
 .idea/
 
-/bin/*
-.settings
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.recommenders
 
 *.iml
 *.ipr
