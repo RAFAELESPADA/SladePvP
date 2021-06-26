@@ -14,24 +14,20 @@ public class EntityCalculateDamageListener implements Listener {
 	
 	@EventHandler
 	public void onDano(EntityDamageByEntityEvent e) {
-		if (e.getDamager() instanceof Player) {
-			Player t = (Player) e.getDamager();
-			if (t.getItemInHand().getType() == Material.STONE_SWORD) {
-				e.setDamage(3.3D);
-			}else if (t.getItemInHand().getType() == Material.STONE_SWORD) {
-				if (t.getItemInHand().getEnchantments() == Enchantment.DAMAGE_ALL) {
-					e.setDamage(3.9D);
-				}
-			}
-			if (t.getItemInHand().hasItemMeta() && t.getItemInHand().getType() == Material.QUARTZ) {
-				e.setDamage(4.5);
-			}
-			if (net.helix.pvp.kit.All.kitName.get(t.getName()) == "PvP") {
-				t.getInventory().getChestplate().setDurability((short)0);
-			}
-			
+		if (!(e.getDamager() instanceof Player)) {
+			return;
 		}
-		
+		Player t = (Player) e.getDamager();
+		if (t.getItemInHand().getType() == Material.STONE_SWORD) {
+			e.setDamage(3.3D);
+		}else if (t.getItemInHand().getType() == Material.STONE_SWORD) {
+			if (t.getItemInHand().getEnchantments() == Enchantment.DAMAGE_ALL) {
+				e.setDamage(3.9D);
+			}
+		}
+		if (t.getItemInHand().hasItemMeta() && t.getItemInHand().getType() == Material.QUARTZ) {
+			e.setDamage(4.5);
+		}
 	}
 	@EventHandler
 	public void onEspada(EntityDamageByEntityEvent e) {

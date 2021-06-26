@@ -1,7 +1,6 @@
 package net.helix.pvp.command;
 
 import java.util.HashMap;
-
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -72,16 +71,6 @@ public class SkitCMD implements Listener, CommandExecutor {
 					}else {
 						kit.put("PvP2", p.getInventory().getContents());
 						armadura.put("PvP2", p.getInventory().getArmorContents());
-						
-						net.helix.pvp.kit.All.kit.add(t);
-						net.helix.pvp.kit.All.ninja.remove(t.getName());
-						net.helix.pvp.kit.All.anchor.remove(t.getName());
-						net.helix.pvp.kit.All.fireman.remove(t.getName());
-						net.helix.pvp.kit.All.ajnin.remove(t.getName());
-						net.helix.pvp.kit.All.viper.remove(t.getName());
-						net.helix.pvp.kit.All.thor.remove(t.getName());
-						net.helix.pvp.kit.All.q.remove(t.getName());
-						
 						t.getInventory().setArmorContents((ItemStack[])this.armadura.get("PvP2"));
 						t.getInventory().setContents((ItemStack[])this.kit.get("PvP2"));
 						

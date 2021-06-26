@@ -6,7 +6,6 @@ import java.util.Optional;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
-
 import net.helix.core.bukkit.HelixBukkit;
 import net.helix.core.bukkit.api.HelixTitle;
 import net.helix.pvp.HelixPvP;
@@ -66,8 +65,8 @@ public enum HelixKit {
 		HelixTitle.sendTitle(player, 2, "§6§l" + name, "Selecionado!");
 		
 		HelixBukkit.getInstance().getWarpManager().findWarp("arena").ifPresent(warp -> 
-		player.teleport(warp.getLocation())
-	);
+			player.teleport(warp.getLocation())
+		);
 	}
 	
 	public KitHandler getHandler() {

@@ -27,14 +27,12 @@ public class Jump implements Listener {
 			jump.add(p.getName());
 		}
 		if (e.getTo().getBlock().getRelative(BlockFace.DOWN).getType() == Material.SLIME_BLOCK) {
-			if (!net.helix.pvp.kit.All.kit.contains(p)) {
-				Vector vector = p.getEyeLocation().getDirection();
-				
-				p.setFallDistance(-1.0F);
-				vector.multiply(2.3F);
-				vector.setY(0.5D);
-				p.setVelocity(vector);
-			}
+			Vector vector = p.getEyeLocation().getDirection();
+			
+			p.setFallDistance(-1.0F);
+			vector.multiply(2.3F);
+			vector.setY(0.5D);
+			p.setVelocity(vector);
 		}
 	}
 	@EventHandler

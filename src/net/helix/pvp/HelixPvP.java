@@ -76,8 +76,6 @@ public class HelixPvP extends JavaPlugin implements Listener {
 		pm.registerEvents(new PlayerDeathListener(), this);
 		pm.registerEvents(new SoupHandlerListener(), this);
 		pm.registerEvents(new BuildCMD(), this);
-		pm.registerEvents(new Gladiator(), this);
-		pm.registerEvents(new Fisherman(), this);
 		pm.registerEvents(new AdminCMD(), this);
 		pm.registerEvents(new EntityCalculateDamageListener(), this);
 		pm.registerEvents(new Jump(), this);
