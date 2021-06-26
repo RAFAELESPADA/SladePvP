@@ -28,9 +28,7 @@ public class HelixPvP extends JavaPlugin implements Listener {
 	
 	private File clan2;
 	public YamlConfiguration clan;
-	
-	private File lava2;
-	public YamlConfiguration lava;
+
 	
 	public void onEnable() {
 		this.scoreboardBuilder = new ScoreboardBuilder(this);
@@ -90,18 +88,6 @@ public class HelixPvP extends JavaPlugin implements Listener {
 		pm.registerEvents(new SpawnCMD(), this);
 	}
 	
-	public void saveLavaFile() {
-		try {
-			lava.save(lava2);
-		}catch(IOException e) {
-			
-		}
-	}
-	private void registerLavaFile() {
-		lava2 = new File(getDataFolder(), "lava.yml");
-		lava = YamlConfiguration.loadConfiguration(lava2);
-		saveLavaFile();
-	}
 	
 	private void registerMedalhaFile() {
 		medalha2 = new File(getDataFolder(), "medalha.yml");
