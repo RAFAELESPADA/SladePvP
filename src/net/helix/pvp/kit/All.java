@@ -96,7 +96,7 @@ public class All implements Listener, CommandExecutor {
 					World w = Bukkit.getWorld("Lobby");
 					if (args[0].equalsIgnoreCase("pvp")) {
                     p.sendMessage("Esse kit nao existe =(");
-
+                    p.sendMessage("FDS");
 							
 							
 						p.getInventory().setItem(0, espadaPvP);
