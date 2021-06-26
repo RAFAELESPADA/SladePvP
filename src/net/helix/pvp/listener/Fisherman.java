@@ -27,7 +27,7 @@ package net.helix.pvp.listener;
 /* 32 */         player.getWorld().playEffect(player.getLocation().add(0.0D, 1.5D, 0.0D), org.bukkit.Effect.MOBSPAWNER_FLAMES, 1);
 /* 33 */         caught.teleport(player.getLocation());
 /* 34 */         caught.playSound(player.getLocation(), Sound.ENDERMAN_TELEPORT, 1.0F, 1.0F);
-/* 35 */         player.playSound(player.getLocation(), Sound.ENDERMAN_TELEPORT, 1.0F, 1.0F);
+/* 35 */         player.playSound(player.getLocation(), Sound.ENDERMAN_TELEPORT, 2.0F, 2.0F);
 /*    */       }
 /*    */     }
 /*    */   }
