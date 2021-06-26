@@ -1,0 +1,34 @@
+package net.helix.pvp.kit;
+
+import org.bukkit.GameMode;
+import org.bukkit.Material;
+import org.bukkit.entity.Player;
+import org.bukkit.event.Listener;
+import org.bukkit.inventory.ItemStack;
+import net.helix.core.bukkit.item.ItemBuilder;
+
+public abstract class KitHandler implements Listener {
+
+	public void execute(Player player) {
+		player.setGameMode(GameMode.ADVENTURE);
+		player.getInventory().clear();
+		player.getInventory().setArmorContents(null);
+		player.setAllowFlight(false);
+		player.setFlying(false);
+		player.getActivePotionEffects().forEach(potion -> player.removePotionEffect(potion.getType()));
+		player.getInventory().setHeldItemSlot(0);
+		
+		player.getInventory().setItem(0, new ItemBuilder("§fEspada de Pedra", Material.STONE_SWORD)
+				.nbt("cancel-drop")
+				.toStack()
+		);
+		
+		player.getInventory().setItem(13, new ItemStack(Material.BOWL, 32));
+		player.getInventory().setItem(14, new ItemStack(Material.RED_MUSHROOM, 32));
+		player.getInventory().setItem(15, new ItemStack(Material.BROWN_MUSHROOM, 32));
+		
+		for (int i = 0; i < 36; i++) {
+			player.getInventory().addItem(new ItemStack(Material.MUSHROOM_SOUP));
+		}
+	}
+}

@@ -1,0 +1,15 @@
+name: PvP
+version: 2.0.0
+author: Smart
+main: net.helix.pvp.HelixPvP
+description: helixmc.com.br
+depend: [Core]
+
+commands:
+   spawn:
+   build:
+   admin:
+   chat:
+   damage:
+   skit:
+   set:
