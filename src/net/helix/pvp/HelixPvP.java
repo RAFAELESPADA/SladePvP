@@ -17,11 +17,6 @@ import net.helix.pvp.scoreboard.ScoreboardBuilder;
 
 public class HelixPvP extends JavaPlugin implements Listener {
 	
-	public void test2() {
-		System.out.println("testando");
-	}
-	
-	
 	public static HelixPvP getInstance() {
 		return getPlugin(HelixPvP.class);
 	}
@@ -36,7 +31,6 @@ public class HelixPvP extends JavaPlugin implements Listener {
 	
 	private File lava2;
 	public YamlConfiguration lava;
-	
 	
 	public void onEnable() {
 		this.scoreboardBuilder = new ScoreboardBuilder(this);

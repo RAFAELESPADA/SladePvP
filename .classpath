@@ -6,7 +6,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="C:/Users/User/Desktop/helixmc.com/lobby/spigot-1.8.8-R0.1-SNAPSHOT-latest.jar"/>
-	<classpathentry kind="lib" path="C:/Users/User/Desktop/helixmc.com/lobby/plugins/Core.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/Minhas coisas/PLS/Servidores Baixados/Backup Helix/Lobby/server.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Hugo/Desktop/Core.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
