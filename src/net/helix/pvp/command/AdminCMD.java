@@ -23,7 +23,6 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemStack;
 import net.helix.core.bukkit.item.ItemBuilder;
 import net.helix.pvp.HelixPvP;
-import net.helix.pvp.kit.All;
 
 public class AdminCMD implements Listener, CommandExecutor {
 	
@@ -75,7 +74,6 @@ public class AdminCMD implements Listener, CommandExecutor {
 					.toStack()
 			);
 			
-			All.kit.add(p);
 			p.sendMessage("§aVoce entrou no modo admin.");
 			
 			Bukkit.getOnlinePlayers().stream().filter(
@@ -90,7 +88,6 @@ public class AdminCMD implements Listener, CommandExecutor {
 			p.updateInventory();
 			
 			p.sendMessage("§cVocê saiu do modo admin.");
-			All.kit.remove(p);
 			
 			Bukkit.getOnlinePlayers().forEach(online -> online.showPlayer(p));
 		}
