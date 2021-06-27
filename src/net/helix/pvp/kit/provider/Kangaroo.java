@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.util.Vector;
@@ -79,7 +80,8 @@ public class Kangaroo extends KitHandler {
 		}
 		Player player = (Player) event.getEntity();
 		
-		if (!KitManager.getPlayer(player.getName()).hasKit(this)) {
+		if (!KitManager.getPlayer(player.getName()).hasKit(this) 
+				|| !event.getCause().equals(DamageCause.FALL)) {
 			return;
 		}
 		

@@ -4,10 +4,13 @@ import java.io.File;
 import java.io.IOException;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Item;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
+
+import net.helix.core.bukkit.HelixBukkit;
 import net.helix.pvp.command.*;
 import net.helix.pvp.inventory.listener.BuyKitListener;
 import net.helix.pvp.inventory.listener.SelectKitListener;
@@ -44,6 +47,18 @@ public class HelixPvP extends JavaPlugin implements Listener {
 			}
 		}.runTaskTimer(this, 0, 30 * 20L);
 		
+		HelixBukkit.getExecutorService().submit(() -> {
+			new BukkitRunnable() {
+				@Override
+				public void run() {
+					Bukkit.getWorlds().forEach(world -> {
+						world.getEntities().stream().filter(entity -> entity instanceof Item)
+						.forEach(en -> en.remove());
+					});
+				}
+			}.runTaskTimerAsynchronously(this, 0, 7 * 20L);
+		});
+		
 		Bukkit.getConsoleSender().sendMessage("§a§lPVP: §fPlugin habilitado! §a[v" + getDescription().getVersion() + "]");
 	}
 	
@@ -59,7 +74,6 @@ public class HelixPvP extends JavaPlugin implements Listener {
 		PluginManager pm = Bukkit.getPluginManager();
 		
 		pm.registerEvents(new ShowPlayerInfoListener(), this);
-		pm.registerEvents(new PlayerDropItemListener(), this);
 		pm.registerEvents(new PlayerDamageListener(), this);
 		pm.registerEvents(new SelectWarpListener(), this);
 		pm.registerEvents(new SelectKitListener(), this);

@@ -30,6 +30,11 @@ public class PlayerDeathListener implements Listener {
 		Player p = e.getEntity();
 		Player t = e.getEntity().getKiller();
 		
+		p.spigot().respawn();
+		e.setDeathMessage(null);
+		e.setDroppedExp(0);
+		
+		KitManager.getPlayer(p.getName()).removeKit();
 		DamageUtil.denyAllDamage(p.getName());
 		HelixWarp.removeHandle(p.getName());
 		
@@ -55,20 +60,6 @@ public class PlayerDeathListener implements Listener {
 				SpawnUtil.apply(p);
 			}
 		}.runTaskLater(HelixPvP.getInstance(), 10);
-		
-		HelixBukkit.getExecutorService().submit(() -> {
-			new BukkitRunnable() {
-				@Override
-				public void run() {
-					droppedItems.forEach(Item::remove);
-				}
-			}.runTaskLater(HelixPvP.getInstance(), 10 * 20L);
-		});
-		
-		p.spigot().respawn();
-		e.setDeathMessage(null);
-		e.setDroppedExp(0);
-		KitManager.getPlayer(p.getName()).removeKit();
 		
 		if (t instanceof Player) {
 			Random random = new Random();
