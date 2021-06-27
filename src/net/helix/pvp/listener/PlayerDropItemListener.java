@@ -18,7 +18,7 @@ public class PlayerDropItemListener implements Listener {
 				public void run() {
 					event.getItemDrop().remove();
 				}
-			}.runTaskLater(HelixPvP.getInstance(), 15 * 20L);
+			}.runTaskLater(HelixPvP.getInstance(), 10 * 20L);
 		});
 	}
 

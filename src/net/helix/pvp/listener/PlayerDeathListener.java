@@ -62,7 +62,7 @@ public class PlayerDeathListener implements Listener {
 				public void run() {
 					droppedItems.forEach(Item::remove);
 				}
-			}.runTaskLater(HelixPvP.getInstance(), 20 * 20L);
+			}.runTaskLater(HelixPvP.getInstance(), 10 * 20L);
 		});
 		
 		p.spigot().respawn();
