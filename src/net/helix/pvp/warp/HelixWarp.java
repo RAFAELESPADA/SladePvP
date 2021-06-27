@@ -13,7 +13,8 @@ import org.bukkit.entity.Player;
 public enum HelixWarp {
 
 	FPS("Fps", new Fps(), Material.GLASS),
-	KNOCKBACK("Knockback", new Knockback(), Material.STICK);
+	KNOCKBACK("Knockback", new Knockback(), Material.STICK),
+	LAVACHALLENGE("Lava Challenge", new LavaChallenge(), Material.LAVA_BUCKET);
 	
 	private final String name;
 	private final WarpHandle handler;
