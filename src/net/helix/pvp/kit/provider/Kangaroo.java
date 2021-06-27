@@ -7,6 +7,8 @@ import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.util.Vector;
@@ -29,29 +31,30 @@ public class Kangaroo extends KitHandler {
 		);
 	}
 	
-	@EventHandler
+	@EventHandler(priority = EventPriority.MONITOR)
 	public void onInteract(PlayerInteractEvent event) {
 		Player player = event.getPlayer();
 		
 		if (!KitManager.getPlayer(player.getName()).hasKit(this)
-				|| !event.hasItem() || !ItemBuilder.has(event.getItem(), "kit-handler", "kangaroo")
-				|| cooldown.contains(player.getName())) {
+				|| !event.hasItem() || !ItemBuilder.has(event.getItem(), "kit-handler", "kangaroo")) {
 			return;
 		}
 		event.setCancelled(true);
 		
-		cooldown.add(player.getName());
-		player.setFallDistance(1.0F);
-		Vector vector = player.getEyeLocation().getDirection();
-		
-		if (player.isSneaking()) {
-			vector.multiply(2.7F);
-			vector.setY(0.5D);
-		}else {
-			vector.multiply(0.5F);
-			vector.setY(1.0D);
+		if (!cooldown.contains(player.getName())) {
+			cooldown.add(player.getName());
+			Vector vector = player.getEyeLocation().getDirection();
+			
+			if (player.isSneaking()) {
+				vector.multiply(2.7F);
+				vector.setY(0.5D);
+			}else {
+				vector.multiply(0.5F);
+				vector.setY(1.0D);
+			}
+			player.setFallDistance(-1.0F);
+			player.setVelocity(vector);
 		}
-		player.setVelocity(vector);
 	}
 	
 	@EventHandler
@@ -68,5 +71,20 @@ public class Kangaroo extends KitHandler {
 			cooldown.remove(player.getName());
 		}
 	}
-
+	
+	@EventHandler
+	public void onFallDamage(EntityDamageEvent event) {
+		if (!(event.getEntity() instanceof Player)) {
+			return;
+		}
+		Player player = (Player) event.getEntity();
+		
+		if (!KitManager.getPlayer(player.getName()).hasKit(this)) {
+			return;
+		}
+		
+		if (event.getDamage() > 7.0D) {
+			event.setDamage(7.0D);
+		}
+	}
 }
