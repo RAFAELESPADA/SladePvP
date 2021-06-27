@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
+
+import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
@@ -24,18 +26,23 @@ import net.helix.pvp.warp.HelixWarp;
 
 public class PlayerDeathListener implements Listener {
 
-
 	@EventHandler(priority = EventPriority.MONITOR)
 	public void onDeath(PlayerDeathEvent e) {
 		Player p = e.getEntity();
 		Player t = e.getEntity().getKiller();
+		
+		List<ItemStack> drops = new ArrayList<>(e.getDrops());
+		Location deathLocation = p.getLocation().clone().add(0, 2, 0);
+		deathLocation.getWorld().playEffect(deathLocation, Effect.EXPLOSION_LARGE, 4);
+		e.getDrops().clear();
+		
 		p.spigot().respawn();
 		e.setDeathMessage(null);
 		e.setDroppedExp(0);
 		
-		List<ItemStack> drops = new ArrayList<>(e.getDrops());
-		Location deathLocation = p.getLocation().clone();
-		e.getDrops().clear();
+		KitManager.getPlayer(p.getName()).removeKit();
+		DamageUtil.denyAllDamage(p.getName());
+		HelixWarp.removeHandle(p.getName());
 		
 		for (Iterator<ItemStack> iterator = drops.iterator(); iterator.hasNext();) {
 			ItemStack droppedItem = iterator.next();
@@ -43,10 +50,6 @@ public class PlayerDeathListener implements Listener {
 				iterator.remove();
 			}
 		}
-		
-		KitManager.getPlayer(p.getName()).removeKit();
-		DamageUtil.denyAllDamage(p.getName());
-		HelixWarp.removeHandle(p.getName());
 		
 		List<Item> droppedItems = new ArrayList<>();
 		drops.forEach(drop -> {
