@@ -22,8 +22,7 @@ public class Jump implements Listener {
 		Player p = e.getPlayer();
 		if (e.getTo().getBlock().getRelative(BlockFace.DOWN).getType() == org.bukkit.Material.SPONGE) {
 			jump.remove(p.getName());
-			Vector v = p.getLocation().getDirection().setY(5.5F);
-			p.setVelocity(v);
+			p.setVelocity(p.getLocation().getDirection().multiply(0F).setY(5.5F));
 			jump.add(p.getName());
 		}
 		if (e.getTo().getBlock().getRelative(BlockFace.DOWN).getType() == Material.SLIME_BLOCK) {
