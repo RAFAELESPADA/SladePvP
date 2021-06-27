@@ -45,7 +45,7 @@ public class Kangaroo extends KitHandler {
 		Vector vector = player.getEyeLocation().getDirection();
 		
 		if (player.isSneaking()) {
-			vector.multiply(2.3F);
+			vector.multiply(2.7F);
 			vector.setY(0.5D);
 		}else {
 			vector.multiply(0.5F);
