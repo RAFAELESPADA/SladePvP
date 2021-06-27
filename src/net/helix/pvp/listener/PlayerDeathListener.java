@@ -25,18 +25,13 @@ import net.helix.pvp.warp.HelixWarp;
 public class PlayerDeathListener implements Listener {
 
 
-	@EventHandler(priority = EventPriority.HIGH)
+	@EventHandler(priority = EventPriority.MONITOR)
 	public void onDeath(PlayerDeathEvent e) {
 		Player p = e.getEntity();
 		Player t = e.getEntity().getKiller();
-		
 		p.spigot().respawn();
 		e.setDeathMessage(null);
 		e.setDroppedExp(0);
-		
-		KitManager.getPlayer(p.getName()).removeKit();
-		DamageUtil.denyAllDamage(p.getName());
-		HelixWarp.removeHandle(p.getName());
 		
 		List<ItemStack> drops = new ArrayList<>(e.getDrops());
 		Location deathLocation = p.getLocation().clone();
@@ -48,6 +43,10 @@ public class PlayerDeathListener implements Listener {
 				iterator.remove();
 			}
 		}
+		
+		KitManager.getPlayer(p.getName()).removeKit();
+		DamageUtil.denyAllDamage(p.getName());
+		HelixWarp.removeHandle(p.getName());
 		
 		List<Item> droppedItems = new ArrayList<>();
 		drops.forEach(drop -> {
