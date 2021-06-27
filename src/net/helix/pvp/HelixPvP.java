@@ -23,9 +23,6 @@ public class HelixPvP extends JavaPlugin implements Listener {
 	
 	private ScoreboardBuilder scoreboardBuilder;
 	
-	private File medalha2;
-	public YamlConfiguration medalha;
-	
 	private File clan2;
 	public YamlConfiguration clan;
 
@@ -38,9 +35,6 @@ public class HelixPvP extends JavaPlugin implements Listener {
 		
 		registerClanFile();
 		saveClanFile();
-		
-		registerMedalhaFile();
-		saveMedalhaFile();
 		
 		new BukkitRunnable() {
 			
@@ -81,20 +75,6 @@ public class HelixPvP extends JavaPlugin implements Listener {
 		pm.registerEvents(new Jump(), this);
 		pm.registerEvents(new ChatCMD(), this);
 		pm.registerEvents(new SpawnCMD(), this);
-	}
-	
-	
-	private void registerMedalhaFile() {
-		medalha2 = new File(getDataFolder(), "medalha.yml");
-		medalha = YamlConfiguration.loadConfiguration(medalha2);
-		saveMedalhaFile();
-	}
-	public void saveMedalhaFile() {
-		try {
-			medalha.save(medalha2);
-		}catch(IOException e) {
-			e.printStackTrace();
-		}
 	}
 	
 	public void saveClanFile() {
