@@ -23,7 +23,7 @@ public class SpawnCMD implements Listener, CommandExecutor {
 		Player p = (Player) sender;
 		
 		SpawnUtil.apply(p);
-		DamageUtil.denyDamage(p.getName());
+		DamageUtil.denyAllDamage(p.getName());
 		HelixWarp.removeHandle(p.getName());
 		p.sendMessage("§aTeleportado!");
 		return true;

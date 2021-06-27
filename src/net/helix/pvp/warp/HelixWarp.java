@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Optional;
 import net.helix.core.bukkit.HelixBukkit;
 import net.helix.core.bukkit.api.HelixTitle;
-import net.helix.pvp.util.DamageUtil;
 import net.helix.pvp.warp.provider.*;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -52,7 +51,6 @@ public enum HelixWarp {
 		}
 		
 		players.add(player.getName().toLowerCase());
-		DamageUtil.allowDamage(player.getName());
 		handler.execute(player);
 		
 		player.teleport(warpOptional.get().getLocation());

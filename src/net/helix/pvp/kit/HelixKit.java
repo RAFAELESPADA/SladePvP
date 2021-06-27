@@ -59,7 +59,7 @@ public enum HelixKit {
 	
 	public void send(Player player) {
 		handler.execute(player);
-		DamageUtil.allowDamage(player.getName());
+		DamageUtil.allowAllDamage(player.getName());
 		
 		KitManager.getPlayer(player.getName()).setKit(this);
 		HelixTitle.sendTitle(player, 2, "§6§l" + name, "Selecionado!");

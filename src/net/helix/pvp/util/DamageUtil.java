@@ -1,24 +1,40 @@
 package net.helix.pvp.util;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 public class DamageUtil {
 
-	private final static List<String> damageablePlayers = new ArrayList<>();
+	public enum DamageType { 
+		
+		PLAYER, NATURAL;
+	}
 	
-	public static void allowDamage(String username) {
-		username = username.toLowerCase();
-		if (!damageablePlayers.contains(username)) {
-			damageablePlayers.add(username);
+	private final static HashMap<String, Set<DamageType>> damageablePlayers = new HashMap<>();
+	
+	public static void denyAllDamage(String username) {
+		if (damageablePlayers.containsKey(username)) {
+			damageablePlayers.remove(username);
 		}
 	}
 	
-	public static void denyDamage(String username) {
-		damageablePlayers.remove(username.toLowerCase());
+	public static void allowDamage(String username, DamageType type, boolean replace) {
+		Set<DamageType> damageTypes = damageablePlayers.containsKey(username) ?
+				damageablePlayers.get(username) : new LinkedHashSet<>();
+		if (replace) {
+			damageTypes.clear();
+		}
+		damageTypes.add(type);
+		damageablePlayers.put(username, damageTypes);
 	}
 	
-	public static boolean allowedDamage(String username) {
-		return damageablePlayers.contains(username.toLowerCase());
+	public static void allowAllDamage(String username) {
+		damageablePlayers.put(username, new LinkedHashSet<>(Arrays.asList(DamageType.values())));
+	}
+	
+	public static boolean allowedDamage(String username, DamageType type) {
+		return damageablePlayers.containsKey(username) && damageablePlayers.get(username).contains(type);
 	}
 }

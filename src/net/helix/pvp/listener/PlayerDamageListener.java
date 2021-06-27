@@ -15,7 +15,7 @@ public class PlayerDamageListener implements Listener {
 			return;
 		}
 		Player player = (Player) event.getEntity();
-		event.setCancelled(!DamageUtil.allowedDamage(player.getName()));
+		event.setCancelled(!DamageUtil.allowedDamage(player.getName(), DamageUtil.DamageType.NATURAL));
 	}
 	
 	@EventHandler
@@ -24,7 +24,7 @@ public class PlayerDamageListener implements Listener {
 			return;
 		}
 		Player player = (Player) event.getEntity();
-		event.setCancelled(!DamageUtil.allowedDamage(player.getName()));
+		event.setCancelled(!DamageUtil.allowedDamage(player.getName(), DamageUtil.DamageType.PLAYER));
 	}
 
 }

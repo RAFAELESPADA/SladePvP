@@ -30,7 +30,7 @@ public class PlayerDeathListener implements Listener {
 		Player p = e.getEntity();
 		Player t = e.getEntity().getKiller();
 		
-		DamageUtil.denyDamage(p.getName());
+		DamageUtil.denyAllDamage(p.getName());
 		HelixWarp.removeHandle(p.getName());
 		
 		List<ItemStack> drops = new ArrayList<>(e.getDrops());
