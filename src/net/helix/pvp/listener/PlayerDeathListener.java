@@ -75,7 +75,7 @@ public class PlayerDeathListener implements Listener {
 			HelixPlayer victimHelixPlayer = HelixBukkit.getInstance().getPlayerManager().getPlayer(p.getName());
 			int victimWithdrawnCoins = random.nextInt(10 + 1 - 1) + 1;
 			victimHelixPlayer.getPvp().addDeaths(1);
-			victimHelixPlayer.getPvp().addKillstreak(1);
+			victimHelixPlayer.getPvp().setKillstreak(0);
 			p.sendMessage("§aVocê morreu para §f" + t.getName() + "§a.");
 			if ((victimHelixPlayer.getPvp().getCoins() - victimWithdrawnCoins) >= 0) {
 				victimHelixPlayer.getPvp().removeCoins(victimWithdrawnCoins);
