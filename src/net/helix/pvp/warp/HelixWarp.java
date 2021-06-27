@@ -45,13 +45,17 @@ public enum HelixWarp {
 	}
 	
 	public void send(Player player) {
+		Optional<net.helix.core.bukkit.warp.HelixWarp> warpOptional;
+		if (!(warpOptional = HelixBukkit.getInstance().getWarpManager().findWarp(name.toLowerCase())).isPresent()) {
+			player.sendMessage("§cWarp não encontrada.");
+			return;
+		}
+		
 		players.add(player.getName().toLowerCase());
 		DamageUtil.allowDamage(player.getName());
 		handler.execute(player);
 		
-		HelixBukkit.getInstance().getWarpManager().findWarp(name.toLowerCase()).ifPresent(warp -> 
-			player.teleport(warp.getLocation())
-		);
+		player.teleport(warpOptional.get().getLocation());
 		HelixTitle.sendTitle(player, 2, "§a§l" + name, "§fTeleportado!");
 	}
 	

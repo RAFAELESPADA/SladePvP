@@ -6,7 +6,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import net.helix.core.bukkit.item.ItemBuilder;
 import net.helix.pvp.inventory.WarpsInventory;
-import net.helix.pvp.util.DamageUtil;
 import net.helix.pvp.warp.HelixWarp;
 
 public class SelectWarpListener implements Listener {
@@ -27,8 +26,6 @@ public class SelectWarpListener implements Listener {
 		String warpName = ItemBuilder.getString(event.getCurrentItem(), "warp-gui");
 		HelixWarp.findWarp(warpName).ifPresent(warp -> {
 			player.closeInventory();
-			
-			DamageUtil.allowDamage(player.getName());
 			warp.send(player);
 		});
 	}
