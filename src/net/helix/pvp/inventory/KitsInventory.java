@@ -7,7 +7,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import net.helix.core.bukkit.item.ItemBuilder;
-import net.helix.pvp.kit.HelixKit;
+import net.helix.pvp.kit.KitManager;
 
 import org.bukkit.entity.Player;
 
@@ -34,10 +34,7 @@ public class KitsInventory {
 			inventory.setItem(i, randomGlass());
 		}
 		
-		HelixKit.getKits().stream().filter(
-				kit -> player.hasPermission("helix.kit." + kit.toString().toLowerCase())
-					|| kit.isFree()
-		).forEach(kit -> {
+		KitManager.getPlayer(player.getName()).getAvailableKits().forEach(kit -> {
 			inventory.addItem(new ItemBuilder("§a" + kit.getName(), kit.getIcon())
 					.lore("§fClique para selecionar.")
 					.addFlags(ItemFlag.HIDE_ATTRIBUTES,

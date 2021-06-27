@@ -1,5 +1,10 @@
 package net.helix.pvp.kit;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.bukkit.Bukkit;
+
 public class PlayerPvP {
 	
 	private final String name;
@@ -8,6 +13,14 @@ public class PlayerPvP {
 	public PlayerPvP(String name, HelixKit kit) {
 		this.name = name;
 		this.kit = kit;
+	}
+	
+	public List<HelixKit> getAvailableKits() {
+		return HelixKit.getKits().stream().filter(
+				kit -> kit.isFree() || Bukkit.getPlayer(name) != null 
+				&& (Bukkit.getPlayer(name).hasPermission("helix.kit." + kit.toString().toLowerCase()) 
+						|| Bukkit.getPlayer(name).hasPermission("helix.kit.*"))
+		).collect(Collectors.toList());
 	}
 	
 	public void removeKit() {

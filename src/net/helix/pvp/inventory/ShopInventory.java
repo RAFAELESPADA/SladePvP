@@ -10,6 +10,7 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import net.helix.core.bukkit.item.ItemBuilder;
 import net.helix.pvp.kit.HelixKit;
+import net.helix.pvp.kit.KitManager;
 
 public class ShopInventory {
 	
@@ -21,7 +22,7 @@ public class ShopInventory {
 		
 		
 		List<HelixKit> availableKits = HelixKit.getKits().stream().filter(
-				kit -> !kit.isFree() && !player.hasPermission("helix.kit." + kit.toString().toLowerCase())
+				kit -> !KitManager.getPlayer(player.getName()).getAvailableKits().contains(kit)
 		).collect(Collectors.toList());
 		
 		if (availableKits.size() > 0) {
