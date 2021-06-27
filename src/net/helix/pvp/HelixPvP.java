@@ -1,15 +1,11 @@
 package net.helix.pvp;
 
-import java.io.File;
-import java.io.IOException;
 import org.bukkit.Bukkit;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Item;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
-
 import net.helix.core.bukkit.HelixBukkit;
 import net.helix.pvp.command.*;
 import net.helix.pvp.inventory.listener.BuyKitListener;
@@ -26,18 +22,11 @@ public class HelixPvP extends JavaPlugin implements Listener {
 	
 	private ScoreboardBuilder scoreboardBuilder;
 	
-	private File clan2;
-	public YamlConfiguration clan;
-
-	
 	public void onEnable() {
 		this.scoreboardBuilder = new ScoreboardBuilder(this);
 		
 		loadCommands();
 		loadListeners();
-		
-		registerClanFile();
-		saveClanFile();
 		
 		new BukkitRunnable() {
 			
@@ -90,19 +79,7 @@ public class HelixPvP extends JavaPlugin implements Listener {
 		pm.registerEvents(new ChatCMD(), this);
 		pm.registerEvents(new SpawnCMD(), this);
 		pm.registerEvents(new SignListener(), this);
-	}
-	
-	public void saveClanFile() {
-		try {
-			clan.save(clan2);
-		}catch(IOException e) {
-			
-		}
-	}
-	private void registerClanFile() {
-		clan2 = new File(getDataFolder(), "clan.yml");
-		clan = YamlConfiguration.loadConfiguration(clan2);
-		saveClanFile();
+		pm.registerEvents(new PlayerCombatLogListener(), this);
 	}
 	
 	public ScoreboardBuilder getScoreboardBuilder() {
