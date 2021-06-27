@@ -75,6 +75,7 @@ public class HelixPvP extends JavaPlugin implements Listener {
 		pm.registerEvents(new Jump(), this);
 		pm.registerEvents(new ChatCMD(), this);
 		pm.registerEvents(new SpawnCMD(), this);
+		pm.registerEvents(new SignListener(), this);
 	}
 	
 	public void saveClanFile() {
