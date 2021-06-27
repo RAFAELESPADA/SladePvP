@@ -46,7 +46,7 @@ public enum HelixWarp {
 	
 	public void send(Player player) {
 		Optional<net.helix.core.bukkit.warp.HelixWarp> warpOptional;
-		if (!(warpOptional = HelixBukkit.getInstance().getWarpManager().findWarp(name.toLowerCase())).isPresent()) {
+		if (!(warpOptional = HelixBukkit.getInstance().getWarpManager().findWarp(this.toString().toLowerCase())).isPresent()) {
 			player.sendMessage("§cWarp não encontrada.");
 			return;
 		}
