@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
+
+import org.bukkit.Bukkit;
 import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -61,13 +63,19 @@ public class PlayerDeathListener implements Listener {
 		if (t instanceof Player) {
 			Random random = new Random();
 			
-			HelixPlayer targetHelixPlayer = HelixBukkit.getInstance().getPlayerManager().getPlayer(t.getName());
+			HelixPlayer killerHelixPlayer = HelixBukkit.getInstance().getPlayerManager().getPlayer(t.getName());
 			int killerAddCoins = random.nextInt(50 + 1 - 10) + 10;
-			targetHelixPlayer.getPvp().addKills(1);
-			targetHelixPlayer.getPvp().addKillstreak(1);
-			targetHelixPlayer.getPvp().addCoins(killerAddCoins);
+			killerHelixPlayer.getPvp().addKills(1);
+			killerHelixPlayer.getPvp().addKillstreak(1);
+			killerHelixPlayer.getPvp().addCoins(killerAddCoins);
 			t.sendMessage("§aVocê matou §f" + p.getName() + "§a.");
 			t.sendMessage("§6+" + killerAddCoins + " coins");
+			
+			int killerKillstreak = killerHelixPlayer.getPvp().getKillstreak();
+			if (String.valueOf(killerKillstreak).contains("5") || (String.valueOf(killerKillstreak).contains("0")) && killerKillstreak != 0) {
+				Bukkit.broadcastMessage("§6" + t.getName() + " §fatingiu um killstreak de §6" + killerKillstreak + "§f!");
+			}
+			
 			
 			HelixPlayer victimHelixPlayer = HelixBukkit.getInstance().getPlayerManager().getPlayer(p.getName());
 			int victimWithdrawnCoins = random.nextInt(10 + 1 - 1) + 1;
