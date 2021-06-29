@@ -20,7 +20,7 @@ public class Knockback extends WarpHandle {
 		
 		player.getInventory().setHeldItemSlot(4);
 		player.getInventory().setItem(4, new ItemBuilder("§aVarinha Mágica", Material.STICK)
-				.lore("§aEste item não causa dano.")
+				.lore("§cEste item não causa dano.")
 				.addEnchant(Enchantment.KNOCKBACK, 4)
 				.addFlags(ItemFlag.HIDE_ENCHANTS)
 				.nbt("warp-handler", "stick-magic")
