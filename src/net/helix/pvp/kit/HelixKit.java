@@ -15,7 +15,7 @@ import net.helix.pvp.util.DamageUtil;
 public enum HelixKit {
 
 	PVP("PvP", 0, new PvP(), Material.STONE_SWORD),
-	KANGAROO("Kangaroo", 0, new Kangaroo(), Material.FIREWORK),
+	KANGAROO("Kangaroo", 0,  new Kangaroo(), Material.FIREWORK),
 	THOR("Thor", 0, new Thor(), Material.GOLD_AXE),
 	FISHERMAN("Fisherman", 800, new Fisherman(), Material.FISHING_ROD),
 	ANCHOR("Anchor", 1000, new Anchor(), Material.ANVIL),

@@ -1,5 +1,7 @@
 package net.helix.pvp.inventory;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -35,8 +37,17 @@ public class KitsInventory {
 		}
 		
 		KitManager.getPlayer(player.getName()).getAvailableKits().forEach(kit -> {
+			long playerCount = KitManager.getPlayers().stream().filter(
+					playerPvP -> playerPvP.hasKit(kit)).count();
+			
+			List<String> lore = new ArrayList<>();
+			if (playerCount > 0) {
+				lore.add("§7" + playerCount + " jogando este kit");
+			}
+			lore.add("§eClique para selecionar.");
+			
 			inventory.addItem(new ItemBuilder("§a" + kit.getName(), kit.getIcon())
-					.lore("§fClique para selecionar.")
+					.lore(lore)
 					.addFlags(ItemFlag.HIDE_ATTRIBUTES,
 							ItemFlag.HIDE_DESTROYS,
 							ItemFlag.HIDE_ENCHANTS,

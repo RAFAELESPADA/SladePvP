@@ -16,5 +16,9 @@ public class KitManager {
 			return playerPvP;
 		});
 	}
+	
+	public static List<PlayerPvP> getPlayers() {
+		return players;
+	}
 
 }
