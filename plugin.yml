@@ -3,7 +3,7 @@ version: 2.0.0
 author: Smart
 main: net.helix.pvp.HelixPvP
 description: helixmc.com.br
-depend: [Core]
+depend: [Core, HolographicDisplays]
 
 commands:
    spawn:
@@ -12,3 +12,4 @@ commands:
    chat:
    damage:
    skit:
+   sethologram:

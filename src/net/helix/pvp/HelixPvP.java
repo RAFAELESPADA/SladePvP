@@ -1,12 +1,22 @@
 package net.helix.pvp;
 
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.entity.Item;
 import org.bukkit.event.Listener;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
+import com.gmail.filoghost.holographicdisplays.api.Hologram;
+import com.gmail.filoghost.holographicdisplays.api.HologramsAPI;
 import net.helix.core.bukkit.HelixBukkit;
+import net.helix.core.bukkit.account.HelixPlayer;
+import net.helix.core.bukkit.warp.HelixWarp;
 import net.helix.pvp.command.*;
 import net.helix.pvp.inventory.listener.BuyKitListener;
 import net.helix.pvp.inventory.listener.SelectKitListener;
@@ -21,6 +31,7 @@ public class HelixPvP extends JavaPlugin implements Listener {
 	}
 	
 	private ScoreboardBuilder scoreboardBuilder;
+	private Hologram topPlayersHd;
 	
 	public void onEnable() {
 		this.scoreboardBuilder = new ScoreboardBuilder(this);
@@ -45,10 +56,45 @@ public class HelixPvP extends JavaPlugin implements Listener {
 						.forEach(en -> en.remove());
 					});
 				}
-			}.runTaskTimerAsynchronously(this, 0, 7 * 20L);
+			}.runTaskTimer(this, 0, 7 * 20L);
 		});
 		
+		loadTopPlayersHologram();
 		Bukkit.getConsoleSender().sendMessage("§a§lPVP: §fPlugin habilitado! §a[v" + getDescription().getVersion() + "]");
+	}
+	
+	private void loadTopPlayersHologram() {
+		new BukkitRunnable() {
+			@Override
+			public void run() {
+				Optional<HelixWarp> warpOptional;
+				if (!(warpOptional = HelixBukkit.getInstance().getWarpManager().findWarp("top-players")).isPresent()) {
+					cancel();
+					return;
+				}
+				
+				Location location = warpOptional.get().getLocation();
+				Hologram hologram = topPlayersHd != null ?
+						topPlayersHd : (topPlayersHd = HologramsAPI.createHologram(HelixPvP.getInstance(), location));
+
+				hologram.teleport(location);
+				hologram.clearLines();
+			
+				List<HelixPlayer> topPlayers = HelixBukkit.getInstance().getPlayerManager()
+						.getPlayers().stream().sorted(
+								(x, y) -> Integer.valueOf(y.getPvp().getKills()).compareTo(x.getPvp().getKills())
+						).collect(Collectors.toList());
+				
+				hologram.appendTextLine("§d§lTOP JOGADORES");
+				for (int i = 0; i < Math.min(topPlayers.size(), 10); i++) {
+					HelixPlayer helixPlayer = topPlayers.get(i);
+					hologram.appendTextLine("§d" + (i++) + "º " +
+							helixPlayer.getRole().getColor() + helixPlayer.getName() + " §f- " +
+									"§fKills: §d" + helixPlayer.getPvp().getKills());
+				}
+				hologram.appendItemLine(new ItemStack(Material.DIAMOND_SWORD));
+			}
+		}.runTaskTimer(this, 0, 2 * (60 * 20));
 	}
 	
 	public void loadCommands() {
@@ -58,6 +104,7 @@ public class HelixPvP extends JavaPlugin implements Listener {
 		getCommand("chat").setExecutor(new ChatCMD());
 		getCommand("damage").setExecutor(new DamageCMD());
 		getCommand("skit").setExecutor(new SkitCMD());
+		getCommand("sethologram").setExecutor(new SetHologramCMD());
 	}
 	public void loadListeners() {
 		PluginManager pm = Bukkit.getPluginManager();
@@ -86,5 +133,9 @@ public class HelixPvP extends JavaPlugin implements Listener {
 	
 	public ScoreboardBuilder getScoreboardBuilder() {
 		return scoreboardBuilder;
+	}
+	
+	public Hologram getTopPlayersHd() {
+		return topPlayersHd;
 	}
 }
