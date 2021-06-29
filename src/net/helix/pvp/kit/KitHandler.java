@@ -23,6 +23,12 @@ public abstract class KitHandler implements Listener {
 				.toStack()
 		);
 		
+		player.getInventory().setItem(8, new ItemBuilder("§aBuscar jogadores", Material.COMPASS)
+				.nbt("kit-handler", "search-players")
+				.nbt("cancel-drop")
+				.toStack()
+		);
+		
 		player.getInventory().setItem(13, new ItemStack(Material.BOWL, 32));
 		player.getInventory().setItem(14, new ItemStack(Material.RED_MUSHROOM, 32));
 		player.getInventory().setItem(15, new ItemStack(Material.BROWN_MUSHROOM, 32));

@@ -81,6 +81,7 @@ public class HelixPvP extends JavaPlugin implements Listener {
 		pm.registerEvents(new SignListener(), this);
 		pm.registerEvents(new PlayerCombatLogListener(), this);
 		pm.registerEvents(new PlayerQuitListener(), this);
+		pm.registerEvents(new PlayerCompassListener(), this);
 	}
 	
 	public ScoreboardBuilder getScoreboardBuilder() {
