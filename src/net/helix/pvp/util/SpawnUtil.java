@@ -31,6 +31,7 @@ public class SpawnUtil {
 		player.setFoodLevel(20);
 		player.setAllowFlight(player.hasPermission("helix.cmd.fly"));
 		player.setFlying(player.hasPermission("helix.cmd.fly"));
+		player.getInventory().setHeldItemSlot(0);
 		
 		player.getInventory().setItem(0, new ItemBuilder("§6Kits", Material.ENDER_CHEST)
 				.nbt("spawn-item", "kits")
