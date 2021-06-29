@@ -8,6 +8,7 @@ import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
@@ -80,7 +81,7 @@ public class Kangaroo extends KitHandler {
 		}
 	}
 	
-	@EventHandler
+	@EventHandler(ignoreCancelled = true)
 	public void onFallDamage(EntityDamageEvent event) {
 		if (!(event.getEntity() instanceof Player)) {
 			return;
@@ -92,10 +93,24 @@ public class Kangaroo extends KitHandler {
 			return;
 		}
 		
-		HelixCooldown.create(player.getName(), "kangaroo-hit", TimeUnit.SECONDS, 5);
 		if (event.getDamage() > 7.0D) {
 			event.setDamage(7.0D);
 		}
+	}
+	
+	@EventHandler(ignoreCancelled = true)
+	public void onDamageByEntity(EntityDamageByEntityEvent event) {
+		if (!(event.getEntity() instanceof Player) 
+				|| (!(event.getDamager() instanceof Player))) {
+			return;
+		}
+		Player player = (Player) event.getEntity();
+		
+		if (!KitManager.getPlayer(player.getName()).hasKit(this)) {
+			return;
+		}
+		
+		HelixCooldown.create(player.getName(), "kangaroo-hit", TimeUnit.SECONDS, 5);
 	}
 	
 	@EventHandler
