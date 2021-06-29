@@ -18,7 +18,7 @@ public class Monk extends KitHandler {
 	public void execute(Player player) {
 		super.execute(player);
 		
-		player.getInventory().setItem(0, new ItemBuilder("§eEmbaralhar!", Material.BLAZE_ROD)
+		player.getInventory().setItem(1, new ItemBuilder("§eEmbaralhar!", Material.BLAZE_ROD)
 				.nbt("kit-handler", "monk")
 				.nbt("cancel-drop")
 				.toStack()
