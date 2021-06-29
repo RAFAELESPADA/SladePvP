@@ -23,7 +23,6 @@ public class Knockback extends WarpHandle {
 				.lore("§cEste item não causa dano.")
 				.addEnchant(Enchantment.KNOCKBACK, 4)
 				.addFlags(ItemFlag.HIDE_ENCHANTS)
-				.nbt("warp-handler", "stick-magic")
 				.nbt("cancel-drop")
 				.toStack()
 		);
@@ -38,9 +37,7 @@ public class Knockback extends WarpHandle {
 		Player victim = (Player) event.getEntity();
 		Player damager = (Player) event.getDamager();
 		HelixWarp.findWarp("knockback").ifPresent(warp -> {
-			if (warp.hasPlayer(victim.getName()) && warp.hasPlayer(damager.getName()) 
-					&& damager.getItemInHand() != null 
-					&& ItemBuilder.has(damager.getItemInHand(), "warp-handler",  "stick-magic")) {
+			if (warp.hasPlayer(victim.getName()) && warp.hasPlayer(damager.getName())) {
 				event.setDamage(0);
 			}
 		});

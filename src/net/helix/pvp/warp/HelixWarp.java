@@ -6,7 +6,10 @@ import java.util.List;
 import java.util.Optional;
 import net.helix.core.bukkit.HelixBukkit;
 import net.helix.core.bukkit.api.HelixTitle;
+import net.helix.pvp.HelixPvP;
 import net.helix.pvp.warp.provider.*;
+
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
@@ -15,6 +18,12 @@ public enum HelixWarp {
 	FPS("Fps", new Fps(), Material.GLASS),
 	KNOCKBACK("Knockback", new Knockback(), Material.STICK),
 	LAVACHALLENGE("Lava Challenge", new LavaChallenge(), Material.LAVA_BUCKET);
+	
+	static {
+		getWarps().forEach(warp -> 
+			Bukkit.getPluginManager().registerEvents(warp.getHandler(), HelixPvP.getInstance())
+		);
+	}
 	
 	private final String name;
 	private final WarpHandle handler;

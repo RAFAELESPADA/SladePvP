@@ -2,8 +2,9 @@ package net.helix.pvp.warp;
 
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Listener;
 
-public abstract class WarpHandle {
+public abstract class WarpHandle implements Listener {
 
 	public void execute(Player player) {
 		player.setGameMode(GameMode.ADVENTURE);
