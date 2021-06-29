@@ -73,7 +73,7 @@ public class PlayerDeathListener implements Listener {
 			int victimWithdrawnCoins = random.nextInt(10 + 1 - 1) + 1;
 			victimHelixPlayer.getPvp().addDeaths(1);
 			victimHelixPlayer.getPvp().setKillstreak(0);
-			p.sendMessage("§aVocê morreu para §f" + t.getName() + "§a.");
+			p.sendMessage("§cVocê morreu para §f" + t.getName() + "§a.");
 			if ((victimHelixPlayer.getPvp().getCoins() - victimWithdrawnCoins) >= 0) {
 				victimHelixPlayer.getPvp().removeCoins(victimWithdrawnCoins);
 				p.sendMessage("§c-" + victimWithdrawnCoins + " coins");
