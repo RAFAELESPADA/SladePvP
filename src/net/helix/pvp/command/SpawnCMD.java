@@ -6,8 +6,6 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
-
-import net.helix.pvp.util.DamageUtil;
 import net.helix.pvp.util.SpawnUtil;
 import net.helix.pvp.warp.HelixWarp;
 
@@ -23,7 +21,6 @@ public class SpawnCMD implements Listener, CommandExecutor {
 		Player p = (Player) sender;
 		
 		SpawnUtil.apply(p);
-		DamageUtil.denyAllDamage(p.getName());
 		HelixWarp.removeHandle(p.getName());
 		p.sendMessage("§aTeleportado!");
 		return true;

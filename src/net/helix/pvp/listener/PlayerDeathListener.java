@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
-
 import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.entity.Item;
@@ -19,10 +18,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import net.helix.core.bukkit.HelixBukkit;
 import net.helix.core.bukkit.account.HelixPlayer;
 import net.helix.pvp.HelixPvP;
-import net.helix.pvp.kit.KitManager;
-import net.helix.pvp.util.DamageUtil;
 import net.helix.pvp.util.SpawnUtil;
-import net.helix.pvp.warp.HelixWarp;
 
 public class PlayerDeathListener implements Listener {
 
@@ -40,9 +36,6 @@ public class PlayerDeathListener implements Listener {
 		e.setDeathMessage(null);
 		e.setDroppedExp(0);
 		
-		KitManager.getPlayer(p.getName()).removeKit();
-		DamageUtil.denyAllDamage(p.getName());
-		HelixWarp.removeHandle(p.getName());
 		
 		for (Iterator<ItemStack> iterator = drops.iterator(); iterator.hasNext();) {
 			ItemStack droppedItem = iterator.next();

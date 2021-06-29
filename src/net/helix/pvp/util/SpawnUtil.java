@@ -7,6 +7,8 @@ import org.bukkit.entity.Player;
 import net.helix.core.bukkit.HelixBukkit;
 import net.helix.core.bukkit.api.HelixTitle;
 import net.helix.core.bukkit.item.ItemBuilder;
+import net.helix.pvp.kit.KitManager;
+import net.helix.pvp.warp.HelixWarp;
 
 public class SpawnUtil {
 	
@@ -15,6 +17,9 @@ public class SpawnUtil {
 				HelixBukkit.getInstance().getWarpManager().findWarp("spawn").get().getLocation() : player.getWorld().getSpawnLocation();
 		player.teleport(spawnLocation);
 		
+		DamageUtil.denyAllDamage(player.getName());
+		HelixWarp.removeHandle(player.getName());
+		KitManager.getPlayer(player.getName()).removeKit();
 		HelixTitle.clearTitle(player);
 		player.getInventory().clear();
 		player.getInventory().setArmorContents(null);
