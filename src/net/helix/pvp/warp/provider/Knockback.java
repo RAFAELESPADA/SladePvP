@@ -3,8 +3,12 @@ package net.helix.pvp.warp.provider;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.inventory.ItemFlag;
 import net.helix.core.bukkit.item.ItemBuilder;
 import net.helix.pvp.util.DamageUtil;
+import net.helix.pvp.warp.HelixWarp;
 import net.helix.pvp.warp.WarpHandle;
 
 public class Knockback extends WarpHandle {
@@ -16,9 +20,29 @@ public class Knockback extends WarpHandle {
 		
 		player.getInventory().setHeldItemSlot(4);
 		player.getInventory().setItem(4, new ItemBuilder("§aVarinha Mágica", Material.STICK)
-				.addEnchant(Enchantment.KNOCKBACK, 5)
+				.lore("§aEste item não causa dano.")
+				.addEnchant(Enchantment.KNOCKBACK, 4)
+				.addFlags(ItemFlag.HIDE_ENCHANTS)
+				.nbt("warp-handler", "stick-magic")
 				.nbt("cancel-drop")
 				.toStack()
 		);
+	}
+	
+	@EventHandler(ignoreCancelled = true)
+	public void onEntityDamage(EntityDamageByEntityEvent event) {
+		if (!(event.getEntity() instanceof Player) 
+				|| (!(event.getDamager() instanceof Player))) {
+			return;
+		}
+		Player victim = (Player) event.getEntity();
+		Player damager = (Player) event.getDamager();
+		HelixWarp.findWarp("knockback").ifPresent(warp -> {
+			if (warp.hasPlayer(victim.getName()) && warp.hasPlayer(damager.getName()) 
+					&& damager.getItemInHand() != null 
+					&& ItemBuilder.has(damager.getItemInHand(), "warp-handler",  "stick-magic")) {
+				event.setDamage(0);
+			}
+		});
 	}
 }

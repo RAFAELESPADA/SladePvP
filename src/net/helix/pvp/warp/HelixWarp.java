@@ -73,4 +73,8 @@ public enum HelixWarp {
 	public Material getIcon() {
 		return icon;
 	}
+	
+	public boolean hasPlayer(String username) {
+		return players.contains(username);
+	}
 }
