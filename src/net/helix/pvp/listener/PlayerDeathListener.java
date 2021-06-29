@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Random;
 import org.bukkit.Effect;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -39,7 +40,8 @@ public class PlayerDeathListener implements Listener {
 		
 		for (Iterator<ItemStack> iterator = drops.iterator(); iterator.hasNext();) {
 			ItemStack droppedItem = iterator.next();
-			if (!droppedItem.getType().toString().contains("MUSHROOM")) {
+			if (!droppedItem.getType().toString().contains("MUSHROOM") |
+					|| !droppedItem.getType().equals(Material.BOWL)) {
 				iterator.remove();
 			}
 		}
