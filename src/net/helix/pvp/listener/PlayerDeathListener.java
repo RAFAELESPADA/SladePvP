@@ -31,7 +31,9 @@ public class PlayerDeathListener implements Listener {
 		
 		List<ItemStack> drops = new ArrayList<>(e.getDrops());
 		Location deathLocation = p.getLocation().clone().add(0, 2, 0);
-		deathLocation.getWorld().playEffect(deathLocation, Effect.EXPLOSION_LARGE, 4);
+		if (drops.size() > 0) {
+			deathLocation.getWorld().playEffect(deathLocation, Effect.EXPLOSION_LARGE, 4);
+		}
 		e.getDrops().clear();
 		
 		p.spigot().respawn();
@@ -76,7 +78,7 @@ public class PlayerDeathListener implements Listener {
 			
 			
 			HelixPlayer victimHelixPlayer = HelixBukkit.getInstance().getPlayerManager().getPlayer(p.getName());
-			int victimWithdrawnCoins = random.nextInt(10 + 1 - 1) + 1;
+			int victimWithdrawnCoins = random.nextInt(20 + 1 - 5) + 5;
 			victimHelixPlayer.getPvp().addDeaths(1);
 			victimHelixPlayer.getPvp().setKillstreak(0);
 			p.sendMessage("§cVocê morreu para §f" + t.getName() + "§c.");
