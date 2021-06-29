@@ -2,6 +2,8 @@ package net.helix.pvp.kit.provider;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
@@ -9,11 +11,13 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.util.Vector;
 import net.helix.core.bukkit.item.ItemBuilder;
+import net.helix.core.util.HelixCooldown;
 import net.helix.pvp.kit.KitHandler;
 import net.helix.pvp.kit.KitManager;
 
@@ -32,7 +36,7 @@ public class Kangaroo extends KitHandler {
 		);
 	}
 	
-	@EventHandler(priority = EventPriority.MONITOR)
+	@EventHandler
 	public void onInteract(PlayerInteractEvent event) {
 		Player player = event.getPlayer();
 		
@@ -41,6 +45,11 @@ public class Kangaroo extends KitHandler {
 			return;
 		}
 		event.setCancelled(true);
+		
+		if (HelixCooldown.inCooldown(player.getName(), "kangaroo-hit")) {
+			player.sendMessage("§cVocê recebeu dano recentemente, aguarde " + HelixCooldown.getTime(player.getName(), "kangaroo-hit") + "s para utilizar o Kangaroo novamente.");
+			return;
+		}
 		
 		if (!cooldown.contains(player.getName())) {
 			cooldown.add(player.getName());
@@ -85,8 +94,17 @@ public class Kangaroo extends KitHandler {
 			return;
 		}
 		
+		HelixCooldown.create(player.getName(), "kangaroo-hit", TimeUnit.SECONDS, 5);
 		if (event.getDamage() > 7.0D) {
 			event.setDamage(7.0D);
 		}
+	}
+	
+	@EventHandler
+	public void onDeath(PlayerDeathEvent event) {
+		Player victim = event.getEntity();
+		
+		cooldown.remove(victim.getName());
+		HelixCooldown.delete(victim.getName(), "kangaroo-hit");
 	}
 }
