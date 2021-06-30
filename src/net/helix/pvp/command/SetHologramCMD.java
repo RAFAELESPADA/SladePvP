@@ -5,7 +5,6 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import com.gmail.filoghost.holographicdisplays.api.Hologram;
 import net.helix.core.bukkit.HelixBukkit;
 import net.helix.core.bukkit.warp.HelixWarp;
 import net.helix.pvp.HelixPvP;
@@ -35,12 +34,10 @@ public class SetHologramCMD implements CommandExecutor {
 					: HelixBukkit.getInstance().getWarpManager().createWarp(hologramName);
 			
 			Location location = ((Player)sender).getLocation().clone().add(0.5, 0, 0.5);
-			Hologram topPlayersHd;
-			if ((topPlayersHd = HelixPvP.getInstance().getTopPlayersHd()) != null) {
-				topPlayersHd.teleport(location);
-			}
 			
+			HelixPvP.getInstance().handleTopPlayers(location);
 			warp.setLocation(location);
+			HelixBukkit.getInstance().getWarpManager().getData().save(warp);
 			sender.sendMessage("§aVocê setou a posição do holograma §f" + hologramName + "§a.");
 		}else {
 			sender.sendMessage("§cHolograma não encontrado.");

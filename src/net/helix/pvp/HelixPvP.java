@@ -63,38 +63,43 @@ public class HelixPvP extends JavaPlugin implements Listener {
 		Bukkit.getConsoleSender().sendMessage("§a§lPVP: §fPlugin habilitado! §a[v" + getDescription().getVersion() + "]");
 	}
 	
+	public void handleTopPlayers(Location location) {
+		List<HelixPlayer> topPlayers = HelixBukkit.getInstance().getPlayerManager().getPlayers().stream().sorted((x, y) -> 
+			Integer.valueOf(y.getPvp().getKills()).compareTo(x.getPvp().getKills())
+		).collect(Collectors.toList());
+		
+		Hologram hologram = topPlayersHd != null ?
+				topPlayersHd : (topPlayersHd = HologramsAPI.createHologram(HelixPvP.getInstance(), location));
+
+		hologram.teleport(location);
+		hologram.clearLines();
+	
+		hologram.appendTextLine("§d§lTOP 10 §e§lKILLS");
+		System.out.println("Top players = " + topPlayers.size());
+		for (int i = 0; i < 10; i++) {
+			int position = i + 1;
+			HelixPlayer helixPlayer = (topPlayers.size() - 1) > i ? topPlayers.get(i) : null;
+				hologram.appendTextLine(helixPlayer == null ? "§cNão encontrado." :
+				"§e" + position + "º " + helixPlayer.getRole().getColor() + helixPlayer.getName() + " §8- " +
+				"§fKills: §e" + helixPlayer.getPvp().getKills());
+		}
+		hologram.appendItemLine(new ItemStack(Material.DIAMOND_SWORD));
+		System.out.println("top players loaded!!!");
+	}
+	
 	private void loadTopPlayersHologram() {
 		new BukkitRunnable() {
 			@Override
 			public void run() {
 				Optional<HelixWarp> warpOptional;
 				if (!(warpOptional = HelixBukkit.getInstance().getWarpManager().findWarp("top-players")).isPresent()) {
-					cancel();
 					return;
 				}
 				
 				Location location = warpOptional.get().getLocation();
-				Hologram hologram = topPlayersHd != null ?
-						topPlayersHd : (topPlayersHd = HologramsAPI.createHologram(HelixPvP.getInstance(), location));
-
-				hologram.teleport(location);
-				hologram.clearLines();
-			
-				List<HelixPlayer> topPlayers = HelixBukkit.getInstance().getPlayerManager()
-						.getPlayers().stream().sorted(
-								(x, y) -> Integer.valueOf(y.getPvp().getKills()).compareTo(x.getPvp().getKills())
-						).collect(Collectors.toList());
-				
-				hologram.appendTextLine("§d§lTOP JOGADORES");
-				for (int i = 0; i < Math.min(topPlayers.size(), 10); i++) {
-					HelixPlayer helixPlayer = topPlayers.get(i);
-					hologram.appendTextLine("§d" + (i++) + "º " +
-							helixPlayer.getRole().getColor() + helixPlayer.getName() + " §f- " +
-									"§fKills: §d" + helixPlayer.getPvp().getKills());
-				}
-				hologram.appendItemLine(new ItemStack(Material.DIAMOND_SWORD));
+				handleTopPlayers(location);
 			}
-		}.runTaskTimer(this, 0, 2 * (60 * 20));
+		}.runTaskTimer(HelixPvP.getInstance(), 10 * 20L, 2 * (60 * 20L));
 	}
 	
 	public void loadCommands() {

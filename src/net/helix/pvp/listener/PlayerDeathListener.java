@@ -88,7 +88,8 @@ public class PlayerDeathListener implements Listener {
 			}else {
 				victimHelixPlayer.getPvp().setCoins(0);
 			}
-			
+			HelixBukkit.getInstance().getPlayerManager().getData().save(victimHelixPlayer);
+			HelixBukkit.getInstance().getPlayerManager().getData().save(killerHelixPlayer);
 		}else {
 			p.sendMessage("§cVocê morreu!");
 		}

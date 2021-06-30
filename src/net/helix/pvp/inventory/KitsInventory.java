@@ -42,7 +42,7 @@ public class KitsInventory {
 			
 			List<String> lore = new ArrayList<>();
 			if (playerCount > 0) {
-				lore.add("§7" + playerCount + " jogando este kit");
+				lore.add("§f" + playerCount + " §fjogando este kit.");
 			}
 			lore.add("§eClique para selecionar.");
 			
