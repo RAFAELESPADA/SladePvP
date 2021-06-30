@@ -32,9 +32,9 @@ public class Fireman extends KitHandler {
 		Player player = (Player) event.getEntity();
 		
 		if (KitManager.getPlayer(player.getName()).hasKit(this) 
-				&& event.getCause().equals(DamageCause.LAVA) 
+				&& (event.getCause().equals(DamageCause.LAVA) 
 				|| event.getCause().equals(DamageCause.FIRE) 
-				|| event.getCause().equals(DamageCause.FIRE_TICK)) {
+				|| event.getCause().equals(DamageCause.FIRE_TICK))) {
 			event.setCancelled(true);
 		}
 	}
