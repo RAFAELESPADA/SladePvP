@@ -39,7 +39,7 @@ public class Knockback extends WarpHandle {
 		HelixWarp.findWarp("knockback").ifPresent(warp -> {
 			if (warp.hasPlayer(victim.getName()) && warp.hasPlayer(damager.getName())) {
 				event.setDamage(0L);
-				victim.setHealth(0);
+				victim.setHealth(victim.getMaxHealth());
 			}
 		});
 	}
