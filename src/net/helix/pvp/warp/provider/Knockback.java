@@ -39,7 +39,6 @@ public class Knockback extends WarpHandle {
 		HelixWarp warp = HelixWarp.KNOCKBACK;
 		
 		if (warp.hasPlayer(victim.getName()) && warp.hasPlayer(damager.getName())) {
-			System.out.println("kb 3");
 			event.setDamage(0L);
 		}
 	}

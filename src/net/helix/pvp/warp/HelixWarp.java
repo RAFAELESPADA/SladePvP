@@ -42,8 +42,8 @@ public enum HelixWarp {
 	
 	public static void removeHandle(String username) {
 		getWarps().stream().filter(
-				warp -> warp.players.contains(username.toLowerCase())
-		).forEach(warp -> warp.players.remove(username.toLowerCase()));
+				warp -> warp.players.contains(username)
+		).forEach(warp -> warp.players.remove(username));
 	}
 	
 	HelixWarp(String name, WarpHandle handle, Material icon) {
