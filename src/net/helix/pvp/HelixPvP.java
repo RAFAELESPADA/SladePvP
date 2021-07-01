@@ -105,7 +105,6 @@ public class HelixPvP extends JavaPlugin implements Listener {
 	public void loadCommands() {
 		getCommand("spawn").setExecutor(new SpawnCMD());
 		getCommand("build").setExecutor(new BuildCMD());
-		getCommand("admin").setExecutor(new AdminCMD());
 		getCommand("chat").setExecutor(new ChatCMD());
 		getCommand("damage").setExecutor(new DamageCMD());
 		getCommand("skit").setExecutor(new SkitCMD());
@@ -125,7 +124,6 @@ public class HelixPvP extends JavaPlugin implements Listener {
 		pm.registerEvents(new PlayerDeathListener(), this);
 		pm.registerEvents(new SoupHandlerListener(), this);
 		pm.registerEvents(new BuildCMD(), this);
-		pm.registerEvents(new AdminCMD(), this);
 		pm.registerEvents(new EntityCalculateDamageListener(), this);
 		pm.registerEvents(new Jump(), this);
 		pm.registerEvents(new ChatCMD(), this);
