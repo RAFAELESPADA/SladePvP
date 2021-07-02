@@ -41,7 +41,7 @@ public class SignListener implements Listener {
 			
 			if (lines.length >= 4 && (lines[1].equalsIgnoreCase(soup) || lines[1].equalsIgnoreCase(recraft))) {
 				boolean isSoup = lines[1].equalsIgnoreCase(soup);
-				Inventory inventory = Bukkit.createInventory(null, 3 * 9, "§7§n" + (isSoup ? "Sopas" : "Recraft"));
+				Inventory inventory = Bukkit.createInventory(null, 4 * 9, "§7§n" + (isSoup ? "Sopas" : "Recraft"));
 				
 				if (isSoup) {
 					for (int i = 0; i < inventory.getContents().length; i++) {
