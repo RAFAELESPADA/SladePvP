@@ -7,7 +7,5 @@ depend: [Core, HolographicDisplays]
 
 commands:
    spawn:
-   chat:
-   damage:
    skit:
    sethologram:

@@ -6,8 +6,8 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="C:/Users/User/Desktop/helixmc.com/lobby/plugins/Core.jar"/>
 	<classpathentry kind="lib" path="C:/Users/User/Downloads/HolographicDisplays.jar"/>
 	<classpathentry kind="lib" path="C:/Users/User/Desktop/helixmc.com/paperspigot-1.8.8-R0.1-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/Desktop/helixmc.com/teste/plugins/Core.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
