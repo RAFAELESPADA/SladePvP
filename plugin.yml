@@ -7,8 +7,6 @@ depend: [Core, HolographicDisplays]
 
 commands:
    spawn:
-   build:
-   admin:
    chat:
    damage:
    skit:

@@ -1,7 +1,15 @@
 package net.helix.pvp;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -66,25 +74,43 @@ public class HelixPvP extends JavaPlugin implements Listener {
 	public void handleTopPlayers(Location location) {
 		List<HelixPlayer> topPlayers = HelixBukkit.getInstance().getPlayerManager().getPlayers().stream().sorted((x, y) -> 
 			Integer.valueOf(y.getPvp().getKills()).compareTo(x.getPvp().getKills())
-		).collect(Collectors.toList());
+		).limit(11).collect(Collectors.toList());
 		
 		Hologram hologram = topPlayersHd != null ?
 				topPlayersHd : (topPlayersHd = HologramsAPI.createHologram(HelixPvP.getInstance(), location));
 
 		hologram.teleport(location);
 		hologram.clearLines();
-	
-		hologram.appendTextLine("§d§lTOP 10 §e§lKILLS");
-		System.out.println("Top players = " + topPlayers.size());
-		for (int i = 0; i < 10; i++) {
-			int position = i + 1;
-			HelixPlayer helixPlayer = (topPlayers.size() - 1) > i ? topPlayers.get(i) : null;
-				hologram.appendTextLine(helixPlayer == null ? "§cNão encontrado." :
-				"§e" + position + "º " + helixPlayer.getRole().getColor() + helixPlayer.getName() + " §8- " +
-				"§fKills: §e" + helixPlayer.getPvp().getKills());
+		
+		try {
+			LocalDateTime now = LocalDateTime.now();
+			System.out.println(now.getDayOfMonth() + "/" + now.getMonthValue() + "/" + now.getYear() + " - NOW");
+			Date nextSeason = new SimpleDateFormat("dd/MM/yyyy").parse("01/" + (now.getMonthValue() + 1) + "/" + now.getYear());
+			
+			long differenceMillis = nextSeason.getTime() - System.currentTimeMillis();
+			long remaingDays = differenceMillis / (24 * 60 * 60 * 1000);
+		
+			System.out.println(nextSeason.toString());
+			hologram.appendTextLine("§d§lTOP 10 §e§lKILLS");
+			hologram.appendTextLine(remaingDays == 0 ? "§f(Premiação ocorrendo hoje)" 
+					: "§f(" + remaingDays + " " + (remaingDays > 1 ? "dias" : "dia") + " restante para a premiação)");
+			
+			System.out.println("Top players = " + topPlayers.size());
+			for (int i = 0; i < 10; i++) {
+				int position = i + 1;
+				HelixPlayer helixPlayer = (topPlayers.size() - 1) > i ? topPlayers.get(i) : null;
+					hologram.appendTextLine(helixPlayer == null ? "§cNão encontrado." :
+					"§e" + position + "º " + helixPlayer.getRole().getColor() + helixPlayer.getName() + " §8- " +
+					"§fKills: §e" + helixPlayer.getPvp().getKills());
+			}
+			
+			hologram.appendTextLine("§aPremiação para o top kills em dinheiro.");
+			hologram.appendTextLine("§aAcesse: §fbit.ly/HelixPremiacao");
+			System.out.println("top players loaded!!!");
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		hologram.appendItemLine(new ItemStack(Material.DIAMOND_SWORD));
-		System.out.println("top players loaded!!!");
+		
 	}
 	
 	private void loadTopPlayersHologram() {
@@ -104,7 +130,6 @@ public class HelixPvP extends JavaPlugin implements Listener {
 	
 	public void loadCommands() {
 		getCommand("spawn").setExecutor(new SpawnCMD());
-		getCommand("build").setExecutor(new BuildCMD());
 		getCommand("chat").setExecutor(new ChatCMD());
 		getCommand("damage").setExecutor(new DamageCMD());
 		getCommand("skit").setExecutor(new SkitCMD());
@@ -123,7 +148,6 @@ public class HelixPvP extends JavaPlugin implements Listener {
 		pm.registerEvents(new PlayerJoinListener(), this);
 		pm.registerEvents(new PlayerDeathListener(), this);
 		pm.registerEvents(new SoupHandlerListener(), this);
-		pm.registerEvents(new BuildCMD(), this);
 		pm.registerEvents(new EntityCalculateDamageListener(), this);
 		pm.registerEvents(new Jump(), this);
 		pm.registerEvents(new ChatCMD(), this);
