@@ -58,7 +58,7 @@ public class Kangaroo extends KitHandler {
 				vector.multiply(2.7F);
 				vector.setY(0.5D);
 			}else {
-				vector.multiply(0.5F);
+				vector.multiply(0.9F);
 				vector.setY(1.0D);
 			}
 			player.setFallDistance(-1.0F);
