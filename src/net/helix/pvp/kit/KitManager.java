@@ -1,11 +1,11 @@
 package net.helix.pvp.kit;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 public class KitManager {
 	
-	private final static List<PlayerPvP> players = new ArrayList();
+	private final static Set<PlayerPvP> players = new LinkedHashSet<>();
 	
 	public static PlayerPvP getPlayer(String name) {
 		return players.stream().filter(
@@ -17,7 +17,7 @@ public class KitManager {
 		});
 	}
 	
-	public static List<PlayerPvP> getPlayers() {
+	public static Set<PlayerPvP> getPlayers() {
 		return players;
 	}
 

@@ -1,20 +1,21 @@
 package net.helix.pvp.warp;
 
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import net.helix.core.bukkit.HelixBukkit;
 import net.helix.core.bukkit.api.HelixTitle;
 import net.helix.pvp.HelixPvP;
 import net.helix.pvp.warp.provider.*;
-
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
 public enum HelixWarp {
 
+	ONE_VS_ONE("1v1", new OneVsOne(), Material.BLAZE_ROD),
 	FPS("Fps", new Fps(), Material.GLASS),
 	KNOCKBACK("Knockback", new Knockback(), Material.STICK),
 	LAVACHALLENGE("Lava Challenge", new LavaChallenge(), Material.LAVA_BUCKET);
@@ -28,7 +29,7 @@ public enum HelixWarp {
 	private final String name;
 	private final WarpHandle handler;
 	private final Material icon;
-	private final List<String> players;
+	private final Set<String> players;
 	
 	public static List<HelixWarp> getWarps() {
 		return Arrays.asList(values());
@@ -50,7 +51,7 @@ public enum HelixWarp {
 		this.name = name;
 		this.handler = handle;
 		this.icon = icon;
-		this.players = new ArrayList<>();
+		this.players = new LinkedHashSet<>();
 	}
 	
 	public void send(Player player) {
