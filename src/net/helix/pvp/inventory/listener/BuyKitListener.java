@@ -47,6 +47,8 @@ public class BuyKitListener implements Listener {
 			
 			player.playSound(player.getLocation(), Sound.LEVEL_UP, 10.0f, 10.0f);
 			Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + player.getName() + " permission set helix.kit." + kit.toString().toLowerCase() + " pvp");
+			
+			Bukkit.broadcastMessage(helixPlayer.getTag().getColor() + player.getName() + " §fcomprou o kit §d" + kit.getName() + "§f!");
 			player.sendMessage("§aVocê comprou o kit §f" + kit.getName() + " §apor §f" + kit.getPrice() + " coins§a!");
 		});
 	}
