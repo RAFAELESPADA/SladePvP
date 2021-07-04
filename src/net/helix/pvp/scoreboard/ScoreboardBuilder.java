@@ -7,6 +7,7 @@ import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
 import net.helix.core.bukkit.HelixBukkit;
 import net.helix.core.bukkit.account.pvp.PlayerPvP;
+import net.helix.core.bukkit.format.HelixDecimalFormat;
 import net.helix.pvp.HelixPvP;
 
 public class ScoreboardBuilder {
@@ -59,9 +60,9 @@ public class ScoreboardBuilder {
 				.getPlayer(player.getName()).getPvp();
 		Scoreboard scoreboard = player.getScoreboard();
 		
-		scoreboard.getTeam("kills").setSuffix(String.valueOf(pvp.getKills()));
-		scoreboard.getTeam("deaths").setSuffix(String.valueOf(pvp.getDeaths()));
-		scoreboard.getTeam("killstreak").setSuffix(String.valueOf(pvp.getKillstreak()));
-		scoreboard.getTeam("coins").setSuffix(String.valueOf(pvp.getCoins()));
+		scoreboard.getTeam("kills").setSuffix(HelixDecimalFormat.format(pvp.getKills()));
+		scoreboard.getTeam("deaths").setSuffix(HelixDecimalFormat.format(pvp.getDeaths()));
+		scoreboard.getTeam("killstreak").setSuffix(HelixDecimalFormat.format(pvp.getKillstreak()));
+		scoreboard.getTeam("coins").setSuffix(HelixDecimalFormat.format(pvp.getCoins()));
 	}
 }

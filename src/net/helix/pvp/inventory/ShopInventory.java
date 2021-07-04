@@ -8,6 +8,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
+
+import net.helix.core.bukkit.format.HelixDecimalFormat;
 import net.helix.core.bukkit.item.ItemBuilder;
 import net.helix.pvp.kit.HelixKit;
 import net.helix.pvp.kit.KitManager;
@@ -44,7 +46,7 @@ public class ShopInventory {
 			
 			availableKits.forEach(kit -> {
 				inventory.addItem(new ItemBuilder("§a" + kit.getName(), kit.getIcon())
-						.lore("§fPreço: §e" + kit.getPrice(),
+						.lore("§fPreço: §6" + HelixDecimalFormat.format(kit.getPrice()) + " coins",
 								"",
 								"§aClique para comprar.")
 						.addFlags(ItemFlag.HIDE_ATTRIBUTES,

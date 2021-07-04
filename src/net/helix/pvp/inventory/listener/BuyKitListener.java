@@ -8,6 +8,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import net.helix.core.bukkit.HelixBukkit;
 import net.helix.core.bukkit.account.HelixPlayer;
+import net.helix.core.bukkit.format.HelixDecimalFormat;
 import net.helix.core.bukkit.item.ItemBuilder;
 import net.helix.pvp.inventory.ShopInventory;
 import net.helix.pvp.kit.HelixKit;
@@ -36,7 +37,8 @@ public class BuyKitListener implements Listener {
 			player.closeInventory();
 			
 			if (helixPlayer.getPvp().getCoins() < kit.getPrice()) {
-				player.sendMessage("§cVocê precisa de " + (kit.getPrice() - helixPlayer.getPvp().getCoins()) + " coins para comprar este kit.");
+				int remaingCoins = kit.getPrice() - helixPlayer.getPvp().getCoins();
+				player.sendMessage("§cVocê precisa de " + HelixDecimalFormat.format(remaingCoins) + " coins para comprar este kit.");
 				return;
 			}
 			
