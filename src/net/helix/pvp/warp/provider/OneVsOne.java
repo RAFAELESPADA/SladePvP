@@ -299,8 +299,7 @@ public class OneVsOne extends WarpHandle {
 	
 	private void show(Player player) {
 		Bukkit.getOnlinePlayers().stream().filter(
-				online -> online.canSee(player) 
-					&& !AdminUtil.has(online.getName())
+				online -> !AdminUtil.has(online.getName())
 		).forEach(player::showPlayer);
 	}
 }
