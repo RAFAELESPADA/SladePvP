@@ -48,6 +48,8 @@ public class PlayerDeathListener implements Listener {
 			}
 		}
 		
+		drops.forEach(item -> deathLocation.getWorld().dropItemNaturally(deathLocation, item));
+		
 		new BukkitRunnable() {
 			@Override
 			public void run() {
