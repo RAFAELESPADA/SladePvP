@@ -12,6 +12,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 
 import net.helix.core.bukkit.HelixBukkit;
 import net.helix.core.bukkit.item.ItemBuilder;
+import net.helix.pvp.kit.KitManager;
 
 public class PlayerCompassListener implements Listener {
 	
@@ -29,6 +30,7 @@ public class PlayerCompassListener implements Listener {
 				entity -> entity instanceof Player 
 				&& player.getLocation().distance(entity.getLocation()) >= 5 
 				&& player.canSee((Player)entity)
+				&& KitManager.getPlayer(entity.getName()).hasKit()
 		).collect(Collectors.toList());
 		
 		if (entities.size() == 0) {
