@@ -42,14 +42,11 @@ public class PlayerDeathListener implements Listener {
 			if (repeatedKills <= allowRepeatedKills) {
 				validKill = true;
 				lastKills.add(player.getName());
-				System.out.println("kd");
 				
 				if (lastKills.size() >= 3) {
 					lastKills.clear();
 				}
 			}
-			
-			System.out.println("KD: " + repeatedKills);
 			lastKillsMap.put(killer.getName(), lastKills);
 		}
 		
