@@ -127,7 +127,6 @@ public class HelixPvP extends JavaPlugin implements Listener {
 		PluginManager pm = Bukkit.getPluginManager();
 		
 		pm.registerEvents(new ShowPlayerInfoListener(), this);
-		pm.registerEvents(new PlayerDamageListener(), this);
 		pm.registerEvents(new SelectWarpListener(), this);
 		pm.registerEvents(new SelectKitListener(), this);
 		pm.registerEvents(new BuyKitListener(), this);

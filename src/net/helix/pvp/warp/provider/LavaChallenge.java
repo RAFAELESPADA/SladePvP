@@ -1,7 +1,8 @@
 package net.helix.pvp.warp.provider;
 
 import org.bukkit.entity.Player;
-import net.helix.pvp.util.DamageUtil;
+
+import net.helix.core.bukkit.util.DamageUtil;
 import net.helix.pvp.warp.WarpHandle;
 
 public class LavaChallenge extends WarpHandle {

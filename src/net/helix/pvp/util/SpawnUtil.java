@@ -7,6 +7,7 @@ import org.bukkit.entity.Player;
 import net.helix.core.bukkit.HelixBukkit;
 import net.helix.core.bukkit.api.HelixTitle;
 import net.helix.core.bukkit.item.ItemBuilder;
+import net.helix.core.bukkit.util.DamageUtil;
 import net.helix.pvp.kit.KitManager;
 import net.helix.pvp.warp.HelixWarp;
 

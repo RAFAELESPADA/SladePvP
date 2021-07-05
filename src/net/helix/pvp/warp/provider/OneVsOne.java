@@ -22,12 +22,12 @@ import net.helix.core.bukkit.HelixBukkit;
 import net.helix.core.bukkit.account.HelixPlayer;
 import net.helix.core.bukkit.item.ItemBuilder;
 import net.helix.core.bukkit.util.AdminUtil;
+import net.helix.core.bukkit.util.DamageUtil;
+import net.helix.core.bukkit.util.DamageUtil.DamageType;
 import net.helix.core.util.HelixCooldown;
 import net.helix.pvp.HelixPvP;
 import net.helix.pvp.event.HelixPlayerDeathEvent;
 import net.helix.pvp.event.HelixPlayerDeathEvent.Reason;
-import net.helix.pvp.util.DamageUtil;
-import net.helix.pvp.util.DamageUtil.DamageType;
 import net.helix.pvp.warp.HelixWarp;
 import net.helix.pvp.warp.WarpHandle;
 

@@ -7,7 +7,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.ItemFlag;
 import net.helix.core.bukkit.item.ItemBuilder;
-import net.helix.pvp.util.DamageUtil;
+import net.helix.core.bukkit.util.DamageUtil;
 import net.helix.pvp.warp.HelixWarp;
 import net.helix.pvp.warp.WarpHandle;
 

@@ -8,9 +8,9 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import net.helix.core.bukkit.HelixBukkit;
 import net.helix.core.bukkit.api.HelixTitle;
+import net.helix.core.bukkit.util.DamageUtil;
 import net.helix.pvp.HelixPvP;
 import net.helix.pvp.kit.provider.*;
-import net.helix.pvp.util.DamageUtil;
 
 public enum HelixKit {
 
