@@ -61,7 +61,9 @@ public enum HelixWarp {
 			return;
 		}
 		
-		players.add(player.getName());
+		if (!players.contains(player.getName())) {
+			players.add(player.getName());
+		}
 		handler.execute(player);
 		
 		player.teleport(warpOptional.get().getLocation());
