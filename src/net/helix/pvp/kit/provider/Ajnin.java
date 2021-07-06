@@ -1,6 +1,8 @@
 package net.helix.pvp.kit.provider;
 
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map.Entry;
 import java.util.concurrent.TimeUnit;
 
 import org.bukkit.Bukkit;
@@ -63,14 +65,21 @@ public class Ajnin extends KitHandler {
 	public void onDeath(PlayerDeathEvent event) {
 		Player player = event.getEntity();
 		
-		if (KitManager.getPlayer(player.getName()).hasKit(this)) {
+		if (map.containsKey(player.getName())) {
 			map.remove(player.getName());
 		}
+		
 		if (map.containsValue(player.getName())) {
+			for (Iterator<Entry<String, String>> iterator = map.entrySet().iterator(); iterator.hasNext();) {
+				if (!iterator.next().getValue().equalsIgnoreCase(player.getName())) {
+					return;
+				}
+				iterator.remove();
+			}
+			
 			map.entrySet().stream().filter(
 					entry -> entry.getValue().equalsIgnoreCase(player.getName())
 			).forEach(entry -> map.remove(entry.getKey()));
 		}
 	}
-
 }

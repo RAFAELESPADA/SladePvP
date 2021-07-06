@@ -76,6 +76,7 @@ public class OneVsOne extends WarpHandle {
 	@EventHandler
 	public void onQuit(PlayerQuitEvent event) {
 		Player player = event.getPlayer();
+		fastChallenge.remove(player);
 		
 		if (battlingPlayers.containsKey(player) && battlingPlayers.get(player) != null) {
 			Player battlingPlayer = battlingPlayers.get(player);
@@ -145,8 +146,8 @@ public class OneVsOne extends WarpHandle {
 		}
 		
 		HelixCooldown.create(player.getName(), "1v1-challenge-" + target.getName(), TimeUnit.SECONDS, 15);
-		target.sendMessage("§aVocê foi convidado por §f" + player.getName() + " §apara uma batalha! Você tem §f15 segundos §apara aceitar.");
-		player.sendMessage("§aVocê convidou §f" + target.getName() + " §apara uma batalha. Ele tem §f15 segundos §apara aceitar.");
+		target.sendMessage("§aVocê foi convidado por §f" + player.getName() + " §apara uma batalha.");
+		player.sendMessage("§aVocê convidou §f" + target.getName() + " §apara uma batalha.");
 	}
 	
 	@EventHandler
@@ -218,6 +219,10 @@ public class OneVsOne extends WarpHandle {
 	@EventHandler
 	public void onPlayerCommandProcess(PlayerCommandPreprocessEvent event) {
 		Player player = event.getPlayer();
+		
+		if (fastChallenge.contains(player) && event.getMessage().split(" ")[0].equalsIgnoreCase("spawn")) {
+			fastChallenge.remove(player);
+		}
 		
 		if (battlingPlayers.containsKey(player)) {
 			event.setCancelled(true);
