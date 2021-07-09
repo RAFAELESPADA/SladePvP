@@ -133,7 +133,13 @@ public class OneVsOne extends WarpHandle {
 			player.sendMessage("§cAguarde...");
 			return;
 		}
+		
 		Player target = (Player) event.getRightClicked();
+		
+		if (battlingPlayers.containsKey(target)) {
+			player.sendMessage("§cEste jogador já está batalhando.");
+			return;
+		}
 		
 		if (HelixCooldown.inCooldown(target.getName(), "1v1-challenge-" + player.getName())) {
 			startBattle(player, target);

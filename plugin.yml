@@ -9,3 +9,5 @@ commands:
    spawn:
    skit:
    sethologram:
+   scoreboard:
+      aliases: [score]

@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
@@ -20,7 +21,7 @@ public class PlayerCombatLogListener implements Listener {
 	private final static TimeUnit timeUnit = TimeUnit.SECONDS;
 	private final static long time = 12;
 	
-	@EventHandler(ignoreCancelled = true)
+	@EventHandler(ignoreCancelled = true, priority = EventPriority.MONITOR)
 	public void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
 		if (!(event.getEntity() instanceof Player) 
 				|| (!(event.getDamager() instanceof Player))) {

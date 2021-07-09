@@ -122,6 +122,7 @@ public class HelixPvP extends JavaPlugin implements Listener {
 		getCommand("spawn").setExecutor(new SpawnCMD());
 		getCommand("skit").setExecutor(new SkitCMD());
 		getCommand("sethologram").setExecutor(new SetHologramCMD());
+		getCommand("scoreboard").setExecutor(new ScoreboardCMD(this));
 	}
 	public void loadListeners() {
 		PluginManager pm = Bukkit.getPluginManager();
