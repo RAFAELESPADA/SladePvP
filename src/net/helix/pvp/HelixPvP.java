@@ -17,6 +17,7 @@ import com.gmail.filoghost.holographicdisplays.api.Hologram;
 import com.gmail.filoghost.holographicdisplays.api.HologramsAPI;
 import net.helix.core.bukkit.HelixBukkit;
 import net.helix.core.bukkit.account.HelixPlayer;
+import net.helix.core.bukkit.format.HelixDecimalFormat;
 import net.helix.core.bukkit.warp.HelixWarp;
 import net.helix.pvp.command.*;
 import net.helix.pvp.inventory.listener.BuyKitListener;
@@ -92,7 +93,7 @@ public class HelixPvP extends JavaPlugin implements Listener {
 				HelixPlayer helixPlayer = (topPlayers.size() - 1) > i ? topPlayers.get(i) : null;
 					hologram.appendTextLine(helixPlayer == null ? "§cNão encontrado." :
 					"§e" + position + "º " + helixPlayer.getRole().getColor() + helixPlayer.getName() + " §8- " +
-					"§fKills: §e" + helixPlayer.getPvp().getKills());
+					"§fKills: §e" + HelixDecimalFormat.format(helixPlayer.getPvp().getKills()));
 			}
 			
 			hologram.appendTextLine("§aPremiação para o top kills em dinheiro.");
