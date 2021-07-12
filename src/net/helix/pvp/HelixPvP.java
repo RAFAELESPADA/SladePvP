@@ -32,6 +32,10 @@ public class HelixPvP extends JavaPlugin implements Listener {
 		return getPlugin(HelixPvP.class);
 	}
 	
+	public void testDiscordHook() {
+		
+	}
+	
 	private ScoreboardBuilder scoreboardBuilder;
 	private Hologram topPlayersHd;
 	
