@@ -181,7 +181,7 @@ public class OneVsOne extends WarpHandle {
 		}else {
 			loserHelixPlayer.getPvp().setCoins(0);
 		}
-		HelixBukkit.getInstance().getPlayerManager().getData().save(loserHelixPlayer);
+		HelixBukkit.getInstance().getPlayerManager().getController().save(loserHelixPlayer);
 		
 		new BukkitRunnable() {
 			@Override
@@ -199,7 +199,7 @@ public class OneVsOne extends WarpHandle {
 			winnerHelixPlayer.getPvp().addKillstreak(1);
 			winnerHelixPlayer.getPvp().addCoins(winnerAddCoins);
 			winner.sendMessage("§6+" + winnerAddCoins + " coins");
-			HelixBukkit.getInstance().getPlayerManager().getData().save(winnerHelixPlayer);
+			HelixBukkit.getInstance().getPlayerManager().getController().save(winnerHelixPlayer);
 		}
 	}
 	

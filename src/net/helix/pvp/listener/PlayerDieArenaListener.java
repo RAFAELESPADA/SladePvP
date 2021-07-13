@@ -75,8 +75,8 @@ public class PlayerDieArenaListener implements Listener {
 			}else {
 				victimHelixPlayer.getPvp().setCoins(0);
 			}
-			HelixBukkit.getInstance().getPlayerManager().getData().save(victimHelixPlayer);
-			HelixBukkit.getInstance().getPlayerManager().getData().save(killerHelixPlayer);
+			HelixBukkit.getInstance().getPlayerManager().getController().save(victimHelixPlayer);
+			HelixBukkit.getInstance().getPlayerManager().getController().save(killerHelixPlayer);
 		}else {
 			player.sendMessage("§cVocê morreu!");
 		}
