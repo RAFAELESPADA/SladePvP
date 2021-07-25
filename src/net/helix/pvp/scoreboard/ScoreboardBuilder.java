@@ -22,7 +22,7 @@ public class ScoreboardBuilder {
 		Scoreboard scoreboard = Bukkit.getScoreboardManager().getNewScoreboard();
 		Objective objective = scoreboard.registerNewObjective("pvp", "dummy");
 		
-		objective.setDisplayName("§r  §6§lPVP");
+		objective.setDisplayName("§r  §b§lPVP");
 		objective.setDisplaySlot(DisplaySlot.SIDEBAR);
 		
 		String l7 = "§2";
@@ -32,7 +32,7 @@ public class ScoreboardBuilder {
 		String l3 = "§fKillstreak: §b";
 		String l2 = "§fCoins: §6";
 		String l1 = "§0";
-		String l0 = "§awww.helixmc.com.br";
+		String l0 = "§awww.redecentury.com";
 		
 		scoreboard.registerNewTeam("kills").addEntry(l6);
 		scoreboard.registerNewTeam("deaths").addEntry(l5);
