@@ -1,8 +1,5 @@
 package net.helix.pvp;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -77,17 +74,16 @@ public class HelixPvP extends JavaPlugin implements Listener {
 		hologram.clearLines();
 		
 		try {
-			LocalDateTime now = LocalDateTime.now();
-			Date nextSeason = new SimpleDateFormat("dd/MM/yyyy").parse("01/" + (now.getMonthValue() + 1) + "/" + now.getYear());
-			
-			long differenceMillis = nextSeason.getTime() - System.currentTimeMillis();
-			long remaingDays = differenceMillis / (24 * 60 * 60 * 1000);
-		
+//			LocalDateTime now = LocalDateTime.now();
+//			Date nextSeason = new SimpleDateFormat("dd/MM/yyyy").parse("01/" + (now.getMonthValue() + 1) + "/" + now.getYear());
+//			
+//			long differenceMillis = nextSeason.getTime() - System.currentTimeMillis();
+//			long remaingDays = differenceMillis / (24 * 60 * 60 * 1000);
+//		
 			hologram.appendTextLine("§d§lTOP 10 §e§lKILLS");
-			hologram.appendTextLine(remaingDays == 0 ? "§f(Premiação ocorrendo hoje)" 
-					: "§f(" + remaingDays + " " + (remaingDays > 1 ? "dias" : "dia") + " restante para a premiação)");
+//			hologram.appendTextLine(remaingDays == 0 ? "§f(Premiação ocorrendo hoje)" 
+//					: "§f(" + remaingDays + " " + (remaingDays > 1 ? "dias" : "dia") + " restante para a premiação)");
 			
-			System.out.println("Top players = " + topPlayers.size());
 			for (int i = 0; i < 10; i++) {
 				int position = i + 1;
 				HelixPlayer helixPlayer = (topPlayers.size() - 1) > i ? topPlayers.get(i) : null;
@@ -96,8 +92,8 @@ public class HelixPvP extends JavaPlugin implements Listener {
 					"§fKills: §e" + HelixDecimalFormat.format(helixPlayer.getPvp().getKills()));
 			}
 			
-			hologram.appendTextLine("§aPremiação para o top kills em dinheiro.");
-			hologram.appendTextLine("§aAcesse: §fbit.ly/HelixPremiacao");
+//			hologram.appendTextLine("§aPremiação para o top kills em dinheiro.");
+//			hologram.appendTextLine("§aAcesse: §fbit.ly/HelixPremiacao");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
