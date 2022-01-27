@@ -6,8 +6,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
+
+import net.helix.pvp.kit.Habilidade;
 import net.helix.pvp.kit.KitHandler;
 import net.helix.pvp.kit.KitManager;
+import net.md_5.bungee.api.ChatColor;
 
 public class Stomper extends KitHandler {
 	
@@ -29,10 +32,17 @@ public class Stomper extends KitHandler {
 						&& KitManager.getPlayer(entity.getName()).hasKit()
 			).forEach(entity -> {
 				Player target = (Player) entity;
-				target.damage(target.isSneaking() ? 6.0D : event.getDamage(), player);
+				if (Habilidade.getAbility(target) == "SteelHead") {
+					player.playSound(player.getLocation(), Sound.ANVIL_LAND, 15.0f, 15.0f);
+					target.playSound(player.getLocation(), Sound.ANVIL_LAND, 15.0f, 15.0f);
+					player.sendMessage(ChatColor.AQUA + "Você stompou um NEO e nao surtiu efeito nele");
+					target.sendMessage(ChatColor.AQUA + "Seu kit NEO o protegeu contra o stomper");
+					return;
+				}
+				target.damage(target.isSneaking() ? 4.0D : event.getDamage(), player);
 			});
 		}
 		player.playSound(player.getLocation(), Sound.ANVIL_LAND, 15.0f, 15.0f);
-		event.setDamage(4.0D);
+		event.setDamage(3.0D);
 	}
 }

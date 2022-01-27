@@ -1,14 +1,16 @@
 package net.helix.pvp.scoreboard;
 
+import net.helix.core.bukkit.account.HelixPlayer;
+import net.helix.core.bukkit.account.provider.PlayerPvP;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
 import net.helix.core.bukkit.HelixBukkit;
-import net.helix.core.bukkit.account.pvp.PlayerPvP;
 import net.helix.core.bukkit.format.HelixDecimalFormat;
 import net.helix.pvp.HelixPvP;
+import net.helix.pvp.listener.Ranking;
 
 public class ScoreboardBuilder {
 
@@ -22,23 +24,30 @@ public class ScoreboardBuilder {
 		Scoreboard scoreboard = Bukkit.getScoreboardManager().getNewScoreboard();
 		Objective objective = scoreboard.registerNewObjective("pvp", "dummy");
 		
-		objective.setDisplayName("§r  §b§lPVP");
+		objective.setDisplayName("Â§r  Â§6Â§lKOMBOPVP");
 		objective.setDisplaySlot(DisplaySlot.SIDEBAR);
 		
-		String l7 = "§2";
-		String l6 = "§fKills: §7";
-		String l5 = "§fDeaths: §7";
-		String l4 = "§1";
-		String l3 = "§fKillstreak: §b";
-		String l2 = "§fCoins: §6";
-		String l1 = "§0";
-		String l0 = "§awww.redecentury.com";
+		String l10 = "Â§3";
+		String l9 = "Â§f Grupo: ";
+		String l8 = "Â§2";
+		String l7 = "Â§a â– Â§fKills: Â§a";
+		String l6 = "Â§c â– Â§fDeaths: Â§c";
+		String l5 = "Â§3 â– Â§fStreak: Â§3";
+		String l4 = "Â§1";
+		String l3 = "Â§f Coins: Â§e";
+		String l2 = "Â§f Rank: Â§b";
+		String l1 = "Â§0";
+		String l0 = "Â§cloja.kombopvp.com";
 		
-		scoreboard.registerNewTeam("kills").addEntry(l6);
-		scoreboard.registerNewTeam("deaths").addEntry(l5);
-		scoreboard.registerNewTeam("killstreak").addEntry(l3);
-		scoreboard.registerNewTeam("coins").addEntry(l2);
-		
+		scoreboard.registerNewTeam("groupPrefix").addEntry(l9);
+		scoreboard.registerNewTeam("kills").addEntry(l7);
+		scoreboard.registerNewTeam("deaths").addEntry(l6);
+		scoreboard.registerNewTeam("killstreak").addEntry(l5);
+		scoreboard.registerNewTeam("coins").addEntry(l3);
+		scoreboard.registerNewTeam("rank").addEntry(l2);
+		objective.getScore(l10).setScore(10);
+		objective.getScore(l9).setScore(9);
+		objective.getScore(l8).setScore(8);
 		objective.getScore(l7).setScore(7);
 		objective.getScore(l6).setScore(6);
 		objective.getScore(l5).setScore(5);
@@ -56,13 +65,16 @@ public class ScoreboardBuilder {
 		if (player.getScoreboard().getObjective("pvp") == null) {
 			return;
 		}
-		PlayerPvP pvp = HelixBukkit.getInstance().getPlayerManager()
-				.getPlayer(player.getName()).getPvp();
+		HelixPlayer helixPlayer = HelixBukkit.getInstance().getPlayerManager()
+				.getPlayer(player.getName());
+		PlayerPvP pvp = helixPlayer.getPvp();
 		Scoreboard scoreboard = player.getScoreboard();
 		
+		scoreboard.getTeam("groupPrefix").setSuffix(helixPlayer.getRole().getNameColor());
 		scoreboard.getTeam("kills").setSuffix(HelixDecimalFormat.format(pvp.getKills()));
 		scoreboard.getTeam("deaths").setSuffix(HelixDecimalFormat.format(pvp.getDeaths()));
 		scoreboard.getTeam("killstreak").setSuffix(HelixDecimalFormat.format(pvp.getKillstreak()));
 		scoreboard.getTeam("coins").setSuffix(HelixDecimalFormat.format(pvp.getCoins()));
+		scoreboard.getTeam("rank").setSuffix((String.valueOf(Ranking.getRank(helixPlayer).getColoredName())));
 	}
 }

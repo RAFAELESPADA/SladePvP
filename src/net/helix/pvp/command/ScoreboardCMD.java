@@ -41,7 +41,7 @@ public class ScoreboardCMD implements CommandExecutor {
 		}
 		
 		HelixCooldown.create(sender.getName(), "scoreboard-cmd", TimeUnit.SECONDS, 5);
-		player.sendMessage(enable ? "§aVocê ativou sua scoreboard." : "§eVocê desativou sua scoreboard.");
+		player.sendMessage("§bScoreboard " + (enable ? "§aON" : "§cOFF"));
 		return true;
 	}
 

@@ -6,11 +6,20 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
-import net.helix.pvp.util.SpawnUtil;
-import net.helix.pvp.warp.HelixWarp;
 
-public class SpawnCMD implements Listener, CommandExecutor {
+import net.helix.pvp.kit.Habilidade;
+import net.helix.pvp.kit.provider.GladiatorListener;
+import net.helix.pvp.warp.HelixWarp;
+import net.helix.pvp.warp.WarpDuoBattleHandle;
+import net.helix.pvp.warp.provider.Sumo;
+
+public class SpawnCMD extends WarpDuoBattleHandle implements Listener, CommandExecutor {
 	
+	public SpawnCMD() {
+		 super("spawn_pos1", "spawn_pos2");
+		// TODO Auto-generated constructor stub
+	}
+
 	public static ArrayList<String> indo = new ArrayList<String>();
 	
 	@Override
@@ -19,10 +28,16 @@ public class SpawnCMD implements Listener, CommandExecutor {
 			return true;
 		}
 		Player p = (Player) sender;
-		
-		SpawnUtil.apply(p);
-		HelixWarp.removeHandle(p.getName());
-		p.sendMessage("§aTeleportado!");
+		 if (GladiatorListener.combateGlad.containsKey(p)) {
+             final Player winner = GladiatorListener.combateGlad.get(p);
+             final Player loser = p;
+             GladiatorListener.resetGladiatorListenerBySpawn(winner, loser);
+             GladiatorListener.combateGlad.remove(winner);
+             GladiatorListener.combateGlad.remove(loser);
+         }
+		 Habilidade.removeAbility(p);
+		HelixWarp.SPAWN.send(p, true);
+		p.sendMessage("§9Enviado para o spawn!");
 		return true;
 	}
 }

@@ -1,12 +1,16 @@
 package net.helix.pvp.listener;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
+import net.helix.pvp.warp.HelixWarp;
+
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -17,7 +21,6 @@ import net.helix.core.bukkit.account.HelixPlayer;
 import net.helix.pvp.HelixPvP;
 import net.helix.pvp.event.HelixPlayerDeathEvent;
 import net.helix.pvp.event.HelixPlayerDeathEvent.Reason;
-import net.helix.pvp.util.SpawnUtil;
 
 public class PlayerDieArenaListener implements Listener {
 	
@@ -33,20 +36,12 @@ public class PlayerDieArenaListener implements Listener {
 		if (drops.size() > 0) {
 			deathLocation.getWorld().playEffect(deathLocation, Effect.EXPLOSION_LARGE, 4);
 		}
-		
-		for (Iterator<ItemStack> iterator = drops.iterator(); iterator.hasNext();) {
-			ItemStack droppedItem = iterator.next();
-			if (!droppedItem.getType().toString().contains("MUSHROOM") && !droppedItem.getType().equals(Material.BOWL)) {
-				iterator.remove();
-			}
-		}
-		
-		drops.forEach(item -> deathLocation.getWorld().dropItemNaturally(deathLocation, item));
-		
+
+		drops.removeIf(droppedItem -> !droppedItem.getType().toString().contains("MUSHROOM") && !droppedItem.getType().equals(Material.BOWL) && !droppedItem.getType().equals(Material.EXP_BOTTLE) && !droppedItem.getType().equals(Material.LEATHER_LEGGINGS) && !droppedItem.getType().equals(Material.LEATHER_HELMET) && !droppedItem.getType().equals(Material.LEATHER_BOOTS) && !droppedItem.getType().equals(Material.GOLDEN_APPLE));
 		new BukkitRunnable() {
 			@Override
 			public void run() {
-				SpawnUtil.apply(player);
+				HelixWarp.SPAWN.send(player, true);
 			}
 		}.runTaskLater(HelixPvP.getInstance(), 10);
 		
@@ -55,30 +50,31 @@ public class PlayerDieArenaListener implements Listener {
 			Random random = new Random();
 			
 			HelixPlayer killerHelixPlayer = HelixBukkit.getInstance().getPlayerManager().getPlayer(killer.getName());
-			killer.sendMessage("§aVocê matou §f" + player.getName() + "§a. §7(" + (event.isValidKill() ? "Conta" : "Não conta") + ")");
+			killer.playSound(killer.getLocation(), Sound.LEVEL_UP, 10.0f, 10.0f);
+			killer.sendMessage("§3Você matou " + player.getName() + ". §8(" + (event.isValidKill() ? "Conta" : "Não conta") + ")");
 			if (event.isValidKill()) {
-				int killerAddCoins = random.nextInt(50 + 1 - 10) + 10;
+				int killerAddCoins = random.nextInt(80 + 1 - 25) + 25;
 				killerHelixPlayer.getPvp().addKills(1);
 				killerHelixPlayer.getPvp().addKillstreak(1);
 				killerHelixPlayer.getPvp().addCoins(killerAddCoins);
-				killer.sendMessage("§6+" + killerAddCoins + " coins");
+				killer.sendMessage("§6§l[+] §6" + killerAddCoins + " coins");
 			}
-			
 			HelixPlayer victimHelixPlayer = HelixBukkit.getInstance().getPlayerManager().getPlayer(player.getName());
-			int victimWithdrawnCoins = random.nextInt(20 + 1 - 5) + 5;
+			int victimWithdrawnCoins = random.nextInt(20 + 1 - 8) + 8;
 			victimHelixPlayer.getPvp().addDeaths(1);
 			victimHelixPlayer.getPvp().setKillstreak(0);
-			player.sendMessage("§cVocê morreu para §f" + killer.getName() + "§c.");
 			if ((victimHelixPlayer.getPvp().getCoins() - victimWithdrawnCoins) >= 0) {
 				victimHelixPlayer.getPvp().removeCoins(victimWithdrawnCoins);
-				player.sendMessage("§c-" + victimWithdrawnCoins + " coins");
+				player.sendMessage("§c§l[-] §c" + victimWithdrawnCoins + " coins");
 			}else {
 				victimHelixPlayer.getPvp().setCoins(0);
 			}
-			HelixBukkit.getInstance().getPlayerManager().getController().save(victimHelixPlayer);
-			HelixBukkit.getInstance().getPlayerManager().getController().save(killerHelixPlayer);
+			
+			player.sendMessage("§cVocê morreu para " + killer.getName());
+					HelixBukkit.getInstance().getPlayerManager().getController().save(victimHelixPlayer);
+					HelixBukkit.getInstance().getPlayerManager().getController().save(killerHelixPlayer);
 		}else {
-			player.sendMessage("§cVocê morreu!");
+			player.sendMessage("§cVocê morreu.");
 		}
 		
 		Location spawnLocation = HelixBukkit.getInstance().getWarpManager().findWarp("spawn").isPresent() ?

@@ -43,7 +43,7 @@ public class Monk extends KitHandler {
 			return;
 		}
 
-		HelixCooldown.create(player.getName(), "monk", TimeUnit.SECONDS, 15);
+		HelixCooldown.create(player.getName(), "monk", TimeUnit.SECONDS, 10);
 		int randomSlot = new Random().nextInt(20 + 1 - 9) + 9;
 		ItemStack itemInHand = rightClicked.getItemInHand();
 		ItemStack itemInSlot = rightClicked.getInventory().getItem(randomSlot);

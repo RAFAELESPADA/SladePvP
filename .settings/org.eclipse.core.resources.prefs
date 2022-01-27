@@ -1,2 +1,4 @@
 eclipse.preferences.version=1
 encoding//src/net/helix/pvp/listener/PlayerJoinListener.java=UTF-8
+encoding//src/net/helix/pvp/listener/Ranking.java=UTF-8
+encoding//src/net/helix/pvp/scoreboard/ScoreboardBuilder.java=UTF-8

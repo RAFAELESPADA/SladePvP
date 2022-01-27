@@ -18,8 +18,8 @@ public class PlayerPvP {
 	public List<HelixKit> getAvailableKits() {
 		return HelixKit.getKits().stream().filter(
 				kit -> kit.isFree() || Bukkit.getPlayer(name) != null 
-				&& (Bukkit.getPlayer(name).hasPermission("helix.kit." + kit.toString().toLowerCase()) 
-						|| Bukkit.getPlayer(name).hasPermission("helix.kit.*"))
+				&& (Bukkit.getPlayer(name).hasPermission("kombo.kit." + kit.toString().toLowerCase())
+						|| Bukkit.getPlayer(name).hasPermission("kombo.kit.*"))
 		).collect(Collectors.toList());
 	}
 	

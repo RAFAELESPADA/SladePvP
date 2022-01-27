@@ -44,7 +44,7 @@ public class PlayerCombatLogListener implements Listener {
 		String command = event.getMessage().split(" ")[0].toLowerCase();
 		if (HelixCooldown.inCooldown(player.getName(), "combat") && !allowCommands.contains(command)) {
 			event.setCancelled(true);
-			player.sendMessage("§cVocê não pode executar comandos em combate. Você irá sair de combate em " + HelixCooldown.getTime(player.getName(), "combat") + "s.");
+			player.sendMessage("§cAguarde " + HelixCooldown.getTime(player.getName(), "combat") + "s para usar os comandos");
 		}
 	}
 	

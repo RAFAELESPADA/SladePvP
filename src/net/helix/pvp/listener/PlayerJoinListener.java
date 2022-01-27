@@ -1,11 +1,11 @@
 package net.helix.pvp.listener;
 
+import net.helix.pvp.warp.HelixWarp;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import net.helix.pvp.HelixPvP;
-import net.helix.pvp.util.SpawnUtil;
 
 public class PlayerJoinListener implements Listener {
 	
@@ -14,6 +14,6 @@ public class PlayerJoinListener implements Listener {
 		Player player = e.getPlayer();
 		
 		HelixPvP.getInstance().getScoreboardBuilder().build(player);
-		SpawnUtil.apply(player);
+		HelixWarp.SPAWN.send(player, true);
 	}
 }

@@ -40,7 +40,7 @@ public class Thor extends KitHandler {
 			return;
 		}
 		
-		HelixCooldown.create(player.getName(), "thor", TimeUnit.SECONDS, 13);
+		HelixCooldown.create(player.getName(), "thor", TimeUnit.SECONDS, 10);
 		player.getWorld().strikeLightning(event.getClickedBlock().getLocation());
 		
 	}

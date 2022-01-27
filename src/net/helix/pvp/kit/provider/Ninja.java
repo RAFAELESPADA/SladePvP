@@ -16,7 +16,7 @@ import net.helix.pvp.kit.KitManager;
 
 public class Ninja extends KitHandler {
 	
-	private static final HashMap<String, String> map = new HashMap<>();
+	protected static final HashMap<String, String> map = new HashMap<>();
 	
 	@EventHandler(ignoreCancelled = true)
 	public void onDamage(EntityDamageByEntityEvent event) {
@@ -35,8 +35,9 @@ public class Ninja extends KitHandler {
 	
 	@EventHandler
 	public void onSneaking(PlayerToggleSneakEvent event) {
+		if (event.isSneaking()) return;
 		Player player = event.getPlayer();
-		
+
 		if (KitManager.getPlayer(player.getName()).hasKit(this) 
 				&& map.containsKey(player.getName())) {
 			if (HelixCooldown.inCooldown(player.getName(), "ninja")) {
@@ -52,7 +53,7 @@ public class Ninja extends KitHandler {
 					player.sendMessage("§cEste jogador está muito longe.");
 					return;
 				}
-				HelixCooldown.create(player.getName(), "ninja", TimeUnit.SECONDS, 15);
+				HelixCooldown.create(player.getName(), "ninja", TimeUnit.SECONDS, 10);
 				player.teleport(targetPlayer);
 				player.sendMessage("§aVocê teleportou para §f" + targetName + "§a.");
 			}
@@ -67,9 +68,7 @@ public class Ninja extends KitHandler {
 			map.remove(player.getName());
 		}
 		if (map.containsValue(player.getName())) {
-			map.entrySet().stream().filter(
-					entry -> entry.getValue().equalsIgnoreCase(player.getName())
-			).forEach(entry -> map.remove(entry.getKey()));
+			map.entrySet().removeIf(entry -> entry.getValue().equalsIgnoreCase(player.getName()));
 		}
 	}
 

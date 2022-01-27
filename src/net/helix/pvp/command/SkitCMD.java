@@ -26,11 +26,11 @@ public class SkitCMD implements Listener, CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (!(sender instanceof Player)) {
-			sender.sendMessage("Â§cÂ§lSKIT Â§fComando apenas para jogadores.");
+			sender.sendMessage("§cComando apenas para jogadores.");
 			return true;
 		}
-		if (!sender.hasPermission("helix.cmd.skit")) {
-			sender.sendMessage("§cVocê não tem permissão para executar este comando.");
+		if (!sender.hasPermission("kombo.cmd.skit")) {
+			sender.sendMessage("§cVocê não tem permissão.");
 			return true;
 		}
 		if (args.length == 0) {
@@ -60,7 +60,7 @@ public class SkitCMD implements Listener, CommandExecutor {
 				.collect(Collectors.toList());
 		
 		if  (nearbyPlayers.size() == 0) {
-			sender.sendMessage("§cNão há jogadores em um radio de " + radius + " blocos.");
+			sender.sendMessage("§cNão há jogadores em um raio de " + radius + " blocos.");
 			return true;
 		}
 		
@@ -70,7 +70,7 @@ public class SkitCMD implements Listener, CommandExecutor {
 			player.updateInventory();
 		});
 		
-		sender.sendMessage("§aVocê setou seu inventário para §f" + nearbyPlayers.size() + " jogadores em um raio de §f" + radius + " blocos§a.");
+		sender.sendMessage("§3Invetário aplicado para " + nearbyPlayers.size() + " jogadores");
 		return true;
 	}
 

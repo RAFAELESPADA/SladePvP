@@ -1,0 +1,25 @@
+name: PvP
+version: 2.0.0
+author: Smart , Rafael Auler
+main: net.helix.pvp.HelixPvP
+description: Plugin de kitpvp do KomboPvP
+depend: [Core, HolographicDisplays]
+
+commands:
+   spawn:
+   skit:
+   sethologram:
+   rank:
+      aliases: [ranks]
+   scoreboard:
+      aliases: [score]
+   verrank:
+      aliases: [profile]
+   crash:
+      aliases: [crashar]
+   sortearplayer:
+      aliases: [sortear]   
+   sorteio:
+   actionbar:
+   
+   

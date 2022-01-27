@@ -1,11 +1,14 @@
 package net.helix.pvp.listener;
 
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
@@ -74,6 +77,9 @@ public class EntityCalculateDamageListener implements Listener {
 	                p.getInventory().getBoots().setDurability((short)1);
 	            }
 	        }
-	    }
-
+	 }	    
 }
+                            
+                        
+                
+    

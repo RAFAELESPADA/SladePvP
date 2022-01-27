@@ -1,13 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
+	<classpathentry kind="src" path="src"/>
+	<classpathentry excluding="src/" kind="src" path=""/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-17">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="C:/Users/User/Downloads/HolographicDisplays.jar"/>
-	<classpathentry kind="lib" path="C:/Users/User/Desktop/helixmc.com/paperspigot-1.8.8-R0.1-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="C:/Users/User/Desktop/helixmc.com/teste/plugins/Core.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/SO Auler/Desktop/KOMBO/KomboNetwork/KITPVP/server.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="C:/Users/SO Auler/Desktop/KOMBO/KomboNetwork/KITPVP/plugins/Core-Vitor.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="C:/Users/SO Auler/Desktop/KOMBO/KomboNetwork/KITPVP/plugins/LuckPerms-Bukkit-5.3.47.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="C:/Users/SO Auler/Desktop/KOMBO/KomboNetwork/KITPVP/plugins/HolographicDisplays.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

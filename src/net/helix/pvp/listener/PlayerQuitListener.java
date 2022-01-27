@@ -5,7 +5,9 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
 
+import net.helix.pvp.kit.Habilidade;
 import net.helix.pvp.kit.KitManager;
+import net.helix.pvp.kit.provider.GladiatorListener;
 import net.helix.pvp.warp.HelixWarp;
 
 public class PlayerQuitListener implements Listener {
@@ -15,7 +17,15 @@ public class PlayerQuitListener implements Listener {
 		Player player = event.getPlayer();
 		
 		HelixWarp.removeHandle(player.getName());
-		KitManager.getPlayer(player.getName()).removeKit();
+		KitManager.remove(player.getName());
+		Habilidade.removeAbility(player);
+		 if (GladiatorListener.combateGlad.containsKey(player)) {
+             final Player winner = GladiatorListener.combateGlad.get(player);
+             final Player loser = player;
+             GladiatorListener.resetGladiatorListenerByQuit(winner, loser);
+             GladiatorListener.combateGlad.remove(winner);
+             GladiatorListener.combateGlad.remove(loser);
+         }
 	}
 
 }

@@ -1,7 +1,5 @@
 package net.helix.pvp.inventory;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -15,39 +13,30 @@ import org.bukkit.entity.Player;
 
 public class KitsInventory {
 
-	private final static String inventoryName = "§7§nLista de Kits";
-	
+	private final static String inventoryName = "§bKits do servidor";
 	public static void open(Player player) {
 		Inventory inventory = Bukkit.createInventory(null, 6 * 9, inventoryName);
-		
+		ItemStack visualItem = new ItemBuilder("§6§lKOMBO§f§lPVP", Material.VINE).toStack();
+
 		for (int i = 0; i <= 8; i++) {
 			inventory.setItem(i, randomGlass());
 		}
-		
+
 		for (int i = 45; i <= 53; i++) {
 			inventory.setItem(i, randomGlass());
 		}
-		
-		for (int i = 0; i <= 45; i += 9) {
+
+		for (int i = 0; i <= 44; i += 9) {
 			inventory.setItem(i, randomGlass());
 		}
-		
+
 		for (int i = 8; i <= 53; i += 9) {
 			inventory.setItem(i, randomGlass());
 		}
-		
+
 		KitManager.getPlayer(player.getName()).getAvailableKits().forEach(kit -> {
-			long playerCount = KitManager.getPlayers().stream().filter(
-					playerPvP -> playerPvP.hasKit(kit)).count();
-			
-			List<String> lore = new ArrayList<>();
-			if (playerCount > 0) {
-				lore.add("§f" + playerCount + " §7jogando com este kit.");
-			}
-			lore.add("§eClique para selecionar.");
-			
-			inventory.addItem(new ItemBuilder("§a" + kit.getName(), kit.getIcon())
-					.lore(lore)
+			inventory.addItem(new ItemBuilder("§2" + kit.getName(), kit.getIcon())
+					.lore("§7Clique para selecionar")
 					.addFlags(ItemFlag.HIDE_ATTRIBUTES,
 							ItemFlag.HIDE_DESTROYS,
 							ItemFlag.HIDE_ENCHANTS,
@@ -65,7 +54,6 @@ public class KitsInventory {
 	public static String getInventoryName() {
 		return inventoryName;
 	}
-	
 	private static ItemStack randomGlass() {
 		int randomId = new Random().nextInt(14);
 		return new ItemStack(Material.STAINED_GLASS_PANE, 1, (short)randomId);

@@ -16,13 +16,13 @@ public class SetHologramCMD implements CommandExecutor {
 		if (!(sender instanceof Player)) {
 			return true;
 		}
-		if (!sender.hasPermission("helix.cmd.sethologram")) {
-			sender.sendMessage("§cVocê não tem permissão para executar este comando.");
+		if (!sender.hasPermission("kombo.cmd.sethologram")) {
+			sender.sendMessage("§cVocê não tem permissão.");
 			return true;
 		}
 		
 		if (args.length == 0) {
-			sender.sendMessage("§eUtilize §f/" + label + " <top-players> §epara setar a posição de um holograma.");
+			sender.sendMessage("§cUse /" + label + " <top-players>");
 			return true;
 		}
 		
@@ -38,7 +38,7 @@ public class SetHologramCMD implements CommandExecutor {
 			HelixPvP.getInstance().handleTopPlayers(location);
 			warp.setLocation(location);
 			HelixBukkit.getInstance().getWarpManager().getData().save(warp);
-			sender.sendMessage("§aVocê setou a posição do holograma §f" + hologramName + "§a.");
+			sender.sendMessage("§aVocê setou o holograma " + hologramName + "§a.");
 		}else {
 			sender.sendMessage("§cHolograma não encontrado.");
 		}

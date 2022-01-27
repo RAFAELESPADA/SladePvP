@@ -16,7 +16,7 @@ import net.helix.pvp.kit.KitManager;
 
 public class Ajnin extends KitHandler {
 	
-	private static final HashMap<String, String> map = new HashMap<>();
+	protected static final HashMap<String, String> map = new HashMap<>();
 	
 	@EventHandler(ignoreCancelled = true)
 	public void onDamage(EntityDamageByEntityEvent event) {
@@ -35,6 +35,7 @@ public class Ajnin extends KitHandler {
 	
 	@EventHandler
 	public void onSneaking(PlayerToggleSneakEvent event) {
+		if (event.isSneaking()) return;
 		Player player = event.getPlayer();
 		
 		if (KitManager.getPlayer(player.getName()).hasKit(this) 
@@ -52,7 +53,7 @@ public class Ajnin extends KitHandler {
 					player.sendMessage("§cEste jogador está muito longe.");
 					return;
 				}
-				HelixCooldown.create(player.getName(), "ajnin", TimeUnit.SECONDS, 15);
+				HelixCooldown.create(player.getName(), "ajnin", TimeUnit.SECONDS, 20);
 				targetPlayer.teleport(player);
 				player.sendMessage("§aVocê puxou §f" + targetName + "§a.");
 			}

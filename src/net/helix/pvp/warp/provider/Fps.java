@@ -14,10 +14,15 @@ public class Fps extends WarpHandle {
 		super.execute(player);
 		DamageUtil.allowAllDamage(player.getName());
 		
-		player.getInventory().setItem(0, new ItemBuilder("§fEspada de Pedra", Material.STONE_SWORD)
+		player.getInventory().setItem(0, new ItemBuilder("§fEspada de Diamante", Material.DIAMOND_SWORD)
 				.nbt("cancel-drop")
 				.toStack()
 		);
+
+		player.getInventory().setHelmet(new ItemBuilder("§6§lKOMBO§f§lPVP", Material.IRON_HELMET).toStack());
+		player.getInventory().setChestplate(new ItemBuilder("§6§lKOMBO§f§lPVP", Material.IRON_CHESTPLATE).toStack());
+		player.getInventory().setLeggings(new ItemBuilder("§6§lKOMBO§f§lPVP", Material.IRON_LEGGINGS).toStack());
+		player.getInventory().setBoots(new ItemBuilder("§6§lKOMBO§f§lPVP", Material.IRON_BOOTS).toStack());
 		
 		for (int i = 0; i < 36; i++) {
 			player.getInventory().addItem(new ItemStack(Material.MUSHROOM_SOUP));

@@ -14,13 +14,13 @@ import org.bukkit.inventory.ItemStack;
 
 public class SignListener implements Listener {
 	
-	private static final String soup = "§e§lSOPAS", recraft = "§6§lRECRAFT";
+	private static final String soup = "§3§lSOPAS", recraft = "§3§lRECRAFT";
 	
 	@EventHandler(ignoreCancelled = true)
 	public void onSignChange(SignChangeEvent event) {
 		Player player = event.getPlayer();
 		
-		if (player.hasPermission("helix.sign") && (event.getLine(0).equalsIgnoreCase("sopas") || event.getLine(0).equalsIgnoreCase("recraft"))) {
+		if (player.hasPermission("kombo.sign") && (event.getLine(0).equalsIgnoreCase("sopas") || event.getLine(0).equalsIgnoreCase("recraft"))) {
 			String type = event.getLine(0).equalsIgnoreCase("recraft") ? recraft : soup;
 			
 			event.setLine(0, "");
@@ -41,7 +41,7 @@ public class SignListener implements Listener {
 			
 			if (lines.length >= 4 && (lines[1].equalsIgnoreCase(soup) || lines[1].equalsIgnoreCase(recraft))) {
 				boolean isSoup = lines[1].equalsIgnoreCase(soup);
-				Inventory inventory = Bukkit.createInventory(null, 4 * 9, "§7§n" + (isSoup ? "Sopas" : "Recraft"));
+				Inventory inventory = Bukkit.createInventory(null, (isSoup ? 4 : 3) * 9, "§7§n" + (isSoup ? "Sopas" : "Recraft"));
 				
 				if (isSoup) {
 					for (int i = 0; i < inventory.getContents().length; i++) {

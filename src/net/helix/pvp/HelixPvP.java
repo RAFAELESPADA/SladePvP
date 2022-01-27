@@ -17,6 +17,7 @@ import net.helix.core.bukkit.account.HelixPlayer;
 import net.helix.core.bukkit.format.HelixDecimalFormat;
 import net.helix.core.bukkit.warp.HelixWarp;
 import net.helix.pvp.command.*;
+import net.helix.pvp.inventory.StatusGUI;
 import net.helix.pvp.inventory.listener.BuyKitListener;
 import net.helix.pvp.inventory.listener.SelectKitListener;
 import net.helix.pvp.inventory.listener.SelectWarpListener;
@@ -34,7 +35,6 @@ public class HelixPvP extends JavaPlugin implements Listener {
 	
 	public void onEnable() {
 		this.scoreboardBuilder = new ScoreboardBuilder(this);
-		
 		loadCommands();
 		loadListeners();
 		
@@ -63,8 +63,8 @@ public class HelixPvP extends JavaPlugin implements Listener {
 	}
 	
 	public void handleTopPlayers(Location location) {
-		List<HelixPlayer> topPlayers = HelixBukkit.getInstance().getPlayerManager().getPlayers().stream().sorted((x, y) -> 
-			Integer.valueOf(y.getPvp().getKills()).compareTo(x.getPvp().getKills())
+		List<HelixPlayer> topPlayers = HelixBukkit.getInstance().getPlayerManager().getPlayers().stream().sorted((x, y) ->
+				Integer.compare(y.getPvp().getKills(), x.getPvp().getKills())
 		).limit(11).collect(Collectors.toList());
 		
 		Hologram hologram = topPlayersHd != null ?
@@ -74,26 +74,15 @@ public class HelixPvP extends JavaPlugin implements Listener {
 		hologram.clearLines();
 		
 		try {
-//			LocalDateTime now = LocalDateTime.now();
-//			Date nextSeason = new SimpleDateFormat("dd/MM/yyyy").parse("01/" + (now.getMonthValue() + 1) + "/" + now.getYear());
-//			
-//			long differenceMillis = nextSeason.getTime() - System.currentTimeMillis();
-//			long remaingDays = differenceMillis / (24 * 60 * 60 * 1000);
-//		
-			hologram.appendTextLine("§d§lTOP 10 §e§lKILLS");
-//			hologram.appendTextLine(remaingDays == 0 ? "§f(Premiação ocorrendo hoje)" 
-//					: "§f(" + remaingDays + " " + (remaingDays > 1 ? "dias" : "dia") + " restante para a premiação)");
+			hologram.appendTextLine("§e§lTop 15 Jogadores §6§l(KILL)");
 			
-			for (int i = 0; i < 10; i++) {
+			for (int i = 0; i < 15; i++) {
 				int position = i + 1;
 				HelixPlayer helixPlayer = (topPlayers.size() - 1) > i ? topPlayers.get(i) : null;
 					hologram.appendTextLine(helixPlayer == null ? "§cNão encontrado." :
-					"§e" + position + "º " + helixPlayer.getRole().getColor() + helixPlayer.getName() + " §8- " +
-					"§fKills: §e" + HelixDecimalFormat.format(helixPlayer.getPvp().getKills()));
+					"§6" + position + "º " + helixPlayer.getRole().getColor() + helixPlayer.getName() + " §e- " +
+					"§fKills: §6" + HelixDecimalFormat.format(helixPlayer.getPvp().getKills()));
 			}
-			
-//			hologram.appendTextLine("§aPremiação para o top kills em dinheiro.");
-//			hologram.appendTextLine("§aAcesse: §fbit.ly/HelixPremiacao");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -120,16 +109,24 @@ public class HelixPvP extends JavaPlugin implements Listener {
 		getCommand("skit").setExecutor(new SkitCMD());
 		getCommand("sethologram").setExecutor(new SetHologramCMD());
 		getCommand("scoreboard").setExecutor(new ScoreboardCMD(this));
+		getCommand("rank").setExecutor(new RankCMD());
+		getCommand("verrank").setExecutor(new VerRank());
+		getCommand("crash").setExecutor(new Crash());
+		getCommand("sortearplayer").setExecutor(new SortearPlayer());
+		getCommand("sorteio").setExecutor(new Sorteio());
+		getCommand("actionbar").setExecutor(new ActionBar());
 	}
 	public void loadListeners() {
 		PluginManager pm = Bukkit.getPluginManager();
 		
 		pm.registerEvents(new ShowPlayerInfoListener(), this);
+		pm.registerEvents(new StatusGUI(), this);
 		pm.registerEvents(new SelectWarpListener(), this);
 		pm.registerEvents(new SelectKitListener(), this);
 		pm.registerEvents(new BuyKitListener(), this);
 		pm.registerEvents(new OpenSpawnItemsListener(), this);
 		pm.registerEvents(new ServerEssentialsListener(), this);
+		pm.registerEvents(new PotePlaca(), this);
 		pm.registerEvents(new PlayerJoinListener(), this);
 		pm.registerEvents(new PlayerDeathListener(), this);
 		pm.registerEvents(new SoupHandlerListener(), this);

@@ -15,10 +15,13 @@ import org.bukkit.entity.Player;
 
 public enum HelixWarp {
 
-	ONE_VS_ONE("1v1", new OneVsOne(), Material.BLAZE_ROD),
+	SPAWN("Spawn", new Spawn(), Material.AIR),
 	FPS("Fps", new Fps(), Material.GLASS),
+	SUMO("Sumo", new Sumo(), Material.APPLE),
+	ONE_VS_ONE("1v1", new OneVsOne(), Material.BLAZE_ROD),
 	KNOCKBACK("Knockback", new Knockback(), Material.STICK),
-	LAVACHALLENGE("Lava Challenge", new LavaChallenge(), Material.LAVA_BUCKET);
+	LAVACHALLENGE("Lava Challenge", new LavaChallenge(), Material.LAVA_BUCKET),
+	POTPVP("PotPvP", new PotPvP(), Material.POTION);
 	
 	static {
 		getWarps().forEach(warp -> 
@@ -40,7 +43,7 @@ public enum HelixWarp {
 				warp -> warp.getName().equalsIgnoreCase(warpName)
 		).findFirst();
 	}
-	
+
 	public static void removeHandle(String username) {
 		getWarps().stream().filter(
 				warp -> warp.players.contains(username)
@@ -53,21 +56,29 @@ public enum HelixWarp {
 		this.icon = icon;
 		this.players = new LinkedHashSet<>();
 	}
-	
+
 	public void send(Player player) {
+		send(player, false);
+	}
+	
+	public void send(Player player, boolean silent) {
 		Optional<net.helix.core.bukkit.warp.HelixWarp> warpOptional;
 		if (!(warpOptional = HelixBukkit.getInstance().getWarpManager().findWarp(this.toString().toLowerCase())).isPresent()) {
-			player.sendMessage("§cWarp não encontrada.");
+			player.sendMessage("§cA warp " + this.name + " não foi setada");
 			return;
 		}
-		
-		if (!players.contains(player.getName())) {
-			players.add(player.getName());
-		}
+
+		getWarps().stream().filter(
+				warp -> warp != this && warp.players.contains(player.getName())
+		).forEach(warp -> warp.players.remove(player.getName()));
+
+		players.add(player.getName());
 		handler.execute(player);
-		
 		player.teleport(warpOptional.get().getLocation());
-		HelixTitle.sendTitle(player, 2, "§a§l" + name, "§fTeleportado!");
+
+		if (!silent) {
+			player.sendMessage("§7Enviado para warp §b" + this.name);
+		}
 	}
 	
 	public String getName() {

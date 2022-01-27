@@ -17,16 +17,30 @@ public enum HelixKit {
 	PVP("PvP", 0, new PvP(), Material.STONE_SWORD),
 	KANGAROO("Kangaroo", 0,  new Kangaroo(), Material.FIREWORK),
 	THOR("Thor", 0, new Thor(), Material.GOLD_AXE),
-	FISHERMAN("Fisherman", 800, new Fisherman(), Material.FISHING_ROD),
-	ANCHOR("Anchor", 1000, new Anchor(), Material.ANVIL),
-	VIPER("Viper", 1300, new Viper(), Material.SPIDER_EYE),
-	SNAIL("Snail", 1300, new Snail(), Material.SOUL_SAND),
-	POSEIDON("Poseidon", 1800, new Poseidon(), Material.WATER_BUCKET),
-	FIREMAN("Fireman", 1900, new Fireman(), Material.LAVA_BUCKET),
-	NINJA("Ninja", 2300, new Ninja(), Material.EMERALD),
-	AJNIN("Ajnin", 2400, new Ajnin(), Material.NETHER_STAR),
-	MONK("Monk", 3000, new Monk(), Material.BLAZE_ROD),
-	STOMPER("Stomper", 4000, new Stomper(), Material.IRON_BOOTS);
+	ARCHER("Archer", 0, new Archer(), Material.BOW),
+    NEO("Neo", 0, new AntiStomper(), Material.BARRIER),
+	FISHERMAN("Fisherman", 2500, new Fisherman(), Material.FISHING_ROD),
+	ANCHOR("Anchor", 2600, new Anchor(), Material.ANVIL),
+	VIPER("Viper", 3950, new Viper(), Material.SPIDER_EYE),
+	SNAIL("Snail", 3950, new Snail(), Material.SOUL_SAND),
+	POSEIDON("Poseidon", 4200, new Poseidon(), Material.WATER_BUCKET),
+	FIREMAN("Fireman", 5500, new Fireman(), Material.LAVA_BUCKET),
+	NINJA("Ninja", 5300, new Ninja(), Material.EMERALD),
+	AJNIN("Ajnin", 5500, new Ajnin(), Material.NETHER_STAR),
+	MONK("Monk", 4000, new Monk(), Material.BLAZE_ROD),
+	STOMPER("Stomper", 9000, new Stomper(), Material.IRON_BOOTS),
+	SONIC("Sonic", 6000, new Sonic(), Material.LAPIS_BLOCK),
+	LEECH("Leech", 7000, new Leech(), Material.REDSTONE_BLOCK),
+	CRITICAL("Critical", 7000, new Critical(), Material.REDSTONE),
+	CAMEL("Camel", 5000, new Camel(), Material.SAND),
+	GRANDPA("Grandpa", 6000, new Grandpa(), Material.STICK),
+	SCOUT("Scout", 6000, new Scout(), Material.POTION),
+	MILKMAN("Milkman", 8000, new Milkman(), Material.MILK_BUCKET),
+	TURTLE("Turtle", 5000, new Turtle(), Material.DIAMOND_CHESTPLATE),
+	PHANTOM("Phantom", 15000, new Phantom(), Material.BOOK),
+	HULK("Hulk", 10000, new Hulk(), Material.DROPPER),
+	SWITCHER("Switcher", 0, new Switcher(), Material.SNOW_BALL),
+	GLADIATOR("Gladiator", 15000, new GladiatorListener(), Material.IRON_FENCE);
 	
 	private final String name;
 	private final int price;
@@ -62,7 +76,7 @@ public enum HelixKit {
 		DamageUtil.allowAllDamage(player.getName());
 		
 		KitManager.getPlayer(player.getName()).setKit(this);
-		HelixTitle.sendTitle(player, 2, "§6§l" + name, "Selecionado!");
+		player.sendMessage("§bKit " + name + " selecionado!");
 		
 		HelixBukkit.getInstance().getWarpManager().findWarp("arena").ifPresent(warp -> 
 			player.teleport(warp.getLocation())

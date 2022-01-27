@@ -58,7 +58,7 @@ public class HelixPlayerDeathEvent extends Event {
 	public Location getDeathLocation() {
 		return deathLocation;
 	}
-	
+
 	public List<ItemStack> getDrops() {
 		return drops;
 	}
