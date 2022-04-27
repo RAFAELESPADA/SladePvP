@@ -34,17 +34,17 @@ public class PlayerCompassListener implements Listener {
 		).collect(Collectors.toList());
 		
 		if (entities.size() == 0) {
-			player.sendMessage("§eNenhum jogador próximo");
+			player.sendMessage("Â§eNenhum jogador prÃ³ximo");
 			HelixBukkit.getInstance().getWarpManager().findWarp("arena").ifPresent(warp -> {
 				player.setCompassTarget(warp.getLocation());
-				player.sendMessage("§eBússola apontando para o spawn");
+				player.sendMessage("Â§eBÃºssola apontando para o spawn");
 			});
 			return;
 		}
 		
 		Entity entity = entities.get(0);
 		player.setCompassTarget(entity.getLocation());
-		player.sendMessage("§2Bússola apontando para " + entity.getName());
+		player.sendMessage("Â§2BÃºssola apontando para " + entity.getName());
 	}
 
 }

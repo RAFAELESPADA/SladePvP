@@ -30,7 +30,7 @@ public class Critical extends KitHandler {
         int chance = new Random().nextInt(10);
         if (chance < 3) {
             event.setDamage(event.getDamage() + 0.70);
-            damager.sendMessage(ChatColor.DARK_RED + "Você deu um golpe critico");
+            damager.sendMessage(ChatColor.DARK_RED + "VocÃª deu um golpe critico");
             damager.getWorld().playEffect(event.getEntity().getLocation(), Effect.STEP_SOUND, Material.REDSTONE_BLOCK, 10);
         }
     }

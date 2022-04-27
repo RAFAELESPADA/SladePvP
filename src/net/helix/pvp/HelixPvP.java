@@ -59,13 +59,13 @@ public class HelixPvP extends JavaPlugin implements Listener {
 		});
 		
 		loadTopPlayersHologram();
-		Bukkit.getConsoleSender().sendMessage("§a§lPVP: §fPlugin habilitado! §a[v" + getDescription().getVersion() + "]");
+		Bukkit.getConsoleSender().sendMessage("Â§aÂ§lPVP: Â§fPlugin habilitado! Â§a[v" + getDescription().getVersion() + "]");
 	}
 	
 	public void handleTopPlayers(Location location) {
 		List<HelixPlayer> topPlayers = HelixBukkit.getInstance().getPlayerManager().getPlayers().stream().sorted((x, y) ->
 				Integer.compare(y.getPvp().getKills(), x.getPvp().getKills())
-		).limit(11).collect(Collectors.toList());
+		).limit(16).collect(Collectors.toList());
 		
 		Hologram hologram = topPlayersHd != null ?
 				topPlayersHd : (topPlayersHd = HologramsAPI.createHologram(HelixPvP.getInstance(), location));
@@ -74,14 +74,14 @@ public class HelixPvP extends JavaPlugin implements Listener {
 		hologram.clearLines();
 		
 		try {
-			hologram.appendTextLine("§e§lTop 15 Jogadores §6§l(KILL)");
+			hologram.appendTextLine("Â§eÂ§lTop 15 Jogadores Â§6Â§l(KILL)");
 			
 			for (int i = 0; i < 15; i++) {
 				int position = i + 1;
 				HelixPlayer helixPlayer = (topPlayers.size() - 1) > i ? topPlayers.get(i) : null;
-					hologram.appendTextLine(helixPlayer == null ? "§cNão encontrado." :
-					"§6" + position + "º " + helixPlayer.getRole().getColor() + helixPlayer.getName() + " §e- " +
-					"§fKills: §6" + HelixDecimalFormat.format(helixPlayer.getPvp().getKills()));
+					hologram.appendTextLine(helixPlayer == null ? "Â§cNÃ£o encontrado." :
+					"Â§6" + position + "Âº " + helixPlayer.getRole().getColor() + helixPlayer.getName() + " Â§e- " +
+					"Â§fKills: Â§6" + HelixDecimalFormat.format(helixPlayer.getPvp().getKills()));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -110,11 +110,17 @@ public class HelixPvP extends JavaPlugin implements Listener {
 		getCommand("sethologram").setExecutor(new SetHologramCMD());
 		getCommand("scoreboard").setExecutor(new ScoreboardCMD(this));
 		getCommand("rank").setExecutor(new RankCMD());
+		getCommand("tpall").setExecutor(new TPALL());
 		getCommand("verrank").setExecutor(new VerRank());
 		getCommand("crash").setExecutor(new Crash());
+		getCommand("youtuber").setExecutor(new Youtuber());
+		getCommand("yt").setExecutor(new Youtuber());
 		getCommand("sortearplayer").setExecutor(new SortearPlayer());
 		getCommand("sorteio").setExecutor(new Sorteio());
+		getCommand("discord").setExecutor(new Discord());
 		getCommand("actionbar").setExecutor(new ActionBar());
+		getCommand("sc").setExecutor(new SC());
+		getCommand("report").setExecutor(new Report());
 	}
 	public void loadListeners() {
 		PluginManager pm = Bukkit.getPluginManager();
@@ -126,6 +132,8 @@ public class HelixPvP extends JavaPlugin implements Listener {
 		pm.registerEvents(new BuyKitListener(), this);
 		pm.registerEvents(new OpenSpawnItemsListener(), this);
 		pm.registerEvents(new ServerEssentialsListener(), this);
+		pm.registerEvents(new Youtuber(), this);
+		pm.registerEvents(new AntiSpam(), this);
 		pm.registerEvents(new PotePlaca(), this);
 		pm.registerEvents(new PlayerJoinListener(), this);
 		pm.registerEvents(new PlayerDeathListener(), this);

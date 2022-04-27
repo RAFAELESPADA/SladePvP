@@ -51,13 +51,13 @@ public class PlayerDieArenaListener implements Listener {
 			
 			HelixPlayer killerHelixPlayer = HelixBukkit.getInstance().getPlayerManager().getPlayer(killer.getName());
 			killer.playSound(killer.getLocation(), Sound.LEVEL_UP, 10.0f, 10.0f);
-			killer.sendMessage("§3Você matou " + player.getName() + ". §8(" + (event.isValidKill() ? "Conta" : "Não conta") + ")");
+			killer.sendMessage("Â§3VocÃª matou " + player.getName() + ". Â§8(" + (event.isValidKill() ? "Conta" : "NÃ£o conta") + ")");
 			if (event.isValidKill()) {
 				int killerAddCoins = random.nextInt(80 + 1 - 25) + 25;
 				killerHelixPlayer.getPvp().addKills(1);
 				killerHelixPlayer.getPvp().addKillstreak(1);
 				killerHelixPlayer.getPvp().addCoins(killerAddCoins);
-				killer.sendMessage("§6§l[+] §6" + killerAddCoins + " coins");
+				killer.sendMessage("Â§6Â§l[+] Â§6" + killerAddCoins + " coins");
 			}
 			HelixPlayer victimHelixPlayer = HelixBukkit.getInstance().getPlayerManager().getPlayer(player.getName());
 			int victimWithdrawnCoins = random.nextInt(20 + 1 - 8) + 8;
@@ -65,16 +65,16 @@ public class PlayerDieArenaListener implements Listener {
 			victimHelixPlayer.getPvp().setKillstreak(0);
 			if ((victimHelixPlayer.getPvp().getCoins() - victimWithdrawnCoins) >= 0) {
 				victimHelixPlayer.getPvp().removeCoins(victimWithdrawnCoins);
-				player.sendMessage("§c§l[-] §c" + victimWithdrawnCoins + " coins");
+				player.sendMessage("Â§cÂ§l[-] Â§c" + victimWithdrawnCoins + " coins");
 			}else {
 				victimHelixPlayer.getPvp().setCoins(0);
 			}
 			
-			player.sendMessage("§cVocê morreu para " + killer.getName());
+			player.sendMessage("Â§cVocÃª morreu para " + killer.getName());
 					HelixBukkit.getInstance().getPlayerManager().getController().save(victimHelixPlayer);
 					HelixBukkit.getInstance().getPlayerManager().getController().save(killerHelixPlayer);
 		}else {
-			player.sendMessage("§cVocê morreu.");
+			player.sendMessage("Â§cVocÃª morreu.");
 		}
 		
 		Location spawnLocation = HelixBukkit.getInstance().getWarpManager().findWarp("spawn").isPresent() ?

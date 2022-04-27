@@ -69,7 +69,7 @@ public class OneVsOne extends WarpDuoBattleHandle {
 		finalizeBattle(target);
 
 		HelixWarp.ONE_VS_ONE.send(target);
-		target.sendMessage("§2Seu oponente deslogou e a batalha foi encerrada.");
+		target.sendMessage("Â§2Seu oponente deslogou e a batalha foi encerrada.");
 
 	}
 	
@@ -84,7 +84,7 @@ public class OneVsOne extends WarpDuoBattleHandle {
 		event.setCancelled(true);
 		
 		if (HelixCooldown.inCooldown(player.getName(), "1v1-fast-challenge")) {
-			player.sendMessage("§cAguarde...");
+			player.sendMessage("Â§cAguarde...");
 			return;
 		}
 		
@@ -96,7 +96,7 @@ public class OneVsOne extends WarpDuoBattleHandle {
 		}
 
 		setItems(player);
-		player.sendMessage(fastChallenge.contains(player) ? "§aVocê entrou na fila do 1v1" : "§eVocê saiu da fila do 1v1");
+		player.sendMessage(fastChallenge.contains(player) ? "Â§aVocÃª entrou na fila do 1v1" : "Â§eVocÃª saiu da fila do 1v1");
 	}
 	
 	@EventHandler
@@ -115,7 +115,7 @@ public class OneVsOne extends WarpDuoBattleHandle {
 		Player target = (Player) event.getRightClicked();
 		
 		if (findOpponent(target).isPresent()) {
-			player.sendMessage("§c§l1V1 §cEste jogador já está batalhando");
+			player.sendMessage("Â§cÂ§l1V1 Â§cEste jogador jÃ¡ estÃ¡ batalhando");
 			return;
 		}
 		
@@ -125,13 +125,13 @@ public class OneVsOne extends WarpDuoBattleHandle {
 		}
 		
 		if (HelixCooldown.inCooldown(player.getName(), "1v1-challenge-" + target.getName())) {
-			player.sendMessage("§e§l1V1 §eVocê já convidou este jogador recentemente");
+			player.sendMessage("Â§eÂ§l1V1 Â§eVocÃª jÃ¡ convidou este jogador recentemente");
 			return;
 		}
 		
 		HelixCooldown.create(player.getName(), "1v1-challenge-" + target.getName(), TimeUnit.SECONDS, 15);
-		target.sendMessage("§e§l1V1 §eVocê foi convidado por " + player.getName() + " para uma batalha");
-		player.sendMessage("§6§l1V1 §6Você convidou " + target.getName() + " para uma batalha");
+		target.sendMessage("Â§eÂ§l1V1 Â§eVocÃª foi convidado por " + player.getName() + " para uma batalha");
+		player.sendMessage("Â§6Â§l1V1 Â§6VocÃª convidou " + target.getName() + " para uma batalha");
 	}
 	
 	@EventHandler
@@ -150,11 +150,11 @@ public class OneVsOne extends WarpDuoBattleHandle {
 		loserHelixPlayer.getPvp().addDeaths(1);
 		loserHelixPlayer.getPvp().setKillstreak(0);
 
-		loser.sendMessage("§cVocê perdeu a batalha contra " + winner.getName() + "§c.");
+		loser.sendMessage("Â§cVocÃª perdeu a batalha contra " + winner.getName() + "ï¿½c.");
 		
 		if ((loserHelixPlayer.getPvp().getCoins() - loserWithdrawnCoins) >= 0) {
 			loserHelixPlayer.getPvp().removeCoins(loserWithdrawnCoins);
-			loser.sendMessage("§c§l[-] §c" + loserWithdrawnCoins + " coins");
+			loser.sendMessage("Â§cÂ§l[-] Â§c" + loserWithdrawnCoins + " coins");
 		}else {
 			loserHelixPlayer.getPvp().setCoins(0);
 		}
@@ -169,7 +169,7 @@ public class OneVsOne extends WarpDuoBattleHandle {
 		}.runTaskLater(HelixPvP.getInstance(), 10);
 
 		winner.setHealth(winner.getMaxHealth());
-		winner.sendMessage("§aVocê ganhou a batalha contra " + loser.getName() + " §7(" + (event.isValidKill() ? "Conta" : "Não conta") + ")");
+		winner.sendMessage("Â§aVocÃª ganhou a batalha contra " + loser.getName() + " Â§7(" + (event.isValidKill() ? "Conta" : "NÃ£o conta") + ")");
 		HelixWarp.ONE_VS_ONE.send(winner, true);
 
 		if (event.isValidKill()) {
@@ -180,7 +180,7 @@ public class OneVsOne extends WarpDuoBattleHandle {
 			winnerHelixPlayer.getPvp().addKillstreak(1);
 			winnerHelixPlayer.getPvp().addCoins(winnerAddCoins);
 
-			winner.sendMessage("§6§l[+] §6" + winnerAddCoins + " coins");
+			winner.sendMessage("Â§6Â§l[+] Â§6" + winnerAddCoins + " coins");
 			HelixBukkit.getInstance().getPlayerManager().getController().save(winnerHelixPlayer);
 		}
 	}
@@ -196,15 +196,15 @@ public class OneVsOne extends WarpDuoBattleHandle {
 	public void sendBattleItems(Player player) {
 		super.sendBattleItems(player);
 		
-		player.getInventory().setItem(0, new ItemBuilder("§fEspada de Diamante", Material.DIAMOND_SWORD)
+		player.getInventory().setItem(0, new ItemBuilder("Â§fEspada de Diamante", Material.DIAMOND_SWORD)
 				.nbt("cancel-drop")
 				.toStack()
 		);
 
-		player.getInventory().setHelmet(new ItemBuilder("§6§lKOMBO§f§lPVP", Material.IRON_HELMET).toStack());
-		player.getInventory().setChestplate(new ItemBuilder("§6§lKOMBO§f§lPVP", Material.IRON_CHESTPLATE).toStack());
-		player.getInventory().setLeggings(new ItemBuilder("§6§lKOMBO§f§lPVP", Material.IRON_LEGGINGS).toStack());
-		player.getInventory().setBoots(new ItemBuilder("§6§lKOMBO§f§lPVP", Material.IRON_BOOTS).toStack());
+		player.getInventory().setHelmet(new ItemBuilder("Â§6Â§lSLOPERÂ§fÂ§lPVP", Material.IRON_HELMET).toStack());
+		player.getInventory().setChestplate(new ItemBuilder("Â§6Â§lSLOPERÂ§fÂ§lPVP", Material.IRON_CHESTPLATE).toStack());
+		player.getInventory().setLeggings(new ItemBuilder("Â§6Â§lSLOPERÂ§fÂ§lPVP", Material.IRON_LEGGINGS).toStack());
+		player.getInventory().setBoots(new ItemBuilder("Â§6Â§lSLOPERÂ§fÂ§lPVP", Material.IRON_BOOTS).toStack());
 
 		for (int i = 0; i <= 7; i++) {
 			player.getInventory().addItem(new ItemBuilder(Material.MUSHROOM_SOUP).toStack());
@@ -215,14 +215,14 @@ public class OneVsOne extends WarpDuoBattleHandle {
 	public void setItems(Player player) {
 		super.setItems(player);
 
-		player.getInventory().setItem(3, new ItemBuilder("§bDesafiar §7(Clique)", Material.BLAZE_ROD)
+		player.getInventory().setItem(3, new ItemBuilder("Â§bDesafiar Â§7(Clique)", Material.BLAZE_ROD)
 				.nbt("cancel-drop")
 				.nbt("cancel-click")
 				.nbt("1v1", "challenge")
 				.toStack()
 		);
 		
-		player.getInventory().setItem(5, new ItemBuilder("§bProcurar jogadores: " + (fastChallenge.contains(player) ? "§aON" : "§cOFF"), Material.INK_SACK, fastChallenge.contains(player) ? 10 : 8)
+		player.getInventory().setItem(5, new ItemBuilder("Â§bProcurar jogadores: " + (fastChallenge.contains(player) ? "Â§aON" : "Â§cOFF"), Material.INK_SACK, fastChallenge.contains(player) ? 10 : 8)
 				.nbt("cancel-drop")
 				.nbt("cancel-click")
 				.nbt("1v1", "fast-challenge")

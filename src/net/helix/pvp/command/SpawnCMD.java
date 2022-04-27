@@ -1,6 +1,8 @@
 package net.helix.pvp.command;
 
 import java.util.ArrayList;
+
+import org.bukkit.GameMode;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -11,7 +13,6 @@ import net.helix.pvp.kit.Habilidade;
 import net.helix.pvp.kit.provider.GladiatorListener;
 import net.helix.pvp.warp.HelixWarp;
 import net.helix.pvp.warp.WarpDuoBattleHandle;
-import net.helix.pvp.warp.provider.Sumo;
 
 public class SpawnCMD extends WarpDuoBattleHandle implements Listener, CommandExecutor {
 	
@@ -35,9 +36,11 @@ public class SpawnCMD extends WarpDuoBattleHandle implements Listener, CommandEx
              GladiatorListener.combateGlad.remove(winner);
              GladiatorListener.combateGlad.remove(loser);
          }
-		 Habilidade.removeAbility(p);
+		Habilidade.removeAbility(p);
 		HelixWarp.SPAWN.send(p, true);
-		p.sendMessage("ง9Enviado para o spawn!");
+		p.setFlying(false);
+		p.sendMessage("ยง9Enviado para o spawn!");
+		p.setGameMode(GameMode.SURVIVAL);
 		return true;
 	}
 }

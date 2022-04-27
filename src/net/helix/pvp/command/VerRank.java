@@ -24,7 +24,7 @@ public class VerRank implements CommandExecutor {
             }
             Player target = Bukkit.getPlayer(args[0]);
             if (target == null) {
-                player.sendMessage("§cNão foi possível encontrar o player §e" + args[0] + "§c.");
+                player.sendMessage("Â§cNÃ£o foi possÃ­vel encontrar o player Â§e" + args[0] + "Â§c.");
                 return true;
             }
             StatusGUI.openGUI(target, player);

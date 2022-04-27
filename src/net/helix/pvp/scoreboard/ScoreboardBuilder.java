@@ -24,7 +24,7 @@ public class ScoreboardBuilder {
 		Scoreboard scoreboard = Bukkit.getScoreboardManager().getNewScoreboard();
 		Objective objective = scoreboard.registerNewObjective("pvp", "dummy");
 		
-		objective.setDisplayName("§r  §6§lKOMBOPVP");
+		objective.setDisplayName("§r  §5§lSLOPER");
 		objective.setDisplaySlot(DisplaySlot.SIDEBAR);
 		
 		String l10 = "§3";
@@ -34,10 +34,10 @@ public class ScoreboardBuilder {
 		String l6 = "§c ▐ §fDeaths: §c";
 		String l5 = "§3 ▐ §fStreak: §3";
 		String l4 = "§1";
-		String l3 = "§f Coins: §e";
+		String l3 = "§f Coins: §2";
 		String l2 = "§f Rank: §b";
 		String l1 = "§0";
-		String l0 = "§cloja.kombopvp.com";
+		String l0 = "§7slopermc.com";
 		
 		scoreboard.registerNewTeam("groupPrefix").addEntry(l9);
 		scoreboard.registerNewTeam("kills").addEntry(l7);

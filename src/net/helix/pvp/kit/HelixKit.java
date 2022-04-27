@@ -76,11 +76,8 @@ public enum HelixKit {
 		DamageUtil.allowAllDamage(player.getName());
 		
 		KitManager.getPlayer(player.getName()).setKit(this);
-		player.sendMessage("§bKit " + name + " selecionado!");
+		player.sendMessage("Â§bKit " + name + " selecionado!");
 		
-		HelixBukkit.getInstance().getWarpManager().findWarp("arena").ifPresent(warp -> 
-			player.teleport(warp.getLocation())
-		);
 	}
 	
 	public KitHandler getHandler() {

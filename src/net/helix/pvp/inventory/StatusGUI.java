@@ -48,7 +48,7 @@ public class StatusGUI implements Listener {
 
     @EventHandler
     private void onInventoryClick(InventoryClickEvent event) {
-        if (event.getWhoClicked() instanceof Player && event.getInventory().getName().equals("§aPerfil") && event.getCurrentItem() != null && event.getCurrentItem().hasItemMeta()) {
+        if (event.getWhoClicked() instanceof Player && event.getInventory().getName().equals("Â§aPerfil") && event.getCurrentItem() != null && event.getCurrentItem().hasItemMeta()) {
             event.setCancelled(true);
         }
     }
@@ -58,7 +58,7 @@ public class StatusGUI implements Listener {
  				.getPlayer(player.getName());
     	PlayerPvP pvp = helixPlayer.getPvp();
         Ranking playerRank = Ranking.getRank(helixPlayer);
-        Inventory inv = Bukkit.createInventory(null, 54, "§aPerfil");
+        Inventory inv = Bukkit.createInventory(null, 54, "Â§aPerfil");
         ItemStack glass = ItemUtils.getCustomItemStack(Material.THIN_GLASS, " ", " ");
         for (int i = 0; i < 54; ++i) {
             if ((i <= 9 || i >= 17) && (i <= 27 || i >= 35)) {
@@ -73,17 +73,17 @@ public class StatusGUI implements Listener {
         inv.setItem(14, glass);
         inv.setItem(15, glass);
        
-        inv.setItem(4, ItemUtils.editItemStack(ItemUtils.getPlayerSkull(player.getName()), "§6Informações", Arrays.asList("§fNick: §a" + player.getName(), "§fUUID: §a" + player.getUniqueId(), "§fMoedas: §a" + new DecimalFormat("###,###.##").format(pvp.getCoins()), "§fPrimeiro acesso: §a" + new SimpleDateFormat("dd/MM/yyyy HH:mm").format(player.getFirstPlayed()))));
-        inv.setItem(10, ItemUtils.getCustomItemStack(Material.DIAMOND_SWORD, "§6Estatísticas", Arrays.asList("§fKills: §a" + pvp.getKills(), "§fDeaths: §a" + pvp.getDeaths(), "§fKDR: §a" + String.format("%.2f",kdr),"§fKillstreak: §a" + pvp.getKillstreak())));
-        inv.setItem(13, ItemUtils.getCustomItemStack(Material.EYE_OF_ENDER, "§6Cargos", Arrays.asList("§fVIP: §a" + (player.hasPermission("helix.tag.sapphire") || player.hasPermission("helix.tag.legend") || player.hasPermission("helix.tag.ruby") || player.hasPermission("helix.tag.beta") || player.hasPermission("helix.tag.height") ? "Sim" : "Não"), "§fCargo: §a" + helixPlayer.getRole().getNameColor())));
-        inv.setItem(16, ItemUtils.getCustomItemStack(Material.EXP_BOTTLE, "§6Rank", Arrays.asList("§fRank: §7(" + playerRank.getColoredSymbol() + "§7) " + playerRank.getColoredName())));
+        inv.setItem(4, ItemUtils.editItemStack(ItemUtils.getPlayerSkull(player.getName()), "Â§6InformaÃ§Ãµes", Arrays.asList("Â§fNick: Â§a" + player.getName(), "Â§fUUID: Â§a" + player.getUniqueId(), "Â§fMoedas: Â§a" + new DecimalFormat("###,###.##").format(pvp.getCoins()), "Â§fPrimeiro acesso: Â§a" + new SimpleDateFormat("dd/MM/yyyy HH:mm").format(player.getFirstPlayed()))));
+        inv.setItem(10, ItemUtils.getCustomItemStack(Material.DIAMOND_SWORD, "Â§6EstatÃ­sticas", Arrays.asList("Â§fKills: Â§a" + pvp.getKills(), "Â§fDeaths: Â§a" + pvp.getDeaths(), "Â§fKDR: Â§a" + String.format("%.2f",kdr),"Â§fKillstreak: Â§a" + pvp.getKillstreak())));
+        inv.setItem(13, ItemUtils.getCustomItemStack(Material.EYE_OF_ENDER, "Â§6Cargos", Arrays.asList("Â§fVIP: Â§a" + (player.hasPermission("helix.tag.youtuber") || player.hasPermission("helix.tag.king") || player.hasPermission("helix.tag.pro") || player.hasPermission("helix.tag.beta") || player.hasPermission("helix.tag.height") ? "Sim" : "NÃ£o"), "Â§fCargo: Â§a" + helixPlayer.getRole().getNameColor())));
+        inv.setItem(16, ItemUtils.getCustomItemStack(Material.EXP_BOTTLE, "Â§6Rank", Arrays.asList("Â§fRank: Â§7(" + playerRank.getColoredSymbol() + "Â§7) " + playerRank.getColoredName())));
         Ranking[] values = Ranking.values();
         for (int i = values.length - 1; i >= 0; i--) {
         	Ranking rank = values[i];
             if (pvp.getKills() >= rank.getXp())
-                inv.addItem(ItemUtils.editItemStack(new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 5), "§7(" + rank.getColoredSymbol() + "§7) " + rank.getColoredName(), Collections.singletonList("§a" + player.getName() + " já atingiu esse rank.")));
+                inv.addItem(ItemUtils.editItemStack(new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 5), "Â§7(" + rank.getColoredSymbol() + "Â§7) " + rank.getColoredName(), Collections.singletonList("Â§a" + player.getName() + " jÃ¡ atingiu esse rank.")));
             else
-                inv.addItem(ItemUtils.editItemStack(new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 14), "§7(" + rank.getColoredSymbol() + "§7) " + rank.getColoredName(), Collections.singletonList("§c" + player.getName() + " ainda não atingiu esse rank.")));
+                inv.addItem(ItemUtils.editItemStack(new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 14), "Â§7(" + rank.getColoredSymbol() + "Â§7) " + rank.getColoredName(), Collections.singletonList("Â§c" + player.getName() + " ainda nÃ£o atingiu esse rank.")));
         }
         inv.remove(glass);
         target.openInventory(inv);

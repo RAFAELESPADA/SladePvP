@@ -1,6 +1,7 @@
 package net.helix.pvp.inventory;
 
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -16,11 +17,14 @@ import net.helix.pvp.kit.KitManager;
 
 public class ShopInventory {
 	
-	private final static String inventoryName = "§bLoja de kit";
-	
+	private final static String inventoryName = "Â§bLoja de kit";
+	private static ItemStack randomGlass() {
+		int randomId = new Random().nextInt(14);
+		return new ItemStack(Material.STAINED_GLASS_PANE, 1, (short)randomId);
+	}
 	public static void open(Player player) {
 		Inventory inventory = Bukkit.createInventory(null, 6 * 9, inventoryName);
-		ItemStack visualItem = new ItemBuilder("§6§lKOMBO§f§lPVP", Material.VINE).toStack();
+		ItemStack visualItem = new ItemBuilder("Â§6Â§lSLOPERÂ§fÂ§lMC", randomGlass()).toStack();
 		
 		
 		List<HelixKit> availableKits = HelixKit.getKits().stream().filter(
@@ -45,8 +49,8 @@ public class ShopInventory {
 			}
 			
 			availableKits.forEach(kit -> {
-				inventory.addItem(new ItemBuilder("§c" + kit.getName(), kit.getIcon())
-						.lore("§7Comprar por §e" + HelixDecimalFormat.format(kit.getPrice()) + " coins")
+				inventory.addItem(new ItemBuilder("Â§c" + kit.getName(), kit.getIcon())
+						.lore("Â§7Comprar por Â§e" + HelixDecimalFormat.format(kit.getPrice()) + " coins")
 						.addFlags(ItemFlag.HIDE_ATTRIBUTES,
 								ItemFlag.HIDE_DESTROYS,
 								ItemFlag.HIDE_ENCHANTS,
@@ -58,7 +62,7 @@ public class ShopInventory {
 				);
 			});
 		}else {
-			inventory.setItem(31, new ItemBuilder("§cVocê já possui todos os kits", Material.REDSTONE)
+			inventory.setItem(31, new ItemBuilder("Â§cVocÃª ja possui todos os kits", Material.REDSTONE)
 					.toStack()
 			);
 		}

@@ -13,10 +13,10 @@ import org.bukkit.entity.Player;
 
 public class KitsInventory {
 
-	private final static String inventoryName = "§bKits do servidor";
+	private final static String inventoryName = "Â§bKits do servidor";
 	public static void open(Player player) {
 		Inventory inventory = Bukkit.createInventory(null, 6 * 9, inventoryName);
-		ItemStack visualItem = new ItemBuilder("§6§lKOMBO§f§lPVP", Material.VINE).toStack();
+		ItemStack visualItem = new ItemBuilder("Â§6Â§lSLOPERÂ§fÂ§lMC", Material.VINE).toStack();
 
 		for (int i = 0; i <= 8; i++) {
 			inventory.setItem(i, randomGlass());
@@ -35,8 +35,8 @@ public class KitsInventory {
 		}
 
 		KitManager.getPlayer(player.getName()).getAvailableKits().forEach(kit -> {
-			inventory.addItem(new ItemBuilder("§2" + kit.getName(), kit.getIcon())
-					.lore("§7Clique para selecionar")
+			inventory.addItem(new ItemBuilder("Â§2" + kit.getName(), kit.getIcon())
+					.lore("Â§7Clique para selecionar")
 					.addFlags(ItemFlag.HIDE_ATTRIBUTES,
 							ItemFlag.HIDE_DESTROYS,
 							ItemFlag.HIDE_ENCHANTS,

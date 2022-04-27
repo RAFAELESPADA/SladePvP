@@ -35,7 +35,7 @@ public class Stomper extends KitHandler {
 				if (Habilidade.getAbility(target) == "SteelHead") {
 					player.playSound(player.getLocation(), Sound.ANVIL_LAND, 15.0f, 15.0f);
 					target.playSound(player.getLocation(), Sound.ANVIL_LAND, 15.0f, 15.0f);
-					player.sendMessage(ChatColor.AQUA + "Você stompou um NEO e nao surtiu efeito nele");
+					player.sendMessage(ChatColor.AQUA + "VocÃª stompou um NEO e nao surtiu efeito nele");
 					target.sendMessage(ChatColor.AQUA + "Seu kit NEO o protegeu contra o stomper");
 					return;
 				}

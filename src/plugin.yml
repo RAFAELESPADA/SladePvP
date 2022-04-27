@@ -8,6 +8,13 @@ depend: [Core, HolographicDisplays]
 commands:
    spawn:
    skit:
+   youtuber:
+   ss:
+   tpall:
+   sc:
+   report:
+   yt:
+   discord:
    sethologram:
    rank:
       aliases: [ranks]
@@ -21,5 +28,6 @@ commands:
       aliases: [sortear]   
    sorteio:
    actionbar:
+   
    
    

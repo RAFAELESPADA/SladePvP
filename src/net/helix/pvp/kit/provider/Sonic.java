@@ -61,7 +61,7 @@ import org.bukkit.potion.PotionEffectType;
 	public void execute(Player player) {
 		super.execute(player);
 		
-		player.getInventory().setItem(1, new ItemBuilder("§aSonic!", Material.LAPIS_BLOCK)
+		player.getInventory().setItem(1, new ItemBuilder("Â§aSonic!", Material.LAPIS_BLOCK)
 				.nbt("kit-handler", "sonic")
 				.nbt("cancel-drop")
 				.toStack()
@@ -94,7 +94,7 @@ import org.bukkit.potion.PotionEffectType;
 /*     */       }
 
 if (HelixCooldown.inCooldown(p.getName(), "sonic")) {
-	p.sendMessage("§cAguarde " + HelixCooldown.getTime(p.getName(), "sonic") + "s para utilizar este kit novamente.");
+	p.sendMessage("Â§cAguarde " + HelixCooldown.getTime(p.getName(), "sonic") + "s para utilizar este kit novamente.");
 	return;
 }
 

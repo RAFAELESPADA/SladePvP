@@ -12,7 +12,7 @@ public class Grandpa extends KitHandler {
     public void execute(Player player) {
         super.execute(player);
 
-        player.getInventory().setItem(1, new ItemBuilder("§aGrandpa!", Material.STICK)
+        player.getInventory().setItem(1, new ItemBuilder("Â§aGrandpa!", Material.STICK)
                 .addEnchant(Enchantment.KNOCKBACK, 2)
                 .nbt("cancel-drop")
                 .toStack()

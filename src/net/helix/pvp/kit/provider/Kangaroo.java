@@ -28,7 +28,7 @@ public class Kangaroo extends KitHandler {
 	public void execute(Player player) {
 		super.execute(player);
 		
-		player.getInventory().setItem(1, new ItemBuilder("§aPular!", Material.FIREWORK)
+		player.getInventory().setItem(1, new ItemBuilder("Â§aPular!", Material.FIREWORK)
 				.nbt("kit-handler", "kangaroo")
 				.nbt("cancel-drop")
 				.toStack()
@@ -46,7 +46,7 @@ public class Kangaroo extends KitHandler {
 		event.setCancelled(true);
 		
 		if (HelixCooldown.inCooldown(player.getName(), "kangaroo-hit")) {
-			player.sendMessage("§cVocê recebeu dano recentemente, aguarde " + HelixCooldown.getTime(player.getName(), "kangaroo-hit") + "s para utilizar o Kangaroo novamente.");
+			player.sendMessage("Â§cVocÃª recebeu dano recentemente, aguarde " + HelixCooldown.getTime(player.getName(), "kangaroo-hit") + "s para utilizar o Kangaroo novamente.");
 			return;
 		}
 		

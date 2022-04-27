@@ -18,7 +18,7 @@ public class Monk extends KitHandler {
 	public void execute(Player player) {
 		super.execute(player);
 		
-		player.getInventory().setItem(1, new ItemBuilder("§eEmbaralhar!", Material.BLAZE_ROD)
+		player.getInventory().setItem(1, new ItemBuilder("Â§eEmbaralhar!", Material.BLAZE_ROD)
 				.nbt("kit-handler", "monk")
 				.nbt("cancel-drop")
 				.toStack()
@@ -39,7 +39,7 @@ public class Monk extends KitHandler {
 		}
 		
 		if (HelixCooldown.inCooldown(player.getName(), "monk")) {
-			player.sendMessage("§cAguarde " + HelixCooldown.getTime(player.getName(), "monk") + "s para utilizar este kit novamente.");
+			player.sendMessage("Â§cAguarde " + HelixCooldown.getTime(player.getName(), "monk") + "s para utilizar este kit novamente.");
 			return;
 		}
 
@@ -55,8 +55,8 @@ public class Monk extends KitHandler {
 		rightClicked.getInventory().setHeldItemSlot(8);
 		rightClicked.updateInventory();
 		
-		rightClicked.sendMessage("§6Você teve seu inventário embaralhado pelo §f" + player.getName() + "§6.");
-		player.sendMessage("§6Você embaralhou o inventário de §f" + rightClicked.getName() + "§6.");
+		rightClicked.sendMessage("Â§6VocÃª teve seu inventÃ¡rio embaralhado pelo Â§f" + player.getName() + "Â§6.");
+		player.sendMessage("Â§6VocÃª embaralhou o inventÃ¡rio de Â§f" + rightClicked.getName() + "Â§6.");
 	}
 
 }

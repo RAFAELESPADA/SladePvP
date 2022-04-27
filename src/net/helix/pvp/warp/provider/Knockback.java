@@ -19,8 +19,8 @@ public class Knockback extends WarpHandle {
 		DamageUtil.allowAllDamage(player.getName());
 		
 		player.getInventory().setHeldItemSlot(4);
-		player.getInventory().setItem(4, new ItemBuilder("§aVarinha Mágica", Material.STICK)
-				.lore("§cEste item não causa dano.")
+		player.getInventory().setItem(4, new ItemBuilder("Â§aVarinha MÃ¡gica", Material.STICK)
+				.lore("Â§cEste item nÃ£o causa dano.")
 				.addEnchant(Enchantment.KNOCKBACK, 4)
 				.addFlags(ItemFlag.HIDE_ENCHANTS)
 				.nbt("cancel-drop")

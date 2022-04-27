@@ -26,7 +26,7 @@ public class ShowPlayerInfoListener implements Listener {
 			HelixRole tag = HelixBukkit.getInstance().getPlayerManager()
 					.getPlayer(victim.getName()).getTag();
 			HelixKit kit = KitManager.getPlayer(victim.getName()).getKit();
-			HelixActionBar.send(damager, tag.getColor() + victim.getName() + " §8- §fKit: §a" + kit.getName());
+			HelixActionBar.send(damager, tag.getColor() + victim.getName() + " Â§8- Â§fKit: Â§a" + kit.getName());
 		}
 	}
 }

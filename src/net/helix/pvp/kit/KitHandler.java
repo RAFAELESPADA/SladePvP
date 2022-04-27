@@ -23,20 +23,14 @@ public abstract class KitHandler implements Listener {
 		player.setFlying(false);
 		player.getActivePotionEffects().forEach(potion -> player.removePotionEffect(potion.getType()));
 		player.getInventory().setHeldItemSlot(0);
-		/* 348 */       ItemStack tunic = new ItemStack(Material.LEATHER_CHESTPLATE);
-		/* 349 */       ItemMeta tunicmeta = tunic.getItemMeta();
-		                tunicmeta.setDisplayName(ChatColor.YELLOW + "Peitoral de Couro");
-		/* 350 */       LeatherArmorMeta meta11 = (LeatherArmorMeta)tunic.getItemMeta();
-		/* 351 */       meta11.setColor(Color.ORANGE);
-		/* 352 */       tunic.setItemMeta(meta11);
-		                tunic.setItemMeta(tunicmeta);
-		player.getInventory().setItem(0, new ItemBuilder("§7Espada de Pedra", Material.STONE_SWORD)
+		/* 348 */       
+		player.getInventory().setItem(0, new ItemBuilder("Â§7Espada de Pedra", Material.STONE_SWORD)
 				.nbt("cancel-drop")
 				.toStack()
 		);
-		player.getInventory().setChestplate(tunic);
+	
 		
-		player.getInventory().setItem(8, new ItemBuilder("§9Jogadores próximos", Material.COMPASS)
+		player.getInventory().setItem(8, new ItemBuilder("Â§9Jogadores prÃ³ximos", Material.COMPASS)
 				.nbt("kit-handler", "search-players")
 				.nbt("cancel-drop")
 				.toStack()

@@ -17,12 +17,12 @@ public class SetHologramCMD implements CommandExecutor {
 			return true;
 		}
 		if (!sender.hasPermission("kombo.cmd.sethologram")) {
-			sender.sendMessage("§cVocê não tem permissão.");
+			sender.sendMessage("Â§cVocÃª nÃ£o tem permissÃ£o.");
 			return true;
 		}
 		
 		if (args.length == 0) {
-			sender.sendMessage("§cUse /" + label + " <top-players>");
+			sender.sendMessage("Â§cUse /" + label + " <top-players>");
 			return true;
 		}
 		
@@ -38,9 +38,9 @@ public class SetHologramCMD implements CommandExecutor {
 			HelixPvP.getInstance().handleTopPlayers(location);
 			warp.setLocation(location);
 			HelixBukkit.getInstance().getWarpManager().getData().save(warp);
-			sender.sendMessage("§aVocê setou o holograma " + hologramName + "§a.");
+			sender.sendMessage("Â§aVocÃª setou o holograma " + hologramName + "Â§a.");
 		}else {
-			sender.sendMessage("§cHolograma não encontrado.");
+			sender.sendMessage("Â§cHolograma nÃ£o encontrado.");
 		}
 		return true;
 	}

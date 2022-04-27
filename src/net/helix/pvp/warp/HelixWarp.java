@@ -17,7 +17,6 @@ public enum HelixWarp {
 
 	SPAWN("Spawn", new Spawn(), Material.AIR),
 	FPS("Fps", new Fps(), Material.GLASS),
-	SUMO("Sumo", new Sumo(), Material.APPLE),
 	ONE_VS_ONE("1v1", new OneVsOne(), Material.BLAZE_ROD),
 	KNOCKBACK("Knockback", new Knockback(), Material.STICK),
 	LAVACHALLENGE("Lava Challenge", new LavaChallenge(), Material.LAVA_BUCKET),
@@ -64,7 +63,7 @@ public enum HelixWarp {
 	public void send(Player player, boolean silent) {
 		Optional<net.helix.core.bukkit.warp.HelixWarp> warpOptional;
 		if (!(warpOptional = HelixBukkit.getInstance().getWarpManager().findWarp(this.toString().toLowerCase())).isPresent()) {
-			player.sendMessage("§cA warp " + this.name + " não foi setada");
+			player.sendMessage("Â§cA warp " + this.name + " nÃ£o foi setada");
 			return;
 		}
 
@@ -77,7 +76,7 @@ public enum HelixWarp {
 		player.teleport(warpOptional.get().getLocation());
 
 		if (!silent) {
-			player.sendMessage("§7Enviado para warp §b" + this.name);
+			player.sendMessage("Â§7Enviado para warp Â§b" + this.name);
 		}
 	}
 	

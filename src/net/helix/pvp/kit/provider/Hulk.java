@@ -22,7 +22,7 @@ public class Hulk extends KitHandler {
         if (!KitManager.getPlayer(rightClicked.getName()).hasKit()) return;
         if (!KitManager.getPlayer(event.getPlayer().getName()).hasKit(HelixKit.HULK)) return;
         if (HelixCooldown.inCooldown(event.getPlayer().getName(), "kit-hulk")) {
-            event.getPlayer().sendMessage("§cO Kit Hulk está em cooldown!");
+            event.getPlayer().sendMessage("Â§cO Kit Hulk esta em cooldown!");
             return;
         }
 
