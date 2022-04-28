@@ -1,5 +1,6 @@
 package net.helix.pvp.kit.provider;
 
+import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -39,10 +40,24 @@ public class Stomper extends KitHandler {
 					target.sendMessage(ChatColor.AQUA + "Seu kit NEO o protegeu contra o stomper");
 					return;
 				}
-				target.damage(target.isSneaking() ? 4.0D : event.getDamage(), player);
+				if (player.getFallDistance() >= 20 && !target.isSneaking()) {
+					target.setHealth(0);
+					player.playSound(player.getLocation(), Sound.ANVIL_LAND, 15.0f, 15.0f);
+					target.playSound(player.getLocation(), Sound.ANVIL_LAND, 15.0f, 15.0f);
+					target.sendMessage(ChatColor.RED + "Você foi stompado por " + player.getName());
+				}
+				else if (player.getItemInHand().equals(Material.STONE_SWORD) || player.getItemInHand().equals(Material.IRON_SWORD)) {
+					target.damage(target.isSneaking() ? 4.0D : event.getDamage() * player.getFallDistance() * 5.3, player);
+					target.sendMessage(ChatColor.RED + "Você foi stompado por " + player.getName());
+				}
+				target.damage(target.isSneaking() ? 4.0D : event.getDamage() * player.getFallDistance() * 1.7, player);
+				player.playSound(player.getLocation(), Sound.ANVIL_LAND, 15.0f, 15.0f);
+				target.playSound(player.getLocation(), Sound.ANVIL_LAND, 15.0f, 15.0f);
+				target.sendMessage(ChatColor.AQUA + "Você foi stompado por " + player.getName());
 			});
 		}
 		player.playSound(player.getLocation(), Sound.ANVIL_LAND, 15.0f, 15.0f);
 		event.setDamage(3.0D);
 	}
 }
+
