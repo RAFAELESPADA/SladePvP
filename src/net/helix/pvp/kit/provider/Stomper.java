@@ -40,7 +40,7 @@ public class Stomper extends KitHandler {
 					target.sendMessage(ChatColor.AQUA + "Seu kit NEO o protegeu contra o stomper");
 					return;
 				}
-				if (player.getFallDistance() >= 20 && !target.isSneaking()) {
+				else if (player.getFallDistance() >= 20 && !target.isSneaking()) {
 					target.setHealth(0);
 					player.playSound(player.getLocation(), Sound.ANVIL_LAND, 15.0f, 15.0f);
 					target.playSound(player.getLocation(), Sound.ANVIL_LAND, 15.0f, 15.0f);
