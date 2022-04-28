@@ -27,7 +27,9 @@ public class EntityCalculateDamageListener implements Listener {
 			if (t.getItemInHand().getEnchantments() == Enchantment.DAMAGE_ALL) {
 				e.setDamage(3.9D);
 			}
-		}
+		}else if (t.getItemInHand().getType() == Material.IRON_SWORD) {
+				e.setDamage(3.9D);
+			}
 		if (t.getItemInHand().hasItemMeta() && t.getItemInHand().getType() == Material.QUARTZ) {
 			e.setDamage(4.5);
 		}
