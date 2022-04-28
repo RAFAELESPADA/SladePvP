@@ -25,7 +25,7 @@ public class RankCMD implements CommandExecutor {
     				.getPlayer(player.getName());
     		PlayerPvP pvp = helixPlayer.getPvp();
             if (helixPlayer == null) return true;
-            player.sendMessage("§8§lKing§7§lMC §7- §eSistema de Rank");
+            player.sendMessage("§5§lSloper §7- §eSistema de Rank");
             Ranking[] values;
             for (int length = (values = Ranking.values()).length, i = 0; i < length; ++i) {
                 Ranking rank = values[i];
@@ -37,7 +37,7 @@ public class RankCMD implements CommandExecutor {
             }
             player.sendMessage("§7Seu rank atual §: " + Ranking.getRank(helixPlayer).getColoredName() + "§7.");
             if (Ranking.getRank(helixPlayer) != Ranking.GOD) {
-                player.sendMessage("§7O próximo rank §: " + Ranking.getRank(helixPlayer).next().getColoredName() + "§7.");
+                player.sendMessage("§7O próximo rank é: " + Ranking.getRank(helixPlayer).next().getColoredName() + "§7.");
                 int pontos_necessarios = Ranking.getRank(helixPlayer).next().getXp() - pvp.getKills();
                 player.sendMessage("§7Você possui §a" + pvp.getKills() + " KILLS §7e faltam §a" + pontos_necessarios + " KILLS §7para o próximo §6rank§7.");
                 player.sendMessage(" ");
