@@ -15,6 +15,7 @@ import net.helix.pvp.kit.provider.*;
 
 public enum HelixKit {
 
+<<<<<<< HEAD
 	NENHUM("Nenhum", 0, new PvP(), Material.BARRIER, "§7Nenhuma habilidade"),
 	PVP("PvP", 0, new PvP(), Material.STONE_SWORD, "§7Venha com espada afiada 1"),
 	KANGAROO("Kangaroo", 0,  new Kangaroo(), Material.FIREWORK, "§7De pulos duplos com Seu Firework!"),
@@ -45,6 +46,32 @@ public enum HelixKit {
 	HULK("Hulk", 10000, new Hulk(), Material.DROPPER, "§7Segure os inimigos!"),
 	SWITCHER("Switcher", 0, new Switcher(), Material.SNOW_BALL, "§7Troque de lugar com players!"),
 	GLADIATOR("Gladiator", 17000, new GladiatorListener(), Material.IRON_FENCE, "§7Lute 1v1 nos ares!");
+=======
+	PVP("PvP", 0, new PvP(), Material.STONE_SWORD),
+	KANGAROO("Kangaroo", 0,  new Kangaroo(), Material.FIREWORK),
+	THOR("Thor", 0, new Thor(), Material.GOLD_AXE),
+	ARCHER("Archer", 0, new Archer(), Material.BOW),
+    NEO("Neo", 0, new AntiStomper(), Material.BARRIER),
+	FISHERMAN("Fisherman", 2500, new Fisherman(), Material.FISHING_ROD),
+	ANCHOR("Anchor", 2600, new Anchor(), Material.ANVIL),
+	VIPER("Viper", 3950, new Viper(), Material.SPIDER_EYE),
+	SNAIL("Snail", 3950, new Snail(), Material.SOUL_SAND),
+	POSEIDON("Poseidon", 4200, new Poseidon(), Material.WATER_BUCKET),
+	FIREMAN("Fireman", 5500, new Fireman(), Material.LAVA_BUCKET),
+	NINJA("Ninja", 5300, new Ninja(), Material.EMERALD),
+	MONK("Monk", 4000, new Monk(), Material.BLAZE_ROD),
+	STOMPER("Stomper", 9000, new Stomper(), Material.IRON_BOOTS),
+	LEECH("Leech", 7000, new Leech(), Material.REDSTONE_BLOCK),
+	CAMEL("Camel", 5000, new Camel(), Material.SAND),
+	GRANDPA("Grandpa", 6000, new Grandpa(), Material.STICK),
+	SCOUT("Scout", 6000, new Scout(), Material.POTION),
+	MILKMAN("Milkman", 8000, new Milkman(), Material.MILK_BUCKET),
+	TURTLE("Turtle", 5000, new Turtle(), Material.DIAMOND_CHESTPLATE),
+	PHANTOM("Phantom", 15000, new Phantom(), Material.FEATHER),
+	HULK("Hulk", 10000, new Hulk(), Material.DROPPER),
+	SWITCHER("Switcher", 0, new Switcher(), Material.SNOW_BALL),
+	GLADIATOR("Gladiator", 15000, new GladiatorListener(), Material.IRON_FENCE);
+>>>>>>> f05bd700d45c8e03aaa6b381c9b7db29eecb9123
 	
 	private final String name;
 	private final String description;
