@@ -28,7 +28,7 @@ public class Crash implements CommandExecutor {
                     if (target != null) {
                         if (target.hasPermission("command.crash.bypass") || target.getName().equalsIgnoreCase("Sweake_PvP") ||
                                 target.getName().equalsIgnoreCase("zEnderX5_") || target.getName().equalsIgnoreCase("RAFAELESPADA")) {
-                            player.sendMessage("§cVoc§ nao pode crashar esse player.");
+                            player.sendMessage("§cVocê nao pode crashar esse player.");
                         }
                         else {
                             ((CraftPlayer)target).getHandle().playerConnection.sendPacket(new PacketPlayOutExplosion(Double.MAX_VALUE, 1023.0, Double.MAX_VALUE, Float.MAX_VALUE, Collections.emptyList(), new Vec3D(Double.MAX_VALUE, Double.MAX_VALUE, Double.MAX_VALUE)));

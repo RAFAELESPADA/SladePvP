@@ -42,13 +42,13 @@ public class SortearPlayer implements CommandExecutor {
             Random random = new Random();
             int sorteado = random.nextInt(onlinePlayers);
             Player sort = playerList.get(sorteado);
-            Bukkit.broadcastMessage("§6§l§fKing§f§lMC §7§ §fUm sorteio acabou de come§ar!");
-            Bukkit.broadcastMessage("§6§l§fKing§f§lMC §7§ §fVoc§ ja esta participando!");
-            Bukkit.broadcastMessage("§6§l§fKing§f§lMC §7§ §fJogadores participando: §a" + onlinePlayers);
+            Bukkit.broadcastMessage("§5§lSLOPER §7§ §fUm sorteio acabou de come§ar!");
+            Bukkit.broadcastMessage("§5§lSLOPER §7§ §fVoc§ ja esta participando!");
+            Bukkit.broadcastMessage("§5§lSLOPER §7§ §fJogadores participando: §a" + onlinePlayers);
             Bukkit.broadcast("§7§o(STAFF) Sorteio feito por §f" + player.getName() + "§7§o." , "kombo.cmd.staffchat");
 
             Bukkit.getScheduler().runTaskLater(HelixPvP.getInstance(), () -> {
-                Bukkit.broadcastMessage("§6§l§fKING§f§lMC  §7§ §fO ganhador do sorteio foi §e" + sort.getName() +
+                Bukkit.broadcastMessage("§5§lSLOPER  §7> §fO ganhador do sorteio foi §e" + sort.getName() +
                         "§f! §7(" + chance + "% de chance)");
                 for (Player p : Bukkit.getOnlinePlayers()){
                 	HelixActionBar.send(p, "§aO Ganhador do Sorteio foi: §f" + sort.getName());

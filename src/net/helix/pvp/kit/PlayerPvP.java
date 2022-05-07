@@ -28,11 +28,11 @@ public class PlayerPvP {
 	}
 
 	public boolean hasKit() {
-		return kit != null;
+		return kit != null && kit != HelixKit.NENHUM;
 	}
 	
 	public boolean hasKit(HelixKit kit) {
-		return hasKit() && this.kit.equals(kit);
+		return hasKit() && this.kit.equals(kit) && kit != HelixKit.NENHUM;
 	}
 	
 	public boolean hasKit(KitHandler handler) {
@@ -44,7 +44,10 @@ public class PlayerPvP {
 	}
 	
 	public HelixKit getKit() {
+		if (kit != null) {
 		return kit;
+		}
+		return HelixKit.NENHUM;
 	}
 	
 	public void setKit(HelixKit kit) {

@@ -40,7 +40,7 @@ public boolean onCommand(CommandSender sender, Command cmd, String CommandLabel,
     return true;
   }
   Player p = (Player)sender;
-  if (cmd.getName().equalsIgnoreCase("youtuber") || cmd.getName().equalsIgnoreCase("yt"))
+  if (cmd.getName().equalsIgnoreCase("requisitos") || cmd.getName().equalsIgnoreCase("req"))
   {
     Inventory warps = Bukkit.createInventory(p, 27, "Requisitos para TAGS.");
     
@@ -50,7 +50,7 @@ public boolean onCommand(CommandSender sender, Command cmd, String CommandLabel,
     fps2.setDisplayName("§3§lREQUISITOS DE TAGS");
     List<String> lore1 = new ArrayList();
     lore1.add("§7* §fAqui você podera vizualizar");
-    lore1.add("§7* §fOs requisitos da tag §b§lYT§a/§c§lMINIYT");
+    lore1.add("§7* §fOs requisitos da tag §b§lYT§a/§3§lSTREAMER");
     lore1.add("§7* §fLeia atentamente as informaçoes");
     lore1.add("");
     lore1.add("§7* §fDepois so contatar um §4§LDONO");
@@ -65,9 +65,9 @@ public boolean onCommand(CommandSender sender, Command cmd, String CommandLabel,
     List<String> lore2 = new ArrayList();
     lore2.add("§7* §fPara tornar-se §b§lYT§f, é necessário possuir");
     lore2.add("");
-    lore2.add("§7* §4- §f1000 visualizações no video do servidor");
-    lore2.add("§7* §4- §f50 likes no video");
-    lore2.add("§7* §fA tag tem duração de §615 DIAS §fproduza videos para renova-lá");
+    lore2.add("§7* §4- §f200 visualizações no video do servidor");
+    lore2.add("§7* §4- §f500 inscritos");
+    lore2.add("§7* §fA tag tem duração de §630 DIAS §fproduza videos para renova-lá");
     lore2.add("");
     lore2.add("§7* §fApos isso requisitar sua tag no §3§lDISCORD");
     lava2.setLore(lore2);
@@ -79,34 +79,20 @@ public boolean onCommand(CommandSender sender, Command cmd, String CommandLabel,
     List<String> lore3 = new ArrayList();
     lore3.add("§7* §fPara tornar-se §3§lSTREAMER§f, é necessário possuir");
     lore3.add("");
-    lore3.add("§7* §4- §fRealizar duas lives semanais");
-    lore3.add("§7* §4- §fAtingir a média de 250 vizualizações");
+    lore3.add("§7* §4- §f150 seguidores");
+    lore3.add("§7* §4- §fObter 400 views");
     lore3.add("§7* §4- §fDa somátoria das lives realizadas");
-    lore3.add("§7* §4- §f100 followers");
     lore3.add("");
     lore3.add("§7* §fApos isso requisitar sua tag no §3§lDISCORD");
     v12.setLore(lore3);
     v1.setItemMeta(v12);
     
-    ItemStack v2 = new ItemStack(Material.APPLE);
-    ItemMeta v22 = v2.getItemMeta();
-    v22.setDisplayName("§c§lMINIYT");
-    List<String> lore4 = new ArrayList();
-    lore4.add("§7* §fPara tornar-se §c§lMINIYT§f, é necessário possuir");
-    lore4.add("");
-    lore4.add("§7* §4- §f300 visualizações no vídeo do Servidor.");
-    lore4.add("§7* §4- §f20 likes no video do Servidor.");
-    lore4.add("§7* §fA tag tem duração de §615 DIAS §fproduza videos para renova-lá");
-    lore4.add("");
-    lore4.add("§7* §fApos isso requisitar sua tag no §3§lDISCORD");
-    v22.setLore(lore4);
-    v2.setItemMeta(v22);
+
     
     
     warps.setItem(11, lava);
     warps.setItem(15, v1);
     warps.setItem(13, fps);
-    warps.setItem(22, v2);
     p.openInventory(warps);
   }
  

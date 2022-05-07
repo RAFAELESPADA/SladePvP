@@ -15,8 +15,8 @@ import org.bukkit.entity.Player;
 @Getter
 public enum Ranking {
 
-    GOD("God", '۞', ChatColor.GREEN, 9800),
-    AMETISTA("Ametista", '✯', ChatColor.LIGHT_PURPLE, 7200),
+    GOD("God", '✯', ChatColor.DARK_PURPLE, 9800),
+    LENDARIO("Lendário", '۞', ChatColor.AQUA, 7200),
     RUBY("Ruby", '✧', ChatColor.DARK_RED, 5700),
     SAFIRA("Safira", '✪', ChatColor.BLUE, 4300),
     CRISTAL("Cristal", '❂', ChatColor.GOLD, 3500),
@@ -24,7 +24,7 @@ public enum Ranking {
     DIAMANTE("Diamante", '✹', ChatColor.AQUA, 2200),
     OURO("Ouro", '✸', ChatColor.GOLD, 1500),
     PRATA("Prata", '✸', ChatColor.WHITE, 1200),
-    VETERANO("Veterano", '✶', ChatColor.LIGHT_PURPLE, 800),
+    VETERANO("Veterano", '✶', ChatColor.RED, 800),
     EXPERIENTE("Experiente", '✶', ChatColor.DARK_GRAY, 550),
     AVANCADO("Avancado", '✶', ChatColor.GOLD, 300),
     INICIANTE("Iniciante", '=', ChatColor.WHITE, 100),
@@ -187,12 +187,12 @@ public enum Ranking {
 	        }
 	        else if (pvp.getKills() == 7200) {
 	        	PlayerDeathListener.throwRandomFirework(p);
-	        p.sendMessage("Você subiu para o Ranking §aAMESTISTA§f.");
-	        Bukkit.broadcastMessage("§a" + p.getName() + " §fsubiu do rank RUBY" +  " para o Rank AMESTISTA");
+	        p.sendMessage("Você subiu para o Ranking §aLENDÁRIO§f.");
+	        Bukkit.broadcastMessage("§a" + p.getName() + " §fsubiu do rank RUBY" +  " para o Rank LENDÁRIO");
 	     
 	        for (Player p1 : Bukkit.getOnlinePlayers()) {
 	        	p1.playSound(p1.getLocation(), Sound.NOTE_PLING, 10.0f, 1f);
-	        	   HelixActionBar.send(p1, "§a" + p.getName() + " §fsubiu para o Rank AMESTISTA");
+	        	   HelixActionBar.send(p1, "§a" + p.getName() + " §fsubiu para o Rank LENDÁRIO");
 	        }
 	        }
 	        	

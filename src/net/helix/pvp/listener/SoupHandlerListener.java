@@ -1,5 +1,6 @@
 package net.helix.pvp.listener;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Effect;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -8,6 +9,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
+
+import net.helix.pvp.kit.HelixKit;
+import net.helix.pvp.kit.KitManager;
 
 public class SoupHandlerListener implements Listener {
 	
@@ -23,11 +27,57 @@ public class SoupHandlerListener implements Listener {
 					
 					p.setHealth(p.getHealth() + 7 >= 20.0D ? 20.0D : p.getHealth() + 7);
 					p.setFoodLevel(20);
-					p.getWorld().playEffect(p.getLocation().add(0.0D, 1.5D, 0.0D), Effect.HEART, 7);
+					if (!KitManager.getPlayer(p.getName()).hasKit(HelixKit.QUICKDROPPER))
 					p.setItemInHand(new ItemStack(Material.BOWL));
+					else {
+						setOffhandItem(p, new ItemStack(Material.AIR));
+					}
 					p.updateInventory();
 				}
 			}
 		}
+	}
+
+
+public static void setOffhandItem(Player p, ItemStack item) {
+		
+		if (versionToNumber() == 18) {
+			p.setItemInHand(item);
+		} else if (versionToNumber() > 18) {
+			p.setItemInHand(item);
+		} else {
+			p.setItemInHand(item);
+		}
+		
+	}
+public static int versionToNumber() {
+
+	String version = Bukkit.getVersion();
+
+	if (version.contains("1.8")) {
+		return 18;
+	} else if (version.contains("1.9")) {
+		return 19;
+	} else if (version.contains("1.10")) {
+		return 110;
+	} else if (version.contains("1.11")) {
+		return 111;
+	} else if (version.contains("1.12")) {
+		return 112;
+	} else if (version.contains("1.13")) {
+		return 113;
+	} else if (version.contains("1.14")) {
+		return 114;
+	} else if (version.contains("1.15")) {
+		return 115;
+	} else if (version.contains("1.16")) {
+		return 116;
+	} else if (version.contains("1.17")) {
+		return 117;
+	} else if (version.contains("1.18")) {
+		return 118;
+	}
+		return 500;
+		
 	}
 }

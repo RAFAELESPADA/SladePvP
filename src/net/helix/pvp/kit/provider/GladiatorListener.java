@@ -75,7 +75,7 @@ public final class GladiatorListener extends KitHandler
                 }
 				if (Habilidade.getAbility(toGlad) == "SteelHead") {
 					bp.playSound(bp.getLocation(), Sound.NOTE_BASS_DRUM, 15.0f, 15.0f);
-					bp.sendMessage(ChatColor.AQUA + "Voc§ nao pode puxar " + toGlad.getName() + " porque ele esta com o kit NEO");
+					bp.sendMessage(ChatColor.RED + "Você nao pode puxar " + ChatColor.DARK_RED + toGlad.getName() + ChatColor.RED + " porque ele esta com o kit" + ChatColor.DARK_RED + " NEO");
 					return;
 				}
                 GladiatorListener.combateGlad.put(bp, toGlad);

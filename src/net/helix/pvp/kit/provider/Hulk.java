@@ -1,18 +1,36 @@
 package net.helix.pvp.kit.provider;
 
 import net.helix.core.util.HelixCooldown;
+import net.helix.core.util.HelixCooldown2;
 import net.helix.pvp.kit.HelixKit;
 import net.helix.pvp.kit.KitHandler;
 import net.helix.pvp.kit.KitManager;
+
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 
 import java.util.concurrent.TimeUnit;
 
 public class Hulk extends KitHandler {
+
+	
+	
+	
+	  @EventHandler
+	    public void onInteract(PlayerDeathEvent event) {
+	        Player p = (Player) event.getEntity();
+	        Player k = (Player) event.getEntity().getKiller();
+	        Entity passenger = p.getPassenger();
+	        if (passenger != null) {
+	        passenger.leaveVehicle();
+	  
+	}
+	  }
 
     @EventHandler
     public void onInteract(PlayerInteractEntityEvent event) {
@@ -21,12 +39,12 @@ public class Hulk extends KitHandler {
         Player rightClicked = (Player) event.getRightClicked();
         if (!KitManager.getPlayer(rightClicked.getName()).hasKit()) return;
         if (!KitManager.getPlayer(event.getPlayer().getName()).hasKit(HelixKit.HULK)) return;
-        if (HelixCooldown.inCooldown(event.getPlayer().getName(), "kit-hulk")) {
-            event.getPlayer().sendMessage("§cO Kit Hulk esta em cooldown!");
-            return;
-        }
+        if (inCooldown(event.getPlayer()) && KitManager.getPlayer(event.getPlayer().getName()).hasKit(this)) {
+			sendMessageCooldown(event.getPlayer());
+			return;
+		}
 
-        HelixCooldown.create(event.getPlayer().getName(), "kit-hulk", TimeUnit.SECONDS, 5);
+        addCooldown(event.getPlayer(), 5);
         event.getPlayer().setPassenger(rightClicked);
     }
 

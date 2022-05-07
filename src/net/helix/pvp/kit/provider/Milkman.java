@@ -3,6 +3,8 @@ package net.helix.pvp.kit.provider;
 import net.helix.core.bukkit.item.ItemBuilder;
 import net.helix.core.util.HelixCooldown;
 import net.helix.pvp.kit.KitHandler;
+import net.helix.pvp.kit.KitManager;
+
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -31,13 +33,11 @@ public class Milkman extends KitHandler {
         if (!event.hasItem() || !ItemBuilder.has(event.getItem(), "kit-handler", "milkman")) return;
 
         event.setCancelled(true);
-
-        if (HelixCooldown.inCooldown(event.getPlayer().getName(), "kit-milkman")) {
-            event.getPlayer().sendMessage("§cO kit Milkman está em cooldown.");
-            return;
-        }
-
-        HelixCooldown.create(event.getPlayer().getName(), "kit-milkman", TimeUnit.SECONDS, 15);
+        if (inCooldown(event.getPlayer()) && KitManager.getPlayer(event.getPlayer().getName()).hasKit(this)) {
+			sendMessageCooldown(event.getPlayer());
+			return;
+		}
+        addCooldown(event.getPlayer(), 15);
         event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.ABSORPTION, 5 * 20, 0));
         event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 10 * 20, 0));
         event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 5 * 20, 0));

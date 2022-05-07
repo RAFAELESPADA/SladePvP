@@ -11,7 +11,7 @@ import org.bukkit.inventory.ItemStack;
 public class HelixPlayerDeathEvent extends Event {
 	
 	public enum Reason {
-		ARENA, ONE_VS_ONE;
+		ARENA, ONE_VS_ONE, FPS, LAVA;
 	}
 	
 	private final static HandlerList handlerList = new HandlerList();

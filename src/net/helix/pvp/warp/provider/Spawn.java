@@ -4,6 +4,7 @@ import net.helix.core.bukkit.HelixBukkit;
 import net.helix.core.bukkit.api.HelixTitle;
 import net.helix.core.bukkit.item.ItemBuilder;
 import net.helix.core.bukkit.util.DamageUtil;
+import net.helix.pvp.evento.EventoUtils;
 import net.helix.pvp.kit.KitManager;
 import net.helix.pvp.warp.HelixWarp;
 import net.helix.pvp.warp.WarpHandle;
@@ -28,6 +29,9 @@ public class Spawn extends WarpHandle {
         player.getInventory().setArmorContents(null);
         player.setGameMode(GameMode.ADVENTURE);
         player.setMaxHealth(20);
+        if (EventoUtils.game.contains(player.getName())) {
+        EventoUtils.setEvento(false, player);
+        }
         player.setHealth(player.getMaxHealth());
         player.getActivePotionEffects().forEach(potion -> player.removePotionEffect(potion.getType()));
         player.setFireTicks(0);
@@ -38,6 +42,13 @@ public class Spawn extends WarpHandle {
 
         player.getInventory().setItem(0, new ItemBuilder("§eKits disponíveis", Material.CHEST)
                 .nbt("spawn-item", "kits")
+                .nbt("cancel-drop")
+                .nbt("cancel-click")
+                .toStack()
+        );
+        
+        player.getInventory().setItem(4, new ItemBuilder("§6Opções", Material.NETHER_STAR)
+                .nbt("spawn-item", "mush")
                 .nbt("cancel-drop")
                 .nbt("cancel-click")
                 .toStack()

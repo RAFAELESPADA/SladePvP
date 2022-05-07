@@ -6,7 +6,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.BlockExplodeEvent;
 import org.bukkit.event.block.BlockIgniteEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.potion.PotionEffect;
 import net.helix.core.util.HelixCooldown;
 import net.helix.core.bukkit.item.ItemBuilder;
 import net.helix.pvp.kit.KitHandler;
@@ -34,23 +36,43 @@ public class Thor extends KitHandler {
 	@EventHandler
 	public void onInteract(PlayerInteractEvent event) {
 		Player player = event.getPlayer();
-		
+		if (inCooldown(player) && KitManager.getPlayer(player.getName()).hasKit(this)) {
+			sendMessageCooldown(player);
+			return;
+		}
 		if (!KitManager.getPlayer(player.getName()).hasKit(this) 
 				|| !event.hasItem() || !ItemBuilder.has(event.getItem(), "kit-handler", "thor") 
 				|| event.getClickedBlock() == null || event.getClickedBlock().getType().equals(Material.AIR)) {
 			return;
 		}
-		event.setCancelled(true);
-		
-		if (HelixCooldown.inCooldown(player.getName(), "thor")) {
-			player.sendMessage("§cAguarde " + HelixCooldown.getTime(player.getName(), "thor") + "s para utilizar este kit novamente.");
+		else if (player.getLocation().getY() > 149 && player.getLocation().getX() < 1000 && player.getLocation().getX() > -1000) {
+			player.sendMessage("§cPule do Spawn para usar o kit Thor");
 			return;
 		}
 		
-		HelixCooldown.create(player.getName(), "thor", TimeUnit.SECONDS, 10);
-		player.getWorld().strikeLightning(event.getClickedBlock().getLocation());
+		event.setCancelled(true);
 		
+		
+		
+		addCooldown(event.getPlayer(), 5);
+		player.getWorld().strikeLightning(event.getClickedBlock().getLocation());
+		player.getWorld().strikeLightning(event.getClickedBlock().getLocation());
 	}
+	 @EventHandler
+	 /*     */   public void OnBlockBB(EntityDamageEvent e)
+	 /*     */   {
+	 /* 110 */     if (!(e.getEntity() instanceof Player)) {
+	 /* 111 */       return;
+	 /*     */     }
+	 /* 113 */     Player p = (Player)e.getEntity();
+	 /* 114 */     if ((p.getLocation().getBlockY() > 150) && p.getLocation().getX() < 1000 && p.getLocation().getBlockY() > -1000) {
+	 /* 115 */       e.setCancelled(true);
+	 for (PotionEffect effect : p.getActivePotionEffects()) {
+		 /*  70 */         p.removePotionEffect(effect.getType());
+		 /*     */       }
+	               }
+	 /*     */   }
+	 /*     */ 
 	
 	@EventHandler
 	public void onBlockExplode(BlockExplodeEvent event) {

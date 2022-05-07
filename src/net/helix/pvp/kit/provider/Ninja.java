@@ -40,20 +40,20 @@ public class Ninja extends KitHandler {
 
 		if (KitManager.getPlayer(player.getName()).hasKit(this) 
 				&& map.containsKey(player.getName())) {
-			if (HelixCooldown.inCooldown(player.getName(), "ninja")) {
-				player.sendMessage("§cAguarde " + HelixCooldown.getTime(player.getName(), "ninja") + "s para utilizar este kit novamente.");
-				return;
-			}
+			
 			
 			String targetName = map.get(player.getName());
 			Player targetPlayer;
-			
+			if (inCooldown(player) && KitManager.getPlayer(player.getName()).hasKit(this)) {
+				sendMessageCooldown(player);
+				return;
+			}
 			if ((targetPlayer = Bukkit.getPlayer(targetName)) != null) {
 				if (player.getLocation().distance(targetPlayer.getLocation()) >= 50) {
 					player.sendMessage("§cEste jogador está muito longe.");
 					return;
 				}
-				HelixCooldown.create(player.getName(), "ninja", TimeUnit.SECONDS, 10);
+				addCooldown(event.getPlayer(), 10);
 				player.teleport(targetPlayer);
 				player.sendMessage("§aVocê teleportou para §f" + targetName + "§a.");
 			}

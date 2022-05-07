@@ -14,6 +14,7 @@ import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
 import net.helix.core.util.HelixCooldown;
+import net.helix.pvp.command.VanishUtil;
 
 public class PlayerCombatLogListener implements Listener {
 
@@ -42,11 +43,21 @@ public class PlayerCombatLogListener implements Listener {
 	public void onCommandPreProcess(PlayerCommandPreprocessEvent event) {
 		Player player = event.getPlayer();
 		String command = event.getMessage().split(" ")[0].toLowerCase();
-		if (HelixCooldown.inCooldown(player.getName(), "combat") && !allowCommands.contains(command)) {
+		if (HelixCooldown.inCooldown(player.getName(), "combat") && !allowCommands.contains(command) && !player.hasPermission("kombo.cmd.report")) {
 			event.setCancelled(true);
 			player.sendMessage("§cAguarde " + HelixCooldown.getTime(player.getName(), "combat") + "s para usar os comandos");
 		}
 	}
+	@EventHandler
+	public void onCommandPreProcess2(PlayerCommandPreprocessEvent event) {
+		Player player = event.getPlayer();
+		String command = event.getMessage().split(" ")[0].toLowerCase();
+		if (command.contains("admin") && VanishUtil.has(player.getName())) {
+			event.setCancelled(true);
+			player.sendMessage("§cSaia do modo vanish antes de entrar no modo Admin!");
+		}
+	}
+	
 	
 	@EventHandler
 	public void onPlayerDeath(PlayerDeathEvent event) {

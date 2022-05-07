@@ -9,7 +9,12 @@
 	</classpathentry>
 	<classpathentry exported="true" kind="lib" path="H:/COISAS DE SERVIDORES DE MINECRAFT/KOMBO/Dependencias/PaperSpigot-1.8.8-R0.1-SNAPSHOT-latest.jar"/>
 	<classpathentry exported="true" kind="lib" path="H:/COISAS DE SERVIDORES DE MINECRAFT/KOMBO/Dependencias/HolographicDisplays.jar"/>
-	<classpathentry exported="true" kind="lib" path="H:/COISAS DE SERVIDORES DE MINECRAFT/KOMBO/KomboNetwork/EVENTO/plugins/Core-NOL.jar"/>
 	<classpathentry exported="true" kind="lib" path="C:/Users/SO Auler/Downloads/lombok (1).jar"/>
+	<classpathentry exported="true" kind="lib" path="H:/COISAS DE SERVIDORES DE MINECRAFT/KOMBO/Dependencias/PlaceholderAPI-2.11.1 (1).jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/SO Auler/Desktop/NETWORK FOR DOWNLOAD LOGIN LOBBY KITPVP SKYWARS SURVIVAL  HUNGERGAMES/KITPVP/plugins/DecentHolograms-2.3.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/SO Auler/Desktop/NETWORK FOR DOWNLOAD LOGIN LOBBY KITPVP SKYWARS SURVIVAL  HUNGERGAMES/KITPVP/plugins/ajLeaderboards-2.3.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/SO Auler/Desktop/NETWORK FOR DOWNLOAD LOGIN LOBBY KITPVP SKYWARS SURVIVAL  HUNGERGAMES/SKYWARS/plugins/LuckPerms-Bukkit-5.3.47.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/SO Auler/Downloads/BossBarAPI_v2.4.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/SO Auler/Desktop/Core/Medals/Core.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

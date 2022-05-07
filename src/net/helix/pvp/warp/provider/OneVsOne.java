@@ -9,6 +9,9 @@ import net.helix.pvp.HelixPvP;
 import net.helix.pvp.event.HelixPlayerDeathEvent;
 import net.helix.pvp.warp.HelixWarp;
 import net.helix.pvp.warp.WarpDuoBattleHandle;
+import net.minecraft.server.v1_8_R3.Enchantment;
+
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -150,8 +153,8 @@ public class OneVsOne extends WarpDuoBattleHandle {
 		loserHelixPlayer.getPvp().addDeaths(1);
 		loserHelixPlayer.getPvp().setKillstreak(0);
 
-		loser.sendMessage("§cVocê perdeu a batalha contra " + winner.getName() + "�c.");
-		
+		loser.sendMessage("§cVocê perdeu a batalha contra " + winner.getName() + "§c.");
+		loser.sendMessage(ChatColor.YELLOW + "Você respawnou na warp 1v1. Para voltar use /spawn");
 		if ((loserHelixPlayer.getPvp().getCoins() - loserWithdrawnCoins) >= 0) {
 			loserHelixPlayer.getPvp().removeCoins(loserWithdrawnCoins);
 			loser.sendMessage("§c§l[-] §c" + loserWithdrawnCoins + " coins");
@@ -197,14 +200,14 @@ public class OneVsOne extends WarpDuoBattleHandle {
 		super.sendBattleItems(player);
 		
 		player.getInventory().setItem(0, new ItemBuilder("§fEspada de Diamante", Material.DIAMOND_SWORD)
-				.nbt("cancel-drop")
+				.nbt("cancel-drop").addEnchant(org.bukkit.enchantments.Enchantment.DAMAGE_ALL, 1)
 				.toStack()
 		);
 
-		player.getInventory().setHelmet(new ItemBuilder("§6§lSLOPER§f§lPVP", Material.IRON_HELMET).toStack());
-		player.getInventory().setChestplate(new ItemBuilder("§6§lSLOPER§f§lPVP", Material.IRON_CHESTPLATE).toStack());
-		player.getInventory().setLeggings(new ItemBuilder("§6§lSLOPER§f§lPVP", Material.IRON_LEGGINGS).toStack());
-		player.getInventory().setBoots(new ItemBuilder("§6§lSLOPER§f§lPVP", Material.IRON_BOOTS).toStack());
+		player.getInventory().setHelmet(new ItemBuilder("§5§lSLOPER", Material.IRON_HELMET).toStack());
+		player.getInventory().setChestplate(new ItemBuilder("§5§lSLOPER", Material.IRON_CHESTPLATE).toStack());
+		player.getInventory().setLeggings(new ItemBuilder("§5§lSLOPER", Material.IRON_LEGGINGS).toStack());
+		player.getInventory().setBoots(new ItemBuilder("§5§lSLOPER", Material.IRON_BOOTS).toStack());
 
 		for (int i = 0; i <= 7; i++) {
 			player.getInventory().addItem(new ItemBuilder(Material.MUSHROOM_SOUP).toStack());

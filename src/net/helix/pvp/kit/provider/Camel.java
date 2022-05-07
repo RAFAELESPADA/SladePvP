@@ -41,4 +41,3 @@ public class Camel extends KitHandler {
     }
 
 }
-

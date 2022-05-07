@@ -46,6 +46,11 @@ public class Report
         }
       }, 1200L);
       String reportado = args[0];
+      if (p.getName().equalsIgnoreCase(reportado)) {
+    	  p.sendMessage("§cVocê não pode se reportar.");
+          return true;
+        
+      }
       StringBuilder sb = new StringBuilder();
       for (int i = 1; i < args.length; i++)
       {

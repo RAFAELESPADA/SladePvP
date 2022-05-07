@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
@@ -14,16 +15,21 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 import net.helix.core.bukkit.item.ItemBuilder;
 import net.helix.core.util.HelixCooldown;
+import net.helix.pvp.HelixPvP;
 import net.helix.pvp.kit.KitHandler;
 import net.helix.pvp.kit.KitManager;
 
 public class Kangaroo extends KitHandler {
 	
 	private final static List<String> cooldown = new ArrayList<>();
-	
+	ArrayList<String> tempo = new ArrayList();
+
+	/*  51 */   ArrayList<String> naofugir = new ArrayList();
 	@Override
 	public void execute(Player player) {
 		super.execute(player);
@@ -35,89 +41,120 @@ public class Kangaroo extends KitHandler {
 		);
 	}
 	
-	@EventHandler
-	public void onInteract(PlayerInteractEvent event) {
-		Player player = event.getPlayer();
-		
-		if (!KitManager.getPlayer(player.getName()).hasKit(this)
+
+		/*  49 */   
+		/*     */   
+		/*     */   @EventHandler
+		/*     */   public void pular(PlayerInteractEvent event)
+		/*     */   {
+			
+		/*  56 */     Player p = event.getPlayer();
+
+
+		/*  57 */     if (!KitManager.getPlayer(p.getName()).hasKit(this)
 				|| !event.hasItem() || !ItemBuilder.has(event.getItem(), "kit-handler", "kangaroo")) {
 			return;
 		}
-		event.setCancelled(true);
-		
-		if (HelixCooldown.inCooldown(player.getName(), "kangaroo-hit")) {
-			player.sendMessage("§cVocê recebeu dano recentemente, aguarde " + HelixCooldown.getTime(player.getName(), "kangaroo-hit") + "s para utilizar o Kangaroo novamente.");
-			return;
-		}
-		
-		if (!cooldown.contains(player.getName())) {
-			cooldown.add(player.getName());
-			Vector vector = player.getEyeLocation().getDirection();
-			
-			if (player.isSneaking()) {
-				vector.multiply(2.7F);
-				vector.setY(0.5D);
-			}else {
-				vector.multiply(0.9F);
-				vector.setY(1.0D);
-			}
-			player.setFallDistance(-1.0F);
-			player.setVelocity(vector);
-		}
-	}
-	
-	@EventHandler
-	public void onMove(PlayerMoveEvent event) {
-		Player player = event.getPlayer();
-		Block block = player.getLocation().getBlock();
-		
-		if (!KitManager.getPlayer(player.getName()).hasKit(this) 
-				|| !cooldown.contains(player.getName())) {
-			return;
-		}
-		
-		if (!block.getRelative(BlockFace.DOWN).getType().equals(Material.AIR)) {
-			cooldown.remove(player.getName());
-		}
-	}
-	
-	@EventHandler(ignoreCancelled = true)
-	public void onFallDamage(EntityDamageEvent event) {
-		if (!(event.getEntity() instanceof Player)) {
-			return;
-		}
-		Player player = (Player) event.getEntity();
-		
-		if (!KitManager.getPlayer(player.getName()).hasKit(this) 
-				|| !event.getCause().equals(DamageCause.FALL)) {
-			return;
-		}
-		
-		if (event.getDamage() > 7.0D) {
-			event.setDamage(7.0D);
-		}
-	}
-	
-	@EventHandler(ignoreCancelled = true)
-	public void onDamageByEntity(EntityDamageByEntityEvent event) {
-		if (!(event.getEntity() instanceof Player) 
-				|| (!(event.getDamager() instanceof Player))) {
-			return;
-		}
-		Player player = (Player) event.getEntity();
-		
-		if (!KitManager.getPlayer(player.getName()).hasKit(this)) {
-			return;
-		}
-		
-		HelixCooldown.create(player.getName(), "kangaroo-hit", TimeUnit.SECONDS, 5);
-	}
-	
-	@EventHandler
-	public void onDeath(PlayerDeathEvent event) {
-		Player victim = event.getEntity();
-		
-		cooldown.remove(victim.getName());
-		HelixCooldown.delete(victim.getName(), "kangaroo-hit");
-	}
+		/*     */     {
+		/*  60 */       event.setCancelled(true);
+
+		/*  61 */       if (GladiatorListener.combateGlad.containsKey(p)) {
+		/*  62 */         p.sendMessage(String.valueOf("§cVocê esta no Gladiator e recebeu efeito de speed"));
+		/*     */         
+		/*  64 */         darEfeito(p, org.bukkit.potion.PotionEffectType.SPEED, 10, 2);
+		/*     */       }
+		/*     */       else
+		/*     */       {
+		/*  68 */         event.setCancelled(true);
+		/*  69 */         Vector vector = p.getEyeLocation().getDirection();
+		/*  70 */         if (!this.naofugir.contains(p.getName()))
+		/*     */         {
+		/*  72 */           if (!this.tempo.contains(p.getName()))
+		/*     */           {
+		/*  74 */             this.tempo.add(p.getName());
+		/*  75 */             if (!p.isSneaking())
+		/*     */             {
+		/*  77 */               p.setFallDistance(-1.0F);
+		/*  78 */               vector.multiply(1.0F);
+		/*  79 */               vector.setY(1.0D);
+		/*  80 */               p.setVelocity(vector);
+		/*     */             }
+		/*     */             else
+		/*     */             {
+		/*  84 */               p.setFallDistance(-1.0F);
+		/*  85 */               vector.multiply(2.0F);
+		/*  86 */               vector.setY(0.5D);
+		/*  87 */               p.setVelocity(vector);
+		/*     */             }
+		/*     */           }
+		/*     */         }
+		/*  91 */         else if (!this.tempo.contains(p.getName()))
+		/*     */         {
+		/*  93 */           this.tempo.add(p.getName());
+		/*     */         }
+		/*     */         
+		/* 100 */         if (this.naofugir.contains(p.getName())) {
+		/* 101 */           return;
+		/*     */         }
+		/*     */       }
+		/*     */     }
+		/*     */   }
+		public static void darEfeito(Player p, PotionEffectType tipo, int duracao, int level)
+		/*     */   {
+		/* 349 */     p.addPotionEffect(new PotionEffect(tipo, 20 * duracao, level));
+		/*     */   }
+		/*     */   
+		/*     */   @EventHandler
+		/*     */   public void onDamageds(EntityDamageEvent event)
+		/*     */   {
+		/* 110 */     Entity e = event.getEntity();
+		/* 111 */     if ((e instanceof Player))
+		/*     */     {
+		/* 113 */       Player player = (Player)e;
+		/* 114 */       if (((event.getEntity() instanceof Player)) && 
+		/* 115 */         (event.getCause() == EntityDamageEvent.DamageCause.FALL) && 
+		/* 116 */         (player.getInventory().contains(Material.FIREWORK)) && 
+		/* 117 */         (event.getDamage() >= 8.0D)) {
+		/* 118 */         event.setDamage(event.getDamage() - 8.0D);
+		/*     */       }
+		/*     */     }
+		/*     */   }
+		/*     */   
+		/*     */   @EventHandler
+		/*     */   public void removertempo(PlayerMoveEvent event)
+		/*     */   {
+		/* 126 */     Player p = event.getPlayer();
+		/* 127 */     if (this.tempo.contains(p.getName()))
+		/*     */     {
+		/* 129 */       Block b = p.getLocation().getBlock();
+		/* 130 */       if ((b.getType() != Material.AIR) || (b.getRelative(BlockFace.DOWN).getType() != Material.AIR)) {
+		/* 131 */         this.tempo.remove(p.getName());
+		/*     */       }
+		/*     */     }
+		/*     */   }
+		/*     */   
+		/*     */   @EventHandler
+		/*     */   public void adicionartempo(EntityDamageByEntityEvent event)
+		/*     */   {
+		/* 139 */     if (!(event.getEntity() instanceof Player)) {
+		/* 140 */       return;
+		/*     */     }
+		/* 142 */     final Player kangaroo = (Player)event.getEntity();
+		/* 143 */     if ((event.getDamager() instanceof Player))
+		/*     */     {
+		/* 145 */       Player p = (Player)event.getDamager();
+		/* 146 */       if (((kangaroo instanceof Player)) && ((p instanceof Player)) && 
+		/* 147 */         (kangaroo.getInventory().contains(Material.FIREWORK)))
+		/*     */       {
+		/* 149 */         this.naofugir.add(kangaroo.getName());
+		/* 150 */         org.bukkit.Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnable()
+		/*     */         {
+		/*     */           public void run()
+		/*     */           {
+		/* 154 */             Kangaroo.this.naofugir.remove(kangaroo.getName());
+		/*     */           }
+		/* 156 */         }, 60L);
+		/*     */       }
+		/*     */     }
+		/*     */   }
 }

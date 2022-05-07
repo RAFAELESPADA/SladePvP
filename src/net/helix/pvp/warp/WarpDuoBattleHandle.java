@@ -22,7 +22,7 @@ public abstract class WarpDuoBattleHandle extends WarpHandle {
         this.warpPos2 = warpPos2;
     }
 
-    public List<Player> fastChallenge = new ArrayList<>();
+    public static List<Player> fastChallenge = new ArrayList<>();
     protected final HashMap<Player, Player> battlingPlayers = new HashMap<>();
 
     public void setItems(Player player) {

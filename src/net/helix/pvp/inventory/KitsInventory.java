@@ -7,6 +7,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import net.helix.core.bukkit.item.ItemBuilder;
+import net.helix.pvp.kit.HelixKit;
 import net.helix.pvp.kit.KitManager;
 
 import org.bukkit.entity.Player;
@@ -16,27 +17,14 @@ public class KitsInventory {
 	private final static String inventoryName = "§bKits do servidor";
 	public static void open(Player player) {
 		Inventory inventory = Bukkit.createInventory(null, 6 * 9, inventoryName);
-		ItemStack visualItem = new ItemBuilder("§6§lSLOPER§f§lMC", Material.VINE).toStack();
+	
 
-		for (int i = 0; i <= 8; i++) {
-			inventory.setItem(i, randomGlass());
-		}
 
-		for (int i = 45; i <= 53; i++) {
-			inventory.setItem(i, randomGlass());
-		}
 
-		for (int i = 0; i <= 44; i += 9) {
-			inventory.setItem(i, randomGlass());
-		}
-
-		for (int i = 8; i <= 53; i += 9) {
-			inventory.setItem(i, randomGlass());
-		}
-
-		KitManager.getPlayer(player.getName()).getAvailableKits().forEach(kit -> {
-			inventory.addItem(new ItemBuilder("§2" + kit.getName(), kit.getIcon())
-					.lore("§7Clique para selecionar")
+		KitManager.getPlayer(player.getName()).getAvailableKits().forEach(kit ->  {
+			if (!(kit.equals(HelixKit.NENHUM))) {
+			inventory.addItem(new ItemBuilder("§d" + kit.getName(), kit.getIcon())
+					.lore(kit.getDescription())
 					.addFlags(ItemFlag.HIDE_ATTRIBUTES,
 							ItemFlag.HIDE_DESTROYS,
 							ItemFlag.HIDE_ENCHANTS,
@@ -46,7 +34,7 @@ public class KitsInventory {
 					.nbt("kit-gui", kit.getName())
 					.toStack()
 			);
-		});
+		}});
 		
 		player.openInventory(inventory);
 	}

@@ -28,7 +28,7 @@ public class ShopInventory {
 		
 		
 		List<HelixKit> availableKits = HelixKit.getKits().stream().filter(
-				kit -> !KitManager.getPlayer(player.getName()).getAvailableKits().contains(kit)
+				kit -> !KitManager.getPlayer(player.getName()).getAvailableKits().contains(kit) && !kit.equals(HelixKit.NENHUM)
 		).collect(Collectors.toList());
 		
 		if (availableKits.size() > 0) {

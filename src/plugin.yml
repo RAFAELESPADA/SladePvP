@@ -3,17 +3,33 @@ version: 2.0.0
 author: Smart , Rafael Auler
 main: net.helix.pvp.HelixPvP
 description: Plugin de kitpvp do KomboPvP
-depend: [Core, HolographicDisplays]
+depend: [Core, DecentHolograms, PlaceholderAPI, ajLeaderboards]
 
 commands:
    spawn:
    skit:
    youtuber:
-   ss:
+   evento:
    tpall:
    sc:
    report:
-   yt:
+   regras:
+   req:
+   site:
+   loja:
+   sudo:
+   sealend123:
+   lavainiciar:
+   arenainiciar:
+   shutdownserver:
+   resetkdr:
+   givekit:
+   v:
+   vanish:
+   medalhas:
+   medalha:
+   consolesudo:
+   requisitos:
    discord:
    sethologram:
    rank:
@@ -22,8 +38,6 @@ commands:
       aliases: [score]
    verrank:
       aliases: [profile]
-   crash:
-      aliases: [crashar]
    sortearplayer:
       aliases: [sortear]   
    sorteio:

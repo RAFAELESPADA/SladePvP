@@ -39,7 +39,7 @@ public class SC
             sender.sendMessage("§c§lERRO §fVoce nao tem permiss�o para executar esse comando");
             return true;
           }
-          if (staff.hasPermission("kitpvp.cmd.report")) {
+          if (staff.hasPermission("kombo.cmd.report")) {
             staff.sendMessage("§6§l[STAFFCHAT] §a" + sender.getName() + ": §f" + mensagem.replace("&", "§"));
           }
         }

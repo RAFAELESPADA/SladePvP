@@ -8,6 +8,8 @@ import java.util.Set;
 import net.helix.core.bukkit.HelixBukkit;
 import net.helix.core.bukkit.api.HelixTitle;
 import net.helix.pvp.HelixPvP;
+import net.helix.pvp.command.DarKit;
+import net.helix.pvp.kit.KitManager;
 import net.helix.pvp.warp.provider.*;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -19,14 +21,14 @@ public enum HelixWarp {
 	FPS("Fps", new Fps(), Material.GLASS),
 	ONE_VS_ONE("1v1", new OneVsOne(), Material.BLAZE_ROD),
 	KNOCKBACK("Knockback", new Knockback(), Material.STICK),
-	LAVACHALLENGE("Lava Challenge", new LavaChallenge(), Material.LAVA_BUCKET),
-	POTPVP("PotPvP", new PotPvP(), Material.POTION);
+	LAVACHALLENGE("Lava Challenge", new LavaChallenge(), Material.LAVA_BUCKET);
 	
 	static {
 		getWarps().forEach(warp -> 
 			Bukkit.getPluginManager().registerEvents(warp.getHandler(), HelixPvP.getInstance())
 		);
 	}
+
 	
 	private final String name;
 	private final WarpHandle handler;
@@ -74,7 +76,7 @@ public enum HelixWarp {
 		players.add(player.getName());
 		handler.execute(player);
 		player.teleport(warpOptional.get().getLocation());
-
+		DarKit.sendTitle(player, "§5§lWARP", "§dEnviado para warp §e§l " + this.name);
 		if (!silent) {
 			player.sendMessage("§7Enviado para warp §b" + this.name);
 		}

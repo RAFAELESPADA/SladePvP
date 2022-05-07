@@ -11,6 +11,7 @@ import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -21,6 +22,7 @@ import net.helix.core.bukkit.account.HelixPlayer;
 import net.helix.pvp.HelixPvP;
 import net.helix.pvp.event.HelixPlayerDeathEvent;
 import net.helix.pvp.event.HelixPlayerDeathEvent.Reason;
+import net.helix.pvp.evento.SoupTypeGUI;
 
 public class PlayerDieArenaListener implements Listener {
 	
@@ -30,25 +32,56 @@ public class PlayerDieArenaListener implements Listener {
 			return;
 		}
 		Player player = event.getPlayer();
-		
+		World w = player.getWorld();
 		List<ItemStack> drops = new ArrayList<>(event.getDrops());
 		Location deathLocation = event.getDeathLocation();
 		if (drops.size() > 0) {
 			deathLocation.getWorld().playEffect(deathLocation, Effect.EXPLOSION_LARGE, 4);
 		}
-
-		drops.removeIf(droppedItem -> !droppedItem.getType().toString().contains("MUSHROOM") && !droppedItem.getType().equals(Material.BOWL) && !droppedItem.getType().equals(Material.EXP_BOTTLE) && !droppedItem.getType().equals(Material.LEATHER_LEGGINGS) && !droppedItem.getType().equals(Material.LEATHER_HELMET) && !droppedItem.getType().equals(Material.LEATHER_BOOTS) && !droppedItem.getType().equals(Material.GOLDEN_APPLE));
+		player.spigot().respawn();
+		ItemStack capacete0 = new ItemStack(Material.MUSHROOM_SOUP);
+		ItemStack capacete1 = new ItemStack(Material.BOWL);
+		ItemStack capacete2 = new ItemStack(Material.BROWN_MUSHROOM);
+		ItemStack capacete3 = new ItemStack(Material.RED_MUSHROOM);
+		ItemStack capacete4 = new ItemStack(Material.INK_SACK, 1 ,(short)3);
+		event.getDrops().clear();
+		drops.clear();
 		new BukkitRunnable() {
 			@Override
 			public void run() {
 				HelixWarp.SPAWN.send(player, true);
 			}
-		}.runTaskLater(HelixPvP.getInstance(), 10);
+		}.runTaskLater(HelixPvP.getInstance(), 20);
 		
 		if (event.hasKiller()) {
 			Player killer = event.getKiller();
 			Random random = new Random();
-			
+			if (event.getPlayer().getInventory().getHelmet() != null) {
+				w.dropItemNaturally(deathLocation, event.getPlayer().getInventory().getHelmet());
+			}
+			if (event.getPlayer().getInventory().getChestplate() != null) {
+				w.dropItemNaturally(deathLocation, event.getPlayer().getInventory().getChestplate());
+			}
+			if (event.getPlayer().getInventory().getLeggings() != null) {
+				w.dropItemNaturally(deathLocation, event.getPlayer().getInventory().getLeggings());
+			}
+			if (event.getPlayer().getInventory().getBoots() != null) {
+				w.dropItemNaturally(deathLocation, event.getPlayer().getInventory().getBoots());
+			}
+			for (int i = 0; i < 64; i++) {
+				if (!SoupTypeGUI.savecocoa.containsKey(killer.getName())) {
+				w.dropItemNaturally(deathLocation, capacete1);
+				w.dropItemNaturally(deathLocation, capacete2);
+				w.dropItemNaturally(deathLocation, capacete3);
+				} else {
+					w.dropItemNaturally(deathLocation, capacete1);
+					w.dropItemNaturally(deathLocation, capacete4);
+					w.dropItemNaturally(deathLocation, capacete4);
+				}
+			}
+			for (int i = 0; i < 33; i++) {
+			w.dropItemNaturally(deathLocation, capacete0);
+			}
 			HelixPlayer killerHelixPlayer = HelixBukkit.getInstance().getPlayerManager().getPlayer(killer.getName());
 			killer.playSound(killer.getLocation(), Sound.LEVEL_UP, 10.0f, 10.0f);
 			killer.sendMessage("§3Você matou " + player.getName() + ". §8(" + (event.isValidKill() ? "Conta" : "Não conta") + ")");

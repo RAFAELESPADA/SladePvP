@@ -101,7 +101,7 @@ public class LavaChallenge extends WarpHandle {
 			}
 
 			int coins = level * 100;
-			Bukkit.broadcastMessage("§8§lCHALLENGE §7" + player.getName() + " passou o Lava Challenge! §8§l(LEVEL " + level + ")");
+			Bukkit.broadcastMessage("§5§lCHALLENGE §7" + player.getName() + " passou o Lava Challenge! §5§l(LEVEL " + level + ")");
 
 			HelixWarp.LAVACHALLENGE.send(player);
 			HelixBukkit.getInstance().getPlayerManager().getPlayer(player.getName()).getPvp().addCoins(coins);
