@@ -37,14 +37,14 @@ public class Stomper extends KitHandler {
 		/*  52 */             Player plr = (Player)ent;
 		if (Habilidade.getAbility(plr) == "AntiStomper") {
 			plr.sendMessage(ChatColor.RED + "Seu kit antistomper te protegou do stomper.");
-			player.sendMessage(ChatColor.RED + "O stomper nfuncionou porque voce stompou alguem com o kit AntiStomper escolhido.");
+			player.sendMessage(ChatColor.RED + "O stomper não funcionou porque voce stompou alguem com o kit AntiStomper escolhido.");
 			event.setCancelled(true);
 			return;
 		}
 		/*  58 */             if (plr.isSneaking())
 		/*     */             {
 		/*  60 */               plr.damage(6.0D, player);
-		/*  61 */               plr.sendMessage(ChatColor.GRAY + "Vocfoi stompado por: " + ChatColor.AQUA + player.getName());
+		/*  61 */               plr.sendMessage(ChatColor.GRAY + "Você foi stompado por: " + ChatColor.AQUA + player.getName());
 		/*     */             }
 		/*     */             else
 		/*     */             {
