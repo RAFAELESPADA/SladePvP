@@ -30,7 +30,6 @@ public class EntityCalculateDamageListener implements Listener {
 				e.setDamage(e.getDamage() - 1.5 + (0.7 * t.getItemInHand().getEnchantmentLevel(Enchantment.DAMAGE_ALL)));
 			}
 		}else if (t.getItemInHand().getType() == Material.IRON_SWORD) {
-<<<<<<< HEAD
 				e.setDamage(e.getDamage() - 1.5);
 				if (t.getItemInHand().getEnchantments() == Enchantment.DAMAGE_ALL) {
 					e.setDamage(e.getDamage() - 1.5 + (0.6 * t.getItemInHand().getEnchantmentLevel(Enchantment.DAMAGE_ALL)));
@@ -46,10 +45,6 @@ public class EntityCalculateDamageListener implements Listener {
 	} else if (t.getItemInHand().getEnchantments() == Enchantment.DAMAGE_ALL && t.getFallDistance() > 0) {
 		e.setDamage(e.getDamage() - 1.0 + (0.7 * t.getItemInHand().getEnchantmentLevel(Enchantment.DAMAGE_ALL)));
 		}
-=======
-				e.setDamage(3.9D);
-			}
->>>>>>> f05bd700d45c8e03aaa6b381c9b7db29eecb9123
 		if (t.getItemInHand().hasItemMeta() && t.getItemInHand().getType() == Material.QUARTZ) {
 			e.setDamage(4.5);
 		}
@@ -81,4 +76,3 @@ public class EntityCalculateDamageListener implements Listener {
                             
                         
                 
-    
