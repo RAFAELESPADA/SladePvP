@@ -15,63 +15,36 @@ import net.helix.pvp.kit.provider.*;
 
 public enum HelixKit {
 
-<<<<<<< HEAD
-	NENHUM("Nenhum", 0, new PvP(), Material.BARRIER, "§7Nenhuma habilidade"),
-	PVP("PvP", 0, new PvP(), Material.STONE_SWORD, "§7Venha com espada afiada 1"),
-	KANGAROO("Kangaroo", 0,  new Kangaroo(), Material.FIREWORK, "§7De pulos duplos com Seu Firework!"),
-	THOR("Thor", 0, new Thor(), Material.GOLD_AXE, "§7Solte raios"),
-	ARCHER("Archer", 0, new Archer(), Material.BOW, "§7Ganhe arco e flechas!"),
-    NEO("Neo", 0, new AntiStomper(), Material.BARRIER, "§7Imune a varios kits!"),
-    QUICKDROPPER("QuickDropper", 0, new QuickDropper(), Material.BOWL, "§7Dropes potes automatico!"),
-    ANTISTOMPER("AntiStomper", 0, new AntiStomperReal(), Material.DIAMOND_HELMET, "§7Imune a Stomper!"),
-	FISHERMAN("Fisherman", 2700, new Fisherman(), Material.FISHING_ROD, "§7Pesque players!"),
-	ANCHOR("Anchor", 2600, new Anchor(), Material.ANVIL, "§7Não leve knockback!"),
-	VIPER("Viper", 3970, new Viper(), Material.SPIDER_EYE, "§7Tenha chance de dar veneno!"),
-	SNAIL("Snail", 3970, new Snail(), Material.SOUL_SAND, "§7Tenha chance de dar lentidão!"),
-	POSEIDON("Poseidon", 4200, new Poseidon(), Material.WATER_BUCKET, "§7Seja forte na agua"),
-	FIREMAN("Fireman", 7700, new Fireman(), Material.LAVA_BUCKET, "§7Seja imune a fogo e lava!"),
-	NINJA("Ninja", 7300, new Ninja(), Material.EMERALD, "§7teleporte ao inimigo!"),
-	GRAPPLER("Grappler", 7000, new Grappler(), Material.LEASH, "§7Mova-se rapido!"),
-	TIMELORD("Timelord", 7000, new TimeLord(), Material.WATCH, "§7Pare o tempo!"),
-	MONK("Monk", 4000, new Monk(), Material.BLAZE_ROD, "§7Embaralhe o inventario do inimigo!"),
-	STOMPER("Stomper", 9000, new Stomper(), Material.IRON_BOOTS, "§7Esmague seus inimigos!"),
-	LEECH("Leech", 7000, new Leech(), Material.REDSTONE_BLOCK, "§7Roube a vida dos inimigos!"),
-	CAMEL("Camel", 7000, new Camel(), Material.SAND, "§7Seja forte em desertos!"),
-	GRANDPA("Grandpa", 6000, new Grandpa(), Material.STICK, "§7De muito KB!"),
-	SCOUT("Scout", 6000, new Scout(), Material.POTION, "§7Ganhe 5 poção de speed!"),
-	MILKMAN("Milkman", 8000, new Milkman(), Material.MILK_BUCKET, "§7Seu leite te deixa forte!"),
-	TURTLE("Turtle", 7000, new Turtle(), Material.DIAMOND_CHESTPLATE, "§7Shift recebe menos dano"),
-	PHANTOM("Phantom", 17000, new Phantom(), Material.FEATHER, "§7Voe com esse kit!"),
-	BOXER("Boxer", 8000, new Boxer(), Material.QUARTZ, "§7De e leve menos dano!"),
-	HULK("Hulk", 10000, new Hulk(), Material.DROPPER, "§7Segure os inimigos!"),
-	SWITCHER("Switcher", 0, new Switcher(), Material.SNOW_BALL, "§7Troque de lugar com players!"),
-	GLADIATOR("Gladiator", 17000, new GladiatorListener(), Material.IRON_FENCE, "§7Lute 1v1 nos ares!");
-=======
-	PVP("PvP", 0, new PvP(), Material.STONE_SWORD),
-	KANGAROO("Kangaroo", 0,  new Kangaroo(), Material.FIREWORK),
-	THOR("Thor", 0, new Thor(), Material.GOLD_AXE),
-	ARCHER("Archer", 0, new Archer(), Material.BOW),
-    NEO("Neo", 0, new AntiStomper(), Material.BARRIER),
-	FISHERMAN("Fisherman", 2500, new Fisherman(), Material.FISHING_ROD),
-	ANCHOR("Anchor", 2600, new Anchor(), Material.ANVIL),
-	VIPER("Viper", 3950, new Viper(), Material.SPIDER_EYE),
-	SNAIL("Snail", 3950, new Snail(), Material.SOUL_SAND),
-	POSEIDON("Poseidon", 4200, new Poseidon(), Material.WATER_BUCKET),
-	FIREMAN("Fireman", 5500, new Fireman(), Material.LAVA_BUCKET),
-	NINJA("Ninja", 5300, new Ninja(), Material.EMERALD),
-	MONK("Monk", 4000, new Monk(), Material.BLAZE_ROD),
-	STOMPER("Stomper", 9000, new Stomper(), Material.IRON_BOOTS),
-	LEECH("Leech", 7000, new Leech(), Material.REDSTONE_BLOCK),
-	CAMEL("Camel", 5000, new Camel(), Material.SAND),
-	GRANDPA("Grandpa", 6000, new Grandpa(), Material.STICK),
-	SCOUT("Scout", 6000, new Scout(), Material.POTION),
-	MILKMAN("Milkman", 8000, new Milkman(), Material.MILK_BUCKET),
-	TURTLE("Turtle", 5000, new Turtle(), Material.DIAMOND_CHESTPLATE),
-	PHANTOM("Phantom", 15000, new Phantom(), Material.FEATHER),
-	HULK("Hulk", 10000, new Hulk(), Material.DROPPER),
-	SWITCHER("Switcher", 0, new Switcher(), Material.SNOW_BALL),
-	GLADIATOR("Gladiator", 15000, new GladiatorListener(), Material.IRON_FENCE);
->>>>>>> f05bd700d45c8e03aaa6b381c9b7db29eecb9123
+	NENHUM("Nenhum", 0, new PvP(), Material.BARRIER, "habilidade"),
+	PVP("PvP", 0, new PvP(), Material.STONE_SWORD, "com espada afiada 1"),
+	KANGAROO("Kangaroo", 0,  new Kangaroo(), Material.FIREWORK, "pulos duplos com Seu Firework!"),
+	THOR("Thor", 0, new Thor(), Material.GOLD_AXE, "raios"),
+	ARCHER("Archer", 0, new Archer(), Material.BOW, "arco e flechas!"),
+    NEO("Neo", 0, new AntiStomper(), Material.BARRIER, "a varios kits!"),
+    QUICKDROPPER("QuickDropper", 0, new QuickDropper(), Material.BOWL, "potes automatico!"),
+    ANTISTOMPER("AntiStomper", 0, new AntiStomperReal(), Material.DIAMOND_HELMET, "a Stomper!"),
+	FISHERMAN("Fisherman", 2700, new Fisherman(), Material.FISHING_ROD, "players!"),
+	ANCHOR("Anchor", 2600, new Anchor(), Material.ANVIL, "leve knockback!"),
+	VIPER("Viper", 3970, new Viper(), Material.SPIDER_EYE, "chance de dar veneno!"),
+	SNAIL("Snail", 3970, new Snail(), Material.SOUL_SAND, "chance de dar lentidão"),
+	POSEIDON("Poseidon", 4200, new Poseidon(), Material.WATER_BUCKET, "forte na agua"),
+	FIREMAN("Fireman", 7700, new Fireman(), Material.LAVA_BUCKET, "imune a fogo e lava!"),
+	NINJA("Ninja", 7300, new Ninja(), Material.EMERALD, "ao inimigo!"),
+	GRAPPLER("Grappler", 7000, new Grappler(), Material.LEASH, "rapido!"),
+	TIMELORD("Timelord", 7000, new TimeLord(), Material.WATCH, "o tempo!"),
+	MONK("Monk", 4000, new Monk(), Material.BLAZE_ROD, "o inventario do inimigo!"),
+	STOMPER("Stomper", 9000, new Stomper(), Material.IRON_BOOTS, "seus inimigos!"),
+	LEECH("Leech", 7000, new Leech(), Material.REDSTONE_BLOCK, "a vida dos inimigos!"),
+	CAMEL("Camel", 7000, new Camel(), Material.SAND, "forte em desertos!"),
+	GRANDPA("Grandpa", 6000, new Grandpa(), Material.STICK, "muito KB!"),
+	SCOUT("Scout", 6000, new Scout(), Material.POTION, "5 pode speed!"),
+	MILKMAN("Milkman", 8000, new Milkman(), Material.MILK_BUCKET, "leite te deixa forte!"),
+	TURTLE("Turtle", 7000, new Turtle(), Material.DIAMOND_CHESTPLATE, "recebe menos dano"),
+	PHANTOM("Phantom", 17000, new Phantom(), Material.FEATHER, "com esse kit!"),
+	BOXER("Boxer", 8000, new Boxer(), Material.QUARTZ, "e leve menos dano!"),
+	HULK("Hulk", 10000, new Hulk(), Material.DROPPER, "os inimigos!"),
+	SWITCHER("Switcher", 0, new Switcher(), Material.SNOW_BALL, "de lugar com players!"),
+	GLADIATOR("Gladiator", 17000, new GladiatorListener(), Material.IRON_FENCE, "1v1 nos ares!");
 	
 	private final String name;
 	private final String description;
@@ -109,8 +82,8 @@ public enum HelixKit {
 		DamageUtil.allowAllDamage(player.getName());
 		
 		KitManager.getPlayer(player.getName()).setKit(this);
-		player.sendMessage("§bKit " + name + " selecionado!");
-		DarKit.sendTitle(player, "§5§lKIT", "§dVocê escolheu o kit §e§l " + KitManager.getPlayer(player.getName()).getKit());
+		player.sendMessage("" + name + " selecionado!");
+		DarKit.sendTitle(player, "§5§lKIT", "§dVocê escolheu o kit " + KitManager.getPlayer(player.getName()).getKit());
 		
 	}
 	
