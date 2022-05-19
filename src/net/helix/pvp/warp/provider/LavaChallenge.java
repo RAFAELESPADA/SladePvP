@@ -57,20 +57,20 @@ public class LavaChallenge extends WarpHandle {
 			try {
 				level = Integer.parseInt(lineSplit[1]);
 			}catch (NumberFormatException ignored) {
-				player.sendMessage("Â§cÂ§lSIGN Â§cLevel invalido");
+				player.sendMessage("§c§lSIGN §cLevel invalido");
 				event.setCancelled(true);
 				return;
 			}
 
 			if (level == 0 || level > 4) {
-				player.sendMessage("Â§cÂ§lSIGN Â§cColoque um level de 1 a 4");
+				player.sendMessage("§c§lSIGN §cColoque um level de 1 a 4");
 				event.setCancelled(true);
 				return;
 			}
 
 			event.setLine(0, "");
-			event.setLine(1, "Â§cÂ§lLEVEL " + level);
-			event.setLine(2, "Â§b(Clique)");
+			event.setLine(1, "§c§lLEVEL " + level);
+			event.setLine(2, "§b(Clique)");
 			event.setLine(3, "");
 		}
 	}
@@ -95,18 +95,18 @@ public class LavaChallenge extends WarpHandle {
 			try {
 				level = Integer.parseInt(lineSplit[1]);
 			}catch (NumberFormatException ignored) {
-				player.sendMessage("Â§c");
-				player.sendMessage("Â§cÂ§lSIGN Â§cLevel invalido");
+				player.sendMessage("§c");
+				player.sendMessage("§c§lSIGN §cLevel invalido");
 				return;
 			}
 
 			int coins = level * 100;
-			Bukkit.broadcastMessage("Â§5Â§lCHALLENGE Â§7" + player.getName() + " passou o Lava Challenge! Â§5Â§l(LEVEL " + level + ")");
+			Bukkit.broadcastMessage("§5§lCHALLENGE §7" + player.getName() + " passou o Lava Challenge! §5§l(LEVEL " + level + ")");
 
 			HelixWarp.LAVACHALLENGE.send(player);
 			HelixBukkit.getInstance().getPlayerManager().getPlayer(player.getName()).getPvp().addCoins(coins);
 			player.playSound(player.getLocation(), Sound.NOTE_PLING, 10.0f, 10.0f);
-			player.sendMessage("Â§6Â§lCHALLENGE Â§6VocÃª completou o LEVEL " + level + " e ganhou " + coins + " coins!");
+			player.sendMessage("§6§lCHALLENGE §6Você completou o LEVEL " + level + " e ganhou " + coins + " coins!");
 		}
 	}
 }

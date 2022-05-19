@@ -19,7 +19,41 @@ public class ScoreboardBuilder {
 	public ScoreboardBuilder(HelixPvP plugin) {
 		new ScoreboardTask(this).runTaskTimer(plugin, 0, 3 * 20L);
 	}
+private static String text = "";
+private static WaveAnimation waveAnimation;
+
+	public static void init() {
 	
+		waveAnimation = new WaveAnimation(" SLOPER ", "§5§l", "§f§l", "§d§l", 3);
+		text = waveAnimation.next();
+		
+		Bukkit.getScheduler().runTaskTimer(HelixPvP.getInstance(), new Runnable() {
+			public void run() {
+				text = waveAnimation.next();
+				
+				for (Player onlines : Bukkit.getOnlinePlayers()) {
+					 if (onlines == null) {
+						 continue;
+					 }
+					 if (!onlines.isOnline()) {
+						 continue;
+					 }
+					 if (onlines.isDead()) {
+						 continue;
+					 }
+				 	 Scoreboard score = onlines.getScoreboard();
+					 if (score == null) {
+						 continue;
+					 }
+					 Objective objective = score.getObjective(DisplaySlot.SIDEBAR);
+					 if (objective == null) {
+						 continue;
+					 }
+					 objective.setDisplayName(text);
+				}
+			}
+		}, 40, 2L);
+	}
 	public void build(Player player) {
 		player.getScoreboard().clearSlot(DisplaySlot.SIDEBAR);
 		

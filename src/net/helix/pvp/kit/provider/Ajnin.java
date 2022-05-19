@@ -41,7 +41,7 @@ public class Ajnin extends KitHandler {
 		if (KitManager.getPlayer(player.getName()).hasKit(this) 
 				&& map.containsKey(player.getName())) {
 			if (HelixCooldown.inCooldown(player.getName(), "ajnin")) {
-				player.sendMessage("Â§cAguarde " + HelixCooldown.getTime(player.getName(), "ajnin") + "s para utilizar este kit novamente.");
+				player.sendMessage("§cAguarde " + HelixCooldown.getTime(player.getName(), "ajnin") + "s para utilizar este kit novamente.");
 				return;
 			}
 			
@@ -50,12 +50,12 @@ public class Ajnin extends KitHandler {
 			
 			if ((targetPlayer = Bukkit.getPlayer(targetName)) != null) {
 				if (player.getLocation().distance(targetPlayer.getLocation()) >= 50) {
-					player.sendMessage("Â§cEste jogador estÃ¡ muito longe.");
+					player.sendMessage("§cEste jogador estÃ¡ muito longe.");
 					return;
 				}
 				HelixCooldown.create(player.getName(), "ajnin", TimeUnit.SECONDS, 20);
 				targetPlayer.teleport(player);
-				player.sendMessage("Â§aVocÃª puxou Â§f" + targetName + "Â§a.");
+				player.sendMessage("§aVocê puxou §f" + targetName + "§a.");
 			}
 		}
 	}

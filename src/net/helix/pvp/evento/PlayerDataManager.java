@@ -1,4 +1,4 @@
-package net.helix.pvp.kit.provider;
+package net.helix.pvp.evento;
 
 
 import org.bukkit.Bukkit;
@@ -35,3 +35,4 @@ public class PlayerDataManager {
     }
 
 }
+

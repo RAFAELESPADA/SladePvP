@@ -11,8 +11,10 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerToggleSneakEvent;
 
 import net.helix.core.util.HelixCooldown;
+import net.helix.pvp.FakeAPI;
 import net.helix.pvp.kit.KitHandler;
 import net.helix.pvp.kit.KitManager;
+
 
 public class Ninja extends KitHandler {
 	
@@ -50,12 +52,12 @@ public class Ninja extends KitHandler {
 			}
 			if ((targetPlayer = Bukkit.getPlayer(targetName)) != null) {
 				if (player.getLocation().distance(targetPlayer.getLocation()) >= 50) {
-					player.sendMessage("Â§cEste jogador estÃ¡ muito longe.");
+					player.sendMessage("§cEste jogador está muito longe.");
 					return;
 				}
 				addCooldown(event.getPlayer(), 10);
 				player.teleport(targetPlayer);
-				player.sendMessage("Â§aVocÃª teleportou para Â§f" + targetName + "Â§a.");
+				player.sendMessage("§aVocê teleportou para §f" + (!FakeAPI.hasFake(targetPlayer) ? targetName : FakeAPI.getNick(targetPlayer) + "§a."));
 			}
 		}
 	}

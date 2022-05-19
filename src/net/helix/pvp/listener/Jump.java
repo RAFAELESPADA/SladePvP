@@ -66,13 +66,13 @@ public class Jump implements Listener {
 	   if (!(e.getEntity() instanceof Player)) {
            return;
        }
-	   if (e.getCause() == EntityDamageEvent.DamageCause.FALL && !KitManager.getPlayer(e.getEntity().getName()).hasKit() && this.fall.contains(e.getEntity().getName()) && e.getEntity().getLocation().getY() < 150 && e.getEntity().getLocation().getX() < 1000 && e.getEntity().getLocation().getX() > -1000)  {
+	   if (e.getCause() == EntityDamageEvent.DamageCause.FALL && !KitManager.getPlayer(e.getEntity().getName()).hasKit() && this.fall.contains(e.getEntity().getName()) && e.getEntity().getLocation().getY() < 150 && e.getEntity().getLocation().getX() > -1300 && e.getEntity().getLocation().getX() < -1000)  {
 		   e.setCancelled(true);
 		   HelixKit.findKit("PvP").ifPresent(kit -> {
 				kit.send((Player)e.getEntity());
 		   });
 	   }
-	   else if (e.getCause() == EntityDamageEvent.DamageCause.FALL && !KitManager.getPlayer(e.getEntity().getName()).hasKit() && e.getEntity().getLocation().getX() < 1000 && e.getEntity().getLocation().getX() > -1000 && e.getEntity().getLocation().getY() < 150)  {
+	   else if (e.getCause() == EntityDamageEvent.DamageCause.FALL && !KitManager.getPlayer(e.getEntity().getName()).hasKit() && e.getEntity().getLocation().getX() > -1300 && e.getEntity().getLocation().getX() < -1000 && e.getEntity().getLocation().getY() < 150)  {
 		   e.setCancelled(true);
 		   HelixKit.findKit("PvP").ifPresent(kit -> {
 				kit.send((Player)e.getEntity());
@@ -82,15 +82,15 @@ public class Jump implements Listener {
 		   e.setCancelled(true);
 		   Player p = (Player)e.getEntity();
 		   
-		   p.getInventory().setItem(0, new ItemBuilder("Â§fEspada de Diamante", Material.DIAMOND_SWORD)
+		   p.getInventory().setItem(0, new ItemBuilder("§fEspada de Diamante", Material.DIAMOND_SWORD)
 					.nbt("cancel-drop").addEnchant(Enchantment.DAMAGE_ALL, 1)
 					.toStack()
 			);
 
-		   p.getInventory().setHelmet(new ItemBuilder("Â§5Â§lSLOPER", Material.IRON_HELMET).toStack());
-			p.getInventory().setChestplate(new ItemBuilder("Â§5Â§lSLOPER", Material.IRON_CHESTPLATE).toStack());
-			p.getInventory().setLeggings(new ItemBuilder("Â§5Â§lSLOPER", Material.IRON_LEGGINGS).toStack());
-			p.getInventory().setBoots(new ItemBuilder("Â§5Â§lSLOPER", Material.IRON_BOOTS).toStack());
+		   p.getInventory().setHelmet(new ItemBuilder("§5§lSLOPER", Material.IRON_HELMET).toStack());
+			p.getInventory().setChestplate(new ItemBuilder("§5§lSLOPER", Material.IRON_CHESTPLATE).toStack());
+			p.getInventory().setLeggings(new ItemBuilder("§5§lSLOPER", Material.IRON_LEGGINGS).toStack());
+			p.getInventory().setBoots(new ItemBuilder("§5§lSLOPER", Material.IRON_BOOTS).toStack());
 			
 			for (int i = 0; i < 36; i++) {
 				p.getInventory().addItem(new ItemStack(Material.MUSHROOM_SOUP));

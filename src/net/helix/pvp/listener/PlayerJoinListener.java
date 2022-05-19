@@ -5,6 +5,7 @@ import net.luckperms.api.LuckPerms;
 import net.luckperms.api.model.group.Group;
 import net.luckperms.api.model.user.User;
 
+import java.io.IOException;
 import java.util.Collection;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
@@ -19,9 +20,13 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.RegisteredServiceProvider;
 
+import net.dev.eazynick.api.NickManager;
 import net.helix.core.bukkit.HelixBukkit;
 import net.helix.core.bukkit.account.HelixPlayer;
+import net.helix.core.bukkit.api.NameTagAPI;
+import net.helix.pvp.FakeAPI;
 import net.helix.pvp.HelixPvP;
+import net.helix.pvp.command.Fake;
 import net.helix.pvp.command.VanishUtil;
 
 public class PlayerJoinListener implements Listener {
@@ -60,7 +65,13 @@ public class PlayerJoinListener implements Listener {
 			VanishUtil.remove(player.getName());
 			player.sendMessage("§c§lVANISH §fVocê saiu do modo vanish.");
 		}
+		if (!Fake.fake.containsKey(player.getName())) {
 		informIfVip(player, player.getUniqueId());
+		}
+		else {
+			Bukkit.broadcast("§7§oSTAFF §f" + player.getName() + " é uma pessoa de Fake.", "kombo.cmd.report");
+	}
+	
 		HelixPvP.getInstance().getScoreboardBuilder().build(player);
 		HelixWarp.SPAWN.send(player, true);
 		player.setFlying(false);

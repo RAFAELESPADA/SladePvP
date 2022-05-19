@@ -14,7 +14,7 @@ public boolean onCommand(CommandSender sender, Command cmd, String label, String
   Player p = (Player)sender;
   if (label.equalsIgnoreCase("discord"))
   {
-    p.sendMessage("Â§9Â§lDISCORD: Â§f" + "https://discord.gg/RtuXNPgwWy");
+    p.sendMessage("§9§lDISCORD: §f" + "https://discord.gg/JWZgacyCGk");
     p.playSound(p.getLocation(), Sound.BLAZE_HIT, 12.0F, 12.0F);
   }
   return false;

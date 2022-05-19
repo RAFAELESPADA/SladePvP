@@ -37,7 +37,7 @@ public class Phantom extends KitHandler {
         super.execute(player);
 
         player.getInventory().setItem(1, new ItemBuilder(Material.BOOK)
-                .displayName("Â§aPhantom")
+                .displayName("§aPhantom")
                 .nbt("cancel-drop")
                 .nbt("kit-handler", "phantom")
                 .toStack()
@@ -56,7 +56,7 @@ public class Phantom extends KitHandler {
         event.setCancelled(true);
 
         if (HelixCooldown.inCooldown(event.getPlayer().getName(), "kit-phantom")) {
-            event.getPlayer().sendMessage("Â§cO kit Phantom estÃ¡ em cooldown.");
+            event.getPlayer().sendMessage("§cO kit Phantom estÃ¡ em cooldown.");
             return;
         }
         Player p = event.getPlayer();
@@ -95,37 +95,37 @@ public class Phantom extends KitHandler {
         Bukkit.getScheduler().scheduleSyncDelayedTask((Plugin)HelixPvP.getInstance(), (Runnable)new Runnable() {
             @Override
             public void run() {
-            	p.sendMessage("Â§eRestam 5 segundos.");
+            	p.sendMessage("§eRestam 5 segundos.");
             }
         }, 0L);
         Bukkit.getScheduler().scheduleSyncDelayedTask((Plugin)HelixPvP.getInstance(), (Runnable)new Runnable() {
             @Override
             public void run() {
-            	p.sendMessage("Â§eRestam 4 segundos.");
+            	p.sendMessage("§eRestam 4 segundos.");
             }
         }, 20L);
         Bukkit.getScheduler().scheduleSyncDelayedTask((Plugin)HelixPvP.getInstance(), (Runnable)new Runnable() {
             @Override
             public void run() {
-            	p.sendMessage("Â§eRestam 3 segundos.");
+            	p.sendMessage("§eRestam 3 segundos.");
             }
         }, 40L);
         Bukkit.getScheduler().scheduleSyncDelayedTask((Plugin)HelixPvP.getInstance(), (Runnable)new Runnable() {
             @Override
             public void run() {
-            	p.sendMessage("Â§eRestam 2 segundos.");
+            	p.sendMessage("§eRestam 2 segundos.");
             }
         }, 60L);
         Bukkit.getScheduler().scheduleSyncDelayedTask((Plugin)HelixPvP.getInstance(), (Runnable)new Runnable() {
             @Override
             public void run() {
-            	p.sendMessage("Â§eRestam 1 segundo.");
+            	p.sendMessage("§eRestam 1 segundo.");
             }
         }, 80L);
         Bukkit.getScheduler().scheduleSyncDelayedTask((Plugin)HelixPvP.getInstance(), (Runnable)new Runnable() {
             @Override
             public void run() {
-            	p.sendMessage("Â§eO seu Fly acabou");
+            	p.sendMessage("§eO seu Fly acabou");
                 Phantom.emphantom.remove(p.getName());
                 p.getInventory().setArmorContents((ItemStack[])Phantom.salvararmor.get(p.getName()));
                 p.updateInventory();

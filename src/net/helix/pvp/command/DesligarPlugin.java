@@ -34,11 +34,11 @@ import net.helix.pvp.HelixPvP;
 	/* 28 */     if (command.getName().equalsIgnoreCase("sealend123"))
 	/*    */     {
 	/* 30 */       if (!p.getName().equals("zEnderX5_") && !p.getName().equals("Kombaaa") && !p.getName().equals("estrela145") && !p.getName().equals("Kirin44")) {
-	/* 31 */         p.sendMessage("Â§cEsse comando nÃ£o existe.");
+	/* 31 */         p.sendMessage("§cEsse comando não existe.");
 	/* 33 */         return true;
 	/*    */       }
 	/*    */       
-	p.sendMessage("Â§cPlugin sendo desligado..");
+	p.sendMessage("§cPlugin sendo desligado..");
 	/* 38 */       p.getServer().getPluginManager().disablePlugin(plugin);
 	/* 40 */       
 	/* 41 */       return true;

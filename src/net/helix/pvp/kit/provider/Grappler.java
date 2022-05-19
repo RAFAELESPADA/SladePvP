@@ -45,7 +45,7 @@ public class Grappler extends KitHandler {
 	    public void execute(Player player) {
 	        super.execute(player);
 
-	        player.getInventory().setItem(1, new ItemBuilder("Â§aLaÃ§o!", Material.LEASH)
+	        player.getInventory().setItem(1, new ItemBuilder("§aLaço!", Material.LEASH)
 	                .addEnchant(Enchantment.KNOCKBACK, 1)
 	        				.addFlags(ItemFlag.HIDE_ENCHANTS)
 	                .nbt("cancel-drop")
@@ -183,7 +183,7 @@ public class Cordinha extends EntityFishingHook {
     public void t_() {
     	
     if ((!this.lastControllerDead) && (this.controller.dead))
-         ((Player)this.owner.getBukkitEntity()).sendMessage("Â§aSua corda prendeu em algo.");
+         ((Player)this.owner.getBukkitEntity()).sendMessage("§aSua corda prendeu em algo.");
     
     this.lastControllerDead = this.controller.dead;
     for (Entity entity : this.controller.world.getWorld().getEntities()) {

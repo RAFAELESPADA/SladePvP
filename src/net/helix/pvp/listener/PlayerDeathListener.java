@@ -174,14 +174,14 @@ public class PlayerDeathListener implements Listener {
 		 EventoUtils.setEvento(false, event.getEntity());
 			if (EventoUtils.evento && EventoUtils.getEventoPlayers().size() == 1  && EventoUtils.getEventoPlayers().size() != 0 && EventoUtils.started)
 		       EventoUtils.getEventoPlayers().forEach(p -> {
-		    	   Bukkit.broadcastMessage("Â§6Vencedor do evento Â§aÂ» Â§CÂ§l " + EventoUtils.getEventoPlayersNames());
-		    	   Bukkit.broadcastMessage("Â§6Vencedor do evento Â§aÂ» Â§CÂ§l " + EventoUtils.getEventoPlayersNames());
-	            	Bukkit.broadcastMessage("Â§6Vencedor do evento Â§aÂ» Â§CÂ§l " + EventoUtils.getEventoPlayersNames());
-	            	Bukkit.broadcastMessage("Â§6Vencedor do evento Â§aÂ» Â§CÂ§l " + EventoUtils.getEventoPlayersNames());
-	            	Bukkit.broadcastMessage("Â§6Vencedor do evento Â§aÂ» Â§CÂ§l " + EventoUtils.getEventoPlayersNames());
-	            	Bukkit.broadcastMessage("Â§6Vencedor do evento Â§aÂ» Â§CÂ§l " + EventoUtils.getEventoPlayersNames());
-	            	Bukkit.broadcastMessage("Â§6Vencedor do evento Â§aÂ» Â§CÂ§l " + EventoUtils.getEventoPlayersNames());
-	            	Bukkit.broadcastMessage("Â§6Vencedor do evento Â§aÂ» Â§CÂ§l " + EventoUtils.getEventoPlayersNames());
+		    	   Bukkit.broadcastMessage("§6Vencedor do evento §a» §C§l " + EventoUtils.getEventoPlayersNames());
+		    	   Bukkit.broadcastMessage("§6Vencedor do evento §a» §C§l " + EventoUtils.getEventoPlayersNames());
+	            	Bukkit.broadcastMessage("§6Vencedor do evento §a» §C§l " + EventoUtils.getEventoPlayersNames());
+	            	Bukkit.broadcastMessage("§6Vencedor do evento §a» §C§l " + EventoUtils.getEventoPlayersNames());
+	            	Bukkit.broadcastMessage("§6Vencedor do evento §a» §C§l " + EventoUtils.getEventoPlayersNames());
+	            	Bukkit.broadcastMessage("§6Vencedor do evento §a» §C§l " + EventoUtils.getEventoPlayersNames());
+	            	Bukkit.broadcastMessage("§6Vencedor do evento §a» §C§l " + EventoUtils.getEventoPlayersNames());
+	            	Bukkit.broadcastMessage("§6Vencedor do evento §a» §C§l " + EventoUtils.getEventoPlayersNames());
 	            	p.setHealth(20);
 	                p.getWorld().strikeLightning(p.getLocation());
 	                p.getWorld().strikeLightning(p.getLocation());
@@ -200,13 +200,13 @@ public class PlayerDeathListener implements Listener {
 		 EventoUtils.setEvento(false, event.getPlayer());
 				if (EventoUtils.evento && EventoUtils.getEventoPlayers().size() == 1 && EventoUtils.getEventoPlayers().size() != 0 && EventoUtils.started)
 			       EventoUtils.getEventoPlayers().forEach(p -> {
-			    	   Bukkit.broadcastMessage("Â§6Vencedor do evento Â§aÂ» Â§CÂ§l " + EventoUtils.getEventoPlayersNames());
-		            	Bukkit.broadcastMessage("Â§6Vencedor do evento Â§aÂ» Â§CÂ§l " + EventoUtils.getEventoPlayersNames());
-		            	Bukkit.broadcastMessage("Â§6Vencedor do evento Â§aÂ» Â§CÂ§l " + EventoUtils.getEventoPlayersNames());
-		            	Bukkit.broadcastMessage("Â§6Vencedor do evento Â§aÂ» Â§CÂ§l " + EventoUtils.getEventoPlayersNames());
-		            	Bukkit.broadcastMessage("Â§6Vencedor do evento Â§aÂ» Â§CÂ§l " + EventoUtils.getEventoPlayersNames());
-		            	Bukkit.broadcastMessage("Â§6Vencedor do evento Â§aÂ» Â§CÂ§l " + EventoUtils.getEventoPlayersNames());
-		            	Bukkit.broadcastMessage("Â§6Vencedor do evento Â§aÂ» Â§CÂ§l " + EventoUtils.getEventoPlayersNames());
+			    	   Bukkit.broadcastMessage("§6Vencedor do evento §a» §C§l " + EventoUtils.getEventoPlayersNames());
+		            	Bukkit.broadcastMessage("§6Vencedor do evento §a» §C§l " + EventoUtils.getEventoPlayersNames());
+		            	Bukkit.broadcastMessage("§6Vencedor do evento §a» §C§l " + EventoUtils.getEventoPlayersNames());
+		            	Bukkit.broadcastMessage("§6Vencedor do evento §a» §C§l " + EventoUtils.getEventoPlayersNames());
+		            	Bukkit.broadcastMessage("§6Vencedor do evento §a» §C§l " + EventoUtils.getEventoPlayersNames());
+		            	Bukkit.broadcastMessage("§6Vencedor do evento §a» §C§l " + EventoUtils.getEventoPlayersNames());
+		            	Bukkit.broadcastMessage("§6Vencedor do evento §a» §C§l " + EventoUtils.getEventoPlayersNames());
 		            	p.setHealth(20);
 		                p.getWorld().strikeLightning(p.getLocation());
 		                p.getWorld().strikeLightning(p.getLocation());

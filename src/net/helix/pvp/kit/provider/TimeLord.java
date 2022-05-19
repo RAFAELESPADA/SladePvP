@@ -30,7 +30,7 @@ public class TimeLord extends KitHandler {
     public void execute(Player player) {
         super.execute(player);
 
-        player.getInventory().setItem(1, new ItemBuilder("Â§bPare o Tempo!", Material.WATCH)
+        player.getInventory().setItem(1, new ItemBuilder("§bPare o Tempo!", Material.WATCH)
                 .addEnchant(Enchantment.KNOCKBACK, 1)
         				.addFlags(ItemFlag.HIDE_ENCHANTS)
                 .nbt("cancel-drop")
@@ -52,7 +52,7 @@ if (inCooldown(p) && KitManager.getPlayer(p.getName()).hasKit(this)) {
 /* 34 */     if (KitManager.getPlayer(p.getName()).hasKit(this) && ((e.getAction() == Action.RIGHT_CLICK_AIR) || (e.getAction() == Action.RIGHT_CLICK_BLOCK)) && (p.getInventory().getItemInHand().getType() == org.bukkit.Material.WATCH)) {
 
 /* 39 */       addCooldown(p, 30);
-/* 40 */       p.sendMessage("Â§aVocÃª usou o timelord e congelou players a sua volta!");
+/* 40 */       p.sendMessage("§aVocÃª usou o timelord e congelou players a sua volta!");
 /* 41 */       for (final Entity pertos : p.getNearbyEntities(6.0, 6.0, 6.0)) {
 	if (pertos instanceof Player) {
 	    if (!KitManager.getPlayer(pertos.getName()).hasKit()) {
@@ -60,20 +60,20 @@ if (inCooldown(p) && KitManager.getPlayer(p.getName()).hasKit(this)) {
 	    }
 	    p.playSound(p.getLocation(), Sound.WITHER_SHOOT, 1f, 1f);
 /* 42 */         playercongelados.add(((Player)pertos).getName());
-/* 43 */         ((Player)pertos).sendMessage("Â§cVocÃª foi congelado por um timelord.");
+/* 43 */         ((Player)pertos).sendMessage("§cVocÃª foi congelado por um timelord.");
 ((Player) pertos).playSound((Location)pertos.getLocation(), Sound.WITHER_SHOOT, 1f, 1f);
 /* 45 */         org.bukkit.Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnable()
 /*    */         {
 /*    */           public void run() {
 /* 48 */             TimeLord.playercongelados.remove(((Player)pertos).getName());
-/* 49 */             ((Player)pertos).sendMessage("Â§aVocÃª foi descongelado.");
+/* 49 */             ((Player)pertos).sendMessage("§aVocÃª foi descongelado.");
 /*    */           }
 /* 51 */         }, 130L);
 /*    */       {
 /* 53 */       org.bukkit.Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnable()
 /*    */       {
 /*    */         public void run() {
-/* 56 */           p.sendMessage("Â§cSeu Cooldown do TimeLord acabou");
+/* 56 */           p.sendMessage("§cSeu Cooldown do TimeLord acabou");
 /*    */         }
 /* 58 */       }, 30 * 20);
 /*    */     }
@@ -102,7 +102,7 @@ if (!KitManager.getPlayer(p.getName()).hasKit() && p.getLocation().getY() > 149)
 /* 64 */     Player p = e.getPlayer();
 if (p.getLocation().getY() > 150 && p.getLocation().getY() <= 152 && p.getLocation().getZ() > 79 && p.getLocation().getZ() < 87) {
 	HelixWarp.SPAWN.send(p, true);
-	  p.sendMessage("Â§cVocÃª bugou no bloco e foi enviado para o spawn para desbugar");
+	  p.sendMessage("§cVocê bugou no bloco e foi enviado para o spawn para desbugar");
 }
 }
 }

@@ -16,13 +16,13 @@ public class SC
   {
     if (!(sender instanceof Player))
     {
-      sender.sendMessage("Â§cThis command is only for players!");
+      sender.sendMessage("§cThis command is only for players!");
       return true;
     }
     if (cmd.getName().equalsIgnoreCase("sc"))
     {
       if (args.length == 0) {
-        sender.sendMessage("Â§cUse: Â§7/sc <MENSAGEM>");
+        sender.sendMessage("§cUse: §7/sc <MENSAGEM>");
       }
       if (args.length > 0)
       {
@@ -36,11 +36,11 @@ public class SC
           Player staff = arrayOfPlayer;
           if (!sender.hasPermission("kombo.cmd.report"))
           {
-            sender.sendMessage("Â§cÂ§lERRO Â§fVoce nao tem permissï¿½o para executar esse comando");
+            sender.sendMessage("§c§lERRO §fVoce nao tem permissï¿½o para executar esse comando");
             return true;
           }
           if (staff.hasPermission("kombo.cmd.report")) {
-            staff.sendMessage("Â§6Â§l[STAFFCHAT] Â§a" + sender.getName() + ": Â§f" + mensagem.replace("&", "Â§"));
+            staff.sendMessage("§6§l[STAFFCHAT] §a" + sender.getName() + ": §f" + mensagem.replace("&", "§"));
           }
         }
       }

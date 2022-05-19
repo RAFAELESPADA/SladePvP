@@ -15,7 +15,7 @@ public class Boxer extends KitHandler {
 		public void execute(Player player) {
 			super.execute(player);
 			player.getInventory().remove(Material.STONE_SWORD);;
-			player.getInventory().setItem(0, new ItemBuilder("Â§bBoxer!", Material.QUARTZ)
+			player.getInventory().setItem(0, new ItemBuilder("§bBoxer!", Material.QUARTZ)
 					.nbt("kit-handler", "boxer")
 					.nbt("cancel-drop")
 					.toStack()

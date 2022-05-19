@@ -18,19 +18,19 @@ public class SkitCMD implements Listener, CommandExecutor {
 
 	private void sendHelp(CommandSender sender) {
 		sender.sendMessage(new String[] {
-				"Â§aComandos de skit:",
-				"Â§a/skit <raio> Â§f- Setar seu inventÂ§rio para os jogadores em um determinado raio."
+				"§aComandos de skit:",
+				"§a/skit <raio> §f- Setar seu invent§rio para os jogadores em um determinado raio."
 		});
 	}
 	
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (!(sender instanceof Player)) {
-			sender.sendMessage("Â§cComando apenas para jogadores.");
+			sender.sendMessage("§cComando apenas para jogadores.");
 			return true;
 		}
 		if (!sender.hasPermission("kombo.cmd.skit")) {
-			sender.sendMessage("Â§cVocÃª nÃ£o tem permissÂ§o.");
+			sender.sendMessage("§cVocÃª nÃ£o tem permiss§o.");
 			return true;
 		}
 		if (args.length == 0) {
@@ -43,12 +43,12 @@ public class SkitCMD implements Listener, CommandExecutor {
 		try {
 			radius = Integer.parseInt(args[0]);
 		}catch (NumberFormatException ignored) {
-			sender.sendMessage("Â§cDigite um nÃºmero vÃ¡lido.");
+			sender.sendMessage("§cDigite um número vÃ¡lido.");
 			return true;
 		}
 		
 		if (radius == 0 || radius > 200) {
-			sender.sendMessage("Â§cColoque um nÃºmero entre 1 - 200.");
+			sender.sendMessage("§cColoque um número entre 1 - 200.");
 			return true;
 		}
 		
@@ -60,7 +60,7 @@ public class SkitCMD implements Listener, CommandExecutor {
 				.collect(Collectors.toList());
 		
 		if  (nearbyPlayers.size() == 0) {
-			sender.sendMessage("Â§cNÃ£o hÃ¡ jogadores em um raio de " + radius + " blocos.");
+			sender.sendMessage("§cNão ha jogadores em um raio de " + radius + " blocos.");
 			return true;
 		}
 		
@@ -70,7 +70,7 @@ public class SkitCMD implements Listener, CommandExecutor {
 			player.updateInventory();
 		});
 		
-		sender.sendMessage("Â§3InvetÃ¡rio aplicado para " + nearbyPlayers.size() + " jogadores");
+		sender.sendMessage("§3Invetário aplicado para " + nearbyPlayers.size() + " jogadores");
 		return true;
 	}
 

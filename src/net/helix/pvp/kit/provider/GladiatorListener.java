@@ -10,10 +10,12 @@ import java.util.*;
 import org.bukkit.potion.*;
 
 import net.helix.core.bukkit.item.ItemBuilder;
+import net.helix.pvp.FakeAPI;
 import net.helix.pvp.kit.Habilidade;
 import net.helix.pvp.kit.KitHandler;
 import net.helix.pvp.kit.KitManager;
 import net.md_5.bungee.api.ChatColor;
+
 
 public final class GladiatorListener extends KitHandler
 {
@@ -34,7 +36,7 @@ public final class GladiatorListener extends KitHandler
 	public void execute(Player player) {
 		super.execute(player);
 		
-		player.getInventory().setItem(1, new ItemBuilder("Â§bPuxar!", Material.IRON_FENCE)
+		player.getInventory().setItem(1, new ItemBuilder("§bPuxar!", Material.IRON_FENCE)
 				.nbt("kit-handler", "glad")
 				.nbt("cancel-drop")
 				.toStack()
@@ -65,17 +67,17 @@ public final class GladiatorListener extends KitHandler
                 if (toGlad.getGameMode() == GameMode.CREATIVE) {
                     return;
                 }
-                if (!KitManager.getPlayer(toGlad.getName()).hasKit() || toGlad.getLocation().getY() >= 150) {
-                    bp.sendMessage(String.valueOf(prefix) + " Â§cVocÃª nÃ£o pode puxar esse jogador no Spawn!");
+                if (bp.getLocation().getY() < 191 && bp.getLocation().getY() > 170 && bp.getLocation().getX() > -1230 && bp.getLocation().getX() < -1200) {
+                    bp.sendMessage(String.valueOf(prefix) + " §cVocê não pode puxar esse jogador no Spawn!");
                     return;
                 }
                 if (GladiatorListener.combateGlad.containsKey(bp)) {
-                    bp.sendMessage(String.valueOf(prefix) + " Â§cVoc\u00ea ja esta na arena!");
+                    bp.sendMessage(String.valueOf(prefix) + " §cVoc\u00ea ja esta na arena!");
                     return;
                 }
 				if (Habilidade.getAbility(toGlad) == "SteelHead") {
 					bp.playSound(bp.getLocation(), Sound.NOTE_BASS_DRUM, 15.0f, 15.0f);
-					bp.sendMessage(ChatColor.RED + "VocÃª nao pode puxar " + ChatColor.DARK_RED + toGlad.getName() + ChatColor.RED + " porque ele esta com o kit" + ChatColor.DARK_RED + " NEO");
+					bp.sendMessage(ChatColor.RED + "Você nao pode puxar " + ChatColor.DARK_RED +  (!FakeAPI.hasFake(toGlad) ? toGlad.getName() : FakeAPI.getNick(toGlad) + ChatColor.RED + " porque ele esta com o kit" + ChatColor.DARK_RED + " NEO"));
 					return;
 				}
                 GladiatorListener.combateGlad.put(bp, toGlad);
@@ -133,8 +135,8 @@ public final class GladiatorListener extends KitHandler
         GladiatorListener.blocks.put(p2.getName(), location);
         p1.teleport(new Location(p1.getWorld(), loc3.getX() + 7.5, loc3.getY() + 1.0, loc3.getZ(), 140.0f, 0.0f));
         p2.teleport(new Location(p2.getWorld(), loc4.getX() + 0.5, loc4.getY() + 1.0, loc2.getZ() - 7.5, -40.0f, 0.0f));
-        p1.sendMessage(String.valueOf(GladiatorListener.prefix) + "Â§fVoce desafiou o player Â§e" + p2.getName() + " Â§fpara uma batalha 1v1!");
-        p2.sendMessage(String.valueOf(GladiatorListener.prefix) + "Â§fVoce foi desafiado pelo player Â§e" + p1.getName() + " Â§fpara uma batalha 1v1!");
+        p1.sendMessage(String.valueOf(GladiatorListener.prefix) + "§fVoce desafiou o player §e" + (!FakeAPI.hasFake(p2) ? p2.getName() : FakeAPI.getNick(p2) + " §fpara uma batalha 1v1!"));
+        p2.sendMessage(String.valueOf(GladiatorListener.prefix) + "§fVoce foi desafiado pelo player §e" + ((!FakeAPI.hasFake(p1) ? p1.getName() : FakeAPI.getNick(p1) + " §fpara uma batalha 1v1!")));
         showPlayer(p1, p2);
         return null;
     }
@@ -164,8 +166,8 @@ public final class GladiatorListener extends KitHandler
         GladiatorListener.oldLocation.remove(loser.getName());
         GladiatorListener.combateGlad.remove(winner);
         GladiatorListener.combateGlad.remove(loser);
-        winner.sendMessage(String.valueOf(GladiatorListener.prefix) + "Â§fVoce venceu a batalha contra Â§e" + loser.getName());
-        loser.sendMessage(String.valueOf(GladiatorListener.prefix) + "Â§fVoce perdeu a batalha contra Â§e" + winner.getName());
+        winner.sendMessage(String.valueOf(GladiatorListener.prefix) + "§fVoce venceu a batalha contra §e" + (!FakeAPI.hasFake(loser) ? loser.getName() : FakeAPI.getNick(loser)));
+        loser.sendMessage(String.valueOf(GladiatorListener.prefix) + "§fVoce perdeu a batalha contra §e" + (!FakeAPI.hasFake(winner) ? winner.getName() : FakeAPI.getNick(winner)));
     }
     
     public static final void resetGladiatorListenerByScreenshare(final Player winner, final Player loser) {
@@ -188,8 +190,8 @@ public final class GladiatorListener extends KitHandler
         GladiatorListener.oldLocation.remove(winner.getName());
         GladiatorListener.blocks.remove(loser.getName());
         GladiatorListener.oldLocation.remove(loser.getName());
-        loser.sendMessage(String.valueOf(GladiatorListener.prefix) + "Â§fVoc\u00ea perdeu o combate pois foi puxado para screeshare.");
-        winner.sendMessage(String.valueOf(GladiatorListener.prefix) + "Â§e" + loser.getName() + " Â§ffoi puxado para screenshare.");
+        loser.sendMessage(String.valueOf(GladiatorListener.prefix) + "§fVoc\u00ea perdeu o combate pois foi puxado para screeshare.");
+        winner.sendMessage(String.valueOf(GladiatorListener.prefix) + "§e" + loser.getName() + " §ffoi puxado para screenshare.");
     }
     
     public static final void resetGladiatorListenerByQuit(final Player winner, final Player loser) {
@@ -214,7 +216,7 @@ public final class GladiatorListener extends KitHandler
         GladiatorListener.oldLocation.remove(loser.getName());
         GladiatorListener.combateGlad.remove(winner);
         GladiatorListener.combateGlad.remove(loser);
-        winner.sendMessage(String.valueOf(GladiatorListener.prefix) + "Â§fO player Â§e" + loser.getName() + " Â§fdeslogou.");
+        winner.sendMessage(String.valueOf(GladiatorListener.prefix) + "§fO player §e" +  (!FakeAPI.hasFake(loser) ? loser.getName() : FakeAPI.getNick(loser) + " §fdeslogou."));
     }
     
     public static final void resetGladiatorListenerBySpawn(final Player winner, final Player loser) {
@@ -239,6 +241,6 @@ public final class GladiatorListener extends KitHandler
         GladiatorListener.oldLocation.remove(loser.getName());
         GladiatorListener.combateGlad.remove(winner);
         GladiatorListener.combateGlad.remove(loser);
-        winner.sendMessage(String.valueOf(GladiatorListener.prefix) + "Â§fO player Â§e" + loser.getName() + " Â§fSaiu correndo para o spawn.");
+        winner.sendMessage(String.valueOf(GladiatorListener.prefix) + "§fO player §e" +  (!FakeAPI.hasFake(loser) ? loser.getName() : FakeAPI.getNick(loser) + " §fSaiu correndo para o spawn."));
     }
 }

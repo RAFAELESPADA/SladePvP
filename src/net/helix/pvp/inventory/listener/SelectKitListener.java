@@ -35,9 +35,9 @@ public class SelectKitListener implements Listener {
 	@EventHandler
 	public void onInvClick(ServerListPingEvent event) {
 		if (!Bukkit.getServer().hasWhitelist()) {
-			event.setMotd("                 Â§5Â§lSloper Â§7Â» Â§aloja.slopermc.com\n        Â§eÂ§lVenha conhecer nosso Â§5Â§lÂ§nKITPVPÂ§7 [1.7 - 1.8]");
+			event.setMotd("                 §5§lSloper §7» §aloja.slopermc.com\n        §6§lVenha conhecer nosso §5§l§nKITPVP§7 [1.7 - 1.8]");
 		} else {
-				event.setMotd("             Â§5Â§lSloper Â§7Â» Â§aloja.slopermc.com\n     Â§cO Servidor estÃ¡ em manutenÃ§Ã£o Â§7[1.7 - 1.8]");	
+				event.setMotd("             §5§lSloper §7» §aloja.slopermc.com\n     §cO Servidor está em manutenção §7[1.7 - 1.8]");	
 			}
 		}
 }

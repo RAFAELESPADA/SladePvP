@@ -20,7 +20,7 @@ public class Thor extends KitHandler {
 	public void execute(Player player) {
 		super.execute(player);
 		
-		player.getInventory().setItem(1, new ItemBuilder("Â§eCaboom!", Material.GOLD_AXE)
+		player.getInventory().setItem(1, new ItemBuilder("§eCaboom!", Material.GOLD_AXE)
 				.nbt("cancel-drop")
 				.nbt("kit-handler", "thor")
 				.toStack()
@@ -45,8 +45,8 @@ public class Thor extends KitHandler {
 				|| event.getClickedBlock() == null || event.getClickedBlock().getType().equals(Material.AIR)) {
 			return;
 		}
-		else if (player.getLocation().getY() > 149 && player.getLocation().getX() < 1000 && player.getLocation().getX() > -1000) {
-			player.sendMessage("Â§cPule do Spawn para usar o kit Thor");
+		else if (player.getLocation().getY() < 191 && player.getLocation().getY() > 170 && player.getLocation().getX() > -1230 && player.getLocation().getX() < -1200) {
+			player.sendMessage("§cPule do Spawn para usar o kit Thor");
 			return;
 		}
 		
@@ -65,7 +65,7 @@ public class Thor extends KitHandler {
 	 /* 111 */       return;
 	 /*     */     }
 	 /* 113 */     Player p = (Player)e.getEntity();
-	 /* 114 */     if ((p.getLocation().getBlockY() > 150) && p.getLocation().getX() < 1000 && p.getLocation().getBlockY() > -1000) {
+	 /* 114 */     if ((p.getLocation().getBlockY() > 172) && p.getLocation().getBlockY() < 179 && p.getLocation().getX() > -1300 && p.getLocation().getBlockX() < -1100) {
 	 /* 115 */       e.setCancelled(true);
 	 for (PotionEffect effect : p.getActivePotionEffects()) {
 		 /*  70 */         p.removePotionEffect(effect.getType());

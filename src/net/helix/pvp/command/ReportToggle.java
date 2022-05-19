@@ -11,11 +11,11 @@ import org.bukkit.scoreboard.DisplaySlot;
 import net.helix.core.util.HelixCooldown;
 import net.helix.pvp.HelixPvP;
 
-public class ScoreboardCMD implements CommandExecutor {
+public class ReportToggle implements CommandExecutor {
 	
 	private final HelixPvP plugin;
 
-	public ScoreboardCMD(HelixPvP plugin) {
+	public ReportToggle (HelixPvP plugin) {
 		this.plugin = plugin;
 	}
 
@@ -26,23 +26,23 @@ public class ScoreboardCMD implements CommandExecutor {
 			return true;
 		}
 		
-		if (HelixCooldown.inCooldown(sender.getName(), "scoreboard-cmd"))  {
-			sender.sendMessage("§cAguarde " + HelixCooldown.getTime(sender.getName(), "scoreboard-cmd") + "s para executar este comando novamente.");
+		if (HelixCooldown.inCooldown(sender.getName(), "reporttoggle"))  {
+			sender.sendMessage("§cAguarde " + HelixCooldown.getTime(sender.getName(), "rt-cmd") + "s para executar este comando novamente.");
 			return true;
 		}
 		
 		Player player = (Player) sender;
-		boolean enable = player.getScoreboard().getObjective(DisplaySlot.SIDEBAR) == null;
+		boolean enable = !Report.toggle.containsKey(player.getName());
 		
 		if (enable) {
-			plugin.getScoreboardBuilder().build(player);
+			Report.toggle.put(player.getName(), "ATIVADO");
 		}else {
-			player.getScoreboard().clearSlot(DisplaySlot.SIDEBAR);
+			Report.toggle.remove(player.getName());
 		}
 		
-		HelixCooldown.create(sender.getName(), "scoreboard-cmd", TimeUnit.SECONDS, 5);
-		player.sendMessage("§bScoreboard " + (enable ? "§aON" : "§cOFF"));
+		HelixCooldown.create(sender.getName(), "rt-cmd", TimeUnit.SECONDS, 5);
+		player.sendMessage("§bNotificação de Reports " + (enable ? "§aOFF" : "§cON"));
 		return true;
 	}
-
 }
+

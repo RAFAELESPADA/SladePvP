@@ -21,7 +21,7 @@ public class Milkman extends KitHandler {
         super.execute(player);
 
         player.getInventory().setItem(1, new ItemBuilder(Material.MILK_BUCKET)
-                .displayName("Â§fBalde de Leite")
+                .displayName("§fBalde de Leite")
                 .nbt("cancel-drop")
                 .nbt("kit-handler", "milkman")
                 .toStack()
@@ -41,6 +41,6 @@ public class Milkman extends KitHandler {
         event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.ABSORPTION, 5 * 20, 0));
         event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 10 * 20, 0));
         event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 5 * 20, 0));
-        event.getPlayer().sendMessage("Â§aMilkman aplicado!");
+        event.getPlayer().sendMessage("§aMilkman aplicado!");
     }
 }

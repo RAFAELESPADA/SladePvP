@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import net.helix.pvp.warp.HelixWarp;
-
 import org.bukkit.ChatColor;
 import org.bukkit.Effect;
 import org.bukkit.Location;
@@ -19,6 +18,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 import net.helix.core.bukkit.HelixBukkit;
 import net.helix.core.bukkit.account.HelixPlayer;
+import net.helix.pvp.FakeAPI;
 import net.helix.pvp.HelixPvP;
 import net.helix.pvp.event.HelixPlayerDeathEvent;
 import net.helix.pvp.event.HelixPlayerDeathEvent.Reason;
@@ -77,13 +77,13 @@ public class FPSDEATH implements Listener {
 			
 			HelixPlayer killerHelixPlayer = HelixBukkit.getInstance().getPlayerManager().getPlayer(killer.getName());
 			killer.playSound(killer.getLocation(), Sound.LEVEL_UP, 10.0f, 10.0f);
-			killer.sendMessage("Â§4VocÃª matou " + player.getName() + ". Â§8(" + (event.isValidKill() ? "Conta" : "NÃ£o conta") + ")");
+			killer.sendMessage((!FakeAPI.hasFake(player) ? "§3Você matou " + player.getName() + ". §8(" + (event.isValidKill() ? "Conta" : "Não conta") + ")" : "§3Você matou " + FakeAPI.getNick(player) + ". §8(" + (event.isValidKill() ? "Conta" : "Não conta") + ")"));
 			if (event.isValidKill()) {
 				int killerAddCoins = random.nextInt(80 + 1 - 25) + 25;
 				killerHelixPlayer.getPvp().addKills(1);
 				killerHelixPlayer.getPvp().addKillstreak(1);
 				killerHelixPlayer.getPvp().addCoins(killerAddCoins);
-				killer.sendMessage("Â§6Â§l[+] Â§6" + killerAddCoins + " coins");
+				killer.sendMessage("§6§l[+] §6" + killerAddCoins + " coins");
 			}
 			HelixPlayer victimHelixPlayer = HelixBukkit.getInstance().getPlayerManager().getPlayer(player.getName());
 			int victimWithdrawnCoins = random.nextInt(20 + 1 - 8) + 8;
@@ -91,22 +91,22 @@ public class FPSDEATH implements Listener {
 			victimHelixPlayer.getPvp().setKillstreak(0);
 			if ((victimHelixPlayer.getPvp().getCoins() - victimWithdrawnCoins) >= 0) {
 				victimHelixPlayer.getPvp().removeCoins(victimWithdrawnCoins);
-				player.sendMessage("Â§cÂ§l[-] Â§c" + victimWithdrawnCoins + " coins");
+				player.sendMessage("§c§l[-] §c" + victimWithdrawnCoins + " coins");
 			}else {
 				victimHelixPlayer.getPvp().setCoins(0);
 			}
 			
-			player.sendMessage("Â§cVocÃª morreu para " + killer.getName());
+			player.sendMessage(!FakeAPI.hasFake(killer) ? "§cVocê morreu para " + killer.getName() : "§cVocê morreu para " + FakeAPI.getNick(killer));
 					HelixBukkit.getInstance().getPlayerManager().getController().save(victimHelixPlayer);
 					HelixBukkit.getInstance().getPlayerManager().getController().save(killerHelixPlayer);
 		}else {
-			player.sendMessage("Â§cVocÃª morreu.");
+			player.sendMessage("§cVocê morreu.");
 		}
 		
 		Location spawnLocation = HelixBukkit.getInstance().getWarpManager().findWarp("fps").isPresent() ?
 				HelixBukkit.getInstance().getWarpManager().findWarp("fps").get().getLocation() : new Location(player.getWorld(), 165166, 93, 651649);
 		player.teleport(spawnLocation);
-		player.sendMessage(ChatColor.YELLOW + "VocÃª respawnou na warp FPS. Para voltar use /spawn");
+		player.sendMessage(ChatColor.YELLOW + "Você respawnou na warp FPS. Para voltar use /spawn");
 	}
 
 }

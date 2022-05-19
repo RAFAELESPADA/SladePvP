@@ -13,6 +13,8 @@ import org.bukkit.event.player.PlayerBucketFillEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
+import net.helix.pvp.command.Fake;
+
 public class EventoListeners implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST)
@@ -47,8 +49,8 @@ public class EventoListeners implements Listener {
         event.getPlayer().sendMessage("");
         event.getPlayer().sendMessage("");
         event.getPlayer().sendMessage("");
-        event.getPlayer().sendMessage("Â§aUm evento estÃ¡ ocorrendo!");
-        event.getPlayer().sendMessage("Â§aUtilize Â§b/evento entrar Â§apara entrar");
+        event.getPlayer().sendMessage("§aUm evento está ocorrendo!");
+        event.getPlayer().sendMessage("§aUtilize §b/evento entrar §apara entrar");
     }
 
 
@@ -78,6 +80,7 @@ public class EventoListeners implements Listener {
     
     @EventHandler(priority = EventPriority.HIGHEST)
     public void BucketFill(PlayerQuitEvent event) {
+    	Fake.fake.remove(event.getPlayer());
     	 if (!EventoUtils.game.contains(event.getPlayer().getName())) return;
         
         EventoUtils.game.remove(event.getPlayer().getName());

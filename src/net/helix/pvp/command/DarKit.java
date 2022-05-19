@@ -21,31 +21,31 @@ public class DarKit implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (command.getName().equalsIgnoreCase("givekit")) {
             if (!sender.hasPermission("kombo.cmd.givekit")) {
-                sender.sendMessage("Â§cVocÃª nÃ£o tem permissÃ£o ");
+                sender.sendMessage("§cVocê não tem permissão");
                 return true;
             }
             if (args.length < 2) {
-                sender.sendMessage("Â§cUtilize /givekit <player> <kit>");
+                sender.sendMessage("§cUtilize /givekit <player> <kit>");
                 return true;
             }
             Player target = Bukkit.getPlayer(args[0]);
             if (target == null) {
-                sender.sendMessage("Â§cNÃ£o foi possÃ­vel encontrar o player Â§e" + args[0] + "Â§c.");
+                sender.sendMessage("§cNão foi possível encontrar o player §e" + args[0] + "§c.");
                 return true;
             }
             HelixKit kit = HelixKit.getKitTypeByName(args[1]);
             if (kit == null) {
-                sender.sendMessage("Â§cNÃ£o foi possÃ­vel encontrar o kit \"Â§e" + args[1] + "Â§c\".");
+                sender.sendMessage("§cNão foi possível encontrar o kit \"§e" + args[1] + "§c\".");
                 return true;
             }
             if (target.hasPermission("kombo.kit." + kit)) {
-                sender.sendMessage("Â§cEsse player jÃ¡ possui esse kit.");
+                sender.sendMessage("§cEsse player já possui esse kit.");
                 return true;
             }
-            sender.sendMessage("Â§aO player Â§e" + target.getName() + " Â§crecebeu o kit Â§e" + kit + "Â§a.");
+            sender.sendMessage("§aO player §e" + target.getName() + " §crecebeu o kit §e" + kit + "§a.");
             Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + target.getName() + " permission set kombo.kit." + kit.toString());
-            sendTitle(target, "Â§aÂ§lPARABÃ‰NS", "Â§aVocÃª recebeu o kit Â§e" + kit + "Â§a!");
-            Bukkit.broadcast("Â§4Â§lKIT Â§a" + sender.getName() + " Â§fDeu o kit Â§e" + kit + "Â§f para Â§a" + target.getName(), "kombo.cmd.report");
+            sendTitle(target, "§a§lPARABÉNS", "§aVocê recebeu o kit §e" + kit + "§a!");
+            Bukkit.broadcast("§4§lKIT §a" + sender.getName() + " §fDeu o kit §e" + kit + "§f para §a" + target.getName(), "kombo.cmd.report");
             target.playSound(target.getLocation(), Sound.FIREWORK_LARGE_BLAST2, 1f, 1f);
             target.playSound(target.getLocation(), Sound.LEVEL_UP, 1f, 1f);
         }

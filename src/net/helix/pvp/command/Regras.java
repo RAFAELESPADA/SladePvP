@@ -15,15 +15,15 @@ package net.helix.pvp.command;
 	  Player p = (Player)sender;
 	  if (label.equalsIgnoreCase("regras"))
 	  {
-		p.sendMessage("Â§cLeia as regras");  
+		p.sendMessage("§cLeia as regras");  
 		p.sendMessage("");
-		p.sendMessage("Â§e1Âº Uso de TrapaÃ§as: Usar Hack ou Cheats Ã© extremamente proibido.");
-	    p.sendMessage("Â§e2Âº AssÃ©dio: NÃ£o fazer comentÃ¡rios ofensivos com finalidades sexuais.");
-	    p.sendMessage("Â§e3Âº AmeaÃ§as: NÃ£o utilizar discursos de Ã³dio relacionado Ã  agressÃ£o ou qualquer tipo de ato maldoso direcionado ao membro ameaÃ§ado.");
-	    p.sendMessage("Â§e4Âº Brigas/DiscussÃµes (ofensas): NÃ£o discuta com a finalidade de ofender, seja por meio verbal ou por escrito, caso aconteÃ§a procure um responsÃ¡vel.");
-	    p.sendMessage("Â§e5Âº ComÃ©rcio: Ã‰ proibido, fazer revenda/comÃ©rcio em nossos chats ou chamadas, sem autorizaÃ§Ã£o.");
-	    p.sendMessage("Â§e6Âº DiscriminaÃ§Ã£o: Ã‰ uma aÃ§Ã£o preconceituosa em relaÃ§Ã£o a uma pessoa ou grupo de pessoas. Seja por questÃµes raciais, de gÃªnero, orientaÃ§Ã£o sexual, nacionalidade, religiÃ£o entre outras, sem consentimento da mesma.");
-	    p.sendMessage("Â§e7Âº DivulgaÃ§Ã£o de servidores: Divulgar outro servidor sem ser a Sloper no tell de algum membro, irÃ¡ ter puniÃ§Ã£o de banimento permanente.");
+		p.sendMessage("§e1º Uso de Trapaças: Usar Hack ou Cheats é extremamente proibido.");
+	    p.sendMessage("§e2º Assédio: Não fazer comentários ofensivos com finalidades sexuais.");
+	    p.sendMessage("§e3º Ameaças: Não utilizar discursos de odio relacionado a  agressão ou qualquer tipo de ato maldoso direcionado ao membro ameaçado.");
+	    p.sendMessage("§e4º Brigas/Discussões (ofensas): Não discuta com a finalidade de ofender, seja por meio verbal ou por escrito, caso aconteça procure um responsável.");
+	    p.sendMessage("§e5º Comércio: É proibida, fazer revenda/comércio em nossos chats ou chamadas, sem autorização.");
+	    p.sendMessage("§e6º Discriminação: É uma ação preconceituosa em relação a uma pessoa ou grupo de pessoas. Seja por questões raciais, de gênero, orientação sexual, nacionalidade, religião entre outras, sem consentimento da mesma.");
+	    p.sendMessage("§e7º Divulgação de servidores: Divulgar outro servidor sem ser a Sloper no tell de algum membro, irá ter punição de banimento permanente.");
 	    p.playSound(p.getLocation(), Sound.BLAZE_HIT, 12.0F, 12.0F);
 	  }
 	  return false;

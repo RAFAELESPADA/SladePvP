@@ -38,7 +38,7 @@ public class BuyKitListener implements Listener {
 			
 			if (helixPlayer.getPvp().getCoins() < kit.getPrice()) {
 				int remaingCoins = kit.getPrice() - helixPlayer.getPvp().getCoins();
-				player.sendMessage("Â§eVocÃª precisa de " + HelixDecimalFormat.format(remaingCoins) + " coins para comprar este kit");
+				player.sendMessage("§eVocê precisa de " + HelixDecimalFormat.format(remaingCoins) + " coins para comprar este kit");
 				return;
 			}
 			
@@ -48,7 +48,7 @@ public class BuyKitListener implements Listener {
 			player.playSound(player.getLocation(), Sound.LEVEL_UP, 10.0f, 10.0f);
 			Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + player.getName() + " permission set kombo.kit." + kit.toString().toLowerCase() + " pvp");
 
-			player.sendMessage("Â§aVocÃª comprou o kit " + kit.getName() + " por " + kit.getPrice() + " coins");
+			player.sendMessage("§aVocê comprou o kit " + kit.getName() + " por " + kit.getPrice() + " coins");
 		});
 	}
 }

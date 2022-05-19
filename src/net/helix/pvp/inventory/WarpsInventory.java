@@ -13,7 +13,7 @@ import org.bukkit.inventory.ItemStack;
 
 public class WarpsInventory {
 
-	private final static String inventoryName = "Â§bWarps do servidor";
+	private final static String inventoryName = "§bWarps do servidor";
 	private static ItemStack randomGlass() {
 		int randomId = new Random().nextInt(14);
 		return new ItemStack(Material.STAINED_GLASS_PANE, 1, (short)randomId);
@@ -36,8 +36,8 @@ public class WarpsInventory {
 		}
 
 		HelixWarp.getWarps().stream().filter(warp -> warp != HelixWarp.SPAWN).forEach(warp -> {
-			inventory.addItem(new ItemBuilder("Â§2" + warp.getName(), warp.getIcon())
-					.lore("Â§7Jogadores: Â§f" + warp.getPlayerCount())
+			inventory.addItem(new ItemBuilder("§2" + warp.getName(), warp.getIcon())
+					.lore("§7Jogadores: §f" + warp.getPlayerCount())
 					.nbt("warp-gui", warp.getName())
 					.toStack()
 			);

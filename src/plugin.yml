@@ -15,13 +15,17 @@ commands:
    report:
    regras:
    req:
+   givecoins:
    site:
    loja:
    sudo:
+   reporttoggle:
    sealend123:
    lavainiciar:
    arenainiciar:
    shutdownserver:
+   pinfo:
+   fake:
    resetkdr:
    givekit:
    v:

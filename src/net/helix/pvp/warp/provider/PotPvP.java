@@ -15,15 +15,15 @@ public class PotPvP extends WarpHandle {
 		super.execute(player);
 		DamageUtil.allowAllDamage(player.getName());
 		
-		player.getInventory().setItem(0, new ItemBuilder("Â§fEspada de Diamante", Material.DIAMOND_SWORD)
+		player.getInventory().setItem(0, new ItemBuilder("§fEspada de Diamante", Material.DIAMOND_SWORD)
 				.nbt("cancel-drop")
 				.toStack()
 		);
 
-		player.getInventory().setHelmet(new ItemBuilder("Â§6Â§lSLOPERÂ§fÂ§lPVP", Material.IRON_HELMET).toStack());
-		player.getInventory().setChestplate(new ItemBuilder("Â§6Â§lSLOPERÂ§fÂ§lPVP", Material.IRON_CHESTPLATE).toStack());
-		player.getInventory().setLeggings(new ItemBuilder("Â§6Â§lSLOPERÂ§fÂ§lPVP", Material.IRON_LEGGINGS).toStack());
-		player.getInventory().setBoots(new ItemBuilder("Â§6Â§lSLOPERÂ§fÂ§lPVP", Material.IRON_BOOTS).toStack());
+		player.getInventory().setHelmet(new ItemBuilder("§6§lSLOPER§f§lPVP", Material.IRON_HELMET).toStack());
+		player.getInventory().setChestplate(new ItemBuilder("§6§lSLOPER§f§lPVP", Material.IRON_CHESTPLATE).toStack());
+		player.getInventory().setLeggings(new ItemBuilder("§6§lSLOPER§f§lPVP", Material.IRON_LEGGINGS).toStack());
+		player.getInventory().setBoots(new ItemBuilder("§6§lSLOPER§f§lPVP", Material.IRON_BOOTS).toStack());
 		
 		for (int i = 0; i < 36; i++) {
 			player.getInventory().addItem(new ItemStack(Material.POTION, 1, (short)16421));

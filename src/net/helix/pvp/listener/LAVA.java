@@ -66,7 +66,7 @@ public class LAVA implements Listener {
 		
 		Location spawnLocation = new Location(player.getWorld(), 99581, 75, 95961);
 		player.teleport(spawnLocation);
-		player.sendMessage(ChatColor.YELLOW + "VocÃª respawnou na warp Lava. Para voltar use /spawn");
+		player.sendMessage(ChatColor.YELLOW + "Você respawnou na warp Lava. Para voltar use /spawn");
 		}
 
 

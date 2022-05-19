@@ -85,11 +85,11 @@ public class Feast extends BukkitRunnable {
 
         if (!spawned && minutes == 0) {
             if (seconds == 50 || seconds == 30 || seconds == 20 || seconds == 10 || seconds == 3) {
-                Bukkit.broadcastMessage("Â§cÂ§lFEAST: Â§fO feast irÃ¡ spawn em " + seconds + " " + ((seconds > 1) ? "segundos" : "segundo"));
+                Bukkit.broadcastMessage("§c§lFEAST: §fO feast irÃ¡ spawn em " + seconds + " " + ((seconds > 1) ? "segundos" : "segundo"));
             }
 
             if (seconds <= 0) {
-                Bukkit.broadcastMessage("Â§aÂ§lO FEAST SPAWNOU!");
+                Bukkit.broadcastMessage("§a§lO FEAST SPAWNOU!");
                 // DuraÃ§Ã£o do feast (em segundos)
                 int spawnDurationSeconds = 18;
                 time = (long) spawnDurationSeconds;

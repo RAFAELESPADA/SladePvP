@@ -13,8 +13,12 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
+import net.dev.eazynick.api.NickManager;
+import net.helix.core.bukkit.api.NameTagAPI;
 import net.helix.core.util.HelixCooldown;
+import net.helix.pvp.command.Fake;
 import net.helix.pvp.command.VanishUtil;
+
 
 public class PlayerCombatLogListener implements Listener {
 
@@ -45,7 +49,7 @@ public class PlayerCombatLogListener implements Listener {
 		String command = event.getMessage().split(" ")[0].toLowerCase();
 		if (HelixCooldown.inCooldown(player.getName(), "combat") && !allowCommands.contains(command) && !player.hasPermission("kombo.cmd.report")) {
 			event.setCancelled(true);
-			player.sendMessage("Â§cAguarde " + HelixCooldown.getTime(player.getName(), "combat") + "s para usar os comandos");
+			player.sendMessage("§cAguarde " + HelixCooldown.getTime(player.getName(), "combat") + "s para usar os comandos");
 		}
 	}
 	@EventHandler
@@ -54,7 +58,19 @@ public class PlayerCombatLogListener implements Listener {
 		String command = event.getMessage().split(" ")[0].toLowerCase();
 		if (command.contains("admin") && VanishUtil.has(player.getName())) {
 			event.setCancelled(true);
-			player.sendMessage("Â§cSaia do modo vanish antes de entrar no modo Admin!");
+			player.sendMessage("§cSaia do modo vanish antes de entrar no modo Admin!");
+		}
+	}
+	@EventHandler
+	public void onCommandPreProcess3(PlayerCommandPreprocessEvent event) {
+		
+		String command = event.getMessage().split(" ")[0].toLowerCase();
+		if (command.contains("nick") || command.contains("unnick") || command.contains("disguise") && !command.equals("nickedplayers")) {
+			event.setCancelled(true);
+			event.getPlayer().sendMessage("§cUtilize /fake!");
+	NameTagAPI.updatePlayersNameTag();
+	 NickManager api = new NickManager(event.getPlayer());
+	 api.setTagPrefix("§7");
 		}
 	}
 	

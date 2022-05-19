@@ -47,7 +47,7 @@ import org.bukkit.ChatColor;
           (p.hasPermission("kombo.cmd.report"))) {
           return;
         }
-        p.sendMessage(("Â§cÂ§lSPAM Â§fPor favor fale mais devagar!"));
+        p.sendMessage(("§c§lSPAM §fPor favor fale mais devagar!"));
         e.setCancelled(true);
       }
     }

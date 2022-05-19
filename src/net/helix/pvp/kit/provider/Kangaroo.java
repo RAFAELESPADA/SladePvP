@@ -13,6 +13,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
+import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.potion.PotionEffect;
@@ -34,7 +35,7 @@ public class Kangaroo extends KitHandler {
 	public void execute(Player player) {
 		super.execute(player);
 		
-		player.getInventory().setItem(1, new ItemBuilder("Â§aPular!", Material.FIREWORK)
+		player.getInventory().setItem(1, new ItemBuilder("§aPular!", Material.FIREWORK)
 				.nbt("kit-handler", "kangaroo")
 				.nbt("cancel-drop")
 				.toStack()
@@ -59,9 +60,9 @@ public class Kangaroo extends KitHandler {
 		/*  60 */       event.setCancelled(true);
 
 		/*  61 */       if (GladiatorListener.combateGlad.containsKey(p)) {
-		/*  62 */         p.sendMessage(String.valueOf("Â§cVocÃª esta no Gladiator e recebeu efeito de speed"));
+		/*  62 */         p.sendMessage(String.valueOf("§cVocê esta no Gladiator e recebeu efeito de speed"));
 		/*     */         
-		/*  64 */         darEfeito(p, org.bukkit.potion.PotionEffectType.SPEED, 10, 2);
+		/*  64 */         darEfeito(p, org.bukkit.potion.PotionEffectType.SPEED, 10, 1);
 		/*     */       }
 		/*     */       else
 		/*     */       {
@@ -119,6 +120,13 @@ public class Kangaroo extends KitHandler {
 		/*     */       }
 		/*     */     }
 		/*     */   }
+		 @EventHandler
+		 /*     */   public void onDrop(PlayerDropItemEvent event)
+		 /*     */   {
+		 /* 116 */     if (event.getItemDrop().getItemStack().getType() == Material.STONE_SWORD) {
+		 /* 117 */       event.setCancelled(true);
+		 /*     */     }
+		 }
 		/*     */   
 		/*     */   @EventHandler
 		/*     */   public void removertempo(PlayerMoveEvent event)

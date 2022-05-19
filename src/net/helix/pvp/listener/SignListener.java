@@ -14,7 +14,7 @@ import org.bukkit.inventory.ItemStack;
 
 public class SignListener implements Listener {
 	
-	private static final String soup = "Â§3Â§lSOPAS", recraft = "Â§3Â§lRECRAFT";
+	private static final String soup = "§3§lSOPAS", recraft = "§3§lRECRAFT";
 	
 	@EventHandler(ignoreCancelled = true)
 	public void onSignChange(SignChangeEvent event) {
@@ -25,7 +25,7 @@ public class SignListener implements Listener {
 			
 			event.setLine(0, "");
 			event.setLine(1, type);
-			event.setLine(2, "Â§f(Clique)");
+			event.setLine(2, "§f(Clique)");
 			event.setLine(3, "");
 		}
 	}
@@ -41,7 +41,7 @@ public class SignListener implements Listener {
 			
 			if (lines.length >= 4 && (lines[1].equalsIgnoreCase(soup) || lines[1].equalsIgnoreCase(recraft))) {
 				boolean isSoup = lines[1].equalsIgnoreCase(soup);
-				Inventory inventory = Bukkit.createInventory(null, (isSoup ? 4 : 3) * 9, "Â§7Â§n" + (isSoup ? "Sopas" : "Recraft"));
+				Inventory inventory = Bukkit.createInventory(null, (isSoup ? 4 : 3) * 9, "§7§n" + (isSoup ? "Sopas" : "Recraft"));
 				
 				if (isSoup) {
 					for (int i = 0; i < inventory.getContents().length; i++) {

@@ -67,8 +67,8 @@ public abstract class WarpDuoBattleHandle extends WarpHandle {
         Optional<net.helix.core.bukkit.warp.HelixWarp> pos2 = HelixBukkit.getInstance().getWarpManager().findWarp(warpPos2);
         if (!pos1.isPresent() || !pos2.isPresent()) {
             setItems(p1); setItems(p2);
-            p1.sendMessage("§cOcorreu um erro ao iniciar a batalha. (LOC-404)");
-            p2.sendMessage("§cOcorreu um erro ao iniciar a batalha. (LOC-404)");
+            p1.sendMessage("�cOcorreu um erro ao iniciar a batalha. (LOC-404)");
+            p2.sendMessage("�cOcorreu um erro ao iniciar a batalha. (LOC-404)");
             return;
         }
 
@@ -125,7 +125,7 @@ public abstract class WarpDuoBattleHandle extends WarpHandle {
 
         if (findOpponent(player).isPresent()) {
             event.setCancelled(true);
-            player.sendMessage("§eVocê não pode digitar comandos enquanto está batalhando");
+            player.sendMessage("�eVoc� não pode digitar comandos enquanto está batalhando");
         }
     }
 

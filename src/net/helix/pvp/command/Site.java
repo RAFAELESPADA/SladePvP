@@ -17,7 +17,7 @@ package net.helix.pvp.command;
 	  Player p = (Player)sender;
 	  if (label.equalsIgnoreCase("site") || label.equalsIgnoreCase("loja"))
 	  {
-	    p.sendMessage("Â§9Â§lSITE: Â§f" + "https://slopermc.com");
+	    p.sendMessage("§9§lSITE: §f" + "https://slopermc.com");
 	    p.playSound(p.getLocation(), Sound.BLAZE_HIT, 12.0F, 12.0F);
 	  }
 	  return false;

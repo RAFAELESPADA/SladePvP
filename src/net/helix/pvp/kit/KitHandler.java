@@ -35,7 +35,7 @@ public abstract class KitHandler implements Listener {
 		player.getActivePotionEffects().forEach(potion -> player.removePotionEffect(potion.getType()));
 		player.getInventory().setHeldItemSlot(0);
 		/* 348 */       
-		player.getInventory().setItem(0, new ItemBuilder("Â§7Espada de Pedra", Material.STONE_SWORD)
+		player.getInventory().setItem(0, new ItemBuilder("§7Espada de Pedra", Material.STONE_SWORD)
 				.nbt("cancel-drop")
 				.toStack()
 		);
@@ -44,7 +44,7 @@ public abstract class KitHandler implements Listener {
 			 Habilidade.removeAbility(player);
 			}
 		 if (!SoupTypeGUI.compass.containsKey(p.getName())) {
-		player.getInventory().setItem(8, new ItemBuilder("Â§9Jogadores prÃ³ximos", Material.COMPASS)
+		player.getInventory().setItem(8, new ItemBuilder("§9Jogadores próximos", Material.COMPASS)
 				.nbt("kit-handler", "search-players")
 				.nbt("cancel-drop")
 				.toStack()

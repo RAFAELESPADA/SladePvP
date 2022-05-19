@@ -65,7 +65,7 @@ public enum HelixWarp {
 	public void send(Player player, boolean silent) {
 		Optional<net.helix.core.bukkit.warp.HelixWarp> warpOptional;
 		if (!(warpOptional = HelixBukkit.getInstance().getWarpManager().findWarp(this.toString().toLowerCase())).isPresent()) {
-			player.sendMessage("Â§cA warp " + this.name + " nÃ£o foi setada");
+			player.sendMessage("§cA warp " + this.name + " nÃ£o foi setada");
 			return;
 		}
 
@@ -76,9 +76,9 @@ public enum HelixWarp {
 		players.add(player.getName());
 		handler.execute(player);
 		player.teleport(warpOptional.get().getLocation());
-		DarKit.sendTitle(player, "Â§5Â§lWARP", "Â§dEnviado para warp Â§eÂ§l " + this.name);
+		DarKit.sendTitle(player, "§5§lWARP", "§dEnviado para warp §e§l " + this.name);
 		if (!silent) {
-			player.sendMessage("Â§7Enviado para warp Â§b" + this.name);
+			player.sendMessage("§7Enviado para warp §b" + this.name);
 		}
 	}
 	

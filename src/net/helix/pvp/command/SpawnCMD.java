@@ -48,11 +48,11 @@ public class SpawnCMD extends WarpDuoBattleHandle implements Listener, CommandEx
 				HelixWarp.SPAWN.send(p, true);
 				p.setFlying(false);
 				indo.remove(p.getName());
-				p.sendMessage("Â§9Enviado para o spawn!");
+				p.sendMessage("§9Enviado para o spawn!");
 				p.setGameMode(GameMode.SURVIVAL);
 				if (OneVsOne.fastChallenge.contains(p)) {
 					OneVsOne.fastChallenge.remove(p);
-					p.sendMessage("Â§cTe removendo da 1v1!");
+					p.sendMessage("§cTe removendo da 1v1!");
 					}
 				  HelixPlayer ph = HelixBukkit.getInstance().getPlayerManager().getPlayer(p.getName());
 				  HelixPlayer pk = HelixBukkit.getInstance().getPlayerManager().getPlayer(winner.getName());
@@ -61,19 +61,19 @@ public class SpawnCMD extends WarpDuoBattleHandle implements Listener, CommandEx
 				p.setLevel(0);
 				HelixBukkit.getInstance().getPlayerManager().getController().save(ph);
 				HelixBukkit.getInstance().getPlayerManager().getController().save(pk);
-				p.sendMessage("Â§cVoce recebeu uma morte por ter dado /spawn no Gladiator!");
-				winner.sendMessage("Â§cVoce recebeu uma kill por seu oponente ter dado /spawn no Gladiator!");
+				p.sendMessage("§cVoce recebeu uma morte por ter dado /spawn no Gladiator!");
+				winner.sendMessage("§cVoce recebeu uma kill por seu oponente ter dado /spawn no Gladiator!");
          }
 		 if (KitManager.getPlayer(p.getName()).hasKit() && !p.hasPermission("")) {
 			 indo.add(p.getName());
-			 p.sendMessage("Â§eEnviando vocÃª para o spawn em 3 segundos!");
-			 p.sendMessage("Â§eNÃ£o se mova!");
+			 p.sendMessage("§eEnviando Você para o spawn em 3 segundos!");
+			 p.sendMessage("§eNÃ£o se mova!");
 			 Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnable()
  			{
        public void run()
        {
 			 if (!indo.contains(p.getName())) {
-				 p.sendMessage("Â§cVocÃª se moveu e o teleporte foi cancelado!");
+				 p.sendMessage("§cVocê se moveu e o teleporte foi cancelado!");
 				 return;
 			 }
 			 else {
@@ -84,9 +84,9 @@ public class SpawnCMD extends WarpDuoBattleHandle implements Listener, CommandEx
 				p.setLevel(0);
 				if (OneVsOne.fastChallenge.contains(p)) {
 				OneVsOne.fastChallenge.remove(p);
-				p.sendMessage("Â§cTe removendo da 1v1!");
+				p.sendMessage("§cTe removendo da 1v1!");
 				}
-				p.sendMessage("Â§9Enviado para o spawn!");
+				p.sendMessage("§9Enviado para o spawn!");
 				p.setGameMode(GameMode.SURVIVAL);
 				return;
        } }}, 60L);
@@ -97,9 +97,9 @@ public class SpawnCMD extends WarpDuoBattleHandle implements Listener, CommandEx
 		p.setFlying(false);
 		if (OneVsOne.fastChallenge.contains(p)) {
 			OneVsOne.fastChallenge.remove(p);
-			p.sendMessage("Â§cTe removendo da 1v1!");
+			p.sendMessage("§cTe removendo da 1v1!");
 			}
-		p.sendMessage("Â§9Enviado para o spawn!");
+		p.sendMessage("§9Enviado para o spawn!");
 		p.setGameMode(GameMode.SURVIVAL);
 		p.setLevel(0);
 		return true;

@@ -12,7 +12,9 @@ import org.bukkit.event.player.PlayerInteractEvent;
 
 import net.helix.core.bukkit.HelixBukkit;
 import net.helix.core.bukkit.item.ItemBuilder;
+import net.helix.pvp.FakeAPI;
 import net.helix.pvp.kit.KitManager;
+
 
 public class PlayerCompassListener implements Listener {
 	
@@ -34,17 +36,18 @@ public class PlayerCompassListener implements Listener {
 		).collect(Collectors.toList());
 		
 		if (entities.size() == 0) {
-			player.sendMessage("Â§eNenhum jogador prÃ³ximo");
+			player.sendMessage("§eNenhum jogador próximo");
 			HelixBukkit.getInstance().getWarpManager().findWarp("arena").ifPresent(warp -> {
 				player.setCompassTarget(warp.getLocation());
-				player.sendMessage("Â§eBÃºssola apontando para o spawn");
+				player.sendMessage("§eBússola apontando para o spawn");
 			});
 			return;
 		}
 		
 		Entity entity = entities.get(0);
+		Player pe = (Player) entity;
 		player.setCompassTarget(entity.getLocation());
-		player.sendMessage("Â§2BÃºssola apontando para " + entity.getName());
+		player.sendMessage("§2Bússola apontando para §2" + (!FakeAPI.hasFake(pe) ? entity.getName() : FakeAPI.getNick(pe)));
 	}
 
 }

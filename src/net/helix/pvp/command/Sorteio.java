@@ -31,12 +31,12 @@ public class Sorteio implements CommandExecutor {
         Player player = (Player) sender;
         if (command.getName().equalsIgnoreCase("sorteio")) {
             if (!player.hasPermission("command.sortearplayer")) {
-                player.sendMessage(ChatColor.RED + "VocÂ§ nao tem permissao");
+                player.sendMessage(ChatColor.RED + "Voc§ nao tem permissao");
                 return true;
             }
             int onlinePlayers = (int) Bukkit.getOnlinePlayers().stream().filter(target -> !target.hasPermission("kombo.cmd.staffchat")).count();
             if (onlinePlayers <= 3) {
-                player.sendMessage("Â§cO servidor nao tem players suficientes para a realizaÂ§Â§o de um sorteio.");
+                player.sendMessage("§cO servidor nao tem players suficientes para a realiza§§o de um sorteio.");
                 return true;
             }
             if (args.length == 0) {
@@ -57,20 +57,20 @@ public class Sorteio implements CommandExecutor {
             Player sort = playerList.get(sorteado);
 
 
-            Bukkit.broadcastMessage("Â§5Â§lSLOPER Â§7> Â§fUm sorteio acabou de comeÂ§ar!");
-            Bukkit.broadcastMessage("Â§5Â§lSLOPER Â§7> Â§fVocÃª ja esta participando!");
-            Bukkit.broadcastMessage("Â§5Â§lSLOPER Â§7> Â§fJogadores participando: Â§a" + onlinePlayers);
-            Bukkit.broadcast("Â§7Â§o(STAFF) Sorteio feito por Â§f" + player.getName() + "Â§7Â§o." , "kombo.cmd.staffchat");
+            Bukkit.broadcastMessage("§5§lSLOPER §7> §fUm sorteio acabou de come§ar!");
+            Bukkit.broadcastMessage("§5§lSLOPER §7> §fVocê ja esta participando!");
+            Bukkit.broadcastMessage("§5§lSLOPER §7> §fJogadores participando: §a" + onlinePlayers);
+            Bukkit.broadcast("§7§o(STAFF) Sorteio feito por §f" + player.getName() + "§7§o." , "kombo.cmd.staffchat");
 
             Bukkit.getScheduler().runTaskLater(HelixPvP.getInstance(), () -> {
-                Bukkit.broadcastMessage("Â§5Â§lSLOPER Â§7> Â§fO ganhador do sorteio foi Â§e" + sort.getName() +
-                        "Â§f! Â§7(" + chance + "% de chance)");
+                Bukkit.broadcastMessage("§5§lSLOPER §7> §fO ganhador do sorteio foi §e" + sort.getName() +
+                        "§f! §7(" + chance + "% de chance)");
                
                 HelixPlayer killerHelixPlayer = HelixBukkit.getInstance().getPlayerManager().getPlayer(sort.getName());
     			killerHelixPlayer.getPvp().addCoins(quantia);
-                sort.sendMessage(ChatColor.GREEN + "VocÃª ganhou o sorteio e recebeu " + quantia + " coins!");
+                sort.sendMessage(ChatColor.GREEN + "Você ganhou o sorteio e recebeu " + quantia + " coins!");
                 for (Player p : Bukkit.getOnlinePlayers()){
-                	HelixActionBar.send(p, "Â§aO Ganhador do Sorteio foi: Â§f" + sort.getName() + "Â§6+(" + quantia + ")");
+                	HelixActionBar.send(p, "§aO Ganhador do Sorteio foi: §f" + sort.getName() + "§6+(" + quantia + ")");
                 	p.playSound(p.getLocation(), Sound.FIREWORK_LARGE_BLAST, 1.0F, 1.0F);
                 } }, 200L);
         

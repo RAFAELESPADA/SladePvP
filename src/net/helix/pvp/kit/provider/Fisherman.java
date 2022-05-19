@@ -7,6 +7,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerFishEvent;
 import net.helix.core.bukkit.item.ItemBuilder;
+import net.helix.pvp.FakeAPI;
 import net.helix.pvp.kit.Habilidade;
 import net.helix.pvp.kit.KitHandler;
 import net.helix.pvp.kit.KitManager;
@@ -18,7 +19,7 @@ public class Fisherman extends KitHandler {
 	public void execute(Player player) {
 		super.execute(player);
 		
-		player.getInventory().setItem(1, new ItemBuilder("Â§aFisgar!", Material.FISHING_ROD)
+		player.getInventory().setItem(1, new ItemBuilder("§aFisgar!", Material.FISHING_ROD)
 				.nbt("kit-handler", "fisherman")
 				.nbt("cancel-drop")
 				.toStack()
@@ -35,11 +36,11 @@ public class Fisherman extends KitHandler {
 		Entity caught = event.getCaught();
 		 if (Habilidade.getAbility((Player)caught) == "SteelHead") {
 				event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.NOTE_BASS_DRUM, 15.0f, 15.0f);
-				event.getPlayer().sendMessage(ChatColor.AQUA + "VocÃª nao pode usar o Fisherman em " + caught.getName() + " porque ele esta com o kit NEO");
+				event.getPlayer().sendMessage(ChatColor.AQUA + "VocÃª nao pode usar o Fisherman em " + (!FakeAPI.hasFake((Player)caught) ? caught.getName() : FakeAPI.getNick((Player)caught) + " porque ele esta com o kit NEO"));
 				return;
 			}
 		caught.teleport(event.getPlayer());
-		caught.sendMessage("Â§cÂ§lFISHERMAN: Â§fVocÃª foi puxado por " + event.getPlayer().getName());
-		event.getPlayer().sendMessage("Â§cÂ§lFISHERMAN: Â§fVocÃª puxou o jogador " + caught.getName());
+		caught.sendMessage("§c§lFISHERMAN: §fVocÃª foi puxado por " + (!FakeAPI.hasFake(event.getPlayer()) ? event.getPlayer().getName() : FakeAPI.getNick(event.getPlayer())));
+		event.getPlayer().sendMessage("§c§lFISHERMAN: §fVocÃª puxou o jogador " + (!FakeAPI.hasFake((Player)caught) ? caught.getName() : FakeAPI.getNick((Player)event.getCaught())));
 	}
 }

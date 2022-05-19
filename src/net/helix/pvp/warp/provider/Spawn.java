@@ -40,34 +40,34 @@ public class Spawn extends WarpHandle {
         player.setFlying(player.hasPermission("kombo.cmd.fly"));
         player.getInventory().setHeldItemSlot(0);
 
-        player.getInventory().setItem(0, new ItemBuilder("Â§eKits disponÃ­veis", Material.CHEST)
+        player.getInventory().setItem(0, new ItemBuilder("§eKits disponíveis", Material.CHEST)
                 .nbt("spawn-item", "kits")
                 .nbt("cancel-drop")
                 .nbt("cancel-click")
                 .toStack()
         );
         
-        player.getInventory().setItem(4, new ItemBuilder("Â§6OpÃ§Ãµes", Material.NETHER_STAR)
+        player.getInventory().setItem(4, new ItemBuilder("§6Opções", Material.NETHER_STAR)
                 .nbt("spawn-item", "mush")
                 .nbt("cancel-drop")
                 .nbt("cancel-click")
                 .toStack()
         );
 
-        player.getInventory().setItem(1, new ItemBuilder("Â§eWarps disponÃ­veis", Material.COMPASS)
+        player.getInventory().setItem(1, new ItemBuilder("§eWarps disponíveis", Material.COMPASS)
                 .nbt("spawn-item", "warps")
                 .nbt("cancel-drop")
                 .nbt("cancel-click")
                 .toStack()
         );
 
-        player.getInventory().setItem(8, new ItemBuilder("Â§eLoja de Kits", Material.DIAMOND)
+        player.getInventory().setItem(8, new ItemBuilder("§eLoja de Kits", Material.DIAMOND)
                 .nbt("spawn-item", "shop")
                 .nbt("cancel-drop")
                 .nbt("cancel-click")
                 .toStack()
         );
-        player.getInventory().setItem(7, new ItemBuilder("Â§eStatus", Material.SKULL_ITEM)
+        player.getInventory().setItem(7, new ItemBuilder("§eStatus", Material.SKULL_ITEM)
                 .nbt("spawn-item", "status")
                 .nbt("cancel-drop")
                 .nbt("cancel-click")
