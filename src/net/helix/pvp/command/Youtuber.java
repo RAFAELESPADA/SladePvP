@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -17,6 +16,8 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+
+import net.helix.pvp.HelixPvP;
 
 public class Youtuber implements Listener, CommandExecutor {
 
@@ -47,43 +48,43 @@ public boolean onCommand(CommandSender sender, Command cmd, String CommandLabel,
    
     ItemStack fps = new ItemStack(Material.TRIPWIRE_HOOK);
     ItemMeta fps2 = fps.getItemMeta();
-    fps2.setDisplayName("§3§lREQUISITOS DE TAGS");
+    fps2.setDisplayName("Â§3Â§lREQUISITOS DE TAGS");
     List<String> lore1 = new ArrayList();
-    lore1.add("§7* §fAqui você podera vizualizar");
-    lore1.add("§7* §fOs requisitos da tag §b§lYT§a/§3§lSTREAMER");
-    lore1.add("§7* §fLeia atentamente as informações");
+    lore1.add("Â§7* Â§fAqui vocÂ§ podera vizualizar");
+    lore1.add("Â§7* Â§fOs requisitos da tag Â§bÂ§lYTÂ§a/Â§3Â§lSTREAMER");
+    lore1.add("Â§7* Â§fLeia atentamente as informaÂ§Â§es");
     lore1.add("");
-    lore1.add("§7* §fDepois so contatar um §4§LDONO");
-    lore1.add("§7* §fOu entrar no nosso discord"); 
-    lore1.add("§7* §bDigite /discord para entrar no discord"); 
+    lore1.add("Â§7* Â§fDepois so contatar um Â§4Â§LDONO");
+    lore1.add("Â§7* Â§fOu entrar no nosso discord"); 
+    lore1.add("Â§7* Â§bDigite /discord para entrar no discord"); 
     fps2.setLore(lore1);
     fps.setItemMeta(fps2);
     
     ItemStack lava = new ItemStack(Material.INK_SACK, 1, (short)11);
     ItemMeta lava2 = lava.getItemMeta();
-    lava2.setDisplayName("§b§lYT");
+    lava2.setDisplayName("Â§bÂ§lYT");
     List<String> lore2 = new ArrayList();
-    lore2.add("§7* §fPara tornar-se §b§lYT§f, é necessário possuir");
+    lore2.add("Â§7* Â§fPara tornar-se Â§bÂ§lYTÂ§f, Â§ necessÂ§rio possuir");
     lore2.add("");
-    lore2.add("§7* §4- §f200 visualizações no video do servidor");
-    lore2.add("§7* §4- §f500 inscritos");
-    lore2.add("§7* §fA tag tem duração de §630 DIAS §fproduza videos para renova-la");
+    lore2.add(HelixPvP.getInstance().getConfig().getString("MSGYT1").replace("&", "Â§"));
+    lore2.add(HelixPvP.getInstance().getConfig().getString("MSGYT2").replace("&", "Â§"));
+    lore2.add(HelixPvP.getInstance().getConfig().getString("MSGYT3").replace("&", "Â§"));
     lore2.add("");
-    lore2.add("§7* §fApos isso requisitar sua tag no §3§lDISCORD");
+    lore2.add("Â§7* Â§fApos isso requisitar sua tag no Â§3Â§lDISCORD");
     lava2.setLore(lore2);
     lava.setItemMeta(lava2);
        
     ItemStack v1 = new ItemStack(Material.INK_SACK, 1, (short)1);
     ItemMeta v12 = v1.getItemMeta();
-    v12.setDisplayName("§3§lSTREAMER");
+    v12.setDisplayName("Â§3Â§lSTREAMER");
     List<String> lore3 = new ArrayList();
-    lore3.add("§7* §fPara tornar-se §3§lSTREAMER§f, é necessário possuir");
+    lore3.add("Â§7* Â§fPara tornar-se Â§3Â§lSTREAMERÂ§f, Â§ necessÂ§rio possuir");
     lore3.add("");
-    lore3.add("§7* §4- §f150 seguidores");
-    lore3.add("§7* §4- §fObter 400 views");
-    lore3.add("§7* §4- §fDa somatória das lives realizadas");
+    lore3.add(HelixPvP.getInstance().getConfig().getString("MSGSTREAMER1").replace("&", "Â§"));
+    lore3.add(HelixPvP.getInstance().getConfig().getString("MSGSTREAMER2").replace("&", "Â§"));
+    lore3.add(HelixPvP.getInstance().getConfig().getString("MSGSTREAMER3").replace("&", "Â§"));
     lore3.add("");
-    lore3.add("§7* §fApos isso requisitar sua tag no §3§lDISCORD");
+    lore3.add("Â§7* Â§fApos isso requisitar sua tag no Â§3Â§lDISCORD");
     v12.setLore(lore3);
     v1.setItemMeta(v12);
     

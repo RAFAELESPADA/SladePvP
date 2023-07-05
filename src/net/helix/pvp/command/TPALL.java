@@ -16,19 +16,19 @@ public class TPALL
   public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args)
   {
     Player p = (Player)sender;
-    if (!p.hasPermission("kitpvp.tpall"))
+    if (!p.hasPermission("kombo.cmd.tpall"))
     {
-    	p.sendMessage("§c§lERRO §fVocê nao tem permissão para executar esse comando");
+    	p.sendMessage("Â§cÂ§lERRO Â§fVocÂ§ nao tem permissÂ§o para executar esse comando");
       return true;
     }
     for (Player p2 : Bukkit.getOnlinePlayers()) {
       if (p2 != p)
       {
         p2.teleport(p);
-        p2.sendMessage("§7 " + p.getName() + " puxou todos ate ele !");
+        p2.sendMessage("Â§7 " + p.getName() + " puxou todos ate ele !");
       }
     }
-    p.sendMessage("§aTodos os jogadores agora estao na sua localizacao !");
+    p.sendMessage("Â§aTodos os jogadores agora estao na sua localizacao !");
     return false;
   }
 }

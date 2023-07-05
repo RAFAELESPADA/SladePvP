@@ -1,6 +1,9 @@
 package net.helix.pvp.evento;
 
 
+import org.bukkit.ChatColor;
+import org.bukkit.Material;
+import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -8,12 +11,14 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerBucketEmptyEvent;
 import org.bukkit.event.player.PlayerBucketFillEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
-import net.helix.pvp.command.Fake;
+import net.helix.pvp.kit.HelixKit;
+import net.helix.pvp.kit.KitManager;
 
 public class EventoListeners implements Listener {
 
@@ -29,6 +34,21 @@ public class EventoListeners implements Listener {
         }
         event.setCancelled(!EventoUtils.blocks.contains(event.getBlock().getLocation()));
     }
+    @EventHandler(priority = EventPriority.HIGHEST)
+    public void BlockBreak2(BlockBreakEvent event) {
+        if (!KitManager.getPlayer(event.getPlayer().getName()).hasKit(HelixKit.TORNADO)) return;       
+        if (event.getBlock().getType() == Material.HOPPER) {
+        	event.getPlayer().sendMessage(ChatColor.RED + "NÃ£o ponha o tornado no chÃ£o!");
+        	event.setCancelled(true);
+        }
+    }
+    @EventHandler
+	public void onProjectileHit(ProjectileHitEvent event) {
+	  if (event.getEntity() instanceof Arrow) {
+	       Arrow arrow = (Arrow)event.getEntity();
+	       arrow.remove();
+	  }
+   }
     
     @EventHandler(priority = EventPriority.HIGHEST)
     public void Block(PlayerJoinEvent event) {
@@ -49,8 +69,8 @@ public class EventoListeners implements Listener {
         event.getPlayer().sendMessage("");
         event.getPlayer().sendMessage("");
         event.getPlayer().sendMessage("");
-        event.getPlayer().sendMessage("§aUm evento está ocorrendo!");
-        event.getPlayer().sendMessage("§aUtilize §b/evento entrar §apara entrar");
+        event.getPlayer().sendMessage("ï¿½aUm evento estï¿½ ocorrendo!");
+        event.getPlayer().sendMessage("ï¿½aUtilize ï¿½b/evento entrar ï¿½apara entrar");
     }
 
 
@@ -80,7 +100,6 @@ public class EventoListeners implements Listener {
     
     @EventHandler(priority = EventPriority.HIGHEST)
     public void BucketFill(PlayerQuitEvent event) {
-    	Fake.fake.remove(event.getPlayer());
     	 if (!EventoUtils.game.contains(event.getPlayer().getName())) return;
         
         EventoUtils.game.remove(event.getPlayer().getName());

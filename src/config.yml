@@ -1,0 +1,415 @@
+#CONFIGURAÇÃO DO SRKITPVP
+#DADOS DO MYSQL E AS TAGS DEVEM SER EDITADAS NA PASTA DO PLUGIN Core
+#PRECISA DO EazyNick , AjLeaderBoards, DecentHolograms e o Core
+#Sem eles o plugin não liga!
+#FEITO COM AMOR POR Rafael Auler
+#Discord de suporte: https://discord.gg/GyAzMB9cnp
+
+#PREFIXO DAS MENSAGENS
+Prefix: '&6&lKITPVP:'
+
+#MOTD
+Motd: '&5&lZYRA &fVenha treinar! &b(1.8)'
+MotdWhitelist: '&cO Servidor está em manutenção'
+
+#Link do /discord
+DiscordLink: 'https://discord.gg/dhcFfghwRX'
+
+#Link do /loja
+LojaLink: 'zyramc.com/loja'
+
+#NÃO USE CORES
+ScorePrefix: KITPVP
+
+#COR 1 DA ANIMAÇÃO WAVE DO TITULO
+CorTituloScore1: '&b&l'
+
+#COR 2 DA ANIMAÇÃO WAVE DO TITULO
+CorTituloScore2: '&f&l'
+
+#COR 3 DA ANIMAÇÃO WAVE DO TITULO
+CorTituloScore3: '&c&l'
+
+#COLOQUE A ALTURA DO SEU SPAWN AQUI
+#ELA E USADA PARA NÃO DEIXAR ALGUNS KITS SEREM UTILIZADOS COMO O THOR E O TORNADO
+#NÃO ENTENDEU? ENTRE NO DISCORD PARA SUPORTE https://discord.gg/GyAzMB9cnp
+SpawnAltura: 142
+
+#ALTURA MAXIMA QUE PODE PUXAR PRO GLAD
+GladAltura: 142
+
+#ALTURA Y DA FPS QUE O CARA VAI RECEBER KIT
+#NÃO ENTENDEU? FALE COM O RAFAEL MELO
+#PADRAO É A DO KOMBO
+FPSAlturaDeReceberKit: 92
+
+#Nome do vidro da loja de kits
+ShopItem: '&cCompre kits aqui'
+
+LojaInv: '&bLoja de kits'
+
+KitsInv: '&cKits do Servidor'
+
+WarpsInv: '&aWarps'
+
+StatusInv: '&aSeu Perfil'
+
+
+#EDITE AS TAGS AQUI
+TagDonoNome: 'Dono'
+TagDonoCor: '&4'
+TagDonoPrefix: '&4&lDONO &4'
+TagDonoAliases:
+- owner
+- ceo
+- master
+- fundador
+TagSubDonoNome: 'SubDono'
+TagSubDonoCor: '&4'
+TagSubDonoPrefix: '&4&lS-DONO &4'
+TagSubDonoAliases:
+- sdono
+TagDiretorNome: 'Diretor'
+TagDiretorCor: '&c'
+TagDiretorPrefix: '&c&lDIRETOR &c'
+TagDiretorAliases:
+- dir
+TagGerenteNome: 'Gerente'
+TagGerenteCor: '&4'
+TagGerentePrefix: '&4&lGERENTE &4'
+TagGerenteAliases:
+- ger
+TagAdminNome: 'Admin'
+TagAdminCor: '&c'
+TagAdminPrefix: '&c&lADMIN &c'
+TagAdminAliases:
+- adm
+TagModPlusNome: 'Mod+'
+TagModPlusCor: '&5'
+TagModPlusPrefix: '&5&lMOD+ &5'
+TagModPlusAliases:
+- modplus
+TagModNome: 'Mod'
+TagModCor: '&5'
+TagModPrefix: '&5&lMOD &5'
+TagModAliases:
+- mod
+TagTrialNome: 'Trial'
+TagTrialCor: '&d'
+TagTrialPrefix: '&d&lTRIAL &d'
+TagTrialAliases:
+- trialmod
+TagHelperNome: 'Helper'
+TagHelperCor: '&e'
+TagHelperPrefix: '&e&lHELPER &e'
+TagHelperAliases:
+- ajudante
+TagYTPlusNome: 'YT+'
+TagYTPlusCor: '&3'
+TagYTPlusPrefix: '&3&lYT+ &3'
+TagYTPlusAliases:
+- youtuber+
+TagBuilderNome: 'Builder'
+TagBuilderCor: '&2'
+TagBuilderPrefix: '&2&lBUILDER &2'
+TagBuilderAliases:
+- construtor
+- cnt
+TagStreamerNome: 'Stream'
+TagStreamerCor: '&3'
+TagStreamerPrefix: '&3&lSTREAMER &3'
+TagStreamerAliases:
+- stream
+TagYTNome: 'YT'
+TagYTCor: '&b'
+TagYTPrefix: '&b&lYT &b'
+TagYTAliases:
+- youtuber
+TagBetaNome: 'BETA'
+TagBetaCor: '&1'
+TagBetaPrefix: '&1&lBETA &1'
+TagBetaAliases:
+- betinha
+TagDesignNome: 'DESIGNER'
+TagDesignCor: '&9'
+TagDesignPrefix: '&9&lDESIGNER &9'
+TagDesignAliases:
+- design
+TagMvpPlusNome: 'MvpPlus'
+TagMvpPlusCor: '&b'
+TagMvpPlusPrefix: '&b&lMVP&6+ &b'
+TagMvpPlusAliases:
+- mvp+
+TagMvpNome: 'Mvp'
+TagMvpCor: '&6'
+TagMvpPrefix: '&6&lMVP &6'
+TagMvpAliases:
+- vip+
+TagVipNome: 'Vip'
+TagVipCor: '&a'
+TagVipPrefix: '&a&lVIP &a'
+TagVipAliases:
+- vip1
+TagMembroNome: 'Membro'
+TagMembroCor: '&7'
+TagMembroPrefix: '&7'
+TagMembroAliases:
+- jogador
+
+Vinagre: 163.123.204.170
+Vinagre2: 25582
+
+#Cooldown dos Kits
+GrapplerCooldown: 4
+JumperCooldown: 25
+ThorCooldown: 5
+NinjaCooldown: 10
+MilkManCooldown: 15
+ScoutCooldown: 40
+SwitcherCooldown: 7
+TimeLordCooldown: 30
+TornadoCooldown: 60
+
+#EDITE NOME DOS RANKS SE QUISER
+GodRank: 'GOD'
+LendarioRank: 'Lendário'
+RubyRank: 'Ruby'
+SafiraRank: 'Safira'
+CristalRank: 'Cristal'
+Esmeralda: 'Esmeralda'
+DiamanteRank: 'Diamante'
+OuroRank: 'Ouro'
+PrataRank: 'Prata'
+VeteranoRank: 'Veterano'
+ExperienteRank: 'Experiente'
+AvancadoRank: 'Avançado'
+InicianteRank: 'Iniciante'
+UnrankedRank: 'Unranked'
+
+#REQUISITOS DE KILLS PARA RANK
+InicianteKills: 100
+AvancadoKills: 300
+ExperienteKills: 600
+VeteranoKills: 850
+PrataKills: 1200
+OuroKills: 1500
+DiamanteKills: 2200
+EsmeraldaKills: 3000
+CristalKills: 4200
+SafiraKills: 5000
+RubyKills: 6300
+LendarioKills: 7500
+GodKills: 10000
+
+#ITEMS PRINCIPAIS
+KitsItem: 'CHEST'
+OptionsItem: 'BOOK'
+WarpsItem: 'COMPASS'
+ShopItemMAT: 'DIAMOND'
+StatusItem: 'SKULL_ITEM'
+
+#SLOTS DOS ITENS PRINCIPAIS
+StatsSlot: 7
+ShopSlot: 8
+WarpsSlot: 1
+OptionsSlot: 4
+KitsSlot: 0
+
+#SCOREBOARD
+ScoreGrupo: ' &fGrupo: '
+ScoreKills: ' &fKills: &a'
+ScoreDeaths: ' &fDeaths: &c'
+ScoreStreak: ' &fStreak: &3'
+ScoreCoins: ' &fCoins: &3'
+ScoreRank: ' &fRank: '
+ScorePlayers: ' &fPlayers: &b'
+ScoreKit: ' &fKit: &b'
+
+#DELAY DO TITULO
+ScoreTitleUpdateDelay: 3
+
+#EDITE O IP QUE FICA NA SCOREBOARD AQUI
+IPScore: 'zyramc.com'
+
+#DESATIVAR SISTEMA DE REPORT DO PLUGIN? COLOQUE false para desativa-lo
+ReportAtivado: true
+
+#DESATIVAR SISTEMA DE STAFFCHAT DO PLUGIN? COLOQUE false para desativa-lo
+StaffChatAtivado: true
+
+#MENSAGEM DO REQ DE YOUTUBER MENU DO /youtuber
+MSGYT1: '&f* 100 visualizações'
+MSGYT2: '&f* 10 likes'
+MSGYT3: '&f* Vídeo no Servidor'
+
+#MENSAGEM DO REQ DE STREAMER DO MENU DO /youtuber
+MSGSTREAMER1: '&f* 50 seguidores'
+MSGSTREAMER2: '&f* 5 telespectadores'
+MSGSTREAMER3: '&f* Fazer live a cada 15 dias'
+
+#REGRAS
+REGRA1: '&e* &cProibido usar trapaças ou cheats.'
+REGRA2: '&e* &cProibido Divulgar outros Servidores.'
+REGRA3: '&e* &cProibido Assédio.'
+REGRA4: '&e* &cProibido Abusar de Erros ou Bugs.'
+REGRA5: '&e* &cProibido Xingar jogadores.'
+REGRA6: '&e* &cProibido Xingar a Staff ou Servidor.'
+REGRA7: '&e* &cProibido Chat Fake.'
+
+#LORE DOS KITS
+NenhumLore: 'Sem habilidade'
+PvPLore: 'Ganhe espada afiada 1'
+AntiStomperLore: 'Seja imune a stompers'
+JumperLore: 'Voe com sua enderpearl'
+KangarooLore: 'De pulos duplos'
+ThorLore: 'Solte raios'
+ArcherLore: 'Ganhe arco e flecha'
+NeoLore: 'Imune a varios kits'
+QuickDropperLore: 'Drope potes automaticamente'
+StomperLore: 'Esmague seus inimigos'
+FishermanLore: 'Pesque players'
+AnchorLore: 'Não de nem receba KB'
+TornadoLore: 'Crie um tornado'
+ViperLore: 'De veneno ao hitar'
+SnailLore: 'De lentidao ao hitar'
+PoseidonLore: 'Ganhe efeitos na agua'
+FiremanLore: 'De fogo ao hitar'
+NinjaLore: 'Aperte SHIFT e teleporte ao inimigo'
+GrapplerLore: 'Corra por ai com sua corda'
+TimelordLore: 'Pare o tempo'
+MonkLore: 'Embaralhe o inventario do inimigo'
+StomperLore: 'Esmague seus inimigos'
+LeechLore: 'Roube a vida dos inimigos'
+CamelLore: 'Ganhe efeitos em desertos'
+GrandpaLore: 'De muito KB!'
+ScoutLore: 'Ganhe velocidade'
+CriticalLore: 'De danos criticos'
+MilkmanLore: 'Beba leite e fique forte'
+TurtleLore: 'Aperte SHIFT e leve menos damage'
+PhantomLore: 'Voe com seu kit'
+BoxerLore: 'Seja um boxeador'
+HulkLore: 'Pegue os inimigos nas costas'
+SwitcherLore: 'Troque de lugar com o inimigo'
+GladiatorLore: 'Puxe seu inimigo para uma arena particular'
+
+
+Anchor2Lore: 'Não de nem receba KB'
+Kangaroo2Lore: 'De pulos duplos'
+Grappler2Lore: 'Corra por ai com sua corda'
+
+#TEMPO DO FEAST (EM MINUTOS)
+TempoFeast: 5
+
+#MUNDO DO BAU DO FEAST
+FeastWorld: 'world'
+
+#LOCAIS DOS BAUS DO FEAST (ALTERE SE QUISER)
+Bau1X: -41.0
+Bau1Y: 121.0
+Bau1Z: 325.0
+
+Bau2X: -44.0
+Bau2Y: 121.0
+Bau2Z: 328.0
+
+Bau3X: -44.0
+Bau3Y: 121.0
+Bau3Z: 322.0
+
+Bau4X: -47.0
+Bau4Y: 121.0
+Bau4Z: 325.0
+
+Bau5X: -8.590
+Bau5Y: 112.00000000
+Bau5Z: 252.246
+
+Bau6X: -12.384
+Bau6Y: 112.00000 
+Bau6Z: 249.451
+
+Bau7X: -8.492
+Bau7Y: 112.00000 
+Bau7Z: 245.762
+
+Bau8X: -4.549 
+Bau8Y: 112.00000 
+Bau8Z: 249.694
+
+#VAI CAIR UM RAIO NESSE LOCAL QUANDO O FEAST NASCER
+RaioX: -44.630
+RaioY: 120.75000 
+RaioZ: 352.392
+
+#NÃO MEXA NISSO SE NAO VAI FUDER COM O PLUGIN!
+#E ELE NAO VAI MAIS LIGAR
+#VOCE FOI AVISADO
+ab: 163.123.204.170
+ab2: 3306
+ac: s3055_bot
+ad: u3055_SyyUanevTm
+ae: sZlQ!x4Y3!Z.w^LiBFPj8ECe
+
+#PREÇO DOS KITS
+#DEIXE 0 PARA DEIXAR O KIT GRATIS PARA JOGADOR NORMAL
+#COLOQUE -1 NO PREÇO PARA DESATIVAR O KIT
+PvPPrice: 0
+KangarooPrice: 0
+ThorPrice: 0
+ArcherPrice: 0
+NeoPrice: 0
+QuickDropperPrice: 0
+AntiStomperPrice: 0
+FishermanPrice: 7000
+AnchorPrice: 7000
+TornadoPrice: 20000
+ViperPrice: 5000
+SnailPrice: 6000
+PoseidonPrice: 5000
+FiremanPrice: 7000
+NinjaPrice: 7000
+GrapplerPrice: 15000
+TimeLordPrice: 13000
+MonkPrice: 7500
+StomperPrice: 12500
+LeechPrice: 11000
+CamelPrice: 8000
+GrandpaPrice: 10000
+ScoutPrice: 10000
+CriticalPrice: 14000
+MilkmanPrice: 12500
+TurtlePrice: 7000
+PhantomPrice: 11000
+BoxerPrice: 12000
+HulkPrice: 11000
+SwitcherPrice: 0
+GladiatorPrice: 18000 
+JumperPrice: 10000
+
+#LOCAIS DOS EVENTOS! OS EVENTOS SO PODEM SER MUDADOS PELA CONFIG! SEM SETAGEM POR COMANDOS POR AGORA
+#CASO QUEIRA COMPRAR O MAPA DO KOMBO QUE VEM COM TUDO JA SETADO CUSTARÁ 30 REAIS A MAIS! TOTALIZANDO 70 REAIS
+#CASO NÃO CONSIGA SETAR OS EVENTOS ABRA TICKET NO DISCORD
+#AS COORDENAS PADRAO SAO PARA OS MAPAS DA KOMBOPVP!
+EVENTOSPAWNMUNDO: 'world'
+EVENTOSPAWNX: 65220.49
+EVENTOSPAWNY: 70.0
+EVENTOSPAWNZ: 61572.078
+
+ARENAMUNDO: 'world'
+EventoArenaX: -873.0
+EventoArenaY: 67.0
+EventoArenaZ: 693.0
+
+LAVAMUNDO: 'world'
+EventoLavaX: -19961.0
+EventoLavaY: 145.0
+EventoLavaZ: 29939.0
+
+MDRMUNDO: 'world'
+EventoMDRX: 241.0
+EventoMDRY: 84.0
+EventoMDRZ: 483.0
+
+
+
+

@@ -3,6 +3,8 @@ package net.helix.pvp.listener;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+
+import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -13,11 +15,10 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
-import net.dev.eazynick.api.NickManager;
-import net.helix.core.bukkit.api.NameTagAPI;
 import net.helix.core.util.HelixCooldown;
-import net.helix.pvp.command.Fake;
 import net.helix.pvp.command.VanishUtil;
+import net.helix.pvp.warp.HelixWarp;
+import net.md_5.bungee.api.ChatColor;
 
 
 public class PlayerCombatLogListener implements Listener {
@@ -41,6 +42,10 @@ public class PlayerCombatLogListener implements Listener {
 		
 		HelixCooldown.create(victim.getName(), "combat", timeUnit, time);
 		HelixCooldown.create(damager.getName(), "combat", timeUnit, time);
+		if (victim.isFlying()) {
+		victim.setAllowFlight(victim.hasPermission("kombo.cmd.report"));
+		victim.setFlying(victim.hasPermission("kombo.cmd.report"));
+	}
 	}
 	
 	@EventHandler
@@ -49,8 +54,17 @@ public class PlayerCombatLogListener implements Listener {
 		String command = event.getMessage().split(" ")[0].toLowerCase();
 		if (HelixCooldown.inCooldown(player.getName(), "combat") && !allowCommands.contains(command) && !player.hasPermission("kombo.cmd.report")) {
 			event.setCancelled(true);
-			player.sendMessage("§cAguarde " + HelixCooldown.getTime(player.getName(), "combat") + "s para usar os comandos");
+			player.sendMessage("Â§cEspere " + HelixCooldown.getTime(player.getName(), "combat") + " segundos para usar comandos");
 		}
+	}
+	@EventHandler
+    public void aosair(PlayerQuitEvent e) {
+        final Player p = e.getPlayer();
+        if (HelixCooldown.inCooldown(p.getName(), "combat")) {
+            p.setHealth(0.0);
+            HelixWarp.SPAWN.send(p);
+            HelixCooldown.delete(p.getName(), "combat");
+        }
 	}
 	@EventHandler
 	public void onCommandPreProcess2(PlayerCommandPreprocessEvent event) {
@@ -58,20 +72,18 @@ public class PlayerCombatLogListener implements Listener {
 		String command = event.getMessage().split(" ")[0].toLowerCase();
 		if (command.contains("admin") && VanishUtil.has(player.getName())) {
 			event.setCancelled(true);
-			player.sendMessage("§cSaia do modo vanish antes de entrar no modo Admin!");
+			player.sendMessage("Â§cLeave the vanish before entering admin mode!");
 		}
 	}
 	@EventHandler
-	public void onCommandPreProcess3(PlayerCommandPreprocessEvent event) {
-		
-		String command = event.getMessage().split(" ")[0].toLowerCase();
-		if (command.contains("nick") || command.contains("unnick") || command.contains("disguise") && !command.equals("nickedplayers")) {
+	public void onCommandPreProcess5(PlayerCommandPreprocessEvent event) {
+		Player player = event.getPlayer();
+		String command = event.getMessage().toLowerCase();
+		if (command.contains("evento entrar") && (!(HelixWarp.SPAWN.hasPlayer(player.getName())) && !player.hasPermission("kombo.cmd.evento"))) {
 			event.setCancelled(true);
-			event.getPlayer().sendMessage("§cUtilize /fake!");
-	NameTagAPI.updatePlayersNameTag();
-	 NickManager api = new NickManager(event.getPlayer());
-	 api.setTagPrefix("§7");
+			player.sendMessage("Â§cPara entrar no evento vocÃª precisa estar no spawn!");
 		}
+	
 	}
 	
 	
@@ -88,6 +100,8 @@ public class PlayerCombatLogListener implements Listener {
 		Player player = event.getPlayer();
 		if  (HelixCooldown.inCooldown(player.getName(), "combat")) {
 			HelixCooldown.delete(player.getName(), "combat");
+			player.setHealth(0);
+			Bukkit.broadcastMessage(ChatColor.RED + player.getName() + " deslogou em combate.");
 		}
 	}
 }

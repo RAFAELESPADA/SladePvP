@@ -2,17 +2,42 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry excluding="src/" kind="src" path=""/>
-	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
-	<classpathentry exported="true" kind="lib" path="H:/COISAS DE SERVIDORES DE MINECRAFT/KOMBO/Dependencias/PaperSpigot-1.8.8-R0.1-SNAPSHOT-latest.jar"/>
-	<classpathentry exported="true" kind="lib" path="H:/COISAS DE SERVIDORES DE MINECRAFT/KOMBO/Dependencias/HolographicDisplays.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/SO Auler/Downloads/lombok (1).jar"/>
-	<classpathentry exported="true" kind="lib" path="H:/COISAS DE SERVIDORES DE MINECRAFT/KOMBO/Dependencias/PlaceholderAPI-2.11.1 (1).jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/SO Auler/Desktop/NETWORK FOR DOWNLOAD LOGIN LOBBY KITPVP SKYWARS SURVIVAL  HUNGERGAMES/KITPVP/plugins/DecentHolograms-2.3.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/SO Auler/Desktop/NETWORK FOR DOWNLOAD LOGIN LOBBY KITPVP SKYWARS SURVIVAL  HUNGERGAMES/KITPVP/plugins/ajLeaderboards-2.3.2.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/SO Auler/Desktop/NETWORK FOR DOWNLOAD LOGIN LOBBY KITPVP SKYWARS SURVIVAL  HUNGERGAMES/SKYWARS/plugins/LuckPerms-Bukkit-5.3.47.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/SO Auler/Downloads/BossBarAPI_v2.4.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/SO Auler/Desktop/BACKUP SLOPER/plugins/Core.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/SO Auler/Downloads/PacketListenerAPI_v3.9.10-SNAPSHOT.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/SO Auler/Downloads/EazyNick v3.13.jar"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Desktop/DESKTOP/KOMBO com tags/KITPVP/plugins/ajLeaderboards-2.6.0 (1).jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Desktop/DESKTOP/KOMBO com tags/KITPVP/plugins/AntiDisconnectSpam.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Desktop/DESKTOP/KOMBO com tags/KITPVP/plugins/AutoMessage.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Desktop/DESKTOP/KOMBO com tags/KITPVP/plugins/BossBarAPI_v2.4.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Desktop/DESKTOP/KOMBO com tags/KITPVP/plugins/Citizens-2.0.30-b2665.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Desktop/DESKTOP/KOMBO com tags/KITPVP/plugins/ConsoleSpamFix-1.9.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Desktop/DESKTOP/KOMBO com tags/KITPVP/plugins/CoreProtect_2.12.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Desktop/DESKTOP/KOMBO com tags/KITPVP/plugins/DecentHolograms-2.5.3.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Desktop/DESKTOP/KOMBO com tags/KITPVP/plugins/EasyClearChat.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Desktop/DESKTOP/KOMBO com tags/KITPVP/plugins/FastAsyncWorldEdit-bukkit-21.03.26-5ff3a9b-1286-22.3.9.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Desktop/DESKTOP/KOMBO com tags/KITPVP/plugins/Feast.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Desktop/DESKTOP/KOMBO com tags/KITPVP/plugins/JH_AntiCrashExploits (1).jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Desktop/DESKTOP/KOMBO com tags/KITPVP/plugins/LuckPerms-Bukkit-5.4.52.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Desktop/DESKTOP/KOMBO com tags/KITPVP/plugins/PlaceholderAPI-2.11.1 (2).jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Desktop/DESKTOP/KOMBO com tags/KITPVP/plugins/PowerBoard (6).jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Desktop/DESKTOP/KOMBO com tags/KITPVP/plugins/ProtocolLib.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Desktop/DESKTOP/KOMBO com tags/KITPVP/plugins/Sentinel-2.6.5-SNAPSHOT-b478.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Desktop/DESKTOP/KOMBO com tags/KITPVP/plugins/SetGroup.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Desktop/DESKTOP/KOMBO com tags/KITPVP/plugins/SkinsRestorer.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Desktop/DESKTOP/KOMBO com tags/KITPVP/plugins/Vault (2).jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Desktop/DESKTOP/KOMBO com tags/KITPVP/plugins/ViaRewind-2.0.2 (1).jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Desktop/DESKTOP/KOMBO com tags/KITPVP/plugins/ViaVersion-4.4.2 (1).jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Desktop/DESKTOP/KOMBO com tags/KITPVP/plugins/VoidGen-2.2.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Desktop/DESKTOP/KOMBO com tags/KITPVP/plugins/VoidSpawn2.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Desktop/DESKTOP/KOMBO com tags/KITPVP/plugins/WDLCompanion-1.2.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Desktop/DESKTOP/KOMBO com tags/KITPVP/plugins/WorldEdit.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Desktop/DESKTOP/KOMBO com tags/KITPVP/plugins/worldguard-6.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Downloads/spigot-1.8.8-R0.1-SNAPSHOT-latest (3).jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Downloads/lombok (3).jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Downloads/lombok (2).jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Downloads/Tornado.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Desktop/SLADE NOVINHO/ARENA/plugins/CORE-NEW.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

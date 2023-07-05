@@ -1,20 +1,15 @@
 package net.helix.pvp.command;
 
 import org.bukkit.Bukkit;
-import org.bukkit.DyeColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.material.Dye;
 
-import net.helix.core.bukkit.item.ItemBuilder;
-import net.helix.core.bukkit.util.DamageUtil;
 import net.helix.pvp.HelixPvP;
 import net.helix.pvp.evento.EventoType;
 import net.helix.pvp.evento.EventoUtils;
@@ -104,6 +99,7 @@ public boolean onCommand(CommandSender sender, Command cmd, String label, String
 			 	EventoType evento = EventoType.getEventoByName("Lava");
 			    Bukkit.broadcastMessage("§aIniciando explicação do evento §e" + evento.getName().toUpperCase() + "§a...");
                 EventoType.explicarEvento(evento);
+                EventoUtils.started = true;
 			}}, 6000L);
 		Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnable() {
 			public void run() {
@@ -117,7 +113,6 @@ public boolean onCommand(CommandSender sender, Command cmd, String label, String
      	EventoUtils.damage = true;
      	EventoUtils.build = false;
      	EventoUtils.tp = false;
-     	EventoUtils.started = true;
      	p2.playSound(p2.getLocation(), Sound.ENDERDRAGON_GROWL, 1f, 1f);
     		
     		
@@ -138,7 +133,6 @@ public boolean onCommand(CommandSender sender, Command cmd, String label, String
   				p2.getInventory().addItem(new ItemStack(Material.MUSHROOM_SOUP));
   			}
     		p2.updateInventory();
-    		DamageUtil.allowAllDamage(p2.getName());
 			}); {
 			}}}, 7200L);
 	}
@@ -169,11 +163,11 @@ public boolean onCommand(CommandSender sender, Command cmd, String label, String
             		p.getWorld().strikeLightning(p.getLocation());
                 }
                 p.sendMessage("§cO evento foi finalizado automaticamente porque o tempo expirou.");
-                p.sendMessage("§cO evento durou: §a20 minutos");
+                p.sendMessage("§cO evento durou: §a40 minutos");
 			}
             });;
             EventoUtils.resetEventoClass();
-		}}, 24000L);
+		}}, 48000L);
   
 return false;
       };

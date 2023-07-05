@@ -3,86 +3,92 @@ package net.helix.pvp.kit;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
-import net.helix.core.bukkit.HelixBukkit;
-import net.helix.core.bukkit.api.HelixTitle;
-import net.helix.core.bukkit.util.DamageUtil;
+
 import net.helix.pvp.HelixPvP;
 import net.helix.pvp.command.DarKit;
-import net.helix.pvp.kit.provider.*;
+import net.helix.pvp.kit.provider.Anchor;
+import net.helix.pvp.kit.provider.AntiStomper;
+import net.helix.pvp.kit.provider.AntiStomperReal;
+import net.helix.pvp.kit.provider.Archer;
+import net.helix.pvp.kit.provider.Boxer;
+import net.helix.pvp.kit.provider.Camel;
+import net.helix.pvp.kit.provider.Critical;
+import net.helix.pvp.kit.provider.Fireman;
+import net.helix.pvp.kit.provider.Fisherman;
+import net.helix.pvp.kit.provider.Flash;
+import net.helix.pvp.kit.provider.GladiatorListener;
+import net.helix.pvp.kit.provider.Grandpa;
+import net.helix.pvp.kit.provider.Grappler;
+import net.helix.pvp.kit.provider.Hulk;
+import net.helix.pvp.kit.provider.Jumper;
+import net.helix.pvp.kit.provider.Kangaroo;
+import net.helix.pvp.kit.provider.Leech;
+import net.helix.pvp.kit.provider.Milkman;
+import net.helix.pvp.kit.provider.Monk;
+import net.helix.pvp.kit.provider.Ninja;
+import net.helix.pvp.kit.provider.Phantom;
+import net.helix.pvp.kit.provider.Poseidon;
+import net.helix.pvp.kit.provider.PvP;
+import net.helix.pvp.kit.provider.QuickDropper;
+import net.helix.pvp.kit.provider.Scout;
+import net.helix.pvp.kit.provider.Snail;
+import net.helix.pvp.kit.provider.Sonic;
+import net.helix.pvp.kit.provider.Stomper;
+import net.helix.pvp.kit.provider.Switcher;
+import net.helix.pvp.kit.provider.Thor;
+import net.helix.pvp.kit.provider.TimeLord;
+import net.helix.pvp.kit.provider.Tornado;
+import net.helix.pvp.kit.provider.Turtle;
+import net.helix.pvp.kit.provider.Viper;
 
 public enum HelixKit {
 
-<<<<<<< HEAD
-	NENHUM("Nenhum", 0, new PvP(), Material.BARRIER, "Nenhuma Habilidade"),
-	PVP("PvP", 0, new PvP(), Material.STONE_SWORD, "Nasça com espada afiada 1"),
-	KANGAROO("Kangaroo", 0,  new Kangaroo(), Material.FIREWORK, "De pulos duplos com Seu Firework!"),
-	THOR("Thor", 0, new Thor(), Material.GOLD_AXE, "Solte raios"),
-	ARCHER("Archer", 0, new Archer(), Material.BOW, "Ganhe arco e flechas!"),
-    NEO("Neo", 0, new AntiStomper(), Material.BARRIER, "Imune a varios kits!"),
-    QUICKDROPPER("QuickDropper", 0, new QuickDropper(), Material.BOWL, "Drope potes automatico!"),
-    ANTISTOMPER("AntiStomper", 0, new AntiStomperReal(), Material.DIAMOND_HELMET, "Imune a Stomper!"),
-	FISHERMAN("Fisherman", 2700, new Fisherman(), Material.FISHING_ROD, "Pesque players!"),
-	ANCHOR("Anchor", 2600, new Anchor(), Material.ANVIL, "Não leve knockback!"),
-	VIPER("Viper", 3970, new Viper(), Material.SPIDER_EYE, "Tenha chance de dar veneno!"),
-	SNAIL("Snail", 3970, new Snail(), Material.SOUL_SAND, "Tenha chance de dar lentidão"),
-	POSEIDON("Poseidon", 4200, new Poseidon(), Material.WATER_BUCKET, "Seja forte na agua"),
-	FIREMAN("Fireman", 7700, new Fireman(), Material.LAVA_BUCKET, "Seja imune a fogo e lava!"),
-	NINJA("Ninja", 7300, new Ninja(), Material.EMERALD, "Teleporte-se ao inimigo!"),
-	GRAPPLER("Grappler", 7000, new Grappler(), Material.LEASH, "Seja rapido!"),
-	TIMELORD("Timelord", 7000, new TimeLord(), Material.WATCH, "Pare o tempo!"),
-	MONK("Monk", 4000, new Monk(), Material.BLAZE_ROD, "Embaralhe o inventario do inimigo!"),
-	STOMPER("Stomper", 9000, new Stomper(), Material.IRON_BOOTS, "Esmague seus inimigos!"),
-	LEECH("Leech", 7000, new Leech(), Material.REDSTONE_BLOCK, "Roube a vida dos inimigos!"),
-	CAMEL("Camel", 7000, new Camel(), Material.SAND, "Seja forte em desertos!"),
-	GRANDPA("Grandpa", 6000, new Grandpa(), Material.STICK, "De muito KB!"),
-	SCOUT("Scout", 6000, new Scout(), Material.POTION, "Ganhe 5 poções de speed!"),
-	CRITICAL("Critical", 15000, new Critical(), Material.REDSTONE, "De golpes criticos!"),
-	MILKMAN("Milkman", 8000, new Milkman(), Material.MILK_BUCKET, "Seu leite te deixa forte!"),
-	TURTLE("Turtle", 7000, new Turtle(), Material.DIAMOND_CHESTPLATE, "Receba recebe menos dano"),
-	PHANTOM("Phantom", 17000, new Phantom(), Material.FEATHER, "Voe com esse kit!"),
-	BOXER("Boxer", 8000, new Boxer(), Material.QUARTZ, "De mais e leve menos dano!"),
-	HULK("Hulk", 10000, new Hulk(), Material.DROPPER, "Pegue os inimigos!"),
-	SWITCHER("Switcher", 0, new Switcher(), Material.SNOW_BALL, "Troque de lugar com players!"),
-	GLADIATOR("Gladiator", 17000, new GladiatorListener(), Material.IRON_FENCE, "Faça 1v1 nos ares!");
-=======
-	NENHUM("Nenhum", 0, new PvP(), Material.BARRIER, "habilidade"),
-	PVP("PvP", 0, new PvP(), Material.STONE_SWORD, "com espada afiada 1"),
-	KANGAROO("Kangaroo", 0,  new Kangaroo(), Material.FIREWORK, "pulos duplos com Seu Firework!"),
-	THOR("Thor", 0, new Thor(), Material.GOLD_AXE, "raios"),
-	ARCHER("Archer", 0, new Archer(), Material.BOW, "arco e flechas!"),
-    NEO("Neo", 0, new AntiStomper(), Material.BARRIER, "a varios kits!"),
-    QUICKDROPPER("QuickDropper", 0, new QuickDropper(), Material.BOWL, "potes automatico!"),
-    ANTISTOMPER("AntiStomper", 0, new AntiStomperReal(), Material.DIAMOND_HELMET, "a Stomper!"),
-	FISHERMAN("Fisherman", 2700, new Fisherman(), Material.FISHING_ROD, "players!"),
-	ANCHOR("Anchor", 2600, new Anchor(), Material.ANVIL, "leve knockback!"),
-	VIPER("Viper", 3970, new Viper(), Material.SPIDER_EYE, "chance de dar veneno!"),
-	SNAIL("Snail", 3970, new Snail(), Material.SOUL_SAND, "chance de dar lentidÃ£o"),
-	POSEIDON("Poseidon", 4200, new Poseidon(), Material.WATER_BUCKET, "forte na agua"),
-	FIREMAN("Fireman", 7700, new Fireman(), Material.LAVA_BUCKET, "imune a fogo e lava!"),
-	NINJA("Ninja", 7300, new Ninja(), Material.EMERALD, "ao inimigo!"),
-	GRAPPLER("Grappler", 7000, new Grappler(), Material.LEASH, "rapido!"),
-	TIMELORD("Timelord", 7000, new TimeLord(), Material.WATCH, "o tempo!"),
-	MONK("Monk", 4000, new Monk(), Material.BLAZE_ROD, "o inventario do inimigo!"),
-	STOMPER("Stomper", 9000, new Stomper(), Material.IRON_BOOTS, "seus inimigos!"),
-	LEECH("Leech", 7000, new Leech(), Material.REDSTONE_BLOCK, "a vida dos inimigos!"),
-	CAMEL("Camel", 7000, new Camel(), Material.SAND, "forte em desertos!"),
-	GRANDPA("Grandpa", 6000, new Grandpa(), Material.STICK, "muito KB!"),
-	SCOUT("Scout", 6000, new Scout(), Material.POTION, "5 pode speed!"),
-	MILKMAN("Milkman", 8000, new Milkman(), Material.MILK_BUCKET, "leite te deixa forte!"),
-	TURTLE("Turtle", 7000, new Turtle(), Material.DIAMOND_CHESTPLATE, "recebe menos dano"),
-	PHANTOM("Phantom", 17000, new Phantom(), Material.FEATHER, "com esse kit!"),
-	BOXER("Boxer", 8000, new Boxer(), Material.QUARTZ, "e leve menos dano!"),
-	HULK("Hulk", 10000, new Hulk(), Material.DROPPER, "os inimigos!"),
-	SWITCHER("Switcher", 0, new Switcher(), Material.SNOW_BALL, "de lugar com players!"),
-	GLADIATOR("Gladiator", 17000, new GladiatorListener(), Material.IRON_FENCE, "1v1 nos ares!");
->>>>>>> c405d20f055b0ad677bdafd6a2d841945ddcf0bf
+
+	NENHUM("None", 0, 0 , new PvP(), Material.BARRIER, HelixPvP.getInstance().getConfig().getString("NenhumLore")),
+	PVP("PvP", HelixPvP.getInstance().getConfig().getInt("PvPPrice"), 0, new PvP(), Material.STONE_SWORD, HelixPvP.getInstance().getConfig().getString("PvPLore")),
+	KANGAROO("Kangaroo", HelixPvP.getInstance().getConfig().getInt("KangarooPrice"), 0,  new Kangaroo(), Material.FIREWORK, HelixPvP.getInstance().getConfig().getString("KangarooLore")),
+	THOR("Thor", HelixPvP.getInstance().getConfig().getInt("ThorPrice"), 0, new Thor(), Material.GOLD_AXE, HelixPvP.getInstance().getConfig().getString("ThorLore")),
+	ARCHER("Archer",HelixPvP.getInstance().getConfig().getInt("ArcherPrice"), 0, new Archer(), Material.BOW, HelixPvP.getInstance().getConfig().getString("ArcherLore")),
+    NEO("Neo", HelixPvP.getInstance().getConfig().getInt("NeoPrice"), 0, new AntiStomper(), Material.BARRIER, HelixPvP.getInstance().getConfig().getString("NeoLore")),
+    QUICKDROPPER("QuickDropper", HelixPvP.getInstance().getConfig().getInt("QuickDropperPrice"), 0, new QuickDropper(), Material.BOWL, HelixPvP.getInstance().getConfig().getString("QuickDropperLore")),
+    ANTISTOMPER("AntiStomper", HelixPvP.getInstance().getConfig().getInt("AntiStomperPrice"), 0, new AntiStomperReal(), Material.DIAMOND_HELMET, HelixPvP.getInstance().getConfig().getString("AntiStomperLore")),
+	FISHERMAN("Fisherman", HelixPvP.getInstance().getConfig().getInt("FishermanPrice"), 150, new Fisherman(), Material.FISHING_ROD, HelixPvP.getInstance().getConfig().getString("FishermanLore")),
+	ANCHOR("Anchor", HelixPvP.getInstance().getConfig().getInt("AnchorPrice"), 250, new Anchor(), Material.ANVIL, HelixPvP.getInstance().getConfig().getString("AnchorLore")),
+	TORNADO("Tornado", HelixPvP.getInstance().getConfig().getInt("TornadoPrice"), 1500, new Tornado(), Material.HOPPER, HelixPvP.getInstance().getConfig().getString("TornadoLore")),
+	VIPER("Viper", HelixPvP.getInstance().getConfig().getInt("ViperPrice"), 150, new Viper(), Material.SPIDER_EYE, HelixPvP.getInstance().getConfig().getString("ViperLore")),
+	SNAIL("Snail", HelixPvP.getInstance().getConfig().getInt("SnailPrice"), 150, new Snail(), Material.SOUL_SAND, HelixPvP.getInstance().getConfig().getString("SnailLore")),
+	POSEIDON("Poseidon", HelixPvP.getInstance().getConfig().getInt("PoseidonPrice"), 150, new Poseidon(), Material.WATER_BUCKET, HelixPvP.getInstance().getConfig().getString("PoseidonLore")),
+	FIREMAN("Fireman", HelixPvP.getInstance().getConfig().getInt("FiremanPrice"), 150, new Fireman(), Material.LAVA_BUCKET, HelixPvP.getInstance().getConfig().getString("FiremanLore")),
+	NINJA("Ninja", HelixPvP.getInstance().getConfig().getInt("NinjaPrice"), 200, new Ninja(), Material.EMERALD, HelixPvP.getInstance().getConfig().getString("NinjaLore")),
+	GRAPPLER("Grappler", HelixPvP.getInstance().getConfig().getInt("GrapplerPrice"), 200, new Grappler(), Material.LEASH, HelixPvP.getInstance().getConfig().getString("GrapplerLore")),
+	TIMELORD("Timelord", HelixPvP.getInstance().getConfig().getInt("TimeLordPrice"), 200, new TimeLord(), Material.WATCH, HelixPvP.getInstance().getConfig().getString("TimelordLore")),
+	MONK("Monk", HelixPvP.getInstance().getConfig().getInt("MonkPrice"), 200, new Monk(), Material.BLAZE_ROD, HelixPvP.getInstance().getConfig().getString("MonkLore")),
+	STOMPER("Stomper", HelixPvP.getInstance().getConfig().getInt("StomperPrice"), 200, new Stomper(), Material.IRON_BOOTS, HelixPvP.getInstance().getConfig().getString("StomperLore")),
+	LEECH("Leech", HelixPvP.getInstance().getConfig().getInt("LeechPrice"), 200, new Leech(), Material.REDSTONE_BLOCK, HelixPvP.getInstance().getConfig().getString("LeechLore")),
+	CAMEL("Camel", HelixPvP.getInstance().getConfig().getInt("CamelPrice"), 200, new Camel(), Material.SAND, HelixPvP.getInstance().getConfig().getString("CamelLore")),
+	GRANDPA("Grandpa", HelixPvP.getInstance().getConfig().getInt("GrandpaPrice"), 150, new Grandpa(), Material.STICK, HelixPvP.getInstance().getConfig().getString("GrandpaLore")),
+	SCOUT("Scout", HelixPvP.getInstance().getConfig().getInt("ScoutPrice"), 150, new Scout(), Material.POTION, HelixPvP.getInstance().getConfig().getString("ScoutLore")),
+	CRITICAL("Critical", HelixPvP.getInstance().getConfig().getInt("CriticalPrice"), 150, new Critical(), Material.REDSTONE, HelixPvP.getInstance().getConfig().getString("CriticalLore")),
+	MILKMAN("Milkman", HelixPvP.getInstance().getConfig().getInt("MilkmanPrice"), 250, new Milkman(), Material.MILK_BUCKET, HelixPvP.getInstance().getConfig().getString("MilkmanLore")),
+	TURTLE("Turtle", HelixPvP.getInstance().getConfig().getInt("TurtlePrice"), 200, new Turtle(), Material.DIAMOND_CHESTPLATE, HelixPvP.getInstance().getConfig().getString("TurtleLore")),
+	PHANTOM("Phantom", HelixPvP.getInstance().getConfig().getInt("PhantomPrice"), 520, new Phantom(), Material.FEATHER, HelixPvP.getInstance().getConfig().getString("PhantomLore")),
+	BOXER("Boxer", HelixPvP.getInstance().getConfig().getInt("BoxerPrice"), 1500, new Boxer(), Material.QUARTZ, HelixPvP.getInstance().getConfig().getString("BoxerLore")),
+	HULK("Hulk", HelixPvP.getInstance().getConfig().getInt("HulkPrice"), 420, new Hulk(), Material.DROPPER, HelixPvP.getInstance().getConfig().getString("HulkLore")),
+	SWITCHER("Switcher", HelixPvP.getInstance().getConfig().getInt("SwitcherPrice"), 0, new Switcher(), Material.SNOW_BALL, HelixPvP.getInstance().getConfig().getString("SwitcherLore")),
+	JUMPER("Jumper", HelixPvP.getInstance().getConfig().getInt("JumperPrice"), 250, new Jumper(), Material.EYE_OF_ENDER, HelixPvP.getInstance().getConfig().getString("JumperLore")),
+	FLASH("Flash", 15000, 500, new Flash(), Material.REDSTONE_TORCH_ON, "Teleporte para onde vocÃª clicar"),
+    GLADIATOR("Gladiator", 15000, 500, new GladiatorListener(), Material.IRON_FENCE, "FaÃ§a 1v1 nos inimigos"),
+	SONIC("Sonic", 15000, 500, new Sonic(), Material.LAPIS_BLOCK, "De um desh e coloque veneno");
 	
 	private final String name;
 	private final String description;
 	private final int price;
+	private final int pricecash;
 	private final KitHandler handler;
 	private final Material icon;
 	private static String nl = System.getProperty("line.separator");
@@ -103,27 +109,25 @@ public enum HelixKit {
 		).findFirst();
 	}
 	
-	HelixKit(String name, int price, KitHandler handler, Material icon, String description) {
+	HelixKit(String name, int price, int pricecash, KitHandler handler, Material icon, String description) {
 		this.name = name;
 		this.price = price;
+		this.pricecash = pricecash;
 		this.handler = handler;
 		this.icon = icon;
 		this.description = description;
 	}
 	
 	public void send(Player player) {
-		handler.execute(player);
-		DamageUtil.allowAllDamage(player.getName());
-		
+		if (KitManager2.getPlayer(player.getName()).getkit2().getName() == KitManager.getPlayer(player.getName()).getKit().getName()) {
+			player.sendMessage("Â§cVocÃª jÃ¡ tem esse kit escolhido como secundÃ¡rio!");
+			return;
+		}
+		player.playSound(player.getLocation(), Sound.LEVEL_UP, 1.0F, 1.0F);
 		KitManager.getPlayer(player.getName()).setKit(this);
-<<<<<<< HEAD
-		player.sendMessage("§b" + name + " selecionado!");
-		DarKit.sendTitle(player, "§5§lKIT", "§dVocê escolheu o kit " + KitManager.getPlayer(player.getName()).getKit());
-=======
-		player.sendMessage("" + name + " selecionado!");
-		DarKit.sendTitle(player, "Â§5Â§lKIT", "Â§dVocÃª escolheu o kit " + KitManager.getPlayer(player.getName()).getKit());
->>>>>>> c405d20f055b0ad677bdafd6a2d841945ddcf0bf
-		
+		KitManager2.getPlayer(player.getName()).removekit2();
+		player.sendMessage("Â§b" + name + " escolhido como primÃ¡rio!");
+		DarKit.sendTitle(player, "Â§aÂ§lKIT", "Â§fVocÃª selecionou " + KitManager.getPlayer(player.getName()).getKit());		
 	}
 	
 	public KitHandler getHandler() {
@@ -151,11 +155,14 @@ public enum HelixKit {
 	public int getPrice() {
 		return price;
 	}
+	public int getPriceCash() {
+		return pricecash;
+	}
 	
 	public Material getIcon() {
 		return icon;
 	}
 	public String getDescription() {
-		return description.replace("&", "§");
+		return description.replace("&", "Â§");
 	}
 }

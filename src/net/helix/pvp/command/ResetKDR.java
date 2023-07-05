@@ -27,13 +27,13 @@ public class ResetKDR
         return true;
       }
       else if (!sender.hasPermission("admin.cmd.resetkdr")) {
-          sender.sendMessage("§cVocê não tem permissão");
+          sender.sendMessage("Â§cVocÂ§ nÂ§o tem permissÂ§o");
           return true;
       }
       Player t = Bukkit.getPlayer(args[0]);
       if (args.length == 1) {
     	  if (t == null) {
-              sender.sendMessage("§cO Player precisa estar online");
+              sender.sendMessage("Â§cO Player precisa estar online");
               return true;  
     	  }
     	  HelixPlayer pk = HelixBukkit.getInstance().getPlayerManager().getPlayer(t.getName());
@@ -43,9 +43,9 @@ public class ResetKDR
 			pk.getPvp().setKillstreak(0);
 			Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "ajl removeplayer " + t.getName() + " helixpvp2_player_kills");
 			if (t != null) {
-			t.kickPlayer("§cSua conta e status foi resetada no servidor!");
+			t.kickPlayer("Â§cYour kdr gets reseted!");
 			}
-			Bukkit.broadcast("§4§lRESETKDR §a" + p.getName() + " §fresetou o KDR do Jogador " + t.getName(), "kombo.cmd.report");
+			Bukkit.broadcast("Â§4Â§lRESETKDR Â§a" + p.getName() + " Â§fresetou o KDR do Jogador " + t.getName(), "kombo.cmd.report");
       }
     }
     return true;

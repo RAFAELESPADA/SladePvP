@@ -7,6 +7,8 @@ import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import net.helix.core.bukkit.HelixBukkit;
 import net.helix.core.bukkit.account.HelixPlayer;
 import net.helix.pvp.HelixPvP;
+import net.helix.pvp.listener.Medals;
+import net.helix.pvp.listener.Ranking;
 
 	
 	/**
@@ -119,8 +121,21 @@ import net.helix.pvp.HelixPvP;
 	    if (indentifier.equals("player_deaths")) {
 		      return String.valueOf(helixPlayer.getPvp().getDeaths());
 		    }
+	    if (indentifier.equals("player_ks")) {
+		      return String.valueOf(helixPlayer.getPvp().getKillstreak());
+		    }
+	    if (indentifier.equals("player_rank")) {
+	    	  Ranking medal = Ranking.getRank(helixPlayer);
+		      return String.valueOf(medal.getColoredSymbol());
+		    }
+	    if (indentifier.equals("player_coins")) {
+		      return String.valueOf(helixPlayer.getPvp().getCoins());
+		    }
 	    if (indentifier.equals("player_color")) {
 		      return String.valueOf(helixPlayer.getRole().getColor());
+		    }
+	    if (indentifier.equals("player_killsfps")) {
+		      return String.valueOf(helixPlayer.getPvp().getKillsfps());
 		    }
 	    if (helixPlayer == null) {
 	      return "";

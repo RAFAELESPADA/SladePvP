@@ -1,8 +1,8 @@
-name: PvP
-version: 2.0.0
-author: Smart , Rafael Auler
+name: SRKitPvP
+version: 3.0.0
+authors: [Rafael Auler]
 main: net.helix.pvp.HelixPvP
-description: Plugin de kitpvp do KomboPvP
+description: Plugin de kitpvp da loja SRPlugins
 depend: [Core, DecentHolograms, PlaceholderAPI, ajLeaderboards]
 
 commands:
@@ -13,19 +13,28 @@ commands:
    tpall:
    sc:
    report:
+   crash:
+   setarena:
    regras:
    req:
+   set1v1:
    givecoins:
    site:
+   grupo:
    loja:
    sudo:
+   warpinfo:
+   fly:
+   kitpvp:
    reporttoggle:
    sealend123:
    lavainiciar:
    arenainiciar:
+   membro:
    shutdownserver:
    pinfo:
-   fake:
+   givekills:
+   givedeaths:
    resetkdr:
    givekit:
    v:

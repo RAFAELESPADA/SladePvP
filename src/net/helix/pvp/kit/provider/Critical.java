@@ -2,19 +2,18 @@ package net.helix.pvp.kit.provider;
 
 
 
+import java.util.Random;
+
 import org.bukkit.Effect;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 
 import net.helix.pvp.kit.KitHandler;
 import net.helix.pvp.kit.KitManager;
 import net.md_5.bungee.api.ChatColor;
-
-import java.util.Random;
 
 public class Critical extends KitHandler {
 
@@ -30,8 +29,8 @@ public class Critical extends KitHandler {
         int chance = new Random().nextInt(10);
         if (chance < 3) {
             event.setDamage(event.getDamage() + 0.70);
-            damager.sendMessage(ChatColor.DARK_RED + "Você deu um golpe critico");
-            damager.getWorld().playEffect(event.getEntity().getLocation(), Effect.STEP_SOUND, Material.REDSTONE_BLOCK, 10);
+            damager.sendMessage(ChatColor.DARK_RED + "VocÃª deu um hit critico!");
+            damager.getWorld().playEffect(event.getEntity().getLocation(), Effect.STEP_SOUND, Material.GOLD_BLOCK, 10);
         }
     }
 

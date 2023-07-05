@@ -1,6 +1,7 @@
 package net.helix.pvp.kit.provider;
 
 import java.util.Random;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -9,8 +10,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
+
 import net.helix.core.bukkit.item.ItemBuilder;
-import net.helix.pvp.FakeAPI;
 import net.helix.pvp.HelixPvP;
 import net.helix.pvp.kit.KitHandler;
 import net.helix.pvp.kit.KitManager;
@@ -21,7 +22,7 @@ public class Monk extends KitHandler {
 	public void execute(Player player) {
 		super.execute(player);
 		
-		player.getInventory().setItem(1, new ItemBuilder("§eEmbaralhar!", Material.BLAZE_ROD)
+		player.getInventory().setItem(1, new ItemBuilder("ï¿½eEmbaralhar!", Material.BLAZE_ROD)
 				.nbt("kit-handler", "monk")
 				.nbt("cancel-drop")
 				.toStack()
@@ -40,7 +41,7 @@ public class Monk extends KitHandler {
 			return;
 		}
 		if (!KitManager.getPlayer(jogadorClicado.getName()).hasKit() && KitManager.getPlayer(player.getName()).hasKit(this)) {
-			player.sendMessage(ChatColor.RED + "Você nÃ£o pode usar o monk em quem nÃ£o estÃ¡ com kit.");
+			player.sendMessage(ChatColor.RED + "VocÃª nÃ£o pode usar o kit em um jogador no spawn.");
         	return;
         }
 		if (!KitManager.getPlayer(player.getName()).hasKit(this) 
@@ -52,13 +53,13 @@ public class Monk extends KitHandler {
            final ItemStack ItemMudado = jogadorClicado.getItemInHand();
            jogadorClicado.setItemInHand(ItemSelecionado);
            jogadorClicado.getInventory().setItem(random, ItemMudado);
-           jogadorClicado.sendMessage("§6Você teve seu inventário embaralhado pelo §f" + (!FakeAPI.hasFake(player) ? player.getName() : FakeAPI.getNick(player)) + "§6.");
-   		player.sendMessage("§6Você embaralhou o inventário de §f" + (!FakeAPI.hasFake(jogadorClicado) ? jogadorClicado.getName() : FakeAPI.getNick(jogadorClicado)) + "§6.");
+           jogadorClicado.sendMessage("Â§6VocÃª teve o inventÃ¡rio embaralhado Â§f" + player.getName());
+   		player.sendMessage("Â§6VocÃª embaralhou o inventÃ¡rio de Â§f" + jogadorClicado.getName());
            addCooldown(player, 10);
            Bukkit.getScheduler().scheduleSyncDelayedTask((Plugin)HelixPvP.getInstance(), (Runnable)new Runnable() {
                @Override
                public void run() {
-                   player.sendMessage("§aSeu cooldown acabou.");
+                   player.sendMessage("Â§aO cooldown acabou.");
                }
            }, 20L * 10);
        }

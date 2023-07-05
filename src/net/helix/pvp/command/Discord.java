@@ -6,6 +6,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import net.helix.pvp.HelixPvP;
+
 public class Discord 
 implements CommandExecutor
 {
@@ -14,7 +16,7 @@ public boolean onCommand(CommandSender sender, Command cmd, String label, String
   Player p = (Player)sender;
   if (label.equalsIgnoreCase("discord"))
   {
-    p.sendMessage("§9§lDISCORD: §f" + "https://discord.gg/JWZgacyCGk");
+    p.sendMessage("Â§9Â§lDISCORD: Â§f" + HelixPvP.getInstance().getConfig().getString("DiscordLink").replace("&", "Â§"));
     p.playSound(p.getLocation(), Sound.BLAZE_HIT, 12.0F, 12.0F);
   }
   return false;

@@ -1,17 +1,16 @@
 package net.helix.pvp.kit.provider;
 
 import java.util.HashMap;
-import java.util.concurrent.TimeUnit;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerToggleSneakEvent;
 
-import net.helix.core.util.HelixCooldown;
-import net.helix.pvp.FakeAPI;
+import net.helix.pvp.HelixPvP;
 import net.helix.pvp.kit.KitHandler;
 import net.helix.pvp.kit.KitManager;
 
@@ -52,12 +51,13 @@ public class Ninja extends KitHandler {
 			}
 			if ((targetPlayer = Bukkit.getPlayer(targetName)) != null) {
 				if (player.getLocation().distance(targetPlayer.getLocation()) >= 50) {
-					player.sendMessage("§cEste jogador está muito longe.");
+					player.sendMessage("Â§cO jogador estÃ¡ muito longe (50+ blocos).");
 					return;
 				}
-				addCooldown(event.getPlayer(), 10);
+				addCooldown(event.getPlayer(), HelixPvP.getInstance().getConfig().getInt("NinjaCooldown"));
 				player.teleport(targetPlayer);
-				player.sendMessage("§aVocê teleportou para §f" + (!FakeAPI.hasFake(targetPlayer) ? targetName : FakeAPI.getNick(targetPlayer) + "§a."));
+				player.sendMessage("Â§aTeleportado para Â§f" + targetName);
+				player.playSound(player.getLocation(), Sound.ENDERMAN_TELEPORT, 10, 10);
 			}
 		}
 	}

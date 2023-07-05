@@ -33,10 +33,10 @@ public class PotePlaca
   {
     if (e.getLine(0).equalsIgnoreCase("potion"))
     {
-      e.setLine(0, "§4=-=()=-=");
-      e.setLine(1, "§6KITPVP");
-      e.setLine(2, "§dPOTION");
-      e.setLine(3, "§4=-=()=-=");
+      e.setLine(0, "Â§4=-=()=-=");
+      e.setLine(1, "Â§6KITPVP");
+      e.setLine(2, "Â§dPOTION");
+      e.setLine(3, "Â§4=-=()=-=");
     }
   }
   
@@ -47,10 +47,10 @@ public class PotePlaca
     
     ItemStack sopa = new ItemStack(Material.POTION, 1, (short)16421);
     ItemMeta sopas = sopa.getItemMeta();
-    sopas.setDisplayName("§ePotinho Magico");
+    sopas.setDisplayName("Â§ePotinho Magico");
     sopa.setItemMeta(sopas);
     
-    Inventory inve = Bukkit.getServer().createInventory(p, 36, "§bPoÃ§oes de Cura");
+    Inventory inve = Bukkit.getServer().createInventory(p, 36, "Â§bPoÃ§oes de Cura");
     
     inve.setItem(0, sopa);
     inve.setItem(1, sopa);
@@ -93,10 +93,10 @@ public class PotePlaca
     {
       Sign s = (Sign)e.getClickedBlock().getState();
       String[] lines = s.getLines();
-      if ((lines.length > 0) && (lines[0].equals("§4=-=()=-=")) && 
-        (lines.length > 1) && (lines[1].equals("§6KITPVP")) && 
-        (lines.length > 2) && (lines[2].equals("§dPOTION")) && 
-        (lines.length > 3) && (lines[3].equals("§4=-=()=-="))) {
+      if ((lines.length > 0) && (lines[0].equals("Â§4=-=()=-=")) && 
+        (lines.length > 1) && (lines[1].equals("Â§6KITPVP")) && 
+        (lines.length > 2) && (lines[2].equals("Â§dPOTION")) && 
+        (lines.length > 3) && (lines[3].equals("Â§4=-=()=-="))) {
         p.openInventory(inve);
       }
     }

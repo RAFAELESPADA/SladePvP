@@ -27,26 +27,26 @@ public class GiveCoins implements CommandExecutor {
 		
 		if (cmd.getName().equalsIgnoreCase("givecoins")) {
 			if (!sender.hasPermission("cmd.givecoins")) {
-				sender.sendMessage("Voce não tem permissao");
+				sender.sendMessage("Voce nÂ§o tem permissao");
 			} else {
 				if (args.length == 0) {
-					sender.sendMessage( "§c§l/givecoins [player] [amount]");
+					sender.sendMessage( "Â§cÂ§l/givecoins [player] [amount]");
 					return true;
 				}
 				Player target = Bukkit.getPlayerExact(args[0]);
 				if ((target == null) || (!(target instanceof Player))) {
-					sender.sendMessage( "§c§lThe Player is offline");
+					sender.sendMessage( "Â§cÂ§lThe Player is offline");
 					return true;
 				}
 				if (isNumeric(args[1])) {
 					int coins = Integer.parseInt(args[1]);
 					HelixPlayer pk = HelixBukkit.getInstance().getPlayerManager().getPlayer(target.getName());
 				    pk.getPvp().addCoins(coins);	    
-					sender.sendMessage( "§eVocê deu para " + target.getName() + " " + coins
-							+ "§bCoins");
-					target.sendMessage( "§eVocê recebeu " + coins
-							+ " §bCoins");
-					target.sendMessage( "§6Sua conta foi atualizada!");
+					sender.sendMessage( "Â§eVocÃª deu para " + target.getName() + " " + coins
+							+ "Â§bCoins");
+					target.sendMessage( "Â§eVocÃª recebeu " + coins
+							+ " Â§bCoins");
+					target.sendMessage( "Â§6Sua conta foi atualizada!");
 					
 				}
 			}

@@ -2,24 +2,23 @@ package net.helix.pvp.listener;
 
 
 
-import lombok.Getter;
-import net.helix.core.bukkit.account.HelixPlayer;
-
 import java.util.Arrays;
 import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
+import lombok.Getter;
+
 @Getter
 public enum Medals {
 
-    NENHUM("§7Nenhuma", "§7Nenhuma", "§7Sem medalhas."),
+    NENHUM("§7Nenhuma", "", "§7Sem medalhas."),
     DEV("§eCafe", "§e\u2615", "§7Medalha Vip."),
     REI("§6Rei", "§6\u269C", "§7Medalha Vip."),
-    KAWAII("§dPorquinho", "§d\u267E", "§7Para quem Ã© fofinho."),
+    KAWAII("§dPorquinho", "§d\u267E", "§7Para quem é fofinho."),
     HOMIE("§bHomies", "§b$", "§7Para quem Ã© casa."),
-    YIN_YANG("§fYin Yang", "§f\u262F", "§7Para quem Ã© controlado."),
+    YIN_YANG("§fYin Yang", "§f\u262F", "§7Para quem é controlado."),
     SOL("§6Sol", "§6\u263C", "§7Medalha Vip."),
     ;
 

@@ -1,6 +1,7 @@
 package net.helix.pvp.inventory.listener;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -8,8 +9,13 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.server.ServerListPingEvent;
 
 import net.helix.core.bukkit.item.ItemBuilder;
+import net.helix.pvp.HelixPvP;
 import net.helix.pvp.inventory.KitsInventory;
+import net.helix.pvp.inventory.KitsInventory2;
 import net.helix.pvp.kit.HelixKit;
+import net.helix.pvp.kit.HelixKit2;
+import net.helix.pvp.kit.KitManager;
+import net.helix.pvp.kit.KitManager2;
 
 public class SelectKitListener implements Listener {
 	
@@ -33,11 +39,51 @@ public class SelectKitListener implements Listener {
 		});
 	}
 	@EventHandler
+	public void onInvClick2(InventoryClickEvent event) {
+		Player player = (Player) event.getWhoClicked();
+		
+		if (!event.getView().getTitle().equals(KitsInventory2.getInventoryName())) {
+			return;
+		}
+		
+		event.setCancelled(true);
+		if (!ItemBuilder.has(event.getCurrentItem(), "kit-gui2")) {
+			return;
+		}
+		
+		String kitName2 = ItemBuilder.getString(event.getCurrentItem(), "kit-gui2");
+		HelixKit2.findKit(kitName2).ifPresent(kit -> {
+			if (KitManager.getPlayer(player.getName()).getKit().getName() == kit.getName()) {
+				player.sendMessage("Â§cVocÃª jÃ¡ selecionou esse kit como primÃ¡rio!");
+				return;
+			}
+			if (KitManager.getPlayer(player.getName()).getKit() == HelixKit.STOMPER && (kitName2 == "Grappler" || kitName2 == "Kangaroo" || kitName2 == "Flash" || kitName2 == "AntiStomper")) {
+				player.sendMessage("Â§c" + kitName2 + " Ã© incompÃ¡tivel com Stomper");
+				player.closeInventory();
+				return;
+			}
+			if (KitManager.getPlayer(player.getName()).getKit() == HelixKit.FLASH && (kitName2 == "Grappler" || kitName2 == "Gladiator")) {
+				player.sendMessage("Â§c" + kitName2 + " Ã© incompÃ¡tivel com Flash");
+				player.closeInventory();
+				return;
+			}
+				if ((KitManager.getPlayer(player.getName()).getKit() == HelixKit.KANGAROO || KitManager.getPlayer(player.getName()).getKit() == HelixKit.GRAPPLER  || KitManager.getPlayer(player.getName()).getKit() == HelixKit.ANTISTOMPER || KitManager.getPlayer(player.getName()).getKit() == HelixKit.FLASH) && (kitName2 == "Stomper")) {
+					player.sendMessage("Â§c" + kitName2 +" Ã© incompatÃ­vel com " + KitManager.getPlayer(player.getName()).getKit());
+					player.closeInventory();
+					return;
+				};
+				player.closeInventory();
+				kit.send(player);
+		});
+		
+			
+	}
+	@EventHandler
 	public void onInvClick(ServerListPingEvent event) {
 		if (!Bukkit.getServer().hasWhitelist()) {
-			event.setMotd("                 §5§lSloper §7» §aloja.slopermc.com\n        §6§lVenha conhecer nosso §5§l§nKITPVP§7 [1.7 - 1.8]");
+			event.setMotd(HelixPvP.getInstance().getConfig().getString("Motd").replace("&", "Â§"));
 		} else {
-				event.setMotd("             §5§lSloper §7» §aloja.slopermc.com\n     §cO Servidor está em manutenção §7[1.7 - 1.8]");	
+				event.setMotd(HelixPvP.getInstance().getConfig().getString("MotdWhitelist").replace("&", "Â§"));	
 			}
 		}
 }

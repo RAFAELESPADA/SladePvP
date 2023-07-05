@@ -1,16 +1,21 @@
 package net.helix.pvp.command;
 
 
-import net.helix.core.bukkit.HelixBukkit;
-import net.helix.core.bukkit.account.HelixPlayer;
-import net.helix.pvp.listener.Medals;
-import net.md_5.bungee.api.chat.*;
+import java.util.ArrayList;
+
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import java.util.ArrayList;
+import net.helix.core.bukkit.HelixBukkit;
+import net.helix.core.bukkit.account.HelixPlayer;
+import net.helix.pvp.listener.Medals;
+import net.md_5.bungee.api.chat.BaseComponent;
+import net.md_5.bungee.api.chat.ClickEvent;
+import net.md_5.bungee.api.chat.ComponentBuilder;
+import net.md_5.bungee.api.chat.HoverEvent;
+import net.md_5.bungee.api.chat.TextComponent;
 
 public class Medal implements CommandExecutor {
 	
@@ -40,7 +45,6 @@ public class Medal implements CommandExecutor {
             player.sendMessage("§aVocê selecionou a medalha " + medal.getMedal());
             HelixPlayer helixPlayer = HelixBukkit.getInstance().getPlayerManager()
     				.getPlayer(player.getName());
-            helixPlayer.setMedals(medal);
         }
         if (command.getName().equalsIgnoreCase("medalhas")) {
             ArrayList<BaseComponent> medals = new ArrayList<>();

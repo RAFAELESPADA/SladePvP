@@ -3,6 +3,7 @@ package net.helix.pvp.inventory;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -12,19 +13,20 @@ import org.bukkit.inventory.ItemStack;
 
 import net.helix.core.bukkit.format.HelixDecimalFormat;
 import net.helix.core.bukkit.item.ItemBuilder;
+import net.helix.pvp.HelixPvP;
 import net.helix.pvp.kit.HelixKit;
 import net.helix.pvp.kit.KitManager;
 
 public class ShopInventory {
 	
-	private final static String inventoryName = "§bLoja de kit";
+	private final static String inventoryName = "Loja de Kits PrimÃ¡rios";
 	private static ItemStack randomGlass() {
 		int randomId = new Random().nextInt(14);
 		return new ItemStack(Material.STAINED_GLASS_PANE, 1, (short)randomId);
 	}
 	public static void open(Player player) {
 		Inventory inventory = Bukkit.createInventory(null, 6 * 9, inventoryName);
-		ItemStack visualItem = new ItemBuilder("§6§lSLOPER§f§lMC", randomGlass()).toStack();
+		ItemStack visualItem = new ItemBuilder(HelixPvP.getInstance().getConfig().getString("ShopItem").replace("&", "Â§"), randomGlass()).toStack();
 		
 		
 		List<HelixKit> availableKits = HelixKit.getKits().stream().filter(
@@ -49,8 +51,8 @@ public class ShopInventory {
 			}
 			
 			availableKits.forEach(kit -> {
-				inventory.addItem(new ItemBuilder("§c" + kit.getName(), kit.getIcon())
-						.lore("§7Comprar por §e" + HelixDecimalFormat.format(kit.getPrice()) + " coins")
+				inventory.addItem(new ItemBuilder("Â§c" + kit.getName(), kit.getIcon())
+						.lore("Â§7Compre por Â§e" + HelixDecimalFormat.format(kit.getPrice()) + " Coins")
 						.addFlags(ItemFlag.HIDE_ATTRIBUTES,
 								ItemFlag.HIDE_DESTROYS,
 								ItemFlag.HIDE_ENCHANTS,
@@ -58,11 +60,10 @@ public class ShopInventory {
 								ItemFlag.HIDE_POTION_EFFECTS,
 								ItemFlag.HIDE_UNBREAKABLE)
 						.nbt("shop-kit", kit.getName())
-						.toStack()
-				);
+						.toStack());
 			});
 		}else {
-			inventory.setItem(31, new ItemBuilder("§cVocê ja possui todos os kits", Material.REDSTONE)
+			inventory.setItem(31, new ItemBuilder("Â§cVocÃª jÃ¡ tem todos os kits primÃ¡rios", Material.REDSTONE_BLOCK)
 					.toStack()
 			);
 		}

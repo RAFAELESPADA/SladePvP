@@ -2,7 +2,6 @@ package net.helix.pvp.kit.provider;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -26,12 +25,10 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerItemHeldEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.inventory.ItemFlag;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 
 import net.helix.core.bukkit.item.ItemBuilder;
-import net.helix.core.util.HelixCooldown;
+import net.helix.pvp.HelixPvP;
 import net.helix.pvp.kit.KitHandler;
 import net.helix.pvp.kit.KitManager;
 import net.minecraft.server.v1_8_R3.EntityFishingHook;
@@ -45,7 +42,7 @@ public class Grappler extends KitHandler {
 	    public void execute(Player player) {
 	        super.execute(player);
 
-	        player.getInventory().setItem(1, new ItemBuilder("§aLaço!", Material.LEASH)
+	        player.getInventory().setItem(1, new ItemBuilder("ï¿½aLaï¿½o!", Material.LEASH)
 	                .addEnchant(Enchantment.KNOCKBACK, 1)
 	        				.addFlags(ItemFlag.HIDE_ENCHANTS)
 	                .nbt("cancel-drop")
@@ -160,7 +157,7 @@ public void onEntityDamageByEntityEvent(EntityDamageByEntityEvent event) {
         final Player player = (Player) event.getEntity();
         
         if (KitManager.getPlayer(player.getName()).hasKit(this)) {
-        	addCooldown(player , 5);
+        	addCooldown(player , HelixPvP.getInstance().getConfig().getInt("GrapplerCooldown"));
         }
     }
 }
@@ -183,7 +180,7 @@ public class Cordinha extends EntityFishingHook {
     public void t_() {
     	
     if ((!this.lastControllerDead) && (this.controller.dead))
-         ((Player)this.owner.getBukkitEntity()).sendMessage("§aSua corda prendeu em algo.");
+         ((Player)this.owner.getBukkitEntity()).sendMessage("Â§aSua cordinha prendeu em algo.");
     
     this.lastControllerDead = this.controller.dead;
     for (Entity entity : this.controller.world.getWorld().getEntities()) {

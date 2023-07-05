@@ -1,9 +1,11 @@
 package net.helix.pvp.evento;
 
 
+import java.util.Arrays;
+import java.util.HashMap;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -12,13 +14,13 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.Arrays;
-import java.util.HashMap;
+import net.helix.pvp.HelixPvP;
 
 public class SoupTypeGUI implements Listener {
 	public static HashMap<String, Boolean> savecocoa = new HashMap();
 	public static HashMap<String, Boolean> compass = new HashMap();
-    public static final ItemStack ICON = ItemUtils.getCustomItemStack(Material.NETHER_STAR, "§6Opções", (String) null);
+	public static HashMap<String, Boolean> blood = new HashMap();
+    public static final ItemStack ICON = ItemUtils.getCustomItemStack(Material.valueOf(HelixPvP.getInstance().getConfig().getString("OptionsItem")), "§6Opções", (String) null);
 
     @EventHandler
     private void onInteractSoupType(PlayerInteractEvent event) {
@@ -60,6 +62,14 @@ public class SoupTypeGUI implements Listener {
                 		  player.sendMessage("§aA bússola foi ativada.");
                 		  compass.remove(player.getName());
                 }
+                         }  else if (event.getCurrentItem().getItemMeta().getDisplayName().contains("Sangue")) { 
+                    	  if (!blood.containsKey(player.getName())) {
+                    		  player.sendMessage("§aO Sangue foi ativado.");
+                    		  blood.put(player.getName(), true);
+                    	  } else {
+                    		  player.sendMessage("§cO Sangue foi desativado.");
+                    		  blood.remove(player.getName());
+                    }
             }
             }
                 }
@@ -83,7 +93,12 @@ public class SoupTypeGUI implements Listener {
         if (!compass.containsKey(player.getName())) {
         	inv.setItem(4, ItemUtils.getCustomItemStack(Material.COMPASS, "§cBússola", Arrays.asList("§7Bússola.", " ", "§aAtivado")));
         } else {
-        	inv.setItem(4, ItemUtils.getCustomItemStack(Material.COMPASS, "§cBússola", Arrays.asList("§7BÃºssola.", " ", "§cDesativado")));
+        	inv.setItem(4, ItemUtils.getCustomItemStack(Material.COMPASS, "§cBússola", Arrays.asList("§7Bússola.", " ", "§cDesativado")));
+        }
+        if (blood.containsKey(player.getName())) {
+        	inv.setItem(8, ItemUtils.getCustomItemStack(Material.REDSTONE, "§cSangue", Arrays.asList("§7Violência está ativa.", " ", "§aAtivado")));
+        } else {
+        	inv.setItem(8, ItemUtils.getCustomItemStack(Material.YELLOW_FLOWER, "§cSangue", Arrays.asList("§aViolência não está ativa", " ", "§cDesativado")));
         }
         player.openInventory(inv);
     }

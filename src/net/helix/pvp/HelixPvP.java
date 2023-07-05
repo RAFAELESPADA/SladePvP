@@ -1,50 +1,118 @@
 package net.helix.pvp;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+
 import org.bukkit.Bukkit;
+import org.bukkit.Difficulty;
 import org.bukkit.DyeColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.configuration.InvalidConfigurationException;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
+import org.bukkit.inventory.EnchantingInventory;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.ShapelessRecipe;
+import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.material.Dye;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.plugin.messaging.PluginMessageListener;
 import org.bukkit.scheduler.BukkitRunnable;
+
 import eu.decentsoftware.holograms.api.DHAPI;
 import eu.decentsoftware.holograms.api.holograms.Hologram;
 import net.helix.core.bukkit.HelixBukkit;
-import net.helix.core.bukkit.api.NameTagAPI;
 import net.helix.core.bukkit.warp.HelixWarp;
-import net.helix.pvp.command.*;
+import net.helix.pvp.command.ActionBar;
+import net.helix.pvp.command.AntiSpam;
+import net.helix.pvp.command.Arena;
+import net.helix.pvp.command.Crash;
+import net.helix.pvp.command.DarKit;
+import net.helix.pvp.command.DesligarPlugin;
+import net.helix.pvp.command.DesligarServidor;
+import net.helix.pvp.command.Discord;
+import net.helix.pvp.command.Fly;
+import net.helix.pvp.command.GiveCoins;
+import net.helix.pvp.command.GiveDeaths;
+import net.helix.pvp.command.GiveKills;
+import net.helix.pvp.command.GladInfo;
+import net.helix.pvp.command.Info;
+import net.helix.pvp.command.KITPVP;
+import net.helix.pvp.command.LavaIniciar;
+import net.helix.pvp.command.Medal;
+import net.helix.pvp.command.NoBreakEvent;
+import net.helix.pvp.command.RankCMD;
+import net.helix.pvp.command.Regras;
+import net.helix.pvp.command.Report;
+import net.helix.pvp.command.ReportToggle;
+import net.helix.pvp.command.ResetKDR;
+import net.helix.pvp.command.SC;
+import net.helix.pvp.command.ScoreboardCMD;
+import net.helix.pvp.command.SetArena;
+import net.helix.pvp.command.SetHologramCMD;
+import net.helix.pvp.command.Site;
+import net.helix.pvp.command.SkitCMD;
+import net.helix.pvp.command.SortearPlayer;
+import net.helix.pvp.command.Sorteio;
+import net.helix.pvp.command.SpawnCMD;
+import net.helix.pvp.command.Sudo;
+import net.helix.pvp.command.TPALL;
+import net.helix.pvp.command.Vanish;
+import net.helix.pvp.command.VerRank;
+import net.helix.pvp.command.Youtuber;
 import net.helix.pvp.evento.EventoComando;
 import net.helix.pvp.evento.EventoListeners;
 import net.helix.pvp.evento.EventoTabComplete;
 import net.helix.pvp.evento.SoupTypeGUI;
+import net.helix.pvp.inventory.ShopGUI;
 import net.helix.pvp.inventory.StatusGUI;
 import net.helix.pvp.inventory.listener.BuyKitListener;
 import net.helix.pvp.inventory.listener.Lapis;
 import net.helix.pvp.inventory.listener.SelectKitListener;
 import net.helix.pvp.inventory.listener.SelectWarpListener;
 import net.helix.pvp.kit.provider.Boxer;
+import net.helix.pvp.kit.provider.Flash;
 import net.helix.pvp.kit.provider.Grappler;
+import net.helix.pvp.kit.provider.Jumper;
+import net.helix.pvp.kit.provider.Sonic;
+import net.helix.pvp.kit.provider.Tank;
 import net.helix.pvp.kit.provider.TimeLord;
-import net.helix.pvp.listener.*;
-import org.bukkit.inventory.EnchantingInventory;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.ShapelessRecipe;
-import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.material.Dye;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-
+import net.helix.pvp.kit.provider.Tornado;
+import net.helix.pvp.listener.Cocoa;
+import net.helix.pvp.listener.EntityCalculateDamageListener;
+import net.helix.pvp.listener.Jump;
+import net.helix.pvp.listener.OpenSpawnItemsListener;
+import net.helix.pvp.listener.PlayerCombatLogListener;
+import net.helix.pvp.listener.PlayerCompassListener;
+import net.helix.pvp.listener.PlayerDeathListener;
+import net.helix.pvp.listener.PlayerDieArenaListener;
+import net.helix.pvp.listener.PlayerJoinListener;
+import net.helix.pvp.listener.PlayerKillstreakListener;
+import net.helix.pvp.listener.PlayerQuitListener;
+import net.helix.pvp.listener.PotePlaca;
+import net.helix.pvp.listener.ServerEssentialsListener;
+import net.helix.pvp.listener.ShowPlayerInfoListener;
+import net.helix.pvp.listener.SignListener;
+import net.helix.pvp.listener.SoupHandlerListener;
 import net.helix.pvp.scoreboard.ScoreboardBuilder;
+import net.helix.pvp.warp.provider.SetX1;
+import net.helix.pvp.warp.provider.Sumo;
 import us.ajg0702.leaderboards.LeaderboardPlugin;
 
-public class HelixPvP extends JavaPlugin implements Listener {
+public class HelixPvP extends JavaPlugin implements Listener, PluginMessageListener {
 	
 	public static HelixPvP getInstance() {
 		return getPlugin(HelixPvP.class);
@@ -52,10 +120,23 @@ public class HelixPvP extends JavaPlugin implements Listener {
 	public ArrayList<EnchantingInventory> inventories;
 	private ScoreboardBuilder scoreboardBuilder;
 	private Hologram topPlayersHd;
-	
+	 public static File file_x1 = new File("plugins/SRKitPvP", "1v1.yml");
+	 public static FileConfiguration cfg_x1 = YamlConfiguration.loadConfiguration(file_x1);
+	private static Checker checker;
+	 protected String getIpLocalHost() {
+	        try {
+	            return (new BufferedReader(new InputStreamReader((new URL("http://checkip.amazonaws.com")).openStream())))
+	                    .readLine();
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	            return null;
+	        }
+	    }
 	public void onEnable() {
-		
+		    	 Bukkit.getMessenger().registerIncomingPluginChannel(this, "BungeeCord", this);
+		    		Bukkit.getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
 		this.scoreboardBuilder = new ScoreboardBuilder(this);
+		new Feast(this);
 		loadCommands();
 		loadListeners();
 		this.inventories = new ArrayList<>();
@@ -84,21 +165,35 @@ public class HelixPvP extends JavaPlugin implements Listener {
 						world.getEntities().stream().filter(entity -> entity instanceof Item)
 						.forEach(en -> en.remove());
 					});
-				}
-			}.runTaskTimer(this, 0, 9 * 20L);
+					}}.runTaskTimer(this, 0, 9 * 20L);
 		});
-		HelixBukkit.getExecutorService().submit(() -> {
-			new BukkitRunnable() {
-				@Override
-				public void run() {
-					NameTagAPI.updatePlayersNameTag();
-				}
-			}.runTaskTimer(this, 0, 1 * 20L);
-		});
-		ScoreboardBuilder.init();
+		
+		Bukkit.getWorld("spawn").setDifficulty(Difficulty.HARD);
+		if (!file_x1.exists()) {
+			/* 132 */       saveResource("1v1.yml", false);
+			/*     */     }
+		 try
+		 /*     */     {
+		 /* 139 */       cfg_x1.load(file_x1);
+		 /*     */     }
+		 /*     */     catch (IOException|InvalidConfigurationException e1)
+		 /*     */     {
+		 /* 144 */       System.out.println(e1.getMessage());
+		 /*     */     }
+	
+		new BukkitRunnable() {
+
+			private long tick;
+
+			@Override
+			public void run() {
+				getServer().getPluginManager().callEvent(new net.helix.pvp.command.ServerTimerEvent(++tick));
+			}
+		}.runTaskTimer(this, 1, 1);
 		new net.helix.pvp.papi.PlaceHolderAPIHook(this).register();
 		loadTopPlayersHologram();
-		Bukkit.getConsoleSender().sendMessage("§a§lPVP: §fPlugin habilitado! §a[v" + getDescription().getVersion() + "]");
+		Bukkit.getConsoleSender().sendMessage("Â§aÂ§lPVP: Â§fPlugin habilitado! Â§a[v" + getDescription().getVersion() + "]");
+		Bukkit.getConsoleSender().sendMessage("Â§aÂ§lPVP: Â§fCriado por Â§a[v" + getDescription().getAuthors() + "]");
 	}
 	
 	public static void handleTopPlayers(Location location) {
@@ -122,24 +217,24 @@ public class HelixPvP extends JavaPlugin implements Listener {
 		
 		
 
-			String header = "§e§lTop 15 players §a(KILLS)";	
+			String header = "Â§eÂ§lTop 15 players Â§a(KILLS)";	
 				List<String> lines = Arrays.asList(header,
-					"§61"  + "º " + "§e" + "%ajlb_lb_helixpvp2_player_kills_1_alltime_name%" +
-					" §fKills: §6" + "%ajlb_lb_helixpvp2_player_kills_1_alltime_value%", "§62" + "º " + "§e" + "%ajlb_lb_helixpvp2_player_kills_2_alltime_name%" +
-							" §fKills: §6" + "%ajlb_lb_helixpvp2_player_kills_2_alltime_value%", "§63" + "º " + "§e" + "%ajlb_lb_helixpvp2_player_kills_3_alltime_name%" +
-									" §fKills: §6" + "%ajlb_lb_helixpvp2_player_kills_3_alltime_value%", "§64" + "º " + "§e" + "%ajlb_lb_helixpvp2_player_kills_4_alltime_name%" +
-											" §fKills: §6" + "%ajlb_lb_helixpvp2_player_kills_4_alltime_value%", "§65" + "º " + "§e" + "%ajlb_lb_helixpvp2_player_kills_5_alltime_name%" +
-													" §fKills: §6" + "%ajlb_lb_helixpvp2_player_kills_5_alltime_value%", "§66" + "º " + "§e" + "%ajlb_lb_helixpvp2_player_kills_6_alltime_name%" +
-															" §fKills: §6" + "%ajlb_lb_helixpvp2_player_kills_6_alltime_value%", "§67" + "º " + "§e" + "%ajlb_lb_helixpvp2_player_kills_7_alltime_name%" +
-																	" §fKills: §6" + "%ajlb_lb_helixpvp2_player_kills_7_alltime_value%", "§68" + "º " + "§e" + "%ajlb_lb_helixpvp2_player_kills_8_alltime_name%" +
-																			" §fKills: §6" + "%ajlb_lb_helixpvp2_player_kills_8_alltime_value%", "§69" + "º " + "§e" + "%ajlb_lb_helixpvp2_player_kills_9_alltime_name%" +
-																					" §fKills: §6" + "%ajlb_lb_helixpvp2_player_kills_9_alltime_value%", "§610" + "º " + "§e" + "%ajlb_lb_helixpvp2_player_kills_10_alltime_name%" +
-																							" §fKills: §6" + "%ajlb_lb_helixpvp2_player_kills_10_alltime_value%", "§611" + "º " + "§e" + "%ajlb_lb_helixpvp2_player_kills_11_alltime_name%" +
-																									" §fKills: §6" + "%ajlb_lb_helixpvp2_player_kills_11_alltime_value%", "§612" + "º " + "§e" + "%ajlb_lb_helixpvp2_player_kills_10_alltime_name%" +
-																											" §fKills: §6" + "%ajlb_lb_helixpvp2_player_kills_12_alltime_value%", "§613" + "º " + "§e" + "%ajlb_lb_helixpvp2_player_kills_10_alltime_name%" +
-																													" §fKills: §6" + "%ajlb_lb_helixpvp2_player_kills_13_alltime_value%", "§614" + "º " + "§e" + "%ajlb_lb_helixpvp2_player_kills_10_alltime_name%" +
-																															" §fKills: §6" + "%ajlb_lb_helixpvp2_player_kills_14_alltime_value%", "§615" + "º " + "§e" + "%ajlb_lb_helixpvp2_player_kills_10_alltime_name%" +
-																																	" §fKills: §6" + "%ajlb_lb_helixpvp2_player_kills_15_alltime_value%");
+					"Â§61"  + "Â§ " + "Â§e" + "%ajlb_lb_helixpvp2_player_kills_1_alltime_name%" +
+					" Â§fKills: Â§6" + "%ajlb_lb_helixpvp2_player_kills_1_alltime_value%", "Â§62" + "Â§ " + "Â§e" + "%ajlb_lb_helixpvp2_player_kills_2_alltime_name%" +
+							" Â§fKills: Â§6" + "%ajlb_lb_helixpvp2_player_kills_2_alltime_value%", "Â§63" + "Â§ " + "Â§e" + "%ajlb_lb_helixpvp2_player_kills_3_alltime_name%" +
+									" Â§fKills: Â§6" + "%ajlb_lb_helixpvp2_player_kills_3_alltime_value%", "Â§64" + "Â§ " + "Â§e" + "%ajlb_lb_helixpvp2_player_kills_4_alltime_name%" +
+											" Â§fKills: Â§6" + "%ajlb_lb_helixpvp2_player_kills_4_alltime_value%", "Â§65" + "Â§ " + "Â§e" + "%ajlb_lb_helixpvp2_player_kills_5_alltime_name%" +
+													" Â§fKills: Â§6" + "%ajlb_lb_helixpvp2_player_kills_5_alltime_value%", "Â§66" + "Â§ " + "Â§e" + "%ajlb_lb_helixpvp2_player_kills_6_alltime_name%" +
+															" Â§fKills: Â§6" + "%ajlb_lb_helixpvp2_player_kills_6_alltime_value%", "Â§67" + "Â§ " + "Â§e" + "%ajlb_lb_helixpvp2_player_kills_7_alltime_name%" +
+																	" Â§fKills: Â§6" + "%ajlb_lb_helixpvp2_player_kills_7_alltime_value%", "Â§68" + "Â§ " + "Â§e" + "%ajlb_lb_helixpvp2_player_kills_8_alltime_name%" +
+																			" Â§fKills: Â§6" + "%ajlb_lb_helixpvp2_player_kills_8_alltime_value%", "Â§69" + "Â§ " + "Â§e" + "%ajlb_lb_helixpvp2_player_kills_9_alltime_name%" +
+																					" Â§fKills: Â§6" + "%ajlb_lb_helixpvp2_player_kills_9_alltime_value%", "Â§610" + "Â§ " + "Â§e" + "%ajlb_lb_helixpvp2_player_kills_10_alltime_name%" +
+																							" Â§fKills: Â§6" + "%ajlb_lb_helixpvp2_player_kills_10_alltime_value%", "Â§611" + "Â§ " + "Â§e" + "%ajlb_lb_helixpvp2_player_kills_11_alltime_name%" +
+																									" Â§fKills: Â§6" + "%ajlb_lb_helixpvp2_player_kills_11_alltime_value%", "Â§612" + "Â§ " + "Â§e" + "%ajlb_lb_helixpvp2_player_kills_12_alltime_name%" +
+																											" Â§fKills: Â§6" + "%ajlb_lb_helixpvp2_player_kills_12_alltime_value%", "Â§613" + "Â§ " + "Â§e" + "%ajlb_lb_helixpvp2_player_kills_13_alltime_name%" +
+																													" Â§fKills: Â§6" + "%ajlb_lb_helixpvp2_player_kills_13_alltime_value%", "Â§614" + "Â§ " + "Â§e" + "%ajlb_lb_helixpvp2_player_kills_14_alltime_name%" +
+																															" Â§fKills: Â§6" + "%ajlb_lb_helixpvp2_player_kills_14_alltime_value%", "Â§615" + "Â§ " + "Â§e" + "%ajlb_lb_helixpvp2_player_kills_15_alltime_name%" +
+																																	" Â§fKills: Â§6" + "%ajlb_lb_helixpvp2_player_kills_15_alltime_value%");
 			
 			
 				
@@ -175,26 +270,34 @@ public class HelixPvP extends JavaPlugin implements Listener {
 	
 	public void onDisable() {
 		for (Player p : Bukkit.getOnlinePlayers()) {
-			p.kickPlayer("§cO Servidor está reiniciando. Entre novamente em 1 minuto");
+			p.kickPlayer("Â§cO server estÃ¡ reiniciando.");
 		}
 		for (EnchantingInventory ei : this.inventories)
 		      ei.setItem(1, null); 
 		    this.inventories = null;
-			Bukkit.getConsoleSender().sendMessage("§a§lPVP: §fPlugin desabilitado! §a[v" + getDescription().getVersion() + "]");
+			Bukkit.getConsoleSender().sendMessage("Â§aÂ§lPVP: Â§fPlugin desabilitado! Â§a[v" + getDescription().getVersion() + "]");
 		  }
 
 	
 	public void loadCommands() {
 		getCommand("spawn").setExecutor(new SpawnCMD());
 		getCommand("skit").setExecutor(new SkitCMD());
+		getCommand("crash").setExecutor(new Crash());
 		getCommand("sethologram").setExecutor(new SetHologramCMD());
 		getCommand("scoreboard").setExecutor(new ScoreboardCMD(this));
 		getCommand("rank").setExecutor(new RankCMD());
 		getCommand("givecoins").setExecutor(new GiveCoins());
+		getCommand("givekills").setExecutor(new GiveKills());
+		getCommand("givedeaths").setExecutor(new GiveDeaths());
 		getCommand("shutdownserver").setExecutor(new DesligarServidor());
 		getCommand("resetkdr").setExecutor(new ResetKDR());
 		getCommand("givekit").setExecutor(new DarKit());
+		getCommand("fly").setExecutor(new Fly());
+		getCommand("set1v1").setExecutor(new SetX1());
+		getCommand("warpinfo").setExecutor(new GladInfo());
+		if (this.getConfig().getBoolean("ReportAtivado")) {
 		getCommand("reporttoggle").setExecutor(new ReportToggle(this));
+		}
 		getCommand("arenainiciar").setExecutor(new Arena());
 		getCommand("lavainiciar").setExecutor(new LavaIniciar());
 		getCommand("sealend123").setExecutor(new DesligarPlugin(this));
@@ -202,7 +305,6 @@ public class HelixPvP extends JavaPlugin implements Listener {
 		getCommand("verrank").setExecutor(new VerRank());
 		getCommand("medalha").setExecutor(new Medal());
 		getCommand("medalhas").setExecutor(new Medal());
-		getCommand("fake").setExecutor(new Fake());
 		getCommand("pinfo").setExecutor(new Info());
 		getCommand("requisitos").setExecutor(new Youtuber());
 		getCommand("req").setExecutor(new Youtuber());
@@ -210,41 +312,57 @@ public class HelixPvP extends JavaPlugin implements Listener {
 		getCommand("sorteio").setExecutor(new Sorteio());
 		getCommand("vanish").setExecutor(new Vanish());
 		getCommand("v").setExecutor(new Vanish());
+		getCommand("kitpvp").setExecutor(new KITPVP(this));
 		getCommand("discord").setExecutor(new Discord());
 		getCommand("actionbar").setExecutor(new ActionBar());
 		getCommand("regras").setExecutor(new Regras());
+		getCommand("setarena").setExecutor(new SetArena());
 		getCommand("sudo").setExecutor(new Sudo());
+		getCommand("grupo").setExecutor(new Group());
 		getCommand("consolesudo").setExecutor(new Sudo());
+		if (this.getConfig().getBoolean("StaffChatAtivado")) {
 		getCommand("sc").setExecutor(new SC());
+		}
 		getCommand("site").setExecutor(new Site());
 		getCommand("loja").setExecutor(new Site());
 		getCommand("evento").setExecutor(new EventoComando());
 		getCommand("evento").setTabCompleter(new EventoTabComplete());
+		if (this.getConfig().getBoolean("ReportAtivado")) {
 		getCommand("report").setExecutor(new Report());
+		}
 	}
 	public void loadListeners() {
 		PluginManager pm = Bukkit.getPluginManager();
-		
 		pm.registerEvents(new ShowPlayerInfoListener(), this);
 		pm.registerEvents(new StatusGUI(), this);
-		pm.registerEvents(new FPSDEATH(), this);
-		pm.registerEvents(new LAVA(), this);
 		pm.registerEvents(new Boxer(), this);
 		pm.registerEvents(new TimeLord(), this);
+		pm.registerEvents(new Flash(), this);
+		pm.registerEvents(new Jumper(), this);
 		pm.registerEvents(new EventoListeners(), this);
 		pm.registerEvents(new Grappler(), this);
+		pm.registerEvents(new Sumo(), this);
+		pm.registerEvents(new NoBreakEvent(), this);
 		pm.registerEvents(new SelectWarpListener(), this);
 		pm.registerEvents(new SelectKitListener(), this);
 		pm.registerEvents(new BuyKitListener(), this);
 		pm.registerEvents(new OpenSpawnItemsListener(), this);
 		pm.registerEvents(new ServerEssentialsListener(), this);
 		pm.registerEvents(new Youtuber(), this);
+		pm.registerEvents(new Tornado(), this);
+		pm.registerEvents(new Sonic(), this);
 		pm.registerEvents(new AntiSpam(), this);
 		pm.registerEvents(new PotePlaca(), this);
 		pm.registerEvents(new Cocoa(), this);
+		pm.registerEvents(new ShopGUI(), this);
+		pm.registerEvents(new Tank(), this);
 		pm.registerEvents(new PlayerJoinListener(), this);
 		pm.registerEvents(new PlayerDeathListener(), this);
 		pm.registerEvents(new Arena(), this);
+		pm.registerEvents(new net.helixpvp.kit2.Anchor(), this);
+		pm.registerEvents(new net.helixpvp.kit2.Grappler(), this);
+		pm.registerEvents(new net.helixpvp.kit2.Kangaroo(), this);
+		pm.registerEvents(new net.helixpvp.kit2.PvP(), this);
 		pm.registerEvents(new Lapis(this), this);
 		pm.registerEvents(new SoupHandlerListener(), this);
 		pm.registerEvents(new EntityCalculateDamageListener(), this);
@@ -265,5 +383,10 @@ public class HelixPvP extends JavaPlugin implements Listener {
 	
 	public Hologram getTopPlayersHd() {
 		return topPlayersHd;
+	}
+	@Override
+	public void onPluginMessageReceived(String arg0, Player arg1, byte[] arg2) {
+		// TODO Auto-generated method stub
+		
 	}
 }
