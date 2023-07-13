@@ -72,7 +72,7 @@ public class PlayerCombatLogListener implements Listener {
 		String command = event.getMessage().split(" ")[0].toLowerCase();
 		if (command.contains("admin") && VanishUtil.has(player.getName())) {
 			event.setCancelled(true);
-			player.sendMessage("§cLeave the vanish before entering admin mode!");
+			player.sendMessage("§cSaia do vanish antes de entrar no modo admin!");
 		}
 	}
 	@EventHandler

@@ -50,7 +50,7 @@ import net.helix.pvp.kit.KitManager;
 	public void execute(Player player) {
 		super.execute(player);
 		
-		player.getInventory().setItem(1, new ItemBuilder("§aSonic!", Material.LAPIS_BLOCK)
+		player.getInventory().setItem(1, new ItemBuilder("Â§aSonic!", Material.LAPIS_BLOCK)
 				.nbt("kit-handler", "sonic")
 				.nbt("cancel-drop")
 				.toStack()
@@ -82,12 +82,12 @@ import net.helix.pvp.kit.KitManager;
 /*  67 */         event.setCancelled(true);
 /*     */       }
 
-if (HelixCooldown.inCooldown(p.getName(), "sonic")) {
-	p.sendMessage("§cWait " + HelixCooldown.getTime(p.getName(), "sonic") + "s to use this kit again.");
+if (inCooldown(event.getPlayer()) && KitManager.getPlayer(event.getPlayer().getName()).hasKit(this)) {
+	sendMessageCooldown(event.getPlayer());
 	return;
 }
 
-/*  74 */     	HelixCooldown.create(p.getName(), "sonic", TimeUnit.SECONDS, 30);
+/*  74 */     	addCooldown(event.getPlayer(), 30);
 /*  75 */       fall.add(p.getName());
 /*  76 */       p.setVelocity(p.getEyeLocation().getDirection().multiply(this.boost).add(new Vector(0, 0, 0)));
 /*  77 */       p.getPlayer().getWorld().playEffect(p.getPlayer().getLocation(), Effect.SMOKE, 10, 0);
@@ -96,7 +96,7 @@ if (HelixCooldown.inCooldown(p.getName(), "sonic")) {
 /*  80 */         if ((pertos instanceof Player))
 /*     */         {
 	if (pertos.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura") || !KitManager.getPlayer(pertos.getName()).hasKit()) {
-		p.sendMessage("Dont use the sonic on spawn!");
+		p.sendMessage("NÃ£o use o sonic no spawn!");
 		return;
 	}
 /*  82 */           Player perto = (Player)pertos;

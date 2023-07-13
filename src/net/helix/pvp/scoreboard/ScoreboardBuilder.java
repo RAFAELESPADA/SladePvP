@@ -24,7 +24,30 @@ public class ScoreboardBuilder {
 	}
 private static String text = "";
 private static WaveAnimation waveAnimation;
-
+public static void init() {
+    waveAnimation = new WaveAnimation("ARENA" , "§6§l" , "§f§l" , "§e§l");
+    text = "ARENA";
+    Bukkit.getScheduler().runTaskTimer(HelixPvP.getInstance(), new Runnable() {
+          public void run() {
+            ScoreboardBuilder.text = ScoreboardBuilder.waveAnimation.next();
+            for (Player onlines : Bukkit.getOnlinePlayers()) {
+              if (onlines == null)
+                continue; 
+              if (!onlines.isOnline())
+                continue; 
+              if (onlines.isDead())
+                continue; 
+              Scoreboard score = onlines.getScoreboard();
+              if (score == null)
+                continue; 
+              Objective objective = score.getObjective(DisplaySlot.SIDEBAR);
+              if (objective == null)
+                continue; 
+              objective.setDisplayName(ScoreboardBuilder.text);
+            } 
+          }
+        },  20L, 1L);
+  }
 	public void build(Player player) {
 		 {
 		player.getScoreboard().clearSlot(DisplaySlot.SIDEBAR);
@@ -32,7 +55,7 @@ private static WaveAnimation waveAnimation;
 		Scoreboard scoreboard = Bukkit.getScoreboardManager().getNewScoreboard();
 		Objective objective = scoreboard.registerNewObjective("pvp", "dummy");
 		
-		objective.setDisplayName("§6§lARENA");
+		objective.setDisplayName("ARENA");
 		objective.setDisplaySlot(DisplaySlot.SIDEBAR);
 		
 		String l12 = "§3";

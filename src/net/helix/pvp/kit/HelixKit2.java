@@ -15,7 +15,10 @@ import net.helix.core.bukkit.item.ItemBuilder;
 import net.helix.pvp.HelixPvP;
 import net.helix.pvp.command.DarKit;
 import net.helixpvp.kit2.Anchor;
+import net.helixpvp.kit2.Camel;
+import net.helixpvp.kit2.Critical;
 import net.helixpvp.kit2.Fireman;
+import net.helixpvp.kit2.Fisherman;
 import net.helixpvp.kit2.GladiatorListener;
 import net.helixpvp.kit2.Grappler;
 import net.helixpvp.kit2.Kangaroo;
@@ -38,13 +41,15 @@ public enum HelixKit2  {
     VIPER("Viper", 10000, 0, new QuickDropper() , Material.SPIDER_EYE, "De veneno"),
 	QUICKDROPPER("QuickDropper", 10000, 0, new QuickDropper() , Material.BOWL, "Drope potes automaticamente"),
 	KANGAROO("Kangaroo", 0, 0, new Kangaroo() , Material.FIREWORK, "De doublejumps"),
+	CRITICAL("Critical", 9000, 0, new Critical() , Material.REDSTONE, "De criticos automaticamente"),
 	STOMPER("Stomper", 15000, 0, new Stomper() , Material.IRON_BOOTS, "Esmague seus inimigos."),
 	THOR("Thor", 10000, 0, new Thor() , Material.GOLD_AXE, "Lance raios."),
 	GLADIATOR("Gladiator", 15000, 0, new GladiatorListener() , Material.IRON_FENCE, "Puxe seu inimigo."),
-	CAMEL("Camel", 9000, 0, new Thor() , Material.SAND, "Ganhe poderes na areia."),
+	CAMEL("Camel", 9000, 0, new Camel() , Material.SAND, "Ganhe poderes na areia."),
 	SNAIL("Snail", 10000, 0, new Scout() , Material.FERMENTED_SPIDER_EYE, "De lentidao a cada hit."),
 	FIREMAN("Fireman", 10000, 0, new Fireman() , Material.LAVA_BUCKET, "De fogo a cada hit."),
-	BLAZE_ROD("Monk", 9000, 0, new Monk() , Material.BLAZE_ROD, "Embaralhe o inventario do inimigo."),
+	MONK("Monk", 9000, 0, new Monk() , Material.BLAZE_ROD, "Embaralhe o inventario do inimigo."),
+	FISHERMAN("Fisherman", 9000, 0, new Fisherman() , Material.FISHING_ROD, "Pesque players."),
 	SWITCHER("Switcher", 0, 0, new Switcher() , Material.SNOW_BALL, "Troque de lugar com o inimigo."),
 	GRAPPLER("Grappler", 10000, 0, new Grappler() , Material.LEASH, "Voe com sua corda");
 	

@@ -56,6 +56,11 @@ public class Kangaroo extends KitHandler2 {
 				|| !event.hasItem() || !ItemBuilder.has(event.getItem(), "kit-handler", "kangaroo")) {
 			return;
 		}
+		else if (p.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura")) {
+			p.sendMessage("§cNão use o kangaroo no spawn!");
+			event.setCancelled(true);
+			return;
+		}
 		/*     */     {
 		/*  60 */       event.setCancelled(true);
 

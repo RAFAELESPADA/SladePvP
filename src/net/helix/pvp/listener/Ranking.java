@@ -188,12 +188,12 @@ public enum Ranking {
         }
 	        	
 	        else if (pvp.getKills() == HelixPvP.getInstance().getConfig().getInt("GodKills")) {
-	        	p.sendMessage("You upped to the Ranking " + HelixPvP.getInstance().getConfig().getString("GodRank").toUpperCase());
-	   	        Bukkit.broadcastMessage("§a" + p.getName() + " §fuped from the rank " + HelixPvP.getInstance().getConfig().getString("LendarioRank").toUpperCase() +  " to the Rank " + HelixPvP.getInstance().getConfig().getString("GodRank").toUpperCase());
+	        	p.sendMessage("Você upou para o rank " + HelixPvP.getInstance().getConfig().getString("GodRank").toUpperCase());
+	   	        Bukkit.broadcastMessage("§a" + p.getName() + " §fupou do rank " + HelixPvP.getInstance().getConfig().getString("LendarioRank").toUpperCase() +  " para o Rank " + HelixPvP.getInstance().getConfig().getString("GodRank").toUpperCase());
 	   	        PlayerDeathListener.throwRandomFirework(p);
 	   	        for (Player p1 : Bukkit.getOnlinePlayers()) {
 	   	        	p1.playSound(p1.getLocation(), Sound.NOTE_PLING, 10.0f, 1f);
-	   	        	  HelixActionBar.send(p1, "§a" + p.getName() + " §fupped to the Rank " + HelixPvP.getInstance().getConfig().getString("GodRank").toUpperCase());
+	   	        	  HelixActionBar.send(p1, "§a" + p.getName() + " §fupou para o Ranking " + HelixPvP.getInstance().getConfig().getString("GodRank").toUpperCase());
 	        }
         }
 	      

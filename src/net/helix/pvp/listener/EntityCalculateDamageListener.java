@@ -10,6 +10,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import net.helix.pvp.HelixPvP;
@@ -22,14 +24,19 @@ public class EntityCalculateDamageListener implements Listener {
 		if (!(e.getDamager() instanceof Player)) {
 			return;
 		}
+		
 		Player t = (Player) e.getDamager();
+		if (t.getItemInHand().getType() != Material.DIAMOND_SWORD && t.hasPotionEffect(PotionEffectType.INCREASE_DAMAGE)) {
+			e.setDamage(6.0);
+			return;
+		}
 		if (t.getItemInHand().getType() == Material.STONE_SWORD) {
-			e.setDamage(e.getDamage() - 3.2);
+			e.setDamage(e.getDamage() - 3.8);
 		}else if (t.getItemInHand().getType() == Material.STONE_SWORD) {
 			if (t.getItemInHand().getEnchantments() == Enchantment.DAMAGE_ALL) {
-				e.setDamage(e.getDamage() - 3.2 + (0.6 * t.getItemInHand().getEnchantmentLevel(Enchantment.DAMAGE_ALL)));
+				e.setDamage(e.getDamage() - 3.8 + (0.4 * t.getItemInHand().getEnchantmentLevel(Enchantment.DAMAGE_ALL)));
 			} else if (t.getItemInHand().getEnchantments() == Enchantment.DAMAGE_ALL && t.getFallDistance() > 0) {
-				e.setDamage(e.getDamage() - 2.7 + (0.7 * t.getItemInHand().getEnchantmentLevel(Enchantment.DAMAGE_ALL)));
+				e.setDamage(e.getDamage() - 3.2 + (0.7 * t.getItemInHand().getEnchantmentLevel(Enchantment.DAMAGE_ALL)));
 			}
 		}else if (t.getItemInHand().getType() == Material.IRON_SWORD) {
 				e.setDamage(e.getDamage() - 2.0);
@@ -40,12 +47,12 @@ public class EntityCalculateDamageListener implements Listener {
 			e.setDamage(e.getDamage() - 2.0 + (0.7 * t.getItemInHand().getEnchantmentLevel(Enchantment.DAMAGE_ALL)));
 			}
 	else if (t.getItemInHand().getType() == Material.IRON_AXE) {
-		e.setDamage(e.getDamage() - 2.0);
+		e.setDamage(e.getDamage() - 3.0);
 		if (t.getItemInHand().getEnchantments() == Enchantment.DAMAGE_ALL) {
-			e.setDamage(e.getDamage() - 2.0 + (0.6 * t.getItemInHand().getEnchantmentLevel(Enchantment.DAMAGE_ALL)));
+			e.setDamage(e.getDamage() - 3.0 + (0.6 * t.getItemInHand().getEnchantmentLevel(Enchantment.DAMAGE_ALL)));
 		}
 } else if (t.getItemInHand().getEnchantments() == Enchantment.DAMAGE_ALL && t.getFallDistance() > 0) {
-	e.setDamage(e.getDamage() - 2.0 + (0.7 * t.getItemInHand().getEnchantmentLevel(Enchantment.DAMAGE_ALL)));
+	e.setDamage(e.getDamage() - 3.0 + (0.7 * t.getItemInHand().getEnchantmentLevel(Enchantment.DAMAGE_ALL)));
 	}
 	else if (t.getItemInHand().getType() == Material.DIAMOND_SWORD) {
 		e.setDamage(e.getDamage() - 1.0);
@@ -78,7 +85,7 @@ public class EntityCalculateDamageListener implements Listener {
 			return;
 		}
           
-		if (p.getMaximumNoDamageTicks() > 35) {
+		if (p.getMaximumNoDamageTicks() > 35 || p.getMaximumNoDamageTicks() < 18) {
 			p.setMaximumNoDamageTicks(20);
 		}
           }
@@ -113,7 +120,7 @@ public class EntityCalculateDamageListener implements Listener {
 								
 									if (health != 20.0) {	
 										
-										shooter.sendMessage(damagedPlayer.getName() + ChatColor.YELLOW + " is with " + health + " of line");									
+										shooter.sendMessage(damagedPlayer.getName() + ChatColor.YELLOW + " está com " + health + " de vida!");									
 									}						
 																}							
 							}

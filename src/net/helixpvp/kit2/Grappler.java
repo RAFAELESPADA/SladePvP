@@ -110,7 +110,10 @@ public void usar(PlayerInteractEvent e) {
  	   	sendMessageCooldown(p);
  	   	return;
  	   }
- 	     
+ 	   else if (p.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura")) {
+			p.sendMessage("§cNão use o grappler no spawn!");
+			return;
+		} 
  	     if ((e.getAction() == Action.LEFT_CLICK_AIR) || (e.getAction() == Action.LEFT_CLICK_BLOCK)) {
 			  if (leftClickGrappler.containsKey(p) && leftClickGrappler.get(p) > System.currentTimeMillis())
 				  return;

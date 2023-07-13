@@ -52,7 +52,7 @@ public class Tornado extends KitHandler {
 				return;
 			}
 			if (p.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura")) {
-				p.sendMessage("DONT USE THE TORNADO ON SPAWN");
+				p.sendMessage("NÃO USE O TORNADO NO SPAWN.");
 				return;
 			}
 float max_height = 15;

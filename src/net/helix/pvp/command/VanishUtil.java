@@ -24,7 +24,7 @@ static {
                           player -> Bukkit.getPlayer(player) != null
                   ).forEach(username ->  {
                       Player player = Bukkit.getPlayer(username);
-                      HelixActionBar.send(player, "§aVoc§ est§ invis§vel para os jogadores. §f(§a" + players.size() + " §fstaffs no modo Vanish)");
+                      HelixActionBar.send(player, "§aVocê está invisível para os jogadores. §f(§a" + players.size() + " §fstaffs no modo Vanish)");
                           Bukkit.getOnlinePlayers().forEach(online -> {
                               if (!online.hasPermission("kombo.cmd.report")) {
                                   online.hidePlayer(player);

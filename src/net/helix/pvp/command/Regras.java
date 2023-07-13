@@ -17,15 +17,15 @@ import net.helix.pvp.HelixPvP;
 	  Player p = (Player)sender;
 	  if (label.equalsIgnoreCase("regras"))
 	  {
-		p.sendMessage("งcLeia as regras");  
+		p.sendMessage("ยงcLeia as regras");  
 		p.sendMessage("");
-		p.sendMessage(HelixPvP.getInstance().getConfig().getString("REGRA1").replace("&", "ง"));
-	    p.sendMessage(HelixPvP.getInstance().getConfig().getString("REGRA2").replace("&", "ง"));
-	    p.sendMessage(HelixPvP.getInstance().getConfig().getString("REGRA3").replace("&", "ง"));
-	    p.sendMessage(HelixPvP.getInstance().getConfig().getString("REGRA4").replace("&", "ง"));
-	    p.sendMessage(HelixPvP.getInstance().getConfig().getString("REGRA5").replace("&", "ง"));
-	    p.sendMessage(HelixPvP.getInstance().getConfig().getString("REGRA6").replace("&", "ง"));
-	    p.sendMessage(HelixPvP.getInstance().getConfig().getString("REGRA7").replace("&", "ง"));
+		p.sendMessage(HelixPvP.getInstance().getConfig().getString("REGRA1").replace("&", "ยง"));
+	    p.sendMessage(HelixPvP.getInstance().getConfig().getString("REGRA2").replace("&", "ยง"));
+	    p.sendMessage(HelixPvP.getInstance().getConfig().getString("REGRA3").replace("&", "ยง"));
+	    p.sendMessage(HelixPvP.getInstance().getConfig().getString("REGRA4").replace("&", "ยง"));
+	    p.sendMessage(HelixPvP.getInstance().getConfig().getString("REGRA5").replace("&", "ยง"));
+	    p.sendMessage(HelixPvP.getInstance().getConfig().getString("REGRA6").replace("&", "ยง"));
+	    p.sendMessage(HelixPvP.getInstance().getConfig().getString("REGRA7").replace("&", "ยง"));
 	    p.playSound(p.getLocation(), Sound.BLAZE_HIT, 12.0F, 12.0F);
 	  }
 	  return false;

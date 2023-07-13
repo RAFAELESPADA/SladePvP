@@ -15,6 +15,7 @@ import org.bukkit.Difficulty;
 import org.bukkit.DyeColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -30,6 +31,8 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.messaging.PluginMessageListener;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import eu.decentsoftware.holograms.api.DHAPI;
@@ -76,6 +79,7 @@ import net.helix.pvp.command.Youtuber;
 import net.helix.pvp.evento.EventoComando;
 import net.helix.pvp.evento.EventoListeners;
 import net.helix.pvp.evento.EventoTabComplete;
+import net.helix.pvp.evento.EventoUtils;
 import net.helix.pvp.evento.SoupTypeGUI;
 import net.helix.pvp.inventory.ShopGUI;
 import net.helix.pvp.inventory.StatusGUI;
@@ -120,6 +124,7 @@ public class HelixPvP extends JavaPlugin implements Listener, PluginMessageListe
 	public ArrayList<EnchantingInventory> inventories;
 	private ScoreboardBuilder scoreboardBuilder;
 	private Hologram topPlayersHd;
+	public boolean euforia;
 	 public static File file_x1 = new File("plugins/SRKitPvP", "1v1.yml");
 	 public static FileConfiguration cfg_x1 = YamlConfiguration.loadConfiguration(file_x1);
 	private static Checker checker;
@@ -138,6 +143,7 @@ public class HelixPvP extends JavaPlugin implements Listener, PluginMessageListe
 		this.scoreboardBuilder = new ScoreboardBuilder(this);
 		new Feast(this);
 		loadCommands();
+		ScoreboardBuilder.init();
 		loadListeners();
 		this.inventories = new ArrayList<>();
 		ItemStack Resultado = new ItemStack(Material.MUSHROOM_SOUP, 1);
@@ -153,7 +159,9 @@ public class HelixPvP extends JavaPlugin implements Listener, PluginMessageListe
 			
 			@Override
 			public void run() {
+				if (!euforia) {
 				Bukkit.getWorlds().forEach(world -> world.setTime(1000));
+			}
 			}
 		}.runTaskTimer(this, 0, 30 * 20L);
 		
@@ -166,6 +174,40 @@ public class HelixPvP extends JavaPlugin implements Listener, PluginMessageListe
 						.forEach(en -> en.remove());
 					});
 					}}.runTaskTimer(this, 0, 9 * 20L);
+		});
+		HelixBukkit.getExecutorService().submit(() -> {
+			new BukkitRunnable() {
+				@Override
+				public void run() {
+					for (Player player : Bukkit.getOnlinePlayers()) {
+						if (Bukkit.getOnlinePlayers().size() < 3) {
+							return;
+						}
+					DarKit.sendTitle(player, "§c§lEUFORIA", "§fTodos ficaram fortes");
+					Bukkit.broadcastMessage("§cO evento §4§lEUFORIA §cacabou de começar");
+					Bukkit.broadcastMessage("§cPor dois minutos estará de noite e players teram força 2");
+					Bukkit.broadcastMessage("§cTodos os kits primários e secundários liberados durante o evento");
+					Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp group default permission settemp kombo.kit.* true 2m");
+					Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp group default permission settemp kombo.kit2.* true 2m");
+					player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 120*20, 1));
+					player.playSound(player.getLocation(), Sound.ANVIL_BREAK, 1F, 10F);
+				    euforia = true;
+				    Bukkit.getWorld("spawn").setTime(18000);
+					};
+					  Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnable() {
+							public void run() {
+								if (!euforia) {
+									  return;
+								  }
+								Bukkit.broadcastMessage("§aO evento Euforia foi finalizado!");
+								euforia = false;
+								 Bukkit.getWorld("spawn").setTime(100);
+								 for (Player p1 : Bukkit.getOnlinePlayers()) {
+								      	p1.playSound(p1.getLocation(), Sound.LEVEL_UP, 1f, 1f);
+								      }
+							}
+						}, 2400L);
+				}}.runTaskTimer(this, 0, 30 * 60 * 20L);
 		});
 		
 		Bukkit.getWorld("spawn").setDifficulty(Difficulty.HARD);

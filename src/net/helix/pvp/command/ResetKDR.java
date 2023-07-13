@@ -27,7 +27,7 @@ public class ResetKDR
         return true;
       }
       else if (!sender.hasPermission("admin.cmd.resetkdr")) {
-          sender.sendMessage("§cVoc§ n§o tem permiss§o");
+          sender.sendMessage("§cVocê não tem permiss§o");
           return true;
       }
       Player t = Bukkit.getPlayer(args[0]);

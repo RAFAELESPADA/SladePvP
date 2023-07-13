@@ -6,6 +6,7 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -126,11 +127,11 @@ public class Feast extends BukkitRunnable {
 
         if (!spawned && minutes == 0) {
             if (seconds == 50 || seconds == 40 || seconds == 30 || seconds == 20 || seconds == 10 || seconds == 5 || seconds == 4 || seconds == 3 || seconds == 2 || seconds == 1) {
-                Bukkit.broadcastMessage("Feast nascerem " + seconds + " " + ((seconds > 1) ? "segundos" : "segundo"));
+                Bukkit.broadcastMessage(ChatColor.RED + "Feast nascerá em " + seconds + " " + ((seconds > 1) ? "segundos" : "segundo"));
             }      
 
             if (seconds <= 0) {
-                Bukkit.broadcastMessage("Feast nasceu!");
+                Bukkit.broadcastMessage(ChatColor.GREEN +"Feast nasceu!");
                 // Durado feast (em segundos)
                 int spawnDurationSeconds = 20;
                 world.strikeLightning(new Location(world, HelixPvP.getInstance().getConfig().getInt("RaioX"), HelixPvP.getInstance().getConfig().getInt("RaioY"), HelixPvP.getInstance().getConfig().getInt("RaioZ")));
