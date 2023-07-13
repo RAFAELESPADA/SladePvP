@@ -35,7 +35,7 @@ public class Kangaroo extends KitHandler {
 	public void execute(Player player) {
 		super.execute(player);
 		
-		player.getInventory().setItem(1, new ItemBuilder("§aPular!", Material.FIREWORK)
+		player.getInventory().setItem(1, new ItemBuilder("Â§aPular!", Material.FIREWORK)
 				.nbt("kit-handler", "kangaroo")
 				.nbt("cancel-drop")
 				.toStack()
@@ -56,11 +56,16 @@ public class Kangaroo extends KitHandler {
 				|| !event.hasItem() || !ItemBuilder.has(event.getItem(), "kit-handler", "kangaroo")) {
 			return;
 		}
+		else if (p.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura")) {
+			p.sendMessage("Â§cNÃ£o use o kangaroo no spawn!");
+			event.setCancelled(true);
+			return;
+		}
 		/*     */     {
 		/*  60 */       event.setCancelled(true);
 
 		/*  61 */       if (GladiatorListener.combateGlad.containsKey(p)) {
-		/*  62 */         p.sendMessage(String.valueOf("§cVocê esta no Gladiator e recebeu efeito de speed"));
+		/*  62 */         p.sendMessage(String.valueOf("Â§cVocÃª esta no Gladiator e recebeu efeito de speed"));
 		/*     */         
 		/*  64 */         darEfeito(p, org.bukkit.potion.PotionEffectType.SPEED, 10, 1);
 		/*     */       }
@@ -115,15 +120,15 @@ public class Kangaroo extends KitHandler {
 		/* 114 */       if (((event.getEntity() instanceof Player)) && 
 		/* 115 */         (event.getCause() == EntityDamageEvent.DamageCause.FALL) && 
 		/* 116 */         (player.getInventory().contains(Material.FIREWORK)) && 
-		/* 117 */         (event.getDamage() >= 8.0D)) {
-		/* 118 */         event.setDamage(event.getDamage() - 8.0D);
+		/* 117 */         (event.getDamage() >= 7.0D)) {
+		/* 118 */         event.setDamage(7.0D);
 		/*     */       }
 		/*     */     }
 		/*     */   }
 		 @EventHandler
 		 /*     */   public void onDrop(PlayerDropItemEvent event)
 		 /*     */   {
-		 /* 116 */     if (event.getItemDrop().getItemStack().getType() == Material.STONE_SWORD) {
+		 /* 116 */     if (event.getItemDrop().getItemStack().getType() == Material.STONE_SWORD || event.getItemDrop().getItemStack().getType() == Material.STONE_PICKAXE) {
 		 /* 117 */       event.setCancelled(true);
 		 /*     */     }
 		 }

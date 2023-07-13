@@ -1,7 +1,6 @@
 package net.helix.pvp.listener;
 
 import org.bukkit.Bukkit;
-import org.bukkit.Effect;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -11,7 +10,10 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
 import net.helix.pvp.kit.HelixKit;
+import net.helix.pvp.kit.HelixKit2;
 import net.helix.pvp.kit.KitManager;
+import net.helix.pvp.kit.KitManager2;
+import net.helix.pvp.kit.provider.HelixActionBar;
 
 public class SoupHandlerListener implements Listener {
 	
@@ -23,20 +25,17 @@ public class SoupHandlerListener implements Listener {
 			if (p.getItemInHand().getType() == Material.MUSHROOM_SOUP) {
 				if ((p.getHealth() < 20.0D) && (p.getItemInHand().getType() == Material.MUSHROOM_SOUP)) {
 					e.setCancelled(true);
-					
-					
 					p.setHealth(p.getHealth() + 7 >= 20.0D ? 20.0D : p.getHealth() + 7);
 					p.setFoodLevel(20);
-					if (!KitManager.getPlayer(p.getName()).hasKit(HelixKit.QUICKDROPPER))
-					p.setItemInHand(new ItemStack(Material.BOWL));
-					else {
-						setOffhandItem(p, new ItemStack(Material.AIR));
-					}
+					p.setItemInHand(KitManager.getPlayer(p.getName()).hasKit(HelixKit.QUICKDROPPER) || KitManager2.getPlayer(p.getName()).haskit2(HelixKit2.QUICKDROPPER) ? new ItemStack(Material.AIR) : new ItemStack(Material.BOWL));
+					HelixActionBar.send(p, "§c+" + (p.getHealth() + 7 <= 20.0D ? 3.5 : 3.5) + " §4§l\u2661");
 					p.updateInventory();
 				}
 			}
+			}
 		}
-	}
+		
+	
 
 
 public static void setOffhandItem(Player p, ItemStack item) {

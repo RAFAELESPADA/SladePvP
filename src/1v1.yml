@@ -1,0 +1,26 @@
+x1:
+  ability: 1v1
+  cooldown: 20
+  msg:
+    won: '&cVocê ganhou o 1V1!'
+    lose: '&cVocê perdeu o 1V1!'
+    invite_cooldown: '&cAguarde para desafiar novamente!'
+    invite_accept: '&cO Jogador $player$ aceitou seu pedido de 1v1!'
+    guest_accept: '&cVocê aceitou o pedido de $player$!'
+    invite: '&cVocê $player$ para 1v1!'
+    guest: '&cVocê foi desafiado por $player$ para 1v1!'
+    disconect: '&cSeu oponente desconectou'
+    no_cmd: '&cVocê não pode usar comandos na 1v1!'
+sumo:
+  ability: Sumo
+  cooldown: 20
+  msg:
+    won: '&cYou won the Sumo!'
+    lose: '&cYou lose the Sumo!'
+    invite_cooldown: '&cWait To Challenge Again!'
+    invite_accept: '&cThe player $player$ accepted your request for Sumo!'
+    guest_accept: '&cYou accepted the request of $player$!'
+    invite: '&cYou challenged $player$ to 1v1!'
+    guest: '&cYou were challenged by $player$ to Sumo!'
+    disconect: '&cYour opponent disconnected'
+    no_cmd: '&cYou cannot use commands on Sumo!'

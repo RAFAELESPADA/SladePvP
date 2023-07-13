@@ -1,10 +1,5 @@
 package net.helix.pvp.kit.provider;
 
-import net.helix.core.bukkit.item.ItemBuilder;
-import net.helix.core.util.HelixCooldown;
-import net.helix.pvp.kit.KitHandler;
-import net.helix.pvp.kit.KitManager;
-
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -12,7 +7,10 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import java.util.concurrent.TimeUnit;
+import net.helix.core.bukkit.item.ItemBuilder;
+import net.helix.pvp.HelixPvP;
+import net.helix.pvp.kit.KitHandler;
+import net.helix.pvp.kit.KitManager;
 
 public class Milkman extends KitHandler {
 
@@ -21,7 +19,7 @@ public class Milkman extends KitHandler {
         super.execute(player);
 
         player.getInventory().setItem(1, new ItemBuilder(Material.MILK_BUCKET)
-                .displayName("§fBalde de Leite")
+                .displayName("Â§fBalde de Leite")
                 .nbt("cancel-drop")
                 .nbt("kit-handler", "milkman")
                 .toStack()
@@ -37,10 +35,10 @@ public class Milkman extends KitHandler {
 			sendMessageCooldown(event.getPlayer());
 			return;
 		}
-        addCooldown(event.getPlayer(), 15);
+        addCooldown(event.getPlayer(), HelixPvP.getInstance().getConfig().getInt("MilkManCooldown"));
         event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.ABSORPTION, 5 * 20, 0));
         event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 10 * 20, 0));
         event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 5 * 20, 0));
-        event.getPlayer().sendMessage("§aMilkman aplicado!");
+        event.getPlayer().sendMessage("Â§aMilkman aplicado!");
     }
 }

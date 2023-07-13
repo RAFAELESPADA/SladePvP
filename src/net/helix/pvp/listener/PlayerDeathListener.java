@@ -9,6 +9,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Firework;
 import org.bukkit.entity.Player;
@@ -18,22 +19,19 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
-import org.bukkit.inventory.PlayerInventory;
-import org.bukkit.inventory.meta.FireworkMeta;
-import org.bukkit.Material;
-
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.FireworkMeta;
+import org.inventivetalent.bossbar.BossBarAPI;
 
 import net.helix.core.bukkit.HelixBukkit;
 import net.helix.core.bukkit.account.HelixPlayer;
-import net.helix.core.bukkit.account.provider.PlayerPvP;
+import net.helix.core.util.HelixCooldown2;
 import net.helix.pvp.event.HelixPlayerDeathEvent;
 import net.helix.pvp.event.HelixPlayerDeathEvent.Reason;
 import net.helix.pvp.evento.EventoUtils;
 import net.helix.pvp.kit.Habilidade;
 import net.helix.pvp.kit.KitManager;
 import net.helix.pvp.kit.provider.GladiatorListener;
-import net.helix.pvp.kit.provider.Sonic;
 import net.helix.pvp.kit.provider.TimeLord;
 import net.helix.pvp.warp.HelixWarp;
 
@@ -47,7 +45,8 @@ public class PlayerDeathListener implements Listener {
 		Player killer = event.getEntity().getKiller();
 		Location deathLocation = player.getLocation().clone();
 		boolean validKill = false;
-
+		HelixCooldown2.removeCooldown(player , "Kit");
+		BossBarAPI.removeAllBars(player);
 		player.getActivePotionEffects().forEach(it -> player.removePotionEffect(it.getType()));
 		
 		player.spigot().respawn();
@@ -87,22 +86,23 @@ public class PlayerDeathListener implements Listener {
 			}
 		}
 		
-		HelixPlayerDeathEvent helixPlayerDeathEvent = new HelixPlayerDeathEvent(
-				player, killer, deathLocation,
-				new ArrayList<>(event.getDrops()),
-				HelixWarp.ONE_VS_ONE.hasPlayer(player.getName()) ? HelixPlayerDeathEvent.Reason.ONE_VS_ONE : Reason.ARENA,
-				validKill
-		);
+
 		HelixPlayerDeathEvent helixPlayerDeathEvent2 = new HelixPlayerDeathEvent(
 				player, killer, deathLocation,
 				new ArrayList<>(event.getDrops()),
-				Reason.FPS,
+				Reason.ARENA,
 				validKill
 		);
 		HelixPlayerDeathEvent helixPlayerDeathEvent3 = new HelixPlayerDeathEvent(
 				player, killer, deathLocation,
 				new ArrayList<>(event.getDrops()),
 				Reason.LAVA,
+				validKill
+		);
+		HelixPlayerDeathEvent helixPlayerDeathEvent4 = new HelixPlayerDeathEvent(
+				player, killer, deathLocation,
+				new ArrayList<>(event.getDrops()),
+				Reason.GLADIATOR,
 				validKill
 		);
 		 if (GladiatorListener.combateGlad.containsKey(player)) {
@@ -112,14 +112,16 @@ public class PlayerDeathListener implements Listener {
              GladiatorListener.combateGlad.remove(winner);
              GladiatorListener.combateGlad.remove(loser);
          }
-		 if (HelixWarp.FPS.hasPlayer(player.getName())) {
-		Bukkit.getPluginManager().callEvent(helixPlayerDeathEvent2);
-		 }	else if (HelixWarp.LAVACHALLENGE.hasPlayer(player.getName())) {
-				Bukkit.getPluginManager().callEvent(helixPlayerDeathEvent3);
-		 } else {
-			 Bukkit.getPluginManager().callEvent(helixPlayerDeathEvent);	 
+		 if (net.helixpvp.kit2.GladiatorListener.combateGlad.containsKey(player)) {
+             final Player winner = net.helixpvp.kit2.GladiatorListener.combateGlad.get(player);
+             final Player loser = player;
+             net.helixpvp.kit2.GladiatorListener.resetGladiatorListenerByKill(winner, loser);
+             net.helixpvp.kit2.GladiatorListener.combateGlad.remove(winner);
+             net.helixpvp.kit2.GladiatorListener.combateGlad.remove(loser);
+         }
+			 Bukkit.getPluginManager().callEvent(helixPlayerDeathEvent2);	 
 		 }
-	}
+	
 	@EventHandler
 	public void onPickup(PlayerPickupItemEvent event) {
 		ItemStack capacete0 = new ItemStack(Material.MUSHROOM_SOUP);
@@ -174,14 +176,14 @@ public class PlayerDeathListener implements Listener {
 		 EventoUtils.setEvento(false, event.getEntity());
 			if (EventoUtils.evento && EventoUtils.getEventoPlayers().size() == 1  && EventoUtils.getEventoPlayers().size() != 0 && EventoUtils.started)
 		       EventoUtils.getEventoPlayers().forEach(p -> {
-		    	   Bukkit.broadcastMessage("ง6Vencedor do evento งaป งCงl " + EventoUtils.getEventoPlayersNames());
-		    	   Bukkit.broadcastMessage("ง6Vencedor do evento งaป งCงl " + EventoUtils.getEventoPlayersNames());
-	            	Bukkit.broadcastMessage("ง6Vencedor do evento งaป งCงl " + EventoUtils.getEventoPlayersNames());
-	            	Bukkit.broadcastMessage("ง6Vencedor do evento งaป งCงl " + EventoUtils.getEventoPlayersNames());
-	            	Bukkit.broadcastMessage("ง6Vencedor do evento งaป งCงl " + EventoUtils.getEventoPlayersNames());
-	            	Bukkit.broadcastMessage("ง6Vencedor do evento งaป งCงl " + EventoUtils.getEventoPlayersNames());
-	            	Bukkit.broadcastMessage("ง6Vencedor do evento งaป งCงl " + EventoUtils.getEventoPlayersNames());
-	            	Bukkit.broadcastMessage("ง6Vencedor do evento งaป งCงl " + EventoUtils.getEventoPlayersNames());
+		    	   Bukkit.broadcastMessage("ยง6Vencedor do evento ยงaยง ยงCยงl " + EventoUtils.getEventoPlayersNames());
+		    	   Bukkit.broadcastMessage("ยง6Vencedor do evento ยงaยง ยงCยงl " + EventoUtils.getEventoPlayersNames());
+	            	Bukkit.broadcastMessage("ยง6Vencedor do evento ยงaยง ยงCยงl " + EventoUtils.getEventoPlayersNames());
+	            	Bukkit.broadcastMessage("ยง6Vencedor do evento ยงaยง ยงCยงl " + EventoUtils.getEventoPlayersNames());
+	            	Bukkit.broadcastMessage("ยง6Vencedor do evento ยงaยง ยงCยงl " + EventoUtils.getEventoPlayersNames());
+	            	Bukkit.broadcastMessage("ยง6Vencedor do evento ยงaยง ยงCยงl " + EventoUtils.getEventoPlayersNames());
+	            	Bukkit.broadcastMessage("ยง6Vencedor do evento ยงaยง ยงCยงl " + EventoUtils.getEventoPlayersNames());
+	            	Bukkit.broadcastMessage("ยง6Vencedor do evento ยงaยง ยงCยงl " + EventoUtils.getEventoPlayersNames());
 	            	p.setHealth(20);
 	                p.getWorld().strikeLightning(p.getLocation());
 	                p.getWorld().strikeLightning(p.getLocation());
@@ -200,13 +202,13 @@ public class PlayerDeathListener implements Listener {
 		 EventoUtils.setEvento(false, event.getPlayer());
 				if (EventoUtils.evento && EventoUtils.getEventoPlayers().size() == 1 && EventoUtils.getEventoPlayers().size() != 0 && EventoUtils.started)
 			       EventoUtils.getEventoPlayers().forEach(p -> {
-			    	   Bukkit.broadcastMessage("ง6Vencedor do evento งaป งCงl " + EventoUtils.getEventoPlayersNames());
-		            	Bukkit.broadcastMessage("ง6Vencedor do evento งaป งCงl " + EventoUtils.getEventoPlayersNames());
-		            	Bukkit.broadcastMessage("ง6Vencedor do evento งaป งCงl " + EventoUtils.getEventoPlayersNames());
-		            	Bukkit.broadcastMessage("ง6Vencedor do evento งaป งCงl " + EventoUtils.getEventoPlayersNames());
-		            	Bukkit.broadcastMessage("ง6Vencedor do evento งaป งCงl " + EventoUtils.getEventoPlayersNames());
-		            	Bukkit.broadcastMessage("ง6Vencedor do evento งaป งCงl " + EventoUtils.getEventoPlayersNames());
-		            	Bukkit.broadcastMessage("ง6Vencedor do evento งaป งCงl " + EventoUtils.getEventoPlayersNames());
+			    	   Bukkit.broadcastMessage("ยง6Vencedor do evento ยงaยง ยงCยงl " + EventoUtils.getEventoPlayersNames());
+		            	Bukkit.broadcastMessage("ยง6Vencedor do evento ยงaยง ยงCยงl " + EventoUtils.getEventoPlayersNames());
+		            	Bukkit.broadcastMessage("ยง6Vencedor do evento ยงaยง ยงCยงl " + EventoUtils.getEventoPlayersNames());
+		            	Bukkit.broadcastMessage("ยง6Vencedor do evento ยงaยง ยงCยงl " + EventoUtils.getEventoPlayersNames());
+		            	Bukkit.broadcastMessage("ยง6Vencedor do evento ยงaยง ยงCยงl " + EventoUtils.getEventoPlayersNames());
+		            	Bukkit.broadcastMessage("ยง6Vencedor do evento ยงaยง ยงCยงl " + EventoUtils.getEventoPlayersNames());
+		            	Bukkit.broadcastMessage("ยง6Vencedor do evento ยงaยง ยงCยงl " + EventoUtils.getEventoPlayersNames());
 		            	p.setHealth(20);
 		                p.getWorld().strikeLightning(p.getLocation());
 		                p.getWorld().strikeLightning(p.getLocation());

@@ -1,11 +1,8 @@
 package net.helix.pvp.kit.provider;
 
-import java.util.concurrent.TimeUnit;
-
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Snowball;
 import org.bukkit.event.EventHandler;
@@ -14,8 +11,8 @@ import org.bukkit.event.entity.ProjectileLaunchEvent;
 import org.bukkit.inventory.ItemStack;
 
 import net.helix.core.bukkit.item.ItemBuilder;
-import net.helix.core.util.HelixCooldown;
-import net.helix.pvp.kit.Habilidade;
+import net.helix.pvp.HelixPvP;
+import net.helix.pvp.kit.HelixKit;
 import net.helix.pvp.kit.KitHandler;
 import net.helix.pvp.kit.KitManager;
 import net.md_5.bungee.api.ChatColor;
@@ -28,8 +25,8 @@ public class Switcher extends KitHandler {
         super.execute(player);
 
         player.getInventory().setItem(1, new ItemBuilder(Material.SNOW_BALL)
-                .amount(1)
-                .nbt("cancel-drop")
+                .amount(2)
+                .nbt("cancel-drop").nbt("kit-handler", "switcher")
                 .toStack()
         );
     }
@@ -39,23 +36,23 @@ public void snowball(final ProjectileLaunchEvent e) {
     if (e.getEntity() instanceof Snowball) {
     	if (e.getEntity().getShooter() instanceof Player) {
         final Player p = (Player) e.getEntity().getShooter();
-            if (!KitManager.getPlayer(p.getName()).hasKit(this)) {
-            	return;
-            }
+        if (!KitManager.getPlayer(p.getName()).hasKit(this)  || !p.getItemInHand().equals(new ItemStack(Material.SNOW_BALL))) {
+        	return;
+        }
             if (inCooldown(p) && KitManager.getPlayer(p.getName()).hasKit(this)) {
              e.setCancelled(true);
              sendMessageCooldown(p);
              p.getInventory().addItem(new ItemBuilder(Material.SNOW_BALL)
                      .amount(1)
-                     .nbt("cancel-drop")
+                     .nbt("cancel-drop").nbt("kit-handler", "switcher")
                      .toStack());
              return;
             }
-            p.getInventory().addItem( new ItemBuilder(Material.SNOW_BALL)
+            p.getInventory().addItem(new ItemBuilder(Material.SNOW_BALL)
                     .amount(1)
-                    .nbt("cancel-drop")
+                    .nbt("cancel-drop").nbt("kit-handler", "switcher")
                     .toStack());
-            addCooldown(p , 7);
+            addCooldown(p , HelixPvP.getInstance().getConfig().getInt("SwitcherCooldown"));
         }
     
     }
@@ -71,9 +68,9 @@ public void snowball(final ProjectileLaunchEvent e) {
                 	return;
                 }
     	        Player p = (Player)e.getEntity();
-    	        if (Habilidade.getAbility(p) == "SteelHead") {
+    	        if (KitManager.getPlayer(p.getName()).hasKit(HelixKit.NEO)) {
 					p.playSound(p.getLocation(), Sound.NOTE_BASS_DRUM, 15.0f, 15.0f);
-					shooter.sendMessage(ChatColor.AQUA + "Você nao pode usar o Switcher em " + p.getName() + " porque ele esta com o kit NEO");
+					shooter.sendMessage(ChatColor.AQUA + "You cant use switcher on " + p.getName() + " because he has kit NEO selected");
 					return;
 				}
     	        if (!KitManager.getPlayer(p.getName()).hasKit()) {

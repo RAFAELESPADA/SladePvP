@@ -27,7 +27,7 @@ public class ScoreboardCMD implements CommandExecutor {
 		}
 		
 		if (HelixCooldown.inCooldown(sender.getName(), "scoreboard-cmd"))  {
-			sender.sendMessage("§cAguarde " + HelixCooldown.getTime(sender.getName(), "scoreboard-cmd") + "s para executar este comando novamente.");
+			sender.sendMessage("Â§cWait " + HelixCooldown.getTime(sender.getName(), "scoreboard-cmd") + "s to use this again.");
 			return true;
 		}
 		
@@ -41,7 +41,7 @@ public class ScoreboardCMD implements CommandExecutor {
 		}
 		
 		HelixCooldown.create(sender.getName(), "scoreboard-cmd", TimeUnit.SECONDS, 5);
-		player.sendMessage("§bScoreboard " + (enable ? "§aON" : "§cOFF"));
+		player.sendMessage("Â§bScoreboard " + (enable ? "Â§aON" : "Â§cOFF"));
 		return true;
 	}
 

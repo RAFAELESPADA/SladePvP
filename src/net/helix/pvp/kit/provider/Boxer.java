@@ -28,8 +28,8 @@ public void onDamage(EntityDamageEvent event) {
 		return;
 	}
 	 Player rightClicked = (Player) event.getEntity();
-     if (!KitManager.getPlayer(rightClicked.getName()).hasKit(this))
-    	 return;
+	 if (!KitManager.getPlayer(rightClicked.getName()).hasKit(this) || event.getCause() == EntityDamageEvent.DamageCause.VOID)
+	      return; 
      event.setDamage(event.getDamage() - 0.8);
 }
 }

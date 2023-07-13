@@ -2,18 +2,18 @@ package net.helix.pvp.command;
 
 
 
+import java.text.DecimalFormat;
+
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.scoreboard.Scoreboard;
 
 import net.helix.core.bukkit.HelixBukkit;
 import net.helix.core.bukkit.account.HelixPlayer;
 import net.helix.core.bukkit.account.provider.PlayerPvP;
+import net.helix.pvp.HelixPvP;
 import net.helix.pvp.listener.Ranking;
-
-import java.text.DecimalFormat;
 
 public class RankCMD implements CommandExecutor {
 
@@ -24,24 +24,27 @@ public class RankCMD implements CommandExecutor {
             HelixPlayer helixPlayer = HelixBukkit.getInstance().getPlayerManager()
     				.getPlayer(player.getName());
     		PlayerPvP pvp = helixPlayer.getPvp();
-            if (helixPlayer == null) return true;
-            player.sendMessage("§5§lSloper §7- §eSistema de Rank");
+    		
+            if (helixPlayer == null) {
+            	return true;
+            }
+            player.sendMessage(HelixPvP.getInstance().getConfig().getString("Prefix").replace("&", "Â§") + " Â§7- Â§eSistema de Ranks");
             Ranking[] values;
             for (int length = (values = Ranking.values()).length, i = 0; i < length; ++i) {
                 Ranking rank = values[i];
                 if (Ranking.getRank(helixPlayer).getName().equals(rank.getName())) {
-                    player.sendMessage("§7(" + rank.getColoredSymbol() + "§7) " + rank.getColoredName() + " §a" + new DecimalFormat().format(rank.getXp()) + " KILLS   §e< Seu rank atual");
+                    player.sendMessage("Â§7(" + rank.getColoredSymbol() + "Â§7) " + rank.getColoredName() + " Â§a" + new DecimalFormat().format(rank.getXp()) + " KILLS   Â§e< Seu rank");
                 } else {
-                    player.sendMessage("§7(" + rank.getColoredSymbol() + "§7) " + rank.getColoredName() + " §a" + new DecimalFormat().format(rank.getXp()) + " KILLS");
+                    player.sendMessage("Â§7(" + rank.getColoredSymbol() + "Â§7) " + rank.getColoredName() + " Â§a" + new DecimalFormat().format(rank.getXp()) + " KILLS");
                 }
             }
-            player.sendMessage("§7Seu rank atual é: " + Ranking.getRank(helixPlayer).getColoredName() + "§7.");
+            player.sendMessage("Â§7Seu rank atual Ã©: " + Ranking.getRank(helixPlayer).getColoredName() + "Â§7.");
             if (Ranking.getRank(helixPlayer) != Ranking.GOD) {
-                player.sendMessage("§7O próximo rank: " + Ranking.getRank(helixPlayer).next().getColoredName() + "§7.");
+                player.sendMessage("Â§7ProxÃ­mo rank Ã©: " + Ranking.getRank(helixPlayer).next().getColoredName() + "Â§7.");
                 int pontos_necessarios = Ranking.getRank(helixPlayer).next().getXp() - pvp.getKills();
-                player.sendMessage("§7Você possui §a" + pvp.getKills() + " KILLS §7e faltam §a" + pontos_necessarios + " KILLS §7para o próximo §6rank§7.");
+                player.sendMessage("Â§7VocÃª tem Â§a" + pvp.getKills() + " KILLS Â§7e restam Â§a" + pontos_necessarios + " KILLS Â§7para o prÃ³ximo Â§6rankÂ§7.");
                 player.sendMessage(" ");
-                player.sendMessage("§7Progresso para o próximo §6rank§7:");
+                player.sendMessage("Â§7Progresso para o proximo Â§6rankÂ§7:");
                 int diff = Ranking.getRank(helixPlayer).next().getXp() - Ranking.getRank(helixPlayer).getXp();
                 getProgressBar(pontos_necessarios, diff, player);
             }
@@ -59,14 +62,14 @@ public class RankCMD implements CommandExecutor {
         StringBuilder bar = new StringBuilder();
         for (int i = 0; i < barSize; i++) {
             if (i < barPorcent) {
-                bar.append("§a§m-§r");
+                bar.append("Â§aÂ§m-Â§r");
             } else if (i == barPorcent) {
-                bar.append("§a§m>§r");
+                bar.append("Â§aÂ§m>Â§r");
             } else {
-                bar.append("§7§m-§r");
+                bar.append("Â§7Â§m-Â§r");
             }
         }
-        player.sendMessage(bar + "§r §7(" + realPorcent + "% concluído)");
+        player.sendMessage(bar + "Â§r Â§7(" + realPorcent + "% concluÃ­do)");
     }
 
 }

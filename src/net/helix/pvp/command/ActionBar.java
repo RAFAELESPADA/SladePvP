@@ -1,9 +1,8 @@
 package net.helix.pvp.command;
 
-import net.helix.core.bukkit.api.HelixActionBar;
-import net.md_5.bungee.api.chat.ComponentBuilder;
-import net.md_5.bungee.api.chat.HoverEvent;
-import net.md_5.bungee.api.chat.TextComponent;
+
+import java.util.Arrays;
+
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -12,7 +11,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import java.util.Arrays;
+import net.helix.pvp.kit.provider.HelixActionBar;
 
 public class ActionBar implements CommandExecutor {
 
@@ -24,18 +23,18 @@ public class ActionBar implements CommandExecutor {
                     if (args[0].equalsIgnoreCase("all")) {
                         final String message = ChatColor.translateAlternateColorCodes('&', StringUtils.join(Arrays.copyOfRange(args, 1, args.length), " "));
                         Bukkit.getOnlinePlayers().forEach(players -> HelixActionBar.send(players, message));
-                        player.sendMessage("§aMensagem para §eTODOS §aenviada.");
-                        Bukkit.broadcast("§7(STAFF) §aMensagem enviada por " + sender.getName(), "kombo.cmd.staffchat");
+                        player.sendMessage("Â§aMensagem para Â§eTODOS Â§aenviada.");
+                        Bukkit.broadcast("Â§7(STAFF) Â§aMensagem enviada por " + sender.getName(), "kombo.cmd.staffchat");
                     }
                     else {
                         final Player target = Bukkit.getPlayer(args[0]);
                         if (target != null) {
                             final String message2 = ChatColor.translateAlternateColorCodes('&', StringUtils.join(Arrays.copyOfRange(args, 1, args.length), " "));
                             HelixActionBar.send(target, message2);
-                            player.sendMessage("§aMensagem para §e" + target.getName() + " §aenviada com sucesso!");
+                            player.sendMessage("Â§aMensagem para Â§e" + target.getName() + " Â§aenviada com sucesso!");
                         }
                         else {
-                            player.sendMessage("§cNÃ£o foi possivel encontrar o player " + args[0] + "§c.");
+                            player.sendMessage("Â§cNÂ§o foi possivel encontrar o player " + args[0] + "Â§c.");
                         }
                     }
                 }

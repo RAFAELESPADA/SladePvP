@@ -2,12 +2,13 @@ package net.helix.pvp.command;
 
 import java.util.ArrayList;
 import java.util.List;
-import net.helix.core.bukkit.HelixBukkit;
-import net.helix.core.bukkit.api.HelixActionBar;
+
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
+
+import net.helix.core.bukkit.HelixBukkit;
+import net.helix.pvp.kit.provider.HelixActionBar;
 public class VanishUtil {
 	  private static final List<String> players = new ArrayList<>();
 	  
@@ -23,7 +24,7 @@ static {
                           player -> Bukkit.getPlayer(player) != null
                   ).forEach(username ->  {
                       Player player = Bukkit.getPlayer(username);
-                      HelixActionBar.send(player, "§aVocê está invisível para os jogadores. §f(§a" + players.size() + " §fstaffs no modo Vanish)");
+                      HelixActionBar.send(player, "Â§aVocÃª estÃ¡ invisÃ­vel para os jogadores. Â§f(Â§a" + players.size() + " Â§fstaffs no modo Vanish)");
                           Bukkit.getOnlinePlayers().forEach(online -> {
                               if (!online.hasPermission("kombo.cmd.report")) {
                                   online.hidePlayer(player);

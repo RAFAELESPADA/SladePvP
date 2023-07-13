@@ -6,38 +6,26 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 
 import net.helix.core.bukkit.item.ItemBuilder;
+import net.helix.pvp.HelixPvP;
 import net.helix.pvp.warp.HelixWarp;
-import org.bukkit.inventory.ItemStack;
 
 public class WarpsInventory {
 
-	private final static String inventoryName = "§bWarps do servidor";
+	private final static String inventoryName = HelixPvP.getInstance().getConfig().getString("WarpsInv").replace("&", "§");
 	private static ItemStack randomGlass() {
 		int randomId = new Random().nextInt(14);
-		return new ItemStack(Material.STAINED_GLASS_PANE, 1, (short)randomId);
+		return new ItemStack(Material.VINE, 1);
 	}
 	public static void open(Player player) {
-		Inventory inventory = Bukkit.createInventory(null, 3 * 9, inventoryName);
+		Inventory inventory = Bukkit.createInventory(null, 9, inventoryName);
 		
 
-
-		for (int i = 0; i <= 8; i++)  {
-			inventory.setItem(i, randomGlass());
-		}
-
-
-		inventory.setItem(9, randomGlass());
-		inventory.setItem(17, randomGlass());
-
-		for (int i = 18; i <= 26; i++)  {
-			inventory.setItem(i, randomGlass());
-		}
-
 		HelixWarp.getWarps().stream().filter(warp -> warp != HelixWarp.SPAWN).forEach(warp -> {
-			inventory.addItem(new ItemBuilder("§2" + warp.getName(), warp.getIcon())
-					.lore("§7Jogadores: §f" + warp.getPlayerCount())
+			inventory.addItem(new ItemBuilder("§b" + warp.getName(), warp.getIcon())
+					.lore("§ePlayers: §f" + warp.getPlayerCount())
 					.nbt("warp-gui", warp.getName())
 					.toStack()
 			);

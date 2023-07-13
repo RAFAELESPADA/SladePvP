@@ -2,12 +2,12 @@ package net.helix.pvp.command;
 
 
 import java.util.HashMap;
+
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
-import org.bukkit.ChatColor;
 
 
 
@@ -27,14 +27,14 @@ import org.bukkit.ChatColor;
       {
         int zeitconfig = 2000;
         long time = System.currentTimeMillis() + zeitconfig;
-        if (p.hasPermission("kombo.cmd.report")) {
+        if (p.hasPermission("kombo.antispam")) {
           return;
         }
         chat.put(p, Long.valueOf(time));
       }
       else if (((Long)chat.get(p)).longValue() <= System.currentTimeMillis())
       {
-        if (p.hasPermission("kombo.cmd.report")) {
+        if (p.hasPermission("kombo.antispam")) {
           return;
         }
         int zeitconfig = 2000;
@@ -44,10 +44,10 @@ import org.bukkit.ChatColor;
       else
       {
         if ((((Long)chat.get(p)).longValue() < System.currentTimeMillis()) || 
-          (p.hasPermission("kombo.cmd.report"))) {
+          (p.hasPermission("kombo.antispam"))) {
           return;
         }
-        p.sendMessage(("§c§lSPAM §fPor favor fale mais devagar!"));
+        p.sendMessage(("Â§cÂ§lSPAM Â§fNÃ£o faÃ§a spam!"));
         e.setCancelled(true);
       }
     }

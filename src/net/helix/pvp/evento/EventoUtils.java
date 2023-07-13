@@ -1,6 +1,10 @@
 package net.helix.pvp.evento;
 
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -8,9 +12,7 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffectType;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import net.helix.pvp.HelixPvP;
 
 public class EventoUtils {
 
@@ -22,7 +24,7 @@ public class EventoUtils {
     public static boolean pvp = false;
     public static boolean tp = false;
     public static boolean started = false;
-    public static Location mainArena = new Location(Bukkit.getWorlds().get(0), 65159.490, 31.00000, 61651.078);
+    public static Location mainArena = new Location(Bukkit.getWorld(HelixPvP.getInstance().getConfig().getString("EVENTOSPAWNMUNDO")), HelixPvP.getInstance().getConfig().getInt("EVENTOSPAWNX"), HelixPvP.getInstance().getConfig().getInt("EVENTOSPAWNY"), HelixPvP.getInstance().getConfig().getInt("EVENTOSPAWNZ"));
     public static Location specLoc = null;
     public static ArrayList<String> game = new ArrayList();
     public static List<UUID> whitelist = new ArrayList<>();

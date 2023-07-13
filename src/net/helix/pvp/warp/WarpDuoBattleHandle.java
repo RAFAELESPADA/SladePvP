@@ -1,8 +1,11 @@
 package net.helix.pvp.warp;
 
-import net.helix.core.bukkit.HelixBukkit;
-import net.helix.core.bukkit.util.AdminUtil;
-import net.helix.core.bukkit.util.DamageUtil;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
@@ -11,7 +14,8 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 
-import java.util.*;
+import net.helix.core.bukkit.HelixBukkit;
+import net.helix.core.bukkit.util.AdminUtil;
 
 public abstract class WarpDuoBattleHandle extends WarpHandle {
 
@@ -37,11 +41,11 @@ public abstract class WarpDuoBattleHandle extends WarpHandle {
 
     public final void finalizeBattle(Player player) {
         show(player);
-        DamageUtil.denyAllDamage(player.getName());
+
 
         findOpponent(player).ifPresent(target -> {
             show(target);
-            DamageUtil.denyAllDamage(target.getName());
+
         });
 
         fastChallenge.remove(player);
@@ -80,8 +84,29 @@ public abstract class WarpDuoBattleHandle extends WarpHandle {
 
         battlingPlayers.put(p1, p2);
 
-        DamageUtil.allowDamage(p1.getName(), DamageUtil.DamageType.PLAYER, true);
-        DamageUtil.allowDamage(p2.getName(), DamageUtil.DamageType.PLAYER, true);
+    }
+    public void startBattle2(Player p1, Player p2) {
+        fastChallenge.remove(p1); fastChallenge.remove(p2);
+        p1.setHealth(p1.getMaxHealth());
+        p2.setHealth(p2.getMaxHealth());
+
+        Optional<net.helix.core.bukkit.warp.HelixWarp> pos1 = HelixBukkit.getInstance().getWarpManager().findWarp(warpPos1);
+        Optional<net.helix.core.bukkit.warp.HelixWarp> pos2 = HelixBukkit.getInstance().getWarpManager().findWarp(warpPos2);
+        if (!pos1.isPresent() || !pos2.isPresent()) {
+            setItems(p1); setItems(p2);
+            p1.sendMessage("§cOcorreu um erro ao iniciar a batalha. (LOC-404)");
+            p2.sendMessage("§cOcorreu um erro ao iniciar a batalha. (LOC-404)");
+            return;
+        }
+
+        p1.teleport(pos1.get().getLocation());
+        p2.teleport(pos2.get().getLocation());
+
+        sendBattleItems2(p1); sendBattleItems2(p2);
+        hide(p1, p2);
+
+        battlingPlayers.put(p1, p2);
+
     }
 
     public void hide(Player p1, Player p2) {
@@ -125,7 +150,7 @@ public abstract class WarpDuoBattleHandle extends WarpHandle {
 
         if (findOpponent(player).isPresent()) {
             event.setCancelled(true);
-            player.sendMessage("§eVocê nÃ£o pode digitar comandos enquanto estÃ¡ batalhando");
+            player.sendMessage("§eVocê não pode digitar comandos enquanto está batalhando");
         }
     }
 
@@ -135,5 +160,15 @@ public abstract class WarpDuoBattleHandle extends WarpHandle {
             p1.hidePlayer(event.getPlayer());
             p2.hidePlayer(event.getPlayer());
         });
+    }
+
+    public void sendBattleItems2(Player player) {
+        player.setGameMode(GameMode.ADVENTURE);
+        player.getInventory().clear();
+        player.getInventory().setArmorContents(null);
+        player.setAllowFlight(false);
+        player.setFlying(false);
+        player.getInventory().setHeldItemSlot(0);
+        player.getActivePotionEffects().forEach(potion -> player.removePotionEffect(potion.getType()));
     }
 }

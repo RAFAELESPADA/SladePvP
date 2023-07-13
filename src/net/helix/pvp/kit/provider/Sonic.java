@@ -3,43 +3,32 @@ package net.helix.pvp.kit.provider;
 /*     */ 
 /*     */ import java.util.ArrayList;
 /*     */ import java.util.HashMap;
-/*     */ import java.util.List;
 import java.util.concurrent.TimeUnit;
-
-import net.helix.core.bukkit.item.ItemBuilder;
-import net.helix.core.util.HelixCooldown;
-import net.helix.pvp.HelixPvP;
-import net.helix.pvp.kit.KitHandler;
-import net.helix.pvp.kit.KitManager;
 
 /*     */ import org.bukkit.Bukkit;
 /*     */ import org.bukkit.Color;
 /*     */ import org.bukkit.Effect;
 /*     */ import org.bukkit.Location;
 /*     */ import org.bukkit.Material;
-/*     */ import org.bukkit.World;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
 /*     */ import org.bukkit.enchantments.Enchantment;
 /*     */ import org.bukkit.entity.Entity;
-/*     */ import org.bukkit.entity.Item;
 /*     */ import org.bukkit.entity.Player;
 /*     */ import org.bukkit.event.EventHandler;
-/*     */ import org.bukkit.event.Listener;
 /*     */ import org.bukkit.event.block.Action;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
-/*     */ import org.bukkit.event.player.PlayerDropItemEvent;
 /*     */ import org.bukkit.event.player.PlayerInteractEvent;
 /*     */ import org.bukkit.inventory.ItemStack;
-/*     */ import org.bukkit.inventory.PlayerInventory;
-import org.bukkit.inventory.meta.ItemMeta;
 /*     */ import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-/*     */ import org.bukkit.scheduler.BukkitScheduler;
 /*     */ import org.bukkit.util.Vector;
+
+import net.helix.core.bukkit.item.ItemBuilder;
+import net.helix.core.util.HelixCooldown;
+import net.helix.pvp.HelixPvP;
+import net.helix.pvp.kit.KitHandler;
+import net.helix.pvp.kit.KitManager;
 
 /*     */ 
 /*     */ 
@@ -61,7 +50,7 @@ import org.bukkit.potion.PotionEffectType;
 	public void execute(Player player) {
 		super.execute(player);
 		
-		player.getInventory().setItem(1, new ItemBuilder("§aSonic!", Material.LAPIS_BLOCK)
+		player.getInventory().setItem(1, new ItemBuilder("Â§aSonic!", Material.LAPIS_BLOCK)
 				.nbt("kit-handler", "sonic")
 				.nbt("cancel-drop")
 				.toStack()
@@ -93,12 +82,12 @@ import org.bukkit.potion.PotionEffectType;
 /*  67 */         event.setCancelled(true);
 /*     */       }
 
-if (HelixCooldown.inCooldown(p.getName(), "sonic")) {
-	p.sendMessage("§cAguarde " + HelixCooldown.getTime(p.getName(), "sonic") + "s para utilizar este kit novamente.");
+if (inCooldown(event.getPlayer()) && KitManager.getPlayer(event.getPlayer().getName()).hasKit(this)) {
+	sendMessageCooldown(event.getPlayer());
 	return;
 }
 
-/*  74 */     	HelixCooldown.create(p.getName(), "sonic", TimeUnit.SECONDS, 30);
+/*  74 */     	addCooldown(event.getPlayer(), 30);
 /*  75 */       fall.add(p.getName());
 /*  76 */       p.setVelocity(p.getEyeLocation().getDirection().multiply(this.boost).add(new Vector(0, 0, 0)));
 /*  77 */       p.getPlayer().getWorld().playEffect(p.getPlayer().getLocation(), Effect.SMOKE, 10, 0);
@@ -106,6 +95,10 @@ if (HelixCooldown.inCooldown(p.getName(), "sonic")) {
 /*  79 */       for (Entity pertos : p.getNearbyEntities(8.0D, 8.0D, 8.0D)) {
 /*  80 */         if ((pertos instanceof Player))
 /*     */         {
+	if (pertos.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura") || !KitManager.getPlayer(pertos.getName()).hasKit()) {
+		p.sendMessage("NÃ£o use o sonic no spawn!");
+		return;
+	}
 /*  82 */           Player perto = (Player)pertos;
 /*  83 */           ((Player)pertos).damage(10.0D);
 /*  84 */           pertos.setVelocity(new Vector(0.1D, 0.0D, 0.1D));

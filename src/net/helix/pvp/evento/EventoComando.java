@@ -2,16 +2,9 @@ package net.helix.pvp.evento;
 
 
 
-import net.helix.core.bukkit.util.DamageUtil;
-import net.helix.core.bukkit.util.DamageUtil.DamageType;
-import net.helix.pvp.kit.Habilidade;
-import net.helix.pvp.kit.KitManager;
-import net.helix.pvp.warp.HelixWarp;
-
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
-import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -20,43 +13,45 @@ import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import java.util.Objects;
+import net.helix.pvp.kit.Habilidade;
+import net.helix.pvp.kit.KitManager;
+import net.helix.pvp.warp.HelixWarp;
 
 
 public class EventoComando implements CommandExecutor {
 
     private static void sendHelp(Player player) {
         if (player.hasPermission("kombo.cmd.evento")) {
-            player.sendMessage("§5§lSloper §7- §eSistema de Eventos");
+            player.sendMessage("Â§5Â§lKITPVP Â§7- Â§eSistema de Eventos");
             player.sendMessage(" ");
-            player.sendMessage("§e/evento entrar §7- §fEntre em um evento.");
-            player.sendMessage("§e/evento sair §7- §fSaia do evento em andamento.");
-            player.sendMessage("§e/evento spec §7- §fSeja espectador do evento.");
+            player.sendMessage("Â§e/evento entrar Â§7- Â§fEntre em um evento.");
+            player.sendMessage("Â§e/evento sair Â§7- Â§fSaia do evento em andamento.");
+            player.sendMessage("Â§e/evento spec Â§7- Â§fSeja espectador do evento.");
             player.sendMessage(" ");
-            player.sendMessage("§e/evento build §7- §fAltere o build.");
-            player.sendMessage("§e/evento cleararena §7- §fLimpe a arena.");
-            player.sendMessage("§e/evento damage §7- §fAltere o dano (exceto pvp).");
-            player.sendMessage("§e/evento effect <efeito/clear> <amplificador> <segundos> <player/all>§7- §fAdicione efeitos de poÃ§Ã£o aos integrantes do evento.");
-            player.sendMessage("§e/evento explicar <evento> §7- §fExplique um evento automaticamente.");
-            player.sendMessage("§e/evento kick <player> §7- §fExpulse um player do evento.");
-            player.sendMessage("§e/evento participantes §7- §fLista os participantes do evento.");
-            player.sendMessage("§e/evento pvp §7- §fAltere o pvp.");
-            player.sendMessage("§e/evento setspecloc §7- §fSete a localizaÃ§Ã£o que os espectadores aparecerÃ£o.");
-            player.sendMessage("§e/evento skit <player/all> §7- §fSete o kit do evento.");
-            player.sendMessage("§e/evento specs §7- §fHabilite/desabilite espectadores.");
-            player.sendMessage("§e/evento start §7- §fInicie um evento.");
-            player.sendMessage("§e/evento stop §7- §fEncerre o evento em andamento.");
-            player.sendMessage("§e/evento toggle §7- §fHabilite/desabilite a entrada do evento em andamento.");
-            player.sendMessage("§e/evento tpall §7- §fTeleporte todos os players do evento atÃ© Você.");
-            player.sendMessage("§e/evento tpto <evento> §7- §fTeleporte todos os players para localizaÃ§Ãµes predefinidas.");
-            player.sendMessage("§e/evento whitelist <add/remove/list> <player> §7- §fLibere a entrada de players especÃ­ficos uma vez.");
+            player.sendMessage("Â§e/evento build Â§7- Â§fAltere o build.");
+            player.sendMessage("Â§e/evento cleararena Â§7- Â§fLimpe a arena.");
+            player.sendMessage("Â§e/evento damage Â§7- Â§fAltere o dano (exceto pvp).");
+            player.sendMessage("Â§e/evento effect <efeito/clear> <amplificador> <segundos> <player/all>Â§7- Â§fAdicione efeitos de poÃ§Ã£o aos integrantes do evento.");
+            player.sendMessage("Â§e/evento explicar <evento> Â§7- Â§fExplique um evento automaticamente.");
+            player.sendMessage("Â§e/evento kick <player> Â§7- Â§fExpulse um player do evento.");
+            player.sendMessage("Â§e/evento participantes Â§7- Â§fLista os participantes do evento.");
+            player.sendMessage("Â§e/evento pvp Â§7- Â§fAltere o pvp.");
+            player.sendMessage("Â§e/evento setspecloc Â§7- Â§fSete a localizaÃ§Ã£o que os espectadores aparecerÃ£o.");
+            player.sendMessage("Â§e/evento skit <player/all> Â§7- Â§fSete o kit do evento.");
+            player.sendMessage("Â§e/evento specs Â§7- Â§fHabilite/desabilite espectadores.");
+            player.sendMessage("Â§e/evento start Â§7- Â§fInicie um evento.");
+            player.sendMessage("Â§e/evento stop Â§7- Â§fEncerre o evento em andamento.");
+            player.sendMessage("Â§e/evento toggle Â§7- Â§fHabilite/desabilite a entrada do evento em andamento.");
+            player.sendMessage("Â§e/evento tpall Â§7- Â§fTeleporte todos os players do evento atÃ© VocÃª.");
+            player.sendMessage("Â§e/evento tpto <evento> Â§7- Â§fTeleporte todos os players para localizaÃ§Ãµes predefinidas.");
+            player.sendMessage("Â§e/evento whitelist <add/remove/list> <player> Â§7- Â§fLibere a entrada de players especÃ­ficos uma vez.");
             player.sendMessage(" ");
         } else {
-            player.sendMessage("§5§lSloper §7- §eSistema de Eventos");
+            player.sendMessage("Â§5Â§lKITPVP Â§7- Â§eSistema de Eventos");
             player.sendMessage(" ");
-            player.sendMessage("§e/evento entrar §7- §fEntre em um evento.");
-            player.sendMessage("§e/evento sair §7- §fSaia do evento em andamento.");
-            player.sendMessage("§e/evento spec §7- §fSeja espectador do evento.");
+            player.sendMessage("Â§e/evento entrar Â§7- Â§fEntre em um evento.");
+            player.sendMessage("Â§e/evento sair Â§7- Â§fSaia do evento em andamento.");
+            player.sendMessage("Â§e/evento spec Â§7- Â§fSeja espectador do evento.");
             player.sendMessage(" ");
         }
     }
@@ -75,81 +70,81 @@ public class EventoComando implements CommandExecutor {
 
             if (!player.hasPermission("kombo.cmd.evento")) {
                 if (!EventoUtils.evento) {
-                    player.sendMessage("§cA sala de eventos não está aberta.");
+                    player.sendMessage("Â§cA sala de eventos NÃ£o estÃ¡aberta.");
                     return true;
                 }
                 switch (args[0].toLowerCase()) {
                     case "entrar":
                         if (EventoUtils.game.contains(player.getName())) {
-                            player.sendMessage("§cVocê já está no evento.");
+                            player.sendMessage("Â§cVocÃª jÃ¡ estÃ¡ no evento.");
                             return true;
                         }
                         if (!EventoUtils.tp) {
                             if (EventoUtils.whitelist.contains(player.getUniqueId())) {
-                            	DamageUtil.allowAllDamage(player.getName());
+     
                                 player.teleport(EventoUtils.mainArena);
-                                player.sendMessage("§aVocê entrou pela whitelist. §7(já foi retirado)");
+                                player.sendMessage("Â§aVocÃª entrou pela whitelist. Â§7(jÂ§ foi retirado)");
                                 EventoUtils.whitelist.remove(player.getUniqueId());
                                 player.getInventory().clear();
                                 KitManager.getPlayer(player.getName()).removeKit();
                                 Habilidade.removeAbility(player);
                             } else {
-                                player.sendMessage("§cA sala do evento já foi fechada. Fique ligado para quando for aberta para espectadores.");
+                                player.sendMessage("Â§cA sala do evento jÂ§ foi fechada. Fique ligado para quando for aberta para espectadores.");
                             }
                             return true;
                         }
                         EventoUtils.setEvento(true, player);
-                        DamageUtil.allowAllDamage(player.getName());
+               
                         player.setAllowFlight(false);
                         player.teleport(EventoUtils.mainArena);
                         player.getInventory().clear();
                         player.getInventory().setArmorContents(null);
-                        player.sendMessage("§aVocê entrou no evento.");
+                        player.sendMessage("Â§aVocÃª entrou no evento.");
                         KitManager.getPlayer(player.getName()).removeKit();
                         Habilidade.removeAbility(player);
                         break;
                     case "sair":
                         if (!EventoUtils.game.contains(player.getName())) {
-                            player.sendMessage("§cVocê não está no evento.");
+                            player.sendMessage("Â§cVocÃª NÃ£o estÃ¡no evento.");
                             return true;
                         }
                         EventoUtils.setEvento(false, player);
                         HelixWarp.SPAWN.send(player);
-                        player.sendMessage("§cVocê saiu do evento.");
+                        player.sendMessage("Â§cVocÃª saiu do evento.");
                         break;
                     case "spec":
                         if (EventoUtils.game.contains(player.getName())) {
-                            player.sendMessage("§cVocê está no evento.");
+                            player.sendMessage("Â§cVocÃª estÃ¡no evento.");
                             return true;
                         }
                         if (!(KitManager.getPlayer(player.getName()).hasKit()) || Habilidade.ContainsAbility(player)) {
-                            player.sendMessage("§cVocê não pode ter kits selecionados para isso.");
+                            player.sendMessage("Â§cVocÃª NÃ£o pode ter kits selecionados para isso.");
                             return true;
                         }
                         if (!EventoUtils.specs) {
-                            player.sendMessage("§cOs espectadores estão desativados no momento.");
+                            player.sendMessage("Â§cOs espectadores estÂ§o desativados no momento.");
                             return true;
                         }
                         player.teleport(EventoUtils.specLoc);
-                        player.sendMessage("§aVocê está espectando o evento.");
+                        player.sendMessage("Â§aVocÃª estÃ¡ espectando o evento.");
                         break;
                     default:
-                        player.sendMessage("§cnão foi possível encontrar a Opção §e" + args[0] + "§c.");
+                        player.sendMessage("Â§cNÃ£o foi possÃ­vel encontrar a OpÃ§Ã£o Â§e" + args[0] + "Â§c.");
                         break;
                 }
             }
             else {
                 if (args[0].equalsIgnoreCase("start")) {
                     if (EventoUtils.evento) {
-                        player.sendMessage("§cA sala de eventos já está aberta.");
+                        player.sendMessage("Â§cA sala de eventos jÂ§ estÃ¡aberta.");
                         return true;
                     }
                     EventoUtils.evento = true;
-                    player.sendMessage("§aVocê abriu a sala de eventos.");
+                    player.sendMessage("Â§aVocÃª abriu a sala de eventos.");
                     EventoUtils.whitelist.add(player.getUniqueId());
                     player.chat("/evento entrar");
-                    Bukkit.broadcastMessage("§cUm evento acabou de iniciar.");
-                    Bukkit.broadcastMessage("§cUtilize /evento entrar");
+                    Bukkit.broadcastMessage("Â§cUm evento acabou de iniciar.");
+                    Bukkit.broadcastMessage("Â§cUtilize /evento entrar");
                     for (Player p : Bukkit.getOnlinePlayers()) {
                     	p.playSound(p.getLocation(), Sound.LEVEL_UP, 1f, 1f);
                     }
@@ -157,15 +152,15 @@ public class EventoComando implements CommandExecutor {
                 }
                 else if (args[0].equalsIgnoreCase("stop")) {
                     if (!EventoUtils.evento) {
-                        player.sendMessage("§cA sala de eventos já está fechada.");
+                        player.sendMessage("Â§cA sala de eventos jÃ¡ estÃ¡ fechada.");
                         return true;
                     }
                     EventoUtils.evento = false;
-                    player.sendMessage("§aVocê fechou a sala de eventos.");
+                    player.sendMessage("Â§aVocÃª fechou a sala de eventos.");
                     EventoUtils.getEventoPlayers().forEach(p -> {
                     	net.helix.pvp.evento.EventoUtils.setEvento(false, p);
                         HelixWarp.SPAWN.send(p);
-                        p.sendMessage("§cO evento foi finalizado.");
+                        p.sendMessage("Â§cO evento foi finalizado.");
                         p.chat("/spawn");
                         p.getActivePotionEffects().forEach(ef -> p.removePotionEffect(ef.getType()));
                     });
@@ -173,78 +168,78 @@ public class EventoComando implements CommandExecutor {
                 }
                 else {
                     if (!EventoUtils.evento) {
-                        player.sendMessage("§cA sala de eventos não está aberta.");
+                        player.sendMessage("Â§cA sala de eventos NÃ£o estÃ¡aberta.");
                         return true;
                     }
                     switch (args[0].toLowerCase()) {
                         case "entrar":
                             if (EventoUtils.game.contains(player.getName())) {
-                                player.sendMessage("§cVocê já está no evento.");
+                                player.sendMessage("Â§cVocÃª jÂ§ estÃ¡no evento.");
                                 return true;
                             }
                             if (!EventoUtils.tp) {
                                 if (EventoUtils.whitelist.contains(player.getUniqueId())) {
                                     EventoUtils.setEvento(true, player);
                                     player.teleport(EventoUtils.mainArena);
-                                    player.sendMessage("§aVocê entrou pela whitelist. §7(já foi retirado)");
+                                    player.sendMessage("Â§aVocÃª entrou pela whitelist. Â§7(jÂ§ foi retirado)");
                                     player.getInventory().clear();
                                     EventoUtils.whitelist.remove(player.getUniqueId());
                                     KitManager.getPlayer(player.getName()).removeKit();
                                 } else {
-                                    player.sendMessage("§cA sala do evento já foi fechada. Fique ligado para quando for aberta para espectadores.");
+                                    player.sendMessage("Â§cA sala do evento jÂ§ foi fechada. Fique ligado para quando for aberta para espectadores.");
                                 }
                                 return true;
                             }
                             EventoUtils.setEvento(true, player);
                             player.teleport(EventoUtils.mainArena);
                             player.getInventory().clear();
-                            player.sendMessage("§aVocê entrou no evento.");
+                            player.sendMessage("Â§aVocÃª entrou no evento.");
                             KitManager.getPlayer(player.getName()).removeKit();
                             break;
                         case "sair":
                             if (!EventoUtils.game.contains(player.getName())) {
-                                player.sendMessage("§cVocê não está no evento.");
+                                player.sendMessage("Â§cVocÃª NÃ£o estÃ¡no evento.");
                                 return true;
                             }
                             EventoUtils.setEvento(false, player);
                             HelixWarp.SPAWN.send(player);
-                            player.sendMessage("§cVocê saiu do evento.");
+                            player.sendMessage("Â§cVocÃª saiu do evento.");
                             break;
                         case "spec":
                             if (EventoUtils.game.contains(player.getName())) {
-                                player.sendMessage("§cVocê está no evento.");
+                                player.sendMessage("Â§cVocÃª estÃ¡no evento.");
                                 return true;
                             }
                             if (!(KitManager.getPlayer(player.getName()).hasKit() && Habilidade.ContainsAbility(player))) {
-                                player.sendMessage("§cVocê não pode ter kits selecionados para isso.");
+                                player.sendMessage("Â§cVocÃª NÃ£o pode ter kits selecionados para isso.");
                                 return true;
                             }
                             if (!EventoUtils.specs) {
-                                player.sendMessage("§cOs espectadores estão desativados no momento.");
+                                player.sendMessage("Â§cOs espectadores estÂ§o desativados no momento.");
                                 return true;
                             }
                             player.teleport(EventoUtils.specLoc);
-                            player.sendMessage("§aVocê está espectando o evento.");
+                            player.sendMessage("Â§aVocÃª estÃ¡espectando o evento.");
                             break;
                         case "build":
                             if (EventoUtils.build) {
-                                player.sendMessage("§cVocê desativou o build.");
+                                player.sendMessage("Â§cVocÃª desativou o build.");
                                 EventoUtils.build = false;
                             } else {
-                                player.sendMessage("§aVocê ativou o build.");
+                                player.sendMessage("Â§aVocÃª ativou o build.");
                                 EventoUtils.build = true;
                             }
                             break;
                         case "cleararena":
                             EventoUtils.clearBlocks();
-                            player.sendMessage("§aVocê limpou a arena. §7(tire as obsidians e cobblestones manualmente)");
+                            player.sendMessage("Â§aVocÃª limpou a arena. Â§7(tire as obsidians e cobblestones manualmente)");
                             break;
                         case "damage":
                             if (EventoUtils.damage) {
-                                player.sendMessage("§cVocê desativou o damage. §7(lembre-se de desativar o §4pvp§7)");
+                                player.sendMessage("Â§cVocÃª desativou o damage. Â§7(lembre-se de desativar o Â§4pvpÂ§7)");
                                 EventoUtils.damage = false;
                             } else {
-                                player.sendMessage("§aVocê ativou o damage. §7(lembre-se de ativar o §4pvp§7)");
+                                player.sendMessage("Â§aVocÃª ativou o damage. Â§7(lembre-se de ativar o Â§4pvpÂ§7)");
                                 EventoUtils.damage = true;
                             }
                             break;
@@ -252,10 +247,10 @@ public class EventoComando implements CommandExecutor {
                             if (args.length == 2) {
                                 if (args[1].equalsIgnoreCase("clear")) {
                                     EventoUtils.getEventoPlayers().forEach(p -> p.getActivePotionEffects().forEach(ef -> p.removePotionEffect(ef.getType())));
-                                    player.sendMessage("§aVocê limpou todos os efeitos ativos de todos os players.");
+                                    player.sendMessage("Â§aVocÃª limpou todos os efeitos ativos de todos os players.");
                                     return false;
                                 }
-                                else player.sendMessage("§cUtilize /evento effect <efeito/clear> <amplificador> <segundos> <player/all>");
+                                else player.sendMessage("Â§cUtilize /evento effect <efeito/clear> <amplificador> <segundos> <player/all>");
                                 return false;
                             }
                             if (args.length < 5) {
@@ -264,7 +259,7 @@ public class EventoComando implements CommandExecutor {
                             }
                             PotionEffectType potionEffectType = EventoUtils.getPotionEffectTypeByName(args[1]);
                             if (potionEffectType == null) {
-                                player.sendMessage("§cEfeito inválido.");
+                                player.sendMessage("Â§cEfeito invÂ§lido.");
                                 return true;
                             }
                             int amplif;
@@ -278,36 +273,36 @@ public class EventoComando implements CommandExecutor {
                             }
                             if (args[4].equalsIgnoreCase("all")) {
                                 EventoUtils.getEventoPlayers().forEach(p -> p.addPotionEffect(new PotionEffect(potionEffectType, secs * 20, amplif - 1)));
-                                player.sendMessage("§aEfeito §e"+potionEffectType.getName() + " " + amplif + " §aaplicado para todos os jogadores no evento por §e" + secs + " segundos§a.");
+                                player.sendMessage("Â§aEfeito Â§e"+potionEffectType.getName() + " " + amplif + " Â§aaplicado para todos os jogadores no evento por Â§e" + secs + " segundosÂ§a.");
                                 return false;
                             } else {
                                 Player target = Bukkit.getPlayer(args[4]);
                                 if (target == null) {
-                                    player.sendMessage("§cnão foi possível encontrar o player §e" + args[4] + "§c.");
+                                    player.sendMessage("Â§cNÃ£o foi possÃ­vel encontrar o player Â§e" + args[4] + "Â§c.");
                                     return true;
                                 }
                                 if (target == player) {
-                                    player.sendMessage("§cVocê não pode dar efeitos diretamente para Você mesmo.");
+                                    player.sendMessage("Â§cVocÃª NÃ£o pode dar efeitos diretamente para VocÃª mesmo.");
                                 }
                                 if (!EventoUtils.game.contains(target.getName())) {
-                                    player.sendMessage("§cEste player não está no evento.");
+                                    player.sendMessage("Â§cEste player NÃ£o estÃ¡no evento.");
                                     return true;
                                 }
                                 target.addPotionEffect(new PotionEffect(potionEffectType, secs * 20, amplif));
-                                player.sendMessage("§aEfeito §e"+potionEffectType.getName() + " " + amplif + " §aaplicado para §e" + target.getName() + " §apor §e" + secs + " segundos§a.");
+                                player.sendMessage("Â§aEfeito Â§e"+potionEffectType.getName() + " " + amplif + " Â§aaplicado para Â§e" + target.getName() + " Â§apor Â§e" + secs + " segundosÂ§a.");
                             }
                             break;
                         case "explicar":
                             if (args.length < 2) {
-                                player.sendMessage("§cEscolha um evento para explicar");
+                                player.sendMessage("Â§cEscolha um evento para explicar");
                                 return true;
                             }
                             EventoType evento = EventoType.getEventoByName(args[1]);
                             if (evento == null) {
-                                player.sendMessage("§cOpção de evento invÃ¡lida.");
+                                player.sendMessage("Â§cOpÃ§Ã£o de evento invÃ¡lida.");
                                 return true;
                             }
-                            player.sendMessage("§aIniciando explicaÃ§Ã£o do evento §e" + evento.getName().toUpperCase() + "§a...");
+                            player.sendMessage("Â§aIniciando explicaÃ§Ã£o do evento Â§e" + evento.getName().toUpperCase() + "Â§a...");
                             EventoType.explicarEvento(evento);
                             break;
                         case "kick":
@@ -317,39 +312,39 @@ public class EventoComando implements CommandExecutor {
                             }
                             Player target = Bukkit.getPlayer(args[1]);
                             if (target == null) {
-                                player.sendMessage("§cnão foi possível encontrar o player §e" + args[1] + "§c.");
+                                player.sendMessage("Â§cNÃ£o foi possÃ­vel encontrar o player Â§e" + args[1] + "Â§c.");
                                 return true;
                             }
                             if (target == player) {
-                                player.sendMessage("§cTenho certeza que Você não Ã© tÃ£o retardado assim.");
-                                player.sendMessage("§5toma aqui um easter egg entÃ£o, r$r$r$");
+                                player.sendMessage("Â§cTenho certeza que VocÃª NÃ£o Ã© tÃ£o retardado assim.");
+                                player.sendMessage("Â§5toma aqui um easter egg entÃ£o, r$r$r$");
                                 return true;
                             }
                             if (!EventoUtils.game.contains(target.getName())) {
-                                player.sendMessage("§cEste player não está no evento.");
+                                player.sendMessage("Â§cEste player NÃ£o estÃ¡no evento.");
                                 return true;
                             }
                            net.helix.pvp.evento.EventoUtils.setEvento(false, player);
                            net.helix.pvp.evento.EventoUtils.setEvento(false, player);
-                            target.sendMessage("§cVocê foi expulso do evento.");
-                            player.sendMessage("§aVocê expulsou §e" + target.getName() + " §ado evento.");
+                            target.sendMessage("Â§cVocÃª foi expulso do evento.");
+                            player.sendMessage("Â§aVocÃª expulsou Â§e" + target.getName() + " Â§ado evento.");
                             break;
                         case "participantes":
                             int size = EventoUtils.getEventoPlayersNames().size();
-                            player.sendMessage("§aO evento possui §e" + size + " players§a, sendo eles: §7" + StringUtils.join(EventoUtils.getEventoPlayersNames(), "§a, §7"));
+                            player.sendMessage("Â§aO evento possui Â§e" + size + " playersÂ§a, sendo eles: Â§7" + StringUtils.join(EventoUtils.getEventoPlayersNames(), "Â§a, Â§7"));
                             break;
                         case "pvp":
                             if (EventoUtils.pvp) {
-                                player.sendMessage("§cVocê desativou o pvp. §7(lembre-se de desativar o §4damage§7)");
+                                player.sendMessage("Â§cVocÃª desativou o pvp. Â§7(lembre-se de desativar o Â§4damageÂ§7)");
                                 EventoUtils.pvp = false;
                             } else {
-                                player.sendMessage("§aVocê ativou o pvp. §7(lembre-se de ativar o §4damage§7)");
+                                player.sendMessage("Â§aVocÃª ativou o pvp. Â§7(lembre-se de ativar o Â§4damageÂ§7)");
                                 EventoUtils.pvp = true;
                             }
                             break;
                         case "setspecloc":
                             EventoUtils.specLoc = player.getLocation();
-                            player.sendMessage("§aLocalizaÃ§Ã£o do spawn dos espectadores setada.");
+                            player.sendMessage("Â§aLocalizaÃ§Ã£o do spawn dos espectadores setada.");
                             break;
                         case "skit":
                             if (args.length < 2) {
@@ -362,56 +357,56 @@ public class EventoComando implements CommandExecutor {
                                     p.closeInventory();
                                     p.getInventory().setArmorContents(player.getInventory().getArmorContents());
                                     p.getInventory().setContents(player.getInventory().getContents());
-                                    p.sendMessage("§aVocê recebeu o kit do evento.");
+                                    p.sendMessage("Â§aVocÃª recebeu o kit do evento.");
                                 });
-                                player.sendMessage("§aTodos os players receberam seu kit.");
+                                player.sendMessage("Â§aTodos os players receberam seu kit.");
                                 return false;
                             }
                             Player t = Bukkit.getPlayer(args[1]);
                             if (t == null) {
-                                player.sendMessage("§cnão foi possível encontrar o player §e" + args[1] + "§c.");
+                                player.sendMessage("Â§cNÃ£o foi possÃ­vel encontrar o player Â§e" + args[1] + "Â§c.");
                                 return true;
                             }
                             t.closeInventory();
                             t.getInventory().setArmorContents(player.getInventory().getArmorContents());
                             t.getInventory().setContents(player.getInventory().getContents());
-                            t.sendMessage("§aVocê recebeu o kit do evento.");
-                            player.sendMessage("§aO player §e" + t.getName() + " §arecebeu seu kit.");
+                            t.sendMessage("Â§aVocÃª recebeu o kit do evento.");
+                            player.sendMessage("Â§aO player Â§e" + t.getName() + " Â§arecebeu seu kit.");
                             break;
                         case "specs":
                             if (!EventoUtils.specs) {
                                 if (EventoUtils.specLoc == null) {
-                                    player.sendMessage("§cAntes de habilitar espectadores escolha a localizaÃ§Ã£o de spawn deles.");
+                                    player.sendMessage("Â§cAntes de habilitar espectadores escolha a localizaÃ§Ã£o de spawn deles.");
                                     return true;
                                 }
                                 EventoUtils.specs = true;
-                                player.sendMessage("§aVocê habilitou os espectadores.");
+                                player.sendMessage("Â§aVocÃª habilitou os espectadores.");
                             } else {
                                 EventoUtils.specs = false;
-                                player.sendMessage("§cVocê desabilitou os espectadores.");
+                                player.sendMessage("Â§cVocÃª desabilitou os espectadores.");
                             }
                             break;
                         case "toggle":
                             if (!EventoUtils.tp) {
-                                player.sendMessage("§aVocê ativou a entrada de novos players no evento.");
+                                player.sendMessage("Â§aVocÃª ativou a entrada de novos players no evento.");
                                 EventoUtils.tp = true;
                             } else {
-                                player.sendMessage("§cVocê desativou a entrada de novos players no evento.");
+                                player.sendMessage("Â§cVocÃª desativou a entrada de novos players no evento.");
                                 EventoUtils.tp = false;
                             }
                             break;
                         case "tpall":
                             EventoUtils.getEventoPlayers().forEach(p -> p.teleport(player.getLocation()));
-                            player.sendMessage("§aVocê teleportou todos os players do evento atÃ© Você.");
+                            player.sendMessage("Â§aVocÃª teleportou todos os players do evento atÃ© VocÃª.");
                             break;
                         case "tpto":
                             if (args.length < 2) {
-                                player.sendMessage("§cEscolha algum evento para teleportar.");
+                                player.sendMessage("Â§cEscolha algum evento para teleportar.");
                                 return true;
                             }
                             EventoType ev = EventoType.getEventoByName(args[1]);
                             if (ev == null) {
-                                player.sendMessage("§cOpção de evento invÃ¡lida.");
+                                player.sendMessage("Â§cOpÃ§Ã£o de evento invÃ¡lida.");
                                 return true;
                             }
                             EventoUtils.started = true;
@@ -420,7 +415,7 @@ public class EventoComando implements CommandExecutor {
                         case "whitelist":
                             if (args.length < 3) {
                                 if (args[1].equalsIgnoreCase("list")) {
-                                    player.sendMessage("§aLista de players na whitelist: §7" + StringUtils.join(EventoUtils.getWhitelistPlayersNames(), "§a, §7"));
+                                    player.sendMessage("Â§aLista de players na whitelist: Â§7" + StringUtils.join(EventoUtils.getWhitelistPlayersNames(), "Â§a, Â§7"));
                                     return false;
                                 }
                                 sendHelp(player);
@@ -428,32 +423,32 @@ public class EventoComando implements CommandExecutor {
                             }
                             Player tt = Bukkit.getPlayer(args[2]);
                             if (tt == null) {
-                                player.sendMessage("§cnão foi possível encontrar o player §e" + args[2] + "§c.");
+                                player.sendMessage("Â§cNÃ£o foi possÃ­vel encontrar o player Â§e" + args[2] + "Â§c.");
                                 return true;
                             }
                             if (args[1].equalsIgnoreCase("add")) {
                                 if (EventoUtils.whitelist.contains(tt.getUniqueId())) {
-                                    player.sendMessage("§cO player §e" + tt.getName() + " §cjá está na whitelist.");
+                                    player.sendMessage("Â§cO player Â§e" + tt.getName() + " Â§cjÂ§ estÃ¡na whitelist.");
                                     return true;
                                 }
                                 EventoUtils.whitelist.add(tt.getUniqueId());
-                                player.sendMessage("§aO player §e" + tt.getName() + " §afoi adicionado na whitelist.");
+                                player.sendMessage("Â§aO player Â§e" + tt.getName() + " Â§afoi adicionado na whitelist.");
                                 return true;
                             } else if (args[1].equalsIgnoreCase("remove")) {
                                 if (!EventoUtils.whitelist.contains(tt.getUniqueId())) {
-                                    player.sendMessage("§cO player §e" + tt.getName() + " §cnão está na whitelist.");
+                                    player.sendMessage("Â§cO player Â§e" + tt.getName() + " Â§cNÃ£o  estÃ¡ na whitelist.");
                                     return true;
                                 }
                                 EventoUtils.whitelist.remove(tt.getUniqueId());
-                                player.sendMessage("§aO player §e" + tt.getName() + " §afoi §cremovido §ada whitelist.");
+                                player.sendMessage("Â§aO player Â§e" + tt.getName() + " Â§afoi Â§cremovido Â§ada whitelist.");
                                 return false;
                             } else {
-                                player.sendMessage("§cnão foi possível encontrar essa Opção.");
+                                player.sendMessage("Â§cNÃ£o  foi possÃ­vel encontrar essa OpÃ§Ã£o.");
                                 return false;
                             }
                         default:
                             sendHelp(player);
-                            player.sendMessage("§cnão foi possível encontrar a Opção §e" + args[0] + "§c.");
+                            player.sendMessage("Â§cNÃ£o foi possÃ­vel encontrar a OpÃ§Ã£o Â§e" + args[0] + "Â§c.");
                             break;
                     }
                 }

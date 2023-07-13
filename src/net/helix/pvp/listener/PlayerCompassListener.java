@@ -12,7 +12,6 @@ import org.bukkit.event.player.PlayerInteractEvent;
 
 import net.helix.core.bukkit.HelixBukkit;
 import net.helix.core.bukkit.item.ItemBuilder;
-import net.helix.pvp.FakeAPI;
 import net.helix.pvp.kit.KitManager;
 
 
@@ -36,10 +35,10 @@ public class PlayerCompassListener implements Listener {
 		).collect(Collectors.toList());
 		
 		if (entities.size() == 0) {
-			player.sendMessage("§eNenhum jogador próximo");
+			player.sendMessage("Â§eSem players prÃ³ximos.");
 			HelixBukkit.getInstance().getWarpManager().findWarp("arena").ifPresent(warp -> {
 				player.setCompassTarget(warp.getLocation());
-				player.sendMessage("§eBússola apontando para o spawn");
+				player.sendMessage("Â§eApontando para o spawn");
 			});
 			return;
 		}
@@ -47,7 +46,7 @@ public class PlayerCompassListener implements Listener {
 		Entity entity = entities.get(0);
 		Player pe = (Player) entity;
 		player.setCompassTarget(entity.getLocation());
-		player.sendMessage("§2Bússola apontando para §2" + (!FakeAPI.hasFake(pe) ? entity.getName() : FakeAPI.getNick(pe)));
+		player.sendMessage("Â§eSua bÃºssola estÃ¡ apontando para Â§2" + entity.getName());
 	}
 
 }

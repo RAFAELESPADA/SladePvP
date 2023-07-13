@@ -11,17 +11,17 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.inventivetalent.bossbar.BossBarAPI;
 
 import net.helix.core.bukkit.HelixBukkit;
 import net.helix.core.bukkit.account.HelixPlayer;
+import net.helix.core.util.HelixCooldown2;
 import net.helix.pvp.HelixPvP;
 import net.helix.pvp.kit.Habilidade;
-import net.helix.pvp.kit.HelixKit;
 import net.helix.pvp.kit.KitManager;
 import net.helix.pvp.kit.provider.GladiatorListener;
 import net.helix.pvp.warp.HelixWarp;
 import net.helix.pvp.warp.WarpDuoBattleHandle;
-import net.helix.pvp.warp.provider.OneVsOne;
 
 public class SpawnCMD extends WarpDuoBattleHandle implements Listener, CommandExecutor {
 	
@@ -48,12 +48,9 @@ public class SpawnCMD extends WarpDuoBattleHandle implements Listener, CommandEx
 				HelixWarp.SPAWN.send(p, true);
 				p.setFlying(false);
 				indo.remove(p.getName());
-				p.sendMessage("§9Enviado para o spawn!");
 				p.setGameMode(GameMode.SURVIVAL);
-				if (OneVsOne.fastChallenge.contains(p)) {
-					OneVsOne.fastChallenge.remove(p);
-					p.sendMessage("§cTe removendo da 1v1!");
-					}
+				HelixCooldown2.removeCooldown(p , "Kit");
+				BossBarAPI.removeAllBars(p);
 				  HelixPlayer ph = HelixBukkit.getInstance().getPlayerManager().getPlayer(p.getName());
 				  HelixPlayer pk = HelixBukkit.getInstance().getPlayerManager().getPlayer(winner.getName());
 				ph.getPvp().addDeaths(1);
@@ -61,19 +58,42 @@ public class SpawnCMD extends WarpDuoBattleHandle implements Listener, CommandEx
 				p.setLevel(0);
 				HelixBukkit.getInstance().getPlayerManager().getController().save(ph);
 				HelixBukkit.getInstance().getPlayerManager().getController().save(pk);
-				p.sendMessage("§cVoce recebeu uma morte por ter dado /spawn no Gladiator!");
-				winner.sendMessage("§cVoce recebeu uma kill por seu oponente ter dado /spawn no Gladiator!");
+				p.sendMessage("Â§cVoce recebeu uma morte por ter dado /spawn no Gladiator!");
+				winner.sendMessage("Â§cVoce recebeu uma kill por seu oponente ter dado /spawn no Gladiator!");
          }
-		 if (KitManager.getPlayer(p.getName()).hasKit() && !p.hasPermission("")) {
+		 if (net.helixpvp.kit2.GladiatorListener.combateGlad.containsKey(p)) {
+             final Player winner = GladiatorListener.combateGlad.get(p);
+             final Player loser = p;
+             GladiatorListener.resetGladiatorListenerBySpawn(winner, loser);
+             GladiatorListener.combateGlad.remove(winner);
+             GladiatorListener.combateGlad.remove(loser);
+             Habilidade.removeAbility(p);
+				HelixWarp.SPAWN.send(p, true);
+				p.setFlying(false);
+				indo.remove(p.getName());
+				p.setGameMode(GameMode.SURVIVAL);
+				HelixCooldown2.removeCooldown(p , "Kit");
+				BossBarAPI.removeAllBars(p);
+				  HelixPlayer ph = HelixBukkit.getInstance().getPlayerManager().getPlayer(p.getName());
+				  HelixPlayer pk = HelixBukkit.getInstance().getPlayerManager().getPlayer(winner.getName());
+				ph.getPvp().addDeaths(1);
+				pk.getPvp().addKills(1);
+				p.setLevel(0);
+				HelixBukkit.getInstance().getPlayerManager().getController().save(ph);
+				HelixBukkit.getInstance().getPlayerManager().getController().save(pk);
+				p.sendMessage("Â§cVoce recebeu uma morte por ter dado /spawn no Gladiator!");
+				winner.sendMessage("Â§cVoce recebeu uma kill por seu oponente ter dado /spawn no Gladiator!");
+         }
+		 if (KitManager.getPlayer(p.getName()).hasKit() && !p.hasPermission("kombo.cmd.report")) {
 			 indo.add(p.getName());
-			 p.sendMessage("§eEnviando Você para o spawn em 3 segundos!");
-			 p.sendMessage("§eNÃ£o se mova!");
+			 p.sendMessage("Â§eTeleportando em 3 segundos!");
+			 p.sendMessage("Â§eNÃ£o se mova!");
 			 Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnable()
  			{
        public void run()
        {
 			 if (!indo.contains(p.getName())) {
-				 p.sendMessage("§cVocê se moveu e o teleporte foi cancelado!");
+				 p.sendMessage("Â§cVocÃª se moveu e o teleporte foi cancelado!");
 				 return;
 			 }
 			 else {
@@ -82,11 +102,8 @@ public class SpawnCMD extends WarpDuoBattleHandle implements Listener, CommandEx
 				p.setFlying(false);
 				indo.remove(p.getName());
 				p.setLevel(0);
-				if (OneVsOne.fastChallenge.contains(p)) {
-				OneVsOne.fastChallenge.remove(p);
-				p.sendMessage("§cTe removendo da 1v1!");
-				}
-				p.sendMessage("§9Enviado para o spawn!");
+				HelixCooldown2.removeCooldown(p , "Kit");
+				BossBarAPI.removeAllBars(p);
 				p.setGameMode(GameMode.SURVIVAL);
 				return;
        } }}, 60L);
@@ -95,11 +112,8 @@ public class SpawnCMD extends WarpDuoBattleHandle implements Listener, CommandEx
 		Habilidade.removeAbility(p);
 		HelixWarp.SPAWN.send(p, true);
 		p.setFlying(false);
-		if (OneVsOne.fastChallenge.contains(p)) {
-			OneVsOne.fastChallenge.remove(p);
-			p.sendMessage("§cTe removendo da 1v1!");
-			}
-		p.sendMessage("§9Enviado para o spawn!");
+		HelixCooldown2.removeCooldown(p , "Kit");
+		BossBarAPI.removeAllBars(p);
 		p.setGameMode(GameMode.SURVIVAL);
 		p.setLevel(0);
 		return true;
