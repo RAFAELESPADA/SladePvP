@@ -64,11 +64,11 @@ public class Kangaroo extends KitHandler {
 		/*     */     {
 		/*  60 */       event.setCancelled(true);
 
-		/*  61 */       if (GladiatorListener.combateGlad.containsKey(p)) {
-		/*  62 */         p.sendMessage(String.valueOf("§cVocê esta no Gladiator e recebeu efeito de speed"));
-		/*     */         
-		/*  64 */         darEfeito(p, org.bukkit.potion.PotionEffectType.SPEED, 10, 1);
-		/*     */       }
+		/*  61 */         if (GladiatorListener.combateGlad.containsKey(p) || net.helixpvp.kit2.GladiatorListener.combateGlad.containsKey(p)) {
+	  		/*  62 */         p.sendMessage(String.valueOf("§cVocê esta no Gladiator e recebeu efeito de speed"));
+	  		/*     */         
+	  		/*  64 */        Kangaroo.darEfeito(p, org.bukkit.potion.PotionEffectType.SPEED, 10, 1);
+	  		/*     */       }
 		/*     */       else
 		/*     */       {
 		/*  68 */         event.setCancelled(true);

@@ -12,6 +12,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
@@ -73,35 +74,38 @@ public final class NoBreakEvent
     return false;
   }
   
-  @EventHandler
+  @EventHandler(priority = EventPriority.MONITOR)
   public void aoconstruir(BlockPlaceEvent e)
   {
     Player p = e.getPlayer();
     if (!BuildUtil.has(e.getPlayer().getName())) {
     	if (EventoUtils.build && EventoUtils.game.contains(p.getName())) {
+    		e.setCancelled(false);
     		return;
     	}
       e.setCancelled(true);
     }
   }
-    @EventHandler
+    @EventHandler(priority = EventPriority.MONITOR)
     public void aoconstruir3(PlayerBucketEmptyEvent e)
     {
       Player p = e.getPlayer();
       if (!BuildUtil.has(e.getPlayer().getName())) {
     	  if (EventoUtils.build && EventoUtils.game.contains(p.getName())) {
+    		  e.setCancelled(false);
       		return;
       	}
         e.setCancelled(true);
       }
   }
   
-  @EventHandler
+    @EventHandler(priority = EventPriority.MONITOR)
   public void aoconstruir(BlockBreakEvent e)
   {
     Player p = e.getPlayer();
     if (!BuildUtil.has(e.getPlayer().getName())) {
     	if (EventoUtils.build && EventoUtils.game.contains(p.getName())) {
+    		  e.setCancelled(false);
     		return;
     	}
       e.setCancelled(true);

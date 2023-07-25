@@ -44,6 +44,12 @@ public class Monk extends KitHandler {
 			player.sendMessage(ChatColor.RED + "Você não pode usar o kit em um jogador no spawn.");
         	return;
         }
+		else if (event.getPlayer().getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura") && KitManager.getPlayer(event.getPlayer().getName()).hasKit(this)) {
+        	event.getPlayer().sendMessage("§cNão use o monk no spawn!");
+        	event.setCancelled(true);
+			return;
+		
+}
 		if (!KitManager.getPlayer(player.getName()).hasKit(this) 
 				|| !ItemBuilder.has(player.getItemInHand(), "kit-handler", "monk")) {
 			return;

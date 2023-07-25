@@ -28,20 +28,6 @@ public class KitsInventory2 {
 		for (int i = 45; i <= 53; i++) {
 			inventory.setItem(i, randomGlass());
 		}
-		
-		for (int i = 0; i <= 45; i += 9) {
-			inventory.setItem(i, randomGlass());
-		}
-		
-		for (int i = 8; i <= 53; i += 9) {
-			inventory.setItem(i, randomGlass());
-		}
-		inventory.setItem(9, randomGlass());
-		inventory.setItem(18, randomGlass());
-		inventory.setItem(27, randomGlass());
-		inventory.setItem(36, randomGlass());
-		inventory.setItem(45, randomGlass());
-		inventory.setItem(53, randomGlass());
 
 		KitManager2.getPlayer(player.getName()).getAvailablekit2s().forEach(kit ->  {
  
@@ -68,7 +54,7 @@ public class KitsInventory2 {
 	}
 	private static ItemStack randomGlass() {
 		int randomId = new Random().nextInt(14);
-		return new ItemStack(Material.AIR);
+		return new ItemStack(Material.STAINED_GLASS_PANE);
 	}
 	
 }

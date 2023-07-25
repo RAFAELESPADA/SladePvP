@@ -48,18 +48,33 @@ public class Spawn extends WarpHandle {
             .nbt("cancel-drop")
             .nbt("cancel-click")
             .toStack());
-    player.getInventory().setItem(8, (new ItemBuilder("§eLoja", Material.valueOf(HelixPvP.getInstance().getConfig().getString("ShopItemMAT"))))
+    player.getInventory().setItem(2, (new ItemBuilder("§eLoja", Material.valueOf(HelixPvP.getInstance().getConfig().getString("ShopItemMAT"))))
         .nbt("spawn-item", "shop")
         .nbt("cancel-drop")
         .nbt("cancel-click")
         .toStack());
+    player.getInventory().setItem(6, (new ItemBuilder("§6Opções", Material.valueOf(HelixPvP.getInstance().getConfig().getString("OptionsItem"))))
+            .nbt("spawn-item", "status")
+            .nbt("cancel-drop")
+            .nbt("cancel-click")
+            .toStack());
+    player.getInventory().setItem(7, (new ItemBuilder("§eStatus", Material.SKULL_ITEM)
+            .nbt("spawn-item", "status")
+            .nbt("cancel-drop")
+            .nbt("cancel-click")
+            .toStack()));
+    player.getInventory().setItem(8, (new ItemBuilder("§eWarps", Material.COMPASS))
+            .nbt("spawn-item", "1v1")
+            .nbt("cancel-drop")
+            .nbt("cancel-click")
+            .toStack());
   }
   public static ItemStack getHead(Player player) {
       ItemStack item = new ItemStack(Material.SKULL_ITEM, 1, (short) 3);
       SkullMeta skull = (SkullMeta) item.getItemMeta();
-      skull.setDisplayName("§aProfile");
+      skull.setDisplayName("§aSeu perfil");
       ArrayList<String> lore = new ArrayList<String>();
-      lore.add("§7Click to see your profile");
+      lore.add("§7Clique para ver seu perfil");
       skull.setLore(lore);
       skull.setOwner(player.getName());
       item.setItemMeta(skull);

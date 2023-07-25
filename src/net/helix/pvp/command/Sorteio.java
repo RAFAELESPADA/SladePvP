@@ -31,7 +31,7 @@ public class Sorteio implements CommandExecutor {
         Player player = (Player) sender;
         if (command.getName().equalsIgnoreCase("sorteio")) {
             if (!player.hasPermission("kombo.cmd.sorteio")) {
-                player.sendMessage(ChatColor.RED + "Voc§ nao tem permissao");
+                player.sendMessage(ChatColor.RED + "Você nao tem permissao");
                 return true;
             }
             int onlinePlayers = (int) Bukkit.getOnlinePlayers().stream().filter(target -> !target.hasPermission("kombo.cmd.report")).count();
@@ -57,9 +57,9 @@ public class Sorteio implements CommandExecutor {
             Player sort = playerList.get(sorteado);
 
 
-            Bukkit.broadcastMessage(HelixPvP.getInstance().getConfig().getString("Prefix").replace("§", "&") + "§fUm sorteio acabou de começar!");
-            Bukkit.broadcastMessage(HelixPvP.getInstance().getConfig().getString("Prefix").replace("§", "&") + "§fVocê ja esta participando!");
-            Bukkit.broadcastMessage(HelixPvP.getInstance().getConfig().getString("Prefix").replace("§", "&") + "§fJogadores participando: §a" + onlinePlayers);
+            Bukkit.broadcastMessage(HelixPvP.getInstance().getConfig().getString("Prefix").replace("§", "&") + "§aUm sorteio acabou de começar!");
+            Bukkit.broadcastMessage(HelixPvP.getInstance().getConfig().getString("Prefix").replace("§", "&") + "§aVocê ja esta participando!");
+            Bukkit.broadcastMessage(HelixPvP.getInstance().getConfig().getString("Prefix").replace("§", "&") + "§aJogadores participando: §a" + onlinePlayers);
             Bukkit.broadcast("§7§o(STAFF) Sorteio feito por §f" + player.getName() + "§7§o." , "kombo.cmd.staffchat");
 
             Bukkit.getScheduler().runTaskLater(HelixPvP.getInstance(), () -> {
@@ -68,7 +68,7 @@ public class Sorteio implements CommandExecutor {
                
                 HelixPlayer killerHelixPlayer = HelixBukkit.getInstance().getPlayerManager().getPlayer(sort.getName());
     			killerHelixPlayer.getPvp().addCoins(quantia);
-                sort.sendMessage(ChatColor.GREEN + "Voc§ ganhou o sorteio e recebeu " + quantia + " coins!");
+                sort.sendMessage(ChatColor.GREEN + "Você ganhou o sorteio e recebeu " + quantia + " coins!");
                 for (Player p : Bukkit.getOnlinePlayers()){
                 	HelixActionBar.send(p, "§aO Ganhador do Sorteio foi: §f" + sort.getName() + "§6+(" + quantia + ")");
                 	p.playSound(p.getLocation(), Sound.FIREWORK_LARGE_BLAST, 1.0F, 1.0F);

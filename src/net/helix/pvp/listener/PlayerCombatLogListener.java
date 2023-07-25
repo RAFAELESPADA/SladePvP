@@ -15,6 +15,8 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
+import com.sk89q.minecraft.util.commands.Command;
+
 import net.helix.core.util.HelixCooldown;
 import net.helix.pvp.command.VanishUtil;
 import net.helix.pvp.warp.HelixWarp;
@@ -25,7 +27,7 @@ public class PlayerCombatLogListener implements Listener {
 
 	private final List<String> allowCommands = Arrays.asList("tell", "r", "report", "reportar", "admin", "tag");
 	private final static TimeUnit timeUnit = TimeUnit.SECONDS;
-	private final static long time = 12;
+	private final static long time = 15;
 	
 	@EventHandler(ignoreCancelled = true, priority = EventPriority.MONITOR)
 	public void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
@@ -69,6 +71,10 @@ public class PlayerCombatLogListener implements Listener {
 	@EventHandler
 	public void onCommandPreProcess2(PlayerCommandPreprocessEvent event) {
 		Player player = event.getPlayer();
+		if (event.getMessage().split(" ")[0].toLowerCase().contains("lobby")) {
+			event.setCancelled(true);
+			player.sendMessage("§cVocê voltou!");
+	}
 		String command = event.getMessage().split(" ")[0].toLowerCase();
 		if (command.contains("admin") && VanishUtil.has(player.getName())) {
 			event.setCancelled(true);

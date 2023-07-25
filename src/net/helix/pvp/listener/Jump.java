@@ -17,6 +17,8 @@ import org.bukkit.util.Vector;
 
 import net.helix.pvp.HelixPvP;
 import net.helix.pvp.evento.EventoUtils;
+import net.helix.pvp.kit.HelixKit;
+import net.helix.pvp.kit.HelixKit2;
 import net.helix.pvp.kit.KitHandler;
 import net.helix.pvp.kit.KitHandler2;
 import net.helix.pvp.kit.KitManager;
@@ -63,9 +65,25 @@ public class Jump implements Listener {
 		Player player = e.getPlayer();
 		Atirar(p);
 		Atirar2(p);
-	if (player.getLocation().getBlockY() < HelixPvP.getInstance().getConfig().getInt("SpawnAltura") && (!KitManager.getPlayer(player.getName()).hasKit() || !KitManager2.getPlayer(player.getName()).haskit2()) && !p.hasPermission("kombo.cmd.report") && !EventoUtils.tp) {
-		player.sendMessage(ChatColor.RED + "Escolha seu kit primário e secundário antes de sair do spawn!");
-		HelixWarp.SPAWN.send(player, true);
+	if (player.getLocation().getBlockY() < HelixPvP.getInstance().getConfig().getInt("SpawnAltura") && (!KitManager.getPlayer(player.getName()).hasKit() && !KitManager2.getPlayer(player.getName()).haskit2()) && !EventoUtils.tp && !HelixWarp.ONE_VS_ONE.hasPlayer(p.getName()) && !HelixWarp.FPS.hasPlayer(p.getName()) && !HelixWarp.SUMO.hasPlayer(p.getName())) {
+		HelixKit.findKit("PvP").ifPresent(kit -> {
+			player.closeInventory();
+			kit.send(player);
+		});
+		HelixKit2.findKit("PvP").ifPresent(kit -> {
+			player.closeInventory();
+			kit.send(player);
+		});
+	}
+	if (player.getLocation().getBlockY() < HelixPvP.getInstance().getConfig().getInt("SpawnAltura") && (KitManager.getPlayer(player.getName()).hasKit() && !KitManager2.getPlayer(player.getName()).haskit2()) && !EventoUtils.tp && !HelixWarp.ONE_VS_ONE.hasPlayer(p.getName()) && !HelixWarp.FPS.hasPlayer(p.getName()) && !HelixWarp.SUMO.hasPlayer(p.getName())) {
+		HelixKit.findKit(KitManager.getPlayer(player.getName()).getKit().toString()).ifPresent(kit -> {
+			player.closeInventory();
+			kit.send(player);
+		});
+		HelixKit2.findKit("PvP").ifPresent(kit -> {
+			player.closeInventory();
+			kit.send(player);
+		});
 	}
 
 

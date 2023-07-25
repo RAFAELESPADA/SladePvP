@@ -26,11 +26,19 @@ public class KitHandler2 implements Listener {
 		player.setFlying(false);
 		player.getActivePotionEffects().forEach(potion -> player.removePotionEffect(potion.getType()));
 		player.getInventory().setHeldItemSlot(0);
-		/* 348 */       
-		player.getInventory().setItem(0, new ItemBuilder("§7Sword", Material.STONE_SWORD)
+		/* 348 */  
+		if (KitManager.getPlayer(player.getName()).hasKit(HelixKit.BARBARIAN) || KitManager2.getPlayer(player.getName()).haskit2(HelixKit2.BARBARIAN)) {
+		player.getInventory().setItem(0, new ItemBuilder("§7Espada", Material.WOOD_SWORD)
 				.nbt("cancel-drop")
 				.toStack()
 		);
+		}
+		else {
+			player.getInventory().setItem(0, new ItemBuilder("§7Espada", Material.STONE_SWORD)
+					.nbt("cancel-drop")
+					.toStack()
+			);
+		}
 		HelixPlayer p = HelixBukkit.getInstance().getPlayerManager().getPlayer(player.getName());
 		 if (!KitManager.getPlayer(p.getName()).hasKit(HelixKit.NEO)) {
 			 Habilidade.removeAbility(player);
@@ -41,6 +49,9 @@ public class KitHandler2 implements Listener {
 				.nbt("cancel-drop")
 				.toStack()
 		);
+		 } else {
+			player.getInventory().setItem(8 , new ItemStack(Material.MUSHROOM_SOUP));
+		
 		 }
 		
 	if (!SoupTypeGUI.savecocoa.containsKey(p.getName())) {

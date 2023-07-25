@@ -107,22 +107,36 @@ public class PlayerJoinListener implements Listener {
 	    	    player.setFireTicks(0);
 	    	    player.setFoodLevel(20);
 	    	    player.getInventory().setHeldItemSlot(0);
-	    	    player.getInventory().setItem(HelixPvP.getInstance().getConfig().getInt("KitsSlot"), (new ItemBuilder("§aKits disponíveis", Material.valueOf(HelixPvP.getInstance().getConfig().getString("KitsItem"))))
-	    	        .nbt("spawn-item", "kits")
-	    	        .nbt("cancel-drop")
-	    	        .nbt("cancel-click")
-	    	        .toStack());
-	    	    player.getInventory().setItem(HelixPvP.getInstance().getConfig().getInt("ShopSlot"), (new ItemBuilder("§eLoja de Kits", Material.valueOf(HelixPvP.getInstance().getConfig().getString("ShopItemMAT"))))
-	    	        .nbt("spawn-item", "shop")
-	    	        .nbt("cancel-drop")
-	    	        .nbt("cancel-click")
-	    	        .toStack());
-	    	    player.getInventory().setItem(2, Spawn.getHead(player));
-	    	    player.getInventory().setItem(8, (new ItemBuilder("§cReturn to lobby", Material.BED))
-	    	            .nbt("spawn-item", "voltar")
+	    	    player.getInventory().setItem(0, (new ItemBuilder("§aKits primários", Material.valueOf(HelixPvP.getInstance().getConfig().getString("KitsItem"))))
+	    	            .nbt("spawn-item", "kits")
 	    	            .nbt("cancel-drop")
 	    	            .nbt("cancel-click")
 	    	            .toStack());
+	    	        player.getInventory().setItem(1, (new ItemBuilder("§aKits secundários", Material.CHEST))
+	    	                .nbt("spawn-item", "kits2")
+	    	                .nbt("cancel-drop")
+	    	                .nbt("cancel-click")
+	    	                .toStack());
+	    	        player.getInventory().setItem(2, (new ItemBuilder("§eLoja", Material.valueOf(HelixPvP.getInstance().getConfig().getString("ShopItemMAT"))))
+	    	            .nbt("spawn-item", "shop")
+	    	            .nbt("cancel-drop")
+	    	            .nbt("cancel-click")
+	    	            .toStack());
+	    	        player.getInventory().setItem(6, (new ItemBuilder("§6Opções", Material.valueOf(HelixPvP.getInstance().getConfig().getString("OptionsItem"))))
+	    	                .nbt("spawn-item", "status")
+	    	                .nbt("cancel-drop")
+	    	                .nbt("cancel-click")
+	    	                .toStack());
+	    	        player.getInventory().setItem(7, (new ItemBuilder("§eStatus", Material.SKULL_ITEM)
+	    	                .nbt("spawn-item", "status")
+	    	                .nbt("cancel-drop")
+	    	                .nbt("cancel-click")
+	    	                .toStack()));
+	    	        player.getInventory().setItem(8, (new ItemBuilder("§eWarps", Material.COMPASS))
+	    	                .nbt("spawn-item", "1v1")
+	    	                .nbt("cancel-drop")
+	    	                .nbt("cancel-click")
+	    	                .toStack());
 	    		HelixBukkit.getExecutorService().submit(() -> {
 	    			new BukkitRunnable() {
 	    				@Override
@@ -139,19 +153,28 @@ public class PlayerJoinListener implements Listener {
 	    					    Location spawnLocation = (HelixBukkit.getInstance().getWarpManager().findWarp("spawn").get()).getLocation();
 	    			    	    player.teleport(spawnLocation);
 	    						p.getActivePotionEffects().forEach(potion -> p.removePotionEffect(potion.getType()));
-	    						p.getInventory().setItem(HelixPvP.getInstance().getConfig().getInt("KitsSlot"), (new ItemBuilder("§aKits disponíveis", Material.valueOf(HelixPvP.getInstance().getConfig().getString("KitsItem"))))
+	    						player.getInventory().setItem(0, (new ItemBuilder("§aKits primários", Material.valueOf(HelixPvP.getInstance().getConfig().getString("KitsItem"))))
 	    						        .nbt("spawn-item", "kits")
 	    						        .nbt("cancel-drop")
 	    						        .nbt("cancel-click")
 	    						        .toStack());
-	    						    p.getInventory().setItem(HelixPvP.getInstance().getConfig().getInt("ShopSlot"), (new ItemBuilder("§eLoja de Kits", Material.valueOf(HelixPvP.getInstance().getConfig().getString("ShopItemMAT"))))
+	    						    player.getInventory().setItem(1, (new ItemBuilder("§aKits secundários", Material.CHEST))
+	    						            .nbt("spawn-item", "kits2")
+	    						            .nbt("cancel-drop")
+	    						            .nbt("cancel-click")
+	    						            .toStack());
+	    						    player.getInventory().setItem(8, (new ItemBuilder("§eLoja", Material.valueOf(HelixPvP.getInstance().getConfig().getString("ShopItemMAT"))))
 	    						        .nbt("spawn-item", "shop")
 	    						        .nbt("cancel-drop")
 	    						        .nbt("cancel-click")
 	    						        .toStack());
-	    						    p.getInventory().setItem(2, Spawn.getHead(p));
-	    						    p.getInventory().setItem(8, (new ItemBuilder("§cReturn to Lobby", Material.BED))
-	    						            .nbt("spawn-item", "voltar")
+	    						    player.getInventory().setItem(4, (new ItemBuilder("§eStatus", Material.SKULL_ITEM)
+	    						            .nbt("spawn-item", "status")
+	    						            .nbt("cancel-drop")
+	    						            .nbt("cancel-click")
+	    						            .toStack()));
+	    						    player.getInventory().setItem(7, (new ItemBuilder("§eWarps", Material.COMPASS))
+	    						            .nbt("spawn-item", "1v1")
 	    						            .nbt("cancel-drop")
 	    						            .nbt("cancel-click")
 	    						            .toStack());
@@ -169,7 +192,6 @@ public class PlayerJoinListener implements Listener {
 		});
 		player.setFlying(false);
 		player.sendMessage(ChatColor.GREEN + "Bem vindo ao kitpvp.");
-		SoupTypeGUI.blood.put(player.getName(), true);
 		player.setGameMode(GameMode.SURVIVAL);
 		player.setLevel(0);
 		player.setFireTicks(0);

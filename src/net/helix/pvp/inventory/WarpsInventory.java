@@ -14,7 +14,7 @@ import net.helix.pvp.warp.HelixWarp;
 
 public class WarpsInventory {
 
-	private final static String inventoryName = HelixPvP.getInstance().getConfig().getString("WarpsInv").replace("&", "§");
+	private final static String inventoryName = HelixPvP.getInstance().getConfig().getString("WarpsInv").replace("&", "Â§");
 	private static ItemStack randomGlass() {
 		int randomId = new Random().nextInt(14);
 		return new ItemStack(Material.VINE, 1);
@@ -24,8 +24,8 @@ public class WarpsInventory {
 		
 
 		HelixWarp.getWarps().stream().filter(warp -> warp != HelixWarp.SPAWN).forEach(warp -> {
-			inventory.addItem(new ItemBuilder("§b" + warp.getName(), warp.getIcon())
-					.lore("§ePlayers: §f" + warp.getPlayerCount())
+			inventory.addItem(new ItemBuilder("Â§e" + warp.getName(), warp.getIcon())
+					.lore("Â§bPlayers: Â§f" + warp.getPlayerCount())
 					.nbt("warp-gui", warp.getName())
 					.toStack()
 			);

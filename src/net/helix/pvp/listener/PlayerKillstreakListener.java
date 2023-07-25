@@ -24,7 +24,7 @@ public class PlayerKillstreakListener implements Listener {
 		
 		int killstreak = killerAccount.getPvp().getKillstreak();
 		if (String.valueOf(killstreak).contains("5") || (String.valueOf(killstreak).contains("0")) && killstreak != 0) {
-			Bukkit.broadcastMessage("§5§lKS §d" + killer.getName() + " tem um killstreak de §5" + killstreak + "§d!");
+			Bukkit.broadcastMessage("§6§lKS §e" + killer.getName() + " tem um killstreak de §b" + killstreak + "§e!");
 		}
 		
 		Player victim = event.getPlayer();

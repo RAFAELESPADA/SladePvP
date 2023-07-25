@@ -11,6 +11,7 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -21,8 +22,11 @@ import org.bukkit.potion.PotionEffect;
 import net.helix.core.bukkit.item.ItemBuilder;
 import net.helix.pvp.HelixPvP;
 import net.helix.pvp.kit.Habilidade;
+import net.helix.pvp.kit.HelixKit;
+import net.helix.pvp.kit.HelixKit2;
 import net.helix.pvp.kit.KitHandler;
 import net.helix.pvp.kit.KitManager;
+import net.helix.pvp.kit.KitManager2;
 import net.md_5.bungee.api.ChatColor;
 
 
@@ -65,6 +69,7 @@ public final class GladiatorListener extends KitHandler
         }
     }
     
+    
     @EventHandler(priority = EventPriority.MONITOR)
     public final void onGladiatorListener(final PlayerInteractEntityEvent e) {
         final Player bp = e.getPlayer();
@@ -80,13 +85,23 @@ public final class GladiatorListener extends KitHandler
                     bp.sendMessage(String.valueOf(prefix) + " §cVocê não pode puxar esse jogador no Spawn!");
                     return;
                 }
-                if (GladiatorListener.combateGlad.containsKey(bp)) {
-                    bp.sendMessage(String.valueOf(prefix) + " §cVoc\u00ea ja esta na arena!");
-                    return;
+                Entity passenger = toGlad.getPassenger();
+                if (passenger != null) {
+                	bp.sendMessage(String.valueOf(prefix) + " §cVocê não pode puxar esse jogador!");
+                	return;
                 }
-				if (Habilidade.getAbility(toGlad) == "SteelHead") {
+                if (GladiatorListener.combateGlad.containsKey(bp) || net.helixpvp.kit2.GladiatorListener.combateGlad.containsKey(bp)) {
+					bp.sendMessage("§cVocê já está no gladiator.");
+					return;
+				}
+				if (KitManager.getPlayer(toGlad.getName()).hasKit(HelixKit.NEO) || KitManager2.getPlayer(toGlad.getName()).haskit2(HelixKit2.NEO)) {
 					bp.playSound(bp.getLocation(), Sound.NOTE_BASS_DRUM, 15.0f, 15.0f);
 					bp.sendMessage(ChatColor.RED + "Você nao pode puxar " + ChatColor.DARK_RED + toGlad.getName() + ChatColor.RED + " porque ele esta com o kit" + ChatColor.DARK_RED + " NEO");
+					return;
+				}
+				if (KitManager.getPlayer(toGlad.getName()).hasKit(HelixKit.JUMPER)) {
+					bp.playSound(bp.getLocation(), Sound.NOTE_BASS_DRUM, 15.0f, 15.0f);
+					bp.sendMessage(ChatColor.RED + "Você nao pode puxar " + ChatColor.DARK_RED + toGlad.getName() + ChatColor.RED + " porque ele esta com o kit" + ChatColor.DARK_RED + " JUMPER");
 					return;
 				}
                 GladiatorListener.combateGlad.put(bp, toGlad);
@@ -113,21 +128,21 @@ public final class GladiatorListener extends KitHandler
         loc2.getWorld().refreshChunk(loc2.getChunk().getX(), loc2.getChunk().getZ());
         final List<Location> location = new ArrayList<Location>();
         location.clear();
-        for (int blockX = -5; blockX <= 5; ++blockX) {
-            for (int blockZ = -5; blockZ <= 5; ++blockZ) {
-                for (int blockY = -1; blockY <= 5; ++blockY) {
+        for (int blockX = -7; blockX <= 7; ++blockX) {
+            for (int blockZ = -7; blockZ <= 7; ++blockZ) {
+                for (int blockY = -1; blockY <= 7; ++blockY) {
                     final Block b = loc2.clone().add((double)blockX, (double)blockY, (double)blockZ).getBlock();
                     if (!b.isEmpty()) {
-                        final Location newLoc = new Location(p1.getWorld(), loc2.getBlockX() + x, 50.0, loc2.getBlockZ() + z);
+                        final Location newLoc = new Location(p1.getWorld(), loc2.getBlockX() + x, y > 110 ? 146.0 : 100, loc2.getBlockZ() + z);
                         return newGladiatorListenerArena(p1, p2, newLoc);
                     }
-                    if (blockY == 5) {
+                    if (blockY == 7) {
                         location.add(loc2.clone().add((double)blockX, (double)blockY, (double)blockZ));
                     }
                     else if (blockY == -1) {
                         location.add(loc2.clone().add((double)blockX, (double)blockY, (double)blockZ));
                     }
-                    else if (blockX == -5 || blockZ == -5 || blockX == 5 || blockZ == 5) {
+                    else if (blockX == -7 || blockZ == -7 || blockX == 7 || blockZ == 7) {
                         location.add(loc2.clone().add((double)blockX, (double)blockY, (double)blockZ));
                     }
                 }
@@ -203,19 +218,27 @@ public final class GladiatorListener extends KitHandler
     
     public static final void resetGladiatorListenerByQuit(final Player winner, final Player loser) {
         for (int i = 1; i < 5; ++i) {
+        	if (winner != null) {
             winner.teleport((Location)GladiatorListener.oldLocation.get(winner.getName()));
+            winner.getActivePotionEffects().forEach(potion -> winner.removePotionEffect(potion.getType()));	
+        }  
+        	if (loser != null) {
+        		loser.getActivePotionEffects().forEach(potion -> loser.removePotionEffect(potion.getType()));	
         }
-        for (final PotionEffect pot : winner.getActivePotionEffects()) {
-            winner.removePotionEffect(pot.getType());
-        }
-        for (final PotionEffect pot : loser.getActivePotionEffects()) {
-            loser.removePotionEffect(pot.getType());
-        }
+        	
+        	if (blocks.get(winner.getName()) != null) {
         for (final Location loc : GladiatorListener.blocks.get(winner.getName())) {
+        	if (winner != null) {
+            loc.getBlock().setType(Material.AIR);
+        	}
+        }
+        }
+        	if (blocks.get(loser.getName()) != null) {
+        for (final Location loc : GladiatorListener.blocks.get(loser.getName())) {
+        	if (loser != null) {
             loc.getBlock().setType(Material.AIR);
         }
-        for (final Location loc : GladiatorListener.blocks.get(loser.getName())) {
-            loc.getBlock().setType(Material.AIR);
+        }
         }
         GladiatorListener.blocks.remove(winner.getName());
         GladiatorListener.oldLocation.remove(winner.getName());
@@ -223,7 +246,12 @@ public final class GladiatorListener extends KitHandler
         GladiatorListener.oldLocation.remove(loser.getName());
         GladiatorListener.combateGlad.remove(winner);
         GladiatorListener.combateGlad.remove(loser);
+        if (winner != null) {
         winner.sendMessage(String.valueOf(GladiatorListener.prefix) + "§fO player §e" +  loser.getName() + " §fdeslogou.");
+    }
+        }
+        
+        
     }
     
     public static final void resetGladiatorListenerBySpawn(final Player winner, final Player loser) {

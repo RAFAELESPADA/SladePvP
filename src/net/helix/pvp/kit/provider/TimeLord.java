@@ -65,7 +65,7 @@ if (inCooldown(p) && KitManager.getPlayer(p.getName()).hasKit(this)) {
 /* 48 */             TimeLord.playercongelados.remove(((Player)pertos).getName());
 /* 49 */             ((Player)pertos).sendMessage("§aVocê foi descongelado.");
 /*    */           }
-/* 51 */         }, 130L);
+/* 51 */         }, 80L);
 /*    */       {
 /* 53 */       org.bukkit.Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnable()
 /*    */       {

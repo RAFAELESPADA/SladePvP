@@ -44,7 +44,7 @@ public class StatusGUI implements Listener {
 
     @EventHandler
     private void onInventoryClick(InventoryClickEvent event) {
-        if (event.getWhoClicked() instanceof Player && event.getInventory().getName().equals(HelixPvP.getInstance().getConfig().getString("StatusInv").replace("&", "§")) && event.getCurrentItem() != null && event.getCurrentItem().hasItemMeta()) {
+        if (event.getWhoClicked() instanceof Player && event.getInventory().getName().equals(HelixPvP.getInstance().getConfig().getString("StatusInv").replace("&", "Â§")) && event.getCurrentItem() != null && event.getCurrentItem().hasItemMeta()) {
             event.setCancelled(true);
         }
     }
@@ -55,7 +55,7 @@ public class StatusGUI implements Listener {
  				.getPlayer(player.getName());
     	PlayerPvP pvp = helixPlayer.getPvp();
         Ranking playerRank = Ranking.getRank(helixPlayer);
-        Inventory inv = Bukkit.createInventory(null, 54, HelixPvP.getInstance().getConfig().getString("StatusInv").replace("&", "§"));
+        Inventory inv = Bukkit.createInventory(null, 54, HelixPvP.getInstance().getConfig().getString("StatusInv").replace("&", "Â§"));
         ItemStack glass = ItemUtils.getCustomItemStack(Material.THIN_GLASS, " ", " ");
         for (int i = 0; i < 54; ++i) {
             if ((i <= 9 || i >= 17) && (i <= 27 || i >= 35)) {
@@ -70,17 +70,17 @@ public class StatusGUI implements Listener {
         inv.setItem(14, glass);
         inv.setItem(15, glass);
        
-        inv.setItem(4, ItemUtils.editItemStack(ItemUtils.getPlayerSkull(player.getName()), "§6Information", Arrays.asList("§fNick: §a" + player.getName(), "§fUUID: §a" + player.getUniqueId(), "§fCoins: §a" + new DecimalFormat("###,###.##").format(pvp.getCoins()), "§fFirst Access: §a" + new SimpleDateFormat("dd/MM/yyyy HH:mm").format(player.getFirstPlayed()))));
-        inv.setItem(10, ItemUtils.getCustomItemStack(Material.DIAMOND_SWORD, "§6Status", Arrays.asList("§fKills: §a" + pvp.getKills(), "§fDeaths: §a" + pvp.getDeaths(), "§fKDR: §a" + String.format("%.2f",kdr),"§fKillstreak: §a" + pvp.getKillstreak())));
-        inv.setItem(13, ItemUtils.getCustomItemStack(Material.EYE_OF_ENDER, "§6Roles", Arrays.asList("§fVIP: §a" + (player.hasPermission("displayname.mystical") || player.hasPermission("displayname.demorgorgon") || player.hasPermission("displayname.demon") || player.hasPermission("displayname.immortal") || player.hasPermission("displayname.donator") || player.hasPermission("displayname.vip") ? "Yes" : "No") ,ChatColor.GREEN + "Role: " + ChatColor.BLUE + api.getUserManager().getUser(player.getUniqueId()).getCachedData().getMetaData().getPrefix().replace("&", "§"))));
-        inv.setItem(16, ItemUtils.getCustomItemStack(Material.EXP_BOTTLE, "§6Rank", Arrays.asList("§fRank: §7(" + playerRank.getColoredSymbol() + "§7) " + playerRank.getColoredName())));
+        inv.setItem(4, ItemUtils.editItemStack(ItemUtils.getPlayerSkull(player.getName()), "Â§6InformaÃ§Ãµes", Arrays.asList("Â§fNick: Â§a" + player.getName(), "Â§fUUID: Â§a" + player.getUniqueId(), "Â§fCoins: Â§a" + new DecimalFormat("###,###.##").format(pvp.getCoins()), "Â§fPrimeiro acesso: Â§a" + new SimpleDateFormat("dd/MM/yyyy HH:mm").format(player.getFirstPlayed()))));
+        inv.setItem(10, ItemUtils.getCustomItemStack(Material.DIAMOND_SWORD, "Â§6Status", Arrays.asList("Â§fKills: Â§a" + pvp.getKills(), "Â§fDeaths: Â§a" + pvp.getDeaths(), "Â§fKDR: Â§a" + String.format("%.2f",kdr),"Â§fKillstreak: Â§a" + pvp.getKillstreak())));
+        inv.setItem(13, ItemUtils.getCustomItemStack(Material.EYE_OF_ENDER, "Â§6Cargos", Arrays.asList("Â§fVIP: Â§a" + (player.hasPermission("displayname.mystical") || player.hasPermission("displayname.demorgorgon") || player.hasPermission("displayname.demon") || player.hasPermission("displayname.immortal") || player.hasPermission("displayname.donator") || player.hasPermission("displayname.vip") ? "Sim" : "NÃ£o") ,ChatColor.GREEN + "Cargo: " + ChatColor.BLUE + api.getUserManager().getUser(player.getUniqueId()).getCachedData().getMetaData().getPrefix().replace("&", "Â§"))));
+        inv.setItem(16, ItemUtils.getCustomItemStack(Material.EXP_BOTTLE, "Â§6Rank", Arrays.asList("Â§fRank: Â§7(" + playerRank.getColoredSymbol() + "Â§7) " + playerRank.getColoredName())));
         Ranking[] values = Ranking.values();
         for (int i = values.length - 1; i >= 0; i--) {
         	Ranking rank = values[i];
             if (pvp.getKills() >= rank.getXp())
-                inv.addItem(ItemUtils.editItemStack(new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 5), "§7(" + rank.getColoredSymbol() + "§7) " + rank.getColoredName(), Collections.singletonList("§a" + player.getName() + " reached this rank.")));
+                inv.addItem(ItemUtils.editItemStack(new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 5), "Â§7(" + rank.getColoredSymbol() + "Â§7) " + rank.getColoredName(), Collections.singletonList("Â§a" + player.getName() + " vocÃª jÃ¡ alcanÃ§ou esse rank")));
             else
-                inv.addItem(ItemUtils.editItemStack(new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 14), "§7(" + rank.getColoredSymbol() + "§7) " + rank.getColoredName(), Collections.singletonList("§c" + player.getName() + " dont reached this rank yet.")));
+                inv.addItem(ItemUtils.editItemStack(new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 14), "Â§7(" + rank.getColoredSymbol() + "Â§7) " + rank.getColoredName(), Collections.singletonList("Â§c" + player.getName() + " nÃ£o alcanÃ§ou esse rank ainda.")));
         }
         inv.remove(glass);
         target.openInventory(inv);

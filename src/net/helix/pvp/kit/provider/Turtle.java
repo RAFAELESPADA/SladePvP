@@ -20,7 +20,7 @@ public class Turtle extends KitHandler {
         if (!KitManager.getPlayer(damager.getName()).hasKit(HelixKit.TURTLE) ||
             !damager.isSneaking()) return;
 
-        event.setDamage(event.getDamage() - 1.0);
+        event.setDamage(event.getDamage() - 3.0);
 
     }
 }

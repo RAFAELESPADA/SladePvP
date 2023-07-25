@@ -122,7 +122,7 @@ public void usar(PlayerInteractEvent e) {
  	         
  	          Cordinha nmsHook = new Cordinha(p.getWorld(), ((CraftPlayer)p).getHandle());
  	          nmsHook.spawn(p.getEyeLocation().add(p.getLocation().getDirection().getX(), p.getLocation().getDirection().getY(), p.getLocation().getDirection().getZ()));
- 	          nmsHook.move(p.getLocation().getDirection().getX() > 50 ? 50 : p.getLocation().getDirection().getX() , p.getLocation().getDirection().getY() > 50 ? 50 : p.getLocation().getDirection().getY(), p.getLocation().getDirection().getZ() > 50 ? 50 : p.getLocation().getDirection().getZ());
+ 	          nmsHook.move(p.getLocation().getDirection().getX() > 14 ? 14 : p.getLocation().getDirection().getX() , p.getLocation().getDirection().getY() > 14 ? 14 : p.getLocation().getDirection().getY(), p.getLocation().getDirection().getZ() > 14 ? 14 : p.getLocation().getDirection().getZ());
  	          hooks.put(p, nmsHook);
  			  leftClickGrappler.put(p, System.currentTimeMillis() + 250L);
  	     } else {

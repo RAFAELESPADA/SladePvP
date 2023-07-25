@@ -48,7 +48,7 @@ public class Jumper extends KitHandler implements Ejectable {
         super.execute(player);
 
         player.getInventory().setItem(1, new ItemBuilder(Material.EYE_OF_ENDER)
-                .displayName("�aJumper")
+                .displayName("�aJumper")
                 .nbt("cancel-drop")
                 .nbt("kit-handler", "jumper")
                 .toStack()
@@ -74,10 +74,15 @@ public class Jumper extends KitHandler implements Ejectable {
 		 if (!event.hasItem() || !ItemBuilder.has(event.getItem(), "kit-handler", "jumper")) return;
 		event.setCancelled(true);
 		if (inCooldown(event.getPlayer())) {
-			sendMessageCooldown(event.getPlayer()); {
+			sendMessageCooldown(event.getPlayer()); 
 			return;
 			}
-		} else {
+			else if (event.getPlayer().getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura") && KitManager.getPlayer(event.getPlayer().getName()).hasKit(this)) {
+	        	event.getPlayer().sendMessage("§cNão use o jumper no spawn!");
+	        	event.setCancelled(true);
+				return;
+			
+	} else {
 			launchEnderPearl(player);
 			event.setCancelled(true);
 			addCooldown(player, HelixPvP.getInstance().getConfig().getInt("JumperCooldown"));
@@ -191,6 +196,9 @@ public class Jumper extends KitHandler implements Ejectable {
 	}
 	
 	private void launchEnderPearl(Player bukkitPlayer) {
+		if (GladiatorListener.combateGlad.containsKey(bukkitPlayer)) {
+			return;
+		}
 		bukkitPlayer.setFallDistance(0);
 		EntityPlayer nmsPlayer = ((CraftPlayer) bukkitPlayer).getHandle();
 		JumperEnderPearl customEnder = new JumperEnderPearl(nmsPlayer.getWorld(), nmsPlayer);
@@ -221,6 +229,7 @@ public class Jumper extends KitHandler implements Ejectable {
 
 					@Override
 					public void run() {
+						
 						while (!getWorld().getCubes(jumper, jumper.getBoundingBox()).isEmpty() && jumper.locY < 256.0D) {
 							jumper.setPosition(jumper.locX, jumper.locY + 1.0D, jumper.locZ);
 						}
