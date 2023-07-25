@@ -7,6 +7,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.inventivetalent.bossbar.BossBar;
 import org.inventivetalent.bossbar.BossBarAPI;
 
+import net.helix.pvp.HelixPvP;
 import net.helix.pvp.kit.HelixKit;
 import net.helix.pvp.kit.HelixKit2;
 import net.helix.pvp.kit.KitManager;
@@ -26,7 +27,9 @@ public class ShowPlayerInfoListener implements Listener {
 		
 		if (KitManager.getPlayer(victim.getName()).hasKit() 
 				&& KitManager.getPlayer(damager.getName()).hasKit()) {
-
+if (HelixPvP.euforia) {
+	return;
+}
 			HelixKit kit = KitManager.getPlayer(victim.getName()).getKit();
 			HelixKit2 kit2 = KitManager2.getPlayer(victim.getName()).getkit2();
 			BossBar bossBar = BossBarAPI.addBar(damager, // The receiver of the BossBar

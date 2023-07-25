@@ -86,14 +86,6 @@ for (int l = 0; l < lines; l++) {
           location.getWorld().playEffect(location.clone().add(1,2,3), Effect.COLOURED_DUST, 10);
           location.getWorld().playEffect(location.clone().add(4,5,6), Effect.COLOURED_DUST, 10);
           location.getWorld().playEffect(location.clone().add(4,2,3), Effect.COLOURED_DUST, 10);
-if (Bukkit.getPluginManager().isPluginEnabled("Tornado")) {
-	 fr.cocoraid.tornado.util.Effect.spawnTornado((HelixPvP.getInstance()), p.getLocation(), 
-             Material.WEB, (byte)
-             0, 
-             p.getEyeLocation().getDirection(), 
-             1.0D, 200, 
-             400L, true, true);
-}
             	  for (final Entity pertos : p.getNearbyEntities(10.0, 10.0, 10.0)) {
             			if (pertos instanceof Player) {
             				((Player) pertos).damage(12.0D);

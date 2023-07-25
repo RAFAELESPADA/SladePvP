@@ -54,7 +54,7 @@ public class Fireman extends KitHandler {
 		Player victim = (Player) event.getEntity();
 		int percentage = new Random().nextInt(100);
 		
-		if (percentage < 27) {
+		if (percentage < 50) {
 			victim.setFireTicks(50);
 		}
 	}

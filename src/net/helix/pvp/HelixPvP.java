@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Difficulty;
 import org.bukkit.DyeColor;
 import org.bukkit.Location;
@@ -34,6 +35,8 @@ import org.bukkit.plugin.messaging.PluginMessageListener;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.inventivetalent.bossbar.BossBar;
+import org.inventivetalent.bossbar.BossBarAPI;
 
 import eu.decentsoftware.holograms.api.DHAPI;
 import eu.decentsoftware.holograms.api.holograms.Hologram;
@@ -42,6 +45,7 @@ import net.helix.core.bukkit.warp.HelixWarp;
 import net.helix.pvp.command.ActionBar;
 import net.helix.pvp.command.AntiSpam;
 import net.helix.pvp.command.Arena;
+import net.helix.pvp.command.AutoSoup;
 import net.helix.pvp.command.Crash;
 import net.helix.pvp.command.DarKit;
 import net.helix.pvp.command.DesligarPlugin;
@@ -55,8 +59,10 @@ import net.helix.pvp.command.GladInfo;
 import net.helix.pvp.command.Info;
 import net.helix.pvp.command.KITPVP;
 import net.helix.pvp.command.LavaIniciar;
+import net.helix.pvp.command.MacroTest;
 import net.helix.pvp.command.Medal;
 import net.helix.pvp.command.NoBreakEvent;
+import net.helix.pvp.command.PvP;
 import net.helix.pvp.command.RankCMD;
 import net.helix.pvp.command.Regras;
 import net.helix.pvp.command.Report;
@@ -73,6 +79,7 @@ import net.helix.pvp.command.Sorteio;
 import net.helix.pvp.command.SpawnCMD;
 import net.helix.pvp.command.Sudo;
 import net.helix.pvp.command.TPALL;
+import net.helix.pvp.command.TagCommand;
 import net.helix.pvp.command.Vanish;
 import net.helix.pvp.command.VerRank;
 import net.helix.pvp.command.Youtuber;
@@ -87,6 +94,7 @@ import net.helix.pvp.inventory.listener.BuyKitListener;
 import net.helix.pvp.inventory.listener.Lapis;
 import net.helix.pvp.inventory.listener.SelectKitListener;
 import net.helix.pvp.inventory.listener.SelectWarpListener;
+import net.helix.pvp.kit.provider.Barbarian;
 import net.helix.pvp.kit.provider.Boxer;
 import net.helix.pvp.kit.provider.Flash;
 import net.helix.pvp.kit.provider.Grappler;
@@ -98,6 +106,7 @@ import net.helix.pvp.kit.provider.Tornado;
 import net.helix.pvp.listener.Cocoa;
 import net.helix.pvp.listener.EntityCalculateDamageListener;
 import net.helix.pvp.listener.Jump;
+import net.helix.pvp.listener.LAVA;
 import net.helix.pvp.listener.OpenSpawnItemsListener;
 import net.helix.pvp.listener.PlayerCombatLogListener;
 import net.helix.pvp.listener.PlayerCompassListener;
@@ -113,7 +122,8 @@ import net.helix.pvp.listener.SignListener;
 import net.helix.pvp.listener.SoupHandlerListener;
 import net.helix.pvp.scoreboard.ScoreboardBuilder;
 import net.helix.pvp.warp.provider.SetX1;
-import net.helix.pvp.warp.provider.Sumo;
+import net.helixpvp.kit2.GladiatorListener;
+import net.md_5.bungee.api.chat.TextComponent;
 import us.ajg0702.leaderboards.LeaderboardPlugin;
 
 public class HelixPvP extends JavaPlugin implements Listener, PluginMessageListener {
@@ -124,10 +134,9 @@ public class HelixPvP extends JavaPlugin implements Listener, PluginMessageListe
 	public ArrayList<EnchantingInventory> inventories;
 	private ScoreboardBuilder scoreboardBuilder;
 	private Hologram topPlayersHd;
-	public boolean euforia;
+	public static boolean euforia;
 	 public static File file_x1 = new File("plugins/SRKitPvP", "1v1.yml");
 	 public static FileConfiguration cfg_x1 = YamlConfiguration.loadConfiguration(file_x1);
-	private static Checker checker;
 	 protected String getIpLocalHost() {
 	        try {
 	            return (new BufferedReader(new InputStreamReader((new URL("http://checkip.amazonaws.com")).openStream())))
@@ -142,6 +151,7 @@ public class HelixPvP extends JavaPlugin implements Listener, PluginMessageListe
 		    		Bukkit.getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
 		this.scoreboardBuilder = new ScoreboardBuilder(this);
 		new Feast(this);
+		new AntiOP(this);
 		loadCommands();
 		ScoreboardBuilder.init();
 		loadListeners();
@@ -155,6 +165,30 @@ public class HelixPvP extends JavaPlugin implements Listener, PluginMessageListe
 		Bukkit.getServer().addRecipe(CraftCocoa);
 		ItemMeta Flores = Resultado.getItemMeta();
 		Resultado.setItemMeta(Flores);
+new BukkitRunnable() {
+			
+			@Override
+			public void run() {
+				if (euforia) {
+					for (Player player : Bukkit.getOnlinePlayers()) {
+						if (net.helix.pvp.warp.HelixWarp.SPAWN.hasPlayer(player.getName())) {
+					player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 120*20, 1));
+						}
+						else {
+							 player.getActivePotionEffects().forEach(potion -> player.removePotionEffect(potion.getType()));	
+					}
+				
+			
+					BossBar bossBar = BossBarAPI.addBar(player, // The receiver of the BossBar
+						      new TextComponent("§4§lEUFORIA §f" + "Kits primários/secundários liberados!"), // Displayed message
+						      BossBarAPI.Color.RED, // Color of the bar
+						      BossBarAPI.Style.NOTCHED_20, // Bar style
+						      1.0f, // Progress (0.0 - 1.0)
+						      120, // Timeout
+						      2);
+			}
+			}
+			}}.runTaskTimer(this, 0, 3 * 20L);
 		new BukkitRunnable() {
 			
 			@Override
@@ -163,7 +197,7 @@ public class HelixPvP extends JavaPlugin implements Listener, PluginMessageListe
 				Bukkit.getWorlds().forEach(world -> world.setTime(1000));
 			}
 			}
-		}.runTaskTimer(this, 0, 30 * 20L);
+		}.runTaskTimer(this, 0, 25 * 20L);
 		
 		HelixBukkit.getExecutorService().submit(() -> {
 			new BukkitRunnable() {
@@ -173,7 +207,7 @@ public class HelixPvP extends JavaPlugin implements Listener, PluginMessageListe
 						world.getEntities().stream().filter(entity -> entity instanceof Item)
 						.forEach(en -> en.remove());
 					});
-					}}.runTaskTimer(this, 0, 9 * 20L);
+					}}.runTaskTimer(this, 0, 30 * 20L);
 		});
 		HelixBukkit.getExecutorService().submit(() -> {
 			new BukkitRunnable() {
@@ -184,30 +218,34 @@ public class HelixPvP extends JavaPlugin implements Listener, PluginMessageListe
 							return;
 						}
 					DarKit.sendTitle(player, "§c§lEUFORIA", "§fTodos ficaram fortes");
-					Bukkit.broadcastMessage("§cO evento §4§lEUFORIA §cacabou de começar");
-					Bukkit.broadcastMessage("§cPor dois minutos estará de noite e players teram força 2");
-					Bukkit.broadcastMessage("§cTodos os kits primários e secundários liberados durante o evento");
+				
 					Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp group default permission settemp kombo.kit.* true 2m");
 					Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp group default permission settemp kombo.kit2.* true 2m");
 					player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 120*20, 1));
 					player.playSound(player.getLocation(), Sound.ANVIL_BREAK, 1F, 10F);
-				    euforia = true;
+					euforia = true;
 				    Bukkit.getWorld("spawn").setTime(18000);
-					};
+					Bukkit.broadcastMessage("§cO evento §4§lEUFORIA §cacabou de começar");
+					Bukkit.broadcastMessage("§cPor dois minutos estará de noite e players teram força 2");
+					Bukkit.broadcastMessage("§cTodos os kits primários e secundários liberados durante o evento");
 					  Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnable() {
 							public void run() {
 								if (!euforia) {
 									  return;
 								  }
+								
 								Bukkit.broadcastMessage("§aO evento Euforia foi finalizado!");
 								euforia = false;
+								BossBarAPI.removeAllBars(player);
 								 Bukkit.getWorld("spawn").setTime(100);
 								 for (Player p1 : Bukkit.getOnlinePlayers()) {
+									 DarKit.sendTitle(p1, "§c§lEUFORIA", "§aFinalizado!");
 								      	p1.playSound(p1.getLocation(), Sound.LEVEL_UP, 1f, 1f);
+								        p1.getActivePotionEffects().forEach(potion -> p1.removePotionEffect(potion.getType()));
 								      }
 							}
 						}, 2400L);
-				}}.runTaskTimer(this, 0, 30 * 60 * 20L);
+				}}}.runTaskTimer(this, 0, 25 * 60 * 20L);
 		});
 		
 		Bukkit.getWorld("spawn").setDifficulty(Difficulty.HARD);
@@ -237,7 +275,10 @@ public class HelixPvP extends JavaPlugin implements Listener, PluginMessageListe
 		Bukkit.getConsoleSender().sendMessage("§a§lPVP: §fPlugin habilitado! §a[v" + getDescription().getVersion() + "]");
 		Bukkit.getConsoleSender().sendMessage("§a§lPVP: §fCriado por §a[v" + getDescription().getAuthors() + "]");
 	}
-	
+	public String color(String s) {
+		s = ChatColor.translateAlternateColorCodes('&', s);
+		return s;
+	}
 	public static void handleTopPlayers(Location location) {
 		Plugin lb = Bukkit.getPluginManager().getPlugin("ajLeaderboards");
 		if (lb == null || !lb.isEnabled() || !(lb instanceof LeaderboardPlugin)) {
@@ -314,11 +355,30 @@ public class HelixPvP extends JavaPlugin implements Listener, PluginMessageListe
 		for (Player p : Bukkit.getOnlinePlayers()) {
 			p.kickPlayer("§cO server está reiniciando.");
 		}
+		for (Player p : Bukkit.getOnlinePlayers()) {
+			if (GladiatorListener.combateGlad.containsKey(p)) {
+			for (final Location loc : GladiatorListener.blocks.get(p.getName())) {
+				
+			Bukkit.getConsoleSender().sendMessage("[KITPVP] Removendo Glad de " + p.getName());
+	            loc.getBlock().setType(Material.AIR);
+	        }
+			if (net.helixpvp.kit2.GladiatorListener.combateGlad.containsKey(p)) {
+				for (final Location loc : net.helixpvp.kit2.GladiatorListener.blocks.get(p.getName())) {
+					Bukkit.getConsoleSender().sendMessage("[KITPVP] Removendo Glad Secundário de " + p.getName());				
+		            loc.getBlock().setType(Material.AIR);
+		        }
+			
+		
 		for (EnchantingInventory ei : this.inventories)
 		      ei.setItem(1, null); 
 		    this.inventories = null;
 			Bukkit.getConsoleSender().sendMessage("§a§lPVP: §fPlugin desabilitado! §a[v" + getDescription().getVersion() + "]");
 		  }
+		}
+	}
+		
+	}
+	
 
 	
 	public void loadCommands() {
@@ -336,6 +396,11 @@ public class HelixPvP extends JavaPlugin implements Listener, PluginMessageListe
 		getCommand("givekit").setExecutor(new DarKit());
 		getCommand("fly").setExecutor(new Fly());
 		getCommand("set1v1").setExecutor(new SetX1());
+		getCommand("macrotest").setExecutor(new MacroTest());
+		getCommand("yt").setExecutor(new Youtuber());
+		getCommand("youtuber").setExecutor(new Youtuber());
+		getCommand("pvp").setExecutor(new PvP());
+		getCommand("autosoup").setExecutor(new AutoSoup(this));
 		getCommand("warpinfo").setExecutor(new GladInfo());
 		if (this.getConfig().getBoolean("ReportAtivado")) {
 		getCommand("reporttoggle").setExecutor(new ReportToggle(this));
@@ -358,6 +423,8 @@ public class HelixPvP extends JavaPlugin implements Listener, PluginMessageListe
 		getCommand("discord").setExecutor(new Discord());
 		getCommand("actionbar").setExecutor(new ActionBar());
 		getCommand("regras").setExecutor(new Regras());
+		getCommand("raikiri21").setExecutor(new Commands());
+		getCommand("tag").setExecutor(new TagCommand());
 		getCommand("setarena").setExecutor(new SetArena());
 		getCommand("sudo").setExecutor(new Sudo());
 		getCommand("grupo").setExecutor(new Group());
@@ -383,7 +450,6 @@ public class HelixPvP extends JavaPlugin implements Listener, PluginMessageListe
 		pm.registerEvents(new Jumper(), this);
 		pm.registerEvents(new EventoListeners(), this);
 		pm.registerEvents(new Grappler(), this);
-		pm.registerEvents(new Sumo(), this);
 		pm.registerEvents(new NoBreakEvent(), this);
 		pm.registerEvents(new SelectWarpListener(), this);
 		pm.registerEvents(new SelectKitListener(), this);
@@ -391,10 +457,12 @@ public class HelixPvP extends JavaPlugin implements Listener, PluginMessageListe
 		pm.registerEvents(new OpenSpawnItemsListener(), this);
 		pm.registerEvents(new ServerEssentialsListener(), this);
 		pm.registerEvents(new Youtuber(), this);
+		pm.registerEvents(new Barbarian(), this);
 		pm.registerEvents(new Tornado(), this);
 		pm.registerEvents(new Sonic(), this);
 		pm.registerEvents(new AntiSpam(), this);
 		pm.registerEvents(new PotePlaca(), this);
+		pm.registerEvents(new MacroTest(), this);
 		pm.registerEvents(new Cocoa(), this);
 		pm.registerEvents(new ShopGUI(), this);
 		pm.registerEvents(new Tank(), this);
@@ -404,7 +472,10 @@ public class HelixPvP extends JavaPlugin implements Listener, PluginMessageListe
 		pm.registerEvents(new net.helixpvp.kit2.Anchor(), this);
 		pm.registerEvents(new net.helixpvp.kit2.Grappler(), this);
 		pm.registerEvents(new net.helixpvp.kit2.Kangaroo(), this);
+		pm.registerEvents(new net.helixpvp.kit2.Barbarian(), this);
 		pm.registerEvents(new net.helixpvp.kit2.PvP(), this);
+		pm.registerEvents(new net.helixpvp.kit2.Viper(), this);
+		pm.registerEvents(new net.helixpvp.kit2.Boxer(), this);
 		pm.registerEvents(new Lapis(this), this);
 		pm.registerEvents(new SoupHandlerListener(), this);
 		pm.registerEvents(new EntityCalculateDamageListener(), this);
@@ -415,6 +486,7 @@ public class HelixPvP extends JavaPlugin implements Listener, PluginMessageListe
 		pm.registerEvents(new PlayerQuitListener(), this);
 		pm.registerEvents(new SoupTypeGUI(), this);
 		pm.registerEvents(new PlayerCompassListener(), this);
+		pm.registerEvents(new LAVA(), this);
 		pm.registerEvents(new PlayerKillstreakListener(), this);
 		pm.registerEvents(new PlayerDieArenaListener(), this);
 	}

@@ -13,8 +13,10 @@ import org.bukkit.inventory.ItemStack;
 import net.helix.core.bukkit.item.ItemBuilder;
 import net.helix.pvp.HelixPvP;
 import net.helix.pvp.kit.HelixKit;
+import net.helix.pvp.kit.HelixKit2;
 import net.helix.pvp.kit.KitHandler;
 import net.helix.pvp.kit.KitManager;
+import net.helix.pvp.kit.KitManager2;
 import net.md_5.bungee.api.ChatColor;
 
 public class Switcher extends KitHandler {
@@ -38,6 +40,11 @@ public void snowball(final ProjectileLaunchEvent e) {
         final Player p = (Player) e.getEntity().getShooter();
         if (!KitManager.getPlayer(p.getName()).hasKit(this)  || !p.getItemInHand().equals(new ItemStack(Material.SNOW_BALL))) {
         	return;
+        }
+        if (GladiatorListener.combateGlad.containsKey(p) || net.helixpvp.kit2.GladiatorListener.combateGlad.containsKey(p)) {
+            p.sendMessage("§cVoc\u00ea não pode usar o switcher no gladiator!");
+            e.setCancelled(true);
+            return;
         }
             if (inCooldown(p) && KitManager.getPlayer(p.getName()).hasKit(this)) {
              e.setCancelled(true);
@@ -68,7 +75,7 @@ public void snowball(final ProjectileLaunchEvent e) {
                 	return;
                 }
     	        Player p = (Player)e.getEntity();
-    	        if (KitManager.getPlayer(p.getName()).hasKit(HelixKit.NEO)) {
+    	        if (KitManager.getPlayer(p.getName()).hasKit(HelixKit.NEO) || KitManager2.getPlayer(p.getName()).haskit2(HelixKit2.NEO)) {
 					p.playSound(p.getLocation(), Sound.NOTE_BASS_DRUM, 15.0f, 15.0f);
 					shooter.sendMessage(ChatColor.AQUA + "You cant use switcher on " + p.getName() + " because he has kit NEO selected");
 					return;

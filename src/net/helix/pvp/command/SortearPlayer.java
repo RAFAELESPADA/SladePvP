@@ -34,7 +34,7 @@ public class SortearPlayer implements CommandExecutor {
             }
             int onlinePlayers = (int) Bukkit.getOnlinePlayers().stream().filter(target -> !target.hasPermission("kombo.naocontarsorteio")).count();
             if (onlinePlayers <= 3) {
-                player.sendMessage("§cO servidor n§o tem players suficientes para a realiza§§o de um sorteio.");
+                player.sendMessage("§cO servidor não tem players suficientes para a realiza§§o de um sorteio.");
                 return true;
             }
             this.chance = 100 / onlinePlayers;
@@ -42,9 +42,9 @@ public class SortearPlayer implements CommandExecutor {
             Random random = new Random();
             int sorteado = random.nextInt(onlinePlayers);
             Player sort = playerList.get(sorteado);
-            Bukkit.broadcastMessage(HelixPvP.getInstance().getConfig().getString("Prefix").replace("&", "§") + "§fUm sorteio acabou de come§ar!");
-            Bukkit.broadcastMessage(HelixPvP.getInstance().getConfig().getString("Prefix").replace("&", "§") + "§fVoc§ ja esta participando!");
-            Bukkit.broadcastMessage(HelixPvP.getInstance().getConfig().getString("Prefix").replace("&", "§") + "§fJogadores participando: §a" + onlinePlayers);
+            Bukkit.broadcastMessage(HelixPvP.getInstance().getConfig().getString("Prefix").replace("&", "§") + "§aUm sorteio acabou de começar!");
+            Bukkit.broadcastMessage(HelixPvP.getInstance().getConfig().getString("Prefix").replace("&", "§") + "§aVocê ja esta participando!");
+            Bukkit.broadcastMessage(HelixPvP.getInstance().getConfig().getString("Prefix").replace("&", "§") + "§aJogadores participando: §a" + onlinePlayers);
             Bukkit.broadcast("§7§o(STAFF) Sorteio feito por §f" + player.getName() + "§7§o." , "kombo.cmd.staffchat");
 
             Bukkit.getScheduler().runTaskLater(HelixPvP.getInstance(), () -> {

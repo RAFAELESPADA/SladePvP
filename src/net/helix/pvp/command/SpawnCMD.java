@@ -3,7 +3,9 @@ package net.helix.pvp.command;
 import java.util.ArrayList;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
+import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -22,6 +24,8 @@ import net.helix.pvp.kit.KitManager;
 import net.helix.pvp.kit.provider.GladiatorListener;
 import net.helix.pvp.warp.HelixWarp;
 import net.helix.pvp.warp.WarpDuoBattleHandle;
+import net.helix.pvp.warp.provider.OneVsOne;
+import net.helix.pvp.warp.provider.Sumo;
 
 public class SpawnCMD extends WarpDuoBattleHandle implements Listener, CommandExecutor {
 	
@@ -38,6 +42,10 @@ public class SpawnCMD extends WarpDuoBattleHandle implements Listener, CommandEx
 			return true;
 		}
 		Player p = (Player) sender;
+		if (HelixWarp.SPAWN.hasPlayer(p.getName()) && !KitManager.getPlayer(p.getName()).hasKit()) {
+			p.sendMessage(ChatColor.RED + "Você já está no spawn.");
+			return true;
+		}
 		 if (GladiatorListener.combateGlad.containsKey(p)) {
              final Player winner = GladiatorListener.combateGlad.get(p);
              final Player loser = p;
@@ -50,7 +58,9 @@ public class SpawnCMD extends WarpDuoBattleHandle implements Listener, CommandEx
 				indo.remove(p.getName());
 				p.setGameMode(GameMode.SURVIVAL);
 				HelixCooldown2.removeCooldown(p , "Kit");
+				if (!HelixPvP.euforia) {
 				BossBarAPI.removeAllBars(p);
+				}
 				  HelixPlayer ph = HelixBukkit.getInstance().getPlayerManager().getPlayer(p.getName());
 				  HelixPlayer pk = HelixBukkit.getInstance().getPlayerManager().getPlayer(winner.getName());
 				ph.getPvp().addDeaths(1);
@@ -62,28 +72,18 @@ public class SpawnCMD extends WarpDuoBattleHandle implements Listener, CommandEx
 				winner.sendMessage("§cVoce recebeu uma kill por seu oponente ter dado /spawn no Gladiator!");
          }
 		 if (net.helixpvp.kit2.GladiatorListener.combateGlad.containsKey(p)) {
-             final Player winner = GladiatorListener.combateGlad.get(p);
-             final Player loser = p;
-             GladiatorListener.resetGladiatorListenerBySpawn(winner, loser);
-             GladiatorListener.combateGlad.remove(winner);
-             GladiatorListener.combateGlad.remove(loser);
-             Habilidade.removeAbility(p);
-				HelixWarp.SPAWN.send(p, true);
-				p.setFlying(false);
-				indo.remove(p.getName());
-				p.setGameMode(GameMode.SURVIVAL);
-				HelixCooldown2.removeCooldown(p , "Kit");
-				BossBarAPI.removeAllBars(p);
-				  HelixPlayer ph = HelixBukkit.getInstance().getPlayerManager().getPlayer(p.getName());
-				  HelixPlayer pk = HelixBukkit.getInstance().getPlayerManager().getPlayer(winner.getName());
-				ph.getPvp().addDeaths(1);
-				pk.getPvp().addKills(1);
-				p.setLevel(0);
-				HelixBukkit.getInstance().getPlayerManager().getController().save(ph);
-				HelixBukkit.getInstance().getPlayerManager().getController().save(pk);
-				p.sendMessage("§cVoce recebeu uma morte por ter dado /spawn no Gladiator!");
-				winner.sendMessage("§cVoce recebeu uma kill por seu oponente ter dado /spawn no Gladiator!");
+				p.sendMessage("§eComando bloqueado no Gladiator!");
+				p.playSound(p.getLocation(), Sound.GHAST_SCREAM, 10f, 10f);
+				return true;
          }
+		 if (Sumo.fastChallenge.contains(p)) {
+			 Sumo.fastChallenge.remove(p);
+			 p.sendMessage(ChatColor.GREEN + "Você saiu da fila da Sumo");
+		 }
+		 if (OneVsOne.fastChallenge.contains(p)) {
+			 OneVsOne.fastChallenge.remove(p);
+			 p.sendMessage(ChatColor.GREEN + "Você saiu da fila da 1v1");
+		 }
 		 if (KitManager.getPlayer(p.getName()).hasKit() && !p.hasPermission("kombo.cmd.report")) {
 			 indo.add(p.getName());
 			 p.sendMessage("§eTeleportando em 3 segundos!");

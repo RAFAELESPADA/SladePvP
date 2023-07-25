@@ -93,16 +93,22 @@ public class PlayerDeathListener implements Listener {
 				Reason.ARENA,
 				validKill
 		);
+		HelixPlayerDeathEvent helixPlayerDeathEvent5 = new HelixPlayerDeathEvent(
+				player, killer, deathLocation,
+				new ArrayList<>(event.getDrops()),
+				Reason.FPS,
+				validKill
+		);
 		HelixPlayerDeathEvent helixPlayerDeathEvent3 = new HelixPlayerDeathEvent(
 				player, killer, deathLocation,
 				new ArrayList<>(event.getDrops()),
-				Reason.LAVA,
+				Reason.ONE_VS_ONE,
 				validKill
 		);
 		HelixPlayerDeathEvent helixPlayerDeathEvent4 = new HelixPlayerDeathEvent(
 				player, killer, deathLocation,
 				new ArrayList<>(event.getDrops()),
-				Reason.GLADIATOR,
+				Reason.LAVA,
 				validKill
 		);
 		 if (GladiatorListener.combateGlad.containsKey(player)) {
@@ -119,8 +125,19 @@ public class PlayerDeathListener implements Listener {
              net.helixpvp.kit2.GladiatorListener.combateGlad.remove(winner);
              net.helixpvp.kit2.GladiatorListener.combateGlad.remove(loser);
          }
-			 Bukkit.getPluginManager().callEvent(helixPlayerDeathEvent2);	 
+		 if (HelixWarp.ONE_VS_ONE.hasPlayer(player.getName())) {
+			 Bukkit.getPluginManager().callEvent(helixPlayerDeathEvent3);	 
 		 }
+		 else if (HelixWarp.FPS.hasPlayer(player.getName())) {
+			 Bukkit.getPluginManager().callEvent(helixPlayerDeathEvent5);	 
+		 }
+		 else if (HelixWarp.LAVACHALLENGE.hasPlayer(player.getName())) {
+			 Bukkit.getPluginManager().callEvent(helixPlayerDeathEvent4);	 
+		 }
+		 else {
+			 Bukkit.getPluginManager().callEvent(helixPlayerDeathEvent2);
+		 }
+	}
 	
 	@EventHandler
 	public void onPickup(PlayerPickupItemEvent event) {

@@ -33,7 +33,7 @@ public class Flash extends KitHandler {
 @EventHandler(priority = EventPriority.LOWEST)
 public void onInteract(PlayerInteractEvent event) {
 	Player p = event.getPlayer();
-	if (p.getNearbyEntities(5, 5, 5).size() > 1 && p.getNearbyEntities(5, 5, 5) instanceof Player) {
+	if (p.getNearbyEntities(5, 5, 5).size() > 0 && p.getNearbyEntities(5, 5, 5) instanceof Player) {
 		p.sendMessage("§eDont use the flash here!");
 		return;
 	}
@@ -43,9 +43,14 @@ public void onInteract(PlayerInteractEvent event) {
 		if (!event.getAction().toString().contains("RIGHT")) 
 		return; {
 			event.setCancelled(true);
+			if (GladiatorListener.combateGlad.containsKey(p) || net.helixpvp.kit2.GladiatorListener.combateGlad.containsKey(p)) {
+				p.sendMessage("§cVocê está no Gladiator e não pode usar o flash.");
+				event.setCancelled(true);
+				return;
+			}
 			if (!inCooldown(event.getPlayer())) {
 				Block target = p.getTargetBlock((HashSet<Byte>) null, 200);
-				if (target.getType() != Material.AIR) {
+				if (target.getType() != Material.AIR && target.getType() != Material.GLASS) {
 					addCooldown(p, 35);
 					p.getWorld().strikeLightningEffect(p.getLocation());
 					p.teleport(target.getRelative(BlockFace.UP).getLocation());

@@ -149,6 +149,14 @@ public boolean onCommand(CommandSender sender, Command cmd, String label, String
                 p.getActivePotionEffects().forEach(ef -> p.removePotionEffect(ef.getType()));
                 
                 if (EventoUtils.getEventoPlayers().size() == 1) {
+
+					for(Player p1 : Bukkit.getOnlinePlayers()){
+						p1.sendMessage("               §b§lEVENTO               ");
+						p1.sendMessage("");
+						p1.sendMessage("§aJogador: " + EventoUtils.getEventoPlayersNames() + " venceu o evento");
+						p1.sendMessage("");
+						p1.sendMessage("               §b§lEVENTO               ");
+					}
                 	Bukkit.broadcastMessage("§aVencedor do Evento: " + EventoUtils.getEventoPlayersNames());
                 	Bukkit.broadcastMessage("§aVencedor do Evento: " + EventoUtils.getEventoPlayersNames());
                 	Bukkit.broadcastMessage("§aVencedor do Evento: " + EventoUtils.getEventoPlayersNames());

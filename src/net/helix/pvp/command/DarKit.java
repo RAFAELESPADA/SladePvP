@@ -26,6 +26,7 @@ public class DarKit implements CommandExecutor {
             }
             if (args.length < 2) {
                 sender.sendMessage("§cUtilize /givekit <player> <kit>");
+
                 return true;
             }
             Player target = Bukkit.getPlayer(args[0]);

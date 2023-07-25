@@ -17,11 +17,17 @@ commands:
    setarena:
    regras:
    req:
+   tag:
    set1v1:
    givecoins:
    site:
+   autosoup:
+   pvp:
+   macrotest:
+   yt:
    grupo:
    loja:
+   raikiri21:
    sudo:
    warpinfo:
    fly:

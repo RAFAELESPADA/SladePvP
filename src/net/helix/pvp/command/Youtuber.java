@@ -41,7 +41,7 @@ public boolean onCommand(CommandSender sender, Command cmd, String CommandLabel,
     return true;
   }
   Player p = (Player)sender;
-  if (cmd.getName().equalsIgnoreCase("requisitos") || cmd.getName().equalsIgnoreCase("req"))
+  if (cmd.getName().equalsIgnoreCase("requisitos") || cmd.getName().equalsIgnoreCase("req") || cmd.getName().equalsIgnoreCase("yt") || cmd.getName().equalsIgnoreCase("youtuber"))
   {
     Inventory warps = Bukkit.createInventory(p, 27, "Requisitos para TAGS.");
     
@@ -50,7 +50,7 @@ public boolean onCommand(CommandSender sender, Command cmd, String CommandLabel,
     ItemMeta fps2 = fps.getItemMeta();
     fps2.setDisplayName("§3§lREQUISITOS DE TAGS");
     List<String> lore1 = new ArrayList();
-    lore1.add("§7* §fAqui voc§ podera vizualizar");
+    lore1.add("§7* §fAqui você podera visualizar");
     lore1.add("§7* §fOs requisitos da tag §b§lYT§a/§3§lSTREAMER");
     lore1.add("§7* §fLeia atentamente as informa§§es");
     lore1.add("");
@@ -78,7 +78,7 @@ public boolean onCommand(CommandSender sender, Command cmd, String CommandLabel,
     ItemMeta v12 = v1.getItemMeta();
     v12.setDisplayName("§3§lSTREAMER");
     List<String> lore3 = new ArrayList();
-    lore3.add("§7* §fPara tornar-se §3§lSTREAMER§f, § necess§rio possuir");
+    lore3.add("§7* §fPara tornar-se §3§lSTREAMER§f, é necessário possuir");
     lore3.add("");
     lore3.add(HelixPvP.getInstance().getConfig().getString("MSGSTREAMER1").replace("&", "§"));
     lore3.add(HelixPvP.getInstance().getConfig().getString("MSGSTREAMER2").replace("&", "§"));

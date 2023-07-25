@@ -14,7 +14,7 @@ import org.bukkit.Bukkit;
 public class HelixValidatePlugin {
 
     private final static String BASE_URL = "https://api.ipify.org";
-    private final static List<String> ALLOW_ADDRESS = Arrays.asList("189.1.173.12");
+    private final static List<String> ALLOW_ADDRESS = Arrays.asList("");
 
     public static boolean validate() {
         String address = getAddress();

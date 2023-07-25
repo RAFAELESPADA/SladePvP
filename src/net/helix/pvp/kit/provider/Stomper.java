@@ -8,8 +8,10 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 
 import net.helix.pvp.kit.HelixKit;
+import net.helix.pvp.kit.HelixKit2;
 import net.helix.pvp.kit.KitHandler;
 import net.helix.pvp.kit.KitManager;
+import net.helix.pvp.kit.KitManager2;
 import net.md_5.bungee.api.ChatColor;
 
 
@@ -32,9 +34,9 @@ public class Stomper extends KitHandler {
 		/*  50 */           if ((ent instanceof Player))
 		/*     */           {
 		/*  52 */             Player plr = (Player)ent;
-		if (KitManager.getPlayer(plr.getName()).hasKit(HelixKit.ANTISTOMPER)) {
-			plr.sendMessage(ChatColor.RED + "Your antistomper protected you.");
-			player.sendMessage(ChatColor.RED + "Your stomper kit failed because someone has antistomper nearby you.");
+		if (KitManager.getPlayer(plr.getName()).hasKit(HelixKit.ANTISTOMPER) || KitManager2.getPlayer(plr.getName()).haskit2(HelixKit2.ANTISTOMPER)) {
+			plr.sendMessage(ChatColor.RED + "Seu antistomper te protegeu.");
+			player.sendMessage(ChatColor.RED + "Seu kit stomper falhou porque um inimigo estava de antistomper.");
 			event.setCancelled(true);
 			return;
 		}
@@ -44,13 +46,13 @@ public class Stomper extends KitHandler {
 		/*  58 */             if (plr.isSneaking())
 		/*     */             {
 		/*  60 */               plr.damage(6.0D, player);
-		/*  61 */               plr.sendMessage(ChatColor.GRAY + "You get stomped by: " + ChatColor.AQUA + player.getName());
+		/*  61 */               plr.sendMessage(ChatColor.GRAY + "Você foi stompado por: " + ChatColor.AQUA + player.getName());
 		/*     */             }
 		/*     */             else
 		/*     */             {
 			plr.damage(event.getDamage(), player);
 		    plr.damage(player.getFallDistance());
-		/*  66 */               plr.sendMessage(ChatColor.GRAY + "You get stomped by: " + ChatColor.AQUA +  player.getName());
+		/*  66 */               plr.sendMessage(ChatColor.GRAY + "Você foi stompado por: " + ChatColor.AQUA +  player.getName());
 		/*     */             }
 		/*     */           }
 		/*     */         }

@@ -1,7 +1,7 @@
-#CONFIGURAÇÃO DO SRKITPVP
+#CONFIGURAï¿½ï¿½O DO SRKITPVP
 #DADOS DO MYSQL E AS TAGS DEVEM SER EDITADAS NA PASTA DO PLUGIN Core
 #PRECISA DO EazyNick , AjLeaderBoards, DecentHolograms e o Core
-#Sem eles o plugin não liga!
+#Sem eles o plugin nï¿½o liga!
 #FEITO COM AMOR POR Rafael Auler
 #Discord de suporte: https://discord.gg/GyAzMB9cnp
 
@@ -10,37 +10,46 @@ Prefix: '&6&lKITPVP:'
 
 #MOTD
 Motd: '&5&lZYRA &fVenha treinar! &b(1.8)'
-MotdWhitelist: '&cO Servidor está em manutenção'
+MotdWhitelist: '&cO Servidor estï¿½ em manutenï¿½ï¿½o'
 
 #Link do /discord
 DiscordLink: 'https://discord.gg/dhcFfghwRX'
 
+
+Ops:
+  - Rafael_Melo
+  - LuanTresoldi
+  - Punishy
+Command: 'ban {playername} VocÃª nÃ£o tem autorizaÃ§Ã£o para ter OP'
+Command2: 'lp user {playername} clear'
+
+
 #Link do /loja
 LojaLink: 'zyramc.com/loja'
 
-#NÃO USE CORES
+#Nï¿½O USE CORES
 ScorePrefix: KITPVP
 
-#COR 1 DA ANIMAÇÃO WAVE DO TITULO
+#COR 1 DA ANIMAï¿½ï¿½O WAVE DO TITULO
 CorTituloScore1: '&b&l'
 
-#COR 2 DA ANIMAÇÃO WAVE DO TITULO
+#COR 2 DA ANIMAï¿½ï¿½O WAVE DO TITULO
 CorTituloScore2: '&f&l'
 
-#COR 3 DA ANIMAÇÃO WAVE DO TITULO
+#COR 3 DA ANIMAï¿½ï¿½O WAVE DO TITULO
 CorTituloScore3: '&c&l'
 
 #COLOQUE A ALTURA DO SEU SPAWN AQUI
-#ELA E USADA PARA NÃO DEIXAR ALGUNS KITS SEREM UTILIZADOS COMO O THOR E O TORNADO
-#NÃO ENTENDEU? ENTRE NO DISCORD PARA SUPORTE https://discord.gg/GyAzMB9cnp
+#ELA E USADA PARA Nï¿½O DEIXAR ALGUNS KITS SEREM UTILIZADOS COMO O THOR E O TORNADO
+#Nï¿½O ENTENDEU? ENTRE NO DISCORD PARA SUPORTE https://discord.gg/GyAzMB9cnp
 SpawnAltura: 142
 
 #ALTURA MAXIMA QUE PODE PUXAR PRO GLAD
 GladAltura: 142
 
 #ALTURA Y DA FPS QUE O CARA VAI RECEBER KIT
-#NÃO ENTENDEU? FALE COM O RAFAEL MELO
-#PADRAO É A DO KOMBO
+#Nï¿½O ENTENDEU? FALE COM O RAFAEL MELO
+#PADRAO ï¿½ A DO KOMBO
 FPSAlturaDeReceberKit: 92
 
 #Nome do vidro da loja de kits
@@ -172,7 +181,7 @@ TornadoCooldown: 60
 
 #EDITE NOME DOS RANKS SE QUISER
 GodRank: 'GOD'
-LendarioRank: 'Lendário'
+LendarioRank: 'Lendï¿½rio'
 RubyRank: 'Ruby'
 SafiraRank: 'Safira'
 CristalRank: 'Cristal'
@@ -182,7 +191,7 @@ OuroRank: 'Ouro'
 PrataRank: 'Prata'
 VeteranoRank: 'Veterano'
 ExperienteRank: 'Experiente'
-AvancadoRank: 'Avançado'
+AvancadoRank: 'Avanï¿½ado'
 InicianteRank: 'Iniciante'
 UnrankedRank: 'Unranked'
 
@@ -238,9 +247,9 @@ ReportAtivado: true
 StaffChatAtivado: true
 
 #MENSAGEM DO REQ DE YOUTUBER MENU DO /youtuber
-MSGYT1: '&f* 100 visualizações'
+MSGYT1: '&f* 100 visualizaï¿½ï¿½es'
 MSGYT2: '&f* 10 likes'
-MSGYT3: '&f* Vídeo no Servidor'
+MSGYT3: '&f* Vï¿½deo no Servidor'
 
 #MENSAGEM DO REQ DE STREAMER DO MENU DO /youtuber
 MSGSTREAMER1: '&f* 50 seguidores'
@@ -248,9 +257,9 @@ MSGSTREAMER2: '&f* 5 telespectadores'
 MSGSTREAMER3: '&f* Fazer live a cada 15 dias'
 
 #REGRAS
-REGRA1: '&e* &cProibido usar trapaças ou cheats.'
+REGRA1: '&e* &cProibido usar trapaï¿½as ou cheats.'
 REGRA2: '&e* &cProibido Divulgar outros Servidores.'
-REGRA3: '&e* &cProibido Assédio.'
+REGRA3: '&e* &cProibido Assï¿½dio.'
 REGRA4: '&e* &cProibido Abusar de Erros ou Bugs.'
 REGRA5: '&e* &cProibido Xingar jogadores.'
 REGRA6: '&e* &cProibido Xingar a Staff ou Servidor.'
@@ -268,7 +277,7 @@ NeoLore: 'Imune a varios kits'
 QuickDropperLore: 'Drope potes automaticamente'
 StomperLore: 'Esmague seus inimigos'
 FishermanLore: 'Pesque players'
-AnchorLore: 'Não de nem receba KB'
+AnchorLore: 'Nï¿½o de nem receba KB'
 TornadoLore: 'Crie um tornado'
 ViperLore: 'De veneno ao hitar'
 SnailLore: 'De lentidao ao hitar'
@@ -293,7 +302,7 @@ SwitcherLore: 'Troque de lugar com o inimigo'
 GladiatorLore: 'Puxe seu inimigo para uma arena particular'
 
 
-Anchor2Lore: 'Não de nem receba KB'
+Anchor2Lore: 'Nï¿½o de nem receba KB'
 Kangaroo2Lore: 'De pulos duplos'
 Grappler2Lore: 'Corra por ai com sua corda'
 
@@ -341,7 +350,7 @@ RaioX: -44.630
 RaioY: 120.75000 
 RaioZ: 352.392
 
-#NÃO MEXA NISSO SE NAO VAI FUDER COM O PLUGIN!
+#Nï¿½O MEXA NISSO SE NAO VAI FUDER COM O PLUGIN!
 #E ELE NAO VAI MAIS LIGAR
 #VOCE FOI AVISADO
 ab: 163.123.204.170
@@ -350,9 +359,9 @@ ac: s3055_bot
 ad: u3055_SyyUanevTm
 ae: sZlQ!x4Y3!Z.w^LiBFPj8ECe
 
-#PREÇO DOS KITS
+#PREï¿½O DOS KITS
 #DEIXE 0 PARA DEIXAR O KIT GRATIS PARA JOGADOR NORMAL
-#COLOQUE -1 NO PREÇO PARA DESATIVAR O KIT
+#COLOQUE -1 NO PREï¿½O PARA DESATIVAR O KIT
 PvPPrice: 0
 KangarooPrice: 0
 ThorPrice: 0
@@ -387,8 +396,8 @@ GladiatorPrice: 18000
 JumperPrice: 10000
 
 #LOCAIS DOS EVENTOS! OS EVENTOS SO PODEM SER MUDADOS PELA CONFIG! SEM SETAGEM POR COMANDOS POR AGORA
-#CASO QUEIRA COMPRAR O MAPA DO KOMBO QUE VEM COM TUDO JA SETADO CUSTARÁ 30 REAIS A MAIS! TOTALIZANDO 70 REAIS
-#CASO NÃO CONSIGA SETAR OS EVENTOS ABRA TICKET NO DISCORD
+#CASO QUEIRA COMPRAR O MAPA DO KOMBO QUE VEM COM TUDO JA SETADO CUSTARï¿½ 30 REAIS A MAIS! TOTALIZANDO 70 REAIS
+#CASO Nï¿½O CONSIGA SETAR OS EVENTOS ABRA TICKET NO DISCORD
 #AS COORDENAS PADRAO SAO PARA OS MAPAS DA KOMBOPVP!
 EVENTOSPAWNMUNDO: 'world'
 EVENTOSPAWNX: 65220.49

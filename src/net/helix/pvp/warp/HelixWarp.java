@@ -13,13 +13,18 @@ import org.bukkit.entity.Player;
 import net.helix.core.bukkit.HelixBukkit;
 import net.helix.pvp.HelixPvP;
 import net.helix.pvp.command.DarKit;
+import net.helix.pvp.kit.KitManager;
+import net.helix.pvp.warp.provider.OneVsOne;
 import net.helix.pvp.warp.provider.Spawn;
 import net.helix.pvp.warp.provider.Sumo;
 
 public enum HelixWarp {
 
 	SPAWN("Spawn", new Spawn(), Material.AIR),
-	SUMO("Sumo", new Sumo(), Material.APPLE);
+	FPS("FPS", new net.helix.pvp.warp.provider.FPS(), Material.GLASS),
+    LAVACHALLENGE("Lava", new LavaChallenge(), Material.LAVA_BUCKET),
+    SUMO("Sumo", new Sumo(), Material.APPLE),
+	ONE_VS_ONE("1v1", new OneVsOne(), Material.BLAZE_ROD);
 	
 	static {
 		getWarps().forEach(warp -> 
@@ -63,7 +68,7 @@ public enum HelixWarp {
 	public void send(Player player, boolean silent) {
 		Optional<net.helix.core.bukkit.warp.HelixWarp> warpOptional;
 		if (!(warpOptional = HelixBukkit.getInstance().getWarpManager().findWarp(this.toString().toLowerCase())).isPresent()) {
-			player.sendMessage("§cA warp " + this.name + " não foi setada");
+			player.sendMessage("Â§cA warp " + this.name + " nÃ£o foi setada");
 			return;
 		}
 
@@ -74,9 +79,10 @@ public enum HelixWarp {
 		players.add(player.getName());
 		handler.execute(player);
 		player.teleport(warpOptional.get().getLocation());
-		DarKit.sendTitle(player, "§5§lWARP", "§dEnviado para warp §e§l " + this.name);
+		KitManager.getPlayer(player.getName()).removeKit();
+		DarKit.sendTitle(player, "Â§5Â§lWARP", "Â§dEnviado para warp Â§eÂ§l " + this.name);
 		if (!silent) {
-			player.sendMessage("§7Enviado para warp §b" + this.name);
+			player.sendMessage("Â§7Enviado para warp Â§b" + this.name);
 		}
 	}
 	

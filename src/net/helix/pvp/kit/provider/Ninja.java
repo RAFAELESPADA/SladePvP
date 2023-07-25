@@ -54,6 +54,10 @@ public class Ninja extends KitHandler {
 					player.sendMessage("§cO jogador está muito longe (50+ blocos).");
 					return;
 				}
+				if (GladiatorListener.combateGlad.containsKey(targetPlayer) || net.helixpvp.kit2.GladiatorListener.combateGlad.containsKey(targetPlayer)) {
+					player.sendMessage("§cO jogador está no gladiator.");
+					return;
+				}
 				addCooldown(event.getPlayer(), HelixPvP.getInstance().getConfig().getInt("NinjaCooldown"));
 				player.teleport(targetPlayer);
 				player.sendMessage("§aTeleportado para §f" + targetName);

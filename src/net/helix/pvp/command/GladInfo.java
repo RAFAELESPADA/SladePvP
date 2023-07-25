@@ -26,6 +26,9 @@ public class GladInfo implements CommandExecutor {
 	         }
 	         target.sendMessage("§e** WARP INFO §e**");
 	         target.sendMessage("§aJogadores No Spawn: §e" + HelixWarp.SPAWN.getPlayerCount());
+	         target.sendMessage("§aJogadores No FPS: §e" + HelixWarp.FPS.getPlayerCount());
+	         target.sendMessage("§aJogadores No LAVA: §e" + HelixWarp.LAVACHALLENGE.getPlayerCount());
+	         target.sendMessage("§aJogadores No 1V1: §e" + HelixWarp.ONE_VS_ONE.getPlayerCount());
 	               return false;
 	            }
 	

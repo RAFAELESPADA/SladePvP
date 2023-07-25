@@ -28,8 +28,8 @@ public class Leech extends KitHandler {
             if (damager.getHealth() + 1.5 < 20) {
                 damager.setHealth(damager.getHealth() + 1.5);
                 if (target.getHealth() - 1.5 > 0) target.setHealth(target.getHealth() - 1.5);
-                damager.sendMessage("§aYou drained the enemy life.");
-                target.sendMessage("§cYour life gets drained by a Leech.");
+                damager.sendMessage("§aVocê roubou a vida do seu inimigo.");
+                target.sendMessage("§cSua vida foi roubada pelo inimigo.");
             }
         }
     }

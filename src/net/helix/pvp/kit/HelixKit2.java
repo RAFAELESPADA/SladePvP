@@ -15,13 +15,20 @@ import net.helix.core.bukkit.item.ItemBuilder;
 import net.helix.pvp.HelixPvP;
 import net.helix.pvp.command.DarKit;
 import net.helixpvp.kit2.Anchor;
+import net.helixpvp.kit2.AntiStomperReal;
+import net.helixpvp.kit2.Boxer;
 import net.helixpvp.kit2.Camel;
 import net.helixpvp.kit2.Critical;
+import net.helixpvp.kit2.EnderMage;
 import net.helixpvp.kit2.Fireman;
+import net.helixpvp.kit2.Barbarian;
 import net.helixpvp.kit2.Fisherman;
 import net.helixpvp.kit2.GladiatorListener;
 import net.helixpvp.kit2.Grappler;
 import net.helixpvp.kit2.Kangaroo;
+import net.helixpvp.kit2.Leech;
+import net.helixpvp.kit2.MilkMan;
+import net.helixpvp.kit2.Gaara;
 import net.helixpvp.kit2.Monk;
 import net.helixpvp.kit2.Nenhum;
 import net.helixpvp.kit2.Ninja;
@@ -31,21 +38,28 @@ import net.helixpvp.kit2.Scout;
 import net.helixpvp.kit2.Stomper;
 import net.helixpvp.kit2.Switcher;
 import net.helixpvp.kit2.Thor;
+import net.helixpvp.kit2.Viper;
 
 
 public enum HelixKit2  {
-	NENHUM("None2", 0, 0 , new Nenhum() , Material.BARRIER, "Sem habilidade"),
+	NENHUM("None2", 0, 0 , new Nenhum() , Material.ACACIA_FENCE, "Sem habilidade"),
 	PVP("PvP", 0, 0 , new PvP() , Material.STONE_SWORD, "Receba espada afiada 1"),
 	ANCHOR("Anchor", 10000, 0, new Anchor() , Material.ANVIL, "Não de ou receba KB"),
+	ANTISTOMPER("AntiStomper", 0, 0, new AntiStomperReal() , Material.DIAMOND_HELMET, "Imune a stompers"),
 	NINJA("Ninja", 10000, 0, new Ninja() , Material.EMERALD, "Teleporte-se ao inimigo"),
-    VIPER("Viper", 10000, 0, new QuickDropper() , Material.SPIDER_EYE, "De veneno"),
+	LEECH("Leech", 10000, 0, new Leech() , Material.REDSTONE, "Roube a vida dos seus inimigos"),
+	BOXER("Boxer", 15000, 0, new Boxer() , Material.QUARTZ, "De mais dano e leve menos."),
+    VIPER("Viper", 10000, 0, new Viper() , Material.SPIDER_EYE, "De veneno"),
+    NEO("Neo", 0, 0, new net.helixpvp.kit2.NEO() , Material.BARRIER, "Seja imune a varios kits"),
 	QUICKDROPPER("QuickDropper", 10000, 0, new QuickDropper() , Material.BOWL, "Drope potes automaticamente"),
 	KANGAROO("Kangaroo", 0, 0, new Kangaroo() , Material.FIREWORK, "De doublejumps"),
-	CRITICAL("Critical", 9000, 0, new Critical() , Material.REDSTONE, "De criticos automaticamente"),
+	VACUUM("Vacuum", 10000, 10000, new EnderMage() , Material.ENDER_PORTAL_FRAME, "Arraste seus inimigos"),
+	CRITICAL("Critical", 9000, 0, new Critical() , Material.REDSTONE_BLOCK, "De criticos automaticamente"),
 	STOMPER("Stomper", 15000, 0, new Stomper() , Material.IRON_BOOTS, "Esmague seus inimigos."),
 	THOR("Thor", 10000, 0, new Thor() , Material.GOLD_AXE, "Lance raios."),
 	GLADIATOR("Gladiator", 15000, 0, new GladiatorListener() , Material.IRON_FENCE, "Puxe seu inimigo."),
 	CAMEL("Camel", 9000, 0, new Camel() , Material.SAND, "Ganhe poderes na areia."),
+	BARBARIAN("Barbarian", 18000, 0, new Barbarian(), Material.WOOD_SWORD, "Sua espada aumenta a cada kill!"),
 	SNAIL("Snail", 10000, 0, new Scout() , Material.FERMENTED_SPIDER_EYE, "De lentidao a cada hit."),
 	FIREMAN("Fireman", 10000, 0, new Fireman() , Material.LAVA_BUCKET, "De fogo a cada hit."),
 	MONK("Monk", 9000, 0, new Monk() , Material.BLAZE_ROD, "Embaralhe o inventario do inimigo."),
@@ -100,26 +114,61 @@ public enum HelixKit2  {
 			);
 			Bukkit.getConsoleSender().sendMessage(player.getName() + " Choosed sonic kit!");
 		}
+		if (KitManager.getPlayer(player.getName()).hasKit(HelixKit.VACUUM)) {
+			player.getInventory().setItem(1, new ItemBuilder("§aVacuum!", Material.ENDER_PORTAL_FRAME)
+					.nbt("kit-handler", "vacuum")
+					.nbt("cancel-drop")
+					.toStack()
+			);
+			Bukkit.getConsoleSender().sendMessage(player.getName() + " Choosed sonic kit!");
+		}
 		if (KitManager.getPlayer(player.getName()).hasKit(HelixKit.ARCHER)) {
 			player.getInventory().setItem(1, new ItemBuilder("§aBow!", Material.BOW)
 					.nbt("kit-handler", "arco").addEnchant(Enchantment.ARROW_INFINITE, 1)
 					.nbt("cancel-drop")
 					.toStack());
 					player.getInventory().setItem(10, new ItemBuilder("§aArrow!", Material.ARROW)
-							.nbt("kit-handler", "flecha").addEnchant(Enchantment.DAMAGE_ALL, 1)
+							.nbt("kit-handler", "flecha").addEnchant(Enchantment.DAMAGE_ALL, 1).addEnchant(Enchantment.ARROW_DAMAGE, 1)
 							.nbt("cancel-drop").addFlags(
 									ItemFlag.HIDE_ENCHANTS)
 							.toStack()
 			);
 					Bukkit.getConsoleSender().sendMessage(player.getName() + " Choosed archer kit!");
 		}
+		//if (KitManager.getPlayer(player.getName()).hasKit(HelixKit.GAARA)) {
+			//player.getInventory().setItem(1, new ItemBuilder("§aCaixão de areia!", Material.SAND)
+				//	.nbt("kit-handler", "gaara")
+					//.nbt("cancel-drop")
+					//.toStack()
+		//	);
+			//		Bukkit.getConsoleSender().sendMessage(player.getName() + " Choosed gaara kit!");
+	//	}
+		if (KitManager.getPlayer(player.getName()).hasKit(HelixKit.BLOODGUN)) {
+			player.getInventory().setItem(1, new ItemBuilder("§aArma de sangue", Material.WOOD_HOE)
+					.nbt("kit-handler", "bloodgun")
+					.nbt("cancel-drop")
+					.toStack());
+				
+					Bukkit.getConsoleSender().sendMessage(player.getName() + " Choosed archer kit!");
+		}
 					if (KitManager.getPlayer(player.getName()).hasKit( HelixKit.BOXER)) {
-						player.getInventory().setItem(0, new ItemBuilder("§bBoxer!", Material.QUARTZ)
-								.nbt("kit-handler", "boxer")
+						Bukkit.getConsoleSender().sendMessage(player.getName() + " Choosed boxer kit!");
+					}
+					if (KitManager.getPlayer(player.getName()).hasKit( HelixKit.HOTPOTATO)) {
+						player.getInventory().setItem(1, new ItemBuilder("§4HotPotato!", Material.BAKED_POTATO)
+								.nbt("kit-handler", "hotpotato")
 								.nbt("cancel-drop")
 								.toStack()
 						);
-						Bukkit.getConsoleSender().sendMessage(player.getName() + " Choosed boxer kit!");
+						Bukkit.getConsoleSender().sendMessage(player.getName() + " Choosed hotpotato kit!");
+					}
+					if (KitManager.getPlayer(player.getName()).hasKit(HelixKit.THRESH)) {
+						player.getInventory().setItem(1, new ItemBuilder("§2Thresh!", Material.LEVER)
+								.nbt("kit-handler", "thresh")
+								.nbt("cancel-drop")
+								.toStack()
+						);
+						Bukkit.getConsoleSender().sendMessage(player.getName() + " Choosed thresh kit!");
 					}
 						if (KitManager.getPlayer(player.getName()).hasKit( HelixKit.FISHERMAN)) {
 						player.getInventory().setItem(1, new ItemBuilder("§aFisgar!", Material.FISHING_ROD)
@@ -138,6 +187,7 @@ public enum HelixKit2  {
 						        );
 							Bukkit.getConsoleSender().sendMessage(player.getName() + " Choosed TIMELORD kit!");
 							}
+						
 						if (KitManager.getPlayer(player.getName()).hasKit( HelixKit.PHANTOM)) {
 							 player.getInventory().setItem(1, new ItemBuilder(Material.BOOK)
 						                .displayName("§aPhantom")
