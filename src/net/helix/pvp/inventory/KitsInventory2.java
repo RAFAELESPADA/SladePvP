@@ -54,7 +54,7 @@ public class KitsInventory2 {
 	}
 	private static ItemStack randomGlass() {
 		int randomId = new Random().nextInt(14);
-		return new ItemStack(Material.STAINED_GLASS_PANE);
+		return new ItemStack(Material.STAINED_GLASS_PANE , 1 , (short)4);
 	}
 	
 }
