@@ -10,6 +10,7 @@ import org.bukkit.Sound;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemFlag;
+import org.bukkit.inventory.ItemStack;
 
 import net.helix.core.bukkit.item.ItemBuilder;
 import net.helix.pvp.HelixPvP;
@@ -27,6 +28,7 @@ import net.helixpvp.kit2.GladiatorListener;
 import net.helixpvp.kit2.Grappler;
 import net.helixpvp.kit2.Kangaroo;
 import net.helixpvp.kit2.Leech;
+import net.helixpvp.kit2.Sight;
 import net.helixpvp.kit2.MilkMan;
 import net.helixpvp.kit2.Gaara;
 import net.helixpvp.kit2.Monk;
@@ -42,37 +44,38 @@ import net.helixpvp.kit2.Viper;
 
 
 public enum HelixKit2  {
-	NENHUM("None2", 0, 0 , new Nenhum() , Material.ACACIA_FENCE, "Sem habilidade"),
-	PVP("PvP", 0, 0 , new PvP() , Material.STONE_SWORD, "Receba espada afiada 1"),
-	ANCHOR("Anchor", 10000, 0, new Anchor() , Material.ANVIL, "Não de ou receba KB"),
-	ANTISTOMPER("AntiStomper", 0, 0, new AntiStomperReal() , Material.DIAMOND_HELMET, "Imune a stompers"),
-	NINJA("Ninja", 10000, 0, new Ninja() , Material.EMERALD, "Teleporte-se ao inimigo"),
-	LEECH("Leech", 10000, 0, new Leech() , Material.REDSTONE, "Roube a vida dos seus inimigos"),
-	BOXER("Boxer", 15000, 0, new Boxer() , Material.QUARTZ, "De mais dano e leve menos."),
-    VIPER("Viper", 10000, 0, new Viper() , Material.SPIDER_EYE, "De veneno"),
-    NEO("Neo", 0, 0, new net.helixpvp.kit2.NEO() , Material.BARRIER, "Seja imune a varios kits"),
-	QUICKDROPPER("QuickDropper", 10000, 0, new QuickDropper() , Material.BOWL, "Drope potes automaticamente"),
-	KANGAROO("Kangaroo", 0, 0, new Kangaroo() , Material.FIREWORK, "De doublejumps"),
-	VACUUM("Vacuum", 10000, 10000, new EnderMage() , Material.ENDER_PORTAL_FRAME, "Arraste seus inimigos"),
-	CRITICAL("Critical", 9000, 0, new Critical() , Material.REDSTONE_BLOCK, "De criticos automaticamente"),
-	STOMPER("Stomper", 15000, 0, new Stomper() , Material.IRON_BOOTS, "Esmague seus inimigos."),
-	THOR("Thor", 10000, 0, new Thor() , Material.GOLD_AXE, "Lance raios."),
-	GLADIATOR("Gladiator", 15000, 0, new GladiatorListener() , Material.IRON_FENCE, "Puxe seu inimigo."),
-	CAMEL("Camel", 9000, 0, new Camel() , Material.SAND, "Ganhe poderes na areia."),
-	BARBARIAN("Barbarian", 18000, 0, new Barbarian(), Material.WOOD_SWORD, "Sua espada aumenta a cada kill!"),
-	SNAIL("Snail", 10000, 0, new Scout() , Material.FERMENTED_SPIDER_EYE, "De lentidao a cada hit."),
-	FIREMAN("Fireman", 10000, 0, new Fireman() , Material.LAVA_BUCKET, "De fogo a cada hit."),
-	MONK("Monk", 9000, 0, new Monk() , Material.BLAZE_ROD, "Embaralhe o inventario do inimigo."),
-	FISHERMAN("Fisherman", 9000, 0, new Fisherman() , Material.FISHING_ROD, "Pesque players."),
-	SWITCHER("Switcher", 0, 0, new Switcher() , Material.SNOW_BALL, "Troque de lugar com o inimigo."),
-	GRAPPLER("Grappler", 10000, 0, new Grappler() , Material.LEASH, "Voe com sua corda");
+	NENHUM("None2", 0, 0 , new Nenhum() , new ItemStack(Material.ACACIA_FENCE), "Sem habilidade"),
+	PVP("PvP", 0, 0 , new PvP() , new ItemStack(Material.STONE_SWORD), "Receba espada afiada 1"),
+	ANCHOR("Anchor", 10000, 0, new Anchor() , new ItemStack(Material.ANVIL), "Não de ou receba KB"),
+	ANTISTOMPER("AntiStomper", 0, 0, new AntiStomperReal() , new ItemStack(Material.DIAMOND_HELMET), "Imune a stompers"),
+	NINJA("Ninja", 10000, 0, new Ninja() , new ItemStack(Material.EMERALD), "Teleporte-se ao inimigo"),
+	LEECH("Leech", 10000, 0, new Leech() , new ItemStack(Material.REDSTONE), "Roube a vida dos seus inimigos"),
+	BOXER("Boxer", 15000, 0, new Boxer() , new ItemStack(Material.QUARTZ), "De mais dano e leve menos."),
+    VIPER("Viper", 10000, 0, new Viper() , new ItemStack(Material.SPIDER_EYE), "De veneno"),
+    SIGHT("Sight", 10000, 0, new Sight(), new ItemStack(Material.INK_SACK, 1 , (short)1), "De cegueira nos inimigos!"),
+    NEO("Neo", 0, 0, new net.helixpvp.kit2.NEO() , new ItemStack(Material.BARRIER), "Seja imune a varios kits"),
+	QUICKDROPPER("QuickDropper", 10000, 0, new QuickDropper() , new ItemStack(Material.BOWL), "Drope potes automaticamente"),
+	KANGAROO("Kangaroo", 0, 0, new Kangaroo() , new ItemStack(Material.FIREWORK), "De doublejumps"),
+	VACUUM("Vacuum", 10000, 10000, new EnderMage() , new ItemStack(Material.ENDER_PORTAL_FRAME), "Arraste seus inimigos"),
+	CRITICAL("Critical", 9000, 0, new Critical() , new ItemStack(Material.REDSTONE_BLOCK), "De criticos automaticamente"),
+	STOMPER("Stomper", 15000, 0, new Stomper() , new ItemStack(Material.IRON_BOOTS), "Esmague seus inimigos."),
+	THOR("Thor", 10000, 0, new Thor() , new ItemStack(Material.GOLD_AXE), "Lance raios."),
+	GLADIATOR("Gladiator", 15000, 0, new GladiatorListener() , new ItemStack(Material.IRON_FENCE), "Puxe seu inimigo."),
+	CAMEL("Camel", 9000, 0, new Camel() , new ItemStack(Material.SAND), "Ganhe poderes na areia."),
+	BARBARIAN("Barbarian", 18000, 0, new Barbarian(), new ItemStack(Material.WOOD_SWORD), "Sua espada aumenta a cada kill!"),
+	SNAIL("Snail", 10000, 0, new Scout() , new ItemStack(Material.FERMENTED_SPIDER_EYE), "De lentidao a cada hit."),
+	FIREMAN("Fireman", 10000, 0, new Fireman() , new ItemStack(Material.LAVA_BUCKET), "De fogo a cada hit."),
+	MONK("Monk", 9000, 0, new Monk() , new ItemStack(Material.BLAZE_ROD), "Embaralhe o inventario do inimigo."),
+	FISHERMAN("Fisherman", 9000, 0, new Fisherman() , new ItemStack(Material.FISHING_ROD), "Pesque players."),
+	SWITCHER("Switcher", 0, 0, new Switcher() , new ItemStack(Material.SNOW_BALL), "Troque de lugar com o inimigo."),
+	GRAPPLER("Grappler", 10000, 0, new Grappler() , new ItemStack(Material.LEASH), "Voe com sua corda");
 	
 	private final String name;
 	private final String description;
 	private final int price;
 	private final int pricecash;
 	private final KitHandler2 handler2;
-	private final Material icon;
+	private final ItemStack icon;
 	private static String nl = System.getProperty("line.separator");
 	static {
 		getKits().forEach(kit -> 
@@ -91,7 +94,7 @@ public enum HelixKit2  {
 		).findFirst();
 	}
 	
-	HelixKit2(String name, int price, int pricecash, KitHandler2 handler2, Material icon, String description) {
+	HelixKit2(String name, int price, int pricecash, KitHandler2 handler2, ItemStack icon, String description) {
 		this.name = name;
 		this.price = price;
 		this.pricecash = pricecash;
@@ -340,7 +343,7 @@ public enum HelixKit2  {
 		return pricecash;
 	}
 	
-	public Material getIcon() {
+	public ItemStack getIcon() {
 		return icon;
 	}
 	public String getDescription() {

@@ -57,12 +57,13 @@ public class EnderMage extends KitHandler {
 	        if (KitManager.getPlayer(pertos.getName()).hasKit())	{
 	        Player per = (Player)pertos;
 	      	  pertos.setVelocity(new Vector(10 , 1 , 13));
-	        per.damage(12);
-	        pertos.setFireTicks(55);
-	        e.setCancelled(true);
-	        p.sendMessage(ChatColor.GREEN + "Players arrastados pelo seu vacuum!");
-	        p.playSound(p.getLocation(), Sound.ENDERMAN_TELEPORT, 10.0F, 10.0F);
-	        addCooldown(p, 35);
+	      	 per.damage(12);
+	         pertos.setFireTicks(55);
+	         e.setCancelled(true);
+	         p.sendMessage(ChatColor.GREEN + "Players arrastados pelo seu vacuum!");
+	         per.sendMessage(ChatColor.RED + "Você foi atingido pelo Vacuum de " + p.getName());
+	         p.playSound(p.getLocation(), Sound.ENDERMAN_TELEPORT, 10.0F, 10.0F);
+	        addCooldown(p, 45);
 	        return;
 	      }
 	        

@@ -76,8 +76,9 @@ public void flash(PlayerInteractEvent e) {
         pertos.setFireTicks(55);
         e.setCancelled(true);
         p.sendMessage(ChatColor.GREEN + "Players arrastados pelo seu vacuum!");
+        per.sendMessage(ChatColor.RED + "Você foi atingido pelo Vacuum de " + p.getName());
         p.playSound(p.getLocation(), Sound.ENDERMAN_TELEPORT, 10.0F, 10.0F);
-        addCooldown(p, 35);
+        addCooldown(p, 45);
         return;
       }
         
