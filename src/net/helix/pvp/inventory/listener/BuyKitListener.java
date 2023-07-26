@@ -88,7 +88,7 @@ public void onInvClick2(InventoryClickEvent event) {
 		player.playSound(player.getLocation(), Sound.LEVEL_UP, 10.0f, 10.0f);
 		Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + player.getName() + " permission set kombo.kit2." + kit.toString().toLowerCase() + " pvp");
 
-		player.sendMessage("§aVocê comprou o kit" + kit.getName() + " por " + kit.getPrice() + " coins");
+		player.sendMessage("§aVocê comprou o kit " + kit.getName() + " por " + kit.getPrice() + " coins");
 	});
 }
 }
