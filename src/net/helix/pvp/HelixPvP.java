@@ -51,6 +51,7 @@ import net.helix.pvp.command.DarKit;
 import net.helix.pvp.command.DesligarPlugin;
 import net.helix.pvp.command.DesligarServidor;
 import net.helix.pvp.command.Discord;
+import net.helix.pvp.command.Euforia;
 import net.helix.pvp.command.Fly;
 import net.helix.pvp.command.GiveCoins;
 import net.helix.pvp.command.GiveDeaths;
@@ -219,6 +220,9 @@ new BukkitRunnable() {
 						if (Bukkit.getOnlinePlayers().size() < 3) {
 							return;
 						}
+						if (euforia) {
+							return;
+						}
 					DarKit.sendTitle(player, "§c§lEUFORIA", "§fTodos ficaram fortes");
 				
 					Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp group default permission settemp kombo.kit.* true 2m");
@@ -227,6 +231,7 @@ new BukkitRunnable() {
 					player.playSound(player.getLocation(), Sound.ANVIL_BREAK, 1F, 10F);
 					euforia = true;
 				    Bukkit.getWorld("spawn").setTime(18000);
+					}
 					Bukkit.broadcastMessage("§cO evento §4§lEUFORIA §cacabou de começar");
 					Bukkit.broadcastMessage("§cPor dois minutos estará de noite e players teram força 2");
 					Bukkit.broadcastMessage("§cTodos os kits primários e secundários liberados durante o evento");
@@ -238,16 +243,17 @@ new BukkitRunnable() {
 								
 								Bukkit.broadcastMessage("§aO evento Euforia foi finalizado!");
 								euforia = false;
-								BossBarAPI.removeAllBars(player);
+								
 								 Bukkit.getWorld("spawn").setTime(100);
 								 for (Player p1 : Bukkit.getOnlinePlayers()) {
+									 BossBarAPI.removeAllBars(p1);
 									 DarKit.sendTitle(p1, "§c§lEUFORIA", "§aFinalizado!");
 								      	p1.playSound(p1.getLocation(), Sound.LEVEL_UP, 1f, 1f);
 								        p1.getActivePotionEffects().forEach(potion -> p1.removePotionEffect(potion.getType()));
 								      }
 							}
 						}, 2400L);
-				}}}.runTaskTimer(this, 0, 25 * 60 * 20L);
+				}}.runTaskTimer(this, 0, 40 * 60 * 20L);
 		});
 		
 		Bukkit.getWorld("spawn").setDifficulty(Difficulty.HARD);
@@ -402,6 +408,7 @@ new BukkitRunnable() {
 		getCommand("yt").setExecutor(new Youtuber());
 		getCommand("youtuber").setExecutor(new Youtuber());
 		getCommand("pvp").setExecutor(new PvP());
+		getCommand("euforia").setExecutor(new Euforia());
 		getCommand("autosoup").setExecutor(new AutoSoup(this));
 		getCommand("warpinfo").setExecutor(new GladInfo());
 		if (this.getConfig().getBoolean("ReportAtivado")) {
