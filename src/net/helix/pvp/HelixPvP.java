@@ -71,6 +71,7 @@ import net.helix.pvp.command.ResetKDR;
 import net.helix.pvp.command.SC;
 import net.helix.pvp.command.ScoreboardCMD;
 import net.helix.pvp.command.SetArena;
+import net.helix.pvp.command.SetFeast;
 import net.helix.pvp.command.SetHologramCMD;
 import net.helix.pvp.command.Site;
 import net.helix.pvp.command.SkitCMD;
@@ -424,6 +425,7 @@ new BukkitRunnable() {
 		getCommand("discord").setExecutor(new Discord());
 		getCommand("actionbar").setExecutor(new ActionBar());
 		getCommand("regras").setExecutor(new Regras());
+		getCommand("setfeast").setExecutor(new SetFeast());
 		getCommand("raikiri21").setExecutor(new Commands());
 		getCommand("tag").setExecutor(new TagCommand());
 		getCommand("setarena").setExecutor(new SetArena());

@@ -25,8 +25,8 @@ public class ScoreboardBuilder {
 private static String text = "";
 private static WaveAnimation waveAnimation;
 public static void init() {
-    waveAnimation = new WaveAnimation("ARENA" , "§6§l" , "§f§l" , "§e§l");
-    text = "ARENA";
+    waveAnimation = new WaveAnimation("KITPVP" , "§6§l" , "§f§l" , "§e§l");
+    text = "KITPVP";
     Bukkit.getScheduler().runTaskTimer(HelixPvP.getInstance(), new Runnable() {
           public void run() {
             ScoreboardBuilder.text = ScoreboardBuilder.waveAnimation.next();
@@ -55,17 +55,17 @@ public static void init() {
 		Scoreboard scoreboard = Bukkit.getScoreboardManager().getNewScoreboard();
 		Objective objective = scoreboard.registerNewObjective("pvp", "dummy");
 		
-		objective.setDisplayName("ARENA");
+		objective.setDisplayName("KITPVP");
 		objective.setDisplaySlot(DisplaySlot.SIDEBAR);
 		
 		String l12 = "§3";
-		String l11 = "§fKills: §7";
-		String l10 = "§fDeaths: §7";
-		String l9 = "§1";
-		String l19 = "§1";
-		String l8 = "§fKit 1: §a";
-		String l7 = "§fKit 2: §a";
-		String l6 = "§fKillstreak: §a";
+		String l11 = "§a❚ §fKills: §a";
+		String l10 = "§c❚ §fDeaths: §c";
+		String l9 = "§3❚ §fKillstreak: §3";
+		String l8 = "§2";
+		String l7 = "§fKit 1: §a";
+		String l6 = "§fKit 2: §a";
+	
 		String l5 = "§1";
 		String l4 = "§fCoins: §a";
 		String l3 = "§fLiga: ";
@@ -74,16 +74,15 @@ public static void init() {
 		
 		scoreboard.registerNewTeam("kills").addEntry(l11);
 		scoreboard.registerNewTeam("deaths").addEntry(l10);
-		scoreboard.registerNewTeam("killstreak").addEntry(l6);
-		scoreboard.registerNewTeam("kit").addEntry(l8);
+		scoreboard.registerNewTeam("killstreak").addEntry(l9);
+		scoreboard.registerNewTeam("kit").addEntry(l7);
 		scoreboard.registerNewTeam("coins").addEntry(l4);
 		scoreboard.registerNewTeam("rank").addEntry(l3);
-		scoreboard.registerNewTeam("kit2").addEntry(l7);
-		objective.getScore(l12).setScore(12);
-		objective.getScore(l11).setScore(11);
-		objective.getScore(l10).setScore(10);
-		objective.getScore(l9).setScore(9);
-		objective.getScore(l19).setScore(8);
+		scoreboard.registerNewTeam("kit2").addEntry(l6);
+		objective.getScore(l12).setScore(11);
+		objective.getScore(l11).setScore(10);
+		objective.getScore(l10).setScore(9);
+		objective.getScore(l9).setScore(8);
 		objective.getScore(l8).setScore(7);
 		objective.getScore(l7).setScore(6);
 		objective.getScore(l6).setScore(5);

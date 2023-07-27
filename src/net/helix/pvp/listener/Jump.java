@@ -65,7 +65,7 @@ public class Jump implements Listener {
 		Player player = e.getPlayer();
 		Atirar(p);
 		Atirar2(p);
-	if (player.getLocation().getBlockY() < HelixPvP.getInstance().getConfig().getInt("SpawnAltura") && (!KitManager.getPlayer(player.getName()).hasKit() && !KitManager2.getPlayer(player.getName()).haskit2()) && !EventoUtils.tp && !HelixWarp.ONE_VS_ONE.hasPlayer(p.getName()) && !HelixWarp.FPS.hasPlayer(p.getName()) && !HelixWarp.SUMO.hasPlayer(p.getName())) {
+	if (player.getLocation().getBlockY() < HelixPvP.getInstance().getConfig().getInt("SpawnAltura") && (!KitManager.getPlayer(player.getName()).hasKit() && !KitManager2.getPlayer(player.getName()).haskit2()) && !EventoUtils.tp && !HelixWarp.ONE_VS_ONE.hasPlayer(p.getName()) && !HelixWarp.FPS.hasPlayer(p.getName()) && !HelixWarp.SUMO.hasPlayer(p.getName()) && !HelixWarp.LAVACHALLENGE.hasPlayer(p.getName())) {
 		HelixKit.findKit("PvP").ifPresent(kit -> {
 			player.closeInventory();
 			kit.send(player);
@@ -75,7 +75,7 @@ public class Jump implements Listener {
 			kit.send(player);
 		});
 	}
-	if (player.getLocation().getBlockY() < HelixPvP.getInstance().getConfig().getInt("SpawnAltura") && (KitManager.getPlayer(player.getName()).hasKit() && !KitManager2.getPlayer(player.getName()).haskit2()) && !EventoUtils.tp && !HelixWarp.ONE_VS_ONE.hasPlayer(p.getName()) && !HelixWarp.FPS.hasPlayer(p.getName()) && !HelixWarp.SUMO.hasPlayer(p.getName())) {
+	if (player.getLocation().getBlockY() < HelixPvP.getInstance().getConfig().getInt("SpawnAltura") && (KitManager.getPlayer(player.getName()).hasKit() && !KitManager2.getPlayer(player.getName()).haskit2()) && !EventoUtils.tp && !HelixWarp.ONE_VS_ONE.hasPlayer(p.getName()) && !HelixWarp.FPS.hasPlayer(p.getName()) && !HelixWarp.SUMO.hasPlayer(p.getName()) && !HelixWarp.LAVACHALLENGE.hasPlayer(p.getName())) {
 		HelixKit.findKit(KitManager.getPlayer(player.getName()).getKit().toString()).ifPresent(kit -> {
 			player.closeInventory();
 			kit.send(player);
