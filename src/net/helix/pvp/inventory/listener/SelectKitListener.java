@@ -1,10 +1,13 @@
 package net.helix.pvp.inventory.listener;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.ClickType;
+import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.server.ServerListPingEvent;
 
@@ -26,7 +29,27 @@ public class SelectKitListener implements Listener {
 		if (!event.getView().getTitle().equals(KitsInventory.getInventoryName())) {
 			return;
 		}
-		
+		if (event.getCurrentItem() == null) {
+			return;
+		}
+		if(event.getClick() == ClickType.RIGHT) {
+			   if (event.getSlot() >= 45 && event.getSlot() <= 54)
+				   event.setCancelled(true);
+			   else {
+				   if (!ItemBuilder.has(event.getCurrentItem(), "kit-gui")) {
+						return;
+					}
+					String kitName = ItemBuilder.getString(event.getCurrentItem(), "kit-gui");
+
+					HelixKit.findKit(kitName).ifPresent(kit -> {
+						player.closeInventory();
+						kit.send(player);
+					});  
+			   }
+			  return;
+			    
+			    }
+	
 		event.setCancelled(true);
 		if (!ItemBuilder.has(event.getCurrentItem(), "kit-gui")) {
 			return;
@@ -37,7 +60,8 @@ public class SelectKitListener implements Listener {
 			player.closeInventory();
 			kit.send(player);
 		});
-	}
+}
+
 	@EventHandler
 	public void onInvClick2(InventoryClickEvent event) {
 		Player player = (Player) event.getWhoClicked();
@@ -45,7 +69,9 @@ public class SelectKitListener implements Listener {
 		if (!event.getView().getTitle().equals(KitsInventory2.getInventoryName())) {
 			return;
 		}
-		
+		if (event.getCurrentItem() == null) {
+			return;
+		}
 		event.setCancelled(true);
 		if (!ItemBuilder.has(event.getCurrentItem(), "kit-gui2")) {
 			return;
@@ -58,7 +84,7 @@ public class SelectKitListener implements Listener {
 				player.sendMessage("§cVocê já selecionou esse kit como primário!");
 				return;
 			}
-			if (KitManager.getPlayer(player.getName()).getKit() == HelixKit.STOMPER && (kitName2 == "Grappler" || kitName2 == "Kangaroo" || kitName2 == "Flash"  || kitName2 == "AntiStomper" || kitName2 == "Ninja")) {
+			if (KitManager.getPlayer(player.getName()).getKit() == HelixKit.STOMPER && (kitName2 == "Grappler" || kitName2 == "Kangaroo" || kitName2 == "Flash"  || kitName2 == "Neo" || kitName2 == "AntiStomper" || kitName2 == "Ninja")) {
 				player.sendMessage("§c" + kitName2 + " é incompátivel com Stomper");
 				player.closeInventory();
 				return;
@@ -95,6 +121,11 @@ public class SelectKitListener implements Listener {
 			}
 			if (KitManager.getPlayer(player.getName()).getKit() == HelixKit.JUMPER && (event.getCurrentItem().getType() == Material.IRON_BOOTS)) {
 				player.sendMessage("§cJumper é incompátivel com Stomper");
+				player.closeInventory();
+				return;
+			}
+			if (KitManager.getPlayer(player.getName()).getKit() == HelixKit.NEO && (event.getCurrentItem().getType() == Material.IRON_BOOTS)) {
+				player.sendMessage("§cNeo é incompátivel com Stomper");
 				player.closeInventory();
 				return;
 			}

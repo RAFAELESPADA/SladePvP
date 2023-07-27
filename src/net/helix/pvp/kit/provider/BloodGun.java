@@ -23,16 +23,24 @@ public class BloodGun extends KitHandler {
 	@EventHandler
 	  public void BloodClick(PlayerInteractEvent event) {
 	    final Player p = event.getPlayer();
-	    if (event.getPlayer().getItemInHand().getType() == Material.WOOD_HOE && 
-	      KitManager.getPlayer(event.getPlayer().getName()).hasKit(this)) {
+	    if (!KitManager.getPlayer(event.getPlayer().getName()).hasKit(this)) {
+	    	return;
+	    }
+	    if (event.getPlayer().getItemInHand().getType() == Material.WOOD_HOE) {
 	      if (event.getAction() == Action.RIGHT_CLICK_BLOCK || 
 	        event.getAction() == Action.RIGHT_CLICK_AIR || 
 	        event.getAction() == Action.LEFT_CLICK_AIR || 
 	        event.getAction() == Action.LEFT_CLICK_BLOCK)
 	        event.setCancelled(true); 
+	    }
 	      if (inCooldown(p)) {
 	       sendMessageCooldown(p);
-	      } else {
+	      }
+	       else if (p.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura")) {
+	        	p.sendMessage("§cNão use o seu poder no spawn!");
+	    		return;
+	    	 }
+	      else {
 	        Vector velo1 = p.getLocation().getDirection().normalize().multiply(10);
 	        Fireball boladenve = (Fireball)p.launchProjectile(Fireball.class);
 	        boladenve.setIsIncendiary(true);
@@ -52,9 +60,7 @@ public class BloodGun extends KitHandler {
 	               p.sendMessage(ChatColor.GREEN + "O Cooldown do BloodGun expirou");
 	                }
 	              },  200L);
-	        } 
-	      }
-	    
+	      } 
 	}
 	        @EventHandler
 	  	  public void dano(EntityDamageByEntityEvent e)

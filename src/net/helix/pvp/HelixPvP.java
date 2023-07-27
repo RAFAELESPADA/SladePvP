@@ -122,6 +122,7 @@ import net.helix.pvp.listener.SignListener;
 import net.helix.pvp.listener.SoupHandlerListener;
 import net.helix.pvp.scoreboard.ScoreboardBuilder;
 import net.helix.pvp.warp.provider.SetX1;
+import net.helixpvp.kit2.AntiProxyListener;
 import net.helixpvp.kit2.GladiatorListener;
 import net.md_5.bungee.api.chat.TextComponent;
 import us.ajg0702.leaderboards.LeaderboardPlugin;
@@ -151,7 +152,7 @@ public class HelixPvP extends JavaPlugin implements Listener, PluginMessageListe
 		    		Bukkit.getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
 		this.scoreboardBuilder = new ScoreboardBuilder(this);
 		new Feast(this);
-		new AntiOP(this);
+		
 		loadCommands();
 		ScoreboardBuilder.init();
 		loadListeners();
@@ -450,6 +451,7 @@ new BukkitRunnable() {
 		pm.registerEvents(new Jumper(), this);
 		pm.registerEvents(new EventoListeners(), this);
 		pm.registerEvents(new Grappler(), this);
+		pm.registerEvents(new AntiProxyListener(), this);
 		pm.registerEvents(new NoBreakEvent(), this);
 		pm.registerEvents(new SelectWarpListener(), this);
 		pm.registerEvents(new SelectKitListener(), this);
@@ -487,6 +489,7 @@ new BukkitRunnable() {
 		pm.registerEvents(new SoupTypeGUI(), this);
 		pm.registerEvents(new PlayerCompassListener(), this);
 		pm.registerEvents(new LAVA(), this);
+		pm.registerEvents(new AntiOP(), this);
 		pm.registerEvents(new PlayerKillstreakListener(), this);
 		pm.registerEvents(new PlayerDieArenaListener(), this);
 	}
