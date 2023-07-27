@@ -70,7 +70,7 @@ public class EventoComando implements CommandExecutor {
 
             if (!player.hasPermission("kombo.cmd.evento")) {
                 if (!EventoUtils.evento) {
-                    player.sendMessage("§cA sala de eventos Não estáaberta.");
+                    player.sendMessage("§cA sala de eventos Não está aberta.");
                     return true;
                 }
                 switch (args[0].toLowerCase()) {
@@ -89,7 +89,7 @@ public class EventoComando implements CommandExecutor {
                                 KitManager.getPlayer(player.getName()).removeKit();
                                 Habilidade.removeAbility(player);
                             } else {
-                                player.sendMessage("§cA sala do evento j§ foi fechada. Fique ligado para quando for aberta para espectadores.");
+                                player.sendMessage("§cA sala do evento já foi fechada. Fique ligado para quando for aberta para espectadores.");
                             }
                             return true;
                         }
@@ -105,7 +105,7 @@ public class EventoComando implements CommandExecutor {
                         break;
                     case "sair":
                         if (!EventoUtils.game.contains(player.getName())) {
-                            player.sendMessage("§cVocê Não estáno evento.");
+                            player.sendMessage("§cVocê Não está no evento.");
                             return true;
                         }
                         EventoUtils.setEvento(false, player);
@@ -114,7 +114,7 @@ public class EventoComando implements CommandExecutor {
                         break;
                     case "spec":
                         if (EventoUtils.game.contains(player.getName())) {
-                            player.sendMessage("§cVocê estáno evento.");
+                            player.sendMessage("§cVocê está no evento.");
                             return true;
                         }
                         if (!(KitManager.getPlayer(player.getName()).hasKit()) || Habilidade.ContainsAbility(player)) {
@@ -136,7 +136,7 @@ public class EventoComando implements CommandExecutor {
             else {
                 if (args[0].equalsIgnoreCase("start")) {
                     if (EventoUtils.evento) {
-                        player.sendMessage("§cA sala de eventos j§ estáaberta.");
+                        player.sendMessage("§cA sala de eventos já está aberta.");
                         return true;
                     }
                     EventoUtils.evento = true;
@@ -186,7 +186,7 @@ public class EventoComando implements CommandExecutor {
                                     EventoUtils.whitelist.remove(player.getUniqueId());
                                     KitManager.getPlayer(player.getName()).removeKit();
                                 } else {
-                                    player.sendMessage("§cA sala do evento j§ foi fechada. Fique ligado para quando for aberta para espectadores.");
+                                    player.sendMessage("§cA sala do evento já foi fechada. Fique ligado para quando for aberta para espectadores.");
                                 }
                                 return true;
                             }
@@ -207,7 +207,7 @@ public class EventoComando implements CommandExecutor {
                             break;
                         case "spec":
                             if (EventoUtils.game.contains(player.getName())) {
-                                player.sendMessage("§cVocê estáno evento.");
+                                player.sendMessage("§cVocê está no evento.");
                                 return true;
                             }
                             if (!(KitManager.getPlayer(player.getName()).hasKit() && Habilidade.ContainsAbility(player))) {
@@ -215,7 +215,7 @@ public class EventoComando implements CommandExecutor {
                                 return true;
                             }
                             if (!EventoUtils.specs) {
-                                player.sendMessage("§cOs espectadores est§o desativados no momento.");
+                                player.sendMessage("§cOs espectadores estão desativados no momento.");
                                 return true;
                             }
                             player.teleport(EventoUtils.specLoc);
@@ -259,7 +259,7 @@ public class EventoComando implements CommandExecutor {
                             }
                             PotionEffectType potionEffectType = EventoUtils.getPotionEffectTypeByName(args[1]);
                             if (potionEffectType == null) {
-                                player.sendMessage("§cEfeito inv§lido.");
+                                player.sendMessage("§cEfeito inválido.");
                                 return true;
                             }
                             int amplif;
@@ -285,7 +285,7 @@ public class EventoComando implements CommandExecutor {
                                     player.sendMessage("§cVocê Não pode dar efeitos diretamente para Você mesmo.");
                                 }
                                 if (!EventoUtils.game.contains(target.getName())) {
-                                    player.sendMessage("§cEste player Não estáno evento.");
+                                    player.sendMessage("§cEste player Não está no evento.");
                                     return true;
                                 }
                                 target.addPotionEffect(new PotionEffect(potionEffectType, secs * 20, amplif));
@@ -321,7 +321,7 @@ public class EventoComando implements CommandExecutor {
                                 return true;
                             }
                             if (!EventoUtils.game.contains(target.getName())) {
-                                player.sendMessage("§cEste player Não estáno evento.");
+                                player.sendMessage("§cEste player Não está no evento.");
                                 return true;
                             }
                            net.helix.pvp.evento.EventoUtils.setEvento(false, player);
