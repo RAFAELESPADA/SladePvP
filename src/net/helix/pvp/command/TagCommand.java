@@ -102,7 +102,7 @@ try {
             user.data().add(node);
 
             // Tell the sender.
-            sender.sendMessage("§a§lTAG: §fa sua tag foi alterada para " + ChatColor.RESET + prefix.replace("&", "§"));
+            sender.sendMessage("§a§lTAG: §fa sua tag foi alterada para " + (args[0].equalsIgnoreCase("Membro") || (args[0].equalsIgnoreCase("default")) ? "§7§lMEMBRO" : ChatColor.RESET + prefix.replace("&", "§")));
             apitab.getPlayer(player.getName()).setTemporaryGroup(args[0]);
             Bukkit.getConsoleSender().sendMessage(player.getName() + " alterou a tag para " + args[0]);
         });

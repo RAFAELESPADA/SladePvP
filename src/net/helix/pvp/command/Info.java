@@ -21,7 +21,7 @@ public class Info implements CommandExecutor {
         }
             final Player player = (Player) sender;
             if (!player.hasPermission("kombo.cmd.pinfo")) {
-            	 player.sendMessage("§cVoc§ n§o tem permiss§o");
+            	 player.sendMessage("§cVocê não tem permissão");
             			 return true;
             }
                 if (args.length == 0) {
@@ -37,7 +37,7 @@ public class Info implements CommandExecutor {
                         String kit = KitManager.getPlayer(helixPlayer.getName()).getKit().toString();
                         player.sendMessage("§aKit: §f" + kit);
                         player.sendMessage("§aGameMode: §f" + target.getGameMode().name());
-                        player.sendMessage("§aFly: §f" + (target.getAllowFlight() ? "§fSim" : "§cN§o"));
+                        player.sendMessage("§aFly: §f" + (target.getAllowFlight() ? "§fSim" : "§cNão"));
                        
     }
 

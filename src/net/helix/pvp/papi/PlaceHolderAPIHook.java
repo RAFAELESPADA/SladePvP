@@ -6,6 +6,7 @@ package net.helix.pvp.papi;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import net.helix.core.bukkit.HelixBukkit;
 import net.helix.core.bukkit.account.HelixPlayer;
+import net.helix.pvp.Feast;
 import net.helix.pvp.HelixPvP;
 import net.helix.pvp.listener.Medals;
 import net.helix.pvp.listener.Ranking;

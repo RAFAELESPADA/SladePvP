@@ -41,7 +41,29 @@ public class Feast extends BukkitRunnable {
             new Location(world,  HelixPvP.getInstance().getConfig().getInt("Bau5X"), HelixPvP.getInstance().getConfig().getInt("Bau5Y"), HelixPvP.getInstance().getConfig().getInt("Bau5Z")),
             new Location(world, HelixPvP.getInstance().getConfig().getInt("Bau6X"), HelixPvP.getInstance().getConfig().getInt("Bau6Y"), HelixPvP.getInstance().getConfig().getInt("Bau6Z")),
             new Location(world, HelixPvP.getInstance().getConfig().getInt("Bau7X"), HelixPvP.getInstance().getConfig().getInt("Bau7Y"), HelixPvP.getInstance().getConfig().getInt("Bau7Z")),
-            new Location(world, HelixPvP.getInstance().getConfig().getInt("Bau8X"), HelixPvP.getInstance().getConfig().getInt("Bau8Y"), HelixPvP.getInstance().getConfig().getInt("Bau8Z"))
+            new Location(world, HelixPvP.getInstance().getConfig().getInt("Bau8X"), HelixPvP.getInstance().getConfig().getInt("Bau8Y"), HelixPvP.getInstance().getConfig().getInt("Bau8Z")),
+            new Location(world, HelixPvP.getInstance().getConfig().getInt("Bau9X"), HelixPvP.getInstance().getConfig().getInt("Bau9Y"), HelixPvP.getInstance().getConfig().getInt("Bau9Z")),
+            new Location(world, HelixPvP.getInstance().getConfig().getInt("Bau10X"), HelixPvP.getInstance().getConfig().getInt("Bau10Y"), HelixPvP.getInstance().getConfig().getInt("Bau10Z")),
+            new Location(world,  HelixPvP.getInstance().getConfig().getInt("Bau11X"), HelixPvP.getInstance().getConfig().getInt("Bau11Y"), HelixPvP.getInstance().getConfig().getInt("Bau11Z")),
+            new Location(world, HelixPvP.getInstance().getConfig().getInt("Bau12X"), HelixPvP.getInstance().getConfig().getInt("Bau12Y"), HelixPvP.getInstance().getConfig().getInt("Bau12Z")),
+            new Location(world, HelixPvP.getInstance().getConfig().getInt("Bau13X"), HelixPvP.getInstance().getConfig().getInt("Bau13Y"), HelixPvP.getInstance().getConfig().getInt("Bau13Z")),
+            new Location(world, HelixPvP.getInstance().getConfig().getInt("Bau14X"), HelixPvP.getInstance().getConfig().getInt("Bau14Y"), HelixPvP.getInstance().getConfig().getInt("Bau14Z")),
+            new Location(world, HelixPvP.getInstance().getConfig().getInt("Bau15X"), HelixPvP.getInstance().getConfig().getInt("Bau15Y"), HelixPvP.getInstance().getConfig().getInt("Bau15Z")),
+            new Location(world, HelixPvP.getInstance().getConfig().getInt("Bau16X"), HelixPvP.getInstance().getConfig().getInt("Bau16Y"), HelixPvP.getInstance().getConfig().getInt("Bau16Z")),
+            new Location(world, HelixPvP.getInstance().getConfig().getInt("Bau17X"), HelixPvP.getInstance().getConfig().getInt("Bau17Y"), HelixPvP.getInstance().getConfig().getInt("Bau17Z")),
+            new Location(world, HelixPvP.getInstance().getConfig().getInt("Bau18X"), HelixPvP.getInstance().getConfig().getInt("Bau18Y"), HelixPvP.getInstance().getConfig().getInt("Bau18Z")),
+            new Location(world, HelixPvP.getInstance().getConfig().getInt("Bau19X"), HelixPvP.getInstance().getConfig().getInt("Bau19Y"), HelixPvP.getInstance().getConfig().getInt("Bau19Z")),
+            new Location(world, HelixPvP.getInstance().getConfig().getInt("Bau20X"), HelixPvP.getInstance().getConfig().getInt("Bau20Y"), HelixPvP.getInstance().getConfig().getInt("Bau20Z")),
+            new Location(world, HelixPvP.getInstance().getConfig().getInt("Bau21X"), HelixPvP.getInstance().getConfig().getInt("Bau21Y"), HelixPvP.getInstance().getConfig().getInt("Bau21Z")),
+            new Location(world, HelixPvP.getInstance().getConfig().getInt("Bau22X"), HelixPvP.getInstance().getConfig().getInt("Bau22Y"), HelixPvP.getInstance().getConfig().getInt("Bau22Z")),
+            new Location(world, HelixPvP.getInstance().getConfig().getInt("Bau23X"), HelixPvP.getInstance().getConfig().getInt("Bau23Y"), HelixPvP.getInstance().getConfig().getInt("Bau23Z")),
+            new Location(world, HelixPvP.getInstance().getConfig().getInt("Bau24X"), HelixPvP.getInstance().getConfig().getInt("Bau24Y"), HelixPvP.getInstance().getConfig().getInt("Bau24Z")),
+            new Location(world, HelixPvP.getInstance().getConfig().getInt("Bau25X"), HelixPvP.getInstance().getConfig().getInt("Bau25Y"), HelixPvP.getInstance().getConfig().getInt("Bau25Z")),
+            new Location(world, HelixPvP.getInstance().getConfig().getInt("Bau26X"), HelixPvP.getInstance().getConfig().getInt("Bau26Y"), HelixPvP.getInstance().getConfig().getInt("Bau26Z")),
+            new Location(world, HelixPvP.getInstance().getConfig().getInt("Bau27X"), HelixPvP.getInstance().getConfig().getInt("Bau27Y"), HelixPvP.getInstance().getConfig().getInt("Bau27Z")),
+            new Location(world, HelixPvP.getInstance().getConfig().getInt("Bau28X"), HelixPvP.getInstance().getConfig().getInt("Bau28Y"), HelixPvP.getInstance().getConfig().getInt("Bau28Z")),
+            new Location(world, HelixPvP.getInstance().getConfig().getInt("Bau29X"), HelixPvP.getInstance().getConfig().getInt("Bau29Y"), HelixPvP.getInstance().getConfig().getInt("Bau29Z")),
+            new Location(world, HelixPvP.getInstance().getConfig().getInt("Bau30X"), HelixPvP.getInstance().getConfig().getInt("Bau30Y"), HelixPvP.getInstance().getConfig().getInt("Bau30Z"))
         //-1210 146 212
     );
 
@@ -116,7 +138,6 @@ public class Feast extends BukkitRunnable {
     );
 
     private Long time = TimeUnit.MINUTES.toSeconds(spawnEveryMinutes);
-
     @Override
     public void run() {
         if (Bukkit.getOnlinePlayers().isEmpty()) return;
@@ -124,6 +145,7 @@ public class Feast extends BukkitRunnable {
         time--;
         long minutes = (time / 60) * 2;
         long seconds = (time % 60);
+        
 
         if (!spawned && minutes == 0) {
             if (seconds == 50 || seconds == 40 || seconds == 30 || seconds == 20 || seconds == 10 || seconds == 5 || seconds == 4 || seconds == 3 || seconds == 2 || seconds == 1) {
@@ -139,7 +161,9 @@ public class Feast extends BukkitRunnable {
                 spawned = true;
 
                 chests.forEach((chest) -> {
+               
                     chest.getBlock().setType(Material.CHEST);
+                	
                     Random random = new Random();
 
                     Inventory inventory = ((Chest)chest.getBlock().getState()).getInventory();
