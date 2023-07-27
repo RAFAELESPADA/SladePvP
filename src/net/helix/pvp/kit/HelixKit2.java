@@ -21,6 +21,7 @@ import net.helixpvp.kit2.Boxer;
 import net.helixpvp.kit2.Camel;
 import net.helixpvp.kit2.Critical;
 import net.helixpvp.kit2.EnderMage;
+import net.helixpvp.kit2.Firebender;
 import net.helixpvp.kit2.Fireman;
 import net.helixpvp.kit2.Barbarian;
 import net.helixpvp.kit2.Fisherman;
@@ -41,6 +42,7 @@ import net.helixpvp.kit2.Stomper;
 import net.helixpvp.kit2.Switcher;
 import net.helixpvp.kit2.Thor;
 import net.helixpvp.kit2.Viper;
+import net.helixpvp.kit2.WaterBender;
 
 
 public enum HelixKit2  {
@@ -60,6 +62,8 @@ public enum HelixKit2  {
 	CRITICAL("Critical", 9000, 0, new Critical() , new ItemStack(Material.REDSTONE_BLOCK), "De criticos automaticamente"),
 	STOMPER("Stomper", 15000, 0, new Stomper() , new ItemStack(Material.IRON_BOOTS), "Esmague seus inimigos."),
 	THOR("Thor", 2500, 2500, new Thor() , new ItemStack(Material.GOLD_AXE), "Lance raios."),
+	WATERBENDER("Waterbender", 12000, 0, new WaterBender(), new ItemStack(Material.LAPIS_ORE), "Coloque o inimigo em uma prisão de água"),
+	FIREBENDER("Firebender", 12000, 0, new Firebender(), new ItemStack(Material.REDSTONE_ORE), "Coloque o inimigo em uma prisão de fogo"),
 	GLADIATOR("Gladiator", 15000, 0, new GladiatorListener() , new ItemStack(Material.IRON_FENCE), "Puxe seu inimigo."),
 	CAMEL("Camel", 9000, 9000, new Camel() , new ItemStack(Material.SAND), "Ganhe poderes na areia."),
 	BARBARIAN("Barbarian", 18000, 0, new Barbarian(), new ItemStack(Material.WOOD_SWORD), "Sua espada aumenta a cada kill!"),
@@ -123,7 +127,52 @@ public enum HelixKit2  {
 					.nbt("cancel-drop")
 					.toStack()
 			);
-			Bukkit.getConsoleSender().sendMessage(player.getName() + " Choosed sonic kit!");
+			Bukkit.getConsoleSender().sendMessage(player.getName() + " Choosed VACUUM kit!");
+		}
+		if (KitManager.getPlayer(player.getName()).hasKit(HelixKit.FIREBENDER)) {
+			player.getInventory().setItem(1, new ItemBuilder("§cFireBender!", Material.REDSTONE_BLOCK)
+	                .addEnchant(Enchantment.KNOCKBACK, 1)
+	        				.addFlags(ItemFlag.HIDE_ENCHANTS)
+	                .nbt("cancel-drop")
+	                .toStack()
+	        );
+			Bukkit.getConsoleSender().sendMessage(player.getName() + " Choosed FIREBENDER kit!");
+		}
+		if (KitManager.getPlayer(player.getName()).hasKit(HelixKit.WATERBENDER)) {
+			player.getInventory().setItem(1, new ItemBuilder("§bWaterBender!", Material.LAPIS_BLOCK)
+	                .addEnchant(Enchantment.KNOCKBACK, 1)
+	        				.addFlags(ItemFlag.HIDE_ENCHANTS)
+	                .nbt("cancel-drop")
+	                .toStack()
+	        );
+			Bukkit.getConsoleSender().sendMessage(player.getName() + " Choosed WATERBENDER kit!");
+		}
+		if (KitManager.getPlayer(player.getName()).hasKit(HelixKit.ENDERMAGE)) {
+			player.getInventory().setItem(1, new ItemBuilder("§bEndermage!", Material.ENDER_STONE)
+	                .addEnchant(Enchantment.KNOCKBACK, 1)
+	        				.addFlags(ItemFlag.HIDE_ENCHANTS)
+	                .nbt("cancel-drop")
+	                .toStack()
+	        );
+			Bukkit.getConsoleSender().sendMessage(player.getName() + " Choosed ENDERMAGE kit!");
+		}
+		if (KitManager.getPlayer(player.getName()).hasKit(HelixKit.DESHFIRE)) {
+			player.getInventory().setItem(1, new ItemBuilder("§4Desh Fire!", Material.REDSTONE_BLOCK)
+	                .addEnchant(Enchantment.KNOCKBACK, 1)
+	        				.addFlags(ItemFlag.HIDE_ENCHANTS)
+	                .nbt("cancel-drop")
+	                .toStack()
+	        );
+			Bukkit.getConsoleSender().sendMessage(player.getName() + " Choosed ENDERMAGE kit!");
+		}
+		if (KitManager.getPlayer(player.getName()).hasKit(HelixKit.AVATAR)) {
+			player.getInventory().setItem(1, new ItemBuilder("§bAvatar!", Material.BEACON)
+	                .addEnchant(Enchantment.KNOCKBACK, 1)
+	        				.addFlags(ItemFlag.HIDE_ENCHANTS)
+	                .nbt("cancel-drop")
+	                .toStack()
+	        );
+			Bukkit.getConsoleSender().sendMessage(player.getName() + " Choosed Avatar kit!");
 		}
 		if (KitManager.getPlayer(player.getName()).hasKit(HelixKit.ARCHER)) {
 			player.getInventory().setItem(1, new ItemBuilder("§aBow!", Material.BOW)

@@ -16,12 +16,16 @@ import net.helix.pvp.kit.provider.Anchor;
 import net.helix.pvp.kit.provider.AntiStomper;
 import net.helix.pvp.kit.provider.AntiStomperReal;
 import net.helix.pvp.kit.provider.Archer;
+import net.helix.pvp.kit.provider.Avatar;
 import net.helix.pvp.kit.provider.Barbarian;
 import net.helix.pvp.kit.provider.BloodGun;
 import net.helix.pvp.kit.provider.Boxer;
 import net.helix.pvp.kit.provider.Camel;
 import net.helix.pvp.kit.provider.Critical;
+import net.helix.pvp.kit.provider.Deshfire;
 import net.helix.pvp.kit.provider.EnderMage;
+import net.helix.pvp.kit.provider.EnderMageReal;
+import net.helix.pvp.kit.provider.Firebender;
 import net.helix.pvp.kit.provider.Fireman;
 import net.helix.pvp.kit.provider.Fisherman;
 import net.helix.pvp.kit.provider.Flash;
@@ -54,6 +58,7 @@ import net.helix.pvp.kit.provider.TimeLord;
 import net.helix.pvp.kit.provider.Tornado;
 import net.helix.pvp.kit.provider.Turtle;
 import net.helix.pvp.kit.provider.Viper;
+import net.helix.pvp.kit.provider.WaterBender;
 
 public enum HelixKit {
 
@@ -95,6 +100,11 @@ public enum HelixKit {
 	BOXER("Boxer", HelixPvP.getInstance().getConfig().getInt("BoxerPrice"), 1500, new Boxer(), new ItemStack(Material.QUARTZ), HelixPvP.getInstance().getConfig().getString("BoxerLore")),
 	HULK("Hulk", HelixPvP.getInstance().getConfig().getInt("HulkPrice"), 420, new Hulk(), new ItemStack(Material.DROPPER), HelixPvP.getInstance().getConfig().getString("HulkLore")),
 	SWITCHER("Switcher", HelixPvP.getInstance().getConfig().getInt("SwitcherPrice"), 0, new Switcher(), new ItemStack(Material.SNOW_BALL), HelixPvP.getInstance().getConfig().getString("SwitcherLore")),
+	WATERBENDER("Waterbender", 12000, 0, new WaterBender(), new ItemStack(Material.LAPIS_ORE), "Coloque o inimigo em uma prisão de água"),
+	FIREBENDER("Firebender", 12000, 0, new Firebender(), new ItemStack(Material.REDSTONE_ORE), "Coloque o inimigo em uma prisão de fogo"),
+	AVATAR("Avatar", 17500, 0, new Avatar(), new ItemStack(Material.BEACON), "Controle os 4 elementos."),
+	DESHFIRE("DeshFire", 15000, 0, new Deshfire(), new ItemStack(Material.NETHER_BRICK_STAIRS), "De um desh e bote fogo."),
+	ENDERMAGE("EnderMage", 10000, 0, new EnderMageReal(), new ItemStack(Material.ENDER_STONE), "Puxe jogadores para sua torre."),
 	JUMPER("Jumper", HelixPvP.getInstance().getConfig().getInt("JumperPrice"), 250, new Jumper(), new ItemStack(Material.EYE_OF_ENDER), HelixPvP.getInstance().getConfig().getString("JumperLore")),
 	FLASH("Flash", 15000, 500, new Flash(), new ItemStack(Material.REDSTONE_TORCH_ON), "Teleporte para onde você clicar"),
     GLADIATOR("Gladiator", 15000, 500, new GladiatorListener(), new ItemStack(Material.IRON_FENCE), "Faça 1v1 nos inimigos"),

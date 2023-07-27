@@ -1,6 +1,8 @@
 package net.helixpvp.kit2;
 
 
+import net.helix.core.bukkit.item.ItemBuilder;
+import net.helix.pvp.kit.HelixKit;
 import net.helix.pvp.kit.HelixKit2;
 import net.helix.pvp.kit.KitHandler;
 import net.helix.pvp.kit.KitHandler2;
@@ -18,6 +20,14 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.inventory.ItemStack;
 
 public class Barbarian extends KitHandler2 {
+	@Override
+	public void execute(Player player) {
+		super.execute(player);
+ 
+		player.getInventory().setItem(0, new ItemBuilder("§fEspada", Material.WOOD_SWORD)
+				.nbt("cancel-drop")
+				.toStack());
+		}
   @EventHandler
   public void onKill(PlayerDeathEvent e) {
     if (!(e.getEntity().getKiller() instanceof Player)) {

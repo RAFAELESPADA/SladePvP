@@ -8,6 +8,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import net.helix.pvp.kit.KitHandler;
 import net.helix.pvp.kit.KitManager;
+import net.md_5.bungee.api.ChatColor;
 
 public class Sight extends KitHandler {
 	
@@ -26,7 +27,8 @@ public class Sight extends KitHandler {
 		Player victim = (Player) event.getEntity();
 		int percentage = new Random().nextInt(100);
 		
-		if (percentage < 33) {
+		if (percentage < 27) {
+			victim.sendMessage(ChatColor.RED + "Um sight tirou sua visão");
 			victim.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 4 * 20, 1));
 		}
 	}

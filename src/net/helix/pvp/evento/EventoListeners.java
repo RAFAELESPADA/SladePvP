@@ -69,8 +69,8 @@ public class EventoListeners implements Listener {
         event.getPlayer().sendMessage("");
         event.getPlayer().sendMessage("");
         event.getPlayer().sendMessage("");
-        event.getPlayer().sendMessage("�aUm evento est� ocorrendo!");
-        event.getPlayer().sendMessage("�aUtilize �b/evento entrar �apara entrar");
+        event.getPlayer().sendMessage("§aUm evento está ocorrendo!");
+        event.getPlayer().sendMessage("§aUtilize §b/evento entrar §apara entrar");
     }
 
 
