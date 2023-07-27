@@ -2,6 +2,7 @@ package net.helix.pvp.listener;
 
 import java.util.ArrayList;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Effect;
 import org.bukkit.Location;
@@ -103,7 +104,10 @@ public class Jump implements Listener {
 			{
 				this.fall.remove(p.getName());
 				e.setCancelled(true);
-
+				EntityDamageEvent event = new EntityDamageEvent(p, EntityDamageEvent.DamageCause.FALL, 1.0F);
+				p.setLastDamageCause(event);
+				Bukkit.getServer().getPluginManager().callEvent(event);
+				p.damage(1F);;
 			}
 			else if(e.getCause() == EntityDamageEvent.DamageCause.ENTITY_ATTACK)
 			{
