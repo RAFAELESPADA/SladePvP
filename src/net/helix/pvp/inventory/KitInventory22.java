@@ -2,6 +2,7 @@ package net.helix.pvp.inventory;
 
 
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import org.bukkit.Bukkit;
@@ -10,6 +11,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import net.helix.core.bukkit.item.ItemBuilder;
 import net.helix.pvp.kit.HelixKit;
@@ -25,40 +27,77 @@ public class KitInventory22 {
 	
 		ItemStack visualItem = new ItemStack(randomGlass());
 		
-		KitManager2.getPlayer(player.getName()).getAvailablekit2s().forEach(kit -> { 
-		
- 
-			if (kit.getPage() == 2 && kit != HelixKit2.NENHUM) { 
-				for (int i = 0; i < 18; i++) {
-					inventory.setItem(i, visualItem);
-				}
-				for (int i = 0; i <= 45 && i != 18 && i != 27; i += 9) {
-					inventory.setItem(i, visualItem);
-				}
-				for (int i = 0; i < 44 && i > 32; i++) {
-					inventory.setItem(i, visualItem);
-				}
-			inventory.addItem(new ItemBuilder("§a" + kit.getName(), kit.getIcon())
-					.lore("§f" + kit.getDescription())
-					.addFlags(ItemFlag.HIDE_ATTRIBUTES,
-							ItemFlag.HIDE_DESTROYS,
-							ItemFlag.HIDE_ENCHANTS,
-							ItemFlag.HIDE_PLACED_ON,
-							ItemFlag.HIDE_POTION_EFFECTS,
-							ItemFlag.HIDE_UNBREAKABLE)
-					.nbt("kit-gui2", kit.getName())
-					.toStack()
-			);
-		inventory.setItem(53, new ItemBuilder("§aPróximo", Material.ARROW).nbt("prox")
-				.toStack()
-		);
+		inventory.setItem(10 , new ItemBuilder("§a" + HelixKit2.SWITCHER.getName(), HelixKit2.SWITCHER.getIcon())
+				.lore("§f" + HelixKit2.SWITCHER.getDescription())
+						.addFlags(ItemFlag.HIDE_ATTRIBUTES,
+								ItemFlag.HIDE_DESTROYS,
+								ItemFlag.HIDE_ENCHANTS,
+								ItemFlag.HIDE_PLACED_ON,
+								ItemFlag.HIDE_POTION_EFFECTS,
+								ItemFlag.HIDE_UNBREAKABLE)
+						.nbt("kit-gui2", HelixKit2.SWITCHER.getName())
+						.toStack()
+				);
+		inventory.setItem(11 , new ItemBuilder("§a" + HelixKit2.THOR.getName(), HelixKit2.THOR.getIcon())
+				.lore("§f" + HelixKit2.THOR.getDescription())
+						.addFlags(ItemFlag.HIDE_ATTRIBUTES,
+								ItemFlag.HIDE_DESTROYS,
+								ItemFlag.HIDE_ENCHANTS,
+								ItemFlag.HIDE_PLACED_ON,
+								ItemFlag.HIDE_POTION_EFFECTS,
+								ItemFlag.HIDE_UNBREAKABLE)
+						.nbt("kit-gui2", HelixKit2.THOR.getName())
+						.toStack()
+				);
+		inventory.setItem(12 , new ItemBuilder("§a" + HelixKit2.VACUUM.getName(), HelixKit2.VACUUM.getIcon())
+				.lore("§f" + HelixKit2.VACUUM.getDescription())
+						.addFlags(ItemFlag.HIDE_ATTRIBUTES,
+								ItemFlag.HIDE_DESTROYS,
+								ItemFlag.HIDE_ENCHANTS,
+								ItemFlag.HIDE_PLACED_ON,
+								ItemFlag.HIDE_POTION_EFFECTS,
+								ItemFlag.HIDE_UNBREAKABLE)
+						.nbt("kit-gui2", HelixKit2.VACUUM.getName())
+						.toStack()
+				);
+		inventory.setItem(13 , new ItemBuilder("§a" + HelixKit2.VIPER.getName(), HelixKit2.VIPER.getIcon())
+				.lore("§f" + HelixKit2.VIPER.getDescription())
+						.addFlags(ItemFlag.HIDE_ATTRIBUTES,
+								ItemFlag.HIDE_DESTROYS,
+								ItemFlag.HIDE_ENCHANTS,
+								ItemFlag.HIDE_PLACED_ON,
+								ItemFlag.HIDE_POTION_EFFECTS,
+								ItemFlag.HIDE_UNBREAKABLE)
+						.nbt("kit-gui2", HelixKit2.VIPER.getName())
+						.toStack()
+				);
+		inventory.setItem(14 , new ItemBuilder("§a" + HelixKit2.WATERBENDER.getName(), HelixKit2.WATERBENDER.getIcon())
+				.lore("§f" + HelixKit2.WATERBENDER.getDescription())
+						.addFlags(ItemFlag.HIDE_ATTRIBUTES,
+								ItemFlag.HIDE_DESTROYS,
+								ItemFlag.HIDE_ENCHANTS,
+								ItemFlag.HIDE_PLACED_ON,
+								ItemFlag.HIDE_POTION_EFFECTS,
+								ItemFlag.HIDE_UNBREAKABLE)
+						.nbt("kit-gui2", HelixKit2.WATERBENDER.getName())
+						.toStack()
+				);
 		inventory.setItem(45, new ItemBuilder("§aVoltar", Material.ARROW).nbt("voltar")
 				.toStack()
 		);
+		ItemStack i =  new ItemStack(KitManager2.getPlayer(player.getName()).getkit2().getIcon());
+		ItemMeta i2 = i.getItemMeta();
+		ArrayList<String> lore = new ArrayList<String>();
+	    lore.add(KitManager2.getPlayer(player.getName()).getkit2().getDescription());
+		i2.setDisplayName(KitManager2.getPlayer(player.getName()).getkit2().getName());
+		i2.setLore(lore);
+		i.setItemMeta(i2);
+		inventory.setItem(49, new ItemStack(KitManager2.getPlayer(player.getName()).getkit2().getIcon()));
 		player.openInventory(inventory);
-					}}
-				);
-					}
+			}
+		
+
+					
 				
 	
 	public static String getInventoryName() {
@@ -66,7 +105,7 @@ public class KitInventory22 {
 	}
 	private static ItemStack randomGlass() {
 		int randomId = new Random().nextInt(14);
-		return new ItemStack(Material.THIN_GLASS);
+		return new ItemStack(new ItemStack(Material.AIR));
 	}
 	
 }

@@ -69,6 +69,14 @@ public class PlayerCombatLogListener implements Listener {
         }
 	}
 	@EventHandler
+	public void onCommandPreProcess24(PlayerCommandPreprocessEvent event) {
+		Player player = event.getPlayer();
+		if (event.getMessage().split(" ")[0].toLowerCase().equals("l")) {
+			event.setCancelled(true);
+			player.sendMessage("§eVocê voltou!");
+		}
+	}
+	@EventHandler
 	public void onCommandPreProcess2(PlayerCommandPreprocessEvent event) {
 		Player player = event.getPlayer();
 		if (event.getMessage().split(" ")[0].toLowerCase().contains("lobby")) {

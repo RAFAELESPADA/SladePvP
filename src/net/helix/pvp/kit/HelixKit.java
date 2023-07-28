@@ -63,7 +63,7 @@ import net.helix.pvp.kit.provider.WaterBender;
 public enum HelixKit {
 
 
-	NENHUM("None", 0, 0 , new Nenhum(), new ItemStack(Material.ACACIA_FENCE), HelixPvP.getInstance().getConfig().getString("NenhumLore") , 1),
+	NENHUM("Nenhum", 0, 0 , new Nenhum(), new ItemStack(Material.BARRIER), HelixPvP.getInstance().getConfig().getString("NenhumLore") , 1),
 	PVP("PvP", HelixPvP.getInstance().getConfig().getInt("PvPPrice"), 0, new PvP(), new ItemStack(Material.STONE_SWORD), HelixPvP.getInstance().getConfig().getString("PvPLore") , 1),
 	KANGAROO("Kangaroo", HelixPvP.getInstance().getConfig().getInt("KangarooPrice"), 0,  new Kangaroo(), new ItemStack( Material.FIREWORK), HelixPvP.getInstance().getConfig().getString("KangarooLore") ,1),
 	THOR("Thor", HelixPvP.getInstance().getConfig().getInt("ThorPrice"), 0, new Thor(), new ItemStack(Material.GOLD_AXE), HelixPvP.getInstance().getConfig().getString("ThorLore") , 1),

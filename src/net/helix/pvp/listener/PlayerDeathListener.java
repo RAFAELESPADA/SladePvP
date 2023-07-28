@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Random;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
 import org.bukkit.Location;
@@ -42,9 +43,14 @@ public class PlayerDeathListener implements Listener {
 	@EventHandler
 	public void onDeath(PlayerDeathEvent event) {
 		Player player = event.getEntity();
+		Player p = event.getEntity();
 		Player killer = event.getEntity().getKiller();
 		Location deathLocation = player.getLocation().clone();
 		boolean validKill = false;
+		if (!PlayerJoinListener.fall.contains(p)) {
+	    	PlayerJoinListener.fall.add(p);
+	    	p.sendMessage(ChatColor.GREEN + "Você recebeu a proteção do spawn");
+	    }
 		HelixCooldown2.removeCooldown(player , "Kit");
 		BossBarAPI.removeAllBars(player);
 		player.getActivePotionEffects().forEach(it -> player.removePotionEffect(it.getType()));
