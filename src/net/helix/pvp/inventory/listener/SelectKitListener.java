@@ -119,19 +119,7 @@ public class SelectKitListener implements Listener {
 		event.setCancelled(true);
 		KitsInventoryPageTwo.open(player);
 	}
-	@EventHandler
-	public void onInvClick25(InventoryClickEvent event) {
-		Player player = (Player) event.getWhoClicked();
-		
-		if (!event.getView().getTitle().equals(KitsInventoryPageThree.getInventoryName())) {
-			return;
-		}
-		if (!ItemBuilder.has(event.getCurrentItem(), "prox")) {
-			return;
-		}
-		event.setCancelled(true);
-		player.sendMessage(ChatColor.RED + "Não há próxima página");
-	}
+
 	@EventHandler
 	public void onInvClick25y(InventoryClickEvent event) {
 		Player player = (Player) event.getWhoClicked();
@@ -145,19 +133,7 @@ public class SelectKitListener implements Listener {
 		event.setCancelled(true);
 		KitsInventoryPageTwo.open(player);
 	}
-	@EventHandler
-	public void onInvClick26(InventoryClickEvent event) {
-		Player player = (Player) event.getWhoClicked();
-		
-		if (!event.getView().getTitle().equals(KitsInventory.getInventoryName())) {
-			return;
-		}
-		if (!ItemBuilder.has(event.getCurrentItem(), "voltar")) {
-			return;
-		}
-		event.setCancelled(true);
-		player.sendMessage(ChatColor.RED + "Não há pagina anterior");
-	}
+
 	@EventHandler
 	public void onInvClick2456(InventoryClickEvent event) {
 		Player player = (Player) event.getWhoClicked();
@@ -172,43 +148,17 @@ public class SelectKitListener implements Listener {
 		KitInventory22.open(player);
 	}
 	@EventHandler
-	public void onInvClick2456y(InventoryClickEvent event) {
-		Player player = (Player) event.getWhoClicked();
-		
-		if (!event.getView().getTitle().equals(KitsInventory2.getInventoryName())) {
-			return;
-		}
-		if (!ItemBuilder.has(event.getCurrentItem(), "voltar")) {
-			return;
-		}
-		event.setCancelled(true);
-		player.sendMessage(ChatColor.RED + "Não há página anterior");
-	}
-	@EventHandler
 	public void onInvClick2456yy7(InventoryClickEvent event) {
 		Player player = (Player) event.getWhoClicked();
 		
 		if (!event.getView().getTitle().equals(KitInventory22.getInventoryName())) {
 			return;
 		}
-		if (!ItemBuilder.has(event.getCurrentItem(), "prox")) {
-			return;
-		}
-		event.setCancelled(true);
-		KitsInventory2.open(player);
-	}
-	@EventHandler
-	public void onInvClick2456yy7y(InventoryClickEvent event) {
-		Player player = (Player) event.getWhoClicked();
-		
-		if (!event.getView().getTitle().equals(KitInventory22.getInventoryName())) {
-			return;
-		}
 		if (!ItemBuilder.has(event.getCurrentItem(), "voltar")) {
 			return;
 		}
 		event.setCancelled(true);
-		player.sendMessage(ChatColor.RED + "Não há página anterior");
+		KitsInventory2.open(player);
 	}
 	@EventHandler
 	public void onInvClick242(InventoryClickEvent event) {
@@ -223,19 +173,7 @@ public class SelectKitListener implements Listener {
 		event.setCancelled(true);
 		KitsInventory.open(player);
 	}
-	@EventHandler
-	public void onInvClick245(InventoryClickEvent event) {
-		Player player = (Player) event.getWhoClicked();
-		
-		if (!event.getView().getTitle().equals(KitsInventory.getInventoryName())) {
-			return;
-		}
-		if (!ItemBuilder.has(event.getCurrentItem(), "voltar")) {
-			return;
-		}
-		event.setCancelled(true);
-		player.sendMessage(ChatColor.RED + "Não há página anterior");
-	}
+
 	@EventHandler
 	public void onInvClick2424(InventoryClickEvent event) {
 		Player player = (Player) event.getWhoClicked();

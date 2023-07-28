@@ -22,6 +22,7 @@ import net.helix.pvp.HelixPvP;
 import net.helix.pvp.kit.Habilidade;
 import net.helix.pvp.kit.KitManager;
 import net.helix.pvp.kit.provider.GladiatorListener;
+import net.helix.pvp.listener.PlayerJoinListener;
 import net.helix.pvp.warp.HelixWarp;
 import net.helix.pvp.warp.WarpDuoBattleHandle;
 import net.helix.pvp.warp.provider.OneVsOne;
@@ -61,6 +62,10 @@ public class SpawnCMD extends WarpDuoBattleHandle implements Listener, CommandEx
 				if (!HelixPvP.euforia) {
 				BossBarAPI.removeAllBars(p);
 				}
+				if (!PlayerJoinListener.fall.contains(p)) {
+			    	PlayerJoinListener.fall.add(p);
+			    	p.sendMessage(ChatColor.GREEN + "Você recebeu a proteção do spawn");
+			    }
 				  HelixPlayer ph = HelixBukkit.getInstance().getPlayerManager().getPlayer(p.getName());
 				  HelixPlayer pk = HelixBukkit.getInstance().getPlayerManager().getPlayer(winner.getName());
 				ph.getPvp().addDeaths(1);
@@ -97,6 +102,10 @@ public class SpawnCMD extends WarpDuoBattleHandle implements Listener, CommandEx
 				 return;
 			 }
 			 else {
+				 if (!PlayerJoinListener.fall.contains(p)) {
+				    	PlayerJoinListener.fall.add(p);
+				    	p.sendMessage(ChatColor.GREEN + "Você recebeu a proteção do spawn");
+				    }
 				Habilidade.removeAbility(p);
 				HelixWarp.SPAWN.send(p, true);
 				p.setFlying(false);
@@ -112,6 +121,10 @@ public class SpawnCMD extends WarpDuoBattleHandle implements Listener, CommandEx
 		Habilidade.removeAbility(p);
 		HelixWarp.SPAWN.send(p, true);
 		p.setFlying(false);
+		if (!PlayerJoinListener.fall.contains(p)) {
+	    	PlayerJoinListener.fall.add(p);
+	    	p.sendMessage(ChatColor.GREEN + "Você recebeu a proteção do spawn");
+	    }
 		HelixCooldown2.removeCooldown(p , "Kit");
 		BossBarAPI.removeAllBars(p);
 		p.setGameMode(GameMode.SURVIVAL);

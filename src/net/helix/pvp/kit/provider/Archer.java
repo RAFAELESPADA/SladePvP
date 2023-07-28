@@ -63,7 +63,7 @@ import org.bukkit.potion.PotionEffectType;
 	public void execute(Player player) {
 		super.execute(player);
 		
-		player.getInventory().setItem(1, new ItemBuilder("§aArco!", Material.BOW)
+		player.getInventory().setItem(2, new ItemBuilder("§aArco!", Material.BOW)
 				.nbt("kit-handler", "arco").addEnchant(Enchantment.ARROW_INFINITE, 1)
 				.nbt("cancel-drop")
 				.toStack());

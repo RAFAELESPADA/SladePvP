@@ -36,7 +36,7 @@ import net.luckperms.api.model.group.Group;
 
 public class PlayerJoinListener implements Listener {
 	  public static ArrayList<String> game = new ArrayList();
-	
+	  public static ArrayList<Player> fall = new ArrayList();
 	public CompletableFuture<Boolean> isVip(UUID who) {
 		
 		RegisteredServiceProvider<LuckPerms> provider = Bukkit.getServicesManager().getRegistration(LuckPerms.class);
@@ -63,6 +63,39 @@ public class PlayerJoinListener implements Listener {
 	      e.setDamage(p.getHealth());
 	    } 
 	  }
+	  @EventHandler
+	  public void onMove2(EntityDamageEvent e) {
+	    if (!(e.getEntity() instanceof Player))
+	      return; 
+	    Player p = (Player)e.getEntity();
+	    if (e.getCause() == EntityDamageEvent.DamageCause.FALL && HelixWarp.SPAWN.hasPlayer(p.getName())) {
+	    	if (!fall.contains(p)) {
+	    		return;
+	    	}
+	    	if (p.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura")) {
+	    		return;
+	    	}
+	      e.setCancelled(true);
+	      p.sendMessage(ChatColor.RED + "Você perdeu a proteção do spawn.");
+	      fall.remove(p);
+	    }
+	    } 
+	  @EventHandler
+	  public void onMove2t(EntityDamageEvent e) {
+	    if (!(e.getEntity() instanceof Player)) {
+return;
+	    }
+	    Player p = (Player)e.getEntity();
+		    if (HelixWarp.SPAWN.hasPlayer(p.getName())) {
+		    	if (!fall.contains(p)) {
+		    		return;
+		    	}
+		    	if (p.getLocation().getY() < HelixPvP.getInstance().getConfig().getInt("SpawnAltura")) {
+		    		return;
+		    	}
+		    	e.setCancelled(true);
+		    }
+		    }
 	
 
 	   
@@ -101,6 +134,10 @@ public class PlayerJoinListener implements Listener {
 	    	    player.setMaxHealth(20.0D);
 	    	    if (EventoUtils.game.contains(player.getName())) {
 	    	      EventoUtils.setEvento(false, player); 
+	    	    }
+	    	    if (!fall.contains(p)) {
+	    	    	fall.add(p);
+	    	    	p.sendMessage(ChatColor.GREEN + "Você recebeu a proteção do spawn");
 	    	    }
 	    	    player.setHealth(player.getMaxHealth());
 	    	    player.getActivePotionEffects().forEach(potion -> player.removePotionEffect(potion.getType()));
