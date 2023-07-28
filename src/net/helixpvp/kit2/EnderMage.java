@@ -16,8 +16,10 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemFlag;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 
 import net.helix.core.bukkit.item.ItemBuilder;
@@ -42,6 +44,8 @@ public class EnderMage extends KitHandler2 {
 	        );
 	        
 	    }
+
+	 
 @EventHandler
 public void flash(PlayerInteractEvent e) {
   Player p = e.getPlayer();
