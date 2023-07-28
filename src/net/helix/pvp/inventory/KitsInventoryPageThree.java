@@ -12,20 +12,19 @@ import org.bukkit.inventory.ItemStack;
 
 import net.helix.core.bukkit.item.ItemBuilder;
 import net.helix.pvp.kit.HelixKit;
-import net.helix.pvp.kit.HelixKit2;
 import net.helix.pvp.kit.KitManager;
-import net.helix.pvp.kit.KitManager2;
 
-public class KitsInventory2 {
+public class KitsInventoryPageThree {
 
-	private final static String inventoryName = "Kits Secundários";
+	private final static String inventoryName = "Kits Primários 3";
 	public static void open(Player player) {
 		Inventory inventory = Bukkit.createInventory(null, 6 * 9, inventoryName);
 	
+
 		ItemStack visualItem = new ItemStack(randomGlass());
-		
-		KitManager2.getPlayer(player.getName()).getAvailablekit2s().forEach(kit -> {  
-			if (kit.getPage() == 1 && kit != HelixKit2.NENHUM) { 
+
+		KitManager.getPlayer(player.getName()).getAvailableKits().forEach(kit -> { 
+			if (kit.getPage() == 3 && kit != HelixKit.NENHUM) {
 				for (int i = 0; i < 18; i++) {
 					inventory.setItem(i, visualItem);
 				}
@@ -35,30 +34,28 @@ public class KitsInventory2 {
 				for (int i = 0; i < 44 && i > 32; i++) {
 					inventory.setItem(i, visualItem);
 				}
-		inventory.addItem(new ItemBuilder("§a" + kit.getName(), kit.getIcon())
-				.lore("§f" + kit.getDescription())
-					.addFlags(ItemFlag.HIDE_ATTRIBUTES,
-							ItemFlag.HIDE_DESTROYS,
-							ItemFlag.HIDE_ENCHANTS,
-							ItemFlag.HIDE_PLACED_ON,
-							ItemFlag.HIDE_POTION_EFFECTS,
-							ItemFlag.HIDE_UNBREAKABLE)
-					.nbt("kit-gui2", kit.getName())
-					.toStack()
-			);
-		
-		inventory.setItem(53, new ItemBuilder("§aPróximo", Material.ARROW).nbt("prox")
-				.toStack()
-		);
-		inventory.setItem(45, new ItemBuilder("§aVoltar", Material.ARROW).nbt("voltar")
-				.toStack()
-		);
-		player.openInventory(inventory);
-					}}
+			inventory.addItem(new ItemBuilder("§a" + kit.getName(), kit.getIcon())
+					.lore("§f" + kit.getDescription())
+							.addFlags(ItemFlag.HIDE_ATTRIBUTES,
+									ItemFlag.HIDE_DESTROYS,
+									ItemFlag.HIDE_ENCHANTS,
+									ItemFlag.HIDE_PLACED_ON,
+									ItemFlag.HIDE_POTION_EFFECTS,
+									ItemFlag.HIDE_UNBREAKABLE)
+							.nbt("kit-gui", kit.getName())
+							.toStack()
+					);
+			
+				inventory.setItem(53, new ItemBuilder("§aPróximo", Material.ARROW).nbt("prox")
+						.toStack()
 				);
-					}
-
-				
+				inventory.setItem(45, new ItemBuilder("§aVoltar", Material.ARROW).nbt("voltar")
+						.toStack()
+				);
+				player.openInventory(inventory);
+			}}
+			);
+				}
 	
 	public static String getInventoryName() {
 		return inventoryName;

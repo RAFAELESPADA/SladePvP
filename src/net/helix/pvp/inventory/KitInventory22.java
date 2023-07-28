@@ -1,6 +1,7 @@
 package net.helix.pvp.inventory;
 
 
+
 import java.util.Random;
 
 import org.bukkit.Bukkit;
@@ -16,16 +17,18 @@ import net.helix.pvp.kit.HelixKit2;
 import net.helix.pvp.kit.KitManager;
 import net.helix.pvp.kit.KitManager2;
 
-public class KitsInventory2 {
+public class KitInventory22 {
 
-	private final static String inventoryName = "Kits Secundários";
+	private final static String inventoryName = "Kits Secundários 2";
 	public static void open(Player player) {
 		Inventory inventory = Bukkit.createInventory(null, 6 * 9, inventoryName);
 	
 		ItemStack visualItem = new ItemStack(randomGlass());
 		
-		KitManager2.getPlayer(player.getName()).getAvailablekit2s().forEach(kit -> {  
-			if (kit.getPage() == 1 && kit != HelixKit2.NENHUM) { 
+		KitManager2.getPlayer(player.getName()).getAvailablekit2s().forEach(kit -> { 
+		
+ 
+			if (kit.getPage() == 2 && kit != HelixKit2.NENHUM) { 
 				for (int i = 0; i < 18; i++) {
 					inventory.setItem(i, visualItem);
 				}
@@ -35,8 +38,8 @@ public class KitsInventory2 {
 				for (int i = 0; i < 44 && i > 32; i++) {
 					inventory.setItem(i, visualItem);
 				}
-		inventory.addItem(new ItemBuilder("§a" + kit.getName(), kit.getIcon())
-				.lore("§f" + kit.getDescription())
+			inventory.addItem(new ItemBuilder("§a" + kit.getName(), kit.getIcon())
+					.lore("§f" + kit.getDescription())
 					.addFlags(ItemFlag.HIDE_ATTRIBUTES,
 							ItemFlag.HIDE_DESTROYS,
 							ItemFlag.HIDE_ENCHANTS,
@@ -46,7 +49,6 @@ public class KitsInventory2 {
 					.nbt("kit-gui2", kit.getName())
 					.toStack()
 			);
-		
 		inventory.setItem(53, new ItemBuilder("§aPróximo", Material.ARROW).nbt("prox")
 				.toStack()
 		);
@@ -57,7 +59,6 @@ public class KitsInventory2 {
 					}}
 				);
 					}
-
 				
 	
 	public static String getInventoryName() {
@@ -69,3 +70,4 @@ public class KitsInventory2 {
 	}
 	
 }
+

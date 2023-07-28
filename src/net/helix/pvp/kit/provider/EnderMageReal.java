@@ -11,6 +11,7 @@ import org.bukkit.block.BlockState;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -18,6 +19,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import net.helix.pvp.HelixPvP;
 import net.helix.pvp.kit.KitHandler;
 import net.helix.pvp.kit.KitManager;
+import net.helix.pvp.kit.KitManager2;
 
 public class EnderMageReal extends KitHandler {
 
@@ -39,7 +41,15 @@ public void onKitEndermage(Location portal, Player p1, Player p2) {
     return (Math.abs(portal.getX() - player.getX()) < 2.5D && Math.abs(portal.getZ() - player.getZ()) < 2.5D && 
       Math.abs(portal.getY() - player.getY()) > 3.0D);
   }
-  
+	 @EventHandler
+	 public void flash(PlayerDropItemEvent e) {
+		 if (!KitManager.getPlayer(e.getPlayer().getName()).hasKit(this)) {
+			  return;
+		  }
+		 if (e.getItemDrop() == new ItemStack(Material.ENDER_STONE)) {
+			 e.setCancelled(true);
+		 }
+	 }
   @EventHandler
   public void onKitEndermage(PlayerInteractEvent e) {
     final Player mage = e.getPlayer();
