@@ -303,8 +303,8 @@ public class KitsInventory {
 		i2.setDisplayName(KitManager.getPlayer(player.getName()).getKit().getName());
 		i2.setLore(lore);
 		i.setItemMeta(i2);
-		if (KitManager.getPlayer(player.getName()).getKit() != HelixKit.NENHUM) {
-			i2.setDisplayName(KitManager.getPlayer(player.getName()).getKit().getName());
+		if (KitManager2.getPlayer(player.getName()).getkit2() != HelixKit2.NENHUM) {
+			i2.setDisplayName(KitManager2.getPlayer(player.getName()).getkit2().getName());
 		    }
 			else {
 				i2.setDisplayName("§eNenhum kit selecionado.");	

@@ -22,21 +22,8 @@ public class KitsInventoryPageThree {
 	public static void open(Player player) {
 		Inventory inventory = Bukkit.createInventory(null, 6 * 9, inventoryName);
 	
-		if (player.hasPermission("kombo.kit.turtle")) {
-		inventory.setItem(10 , new ItemBuilder("§a" + HelixKit.TURTLE.getName(), HelixKit.TURTLE.getIcon())
-				.lore("§f" + HelixKit.TURTLE.getDescription())
-						.addFlags(ItemFlag.HIDE_ATTRIBUTES,
-								ItemFlag.HIDE_DESTROYS,
-								ItemFlag.HIDE_ENCHANTS,
-								ItemFlag.HIDE_PLACED_ON,
-								ItemFlag.HIDE_POTION_EFFECTS,
-								ItemFlag.HIDE_UNBREAKABLE)
-						.nbt("kit-gui", HelixKit.TURTLE.getName())
-						.toStack()
-				);
-		}
 		if (player.hasPermission("kombo.kit.vacuum")) {
-		inventory.setItem(11 , new ItemBuilder("§a" + HelixKit.VACUUM.getName(), HelixKit.VACUUM.getIcon())
+		inventory.setItem(10 , new ItemBuilder("§a" + HelixKit.VACUUM.getName(), HelixKit.VACUUM.getIcon())
 				.lore("§f" + HelixKit.VACUUM.getDescription())
 						.addFlags(ItemFlag.HIDE_ATTRIBUTES,
 								ItemFlag.HIDE_DESTROYS,
@@ -49,7 +36,7 @@ public class KitsInventoryPageThree {
 				);
 		}
 		if (player.hasPermission("kombo.kit.viper")) {
-		inventory.setItem(12 , new ItemBuilder("§a" + HelixKit.VIPER.getName(), HelixKit.VIPER.getIcon())
+		inventory.setItem(11 , new ItemBuilder("§a" + HelixKit.VIPER.getName(), HelixKit.VIPER.getIcon())
 				.lore("§f" + HelixKit.VIPER.getDescription())
 						.addFlags(ItemFlag.HIDE_ATTRIBUTES,
 								ItemFlag.HIDE_DESTROYS,

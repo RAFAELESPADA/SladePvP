@@ -89,6 +89,19 @@ public class KitInventory22 {
 						.toStack()
 				);
 		}
+		if (player.hasPermission("kombo.kit2.antistomper")) {
+			inventory.setItem(15 , new ItemBuilder("§a" + HelixKit2.ANTISTOMPER.getName(), HelixKit2.ANTISTOMPER.getIcon())
+					.lore("§f" + HelixKit2.ANTISTOMPER.getDescription())
+							.addFlags(ItemFlag.HIDE_ATTRIBUTES,
+									ItemFlag.HIDE_DESTROYS,
+									ItemFlag.HIDE_ENCHANTS,
+									ItemFlag.HIDE_PLACED_ON,
+									ItemFlag.HIDE_POTION_EFFECTS,
+									ItemFlag.HIDE_UNBREAKABLE)
+							.nbt("kit-gui2", HelixKit2.ANTISTOMPER.getName())
+							.toStack()
+					);
+			}
 		inventory.setItem(45, new ItemBuilder("§aVoltar", Material.ARROW).nbt("voltar")
 				.toStack()
 		);
