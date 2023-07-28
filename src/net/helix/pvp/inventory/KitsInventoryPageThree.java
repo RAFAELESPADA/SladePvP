@@ -75,9 +75,7 @@ public class KitsInventoryPageThree {
 				);
 		}
 			
-				inventory.setItem(53, new ItemBuilder("§aPróximo", Material.ARROW).nbt("prox")
-						.toStack()
-				);
+			
 				inventory.setItem(45, new ItemBuilder("§aVoltar", Material.ARROW).nbt("voltar")
 						.toStack()
 				);

@@ -77,6 +77,7 @@ public class SelectKitListener implements Listener {
 		if (event.getCurrentItem() == null) {
 			return;
 		}
+		event.setCancelled(true);
 		String kitName = ItemBuilder.getString(event.getCurrentItem(), "kit-gui");
 
 		HelixKit.findKit(kitName).ifPresent(kit -> {
@@ -98,6 +99,7 @@ public class SelectKitListener implements Listener {
 		if (event.getCurrentItem() == null) {
 			return;
 		}
+		event.setCancelled(true);
 		String kitName = ItemBuilder.getString(event.getCurrentItem(), "kit-gui");
 
 		HelixKit.findKit(kitName).ifPresent(kit -> {
