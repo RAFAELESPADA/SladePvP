@@ -313,12 +313,17 @@ public class KitsInventory2 {
 		ItemStack i =  new ItemStack(KitManager2.getPlayer(player.getName()).getkit2().getIcon());
 		ItemMeta i2 = i.getItemMeta();
 	    ArrayList<String> lore = new ArrayList<String>();
-	    lore.add(KitManager2.getPlayer(player.getName()).getkit2().getDescription());
-		i2.setDisplayName(KitManager2.getPlayer(player.getName()).getkit2().getName());
+	    lore.add("§f" + KitManager2.getPlayer(player.getName()).getkit2().getDescription());
+	    if (KitManager2.getPlayer(player.getName()).getkit2() != HelixKit2.NENHUM) {
+			i2.setDisplayName(KitManager2.getPlayer(player.getName()).getkit2().getName());
+		    }
+			else {
+				i2.setDisplayName("§eNenhum kit selecionado.");	
+			}
 		i2.setLore(lore);
 		i.setItemMeta(i2);
-		inventory.setItem(49, new ItemStack(KitManager2.getPlayer(player.getName()).getkit2().getIcon())
-				
+		inventory.setItem(49, new ItemBuilder(i).nbt("visual")
+				.toStack()
 		);
 		player.openInventory(inventory);
 					}

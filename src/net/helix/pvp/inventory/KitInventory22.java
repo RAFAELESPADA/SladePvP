@@ -26,7 +26,7 @@ public class KitInventory22 {
 		Inventory inventory = Bukkit.createInventory(null, 6 * 9, inventoryName);
 	
 		ItemStack visualItem = new ItemStack(randomGlass());
-		
+		if (player.hasPermission("kombo.kit2.switcher")) {
 		inventory.setItem(10 , new ItemBuilder("§a" + HelixKit2.SWITCHER.getName(), HelixKit2.SWITCHER.getIcon())
 				.lore("§f" + HelixKit2.SWITCHER.getDescription())
 						.addFlags(ItemFlag.HIDE_ATTRIBUTES,
@@ -38,6 +38,7 @@ public class KitInventory22 {
 						.nbt("kit-gui2", HelixKit2.SWITCHER.getName())
 						.toStack()
 				);
+		}
 		inventory.setItem(11 , new ItemBuilder("§a" + HelixKit2.THOR.getName(), HelixKit2.THOR.getIcon())
 				.lore("§f" + HelixKit2.THOR.getDescription())
 						.addFlags(ItemFlag.HIDE_ATTRIBUTES,
@@ -49,6 +50,7 @@ public class KitInventory22 {
 						.nbt("kit-gui2", HelixKit2.THOR.getName())
 						.toStack()
 				);
+		if (player.hasPermission("kombo.kit2.vacuum")) {
 		inventory.setItem(12 , new ItemBuilder("§a" + HelixKit2.VACUUM.getName(), HelixKit2.VACUUM.getIcon())
 				.lore("§f" + HelixKit2.VACUUM.getDescription())
 						.addFlags(ItemFlag.HIDE_ATTRIBUTES,
@@ -60,6 +62,8 @@ public class KitInventory22 {
 						.nbt("kit-gui2", HelixKit2.VACUUM.getName())
 						.toStack()
 				);
+		}
+		if (player.hasPermission("kombo.kit2.viper")) {
 		inventory.setItem(13 , new ItemBuilder("§a" + HelixKit2.VIPER.getName(), HelixKit2.VIPER.getIcon())
 				.lore("§f" + HelixKit2.VIPER.getDescription())
 						.addFlags(ItemFlag.HIDE_ATTRIBUTES,
@@ -71,6 +75,8 @@ public class KitInventory22 {
 						.nbt("kit-gui2", HelixKit2.VIPER.getName())
 						.toStack()
 				);
+		}
+		if (player.hasPermission("kombo.kit2.waterbender")) {
 		inventory.setItem(14 , new ItemBuilder("§a" + HelixKit2.WATERBENDER.getName(), HelixKit2.WATERBENDER.getIcon())
 				.lore("§f" + HelixKit2.WATERBENDER.getDescription())
 						.addFlags(ItemFlag.HIDE_ATTRIBUTES,
@@ -82,17 +88,25 @@ public class KitInventory22 {
 						.nbt("kit-gui2", HelixKit2.WATERBENDER.getName())
 						.toStack()
 				);
+		}
 		inventory.setItem(45, new ItemBuilder("§aVoltar", Material.ARROW).nbt("voltar")
 				.toStack()
 		);
 		ItemStack i =  new ItemStack(KitManager2.getPlayer(player.getName()).getkit2().getIcon());
 		ItemMeta i2 = i.getItemMeta();
 		ArrayList<String> lore = new ArrayList<String>();
-	    lore.add(KitManager2.getPlayer(player.getName()).getkit2().getDescription());
+	    lore.add("§f" + KitManager2.getPlayer(player.getName()).getkit2().getDescription());
+	    if (KitManager2.getPlayer(player.getName()).getkit2() != HelixKit2.NENHUM) {
 		i2.setDisplayName(KitManager2.getPlayer(player.getName()).getkit2().getName());
+	    }
+		else {
+			i2.setDisplayName("§eNenhum kit selecionado.");	
+		}
 		i2.setLore(lore);
 		i.setItemMeta(i2);
-		inventory.setItem(49, new ItemStack(KitManager2.getPlayer(player.getName()).getkit2().getIcon()));
+		inventory.setItem(49, new ItemBuilder(i).nbt("visual")
+				.toStack()
+		);
 		player.openInventory(inventory);
 			}
 		

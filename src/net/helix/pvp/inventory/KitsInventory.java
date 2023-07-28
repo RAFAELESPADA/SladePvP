@@ -15,7 +15,9 @@ import org.bukkit.inventory.meta.ItemMeta;
 import net.helix.core.bukkit.item.ItemBuilder;
 import net.helix.pvp.HelixPvP;
 import net.helix.pvp.kit.HelixKit;
+import net.helix.pvp.kit.HelixKit2;
 import net.helix.pvp.kit.KitManager;
+import net.helix.pvp.kit.KitManager2;
 import net.helix.pvp.warp.HelixWarp;
 
 public class KitsInventory {
@@ -212,6 +214,7 @@ public class KitsInventory {
 					.nbt("kit-gui", HelixKit.FLASH.getName())
 					.toStack()
 			);
+	if (player.hasPermission("kombo.kit.gladiator")) {
 	inventory.setItem(29 , new ItemBuilder("§a" + HelixKit.GLADIATOR.getName(), HelixKit.GLADIATOR.getIcon())
 			.lore("§f" + HelixKit.GLADIATOR.getDescription())
 					.addFlags(ItemFlag.HIDE_ATTRIBUTES,
@@ -223,6 +226,8 @@ public class KitsInventory {
 					.nbt("kit-gui", HelixKit.GLADIATOR.getName())
 					.toStack()
 			);
+	}
+	if (player.hasPermission("kombo.kit.grandpa")) {
 	inventory.setItem(30 , new ItemBuilder("§a" + HelixKit.GRANDPA.getName(), HelixKit.GRANDPA.getIcon())
 			.lore("§f" + HelixKit.GRANDPA.getDescription())
 					.addFlags(ItemFlag.HIDE_ATTRIBUTES,
@@ -234,6 +239,8 @@ public class KitsInventory {
 					.nbt("kit-gui", HelixKit.GRANDPA.getName())
 					.toStack()
 			);
+	}
+	if (player.hasPermission("kombo.kit.grappler")) {
 	inventory.setItem(31 , new ItemBuilder("§a" + HelixKit.GRAPPLER.getName(), HelixKit.GRAPPLER.getIcon())
 			.lore("§f" + HelixKit.GRAPPLER.getDescription())
 					.addFlags(ItemFlag.HIDE_ATTRIBUTES,
@@ -246,6 +253,8 @@ public class KitsInventory {
 				
 					.toStack()
 			);
+	}
+	if (player.hasPermission("kombo.kit.hulk")) {
 	inventory.setItem(32 , new ItemBuilder("§a" + HelixKit.HULK.getName(), HelixKit.HULK.getIcon())
 			.lore("§f" + HelixKit.HULK.getDescription())
 					.addFlags(ItemFlag.HIDE_ATTRIBUTES,
@@ -257,6 +266,8 @@ public class KitsInventory {
 					.nbt("kit-gui", HelixKit.HULK.getName())
 					.toStack()
 			);
+	}
+	if (player.hasPermission("kombo.kit.hotpotato")) {
 	inventory.setItem(33 , new ItemBuilder("§a" + HelixKit.HOTPOTATO.getName(), HelixKit.HOTPOTATO.getIcon())
 			.lore("§f" + HelixKit.HOTPOTATO.getDescription())
 					.addFlags(ItemFlag.HIDE_ATTRIBUTES,
@@ -268,6 +279,8 @@ public class KitsInventory {
 					.nbt("kit-gui", HelixKit.HOTPOTATO.getName())
 					.toStack()
 			);
+	}
+	if (player.hasPermission("kombo.kit.jumper")) {
 	inventory.setItem(34 , new ItemBuilder("§a" + HelixKit.JUMPER.getName(), HelixKit.JUMPER.getIcon())
 			.lore("§f" + HelixKit.JUMPER.getDescription())
 					.addFlags(ItemFlag.HIDE_ATTRIBUTES,
@@ -279,21 +292,26 @@ public class KitsInventory {
 					.nbt("kit-gui", HelixKit.JUMPER.getName())
 					.toStack()
 			);
-	
+	}
 		inventory.setItem(53, new ItemBuilder("§aPróximo", Material.ARROW).nbt("prox")
 				.toStack()
 		);
 		ItemStack i =  new ItemStack(KitManager.getPlayer(player.getName()).getKit().getIcon());
 		ItemMeta i2 = i.getItemMeta();
 	    ArrayList<String> lore = new ArrayList<String>();
-	    lore.add(KitManager.getPlayer(player.getName()).getKit().getDescription());
+	    lore.add("§f" + KitManager.getPlayer(player.getName()).getKit().getDescription());
 		i2.setDisplayName(KitManager.getPlayer(player.getName()).getKit().getName());
 		i2.setLore(lore);
 		i.setItemMeta(i2);
-		inventory.setItem(49, new ItemStack(KitManager.getPlayer(player.getName()).getKit().getIcon())
-				
+		if (KitManager.getPlayer(player.getName()).getKit() != HelixKit.NENHUM) {
+			i2.setDisplayName(KitManager.getPlayer(player.getName()).getKit().getName());
+		    }
+			else {
+				i2.setDisplayName("§eNenhum kit selecionado.");	
+			}
+		inventory.setItem(49, new ItemBuilder(i).nbt("visual")
+				.toStack()
 		);
-		
 		player.openInventory(inventory);
 	}
 
