@@ -52,6 +52,10 @@ public void PlayerInteractEvt(PlayerInteractEntityEvent e) {
     	sendMessageCooldown(e.getPlayer());
       return;
     } 
+    else if (p.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura")) {
+    	p.sendMessage("§cNão use o seu poder no spawn!");
+		return;
+	 }
     wateratack.add(ent.getName());
     createSpiralAroundPlayer(ent);
     addCooldown(p, 20);

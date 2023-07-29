@@ -16,6 +16,9 @@ commands:
    crash:
    setarena:
    regras:
+   punir:
+   despunir:
+   punish:
    req:
    tag:
    set1v1:

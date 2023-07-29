@@ -71,12 +71,14 @@ public class SelectKitListener implements Listener {
 		if (!event.getView().getTitle().equals(KitsInventoryPageTwo.getInventoryName())) {
 			return;
 		}
+		event.setCancelled(true);
 		if (!ItemBuilder.has(event.getCurrentItem(), "kit-gui")) {
 			return;
 		}
 		if (event.getCurrentItem() == null) {
 			return;
 		}
+		
 		String kitName = ItemBuilder.getString(event.getCurrentItem(), "kit-gui");
 
 		HelixKit.findKit(kitName).ifPresent(kit -> {
@@ -92,12 +94,14 @@ public class SelectKitListener implements Listener {
 		if (!event.getView().getTitle().equals(KitsInventoryPageThree.getInventoryName())) {
 			return;
 		}
+		event.setCancelled(true);
 		if (!ItemBuilder.has(event.getCurrentItem(), "kit-gui")) {
 			return;
 		}
 		if (event.getCurrentItem() == null) {
 			return;
 		}
+		
 		String kitName = ItemBuilder.getString(event.getCurrentItem(), "kit-gui");
 
 		HelixKit.findKit(kitName).ifPresent(kit -> {
@@ -217,6 +221,21 @@ public class SelectKitListener implements Listener {
 			}
 			if (KitManager.getPlayer(player.getName()).getKit() == HelixKit.TORNADO && (kitName2 == "Grappler" || kitName2 == "Kangaroo" || kitName2 == "Monk"  || kitName2 == "Ninja")) {
 				player.sendMessage("§c" + kitName2 + " é incompátivel com Tornado");
+				player.closeInventory();
+				return;
+			}
+			if (KitManager.getPlayer(player.getName()).getKit() == HelixKit.ARCHER && (kitName2 == "Grappler" || kitName2 == "Kangaroo")) {
+				player.sendMessage("§c" + kitName2 + " é incompátivel com Archer");
+				player.closeInventory();
+				return;
+			}
+			if (KitManager.getPlayer(player.getName()).getKit() == HelixKit.KANGAROO && (kitName2 == "Archer")) {
+				player.sendMessage("§c" + kitName2 + " é incompátivel com Kangaroo");
+				player.closeInventory();
+				return;
+			}
+			if (KitManager.getPlayer(player.getName()).getKit() == HelixKit.GRAPPLER && (kitName2 == "Archer")) {
+				player.sendMessage("§c" + kitName2 + " é incompátivel com Grappler");
 				player.closeInventory();
 				return;
 			}

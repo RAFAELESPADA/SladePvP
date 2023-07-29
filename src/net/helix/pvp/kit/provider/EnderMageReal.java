@@ -89,6 +89,7 @@ public void onKitEndermage(Location portal, Player p1, Player p2) {
               cancel();
               b.setType(material);
               b.setData(bs.getBlock().getData());
+              b.setTypeId(bs.getTypeId());
               onKitEndermage(bLoc, mage, target);
               if (!mage.getInventory().contains(Material.ENDER_STONE) && KitManager.getPlayer(mage.getName()).hasKit())
                 mage.getInventory().addItem(new ItemStack[] { new ItemStack( Material.ENDER_STONE) }); 
@@ -99,6 +100,7 @@ public void onKitEndermage(Location portal, Player p1, Player p2) {
             cancel();
             b.setType(material);
             b.setData(bs.getBlock().getData());
+            b.setTypeId(bs.getTypeId());
             if (!mage.getInventory().contains(Material.ENDER_STONE) && KitManager.getPlayer(mage.getName()).hasKit())
                 mage.getInventory().addItem(new ItemStack[] { new ItemStack( Material.ENDER_STONE) }); 
           } 

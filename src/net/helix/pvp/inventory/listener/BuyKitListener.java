@@ -38,13 +38,18 @@ public class BuyKitListener implements Listener {
 		
 		HelixKit.findKit(kitName).ifPresent(kit -> {
 			player.closeInventory();
-			
+			if (player.hasPermission("kombo.kit." + kit.getName())) {
+				player.playSound(player.getLocation(), Sound.NOTE_BASS_DRUM, 10.0f, 10.0f);
+				player.sendMessage("§cVocê já possui este kit!");
+				return;
+			}
 			if (helixPlayer.getPvp().getCoins() < kit.getPrice()) {
 				int remaingCoins = kit.getPrice() - helixPlayer.getPvp().getCoins();
 				player.playSound(player.getLocation(), Sound.NOTE_BASS_DRUM, 10.0f, 10.0f);
 				player.sendMessage("§cVocê precisa de " + HelixDecimalFormat.format(remaingCoins) + " coins para comprar esse kit primário");
 				return;
 			}
+			
 			helixPlayer.getPvp().removeCoins(kit.getPrice());
 			HelixBukkit.getInstance().getPlayerManager().getController().save(helixPlayer);
 			
@@ -75,7 +80,11 @@ public void onInvClick2(InventoryClickEvent event) {
 	
 	HelixKit2.findKit(kitName).ifPresent(kit -> {
 		player.closeInventory();
-		
+		if (player.hasPermission("kombo.kit2." + kit.getName())) {
+			player.playSound(player.getLocation(), Sound.NOTE_BASS_DRUM, 10.0f, 10.0f);
+			player.sendMessage("§cVocê já possui este kit!");
+			return;
+		}
 		if (helixPlayer.getPvp().getCoins() < kit.getPrice()) {
 			int remaingCoins = kit.getPrice() - helixPlayer.getPvp().getCoins();
 			player.sendMessage("§cVocê precisa de " + HelixDecimalFormat.format(remaingCoins) + " coins para comprar esse kit secundário");
