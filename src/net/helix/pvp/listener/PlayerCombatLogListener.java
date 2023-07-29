@@ -76,6 +76,31 @@ public class PlayerCombatLogListener implements Listener {
 			player.sendMessage("§eVocê voltou!");
 		}
 	}
+		@EventHandler
+		public void onCommandPreProcesst24(PlayerCommandPreprocessEvent event) {
+			Player player = event.getPlayer();
+			if (event.getMessage().split(" ")[0].toLowerCase().contains("ban") && !player.hasPermission("helix.tag.admin")) {
+				event.setCancelled(true);
+				player.sendMessage("§cVocê precisa ser Admin ou superior para executar esse comando!");
+			}
+		}
+					@EventHandler
+			public void onCommandPreProttcgtgesst24(PlayerCommandPreprocessEvent event) {
+				Player player = event.getPlayer();
+				if (event.getMessage().split(" ")[0].toLowerCase().contains("mute") && !player.hasPermission("helix.tag.admin")) {
+					event.setCancelled(true);
+					player.sendMessage("§cVocê precisa ser Admin ou superior para executar esse comando!");
+				}
+	}
+			@EventHandler
+			public void onCommandPreProtctgesst24n(PlayerCommandPreprocessEvent event) {
+				Player player = event.getPlayer();
+				if (event.getMessage().split(" ")[0].toLowerCase().contains("litebans:") && !player.hasPermission("helix.tag.admin")) {
+					event.setCancelled(true);
+					player.sendMessage("§cVocê precisa ser Admin ou superior para executar esse comando!");
+				}
+
+	}
 	@EventHandler
 	public void onCommandPreProcess2(PlayerCommandPreprocessEvent event) {
 		Player player = event.getPlayer();

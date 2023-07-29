@@ -224,6 +224,21 @@ public class SelectKitListener implements Listener {
 				player.closeInventory();
 				return;
 			}
+			if (KitManager.getPlayer(player.getName()).getKit() == HelixKit.ARCHER && (kitName2 == "Grappler" || kitName2 == "Kangaroo")) {
+				player.sendMessage("§c" + kitName2 + " é incompátivel com Archer");
+				player.closeInventory();
+				return;
+			}
+			if (KitManager.getPlayer(player.getName()).getKit() == HelixKit.KANGAROO && (kitName2 == "Archer")) {
+				player.sendMessage("§c" + kitName2 + " é incompátivel com Kangaroo");
+				player.closeInventory();
+				return;
+			}
+			if (KitManager.getPlayer(player.getName()).getKit() == HelixKit.GRAPPLER && (kitName2 == "Archer")) {
+				player.sendMessage("§c" + kitName2 + " é incompátivel com Grappler");
+				player.closeInventory();
+				return;
+			}
 			if (KitManager.getPlayer(player.getName()).getKit() == HelixKit.HULK && (event.getCurrentItem().getType() == Material.IRON_FENCE)) {
 				player.sendMessage("§c" + kitName2 + " é incompátivel com Hulk");
 				player.closeInventory();

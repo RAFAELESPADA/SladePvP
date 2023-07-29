@@ -85,6 +85,7 @@ import net.helix.pvp.command.TagCommand;
 import net.helix.pvp.command.Vanish;
 import net.helix.pvp.command.VerRank;
 import net.helix.pvp.command.Youtuber;
+import net.helix.pvp.command.b;
 import net.helix.pvp.evento.EventoComando;
 import net.helix.pvp.evento.EventoListeners;
 import net.helix.pvp.evento.EventoTabComplete;
@@ -399,6 +400,9 @@ new BukkitRunnable() {
 		getCommand("resetkdr").setExecutor(new ResetKDR());
 		getCommand("givekit").setExecutor(new DarKit());
 		getCommand("fly").setExecutor(new Fly());
+		getCommand("punir").setExecutor(new b());
+		getCommand("punish").setExecutor(new b());
+		getCommand("despunir").setExecutor(new b());
 		getCommand("set1v1").setExecutor(new SetX1());
 		getCommand("macrotest").setExecutor(new MacroTest());
 		getCommand("yt").setExecutor(new Youtuber());
