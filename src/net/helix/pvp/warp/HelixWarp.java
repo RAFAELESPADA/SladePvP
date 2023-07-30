@@ -14,6 +14,7 @@ import net.helix.core.bukkit.HelixBukkit;
 import net.helix.pvp.HelixPvP;
 import net.helix.pvp.command.DarKit;
 import net.helix.pvp.kit.KitManager;
+import net.helix.pvp.kit.KitManager2;
 import net.helix.pvp.warp.provider.OneVsOne;
 import net.helix.pvp.warp.provider.Spawn;
 import net.helix.pvp.warp.provider.Sumo;
@@ -80,6 +81,7 @@ public enum HelixWarp {
 		handler.execute(player);
 		player.teleport(warpOptional.get().getLocation());
 		KitManager.getPlayer(player.getName()).removeKit();
+		KitManager2.getPlayer(player.getName()).removekit2();
 		DarKit.sendTitle(player, "§5§lWARP", "§dEnviado para warp §e§l " + this.name);
 		if (!silent) {
 			player.sendMessage("§7Enviado para warp §b" + this.name);

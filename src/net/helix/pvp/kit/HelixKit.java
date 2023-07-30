@@ -152,11 +152,9 @@ public enum HelixKit {
 			player.sendMessage("§cVocê já tem esse kit escolhido como secundário!");
 			return;
 		}
-		player.playSound(player.getLocation(), Sound.LEVEL_UP, 1.0F, 1.0F);
 		KitManager.getPlayer(player.getName()).setKit(this);
-		KitManager2.getPlayer(player.getName()).removekit2();
-		player.sendMessage("§b" + name + " escolhido como primário!");
-		DarKit.sendTitle(player, "§a§lKIT", "§fVocê selecionou " + KitManager.getPlayer(player.getName()).getKit());		
+		player.sendMessage("§b" + name + " selecionado!");
+	
 	}
 	
 	public KitHandler getHandler() {

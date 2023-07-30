@@ -31,7 +31,10 @@ import net.helix.pvp.event.HelixPlayerDeathEvent;
 import net.helix.pvp.event.HelixPlayerDeathEvent.Reason;
 import net.helix.pvp.evento.EventoUtils;
 import net.helix.pvp.kit.Habilidade;
+import net.helix.pvp.kit.HelixKit;
+import net.helix.pvp.kit.HelixKit2;
 import net.helix.pvp.kit.KitManager;
+import net.helix.pvp.kit.KitManager2;
 import net.helix.pvp.kit.provider.GladiatorListener;
 import net.helix.pvp.kit.provider.TimeLord;
 import net.helix.pvp.warp.HelixWarp;
@@ -39,7 +42,8 @@ import net.helix.pvp.warp.HelixWarp;
 public class PlayerDeathListener implements Listener {
 	
 	private final static HashMap<String, List<String>> lastKillsMap = new HashMap<>();
-
+	public final static HashMap<String, HelixKit> lastKit = new HashMap<>();
+	public final static HashMap<String, HelixKit2> lastKit2 = new HashMap<>();
 	@EventHandler
 	public void onDeath(PlayerDeathEvent event) {
 		Player player = event.getEntity();
@@ -59,6 +63,12 @@ public class PlayerDeathListener implements Listener {
 		event.setDeathMessage(null);
 		event.setDroppedExp(0);
 		event.getDrops().clear();
+		if (KitManager.getPlayer(player.getName()).hasKit()) {
+			lastKit.put(player.getName(), KitManager.getPlayer(player.getName()).getKit());
+		}
+		if (KitManager2.getPlayer(player.getName()).haskit2()) {
+			lastKit2.put(player.getName(), KitManager2.getPlayer(player.getName()).getkit2());
+		}
 		if (killer != null) {
 			List<String> lastKills = lastKillsMap.containsKey(killer.getName()) ?
 					lastKillsMap.get(killer.getName()) : new ArrayList<>();

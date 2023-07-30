@@ -16,22 +16,26 @@ import net.helix.core.bukkit.warp.HelixWarp;
 import net.helix.pvp.HelixPvP;
 import net.helix.pvp.evento.EventoUtils;
 import net.helix.pvp.kit.KitManager;
-import net.helix.pvp.kit.KitManager2;
+import net.helix.pvp.listener.Jump;
+import net.helix.pvp.listener.PlayerDeathListener;
 import net.helix.pvp.warp.WarpHandle;
 
 public class Spawn extends WarpHandle {
   public void execute(Player player) {
     Location spawnLocation = HelixBukkit.getInstance().getWarpManager().findWarp("spawn").isPresent() ? ((HelixWarp)HelixBukkit.getInstance().getWarpManager().findWarp("spawn").get()).getLocation() : player.getWorld().getSpawnLocation();
     player.teleport(spawnLocation);
-    KitManager.getPlayer(player.getName()).removeKit();
-    KitManager2.getPlayer(player.getName()).removekit2();
     HelixTitle.clearTitle(player);
     player.getInventory().clear();
+    Jump.recebeu.remove(player.getName());
     player.getInventory().setArmorContents(null);
     player.setGameMode(GameMode.ADVENTURE);
     player.setMaxHealth(20.0D);
     if (EventoUtils.game.contains(player.getName())) {
       EventoUtils.setEvento(false, player); 
+    }
+    if (PlayerDeathListener.lastKit.containsKey(player.getName())) {
+    	KitManager.getPlayer(player.getName()).setKit(PlayerDeathListener.lastKit.get(player.getName()));
+    	player.sendMessage("§aSeus kits anteriores foram re-equipados.");
     }
     player.setHealth(player.getMaxHealth());
     player.getActivePotionEffects().forEach(potion -> player.removePotionEffect(potion.getType()));

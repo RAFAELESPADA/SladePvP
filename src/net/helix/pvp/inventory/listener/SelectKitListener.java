@@ -42,9 +42,15 @@ public class SelectKitListener implements Listener {
 				   if (!ItemBuilder.has(event.getCurrentItem(), "kit-gui")) {
 						return;
 					}
+				   
 					String kitName = ItemBuilder.getString(event.getCurrentItem(), "kit-gui");
-
-					HelixKit.findKit(kitName).ifPresent(kit -> {
+	
+					HelixKit.findKit(kitName).ifPresent(kit ->
+					{
+						if (KitManager2.getPlayer(player.getName()).getkit2().getName() == kit.getName()) {
+							player.sendMessage("§cVocê já selecionou esse kit como secundário!");
+							return;
+						}
 						player.closeInventory();
 						kit.send(player);
 					});  
@@ -60,6 +66,10 @@ public class SelectKitListener implements Listener {
 		String kitName = ItemBuilder.getString(event.getCurrentItem(), "kit-gui");
 
 		HelixKit.findKit(kitName).ifPresent(kit -> {
+			if (KitManager2.getPlayer(player.getName()).getkit2().getName() == kit.getName()) {
+				player.sendMessage("§cVocê já selecionou esse kit como secundário!");
+				return;
+			}
 			player.closeInventory();
 			kit.send(player);
 		});
@@ -82,6 +92,10 @@ public class SelectKitListener implements Listener {
 		String kitName = ItemBuilder.getString(event.getCurrentItem(), "kit-gui");
 
 		HelixKit.findKit(kitName).ifPresent(kit -> {
+			if (KitManager2.getPlayer(player.getName()).getkit2().getName() == kit.getName()) {
+				player.sendMessage("§cVocê já selecionou esse kit como secundário!");
+				return;
+			}
 			player.closeInventory();
 			kit.send(player);
 		});  
@@ -105,6 +119,10 @@ public class SelectKitListener implements Listener {
 		String kitName = ItemBuilder.getString(event.getCurrentItem(), "kit-gui");
 
 		HelixKit.findKit(kitName).ifPresent(kit -> {
+			if (KitManager2.getPlayer(player.getName()).getkit2().getName() == kit.getName()) {
+				player.sendMessage("§cVocê já selecionou esse kit como secundário!");
+				return;
+			}
 			player.closeInventory();
 			kit.send(player);
 		});  
