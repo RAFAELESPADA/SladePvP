@@ -532,7 +532,9 @@ player.getInventory().setItem(3 , new ItemStack(Material.MUSHROOM_SOUP));
 		player.getInventory().setItem(6 , new ItemStack(Material.MUSHROOM_SOUP));
 		player.getInventory().setItem(7 , new ItemStack(Material.MUSHROOM_SOUP));
 		player.getInventory().setItem(9 , new ItemStack(Material.MUSHROOM_SOUP));
+		if (!KitManager.getPlayer(player.getName()).hasKit(HelixKit.ARCHER) && !KitManager2.getPlayer(player.getName()).haskit2(HelixKit2.ARCHER)) {
 		player.getInventory().setItem(10 , new ItemStack(Material.MUSHROOM_SOUP));
+		}
 		player.getInventory().setItem(11 , new ItemStack(Material.MUSHROOM_SOUP));
 		player.getInventory().setItem(12 , new ItemStack(Material.MUSHROOM_SOUP));
 		player.getInventory().setItem(16 , new ItemStack(Material.MUSHROOM_SOUP));
