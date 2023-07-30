@@ -46,13 +46,13 @@ public void PlayerInteractEvt(PlayerInteractEntityEvent e) {
     wateratack.add(ent.getName());
     createSpiralAroundPlayer(ent);
     addCooldown(p, 20);
-    ent.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 200, 200));
+   Kangaroo.darEfeito(ent, PotionEffectType.POISON, 10, 1);
     Bukkit.getScheduler().scheduleAsyncDelayedTask((Plugin)HelixPvP.getInstance(), new Runnable() {
           public void run() {
             wateratack.remove(ent.getName());
             
           }
-        },  40L);
+        },  60L);
   } 
 }
 public static void createSpiralAroundPlayer(Player player) {
@@ -112,6 +112,34 @@ public static void createSpiralAroundPlayer(Player player) {
              }
          }
      }, 40);
+	 Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance() , new BukkitRunnable() {
+	        @Override
+	        public void run() {
+	       	 Location location = player.getLocation();
+	            for (int degree = 0; degree < 360; degree++) {
+	                double radians = Math.toRadians(degree);
+	                double x = Math.cos(radians);
+	                double z = Math.sin(radians);
+	                location.add(x, 0, z);
+	                location.getWorld().playEffect(location, Effect.WATERDRIP, 3);
+	                location.subtract(x, 0, z);
+	            }
+	        }
+	    }, 50);
+	 Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance() , new BukkitRunnable() {
+	        @Override
+	        public void run() {
+	       	 Location location = player.getLocation();
+	            for (int degree = 0; degree < 360; degree++) {
+	                double radians = Math.toRadians(degree);
+	                double x = Math.cos(radians);
+	                double z = Math.sin(radians);
+	                location.add(x, 0, z);
+	                location.getWorld().playEffect(location, Effect.WATERDRIP, 3);
+	                location.subtract(x, 0, z);
+	            }
+	        }
+	    }, 60);
     }
 
 @EventHandler

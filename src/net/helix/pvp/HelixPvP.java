@@ -400,9 +400,6 @@ new BukkitRunnable() {
 		getCommand("resetkdr").setExecutor(new ResetKDR());
 		getCommand("givekit").setExecutor(new DarKit());
 		getCommand("fly").setExecutor(new Fly());
-		getCommand("punir").setExecutor(new b());
-		getCommand("punish").setExecutor(new b());
-		getCommand("despunir").setExecutor(new b());
 		getCommand("set1v1").setExecutor(new SetX1());
 		getCommand("macrotest").setExecutor(new MacroTest());
 		getCommand("yt").setExecutor(new Youtuber());
