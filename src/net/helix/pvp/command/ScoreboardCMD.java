@@ -27,7 +27,7 @@ public class ScoreboardCMD implements CommandExecutor {
 		}
 		
 		if (HelixCooldown.inCooldown(sender.getName(), "scoreboard-cmd"))  {
-			sender.sendMessage("§cWait " + HelixCooldown.getTime(sender.getName(), "scoreboard-cmd") + "s to use this again.");
+			sender.sendMessage("§cEspere " + HelixCooldown.getTime(sender.getName(), "scoreboard-cmd") + "s para usar novamente.");
 			return true;
 		}
 		

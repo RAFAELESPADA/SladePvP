@@ -37,7 +37,7 @@ public class AntiProxyListener implements Listener {
       Scanner paramScanner = new Scanner((new URL(url)).openStream());
       System.out.println("Verificando o ip: " + event.getAddress().getHostAddress());
       if (paramScanner.findWithinHorizon("Google LLC", 0) != null) {
-        event.disallow(PlayerLoginEvent.Result.KICK_OTHER, "\n§cVPN ou Proxy Detectada!\n§cDesative para se conectar ao Servidor!\n§ePeça ajuda em nosso Discord: §b" + HelixPvP.getInstance().getConfig().getString("DiscordLink"));
+        event.disallow(PlayerLoginEvent.Result.KICK_OTHER, "\n§9VPN ou Proxy Detectada!\n§cDesative para se conectar ao Servidor!\n§ePeça ajuda em nosso Discord: §b" + HelixPvP.getInstance().getConfig().getString("DiscordLink"));
         paramScanner.close();
         ttt2.add(event.getPlayer());
  Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), () -> ttt2.remove(event.getPlayer()), 

@@ -32,6 +32,7 @@ public class PlayerDieArenaListener implements Listener {
 		}
 		Player player = event.getPlayer();
 		World w = player.getWorld();
+		Jump.recebeu.remove(player.getName());
 		List<ItemStack> drops = new ArrayList<>(event.getDrops());
 		Location deathLocation = event.getDeathLocation();
 		if (drops.size() > 0) {

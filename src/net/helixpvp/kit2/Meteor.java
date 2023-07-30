@@ -98,31 +98,10 @@ else if (p.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("Spa
 if (!subiu) {
 /*  94 */       Vector vector = p.getEyeLocation().getDirection();
 /*  95 */       vector.multiply(0.0F);
-/*  96 */       vector.setY(10.0F);
+/*  96 */       vector.setY(6.0F);
 /*  97 */       p.setVelocity(vector);
 /*  98 */       Location loc = p.getLocation();
 /*  99 */       p.playSound(loc, Sound.FIREWORK_BLAST, 1.0F, 1.0F);
-Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnable()
-/*     */       {
-/*     */         public void run()
-/*     */         {
-/* 106 */          p.playSound(loc, Sound.FIREWORK_BLAST, 1.0F, 1.0F);
-/*     */         }
-/* 109 */       }, 5L);
-Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnable()
-/*     */       {
-/*     */         public void run()
-/*     */         {
-/* 106 */          p.playSound(loc, Sound.FIREWORK_BLAST, 1.0F, 1.0F);
-/*     */         }
-/* 109 */       }, 10L);
-Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnable()
-/*     */       {
-/*     */         public void run()
-/*     */         {
-/* 106 */          p.playSound(loc, Sound.FIREWORK_BLAST, 1.0F, 1.0F);
-/*     */         }
-/* 109 */       }, 15L);
 Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnable()
 /*     */       {
 /*     */         public void run()
@@ -136,27 +115,6 @@ Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnab
 /*     */         {
 /* 106 */          p.playSound(loc, Sound.FIREWORK_BLAST, 1.0F, 1.0F);
 /*     */         }
-/* 109 */       }, 25L);
-Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnable()
-/*     */       {
-/*     */         public void run()
-/*     */         {
-/* 106 */          p.playSound(loc, Sound.FIREWORK_BLAST, 1.0F, 1.0F);
-/*     */         }
-/* 109 */       }, 30L);
-Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnable()
-/*     */       {
-/*     */         public void run()
-/*     */         {
-/* 106 */          p.playSound(loc, Sound.FIREWORK_BLAST, 1.0F, 1.0F);
-/*     */         }
-/* 109 */       }, 35L);
-Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnable()
-/*     */       {
-/*     */         public void run()
-/*     */         {
-/* 106 */          p.playSound(loc, Sound.FIREWORK_BLAST, 1.0F, 1.0F);
-/*     */         }
 /* 109 */       }, 40L);
 Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnable()
 /*     */       {
@@ -164,14 +122,57 @@ Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnab
 /*     */         {
 /* 106 */          p.playSound(loc, Sound.FIREWORK_BLAST, 1.0F, 1.0F);
 /*     */         }
-/* 109 */       }, 45L);
+/* 109 */       }, 60L);
 Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnable()
 /*     */       {
 /*     */         public void run()
 /*     */         {
 /* 106 */          p.playSound(loc, Sound.FIREWORK_BLAST, 1.0F, 1.0F);
 /*     */         }
-/* 109 */       }, 50L);
+/* 109 */       }, 80L);
+Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnable()
+/*     */       {
+/*     */         public void run()
+/*     */         {
+/* 106 */          p.playSound(loc, Sound.FIREWORK_BLAST, 1.0F, 1.0F);
+/*     */         }
+/* 109 */       }, 100L);
+Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnable()
+/*     */       {
+/*     */         public void run()
+/*     */         {
+/* 106 */          p.playSound(loc, Sound.FIREWORK_BLAST, 1.0F, 1.0F);
+/*     */         }
+/* 109 */       }, 120L);
+Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnable()
+/*     */       {
+/*     */         public void run()
+/*     */         {
+/* 106 */          p.playSound(loc, Sound.FIREWORK_BLAST, 1.0F, 1.0F);
+/*     */         }
+/* 109 */       }, 130L);
+Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnable()
+/*     */       {
+/*     */         public void run()
+/*     */         {
+/* 106 */          p.playSound(loc, Sound.FIREWORK_BLAST, 1.0F, 1.0F);
+/*     */         }
+/* 109 */       }, 140L);
+Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnable()
+/*     */       {
+/*     */         public void run()
+/*     */         {
+/* 106 */          p.playSound(loc, Sound.FIREWORK_BLAST, 1.0F, 1.0F);
+/*     */         }
+/* 109 */       }, 155L);
+Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnable()
+/*     */       {
+/*     */         public void run()
+/*     */         {
+/* 106 */          p.playSound(loc, Sound.FIREWORK_BLAST, 1.0F, 1.0F);
+/*     */         }
+/* 109 */       }, 160L);
+
 subiu = true;
 } else {
 	if (!KitManager2.getPlayer(e.getPlayer().getName()).haskit2(this)) {
