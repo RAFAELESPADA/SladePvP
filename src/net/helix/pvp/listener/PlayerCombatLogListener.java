@@ -1,11 +1,21 @@
 package net.helix.pvp.listener;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Consumer;
+
+import javax.net.ssl.HttpsURLConnection;
 
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
+import org.bukkit.OfflinePlayer;
+import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -15,12 +25,17 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
+import com.mojang.authlib.GameProfile;
+import com.mojang.authlib.properties.Property;
+import com.mojang.util.UUIDTypeAdapter;
 import com.sk89q.minecraft.util.commands.Command;
 
 import net.helix.core.util.HelixCooldown;
+import net.helix.pvp.HelixPvP;
 import net.helix.pvp.command.VanishUtil;
 import net.helix.pvp.warp.HelixWarp;
 import net.md_5.bungee.api.ChatColor;
+import net.minecraft.server.v1_8_R3.EntityPlayer;
 
 
 public class PlayerCombatLogListener implements Listener {
@@ -84,6 +99,21 @@ public class PlayerCombatLogListener implements Listener {
 				player.sendMessage("§cVocê precisa ser Admin ou superior para executar esse comando!");
 			}
 		}
+
+				
+			
+			
+		
+			
+			    
+			
+			    
+			
+			        
+			 
+			 
+
+		
 					@EventHandler
 			public void onCommandPreProttcgtgesst24(PlayerCommandPreprocessEvent event) {
 				Player player = event.getPlayer();
@@ -142,5 +172,11 @@ public class PlayerCombatLogListener implements Listener {
 			player.setHealth(0);
 			Bukkit.broadcastMessage(ChatColor.RED + player.getName() + " deslogou em combate.");
 		}
+	
 	}
+
+
+	
+			
+		
 }

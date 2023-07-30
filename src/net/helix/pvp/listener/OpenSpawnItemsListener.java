@@ -6,9 +6,11 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.inventory.ItemStack;
 
 import net.helix.core.bukkit.item.ItemBuilder;
+import net.helix.core.bukkit.util.BuildUtil;
 import net.helix.pvp.inventory.KitsInventory;
 import net.helix.pvp.inventory.KitsInventory2;
 import net.helix.pvp.inventory.ShopGUI;
@@ -20,10 +22,12 @@ import net.helix.pvp.warp.HelixWarp;
 
 public class OpenSpawnItemsListener implements Listener {
 	
+	
+
+	
 	@EventHandler
 	public void onInteract(PlayerInteractEvent event) {
 		Player player = event.getPlayer();
-		
 		if (!event.hasItem() || !ItemBuilder.has(event.getItem(), "spawn-item")) {
 			return;
 		}
@@ -45,5 +49,13 @@ public class OpenSpawnItemsListener implements Listener {
 				break;
 		}
 	}
+	
+@EventHandler
+public void onInteractt(PlayerPickupItemEvent event) {
+	Player player = event.getPlayer();
+	if (HelixWarp.SPAWN.hasPlayer(player.getName()) && !KitManager.getPlayer(player.getName()).hasKit()) {
+	event.setCancelled(true);
+	}
+}}
 
-}
+
