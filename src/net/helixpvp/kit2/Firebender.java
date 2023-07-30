@@ -58,12 +58,12 @@ public class Firebender extends KitHandler2 {
       fireattack.add(ent.getName());
       createSpiralAroundPlayer(ent);
       addCooldown(p, 20);
-      ent.setFireTicks(120);
+      ent.setFireTicks(300);
       Bukkit.getScheduler().scheduleAsyncDelayedTask((Plugin)HelixPvP.getInstance(), new Runnable() {
             public void run() {
               Firebender.fireattack.remove(ent.getName());
             }
-          },  40L);
+          },  60L);
     } 
   }
   public static void createSpiralAroundPlayer(Player player) {
@@ -123,6 +123,34 @@ public class Firebender extends KitHandler2 {
 	             }
 	         }
 	     }, 40);
+		 Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance() , new BukkitRunnable() {
+	         @Override
+	         public void run() {
+	        	 Location location = player.getLocation();
+	             for (int degree = 0; degree < 360; degree++) {
+	                 double radians = Math.toRadians(degree);
+	                 double x = Math.cos(radians);
+	                 double z = Math.sin(radians);
+	                 location.add(x, 0, z);
+	                 location.getWorld().playEffect(location, Effect.FLAME, 1);
+	                 location.subtract(x, 0, z);
+	             }
+	         }
+	     }, 50);
+		 Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance() , new BukkitRunnable() {
+	         @Override
+	         public void run() {
+	        	 Location location = player.getLocation();
+	             for (int degree = 0; degree < 360; degree++) {
+	                 double radians = Math.toRadians(degree);
+	                 double x = Math.cos(radians);
+	                 double z = Math.sin(radians);
+	                 location.add(x, 0, z);
+	                 location.getWorld().playEffect(location, Effect.FLAME, 1);
+	                 location.subtract(x, 0, z);
+	             }
+	         }
+	     }, 60);
 	    }
 
   
