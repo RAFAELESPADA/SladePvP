@@ -30,6 +30,7 @@ import net.helixpvp.kit2.GladiatorListener;
 import net.helixpvp.kit2.Grappler;
 import net.helixpvp.kit2.Kangaroo;
 import net.helixpvp.kit2.Leech;
+import net.helixpvp.kit2.Meteor;
 import net.helixpvp.kit2.Sight;
 import net.helixpvp.kit2.MilkMan;
 import net.helixpvp.kit2.Gaara;
@@ -74,6 +75,7 @@ public enum HelixKit2  {
 	MONK("Monk", 9000, 0, new Monk() , new ItemStack(Material.BLAZE_ROD), "Embaralhe o inventario do inimigo.", 1),
 	FISHERMAN("Fisherman", 9000, 0, new Fisherman() , new ItemStack(Material.FISHING_ROD), "Pesque players.", 1),
 	SWITCHER("Switcher", 8000, 0, new Switcher() , new ItemStack(Material.SNOW_BALL), "Troque de lugar com o inimigo.",  1),
+	METEOR("Meteor", 8000, 0, new Meteor() , new ItemStack(Material.FIREBALL), "Seja um meteor.",  1),
 	GRAPPLER("Grappler", 10000, 0, new Grappler() , new ItemStack(Material.LEASH), "Voe com sua corda", 1);
 	
 	private final String name;
@@ -141,6 +143,15 @@ public enum HelixKit2  {
 	                .toStack()
 	        );
 			Bukkit.getConsoleSender().sendMessage(player.getName() + " Choosed FIREBENDER kit!");
+		}
+		if (KitManager.getPlayer(player.getName()).hasKit(HelixKit.METEOR)) {
+			player.getInventory().setItem(1, new ItemBuilder("§cMeteoro", Material.FIREBALL)
+	                .addEnchant(Enchantment.KNOCKBACK, 1)
+	        				.addFlags(ItemFlag.HIDE_ENCHANTS)
+	                .nbt("cancel-drop")
+	                .toStack()
+	        );
+			Bukkit.getConsoleSender().sendMessage(player.getName() + " Choosed METEOR kit!");
 		}
 		if (KitManager.getPlayer(player.getName()).hasKit(HelixKit.WATERBENDER)) {
 			player.getInventory().setItem(1, new ItemBuilder("§bWaterBender!", Material.LAPIS_BLOCK)

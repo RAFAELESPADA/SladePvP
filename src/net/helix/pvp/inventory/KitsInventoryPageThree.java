@@ -61,6 +61,19 @@ public class KitsInventoryPageThree {
 						.toStack()
 				);
 		}
+		if (player.hasPermission("kombo.kit.meteor")) {
+			inventory.setItem(13 , new ItemBuilder("§a" + HelixKit.METEOR.getName(), HelixKit.METEOR.getIcon())
+					.lore("§f" + HelixKit.METEOR.getDescription())
+							.addFlags(ItemFlag.HIDE_ATTRIBUTES,
+									ItemFlag.HIDE_DESTROYS,
+									ItemFlag.HIDE_ENCHANTS,
+									ItemFlag.HIDE_PLACED_ON,
+									ItemFlag.HIDE_POTION_EFFECTS,
+									ItemFlag.HIDE_UNBREAKABLE)
+							.nbt("kit-gui", HelixKit.METEOR.getName())
+							.toStack()
+					);
+			}
 			
 			
 				inventory.setItem(45, new ItemBuilder("§aVoltar", Material.ARROW).nbt("voltar")

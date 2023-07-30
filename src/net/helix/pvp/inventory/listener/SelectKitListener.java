@@ -234,6 +234,16 @@ public class SelectKitListener implements Listener {
 				player.closeInventory();
 				return;
 			}
+			if (KitManager.getPlayer(player.getName()).getKit() == HelixKit.METEOR && (kitName2 == "Stomper")) {
+				player.sendMessage("§c" + kitName2 + " é incompátivel com Meteor");
+				player.closeInventory();
+				return;
+			}
+			if (KitManager.getPlayer(player.getName()).getKit() == HelixKit.STOMPER && (kitName2 == "Meteor")) {
+				player.sendMessage("§c" + kitName2 + " é incompátivel com Stomper");
+				player.closeInventory();
+				return;
+			}
 			if (KitManager.getPlayer(player.getName()).getKit() == HelixKit.GRAPPLER && (kitName2 == "Archer")) {
 				player.sendMessage("§c" + kitName2 + " é incompátivel com Grappler");
 				player.closeInventory();
@@ -329,6 +339,16 @@ public class SelectKitListener implements Listener {
 			}
 			if (KitManager.getPlayer(player.getName()).getKit() == HelixKit.HULK && (event.getCurrentItem().getType() == Material.IRON_FENCE)) {
 				player.sendMessage("§c" + kitName2 + " é incompátivel com Hulk");
+				player.closeInventory();
+				return;
+			}
+			if (KitManager.getPlayer(player.getName()).getKit() == HelixKit.METEOR && (kitName2 == "Stomper")) {
+				player.sendMessage("§c" + kitName2 + " é incompátivel com Meteor");
+				player.closeInventory();
+				return;
+			}
+			if (KitManager.getPlayer(player.getName()).getKit() == HelixKit.STOMPER && (kitName2 == "Meteor")) {
+				player.sendMessage("§c" + kitName2 + " é incompátivel com Stomper");
 				player.closeInventory();
 				return;
 			}

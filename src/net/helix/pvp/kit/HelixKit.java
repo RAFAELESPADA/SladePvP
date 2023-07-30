@@ -38,6 +38,7 @@ import net.helix.pvp.kit.provider.Hulk;
 import net.helix.pvp.kit.provider.Jumper;
 import net.helix.pvp.kit.provider.Kangaroo;
 import net.helix.pvp.kit.provider.Leech;
+import net.helix.pvp.kit.provider.Meteor;
 import net.helix.pvp.kit.provider.Milkman;
 import net.helix.pvp.kit.provider.Monk;
 import net.helix.pvp.kit.provider.Nenhum;
@@ -108,6 +109,7 @@ public enum HelixKit {
 	JUMPER("Jumper", HelixPvP.getInstance().getConfig().getInt("JumperPrice"), 250, new Jumper(), new ItemStack(Material.EYE_OF_ENDER), HelixPvP.getInstance().getConfig().getString("JumperLore"), 2),
 	FLASH("Flash", 15000, 500, new Flash(), new ItemStack(Material.REDSTONE_TORCH_ON), "Teleporte para onde você clicar", 2),
     GLADIATOR("Gladiator", 15000, 500, new GladiatorListener(), new ItemStack(Material.IRON_FENCE), "Faça 1v1 nos inimigos", 2),
+    METEOR("Meteor", 15000, 500, new Meteor(), new ItemStack(Material.FIREBALL), "Seja um meteoro", 2),
 	SONIC("Sonic", 15000, 500, new Sonic(), new ItemStack(Material.LAPIS_BLOCK), "De um desh e coloque veneno", 2);
 	
 	private final String name;
