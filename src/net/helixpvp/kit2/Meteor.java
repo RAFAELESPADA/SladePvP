@@ -1,4 +1,5 @@
-package net.helix.pvp.kit.provider;
+package net.helixpvp.kit2;
+
 
 import java.util.ArrayList;
 
@@ -15,24 +16,35 @@ import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.util.Vector;
 
+import net.helix.core.bukkit.item.ItemBuilder;
 import net.helix.pvp.HelixPvP;
 import net.helix.pvp.kit.Habilidade;
-import net.helix.pvp.kit.KitHandler;
+import net.helix.pvp.kit.KitHandler2;
 import net.helix.pvp.kit.KitManager;
 import net.helix.pvp.kit.KitManager2;
 import net.md_5.bungee.api.ChatColor;
 
-public class Meteor extends KitHandler {
+public class Meteor extends KitHandler2 {
 
 private boolean subiu = false;
 ArrayList<String> danometeor = new ArrayList();
+@Override
+	public void execute(Player player) {
+		super.execute(player);
+		
+		player.getInventory().setItem(2, new ItemBuilder("§cMeteor", Material.FIREBALL)
+				.nbt("kit-handler", "glad")
+				.nbt("cancel-drop")
+				.toStack()
+		);
+	}
 @EventHandler
 /*     */   public void BotaStomper2(EntityDamageEvent e)
 /*     */   {
 	if (!(e.getEntity() instanceof Player)) {
 		return;
 	}
-	if (!KitManager.getPlayer(e.getEntity().getName()).hasKit(this)) {
+	if (!KitManager2.getPlayer(e.getEntity().getName()).haskit2(this)) {
 		return;
 	}
 	if (!danometeor.contains(e.getEntity().getName())) {
@@ -67,7 +79,7 @@ ArrayList<String> danometeor = new ArrayList();
 /*     */   public void BotaStomper(PlayerInteractEvent e)
 /*     */   {
 /*  84 */     final Player p = e.getPlayer();
-/*  85 */     if ((KitManager.getPlayer(p.getName()).hasKit(this)) && ((e.getAction() == Action.RIGHT_CLICK_BLOCK) || (e.getAction() == Action.RIGHT_CLICK_AIR)))
+/*  85 */     if (!KitManager2.getPlayer(e.getPlayer().getName()).haskit2(this) && (e.getAction() == Action.RIGHT_CLICK_BLOCK) || (e.getAction() == Action.RIGHT_CLICK_AIR))
 /*     */     {
 	if ((e.getPlayer().getItemInHand().getType() != Material.FIREBALL)) {
 		return;
@@ -79,7 +91,7 @@ ArrayList<String> danometeor = new ArrayList();
 /*  91 */         sendMessageCooldown(p);
 /*  92 */         return;
 /*     */       }
-else if (p.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura") && KitManager.getPlayer(p.getName()).hasKit(this)) {
+else if (p.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura") && KitManager2.getPlayer(e.getPlayer().getName()).haskit2(this)) {
 	p.sendMessage("§cNão use o seu poder no spawn!");
 	return;
  }
@@ -162,7 +174,7 @@ Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnab
 /* 109 */       }, 50L);
 subiu = true;
 } else {
-	if (!KitManager.getPlayer(e.getPlayer().getName()).hasKit(this)) {
+	if (!KitManager2.getPlayer(e.getPlayer().getName()).haskit2(this)) {
 		return;
 	}
 	if ((e.getPlayer().getItemInHand().getType() != Material.FIREBALL)) {
@@ -183,7 +195,7 @@ subiu = true;
 /*     */       {
 /*     */         public void run()
 /*     */         {
-/* 106 */           if (KitManager.getPlayer(p.getName()).hasKit()) {
+/* 106 */           if (KitManager2.getPlayer(p.getName()).haskit2()) {
     p.playSound(p.getLocation(), Sound.LEVEL_UP, 1.0F, 1.0F);
 /* 107 */           p.sendMessage(ChatColor.GREEN + "Você pode usar o meteor novamente");
 /*     */         }
