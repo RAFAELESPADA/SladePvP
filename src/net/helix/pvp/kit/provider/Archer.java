@@ -42,6 +42,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 /*     */ import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.scheduler.BukkitRunnable;
 /*     */ import org.bukkit.scheduler.BukkitScheduler;
 /*     */ import org.bukkit.util.Vector;
 
@@ -87,12 +88,20 @@ import org.bukkit.potion.PotionEffectType;
           if (HelixCooldown.has(player.getName(), "archer")) {
         	  sendMessageCooldown(player);
         	  event.setCancelled(true);
+        	  return;
           }
           if (!hasCooldown(player)) {
         	
                 addCooldown(player, 4);
             }
           HelixCooldown.create(player.getName(), "archer", TimeUnit.SECONDS, 4);
+          Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance() , new BukkitRunnable() {
+		         @Override
+		         public void run() {
+		        	HelixCooldown.delete(player.getName(), "archer");
+		             }
+		         }
+		     , 80);
         }
 }
 	
