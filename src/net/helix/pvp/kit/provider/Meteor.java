@@ -205,6 +205,9 @@ subiu.add(p);
 	if (!KitManager.getPlayer(e.getPlayer().getName()).hasKit(this)) {
 		return;
 	}
+	if (!(e.getAction() == Action.RIGHT_CLICK_BLOCK) || (e.getAction() == Action.RIGHT_CLICK_AIR)  || (e.getAction() == Action.LEFT_CLICK_AIR) || (e.getAction() == Action.LEFT_CLICK_BLOCK)) {
+		return;
+}
 	if ((e.getPlayer().getItemInHand().getType() != Material.FIREBALL)) {
 		return;
 	}
@@ -213,6 +216,11 @@ subiu.add(p);
         p.sendMessage(ChatColor.RED + "Você só pode usar o meteor para baixo");
         return;
     }
+	if (hasCooldown(p))
+	/*     */       {
+	/*  91 */         sendMessageCooldown(p);
+	/*  92 */         return;
+	/*     */       }
 	 p.playSound(p.getLocation(), Sound.FIREWORK_BLAST, 1.0F, 1.0F);
 	/*  76 */       p.setVelocity(p.getEyeLocation().getDirection().multiply(6).add(new Vector(0, 0, 0)));
 	danometeor.add(p.getName());

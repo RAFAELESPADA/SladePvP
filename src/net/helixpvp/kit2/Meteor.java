@@ -220,6 +220,14 @@ subiu.add(p);
 	if ((e.getPlayer().getItemInHand().getType() != Material.FIREBALL)) {
 		return;
 	}
+	if (hasCooldown(p))
+	/*     */       {
+	/*  91 */         sendMessageCooldown(p);
+	/*  92 */         return;
+	/*     */       }
+	if (!(e.getAction() == Action.RIGHT_CLICK_BLOCK) || (e.getAction() == Action.RIGHT_CLICK_AIR)  || (e.getAction() == Action.LEFT_CLICK_AIR) || (e.getAction() == Action.LEFT_CLICK_BLOCK)) {
+		return;
+}
 	int l = (int)p.getEyeLocation().getDirection().multiply(6).add(new Vector(0, 0, 0)).getY();
 	if(p.getLocation().getPitch() >= -90 && p.getLocation().getPitch() <= -10) {
         p.sendMessage(ChatColor.RED + "Você só pode usar o meteor para baixo");
