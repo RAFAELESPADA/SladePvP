@@ -560,7 +560,22 @@ player.getInventory().setItem(3 , new ItemStack(Material.MUSHROOM_SOUP));
 }
 	
 
-	
+@EventHandler
+public void RemoverDanoEspomka(EntityDamageEvent e) 
+{
+	if (e.getCause() == EntityDamageEvent.DamageCause.FALL) { 
+	{
+		if (!(e.getEntity() instanceof Player)) {
+			return;
+		}
+		Player p = (Player)e.getEntity();
+		Block block = p.getLocation().getBlock().getRelative(0, -1, 0);
+		if (block.getType() == Material.SPONGE) {
+			e.setCancelled(true);
+		}
+	}
+	}
+}
 	 
 	   @EventHandler
 		public void RemoverDano(EntityDamageEvent e) 

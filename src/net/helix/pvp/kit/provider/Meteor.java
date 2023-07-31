@@ -1,6 +1,7 @@
 package net.helix.pvp.kit.provider;
 
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Effect;
@@ -15,13 +16,15 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerToggleSneakEvent;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
+import net.helix.core.util.HelixCooldown;
 import net.helix.pvp.HelixPvP;
 import net.helix.pvp.kit.Habilidade;
 import net.helix.pvp.kit.KitHandler;
 import net.helix.pvp.kit.KitManager;
-import net.helix.pvp.kit.KitManager2;
 import net.md_5.bungee.api.ChatColor;
 
 public class Meteor extends KitHandler {
@@ -34,17 +37,20 @@ ArrayList<Player> subiu = new ArrayList();
 	if (!(e.getEntity() instanceof Player)) {
 		return;
 	}
+	Player p = (Player)e.getEntity();
 	if (!KitManager.getPlayer(e.getEntity().getName()).hasKit(this)) {
 		return;
 	}
 	if (!danometeor.contains(e.getEntity().getName())) {
 		return;
 	}
+	if (inCooldown(p)) {
+		return;
+	}
 	if (!(e.getCause() == DamageCause.FALL)) {
 		return;
 	}
 	e.setCancelled(true);
-	Player p = (Player)e.getEntity();
 	for (Entity ent : p.getNearbyEntities(5, 5, 5)) {
 		if (!(ent instanceof Player)) {
 			return;
@@ -59,11 +65,54 @@ ArrayList<Player> subiu = new ArrayList();
 			p2.damage(10);
 			p2.getWorld().strikeLightning(p2.getLocation());
 			p2.setFireTicks(80);
+			addCooldown(p , 40);
 			p2.sendMessage(ChatColor.RED + "Você foi atingido por um Meteor!");
 			danometeor.remove(e.getEntity().getName());
 		}
 	}
+@EventHandler
+/*     */   public void BotaStomper2(PlayerToggleSneakEvent e)
+/*     */   {
+	Player p = e.getPlayer();
+	if (!subiu.contains(p)) {
+		return;
+	}
+	if (!KitManager.getPlayer(p.getName()).hasKit(this)) {
+		return;
+	}
 	
+	if ((e.getPlayer().getItemInHand().getType() != Material.FIREBALL)) {
+		return;
+	}
+	int l = (int)p.getEyeLocation().getDirection().multiply(6).add(new Vector(0, 0, 0)).getY();
+	if(p.getLocation().getPitch() >= -90 && p.getLocation().getPitch() <= -10) {
+        p.sendMessage(ChatColor.RED + "Você só pode usar o meteor para baixo");
+        return;
+    }
+	if (hasCooldown(p))
+	/*     */       {
+	/*  91 */         sendMessageCooldown(p);
+	/*  92 */         return;
+	/*     */       }
+	 p.playSound(p.getLocation(), Sound.FIREWORK_BLAST, 1.0F, 1.0F);
+	/*  76 */       p.setVelocity(p.getEyeLocation().getDirection().multiply(6).add(new Vector(0, 0, 0)));
+	danometeor.add(p.getName());
+	subiu.remove(p);
+
+/* 102 */       Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnable()
+/*     */       {
+/*     */         public void run()
+/*     */         {
+/* 106 */           if (KitManager.getPlayer(p.getName()).hasKit()) {
+    p.playSound(p.getLocation(), Sound.LEVEL_UP, 1.0F, 1.0F);
+/* 107 */           p.sendMessage(ChatColor.GREEN + "Você pode usar o meteor novamente");
+/*     */         }
+/*     */         }
+
+}
+
+/* 109 */       , 800L);
+/*     */     }
 
 @EventHandler
 /*     */   public void BotaStomper(PlayerInteractEvent e)
@@ -88,6 +137,18 @@ else if (p.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("Spa
 	return;
  }
 if (!subiu.contains(p)) {
+	  if (HelixCooldown.has(p.getName(), "meteor")) {
+		  p.sendMessage(ChatColor.RED + "Aguarde " + HelixCooldown.getTime(p.getName(), "meteor") +  " segundos para dar o boost novamente");
+		  return;
+	  }
+HelixCooldown.create(p.getName(), "meteor", TimeUnit.SECONDS, 15);
+Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance() , new BukkitRunnable() {
+    @Override
+    public void run() {
+   	HelixCooldown.delete(p.getName(), "meteor");
+        }
+    }
+, 15 * 20);
 /*  94 */       Vector vector = p.getEyeLocation().getDirection();
 /*  95 */       vector.multiply(0.0F);
 /*  96 */       vector.setY(6.0F);
@@ -224,14 +285,13 @@ subiu.add(p);
 	 p.playSound(p.getLocation(), Sound.FIREWORK_BLAST, 1.0F, 1.0F);
 	/*  76 */       p.setVelocity(p.getEyeLocation().getDirection().multiply(6).add(new Vector(0, 0, 0)));
 	danometeor.add(p.getName());
-	addCooldown(p , 40);
 	subiu.remove(p);
 
 /* 102 */       Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnable()
 /*     */       {
 /*     */         public void run()
 /*     */         {
-/* 106 */           if (KitManager2.getPlayer(p.getName()).haskit2()) {
+/* 106 */            if (KitManager.getPlayer(p.getName()).hasKit()) {
     p.playSound(p.getLocation(), Sound.LEVEL_UP, 1.0F, 1.0F);
 /* 107 */           p.sendMessage(ChatColor.GREEN + "Você pode usar o meteor novamente");
 /*     */         }

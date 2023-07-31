@@ -14,14 +14,14 @@ import org.bukkit.inventory.ItemStack;
 
 public class SignListener implements Listener {
 	
-	private static final String soup = "§3§lSOPAS", recraft = "§3§lRECRAFT";
+	private static final String soup = "§3§lSOPAS", recraft = "§4§lRECRAFT";
 	
 	@EventHandler(ignoreCancelled = true)
 	public void onSignChange(SignChangeEvent event) {
 		Player player = event.getPlayer();
 		
-		if (player.hasPermission("kombo.sign") && (event.getLine(0).equalsIgnoreCase("sopas") || event.getLine(0).equalsIgnoreCase("recraft"))) {
-			String type = event.getLine(0).equalsIgnoreCase("recraft") ? recraft : soup;
+		if (player.hasPermission("kombo.sign") && (event.getLine(0).equalsIgnoreCase("sopas") || event.getLine(0).equalsIgnoreCase("recraft2"))) {
+			String type = event.getLine(0).equalsIgnoreCase("recraft2") ? recraft : soup;
 			
 			event.setLine(0, "");
 			event.setLine(1, type);

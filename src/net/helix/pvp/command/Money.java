@@ -61,7 +61,7 @@ public class Money implements CommandExecutor {
                 }
                 HelixPlayer targetData1 = HelixBukkit.getInstance().getPlayerManager().getPlayer(args[1]);
                 if (targetData1 == null) return true;
-                playerData.getPvp().setCoins(playerData.getPvp().getCoins() -  playerData.getPvp().getCoins());
+                playerData.getPvp().setCoins(playerData.getPvp().getCoins() -  quantia);
                 targetData1.getPvp().setCoins(targetData1.getPvp().getCoins() + quantia);
                 player.sendMessage("§aVocê enviou §7$" + quantia + " para §7" + target1.getName() + "§a.");
                 target1.sendMessage("§aVocê recebeu §7$" + quantia + " de §7" + player.getName() + "§a.");
