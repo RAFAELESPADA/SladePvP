@@ -29,6 +29,7 @@ import org.bukkit.command.CommandSender;
 /*     */ import org.bukkit.event.EventHandler;
 /*     */ import org.bukkit.event.Listener;
 /*     */ import org.bukkit.event.block.Action;
+import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
 /*     */ import org.bukkit.event.player.PlayerDropItemEvent;
@@ -74,4 +75,18 @@ import org.bukkit.potion.PotionEffectType;
 						.toStack()
 		);
 	}
+	@EventHandler
+    public void bowUseEvent(EntityShootBowEvent event) {
+        if (event.getEntity() instanceof Player) {
+      
+            Player player = (Player) event.getEntity();
+          if (hasCooldown(player) && KitManager.getPlayer(event.getEntity().getName()).hasKit(this)) {
+        	  sendMessageCooldown(player);
+          }
+          if (!hasCooldown(player)) {
+                addCooldown(player, 4);
+            }
+        }
+}
+	
 }

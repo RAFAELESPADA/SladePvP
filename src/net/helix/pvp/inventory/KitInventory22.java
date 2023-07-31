@@ -119,6 +119,9 @@ public class KitInventory22 {
 		inventory.setItem(45, new ItemBuilder("§aVoltar", Material.ARROW).nbt("voltar")
 				.toStack()
 		);
+		inventory.setItem(4, new ItemBuilder("§aVisualizar todos os kits", Material.CHEST).nbt("visuali")
+				.toStack()
+		);
 		ItemStack i =  new ItemStack(KitManager2.getPlayer(player.getName()).getkit2().getIcon());
 		ItemMeta i2 = i.getItemMeta();
 		ArrayList<String> lore = new ArrayList<String>();

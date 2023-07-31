@@ -310,6 +310,9 @@ public class KitsInventory2 {
 		inventory.setItem(53, new ItemBuilder("§aPróximo", Material.ARROW).nbt("prox")
 				.toStack()
 		);
+		inventory.setItem(4, new ItemBuilder("§aVisualizar todos os kits", Material.CHEST).nbt("visuali2")
+				.toStack()
+		);
 		ItemStack i =  new ItemStack(KitManager2.getPlayer(player.getName()).getkit2().getIcon());
 		ItemMeta i2 = i.getItemMeta();
 	    ArrayList<String> lore = new ArrayList<String>();

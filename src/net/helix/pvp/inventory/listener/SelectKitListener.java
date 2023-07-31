@@ -1,5 +1,9 @@
 package net.helix.pvp.inventory.listener;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -18,6 +22,7 @@ import net.helix.pvp.inventory.KitsInventory;
 import net.helix.pvp.inventory.KitsInventory2;
 import net.helix.pvp.inventory.KitsInventoryPageThree;
 import net.helix.pvp.inventory.KitsInventoryPageTwo;
+import net.helix.pvp.inventory.TodosOsKits;
 import net.helix.pvp.kit.HelixKit;
 import net.helix.pvp.kit.HelixKit2;
 import net.helix.pvp.kit.KitManager;
@@ -39,9 +44,14 @@ public class SelectKitListener implements Listener {
 			   if (event.getSlot() >= 45 && event.getSlot() <= 54)
 				   event.setCancelled(true);
 			   else {
+				   if (ItemBuilder.has(event.getCurrentItem(), "visuali")) {
+						TodosOsKits.open(player);
+						return;
+					}
 				   if (!ItemBuilder.has(event.getCurrentItem(), "kit-gui")) {
 						return;
 					}
+				   
 				   
 					String kitName = ItemBuilder.getString(event.getCurrentItem(), "kit-gui");
 	
@@ -60,9 +70,14 @@ public class SelectKitListener implements Listener {
 			    }
 	
 		event.setCancelled(true);
+		if (ItemBuilder.has(event.getCurrentItem(), "visuali")) {
+			TodosOsKits.open(player);
+			return;
+		}
 		if (!ItemBuilder.has(event.getCurrentItem(), "kit-gui")) {
 			return;
 		}
+		
 		String kitName = ItemBuilder.getString(event.getCurrentItem(), "kit-gui");
 
 		HelixKit.findKit(kitName).ifPresent(kit -> {
@@ -82,6 +97,10 @@ public class SelectKitListener implements Listener {
 			return;
 		}
 		event.setCancelled(true);
+		if (ItemBuilder.has(event.getCurrentItem(), "visuali")) {
+			TodosOsKits.open(player);
+			return;
+		}
 		if (!ItemBuilder.has(event.getCurrentItem(), "kit-gui")) {
 			return;
 		}
@@ -109,6 +128,10 @@ public class SelectKitListener implements Listener {
 			return;
 		}
 		event.setCancelled(true);
+		if (ItemBuilder.has(event.getCurrentItem(), "visuali")) {
+			TodosOsKits.open(player);
+			return;
+		}
 		if (!ItemBuilder.has(event.getCurrentItem(), "kit-gui")) {
 			return;
 		}
@@ -221,6 +244,10 @@ public class SelectKitListener implements Listener {
 			return;
 		}
 		event.setCancelled(true);
+		if (ItemBuilder.has(event.getCurrentItem(), "visuali")) {
+			TodosOsKits.open(player);
+			return;
+		}
 		if (!ItemBuilder.has(event.getCurrentItem(), "kit-gui2")) {
 			return;
 		}
@@ -324,6 +351,18 @@ public class SelectKitListener implements Listener {
 			
 	}
 	@EventHandler
+	public void onInvClickt5(InventoryClickEvent event) {
+		Player player = (Player) event.getWhoClicked();
+		
+		if (!event.getView().getTitle().equals(TodosOsKits.getInventoryName())) {
+			return;
+		}
+		event.setCancelled(true);
+		player.closeInventory();
+		player.sendMessage("§b§lKIT §f" + event.getCurrentItem().getItemMeta().getDisplayName());
+		player.sendMessage("§b§lDESCRISÃO §f" + event.getCurrentItem().getItemMeta().getLore());
+	}
+	@EventHandler
 	public void onInvClick5(InventoryClickEvent event) {
 		Player player = (Player) event.getWhoClicked();
 		
@@ -334,6 +373,10 @@ public class SelectKitListener implements Listener {
 			return;
 		}
 		event.setCancelled(true);
+		if (ItemBuilder.has(event.getCurrentItem(), "visuali")) {
+			TodosOsKits.open(player);
+			return;
+		}
 		if (!ItemBuilder.has(event.getCurrentItem(), "kit-gui2")) {
 			return;
 		}
@@ -421,12 +464,36 @@ public class SelectKitListener implements Listener {
 		
 			
 	}
+	
+	 private static final List<String> motds = Arrays.asList("§fSistemas inovadores", "§fVeja as atualizações no §9Discord§f!" , "§4§lNOVO: §b§lEVENTO EUFORIA§f!" , "§a§lATUALIZAÇÕES MASSIVAS!", "§fCheque o novo kit §6Meteor§f!", "§fNovo sistema de §6ranks §fe §6eventos§f!");
+
+	    private static String getMotdMessage(String motd) {
+	        float y = (float) motd.length();
+	        for (char c : motd.toCharArray()) {
+	            if (c == '§') y -= 2.5;
+	        }
+	        int ac = (int) ((60 - y) / 2);
+	        StringBuilder space = new StringBuilder();
+	        for (int i = 0; i < ac; i++) {
+	            space.append(" ");
+	        }
+	        return space + motd;
+	    }
+	    public static String getName() {
+	        return "§6§lSLADEMC";
+	    }
+
+	    public static String getPrefix() {
+	        return (getName()) + " §7»";
+	    }
+	    public static String getMotd() {
+	        if (Bukkit.getServer().hasWhitelist()) {
+	            return getMotdMessage(getName() + "§f » §7[1.8 - 1.20]") + "\n" + getMotdMessage("§cO servidor encontra-se em manutenção.");
+	        }
+	        return getMotdMessage(getName() + "§f » §7[1.8 - 1.20]") + "\n" + getMotdMessage(motds.get(new Random().nextInt(motds.size())));
+	    }
 	@EventHandler
 	public void onInvClick(ServerListPingEvent event) {
-		if (!Bukkit.getServer().hasWhitelist()) {
-			event.setMotd(HelixPvP.getInstance().getConfig().getString("Motd").replace("&", "§"));
-		} else {
-				event.setMotd(HelixPvP.getInstance().getConfig().getString("MotdWhitelist").replace("&", "§"));	
-			}
+		 event.setMotd(getMotd());
 		}
 }

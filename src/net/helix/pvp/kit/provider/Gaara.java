@@ -12,6 +12,8 @@ import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
+import org.bukkit.block.Block;
+import org.bukkit.block.BlockState;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -26,10 +28,13 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 public class Gaara extends KitHandler {
 	  private List<UUID> blocos;
+	  LinkedHashMap<Location, Block> restore = new LinkedHashMap<Location, Block>();
 	  public Gaara() {
 		    this.blocos = new ArrayList<>();
 		  }
@@ -87,6 +92,8 @@ private void eventoGaara(final PlayerInteractEntityEvent e) {
                   Location[] oldLoc;
                   for (int length = (oldLoc = this.oldLoc).length, i = 0; i < length; i++) {
                     Location old = oldLoc[i];
+                    Block b =  old.getBlock();
+            
                     old.getBlock().setType(Material.AIR);
                   } 
                 } 
@@ -121,6 +128,8 @@ private void eventoGaara(final PlayerInteractEntityEvent e) {
                 	  p.sendMessage("§cVocê não pode usar o gaara aqui"); 
                 	  return;
                   }
+                  Block b = locais.getBlock();
+                  BlockState bs = locais.getBlock().getState();
                   locais.getBlock().setType(Material.SANDSTONE);
                 } 
                 this.oldLoc = this.loc;
@@ -148,6 +157,7 @@ private void eventoGaara(final PlayerInteractEntityEvent e) {
                 Location[] oldLoc2;
                 for (int length3 = (oldLoc2 = this.oldLoc).length, k = 0; k < length3; k++) {
                   Location old = oldLoc2[k];
+                  
                   old.getBlock().setType(Material.AIR);
                 } 
                 Location[] loc2;
@@ -187,4 +197,7 @@ private void eventoGaara(final PlayerInteractEntityEvent e) {
           },  300L);
     }  
 }
+  
+
+
 }

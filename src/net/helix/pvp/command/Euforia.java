@@ -28,7 +28,7 @@ public class Euforia implements CommandExecutor {
             if (!HelixPvP.euforia) {
             	 for (Player player : Bukkit.getOnlinePlayers()) {
 				DarKit.sendTitle(player, "§c§lEUFORIA", "§fTodos ficaram fortes");
-				player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 120*20, 1));
+				player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 120*20, 0));
 				player.playSound(player.getLocation(), Sound.ANVIL_BREAK, 1F, 10F);
             	 }
 				HelixPvP.euforia = true;
@@ -38,7 +38,7 @@ public class Euforia implements CommandExecutor {
 			    Bukkit.getWorld("spawn").setTime(18000);
 			    Bukkit.broadcast("§4§lEUFORIA §7Ativado manualmente por " + player2.getName(), "kombo.cmd.report");
 				Bukkit.broadcastMessage("§cO evento §4§lEUFORIA §cacabou de começar");
-				Bukkit.broadcastMessage("§cPor tempo indeterminado estará de noite e players teram força 2");
+				Bukkit.broadcastMessage("§cPor tempo indeterminado estará de noite e players teram força 1");
 				Bukkit.broadcastMessage("§cTodos os kits primários e secundários liberados durante o evento");
             	Bukkit.broadcastMessage("§aO evento Euforia foi finalizado!");
             	 }

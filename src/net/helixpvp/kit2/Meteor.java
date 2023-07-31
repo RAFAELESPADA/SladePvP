@@ -4,10 +4,12 @@ package net.helixpvp.kit2;
 import java.util.ArrayList;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.FallingBlock;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.Action;
@@ -26,7 +28,7 @@ import net.md_5.bungee.api.ChatColor;
 
 public class Meteor extends KitHandler2 {
 
-private boolean subiu = false;
+	ArrayList<Player> subiu = new ArrayList();
 ArrayList<String> danometeor = new ArrayList();
 @Override
 	public void execute(Player player) {
@@ -95,18 +97,28 @@ else if (p.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("Spa
 	p.sendMessage("§cNão use o seu poder no spawn!");
 	return;
  }
-if (!subiu) {
+if (!subiu.contains(p)) {
 /*  94 */       Vector vector = p.getEyeLocation().getDirection();
 /*  95 */       vector.multiply(0.0F);
 /*  96 */       vector.setY(6.0F);
 /*  97 */       p.setVelocity(vector);
 /*  98 */       Location loc = p.getLocation();
 /*  99 */       p.playSound(loc, Sound.FIREWORK_BLAST, 1.0F, 1.0F);
+Location location = p.getLocation();
+for (final Entity pertos : p.getNearbyEntities(20, 20 , 20)) {
+	  if (pertos instanceof Player) {
+		  ((Player) pertos).playSound((Location)pertos.getLocation(), Sound.FIREWORK_LAUNCH, 1f, 1f);
+}
+
+location.getWorld().playEffect(location, Effect.FIREWORKS_SPARK, 15);
+
 Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnable()
 /*     */       {
 /*     */         public void run()
 /*     */         {
 /* 106 */          p.playSound(loc, Sound.FIREWORK_BLAST, 1.0F, 1.0F);
+location.getWorld().playEffect(location, Effect.FIREWORKS_SPARK, 15);
+
 /*     */         }
 /* 109 */       }, 20L);
 Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnable()
@@ -114,6 +126,8 @@ Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnab
 /*     */         public void run()
 /*     */         {
 /* 106 */          p.playSound(loc, Sound.FIREWORK_BLAST, 1.0F, 1.0F);
+location.getWorld().playEffect(location, Effect.FIREWORKS_SPARK, 15);
+
 /*     */         }
 /* 109 */       }, 40L);
 Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnable()
@@ -121,6 +135,8 @@ Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnab
 /*     */         public void run()
 /*     */         {
 /* 106 */          p.playSound(loc, Sound.FIREWORK_BLAST, 1.0F, 1.0F);
+
+location.getWorld().playEffect(location, Effect.FIREWORKS_SPARK, 15);
 /*     */         }
 /* 109 */       }, 60L);
 Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnable()
@@ -128,6 +144,8 @@ Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnab
 /*     */         public void run()
 /*     */         {
 /* 106 */          p.playSound(loc, Sound.FIREWORK_BLAST, 1.0F, 1.0F);
+
+location.getWorld().playEffect(location, Effect.FIREWORKS_SPARK, 15);
 /*     */         }
 /* 109 */       }, 80L);
 Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnable()
@@ -135,6 +153,8 @@ Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnab
 /*     */         public void run()
 /*     */         {
 /* 106 */          p.playSound(loc, Sound.FIREWORK_BLAST, 1.0F, 1.0F);
+
+location.getWorld().playEffect(location, Effect.FIREWORKS_SPARK, 15);
 /*     */         }
 /* 109 */       }, 100L);
 Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnable()
@@ -142,6 +162,8 @@ Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnab
 /*     */         public void run()
 /*     */         {
 /* 106 */          p.playSound(loc, Sound.FIREWORK_BLAST, 1.0F, 1.0F);
+
+location.getWorld().playEffect(location, Effect.FIREWORKS_SPARK, 15);
 /*     */         }
 /* 109 */       }, 120L);
 Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnable()
@@ -149,6 +171,8 @@ Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnab
 /*     */         public void run()
 /*     */         {
 /* 106 */          p.playSound(loc, Sound.FIREWORK_BLAST, 1.0F, 1.0F);
+
+location.getWorld().playEffect(location, Effect.FIREWORKS_SPARK, 15);
 /*     */         }
 /* 109 */       }, 130L);
 Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnable()
@@ -156,6 +180,8 @@ Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnab
 /*     */         public void run()
 /*     */         {
 /* 106 */          p.playSound(loc, Sound.FIREWORK_BLAST, 1.0F, 1.0F);
+
+location.getWorld().playEffect(location, Effect.FIREWORKS_SPARK, 15);
 /*     */         }
 /* 109 */       }, 140L);
 Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnable()
@@ -163,6 +189,8 @@ Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnab
 /*     */         public void run()
 /*     */         {
 /* 106 */          p.playSound(loc, Sound.FIREWORK_BLAST, 1.0F, 1.0F);
+
+location.getWorld().playEffect(location, Effect.FIREWORKS_SPARK, 15);
 /*     */         }
 /* 109 */       }, 155L);
 Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnable()
@@ -170,11 +198,22 @@ Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnab
 /*     */         public void run()
 /*     */         {
 /* 106 */          p.playSound(loc, Sound.FIREWORK_BLAST, 1.0F, 1.0F);
+
+location.getWorld().playEffect(location, Effect.FIREWORKS_SPARK, 15);
 /*     */         }
 /* 109 */       }, 160L);
+Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnable()
+/*     */       {
+/*     */         public void run()
+/*     */         {
+/* 106 */          p.playSound(loc, Sound.FIREWORK_BLAST, 1.0F, 1.0F);
 
-subiu = true;
-} else {
+/*     */         }
+/* 109 */       }, 200L);
+}
+
+subiu.add(p);
+}} else {
 	if (!KitManager2.getPlayer(e.getPlayer().getName()).haskit2(this)) {
 		return;
 	}
@@ -190,8 +229,8 @@ subiu = true;
 	/*  76 */       p.setVelocity(p.getEyeLocation().getDirection().multiply(6).add(new Vector(0, 0, 0)));
 	danometeor.add(p.getName());
 	addCooldown(p , 40);
-	subiu = false;
-}
+	subiu.remove(p);
+
 /* 102 */       Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnable()
 /*     */       {
 /*     */         public void run()
@@ -201,8 +240,9 @@ subiu = true;
 /* 107 */           p.sendMessage(ChatColor.GREEN + "Você pode usar o meteor novamente");
 /*     */         }
 }
+}
 
-/* 109 */       }, 800L);
+/* 109 */       , 800L);
 /*     */     }
 /*     */   }
 }

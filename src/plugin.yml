@@ -18,7 +18,11 @@ commands:
    regras:
    req:
    tag:
+   money:
+   dinheiro:
+   aplicar:
    set1v1:
+   sendtitle:
    givecoins:
    site:
    autosoup:
