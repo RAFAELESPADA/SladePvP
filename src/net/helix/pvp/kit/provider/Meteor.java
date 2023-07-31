@@ -69,8 +69,10 @@ ArrayList<Player> subiu = new ArrayList();
 /*     */   public void BotaStomper(PlayerInteractEvent e)
 /*     */   {
 /*  84 */     final Player p = e.getPlayer();
-/*  85 */     if (!KitManager.getPlayer(e.getPlayer().getName()).hasKit(this) && (e.getAction() == Action.RIGHT_CLICK_BLOCK) || (e.getAction() == Action.RIGHT_CLICK_AIR))
-/*     */     {
+/*  85 */     if (!KitManager.getPlayer(e.getPlayer().getName()).hasKit(this)) {
+	return;
+}
+/*     */     
 	if ((e.getPlayer().getItemInHand().getType() != Material.FIREBALL)) {
 		return;
 	}
@@ -201,13 +203,11 @@ Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnab
 }
 
 subiu.add(p);
-}} else {
+} else {
 	if (!KitManager.getPlayer(e.getPlayer().getName()).hasKit(this)) {
 		return;
 	}
-	if (!(e.getAction() == Action.RIGHT_CLICK_BLOCK) || (e.getAction() == Action.RIGHT_CLICK_AIR)  || (e.getAction() == Action.LEFT_CLICK_AIR) || (e.getAction() == Action.LEFT_CLICK_BLOCK)) {
-		return;
-}
+	
 	if ((e.getPlayer().getItemInHand().getType() != Material.FIREBALL)) {
 		return;
 	}

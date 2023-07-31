@@ -82,10 +82,12 @@ import org.bukkit.potion.PotionEffectType;
             Player player = (Player) event.getEntity();
           if (hasCooldown(player) && KitManager.getPlayer(event.getEntity().getName()).hasKit(this)) {
         	  sendMessageCooldown(player);
+        	  event.setCancelled(true);
           }
           if (!hasCooldown(player)) {
                 addCooldown(player, 4);
             }
+          
         }
 }
 	

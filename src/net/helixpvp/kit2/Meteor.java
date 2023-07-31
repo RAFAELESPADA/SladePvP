@@ -81,8 +81,10 @@ ArrayList<String> danometeor = new ArrayList();
 /*     */   public void BotaStomper(PlayerInteractEvent e)
 /*     */   {
 /*  84 */     final Player p = e.getPlayer();
-/*  85 */     if (!KitManager2.getPlayer(e.getPlayer().getName()).haskit2(this) && (e.getAction() == Action.RIGHT_CLICK_BLOCK) || (e.getAction() == Action.RIGHT_CLICK_AIR))
-/*     */     {
+/*  85 */     if (!KitManager2.getPlayer(e.getPlayer().getName()).haskit2(this)) {
+	return;
+}
+/*     */     
 	if ((e.getPlayer().getItemInHand().getType() != Material.FIREBALL)) {
 		return;
 	}
@@ -210,7 +212,7 @@ Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnab
 
 /*     */         }
 /* 109 */       }, 200L);
-}
+
 
 subiu.add(p);
 }} else {
@@ -225,9 +227,6 @@ subiu.add(p);
 	/*  91 */         sendMessageCooldown(p);
 	/*  92 */         return;
 	/*     */       }
-	if (!(e.getAction() == Action.RIGHT_CLICK_BLOCK) || (e.getAction() == Action.RIGHT_CLICK_AIR)  || (e.getAction() == Action.LEFT_CLICK_AIR) || (e.getAction() == Action.LEFT_CLICK_BLOCK)) {
-		return;
-}
 	int l = (int)p.getEyeLocation().getDirection().multiply(6).add(new Vector(0, 0, 0)).getY();
 	if(p.getLocation().getPitch() >= -90 && p.getLocation().getPitch() <= -10) {
         p.sendMessage(ChatColor.RED + "Você só pode usar o meteor para baixo");
