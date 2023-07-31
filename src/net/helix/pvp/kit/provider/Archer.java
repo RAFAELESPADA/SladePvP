@@ -12,6 +12,7 @@ import net.helix.core.util.HelixCooldown;
 import net.helix.pvp.HelixPvP;
 import net.helix.pvp.kit.KitHandler;
 import net.helix.pvp.kit.KitManager;
+import net.helix.pvp.kit.KitManager2;
 
 /*     */ import org.bukkit.Bukkit;
 /*     */ import org.bukkit.Color;
@@ -80,14 +81,18 @@ import org.bukkit.potion.PotionEffectType;
         if (event.getEntity() instanceof Player) {
       
             Player player = (Player) event.getEntity();
-          if (hasCooldown(player) && KitManager.getPlayer(event.getEntity().getName()).hasKit(this)) {
+            if (!KitManager.getPlayer(event.getEntity().getName()).hasKit(this)) {
+            	return;
+            }
+          if (HelixCooldown.has(player.getName(), "archer")) {
         	  sendMessageCooldown(player);
         	  event.setCancelled(true);
           }
           if (!hasCooldown(player)) {
+        	
                 addCooldown(player, 4);
             }
-          
+          HelixCooldown.create(player.getName(), "archer", TimeUnit.SECONDS, 4);
         }
 }
 	

@@ -1,6 +1,5 @@
 package net.helixpvp.kit2;
 
-
 import java.util.ArrayList;
 
 import org.bukkit.Bukkit;
@@ -18,28 +17,16 @@ import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.util.Vector;
 
-import net.helix.core.bukkit.item.ItemBuilder;
 import net.helix.pvp.HelixPvP;
 import net.helix.pvp.kit.Habilidade;
 import net.helix.pvp.kit.KitHandler2;
-import net.helix.pvp.kit.KitManager;
 import net.helix.pvp.kit.KitManager2;
 import net.md_5.bungee.api.ChatColor;
 
 public class Meteor extends KitHandler2 {
 
-	ArrayList<Player> subiu = new ArrayList();
 ArrayList<String> danometeor = new ArrayList();
-@Override
-	public void execute(Player player) {
-		super.execute(player);
-		
-		player.getInventory().setItem(2, new ItemBuilder("§cMeteor", Material.FIREBALL)
-				.nbt("kit-handler", "glad")
-				.nbt("cancel-drop")
-				.toStack()
-		);
-	}
+ArrayList<Player> subiu = new ArrayList();
 @EventHandler
 /*     */   public void BotaStomper2(EntityDamageEvent e)
 /*     */   {
@@ -62,7 +49,7 @@ ArrayList<String> danometeor = new ArrayList();
 			return;
 		}
 			Player p2 = (Player)ent;
-			if (!KitManager.getPlayer(p2.getName()).hasKit()) {
+			if (!KitManager2.getPlayer(p2.getName()).haskit2()) {
 				return;
 			}
 			  else if (p2.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura")) {
@@ -81,7 +68,7 @@ ArrayList<String> danometeor = new ArrayList();
 /*     */   public void BotaStomper(PlayerInteractEvent e)
 /*     */   {
 /*  84 */     final Player p = e.getPlayer();
-/*  85 */     if (!KitManager2.getPlayer(e.getPlayer().getName()).haskit2(this)) {
+/*  85 */     if (!KitManager2.getPlayer(p.getName()).haskit2(this)) {
 	return;
 }
 /*     */     
@@ -95,7 +82,7 @@ ArrayList<String> danometeor = new ArrayList();
 /*  91 */         sendMessageCooldown(p);
 /*  92 */         return;
 /*     */       }
-else if (p.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura") && KitManager2.getPlayer(e.getPlayer().getName()).haskit2(this)) {
+else if (p.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura") && !KitManager2.getPlayer(p.getName()).haskit2(this)) {
 	p.sendMessage("§cNão use o seu poder no spawn!");
 	return;
  }
@@ -212,26 +199,27 @@ Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnab
 
 /*     */         }
 /* 109 */       }, 200L);
-
+}
 
 subiu.add(p);
-}} else {
-	if (!KitManager2.getPlayer(e.getPlayer().getName()).haskit2(this)) {
+} else {
+	if (!KitManager2.getPlayer(p.getName()).haskit2(this)) {
 		return;
 	}
+	
 	if ((e.getPlayer().getItemInHand().getType() != Material.FIREBALL)) {
 		return;
 	}
-	if (hasCooldown(p))
-	/*     */       {
-	/*  91 */         sendMessageCooldown(p);
-	/*  92 */         return;
-	/*     */       }
 	int l = (int)p.getEyeLocation().getDirection().multiply(6).add(new Vector(0, 0, 0)).getY();
 	if(p.getLocation().getPitch() >= -90 && p.getLocation().getPitch() <= -10) {
         p.sendMessage(ChatColor.RED + "Você só pode usar o meteor para baixo");
         return;
     }
+	if (hasCooldown(p))
+	/*     */       {
+	/*  91 */         sendMessageCooldown(p);
+	/*  92 */         return;
+	/*     */       }
 	 p.playSound(p.getLocation(), Sound.FIREWORK_BLAST, 1.0F, 1.0F);
 	/*  76 */       p.setVelocity(p.getEyeLocation().getDirection().multiply(6).add(new Vector(0, 0, 0)));
 	danometeor.add(p.getName());
