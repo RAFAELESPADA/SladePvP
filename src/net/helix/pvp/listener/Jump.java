@@ -15,6 +15,7 @@ import org.bukkit.block.Block;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
@@ -44,6 +45,7 @@ import net.helix.pvp.warp.HelixWarp;
 
 public class Jump implements Listener {
 	public static HashMap<String, Boolean> recebeu = new HashMap();
+	public static HashMap<String, Boolean> caiu = new HashMap();
 	private ArrayList<String> fall = new ArrayList<String>();
 	public KitHandler obj = new KitHandler();
 	public KitHandler2 obj2 = new KitHandler2();
@@ -560,7 +562,7 @@ player.getInventory().setItem(3 , new ItemStack(Material.MUSHROOM_SOUP));
 }
 	
 
-@EventHandler
+@EventHandler(priority = EventPriority.HIGHEST)
 public void RemoverDanoEspomka(EntityDamageEvent e) 
 {
 	if (e.getCause() == EntityDamageEvent.DamageCause.FALL) { 
@@ -572,7 +574,16 @@ public void RemoverDanoEspomka(EntityDamageEvent e)
 		Block block = p.getLocation().getBlock().getRelative(0, -1, 0);
 		if (block.getType() == Material.SPONGE) {
 			e.setCancelled(true);
+			return;
 		}
+		else if (!caiu.containsKey(p.getName())) {
+			e.setCancelled(true);
+			return;
+		}
+		else {
+			e.setCancelled(e.isCancelled());
+			return;
+	}
 	}
 	}
 }

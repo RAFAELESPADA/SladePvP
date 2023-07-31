@@ -78,6 +78,7 @@ public class PlayerJoinListener implements Listener {
 	      e.setCancelled(true);
 	      p.sendMessage(ChatColor.RED + "Você perdeu a proteção do spawn.");
 	      fall.remove(p);
+	      Jump.caiu.put(p.getName(), true);
 	    }
 	    } 
 	  @EventHandler
