@@ -47,6 +47,7 @@ public class Stomper extends KitHandler2 {
 			return;
 		}
 		if (fall.contains(player.getName())) {
+			event.setCancelled(true);
 			return;
 		}
 		else if (!KitManager.getPlayer(plr.getName()).hasKit()) {

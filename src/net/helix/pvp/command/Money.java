@@ -51,6 +51,10 @@ public class Money implements CommandExecutor {
                     player.sendMessage("§cA quantia apresentada é inválida.");
                     return true;
                 }
+                if (quantia <= 0) {
+                    player.sendMessage("§cUse números maiores que zero.");
+                    return true;
+                }
                 if (playerData.getPvp().getCoins() < quantia) {
                     player.sendMessage("§cVocê não tem essa quantidade de moedas.");
                     return true;
