@@ -108,7 +108,7 @@ public void usar(PlayerInteractEvent e) {
  	   	sendMessageCooldown(p);
  	   	return;
  	   }
- 	   else if (p.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura")) {
+ 	   else if (p.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura") && EnderMageReal.isSpawn(p.getLocation())) {
 			p.sendMessage("§cNão use o grappler no spawn!");
 			return;
 		}

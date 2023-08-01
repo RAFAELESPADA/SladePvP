@@ -22,6 +22,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import net.helix.pvp.HelixPvP;
 import net.helix.pvp.evento.SoupTypeGUI;
+import net.helix.pvp.kit.provider.EnderMageReal;
 import net.helix.pvp.warp.HelixWarp;
 import net.md_5.bungee.api.ChatColor;
 
@@ -118,7 +119,7 @@ public class EntityCalculateDamageListener implements Listener {
 	    }
 	    @EventHandler
 		  public void onMove2ght(EntityDamageEvent e) {
-	    	if (e.getEntity().getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura")) {
+	    	if (e.getEntity().getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura") && EnderMageReal.isSpawn(e.getEntity().getLocation())) {
 	    		if (e.getEntity().getLocation().getZ() > 50) {
 	    			return;
 	    		}
@@ -135,7 +136,7 @@ public class EntityCalculateDamageListener implements Listener {
 			    if (!HelixWarp.SPAWN.hasPlayer(p.getName())) {
 			    	return;
 			    }
-			    	if (p.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura")) {
+			    	if (p.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura") && EnderMageReal.isSpawn(e.getEntity().getLocation())) {
 			    	e.setCancelled(true);
 			    	}
 			    }

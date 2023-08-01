@@ -41,7 +41,7 @@ public class BloodGun extends KitHandler {
 		       return;
 		      }
 
-	       else if (p.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura")) {
+	       else if (p.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura") && EnderMageReal.isSpawn(p.getLocation())) {
 	        	p.sendMessage("§cNão use o seu poder no spawn!");
 	    		return;
 	       }
