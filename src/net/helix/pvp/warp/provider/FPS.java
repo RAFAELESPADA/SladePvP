@@ -4,6 +4,8 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import net.helix.core.bukkit.item.ItemBuilder;
+import net.helix.pvp.kit.KitManager;
+import net.helix.pvp.kit.KitManager2;
 import net.helix.pvp.warp.WarpHandle;
 
 public class FPS extends WarpHandle {
@@ -16,7 +18,8 @@ public class FPS extends WarpHandle {
 				.nbt("cancel-drop")
 				.toStack()
 		);
-
+		KitManager.getPlayer(player.getName()).removeKit();
+		KitManager2.getPlayer(player.getName()).removekit2();
 		player.getInventory().setHelmet(new ItemBuilder("§6§lPVP", Material.IRON_HELMET).toStack());
 		player.getInventory().setChestplate(new ItemBuilder("§6PVP", Material.IRON_CHESTPLATE).toStack());
 		player.getInventory().setLeggings(new ItemBuilder("§6PVP", Material.IRON_LEGGINGS).toStack());

@@ -69,6 +69,8 @@ public class PlayerDeathListener implements Listener {
 		if (KitManager2.getPlayer(player.getName()).haskit2()) {
 			lastKit2.put(player.getName(), KitManager2.getPlayer(player.getName()).getkit2());
 		}
+    	KitManager.getPlayer(player.getName()).removeKit();
+    	KitManager2.getPlayer(player.getName()).removekit2();
 		if (killer != null) {
 			List<String> lastKills = lastKillsMap.containsKey(killer.getName()) ?
 					lastKillsMap.get(killer.getName()) : new ArrayList<>();

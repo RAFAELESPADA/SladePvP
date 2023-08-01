@@ -4,6 +4,8 @@ import net.helix.core.bukkit.HelixBukkit;
 import net.helix.core.bukkit.account.HelixPlayer;
 import net.helix.core.bukkit.item.ItemBuilder;import net.helix.core.util.HelixCooldown;
 import net.helix.pvp.HelixPvP;
+import net.helix.pvp.kit.KitManager;
+import net.helix.pvp.kit.KitManager2;
 import net.helix.pvp.warp.HelixWarp;
 import net.helix.pvp.warp.WarpDuoBattleHandle;
 import net.helix.pvp.warp.WarpDuoBattleHandle2;
@@ -55,6 +57,8 @@ public class Sumo extends WarpDuoBattleHandle2 {
     @Override
     public void execute(Player player) {
         super.execute(player);
+		KitManager.getPlayer(player.getName()).removeKit();
+		KitManager2.getPlayer(player.getName()).removekit2();
         setItems(player);
     }
 

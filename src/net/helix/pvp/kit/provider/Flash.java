@@ -52,7 +52,7 @@ public void onInteract(PlayerInteractEvent event) {
 			if (!inCooldown(event.getPlayer())) {
 				Block target = p.getTargetBlock((HashSet<Byte>) null, 200);
 				if (target.getType() != Material.AIR && target.getType() != Material.GLASS) {
-					if (target.getRelative(BlockFace.UP).getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura")) {
+					if (target.getRelative(BlockFace.UP).getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura") - 8) {
 						p.sendMessage("§cMire seu flash mais em baixo.");
 						p.sendMessage("§cEle vai atingir a altura do spawn.");
 						return;
