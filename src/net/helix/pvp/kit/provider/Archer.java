@@ -77,11 +77,6 @@ import org.bukkit.scheduler.BukkitRunnable;
 						.toStack()
 		);
 	}
-<<<<<<< HEAD
-
-=======
->>>>>>> fb365a737b2538d0b6520de978ee689239bdbdd6
-	@EventHandler
     public void bowUseEvent(EntityShootBowEvent event) {
         if (event.getEntity() instanceof Player) {
       
@@ -108,10 +103,6 @@ import org.bukkit.scheduler.BukkitRunnable;
 		     , 80);
         }
 }
-	
-<<<<<<< HEAD
+
 }
 
-=======
-}
->>>>>>> fb365a737b2538d0b6520de978ee689239bdbdd6
