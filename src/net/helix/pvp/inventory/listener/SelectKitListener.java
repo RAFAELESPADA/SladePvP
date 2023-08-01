@@ -357,6 +357,12 @@ public class SelectKitListener implements Listener {
 		if (!event.getView().getTitle().equals(TodosOsKits.getInventoryName())) {
 			return;
 		}
+		if (event.getCurrentItem() == null) {
+			return;
+		}
+		if (!ItemBuilder.has(event.getCurrentItem(), "visao")) {
+			return;
+		}
 		event.setCancelled(true);
 		player.closeInventory();
 		player.sendMessage("§b§lKIT §f" + event.getCurrentItem().getItemMeta().getDisplayName());

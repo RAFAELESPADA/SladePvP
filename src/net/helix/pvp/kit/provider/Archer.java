@@ -77,6 +77,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 						.toStack()
 		);
 	}
+
 	@EventHandler
     public void bowUseEvent(EntityShootBowEvent event) {
         if (event.getEntity() instanceof Player) {
@@ -106,3 +107,4 @@ import org.bukkit.scheduler.BukkitRunnable;
 }
 	
 }
+
