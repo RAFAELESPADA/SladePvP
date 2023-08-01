@@ -59,7 +59,7 @@ ArrayList<Player> subiu = new ArrayList();
 			if (!KitManager.getPlayer(p2.getName()).hasKit()) {
 				return;
 			}
-			  else if (p2.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura")) {
+			  else if (p2.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura")  && EnderMageReal.isSpawn(p2.getLocation())) {
 					return;
 				 }
 			p2.damage(10);
@@ -132,7 +132,7 @@ ArrayList<Player> subiu = new ArrayList();
 /*  91 */         sendMessageCooldown(p);
 /*  92 */         return;
 /*     */       }
-else if (p.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura") && KitManager.getPlayer(e.getPlayer().getName()).hasKit(this)) {
+else if (p.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura") && KitManager.getPlayer(e.getPlayer().getName()).hasKit(this)  && EnderMageReal.isSpawn(p.getLocation())) {
 	p.sendMessage("§cNão use o seu poder no spawn!");
 	return;
  }

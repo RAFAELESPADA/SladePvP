@@ -25,6 +25,7 @@ import net.helix.pvp.HelixPvP;
 import net.helix.pvp.kit.Habilidade;
 import net.helix.pvp.kit.KitHandler2;
 import net.helix.pvp.kit.KitManager2;
+import net.helix.pvp.kit.provider.EnderMageReal;
 import net.md_5.bungee.api.ChatColor;
 
 public class Meteor extends KitHandler2 {
@@ -59,7 +60,7 @@ ArrayList<Player> subiu = new ArrayList();
 			if (!KitManager2.getPlayer(p2.getName()).haskit2()) {
 				return;
 			}
-			  else if (p2.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura")) {
+			 else if (p2.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura")  && EnderMageReal.isSpawn(p2.getLocation())) {
 					return;
 				 }
 			p2.damage(10);
@@ -132,7 +133,7 @@ ArrayList<Player> subiu = new ArrayList();
 /*  91 */         sendMessageCooldown(p);
 /*  92 */         return;
 /*     */       }
-else if (p.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura") && KitManager2.getPlayer(p.getName()).haskit2()) {
+else if (p.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura") && KitManager2.getPlayer(p.getName()).haskit2()  && EnderMageReal.isSpawn(p.getLocation())) {
 	p.sendMessage("§cNão use o seu poder no spawn!");
 	return;
  }

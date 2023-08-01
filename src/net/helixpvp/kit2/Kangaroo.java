@@ -23,6 +23,7 @@ import net.helix.core.bukkit.item.ItemBuilder;
 import net.helix.pvp.HelixPvP;
 import net.helix.pvp.kit.KitHandler2;
 import net.helix.pvp.kit.KitManager2;
+import net.helix.pvp.kit.provider.EnderMageReal;
 import net.helix.pvp.kit.provider.GladiatorListener;
 
 public class Kangaroo extends KitHandler2 {
@@ -56,7 +57,7 @@ public class Kangaroo extends KitHandler2 {
 				|| !event.hasItem() || !ItemBuilder.has(event.getItem(), "kit-handler", "kangaroo")) {
 			return;
 		}
-		else if (p.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura")) {
+		else if (p.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura") && EnderMageReal.isSpawn(p.getLocation())) {
 			p.sendMessage("§cNão use o kangaroo no spawn!");
 			event.setCancelled(true);
 			return;

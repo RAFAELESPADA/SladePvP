@@ -44,7 +44,7 @@ public class Monk extends KitHandler {
 			player.sendMessage(ChatColor.RED + "Você não pode usar o kit em um jogador no spawn.");
         	return;
         }
-		else if (event.getPlayer().getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura") && KitManager.getPlayer(event.getPlayer().getName()).hasKit(this)) {
+		else if (event.getPlayer().getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura") && KitManager.getPlayer(event.getPlayer().getName()).hasKit(this)  && EnderMageReal.isSpawn(player.getLocation())) {
         	event.getPlayer().sendMessage("§cNão use o monk no spawn!");
         	event.setCancelled(true);
 			return;

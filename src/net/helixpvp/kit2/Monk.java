@@ -17,6 +17,7 @@ import net.helix.pvp.HelixPvP;
 import net.helix.pvp.kit.KitHandler2;
 import net.helix.pvp.kit.KitManager;
 import net.helix.pvp.kit.KitManager2;
+import net.helix.pvp.kit.provider.EnderMageReal;
 
 public class Monk extends KitHandler2 {
 	
@@ -42,7 +43,7 @@ public class Monk extends KitHandler2 {
 			sendMessageCooldown(player);
 			return;
 		}
-		if (!KitManager.getPlayer(jogadorClicado.getName()).hasKit() && KitManager2.getPlayer(player.getName()).haskit2(this)) {
+		if (!KitManager.getPlayer(jogadorClicado.getName()).hasKit() && KitManager2.getPlayer(player.getName()).haskit2(this)   && EnderMageReal.isSpawn(player.getLocation())) {
 			player.sendMessage(ChatColor.RED + "Você não pode usar o kit em um jogador no spawn.");
         	return;
         }
