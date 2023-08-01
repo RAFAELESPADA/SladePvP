@@ -471,7 +471,7 @@ public class SelectKitListener implements Listener {
 			
 	}
 	
-	 private static final List<String> motds = Arrays.asList("§fSistemas inovadores", "§fVeja as atualizações no §9Discord§f!" , "§4§lNOVO: §b§lEVENTO EUFORIA§f!" , "§a§lATUALIZAÇÕES MASSIVAS!", "§fCheque o novo kit §6Meteor§f!", "§fNovo sistema de §6ranks §fe §6eventos§f!");
+	 private static final List<String> motds = Arrays.asList("§fSistemas inovadores", "§fVeja as atualizações no §9Discord§f!" , "§4§lNOVO: §b§lEVENTO EUFORIA§f!" , "§a§lATUALIZAÇÕES MASSIVAS!"  , "§e§lBUGS CORRIGIDOS!", "§fCheque o novo kit §6Meteor§f!", "§fNovo sistema de §6ranks §fe §6eventos§f!");
 
 	    private static String getMotdMessage(String motd) {
 	        float y = (float) motd.length();
@@ -494,9 +494,9 @@ public class SelectKitListener implements Listener {
 	    }
 	    public static String getMotd() {
 	        if (Bukkit.getServer().hasWhitelist()) {
-	            return getMotdMessage(getName() + "§f » §7[1.8 - 1.20]") + "\n" + getMotdMessage("§cO servidor encontra-se em manutenção.");
+	            return getMotdMessage(getName() + "§f » §7[1.7 - 1.8]") + "\n" + getMotdMessage("§cO servidor encontra-se em manutenção.");
 	        }
-	        return getMotdMessage(getName() + "§f » §7[1.8 - 1.20]") + "\n" + getMotdMessage(motds.get(new Random().nextInt(motds.size())));
+	        return getMotdMessage(getName() + "§f » §7[1.7 - 1.8]") + "\n" + getMotdMessage(motds.get(new Random().nextInt(motds.size())));
 	    }
 	@EventHandler
 	public void onInvClick(ServerListPingEvent event) {

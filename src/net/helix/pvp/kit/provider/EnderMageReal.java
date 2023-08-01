@@ -71,40 +71,29 @@ public void onKitEndermage(Location portal, Player p1, Player p2) {
 		return;
 	 }
     e.setCancelled(true);
-    mage.setItemInHand(new ItemStack(Material.AIR));
-    mage.updateInventory();
     final Block b = e.getClickedBlock();
     final Location bLoc = b.getLocation();
     final Material material = b.getType();
     final BlockState bs = b.getState();
-    b.setType(Material.ENDER_STONE);
     (new BukkitRunnable() {
         int time = 5;
         
         public void run() {
           this.time--;
           for (Player target : Bukkit.getOnlinePlayers()) {
-            if (target != mage && !target.isDead() && !target.getInventory().contains(Material.PORTAL) && 
-              isEnderable(bLoc, target.getLocation())) {
-              cancel();
-              b.setType(material);
-              b.setData(bs.getBlock().getData());
-              b.setTypeId(bs.getTypeId());
+            if (target != mage && !target.isDead()) {
+              if (!isEnderable(bLoc, target.getLocation())) {
+            	  mage.sendMessage("§cUse o endermage em torres ou lugares altos!");
+            	   cancel();
+            	  return;
+              }
               onKitEndermage(bLoc, mage, target);
-              if (!mage.getInventory().contains(Material.ENDER_STONE) && KitManager.getPlayer(mage.getName()).hasKit())
-                mage.getInventory().addItem(new ItemStack[] { new ItemStack( Material.ENDER_STONE) }); 
-              return;
-            } 
-          } 
-          if (this.time == 0) {
-            cancel();
-            b.setType(material);
-            b.setData(bs.getBlock().getData());
-            b.setTypeId(bs.getTypeId());
-            if (!mage.getInventory().contains(Material.ENDER_STONE) && KitManager.getPlayer(mage.getName()).hasKit())
-                mage.getInventory().addItem(new ItemStack[] { new ItemStack( Material.ENDER_STONE) }); 
-          } 
+              cancel();
+            }
+            
+          }
         }
       }).runTaskTimer(HelixPvP.getInstance(), 0L, 20L);
+  
   }
 }
