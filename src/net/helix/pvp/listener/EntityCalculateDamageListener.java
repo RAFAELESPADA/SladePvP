@@ -116,7 +116,16 @@ public class EntityCalculateDamageListener implements Listener {
 	    public static boolean isCritical(final LivingEntity e) {
 	        return !e.isOnGround() && e.getFallDistance() > 0.0;
 	    }
-	    
+	    @EventHandler
+		  public void onMove2ght(EntityDamageEvent e) {
+	    	if (e.getEntity().getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura")) {
+	    		if (e.getEntity().getLocation().getZ() > 50) {
+	    			return;
+	    		}
+	    		e.setCancelled(true);
+	    	
+	    	}
+		    } 
 	    @EventHandler
 		  public void onMove2t(EntityDamageEvent e) {
 		    if (!(e.getEntity() instanceof Player)) {
