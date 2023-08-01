@@ -28,6 +28,7 @@ import net.helix.pvp.kit.HelixKit2;
 import net.helix.pvp.kit.KitHandler2;
 import net.helix.pvp.kit.KitManager;
 import net.helix.pvp.kit.KitManager2;
+import net.helix.pvp.kit.provider.EnderMageReal;
 import net.md_5.bungee.api.ChatColor;
 
 
@@ -81,7 +82,7 @@ public final class GladiatorListener extends KitHandler2
                 if (toGlad.getGameMode() == GameMode.CREATIVE) {
                     return;
                 }
-                if (bp.getLocation().getY() > (HelixPvP.getInstance().getConfig().getInt("GladAltura"))) {
+                if (bp.getLocation().getY() > (HelixPvP.getInstance().getConfig().getInt("GladAltura")) && EnderMageReal.isSpawn(bp.getLocation())) {
                     bp.sendMessage(String.valueOf(prefix) + " §cVocê não pode puxar esse jogador no Spawn!");
                     return;
                 }

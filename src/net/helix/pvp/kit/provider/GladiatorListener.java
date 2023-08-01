@@ -81,7 +81,7 @@ public final class GladiatorListener extends KitHandler
                 if (toGlad.getGameMode() == GameMode.CREATIVE) {
                     return;
                 }
-                if (bp.getLocation().getY() > (HelixPvP.getInstance().getConfig().getInt("GladAltura"))) {
+                if (bp.getLocation().getY() > (HelixPvP.getInstance().getConfig().getInt("GladAltura")) && EnderMageReal.isSpawn(bp.getLocation())) {
                     bp.sendMessage(String.valueOf(prefix) + " §cVocê não pode puxar esse jogador no Spawn!");
                     return;
                 }

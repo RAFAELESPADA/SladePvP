@@ -46,7 +46,7 @@ public class EnderMage extends KitHandler {
 	    		/*     */         
 	    		/*  64 */        Kangaroo.darEfeito(p, org.bukkit.potion.PotionEffectType.SPEED, 10, 1);
 	    		/*     */       }
-	      else if (p.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura")) {
+	      else if (p.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura") && EnderMageReal.isSpawn(p.getLocation())) {
 				p.sendMessage("§cNão use o vacuum no spawn!");
 				return;
 			 }

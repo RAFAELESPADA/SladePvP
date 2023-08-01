@@ -170,6 +170,7 @@ public class PlayerCombatLogListener implements Listener {
 		if  (HelixCooldown.inCooldown(player.getName(), "combat")) {
 			HelixCooldown.delete(player.getName(), "combat");
 			player.setHealth(0);
+			HelixWarp.SPAWN.send(player);
 			Bukkit.broadcastMessage(ChatColor.RED + player.getName() + " deslogou em combate.");
 		}
 	

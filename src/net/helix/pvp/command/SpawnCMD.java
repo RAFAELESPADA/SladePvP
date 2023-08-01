@@ -21,6 +21,7 @@ import net.helix.core.util.HelixCooldown2;
 import net.helix.pvp.HelixPvP;
 import net.helix.pvp.kit.Habilidade;
 import net.helix.pvp.kit.KitManager;
+import net.helix.pvp.kit.provider.EnderMageReal;
 import net.helix.pvp.kit.provider.GladiatorListener;
 import net.helix.pvp.listener.PlayerJoinListener;
 import net.helix.pvp.warp.HelixWarp;
@@ -48,7 +49,7 @@ public class SpawnCMD extends WarpDuoBattleHandle implements Listener, CommandEx
 			p.sendMessage(ChatColor.RED + "Você já está no spawn.");
 			return true;
 		}
-		else if (player.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura") && PlayerJoinListener.fall.contains(player)) {
+		else if (player.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura") && PlayerJoinListener.fall.contains(player)  && EnderMageReal.isSpawn(p.getLocation())) {
 	      	player.sendMessage("§cVocê já está no spawn!");
 	  		return true;
 	  	 }

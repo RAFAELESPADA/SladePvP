@@ -33,6 +33,7 @@ import net.helix.pvp.HelixPvP;
 import net.helix.pvp.kit.KitHandler2;
 import net.helix.pvp.kit.KitManager;
 import net.helix.pvp.kit.KitManager2;
+import net.helix.pvp.kit.provider.EnderMageReal;
 import net.minecraft.server.v1_8_R3.EntityFishingHook;
 import net.minecraft.server.v1_8_R3.EntityHuman;
 import net.minecraft.server.v1_8_R3.EntitySnowball;
@@ -110,7 +111,7 @@ public void usar(PlayerInteractEvent e) {
  	   	sendMessageCooldown(p);
  	   	return;
  	   }
- 	   else if (p.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura")) {
+ 	   else if (p.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura") && EnderMageReal.isSpawn(p.getLocation())) {
 			p.sendMessage("§cNão use o grappler no spawn!");
 			return;
 		} 

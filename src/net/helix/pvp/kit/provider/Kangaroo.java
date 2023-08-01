@@ -56,7 +56,7 @@ public class Kangaroo extends KitHandler {
 				|| !event.hasItem() || !ItemBuilder.has(event.getItem(), "kit-handler", "kangaroo")) {
 			return;
 		}
-		else if (p.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura")) {
+		else if (p.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura") && EnderMageReal.isSpawn(p.getLocation())) {
 			p.sendMessage("§cNão use o kangaroo no spawn!");
 			event.setCancelled(true);
 			return;
