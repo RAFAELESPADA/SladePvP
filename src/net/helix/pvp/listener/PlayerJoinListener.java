@@ -27,10 +27,8 @@ import net.helix.core.bukkit.item.ItemBuilder;
 import net.helix.pvp.HelixPvP;
 import net.helix.pvp.command.VanishUtil;
 import net.helix.pvp.evento.EventoUtils;
-import net.helix.pvp.evento.SoupTypeGUI;
 import net.helix.pvp.kit.KitManager;
 import net.helix.pvp.warp.HelixWarp;
-import net.helix.pvp.warp.provider.Spawn;
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.model.group.Group;
 
@@ -83,22 +81,7 @@ public class PlayerJoinListener implements Listener {
 	    					}
 	    }
 	    } 
-	  @EventHandler
-	  public void onMove2t(EntityDamageEvent e) {
-	    if (!(e.getEntity() instanceof Player)) {
-return;
-	    }
-	    Player p = (Player)e.getEntity();
-		    if (HelixWarp.SPAWN.hasPlayer(p.getName())) {
-		    	if (!fall.contains(p)) {
-		    		return;
-		    	}
-		    	if (p.getLocation().getY() < HelixPvP.getInstance().getConfig().getInt("SpawnAltura")) {
-		    		return;
-		    	}
-		    	e.setCancelled(true);
-		    }
-		    }
+		    
 	
 
 	   

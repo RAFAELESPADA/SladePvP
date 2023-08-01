@@ -22,6 +22,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import net.helix.pvp.HelixPvP;
 import net.helix.pvp.evento.SoupTypeGUI;
+import net.helix.pvp.warp.HelixWarp;
 import net.md_5.bungee.api.ChatColor;
 
 public class EntityCalculateDamageListener implements Listener {
@@ -115,8 +116,29 @@ public class EntityCalculateDamageListener implements Listener {
 	    public static boolean isCritical(final LivingEntity e) {
 	        return !e.isOnGround() && e.getFallDistance() > 0.0;
 	    }
-	    
-
+	    @EventHandler
+		  public void onMove2ght(EntityDamageEvent e) {
+	    	if (e.getEntity().getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura")) {
+	    		if (e.getEntity().getLocation().getZ() > 50) {
+	    			return;
+	    		}
+	    		e.setCancelled(true);
+	    	
+	    	}
+		    } 
+	    @EventHandler
+		  public void onMove2t(EntityDamageEvent e) {
+		    if (!(e.getEntity() instanceof Player)) {
+	return;
+		    }
+		    Player p = (Player)e.getEntity();
+			    if (!HelixWarp.SPAWN.hasPlayer(p.getName())) {
+			    	return;
+			    }
+			    	if (p.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura")) {
+			    	e.setCancelled(true);
+			    	}
+			    }
 	    
 	
 
