@@ -1,5 +1,7 @@
 package net.helix.pvp.kit;
 
+
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,6 +23,9 @@ public class PlayerPvP {
 				&& (Bukkit.getPlayer(name).hasPermission("kombo.kit." + kit.toString().toLowerCase())
 						|| Bukkit.getPlayer(name).hasPermission("kombo.kit.*"))
 		).collect(Collectors.toList());
+	}
+	public List<HelixKit> getAvailableKits2() {
+		return HelixKit.getKits();
 	}
 	
 	public void removeKit() {

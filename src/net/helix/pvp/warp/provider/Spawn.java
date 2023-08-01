@@ -27,6 +27,7 @@ public class Spawn extends WarpHandle {
     HelixTitle.clearTitle(player);
     player.getInventory().clear();
     Jump.recebeu.remove(player.getName());
+    Jump.caiu.remove(player.getName());
     player.getInventory().setArmorContents(null);
     player.setGameMode(GameMode.ADVENTURE);
     player.setMaxHealth(20.0D);

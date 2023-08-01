@@ -44,8 +44,10 @@ import net.helix.core.bukkit.HelixBukkit;
 import net.helix.core.bukkit.warp.HelixWarp;
 import net.helix.pvp.command.ActionBar;
 import net.helix.pvp.command.AntiSpam;
+import net.helix.pvp.command.Aplicar;
 import net.helix.pvp.command.Arena;
 import net.helix.pvp.command.AutoSoup;
+import net.helix.pvp.command.AvisoT;
 import net.helix.pvp.command.Crash;
 import net.helix.pvp.command.DarKit;
 import net.helix.pvp.command.DesligarPlugin;
@@ -62,6 +64,7 @@ import net.helix.pvp.command.KITPVP;
 import net.helix.pvp.command.LavaIniciar;
 import net.helix.pvp.command.MacroTest;
 import net.helix.pvp.command.Medal;
+import net.helix.pvp.command.Money;
 import net.helix.pvp.command.NoBreakEvent;
 import net.helix.pvp.command.PvP;
 import net.helix.pvp.command.RankCMD;
@@ -84,6 +87,7 @@ import net.helix.pvp.command.TPALL;
 import net.helix.pvp.command.TagCommand;
 import net.helix.pvp.command.Vanish;
 import net.helix.pvp.command.VerRank;
+import net.helix.pvp.command.Warp;
 import net.helix.pvp.command.Youtuber;
 import net.helix.pvp.command.b;
 import net.helix.pvp.evento.EventoComando;
@@ -119,6 +123,7 @@ import net.helix.pvp.listener.PlayerJoinListener;
 import net.helix.pvp.listener.PlayerKillstreakListener;
 import net.helix.pvp.listener.PlayerQuitListener;
 import net.helix.pvp.listener.PotePlaca;
+import net.helix.pvp.listener.RecraftGeral;
 import net.helix.pvp.listener.ServerEssentialsListener;
 import net.helix.pvp.listener.ShowPlayerInfoListener;
 import net.helix.pvp.listener.SignListener;
@@ -176,7 +181,7 @@ new BukkitRunnable() {
 				if (euforia) {
 					for (Player player : Bukkit.getOnlinePlayers()) {
 						if (net.helix.pvp.warp.HelixWarp.SPAWN.hasPlayer(player.getName())) {
-					player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 120*20, 1));
+					player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 120*20, 0));
 						}
 						else {
 							 player.getActivePotionEffects().forEach(potion -> player.removePotionEffect(potion.getType()));	
@@ -225,12 +230,12 @@ new BukkitRunnable() {
 				
 					Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp group default permission settemp kombo.kit.* true 2m");
 					Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp group default permission settemp kombo.kit2.* true 2m");
-					player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 120*20, 1));
+					player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 120*20, 0));
 					player.playSound(player.getLocation(), Sound.ANVIL_BREAK, 1F, 10F);
 					euforia = true;
 				    Bukkit.getWorld("spawn").setTime(18000);
 					Bukkit.broadcastMessage("§cO evento §4§lEUFORIA §cacabou de começar");
-					Bukkit.broadcastMessage("§cPor dois minutos estará de noite e players teram força 2");
+					Bukkit.broadcastMessage("§cPor dois minutos estará de noite e players teram força 1");
 					Bukkit.broadcastMessage("§cTodos os kits primários e secundários liberados durante o evento");
 					  Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnable() {
 							public void run() {
@@ -441,6 +446,11 @@ new BukkitRunnable() {
 		}
 		getCommand("site").setExecutor(new Site());
 		getCommand("loja").setExecutor(new Site());
+		getCommand("money").setExecutor(new Money());
+		getCommand("dinheiro").setExecutor(new Money());
+		getCommand("warp").setExecutor(new Warp());
+		getCommand("aplicar").setExecutor(new Aplicar());
+		getCommand("sendtitle").setExecutor(new AvisoT());
 		getCommand("evento").setExecutor(new EventoComando());
 		getCommand("evento").setTabCompleter(new EventoTabComplete());
 		if (this.getConfig().getBoolean("ReportAtivado")) {
@@ -454,6 +464,7 @@ new BukkitRunnable() {
 		pm.registerEvents(new Boxer(), this);
 		pm.registerEvents(new TimeLord(), this);
 		pm.registerEvents(new Flash(), this);
+		pm.registerEvents(new RecraftGeral(), this);
 		pm.registerEvents(new Jumper(), this);
 		pm.registerEvents(new EventoListeners(), this);
 		pm.registerEvents(new Grappler(), this);

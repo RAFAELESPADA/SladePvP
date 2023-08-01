@@ -18,7 +18,12 @@ commands:
    regras:
    req:
    tag:
+   money:
+   dinheiro:
+   aplicar:
+   warp:
    set1v1:
+   sendtitle:
    givecoins:
    site:
    autosoup:

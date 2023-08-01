@@ -12,6 +12,7 @@ import net.helix.core.util.HelixCooldown;
 import net.helix.pvp.HelixPvP;
 import net.helix.pvp.kit.KitHandler;
 import net.helix.pvp.kit.KitManager;
+import net.helix.pvp.kit.KitManager2;
 
 /*     */ import org.bukkit.Bukkit;
 /*     */ import org.bukkit.Color;
@@ -29,6 +30,7 @@ import org.bukkit.command.CommandSender;
 /*     */ import org.bukkit.event.EventHandler;
 /*     */ import org.bukkit.event.Listener;
 /*     */ import org.bukkit.event.block.Action;
+import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
 /*     */ import org.bukkit.event.player.PlayerDropItemEvent;
@@ -40,6 +42,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 /*     */ import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.scheduler.BukkitRunnable;
 /*     */ import org.bukkit.scheduler.BukkitScheduler;
 /*     */ import org.bukkit.util.Vector;
 
@@ -74,4 +77,32 @@ import org.bukkit.potion.PotionEffectType;
 						.toStack()
 		);
 	}
+	@EventHandler
+    public void bowUseEvent(EntityShootBowEvent event) {
+        if (event.getEntity() instanceof Player) {
+      
+            Player player = (Player) event.getEntity();
+            if (!KitManager.getPlayer(event.getEntity().getName()).hasKit(this)) {
+            	return;
+            }
+          if (HelixCooldown.has(player.getName(), "archer")) {
+        	  sendMessageCooldown(player);
+        	  event.setCancelled(true);
+        	  return;
+          }
+          if (!hasCooldown(player)) {
+        	
+                addCooldown(player, 4);
+            }
+          HelixCooldown.create(player.getName(), "archer", TimeUnit.SECONDS, 4);
+          Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance() , new BukkitRunnable() {
+		         @Override
+		         public void run() {
+		        	HelixCooldown.delete(player.getName(), "archer");
+		             }
+		         }
+		     , 80);
+        }
+}
+	
 }

@@ -27,7 +27,7 @@ public class ReportToggle implements CommandExecutor {
 		}
 		
 		if (HelixCooldown.inCooldown(sender.getName(), "reporttoggle"))  {
-			sender.sendMessage("§cAguarde " + HelixCooldown.getTime(sender.getName(), "rt-cmd") + "s para executar este comando novamente.");
+			sender.sendMessage("Â§cAguarde " + HelixCooldown.getTime(sender.getName(), "rt-cmd") + "s para executar este comando novamente.");
 			return true;
 		}
 		
@@ -41,7 +41,7 @@ public class ReportToggle implements CommandExecutor {
 		}
 		
 		HelixCooldown.create(sender.getName(), "rt-cmd", TimeUnit.SECONDS, 5);
-		player.sendMessage("§bNotificação de Reports " + (enable ? "§aOFF" : "§cON"));
+		player.sendMessage("Â§bNotificaÃ§Ã£o de Reports " + (enable ? "Â§aOFF" : "Â§cON"));
 		return true;
 	}
 }

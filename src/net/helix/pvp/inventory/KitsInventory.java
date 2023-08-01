@@ -296,6 +296,9 @@ public class KitsInventory {
 		inventory.setItem(53, new ItemBuilder("§aPróximo", Material.ARROW).nbt("prox")
 				.toStack()
 		);
+		inventory.setItem(4, new ItemBuilder("§aVisualizar todos os kits", Material.CHEST).nbt("visuali")
+				.toStack()
+		);
 		ItemStack i =  new ItemStack(KitManager.getPlayer(player.getName()).getKit().getIcon());
 		ItemMeta i2 = i.getItemMeta();
 	    ArrayList<String> lore = new ArrayList<String>();

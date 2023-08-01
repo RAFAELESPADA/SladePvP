@@ -26,21 +26,25 @@ public class BloodGun extends KitHandler {
 	    if (!KitManager.getPlayer(event.getPlayer().getName()).hasKit(this)) {
 	    	return;
 	    }
-	    if (event.getPlayer().getItemInHand().getType() == Material.WOOD_HOE) {
+	    if (!(event.getPlayer().getItemInHand().getType() == Material.WOOD_HOE)) {
+	    	return;
+	    }
+	    			
 	      if (event.getAction() == Action.RIGHT_CLICK_BLOCK || 
 	        event.getAction() == Action.RIGHT_CLICK_AIR || 
 	        event.getAction() == Action.LEFT_CLICK_AIR || 
-	        event.getAction() == Action.LEFT_CLICK_BLOCK)
+	        event.getAction() == Action.LEFT_CLICK_BLOCK) {
 	        event.setCancelled(true); 
-	    }
-	      if (inCooldown(p)) {
-	       sendMessageCooldown(p);
 	      }
+	      if (inCooldown(p)) {
+		       sendMessageCooldown(p);
+		       return;
+		      }
+
 	       else if (p.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura")) {
 	        	p.sendMessage("§cNão use o seu poder no spawn!");
 	    		return;
-	    	 }
-	      else {
+	       }
 	        Vector velo1 = p.getLocation().getDirection().normalize().multiply(10);
 	        Fireball boladenve = (Fireball)p.launchProjectile(Fireball.class);
 	        boladenve.setIsIncendiary(true);
@@ -61,7 +65,7 @@ public class BloodGun extends KitHandler {
 	                }
 	              },  200L);
 	      } 
-	}
+	
 	        @EventHandler
 	  	  public void dano(EntityDamageByEntityEvent e)
 	  	  {

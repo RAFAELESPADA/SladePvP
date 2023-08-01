@@ -20,15 +20,21 @@ public class AntiProxyListener implements Listener {
 	 public static ArrayList<Player> ttt2 = new ArrayList();
   @EventHandler
   public void onAsyncPlayerPreLogin(PlayerLoginEvent event) {
+	  int count = (int)Bukkit.getOnlinePlayers().stream().filter(p -> p.getAddress().equals(event.getPlayer().getAddress())).count();
 	  if (event.getPlayer().hasPermission("vpn.bypass")) {
 		  Bukkit.getConsoleSender().sendMessage("[ANTIVPN] " + event.getPlayer().getName() + " tem permissão para dar bypass no antivpn");
 		  Bukkit.getConsoleSender().sendMessage("[ANTIVPN] " + "Não verificando...");
 		  return;
 	  }
-	if (ttt.contains(event.getPlayer())) {
+	  else if (count > 2) {
+		  event.disallow(PlayerLoginEvent.Result.KICK_OTHER, "\n§cVocê só pode ter duas contas logadas ao mesmo tempo");
+		  return;
+	  }
+	  else if (ttt.contains(event.getPlayer())) {
 		return;
 	}
-	if (ttt2.contains(event.getPlayer())) {
+	  
+	else if (ttt2.contains(event.getPlayer())) {
 		 event.disallow(PlayerLoginEvent.Result.KICK_OTHER, "\n§4VPN ou Proxy Detectada!\n§aDesative para se conectar ao Servidor!\n§ePeça ajuda em nosso Discord: §b" + HelixPvP.getInstance().getConfig().getString("DiscordLink"));
 		return;
 	}
