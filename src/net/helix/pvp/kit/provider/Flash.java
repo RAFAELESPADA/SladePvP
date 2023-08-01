@@ -14,6 +14,7 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 
 import net.helix.core.bukkit.item.ItemBuilder;
+import net.helix.pvp.HelixPvP;
 import net.helix.pvp.kit.HelixKit;
 import net.helix.pvp.kit.KitHandler;
 import net.helix.pvp.kit.KitManager;
@@ -34,7 +35,7 @@ public class Flash extends KitHandler {
 public void onInteract(PlayerInteractEvent event) {
 	Player p = event.getPlayer();
 	if (p.getNearbyEntities(5, 5, 5).size() > 0 && p.getNearbyEntities(5, 5, 5) instanceof Player) {
-		p.sendMessage("§eDont use the flash here!");
+		p.sendMessage("§eNão use o flash aqui!");
 		return;
 	}
 	 ItemStack sopa = new ItemStack(Material.REDSTONE_TORCH_ON);
@@ -51,6 +52,11 @@ public void onInteract(PlayerInteractEvent event) {
 			if (!inCooldown(event.getPlayer())) {
 				Block target = p.getTargetBlock((HashSet<Byte>) null, 200);
 				if (target.getType() != Material.AIR && target.getType() != Material.GLASS) {
+					if (target.getRelative(BlockFace.UP).getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura")) {
+						p.sendMessage("§cMire seu flash mais em baixo.");
+						p.sendMessage("§cEle vai atingir a altura do spawn.");
+						return;
+					}
 					addCooldown(p, 35);
 					p.getWorld().strikeLightningEffect(p.getLocation());
 					p.teleport(target.getRelative(BlockFace.UP).getLocation());

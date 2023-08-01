@@ -77,11 +77,10 @@ import org.bukkit.scheduler.BukkitRunnable;
 						.toStack()
 		);
 	}
-<<<<<<< HEAD
+
 
 	@EventHandler
-=======
->>>>>>> 4dd0955318626236ae45c0e08e1c6e0ab6626e26
+
     public void bowUseEvent(EntityShootBowEvent event) {
         if (event.getEntity() instanceof Player) {
       
@@ -108,11 +107,8 @@ import org.bukkit.scheduler.BukkitRunnable;
 		     , 80);
         }
 }
-<<<<<<< HEAD
 }	
 
-=======
 
-}
 
->>>>>>> 4dd0955318626236ae45c0e08e1c6e0ab6626e26
+

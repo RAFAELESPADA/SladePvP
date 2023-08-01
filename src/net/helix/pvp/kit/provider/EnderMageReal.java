@@ -63,6 +63,10 @@ public void onKitEndermage(Location portal, Player p1, Player p2) {
     if (mage.getItemInHand() == null) {
       return; 
     }
+    if (hasCooldown(mage)) {
+    	sendMessageCooldown(mage);
+    	return;
+    }
     if (mage.getItemInHand().getType() != Material.ENDER_STONE) {
       return; 
     }
@@ -75,25 +79,19 @@ public void onKitEndermage(Location portal, Player p1, Player p2) {
     final Location bLoc = b.getLocation();
     final Material material = b.getType();
     final BlockState bs = b.getState();
-    (new BukkitRunnable() {
-        int time = 5;
-        
-        public void run() {
-          this.time--;
           for (Player target : Bukkit.getOnlinePlayers()) {
             if (target != mage && !target.isDead()) {
               if (!isEnderable(bLoc, target.getLocation())) {
             	  mage.sendMessage("§cUse o endermage em torres ou lugares altos!");
-            	   cancel();
+            	
             	  return;
               }
               onKitEndermage(bLoc, mage, target);
-              cancel();
+              addCooldown(mage , 40);
             }
             
           }
-        }
-      }).runTaskTimer(HelixPvP.getInstance(), 0L, 20L);
+       
   
   }
 }

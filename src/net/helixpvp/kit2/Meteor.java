@@ -56,7 +56,7 @@ ArrayList<Player> subiu = new ArrayList();
 			return;
 		}
 			Player p2 = (Player)ent;
-			if (!KitManager2.getPlayer(p.getName()).haskit2()) {
+			if (!KitManager2.getPlayer(p2.getName()).haskit2()) {
 				return;
 			}
 			  else if (p2.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura")) {

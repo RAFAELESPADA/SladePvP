@@ -532,7 +532,7 @@ player.getInventory().setItem(3 , new ItemStack(Material.MUSHROOM_SOUP));
 		if (!KitManager.getPlayer(player.getName()).hasKit(HelixKit.ARCHER) && !KitManager2.getPlayer(player.getName()).haskit2(HelixKit2.ARCHER)) {
 		player.getInventory().setItem(10 , new ItemStack(Material.MUSHROOM_SOUP));
 		}
-		if (KitManager.getPlayer(player.getName()).hasKit( HelixKit.PVP)) {
+		if (KitManager.getPlayer(player.getName()).hasKit( HelixKit.PVP) || KitManager2.getPlayer(player.getName()).haskit2( HelixKit2.PVP)) {
 			player.getInventory().setItem(0, new ItemBuilder("§fEspada", Material.STONE_SWORD)
 					.addEnchant(Enchantment.DAMAGE_ALL, 1)
 					.nbt("cancel-drop")
@@ -611,6 +611,10 @@ public void RemoverDanoEspomka(EntityDamageEvent e)
 			}
 			else if(e.getCause() == EntityDamageEvent.DamageCause.ENTITY_ATTACK)
 			{
+				if (!caiu.containsKey(p.getName())) {
+					caiu.put(p.getName(), true);
+					p.sendMessage(ChatColor.RED + "Você agora pode levar dano de queda novamente.");
+				}
 				this.fall.remove(p.getName());
 			}
 		}
