@@ -119,76 +119,106 @@ Bukkit.getConsoleSender().sendMessage(player.getName() + " Choosed pvp kit! (Pul
 		                Items(player);
 		                if (KitManager.getPlayer(player.getName()).hasKit(HelixKit.JUMPER) && KitManager2.getPlayer(player.getName()).haskit2(HelixKit2.GLADIATOR)) {
 		                	HelixWarp.SPAWN.send(player);
+		                	KitManager.getPlayer(player.getName()).removeKit();
+		            		KitManager2.getPlayer(player.getName()).removekit2();
 		                	p.sendMessage(ChatColor.RED + "Você estava com uma combinação proibida e foi mandado de volta pro spawn");
 		                	return;
 		                }
 		                if (KitManager.getPlayer(player.getName()).hasKit(HelixKit.TORNADO) && KitManager2.getPlayer(player.getName()).haskit2(HelixKit2.GRAPPLER)) {
 		                	HelixWarp.SPAWN.send(player);
+		                	KitManager.getPlayer(player.getName()).removeKit();
+		            		KitManager2.getPlayer(player.getName()).removekit2();
 		                	p.sendMessage(ChatColor.RED + "Você estava com uma combinação proibida e foi mandado de volta pro spawn");
 		                	return;
 		                }
 		                if (KitManager.getPlayer(player.getName()).hasKit(HelixKit.STOMPER) && KitManager2.getPlayer(player.getName()).haskit2(HelixKit2.KANGAROO)) {
 		                	HelixWarp.SPAWN.send(player);
+		                	KitManager.getPlayer(player.getName()).removeKit();
+		            		KitManager2.getPlayer(player.getName()).removekit2();
 		                	p.sendMessage(ChatColor.RED + "Você estava com uma combinação proibida e foi mandado de volta pro spawn");
 		                	return;
 		                }
 		                if (KitManager.getPlayer(player.getName()).hasKit(HelixKit.KANGAROO) && KitManager2.getPlayer(player.getName()).haskit2(HelixKit2.STOMPER)) {
 		                	HelixWarp.SPAWN.send(player);
+		                	KitManager.getPlayer(player.getName()).removeKit();
+		            		KitManager2.getPlayer(player.getName()).removekit2();
 		                	p.sendMessage(ChatColor.RED + "Você estava com uma combinação proibida e foi mandado de volta pro spawn");
 		                	return;
 		                }
 		                if (KitManager.getPlayer(player.getName()).hasKit(HelixKit.STOMPER) && KitManager2.getPlayer(player.getName()).haskit2(HelixKit2.NINJA)) {
 		                	HelixWarp.SPAWN.send(player);
+		                	KitManager.getPlayer(player.getName()).removeKit();
+		            		KitManager2.getPlayer(player.getName()).removekit2();
 		                	p.sendMessage(ChatColor.RED + "Você estava com uma combinação proibida e foi mandado de volta pro spawn");
 		                	return;
 		                }
 		                if (KitManager.getPlayer(player.getName()).hasKit(HelixKit.NINJA) && KitManager2.getPlayer(player.getName()).haskit2(HelixKit2.STOMPER)) {
 		                	HelixWarp.SPAWN.send(player);
+		                	KitManager.getPlayer(player.getName()).removeKit();
+		            		KitManager2.getPlayer(player.getName()).removekit2();
 		                	p.sendMessage(ChatColor.RED + "Você estava com uma combinação proibida e foi mandado de volta pro spawn");
 		                	return;
 		                }
 		                if (KitManager.getPlayer(player.getName()).hasKit(HelixKit.STOMPER) && KitManager2.getPlayer(player.getName()).haskit2(HelixKit2.METEOR)) {
 		                	HelixWarp.SPAWN.send(player);
+		                	KitManager.getPlayer(player.getName()).removeKit();
+		            		KitManager2.getPlayer(player.getName()).removekit2();
 		                	p.sendMessage(ChatColor.RED + "Você estava com uma combinação proibida e foi mandado de volta pro spawn");
 		                	return;
 		                }
 		                if (KitManager.getPlayer(player.getName()).hasKit(HelixKit.METEOR) && KitManager2.getPlayer(player.getName()).haskit2(HelixKit2.STOMPER)) {
 		                	HelixWarp.SPAWN.send(player);
+		                	KitManager.getPlayer(player.getName()).removeKit();
+		            		KitManager2.getPlayer(player.getName()).removekit2();
 		                	p.sendMessage(ChatColor.RED + "Você estava com uma combinação proibida e foi mandado de volta pro spawn");
 		                	return;
 		                }
 		                if (KitManager.getPlayer(player.getName()).hasKit(HelixKit.TORNADO) && KitManager2.getPlayer(player.getName()).haskit2(HelixKit2.GRAPPLER)) {
 		                	HelixWarp.SPAWN.send(player);
+		                	KitManager.getPlayer(player.getName()).removeKit();
+		            		KitManager2.getPlayer(player.getName()).removekit2();
 		                	p.sendMessage(ChatColor.RED + "Você estava com uma combinação proibida e foi mandado de volta pro spawn");
 		                	return;
 		                }
 		                if (KitManager.getPlayer(player.getName()).hasKit(HelixKit.SONIC) && KitManager2.getPlayer(player.getName()).haskit2(HelixKit2.STOMPER)) {
 		                	HelixWarp.SPAWN.send(player);
+		                	KitManager.getPlayer(player.getName()).removeKit();
+		            		KitManager2.getPlayer(player.getName()).removekit2();
 		                	p.sendMessage(ChatColor.RED + "Você estava com uma combinação proibida e foi mandado de volta pro spawn");
 		                	return;
 		                }
 		                if (KitManager.getPlayer(player.getName()).hasKit(HelixKit.FLASH) && KitManager2.getPlayer(player.getName()).haskit2(HelixKit2.GRAPPLER)) {
 		                	HelixWarp.SPAWN.send(player);
+		                	KitManager.getPlayer(player.getName()).removeKit();
+		            		KitManager2.getPlayer(player.getName()).removekit2();
 		                	p.sendMessage(ChatColor.RED + "Você estava com uma combinação proibida e foi mandado de volta pro spawn");
 		                	return;
 		                }
 		                if (KitManager.getPlayer(player.getName()).hasKit(HelixKit.FLASH) && KitManager2.getPlayer(player.getName()).haskit2(HelixKit2.STOMPER)) {
 		                	HelixWarp.SPAWN.send(player);
+		                	KitManager.getPlayer(player.getName()).removeKit();
+		            		KitManager2.getPlayer(player.getName()).removekit2();
 		                	p.sendMessage(ChatColor.RED + "Você estava com uma combinação proibida e foi mandado de volta pro spawn");
 		                	return;
 		                }
 		                if (KitManager.getPlayer(player.getName()).hasKit(HelixKit.TORNADO) && KitManager2.getPlayer(player.getName()).haskit2(HelixKit2.MONK)) {
 		                	HelixWarp.SPAWN.send(player);
+		                	KitManager.getPlayer(player.getName()).removeKit();
+		            		KitManager2.getPlayer(player.getName()).removekit2();
 		                	p.sendMessage(ChatColor.RED + "Você estava com uma combinação proibida e foi mandado de volta pro spawn");
 		                	return;
 		                }
 		                if (KitManager.getPlayer(player.getName()).hasKit(HelixKit.TORNADO) && KitManager2.getPlayer(player.getName()).haskit2(HelixKit2.NINJA)) {
 		                	HelixWarp.SPAWN.send(player);
+		                	KitManager.getPlayer(player.getName()).removeKit();
+		            		KitManager2.getPlayer(player.getName()).removekit2();
 		                	p.sendMessage(ChatColor.RED + "Você estava com uma combinação proibida e foi mandado de volta pro spawn");
 		                	return;
 		                }
 		                if (KitManager.getPlayer(player.getName()).hasKit(HelixKit.FLASH) && KitManager2.getPlayer(player.getName()).haskit2(HelixKit2.KANGAROO)) {
 		                	HelixWarp.SPAWN.send(player);
+		                	KitManager.getPlayer(player.getName()).removeKit();
+		            		KitManager2.getPlayer(player.getName()).removekit2();
 		                	p.sendMessage(ChatColor.RED + "Você estava com uma combinação proibida e foi mandado de volta pro spawn");
 		                	return;
 		                }
