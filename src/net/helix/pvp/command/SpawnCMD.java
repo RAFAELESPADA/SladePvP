@@ -48,7 +48,7 @@ public class SpawnCMD extends WarpDuoBattleHandle implements Listener, CommandEx
 			p.sendMessage(ChatColor.RED + "Você já está no spawn.");
 			return true;
 		}
-		else if (player.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura")) {
+		else if (player.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura") && PlayerJoinListener.fall.contains(player)) {
 	      	player.sendMessage("§cVocê já está no spawn!");
 	  		return true;
 	  	 }
