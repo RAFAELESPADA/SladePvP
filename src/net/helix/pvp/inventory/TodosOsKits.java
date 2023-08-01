@@ -21,7 +21,7 @@ public class TodosOsKits {
 
 
 
-		KitManager.getPlayer(player.getName()).getAvailableKits().forEach(kit ->  {
+		KitManager.getPlayer(player.getName()).getAvailableKits2().forEach(kit ->  {
 			if (!(kit.equals(HelixKit.NENHUM))) {
 			inventory.addItem(new ItemBuilder("§6" + kit.getName(), kit.getIcon())
 					.lore("§f" + kit.getDescription())

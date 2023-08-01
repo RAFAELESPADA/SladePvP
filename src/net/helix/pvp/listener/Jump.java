@@ -132,6 +132,8 @@ public void Items(Player player) {
 	player.getInventory().setArmorContents(null);
 	player.setAllowFlight(false);
 	player.setFlying(false);
+	player.getInventory().setItem(1 , new ItemStack(Material.MUSHROOM_SOUP));
+	player.getInventory().setItem(2 , new ItemStack(Material.MUSHROOM_SOUP));
 	player.getActivePotionEffects().forEach(potion -> player.removePotionEffect(potion.getType()));
 	player.getInventory().setHeldItemSlot(0);
 	/* 348 */  
@@ -345,14 +347,7 @@ public void Items(Player player) {
 					);
 					Bukkit.getConsoleSender().sendMessage(player.getName() + " Choosed monk kit!");
 					}
-					if (KitManager.getPlayer(player.getName()).hasKit( HelixKit.PVP)) {
-					player.getInventory().setItem(0, new ItemBuilder("§fEspada", Material.STONE_SWORD)
-							.addEnchant(Enchantment.DAMAGE_ALL, 1)
-							.nbt("cancel-drop")
-							.toStack()
-					);
-					Bukkit.getConsoleSender().sendMessage(player.getName() + " Choosed pvp kit!");
-					}
+					
 					if (KitManager.getPlayer(player.getName()).hasKit( HelixKit.SCOUT)) {
 						player.getInventory().setItem(1, new ItemBuilder(Material.POTION, 8226)
 				                .amount(1)
@@ -497,7 +492,7 @@ public void Items(Player player) {
 	);
 	}
 	else {
-		player.getInventory().setItem(0, new ItemBuilder("§7Espada", Material.STONE_SWORD).addEnchant(Enchantment.DAMAGE_ALL, 1)
+		player.getInventory().setItem(0, new ItemBuilder("§7Espada", Material.STONE_SWORD)
 				.nbt("cancel-drop")
 				.toStack()
 		);
@@ -537,6 +532,14 @@ player.getInventory().setItem(3 , new ItemStack(Material.MUSHROOM_SOUP));
 		if (!KitManager.getPlayer(player.getName()).hasKit(HelixKit.ARCHER) && !KitManager2.getPlayer(player.getName()).haskit2(HelixKit2.ARCHER)) {
 		player.getInventory().setItem(10 , new ItemStack(Material.MUSHROOM_SOUP));
 		}
+		if (KitManager.getPlayer(player.getName()).hasKit( HelixKit.PVP)) {
+			player.getInventory().setItem(0, new ItemBuilder("§fEspada", Material.STONE_SWORD)
+					.addEnchant(Enchantment.DAMAGE_ALL, 1)
+					.nbt("cancel-drop")
+					.toStack()
+			);
+			Bukkit.getConsoleSender().sendMessage(player.getName() + " Choosed pvp kit!");
+			}
 		player.getInventory().setItem(11 , new ItemStack(Material.MUSHROOM_SOUP));
 		player.getInventory().setItem(12 , new ItemStack(Material.MUSHROOM_SOUP));
 		player.getInventory().setItem(16 , new ItemStack(Material.MUSHROOM_SOUP));
@@ -602,7 +605,7 @@ public void RemoverDanoEspomka(EntityDamageEvent e)
 				EntityDamageEvent event = new EntityDamageEvent(p, EntityDamageEvent.DamageCause.FALL, 1.0F);
 				p.setLastDamageCause(event);
 				Bukkit.getServer().getPluginManager().callEvent(event);
-				p.damage(1F);;
+	
 			}
 			else if(e.getCause() == EntityDamageEvent.DamageCause.ENTITY_ATTACK)
 			{
