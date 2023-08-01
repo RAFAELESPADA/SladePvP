@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -17,13 +18,21 @@ import net.helix.pvp.kit.provider.HelixActionBar;
 
 public class SoupHandlerListener implements Listener {
 	
-	@EventHandler
+	@EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
 	public void onTomarSopa(PlayerInteractEvent e) {
 		Player p = e.getPlayer();
 		
 		if (e.getAction().equals(Action.RIGHT_CLICK_AIR) || (e.getAction().equals(Action.RIGHT_CLICK_BLOCK))) {
 			if (p.getItemInHand().getType() == Material.MUSHROOM_SOUP) {
-				if ((p.getHealth() < 20.0D) && (p.getItemInHand().getType() == Material.MUSHROOM_SOUP)) {
+				if ((p.getHealth() < 20.0D)) {
+					if (e.isCancelled()) {
+						e.setCancelled(true);
+						p.setHealth(p.getHealth() + 7 >= 20.0D ? 20.0D : p.getHealth() + 7);
+						p.setFoodLevel(20);
+						p.setItemInHand(KitManager.getPlayer(p.getName()).hasKit(HelixKit.QUICKDROPPER) || KitManager2.getPlayer(p.getName()).haskit2(HelixKit2.QUICKDROPPER) ? new ItemStack(Material.AIR) : new ItemStack(Material.BOWL));
+						HelixActionBar.send(p, "§c+" + (p.getHealth() + 7 <= 20.0D ? 3.5 : 3.5) + " §4§l\u2661");
+						p.updateInventory();	
+					}
 					e.setCancelled(true);
 					p.setHealth(p.getHealth() + 7 >= 20.0D ? 20.0D : p.getHealth() + 7);
 					p.setFoodLevel(20);
