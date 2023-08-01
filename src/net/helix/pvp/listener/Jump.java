@@ -611,6 +611,9 @@ public void RemoverDanoEspomka(EntityDamageEvent e)
 			}
 			else if(e.getCause() == EntityDamageEvent.DamageCause.ENTITY_ATTACK)
 			{
+				if (e.isCancelled()) {
+					return;
+				}
 				if (!caiu.containsKey(p.getName())) {
 					caiu.put(p.getName(), true);
 					p.sendMessage(ChatColor.RED + "Você agora pode levar dano de queda novamente.");
