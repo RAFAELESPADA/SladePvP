@@ -27,7 +27,7 @@ public class PlayerCompassListener implements Listener {
 		}
 		event.setCancelled(true);
 		
-		List<Entity> entities = player.getNearbyEntities(50.0, 50.0, 50.0).stream().filter(
+		List<Entity> entities = player.getNearbyEntities(250.0, 250.0, 250.0).stream().filter(
 				entity -> entity instanceof Player 
 				&& player.getLocation().distance(entity.getLocation()) >= 5 
 				&& player.canSee((Player)entity)
