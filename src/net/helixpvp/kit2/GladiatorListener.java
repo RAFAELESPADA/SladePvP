@@ -28,6 +28,7 @@ import net.helix.pvp.kit.HelixKit2;
 import net.helix.pvp.kit.KitHandler2;
 import net.helix.pvp.kit.KitManager;
 import net.helix.pvp.kit.KitManager2;
+import net.helix.pvp.kit.provider.GladiatorListener;
 import net.md_5.bungee.api.ChatColor;
 
 
@@ -128,9 +129,9 @@ public final class GladiatorListener extends KitHandler2
         loc2.getWorld().refreshChunk(loc2.getChunk().getX(), loc2.getChunk().getZ());
         final List<Location> location = new ArrayList<Location>();
         location.clear();
-        for (int blockX = -7; blockX <= 7; ++blockX) {
-            for (int blockZ = -7; blockZ <= 7; ++blockZ) {
-                for (int blockY = -1; blockY <= 7; ++blockY) {
+        for (int blockX = -9; blockX <= 9; ++blockX) {
+            for (int blockZ = -9; blockZ <= 9; ++blockZ) {
+                for (int blockY = -1; blockY <= 9; ++blockY) {
                     final Block b = loc2.clone().add((double)blockX, (double)blockY, (double)blockZ).getBlock();
                     if (!b.isEmpty()) {
                         final Location newLoc = new Location(p1.getWorld(), loc2.getBlockX() + x, y > 110 ? 146.0 : 100, loc2.getBlockZ() + z);
@@ -142,7 +143,7 @@ public final class GladiatorListener extends KitHandler2
                     else if (blockY == -1) {
                         location.add(loc2.clone().add((double)blockX, (double)blockY, (double)blockZ));
                     }
-                    else if (blockX == -7 || blockZ == -7 || blockX == 7 || blockZ == 7) {
+                    else if (blockX == -9 || blockZ == -9 || blockX == 9 || blockZ == 9) {
                         location.add(loc2.clone().add((double)blockX, (double)blockY, (double)blockZ));
                     }
                 }
@@ -155,8 +156,8 @@ public final class GladiatorListener extends KitHandler2
         GladiatorListener.oldLocation.put(p2.getName(), p2.getLocation());
         GladiatorListener.blocks.put(p1.getName(), location);
         GladiatorListener.blocks.put(p2.getName(), location);
-        p1.teleport(new Location(p1.getWorld(), loc3.getX() + 3.5, loc3.getY() + 1.0, loc3.getZ() + 3.5, 140.0f, 0.0f));
-        p2.teleport(new Location(p2.getWorld(), loc4.getX() - 3.5, loc4.getY() + 1.0, loc2.getZ() - 3.5, -40.0f, 0.0f));
+        p1.teleport(new Location(p1.getWorld(), loc3.getX() + 5.5, loc3.getY() + 1.0, loc3.getZ() + 5.5, 140.0f, 0.0f));
+        p2.teleport(new Location(p2.getWorld(), loc4.getX() - 5.5, loc4.getY() + 1.0, loc2.getZ() - 5.5, -40.0f, 0.0f));
         p1.sendMessage(String.valueOf(GladiatorListener.prefix) + "§fVoce desafiou o player §e" + p2.getName() + " §fpara uma batalha 1v1!");
         p2.sendMessage(String.valueOf(GladiatorListener.prefix) + "§fVoce foi desafiado pelo player §e" + p1.getName() + " §fpara uma batalha 1v1!");
         showPlayer(p1, p2);

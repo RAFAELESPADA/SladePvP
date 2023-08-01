@@ -80,8 +80,6 @@ public enum HelixWarp {
 		players.add(player.getName());
 		handler.execute(player);
 		player.teleport(warpOptional.get().getLocation());
-		KitManager.getPlayer(player.getName()).removeKit();
-		KitManager2.getPlayer(player.getName()).removekit2();
 		DarKit.sendTitle(player, "§5§lWARP", "§dEnviado para warp §e§l " + this.name);
 		if (!silent) {
 			player.sendMessage("§7Enviado para warp §b" + this.name);

@@ -64,7 +64,7 @@ public class PlayerDieArenaListener implements Listener {
 					victimHelixPlayer2.getPvp().removeCoins(15);
 					player.sendMessage("§c§l[-] §c15 coins");
 				}else {
-					player.sendMessage("§c§l[-] §c" + victimHelixPlayer2.getPvp().getCoins() + "coins");
+					player.sendMessage("§c§l[-] §c" + victimHelixPlayer2.getPvp().getCoins() + " coins");
 					victimHelixPlayer2.getPvp().setCoins(0);
 				}
 				return;

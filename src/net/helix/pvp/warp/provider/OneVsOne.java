@@ -6,6 +6,8 @@ import net.helix.core.bukkit.item.ItemBuilder;
 import net.helix.core.util.HelixCooldown;
 import net.helix.pvp.HelixPvP;
 import net.helix.pvp.event.HelixPlayerDeathEvent;
+import net.helix.pvp.kit.KitManager;
+import net.helix.pvp.kit.KitManager2;
 import net.helix.pvp.warp.HelixWarp;
 import net.helix.pvp.warp.WarpDuoBattleHandle;
 import org.bukkit.Material;
@@ -51,6 +53,8 @@ public class OneVsOne extends WarpDuoBattleHandle {
 	public void execute(Player player) {
 		super.execute(player);
 		setItems(player);
+		KitManager.getPlayer(player.getName()).removeKit();
+		KitManager2.getPlayer(player.getName()).removekit2();
 		player.getInventory().setHeldItemSlot(3);
 	}
 	

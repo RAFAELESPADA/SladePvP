@@ -2,7 +2,7 @@ name: SRKitPvP
 version: 3.0.0
 authors: [Rafael Auler]
 main: net.helix.pvp.HelixPvP
-description: Plugin de kitpvp da loja SRPlugins
+description: Plugin de kitpvp do SladePvP
 depend: [Core, DecentHolograms, PlaceholderAPI, ajLeaderboards]
 
 commands:
