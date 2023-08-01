@@ -1,6 +1,8 @@
 package net.helix.pvp.warp;
 
 import net.helix.core.bukkit.HelixBukkit;
+import net.helix.pvp.kit.KitManager;
+import net.helix.pvp.kit.KitManager2;
 import net.helix.pvp.warp.HelixWarp;
 import net.helix.pvp.warp.WarpHandle;
 
@@ -27,7 +29,8 @@ public class LavaChallenge extends WarpHandle {
 		super.execute(player);
 		ItemStack vermelho = new ItemStack(Material.RED_MUSHROOM, 64);
 	
-		  
+		KitManager.getPlayer(player.getName()).removeKit();
+		KitManager2.getPlayer(player.getName()).removekit2();
 		  ItemStack marrom = new ItemStack(Material.BROWN_MUSHROOM, 64);
 		  
 		  ItemStack marrom2 = new ItemStack(Material.INK_SACK, 64 ,(short)3);;

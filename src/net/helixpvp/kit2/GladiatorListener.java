@@ -28,7 +28,6 @@ import net.helix.pvp.kit.HelixKit2;
 import net.helix.pvp.kit.KitHandler2;
 import net.helix.pvp.kit.KitManager;
 import net.helix.pvp.kit.KitManager2;
-import net.helix.pvp.kit.provider.GladiatorListener;
 import net.md_5.bungee.api.ChatColor;
 
 

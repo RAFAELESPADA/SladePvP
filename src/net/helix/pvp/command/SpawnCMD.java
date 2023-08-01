@@ -43,10 +43,15 @@ public class SpawnCMD extends WarpDuoBattleHandle implements Listener, CommandEx
 			return true;
 		}
 		Player p = (Player) sender;
+		Player player = (Player) sender;
 		if (HelixWarp.SPAWN.hasPlayer(p.getName()) && !KitManager.getPlayer(p.getName()).hasKit()) {
 			p.sendMessage(ChatColor.RED + "Você já está no spawn.");
 			return true;
 		}
+		else if (player.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura")) {
+	      	player.sendMessage("§cVocê já está no spawn!");
+	  		return true;
+	  	 }
 		 if (GladiatorListener.combateGlad.containsKey(p)) {
              final Player winner = GladiatorListener.combateGlad.get(p);
              final Player loser = p;
