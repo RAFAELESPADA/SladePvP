@@ -605,7 +605,9 @@ public void RemoverDanoEspomka(EntityDamageEvent e)
 				EntityDamageEvent event = new EntityDamageEvent(p, EntityDamageEvent.DamageCause.FALL, 1.0F);
 				p.setLastDamageCause(event);
 				Bukkit.getServer().getPluginManager().callEvent(event);
-	
+				if (!caiu.containsKey(p.getName())) {
+	caiu.put(p.getName(), true);
+				}
 			}
 			else if(e.getCause() == EntityDamageEvent.DamageCause.ENTITY_ATTACK)
 			{
