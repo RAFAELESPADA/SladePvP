@@ -106,6 +106,24 @@ public static int getDistance(Player e){
     return distance;
 }
 @EventHandler
+public void usarf(PlayerMoveEvent e) {
+	Player p = e.getPlayer();
+	
+ 
+ 			if (KitManager.getPlayer(e.getPlayer().getName()).hasKit(this)) {
+ 				if ((p.getItemInHand().getType().equals(Material.LEASH))) {
+ 	   if ((p.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura") - 12) && EnderMageReal.isSpawn(p.getLocation())) {
+			p.sendMessage("§cNão use o grappler perto no spawn!");
+			Location tp = p.getLocation();
+
+			tp.setY(tp.getY()-getDistance(p));
+
+			p.teleport(tp);
+			return;
+		
+ 	   }}}
+ 			}
+@EventHandler
 public void usar(PlayerInteractEvent e) {
 	Player p = e.getPlayer();
 	
