@@ -106,7 +106,7 @@ public void usar(PlayerInteractEvent e) {
  			if (KitManager2.getPlayer(e.getPlayer().getName()).haskit2(this)) {
  				
  		
- 	     e.setCancelled(true);
+ 	    
  	    if (inCooldown(p) && KitManager2.getPlayer(p.getName()).haskit2(this)) {
  	   	sendMessageCooldown(p);
  	   	return;
@@ -118,7 +118,7 @@ public void usar(PlayerInteractEvent e) {
  	     if ((e.getAction() == Action.LEFT_CLICK_AIR) || (e.getAction() == Action.LEFT_CLICK_BLOCK)) {
 			  if (leftClickGrappler.containsKey(p) && leftClickGrappler.get(p) > System.currentTimeMillis())
 				  return;
-			  
+			  e.setCancelled(true);
  	          if (hooks.containsKey(p)) 
  	            ((Cordinha)hooks.get(p)).remove();
  	         
@@ -130,7 +130,7 @@ public void usar(PlayerInteractEvent e) {
  	     } else {
  	    	 if (!hooks.containsKey(p))
  	             return;
- 	    	 
+ 	    	e.setCancelled(true);
 		     if (rightClickGrappler.containsKey(p) && rightClickGrappler.get(p) > System.currentTimeMillis())
 				 return;
  	    	 

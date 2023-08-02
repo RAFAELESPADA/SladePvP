@@ -75,7 +75,7 @@ public class Hulk extends KitHandler {
 
         if (passenger != null && passenger == entity) {
             passenger.leaveVehicle();
-            passenger.setVelocity(passenger.getLocation().getDirection().setY(1.6f).multiply(1.0f));
+            passenger.setVelocity(passenger.getLocation().getDirection().setY(2.6f).multiply(1.6f));
         }
     }
 }

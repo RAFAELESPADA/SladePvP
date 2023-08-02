@@ -126,7 +126,7 @@ ArrayList<Player> subiu = new ArrayList();
 	if ((e.getPlayer().getItemInHand().getType() != Material.FIREBALL)) {
 		return;
 	}
-/*  87 */       e.setCancelled(true);
+/*  87 */     
 /*  88 */       p.updateInventory();
 /*  89 */       if (hasCooldown(p))
 /*     */       {
@@ -137,6 +137,7 @@ else if (p.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("Spa
 	p.sendMessage("§cNão use o seu poder no spawn!");
 	return;
  }
+e.setCancelled(true);
 if (!subiu.contains(p)) {
 	  if (HelixCooldown.has(p.getName(), "meteor")) {
 		  p.sendMessage(ChatColor.RED + "Aguarde " + HelixCooldown.getTime(p.getName(), "meteor") +  " segundos para dar o boost novamente");

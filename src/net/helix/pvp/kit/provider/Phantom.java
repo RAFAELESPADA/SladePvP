@@ -4,6 +4,7 @@ import net.helix.core.bukkit.item.ItemBuilder;
 import net.helix.core.util.HelixCooldown;
 import net.helix.pvp.HelixPvP;
 import net.helix.pvp.kit.KitHandler;
+import net.helix.pvp.kit.KitManager;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
@@ -53,12 +54,14 @@ public class Phantom extends KitHandler {
     public void onInteract(PlayerInteractEvent event) {
         if (!event.hasItem() || !ItemBuilder.has(event.getItem(), "kit-handler", "phantom")) return;
 
-        event.setCancelled(true);
-
+if (!KitManager.getPlayer(event.getPlayer().getName()).hasKit(this)) {
+	return;
+}
         if (HelixCooldown.inCooldown(event.getPlayer().getName(), "kit-phantom")) {
             event.getPlayer().sendMessage("§cO kit Phantom está em cooldown.");
             return;
         }
+        event.setCancelled(true);
         Player p = event.getPlayer();
         Phantom.salvararmor.put(p.getName(), p.getInventory().getArmorContents());
         ItemStack Capacete = new ItemStack(Material.LEATHER_HELMET);

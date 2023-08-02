@@ -61,12 +61,12 @@ public class Kangaroo extends KitHandler {
 			event.setCancelled(true);
 			return;
 		}
-		/*     */     {
-		/*  60 */       event.setCancelled(true);
+		/*     */     
+		/*  60 */      
 
 		/*  61 */         if (GladiatorListener.combateGlad.containsKey(p) || net.helixpvp.kit2.GladiatorListener.combateGlad.containsKey(p)) {
 	  		/*  62 */         p.sendMessage(String.valueOf("§cVocê esta no Gladiator e recebeu efeito de speed"));
-	  		/*     */         
+	  		/*     */         event.setCancelled(true);
 	  		/*  64 */        Kangaroo.darEfeito(p, org.bukkit.potion.PotionEffectType.SPEED, 10, 1);
 	  		/*     */       }
 		/*     */       else
@@ -104,7 +104,7 @@ public class Kangaroo extends KitHandler {
 		/*     */         }
 		/*     */       }
 		/*     */     }
-		/*     */   }
+		/*     */   
 		public static void darEfeito(Player p, PotionEffectType tipo, int duracao, int level)
 		/*     */   {
 		/* 349 */     p.addPotionEffect(new PotionEffect(tipo, 20 * duracao, level));

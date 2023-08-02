@@ -102,8 +102,6 @@ public void usar(PlayerInteractEvent e) {
  	if ((p.getItemInHand().getType().equals(Material.LEASH)))
  			if (KitManager.getPlayer(e.getPlayer().getName()).hasKit(this)) {
  				
- 		
- 	     e.setCancelled(true);
  	    if (inCooldown(p) && KitManager.getPlayer(p.getName()).hasKit(this)) {
  	   	sendMessageCooldown(p);
  	   	return;
@@ -116,7 +114,7 @@ public void usar(PlayerInteractEvent e) {
  	     if ((e.getAction() == Action.LEFT_CLICK_AIR) || (e.getAction() == Action.LEFT_CLICK_BLOCK)) {
 			  if (leftClickGrappler.containsKey(p) && leftClickGrappler.get(p) > System.currentTimeMillis())
 				  return;
-			  
+			  e.setCancelled(true);
  	          if (hooks.containsKey(p)) 
  	            ((Cordinha)hooks.get(p)).remove();
  	         
@@ -128,7 +126,7 @@ public void usar(PlayerInteractEvent e) {
  	     } else {
  	    	 if (!hooks.containsKey(p))
  	             return;
- 	    	 
+ 	    	e.setCancelled(true);
 		     if (rightClickGrappler.containsKey(p) && rightClickGrappler.get(p) > System.currentTimeMillis())
 				 return;
  	    	 

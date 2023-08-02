@@ -39,7 +39,6 @@ public class EnderMage extends KitHandler {
 	        sendMessageCooldown(p);
 	        return;
 	    }
-	      e.setCancelled(true);
 	      p.updateInventory();
 	      if (GladiatorListener.combateGlad.containsKey(p) || net.helixpvp.kit2.GladiatorListener.combateGlad.containsKey(p)) {
 	    		/*  62 */         p.sendMessage(String.valueOf("§cVocê esta no Gladiator e recebeu efeito de speed"));
@@ -51,7 +50,7 @@ public class EnderMage extends KitHandler {
 				return;
 			 }
 	    
-	  
+	      e.setCancelled(true);
 	  	   for (final Entity pertos : p.getNearbyEntities(10, 10 , 10)) {
 	      	  if (pertos instanceof Player) {
 	        if (KitManager.getPlayer(pertos.getName()).hasKit())	{
