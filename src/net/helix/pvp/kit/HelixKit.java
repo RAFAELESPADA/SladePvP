@@ -150,6 +150,7 @@ public enum HelixKit {
 	public void send(Player player) {
 		if (KitManager2.getPlayer(player.getName()).getkit2().getName() == KitManager.getPlayer(player.getName()).getKit().getName()) {
 			player.sendMessage("§cVocê já tem esse kit escolhido como secundário!");
+			player.closeInventory();
 			return;
 		}
 		KitManager.getPlayer(player.getName()).setKit(this);
