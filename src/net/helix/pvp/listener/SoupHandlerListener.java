@@ -45,7 +45,7 @@ public class SoupHandlerListener implements Listener {
                 player.setHealth(player.getHealth() + 7.0);
             }
             HelixActionBar.send(player, "§c+3,5 §4\u2764");
-            player.setItemInHand(KitManager.getPlayer(player.getName()).hasKit(HelixKit.QUICKDROPPER) || (KitManager2.getPlayer(player.getName()).haskit2(HelixKit2.QUICKDROPPER)) ?  new ItemStack(Material.BOWL) : new ItemStack(Material.AIR));
+            player.setItemInHand(KitManager.getPlayer(player.getName()).hasKit(HelixKit.QUICKDROPPER) || (KitManager2.getPlayer(player.getName()).haskit2(HelixKit2.QUICKDROPPER)) ?  new ItemStack(Material.AIR) : new ItemStack(Material.BOWL));
         }
         else if (player.getFoodLevel() < 20) {
             event.getPlayer().setFoodLevel(event.getPlayer().getFoodLevel() + 7);
