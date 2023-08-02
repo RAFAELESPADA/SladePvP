@@ -17,18 +17,17 @@ import net.helix.pvp.kit.KitManager2;
 import net.helix.pvp.kit.provider.HelixActionBar;
 
 public class SoupHandlerListener implements Listener {
+
 	
-	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+	@EventHandler(priority = EventPriority.LOW)
     public void onPlayerInteract(final PlayerInteractEvent event) {
-        if (!event.getAction().name().contains("RIGHT")) {
-            return;
-        }
-        if (event.getItem() == null) {
-            return;
-        }
+		if (event.getItem() == null) {
+			return;
+		}
         if (event.getItem().getType() != Material.MUSHROOM_SOUP) {
             return;
         }
+        
         event.setCancelled(true);
         final Player player = event.getPlayer();
         final double beforeHealth = player.getHealth();
@@ -39,12 +38,13 @@ public class SoupHandlerListener implements Listener {
                     final int i = this.toInt(beforeHealth) + 7 - this.toInt(player.getMaxHealth());
                     player.setFoodLevel(Math.min(player.getFoodLevel() + i, 20));
                     player.setSaturation(3.0f);
+             
                 }
             }
             else {
                 player.setHealth(player.getHealth() + 7.0);
             }
-            HelixActionBar.send(player, "§c+3,5 §4\u2764");
+            HelixActionBar.send(player, "§c+3,5 §4\u2764");   
             player.setItemInHand(KitManager.getPlayer(player.getName()).hasKit(HelixKit.QUICKDROPPER) || (KitManager2.getPlayer(player.getName()).haskit2(HelixKit2.QUICKDROPPER)) ?  new ItemStack(Material.AIR) : new ItemStack(Material.BOWL));
         }
         else if (player.getFoodLevel() < 20) {
@@ -52,7 +52,11 @@ public class SoupHandlerListener implements Listener {
             player.setSaturation(3.0f);
             player.setItemInHand(new ItemStack(Material.BOWL));
         }
-    }
+        
+        
+        }
+
+       
 		
 private int toInt(final Double d) {
     return d.intValue();
