@@ -202,7 +202,7 @@ new BukkitRunnable() {
             if(!(block.getState() instanceof Sign)) {
                 block.setType(Material.SIGN_POST);
                 Sign sign = (Sign) block.getState();
-                sign.setLine(0, "Blocos Que Mudam");
+                sign.setLine(0, "Blocos Que Muda");
                 sign.setLine(1, "de Cores");
                 sign.setLine(2, "WOOOOW");
                 sign.update();
