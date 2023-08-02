@@ -106,8 +106,8 @@ public void usar(PlayerInteractEvent e) {
  	   	sendMessageCooldown(p);
  	   	return;
  	   }
- 	   else if (p.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura") && EnderMageReal.isSpawn(p.getLocation())) {
-			p.sendMessage("§cNão use o grappler no spawn!");
+ 	   else if (p.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura") - 12 && EnderMageReal.isSpawn(p.getLocation())) {
+			p.sendMessage("§cNão use o grappler perto no spawn!");
 			return;
 		}
  	     
@@ -119,7 +119,7 @@ public void usar(PlayerInteractEvent e) {
  	            ((Cordinha)hooks.get(p)).remove();
  	         
  	          Cordinha nmsHook = new Cordinha(p.getWorld(), ((CraftPlayer)p).getHandle());
- 	          nmsHook.spawn(p.getEyeLocation().add(p.getLocation().getDirection().getX(), p.getLocation().getDirection().getY(), p.getLocation().getDirection().getZ()));
+ 	          nmsHook.spawn(p.getEyeLocation().add(p.getLocation().getDirection().getX() > 20 ? 20 : p.getLocation().getDirection().getX() , p.getLocation().getDirection().getY() > 20 ? 20 : p.getLocation().getDirection().getY(), p.getLocation().getDirection().getZ() > 20 ? p.getLocation().getDirection().getZ() : 20));
  	          nmsHook.move(p.getLocation().getDirection().getX() > 14 ? 14 : p.getLocation().getDirection().getX() , p.getLocation().getDirection().getY() > 14 ? 14 : p.getLocation().getDirection().getY(), p.getLocation().getDirection().getZ() > 14 ? 14 : p.getLocation().getDirection().getZ());
  	          hooks.put(p, nmsHook);
  			  leftClickGrappler.put(p, System.currentTimeMillis() + 250L);
