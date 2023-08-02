@@ -19,22 +19,46 @@ import net.helix.pvp.kit.provider.HelixActionBar;
 public class SoupHandlerListener implements Listener {
 	
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
-	public void onTomarSopa(PlayerInteractEvent e) {
-		Player p = e.getPlayer();
+    public void onPlayerInteract(final PlayerInteractEvent event) {
+        if (!event.getAction().name().contains("RIGHT")) {
+            return;
+        }
+        if (event.getItem() == null) {
+            return;
+        }
+        if (event.getItem().getType() != Material.MUSHROOM_SOUP) {
+            return;
+        }
+        event.setCancelled(true);
+        final Player player = event.getPlayer();
+        final double beforeHealth = player.getHealth();
+        if (beforeHealth < player.getMaxHealth()) {
+            if (beforeHealth + 7.0 > player.getMaxHealth()) {
+                player.setHealth(player.getMaxHealth());
+                if (player.getFoodLevel() < 20) {
+                    final int i = this.toInt(beforeHealth) + 7 - this.toInt(player.getMaxHealth());
+                    player.setFoodLevel(Math.min(player.getFoodLevel() + i, 20));
+                    player.setSaturation(3.0f);
+                }
+            }
+            else {
+                player.setHealth(player.getHealth() + 7.0);
+            }
+            HelixActionBar.send(player, "§c+3,5 §4\u2764");
+            player.setItemInHand(KitManager.getPlayer(player.getName()).hasKit(HelixKit.QUICKDROPPER) || (KitManager2.getPlayer(player.getName()).haskit2(HelixKit2.QUICKDROPPER)) ?  new ItemStack(Material.BOWL) : new ItemStack(Material.AIR));
+        }
+        else if (player.getFoodLevel() < 20) {
+            event.getPlayer().setFoodLevel(event.getPlayer().getFoodLevel() + 7);
+            player.setSaturation(3.0f);
+            player.setItemInHand(new ItemStack(Material.BOWL));
+        }
+    }
 		
-		if (e.getAction().equals(Action.RIGHT_CLICK_AIR) || (e.getAction().equals(Action.RIGHT_CLICK_BLOCK))) {
-			if (p.getItemInHand().getType() == Material.MUSHROOM_SOUP) {
-				if ((p.getHealth() < 20.0D)) {
-					e.setCancelled(true);
-					p.setHealth(p.getHealth() + 7 >= 20.0D ? 20.0D : p.getHealth() + 7);
-					p.setFoodLevel(20);
-					p.setItemInHand(KitManager.getPlayer(p.getName()).hasKit(HelixKit.QUICKDROPPER) || KitManager2.getPlayer(p.getName()).haskit2(HelixKit2.QUICKDROPPER) ? new ItemStack(Material.AIR) : new ItemStack(Material.BOWL));
-					HelixActionBar.send(p, "§c+" + (p.getHealth() + 7 <= 20.0D ? 3.5 : 3.5) + " §4§l❤️");
-					p.updateInventory();
-				}
-			}
-			}
-		}
+private int toInt(final Double d) {
+    return d.intValue();
+}
+
+		
 		
 	
 
