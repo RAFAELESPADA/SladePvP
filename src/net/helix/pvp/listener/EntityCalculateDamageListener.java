@@ -124,9 +124,23 @@ public class EntityCalculateDamageListener implements Listener {
 	    			return;
 	    		}
 	    		e.setCancelled(true);
-	    	
 	    	}
+	    	}
+	    	@EventHandler
+	    	public void onEspada2(EntityDamageByEntityEvent e) {
+	    		if (!(e.getDamager() instanceof Player)) {
+	    			return;
+	    		}
+	    		if (!(e.getEntity() instanceof Player)) {
+	    			return;
+	    		}
+	    		if (e.getEntity().getLocation().getZ() > 50) {
+	    			return;
+	    		}
+		    	if (e.getEntity().getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura") && EnderMageReal.isSpawn(e.getEntity().getLocation())) {
+	    		e.setCancelled(true);
 		    } 
+	    	}
 	    @EventHandler
 		  public void onMove2t(EntityDamageEvent e) {
 		    if (!(e.getEntity() instanceof Player)) {
@@ -207,12 +221,16 @@ public class EntityCalculateDamageListener implements Listener {
 		}
 		Player p = (Player) e.getDamager();
 		Player player = (Player) e.getDamager();
+		Player shooter = (Player) e.getEntity();
 		Player player2 = (Player) e.getEntity();
 		if (p.getItemInHand().getType() == Material.STONE_SWORD || p.getItemInHand().getType() == Material.WOOD_SWORD || p.getItemInHand().getType() == Material.IRON_SWORD) {
 			p.getItemInHand().setDurability((short)0);
 			p.updateInventory();
 		}
 		if (e.isCancelled()) {
+			return;
+		}
+		if (shooter.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura") && EnderMageReal.isSpawn(shooter.getLocation())) {
 			return;
 		}
           if (SoupTypeGUI.blood.containsKey(player.getName())) {

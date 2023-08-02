@@ -17,6 +17,7 @@ import net.helix.pvp.kit.HelixKit2;
 import net.helix.pvp.kit.KitHandler2;
 import net.helix.pvp.kit.KitManager;
 import net.helix.pvp.kit.KitManager2;
+import net.helix.pvp.kit.provider.EnderMageReal;
 import net.helix.pvp.kit.provider.GladiatorListener;
 import net.md_5.bungee.api.ChatColor;
 
@@ -75,6 +76,10 @@ public void snowball(final ProjectileLaunchEvent e) {
     	        if (!KitManager2.getPlayer(shooter.getName()).haskit2(this)) {
                 	return;
                 }
+    	        else if (shooter.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura") && EnderMageReal.isSpawn(shooter.getLocation())) {
+    	        	shooter.sendMessage("§cNão use o seu poder no spawn!");
+    	    		return;
+    	       }
     	        Player p = (Player)e.getEntity();
     	        if (KitManager.getPlayer(p.getName()).hasKit(HelixKit.NEO) || KitManager2.getPlayer(p.getName()).haskit2(HelixKit2.NEO)) {
 					p.playSound(p.getLocation(), Sound.NOTE_BASS_DRUM, 15.0f, 15.0f);
