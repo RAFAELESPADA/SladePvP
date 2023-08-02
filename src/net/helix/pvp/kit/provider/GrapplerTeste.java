@@ -4,7 +4,6 @@ import net.helix.pvp.HelixPvP;
 import net.helix.pvp.kit.Ejectable;
 import net.helix.pvp.kit.KitHandler;
 import net.helix.pvp.kit.KitManager;
-import net.helix.pvp.kit.KitManager2;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -32,44 +31,17 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.PlayerLeashEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerItemHeldEvent;
-import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 
-public class Grappler extends KitHandler implements Ejectable {
+public class GrapplerTeste extends KitHandler implements Ejectable {
 
 
 private Map<UUID, Hook> hooks = new HashMap<>();
 
 
-public static int getDistance(Player e){
-    Location loc = e.getLocation().clone();
-    double y = loc.getBlockY();
-    int distance = 0;
-    for (double i = y; i >= 0; i--){
-        loc.setY(i);
-       if(loc.getBlock().getType().isSolid())break;
-        distance++;
-    }
-    return distance;
-}
-@EventHandler
-public void usarf(PlayerMoveEvent e) {
-	Player p = e.getPlayer();
-	if ((p.getItemInHand().getType().equals(Material.LEASH))) {
- 			if (KitManager.getPlayer(e.getPlayer().getName()).hasKit(this)) {
- 				
- 	   if ((p.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura") - 12) && EnderMageReal.isSpawn(p.getLocation())) {
-			p.sendMessage("§cNão use o grappler perto no spawn!");
-			Location tp = p.getLocation();
 
-			tp.setY(tp.getY()-getDistance(p));
-
-			p.teleport(tp);
-			return;
-		
- 	   }}}}
 @EventHandler(priority = EventPriority.LOWEST)
 public void onPlayerInteract(PlayerInteractEvent event) {
 	if (!KitManager.getPlayer(event.getPlayer().getName()).hasKit(this))
@@ -90,15 +62,6 @@ public void onPlayerInteract(PlayerInteractEvent event) {
 		sendMessageCooldown(p);
 		return;
 	}
-	if ((p.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura") - 12) && EnderMageReal.isSpawn(p.getLocation())) {
-			p.sendMessage("§cNão use o grappler perto no spawn!");
-			Location tp = p.getLocation();
-
-			tp.setY(tp.getY()-getDistance(p));
-
-			p.teleport(tp);
-			return;
-		} 
 	if (event.getAction().name().contains("LEFT")) {
 		eject(p);
 		Hook hook = new Hook(p.getWorld(), ((CraftPlayer) p).getHandle());
