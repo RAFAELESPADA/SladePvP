@@ -74,6 +74,10 @@ public void snowball(final ProjectileLaunchEvent e) {
     	        if (!KitManager.getPlayer(shooter.getName()).hasKit(this)) {
                 	return;
                 }
+    	        else if (shooter.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura") && EnderMageReal.isSpawn(shooter.getLocation())) {
+    	        	shooter.sendMessage("§cNão use o seu poder no spawn!");
+    	    		return;
+    	       }
     	        Player p = (Player)e.getEntity();
     	        if (KitManager.getPlayer(p.getName()).hasKit(HelixKit.NEO) || KitManager2.getPlayer(p.getName()).haskit2(HelixKit2.NEO)) {
 					p.playSound(p.getLocation(), Sound.NOTE_BASS_DRUM, 15.0f, 15.0f);
