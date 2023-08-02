@@ -77,7 +77,6 @@ public void onKitEndermage(Location portal, Player p1, Player p2) {
     	mage.sendMessage("§cNão use o EnderMage no spawn!");
 		return;
 	 }
-    e.setCancelled(true);
     final Block b = e.getClickedBlock();
     final Location bLoc = b.getLocation();
     final Material material = b.getType();
@@ -85,6 +84,7 @@ public void onKitEndermage(Location portal, Player p1, Player p2) {
           for (Player target : Bukkit.getOnlinePlayers()) {
             if (target != mage && !target.isDead()) {
               if (!isEnderable(bLoc, target.getLocation())) {
+            	    e.setCancelled(true);
             	  mage.sendMessage("§cUse o endermage em torres ou lugares altos!");
             	
             	  return;

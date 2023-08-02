@@ -33,7 +33,6 @@ public void PlayerInteractEvt(PlayerInteractEntityEvent e) {
   final Player ent = (Player)e.getRightClicked();
   if (KitManager.getPlayer(p.getName()).hasKit(this) && 
     p.getItemInHand().getType() == Material.LAPIS_BLOCK) {
-    e.setCancelled(true);
     
     if (inCooldown(p)) {
     	sendMessageCooldown(e.getPlayer());
@@ -43,6 +42,7 @@ public void PlayerInteractEvt(PlayerInteractEntityEvent e) {
     	p.sendMessage("§cNão use o seu poder no spawn!");
 		return;
 	 }
+    e.setCancelled(true);
     wateratack.add(ent.getName());
     createSpiralAroundPlayer(ent);
     addCooldown(p, 20);

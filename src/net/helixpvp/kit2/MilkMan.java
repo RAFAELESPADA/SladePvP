@@ -42,7 +42,7 @@ public class MilkMan extends KitHandler2 {
     public void onInteract(PlayerInteractEvent event) {
         if (!event.hasItem() || !ItemBuilder.has(event.getItem(), "kit-handler", "milkman")) return;
 
-        event.setCancelled(true);
+        
         if (inCooldown(event.getPlayer()) && KitManager2.getPlayer(event.getPlayer().getName()).haskit2(this)) {
 			sendMessageCooldown(event.getPlayer());
 			return;
@@ -51,6 +51,7 @@ public class MilkMan extends KitHandler2 {
         	event.getPlayer().sendMessage("§cAguarde para usar novamente");
         	return;
         }
+        event.setCancelled(true);
         HelixCooldown.create(event.getPlayer().getName(), "milk-ability", TimeUnit.SECONDS, HelixPvP.getInstance().getConfig().getInt("MilkManCooldown"));
         addCooldown(event.getPlayer(), HelixPvP.getInstance().getConfig().getInt("MilkManCooldown"));
         event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.ABSORPTION, 5 * 20, 0));

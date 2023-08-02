@@ -91,12 +91,12 @@ public class Avatar extends KitHandler {
         player.setItemInHand(getItem(player.getItemInHand()));
         
       } else {
-        e.setCancelled(true);
         if (hasCooldown(player)) {
          sendMessageCooldown(player);
           return;
         } 
         addCooldown(player, 30);
+        e.setCancelled(true);
         Material item = player.getItemInHand().getType();
         if (item == Material.WOOL) {
           Vector Ferro = player.getLocation().getDirection().normalize().multiply(55);

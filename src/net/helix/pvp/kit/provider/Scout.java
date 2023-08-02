@@ -30,7 +30,9 @@ public class Scout extends KitHandler {
 @EventHandler
 public void onInteract(PlayerInteractEvent event) {
     if (!event.hasItem() || !ItemBuilder.has(event.getItem(), "kit-handler", "scout")) return;
-
+    if (!KitManager.getPlayer(event.getPlayer().getName()).hasKit(this)) {
+    	return;
+    }
     event.setCancelled(true);
     if (inCooldown(event.getPlayer()) && KitManager.getPlayer(event.getPlayer().getName()).hasKit(this)) {
 		sendMessageCooldown(event.getPlayer());

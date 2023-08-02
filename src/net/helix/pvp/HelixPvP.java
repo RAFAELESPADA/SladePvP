@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -17,6 +18,8 @@ import org.bukkit.DyeColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
+import org.bukkit.block.Block;
+import org.bukkit.block.Sign;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -28,6 +31,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapelessRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.material.Dye;
+import org.bukkit.material.Wool;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -174,6 +178,38 @@ public class HelixPvP extends JavaPlugin implements Listener, PluginMessageListe
 		Bukkit.getServer().addRecipe(CraftCocoa);
 		ItemMeta Flores = Resultado.getItemMeta();
 		Resultado.setItemMeta(Flores);
+new BukkitRunnable() {
+			
+			@SuppressWarnings("deprecation")
+			@Override
+			public void run() {
+				Location loc = new Location(Bukkit.getWorld("spawn"), -167.435, 135.00000000000, -110.615);
+				Location loc2 = new Location(Bukkit.getWorld("spawn") , -166.642, 136.000000000, -110.830);
+				Location loc3 = new Location(Bukkit.getWorld("spawn") , -168.410, 136.000000000, -110.611);
+				Block b = loc.getBlock();
+				Block b2 = loc2.getBlock();
+				Block b3 = loc3.getBlock();
+				b.setType(Material.STAINED_GLASS);
+				b2.setType(Material.STAINED_GLASS);
+				b3.setType(Material.STAINED_GLASS);
+			Random r = new Random();
+			int r2 = r.nextInt(20);
+			b.setData((byte) (r2)); 
+			b2.setData((byte) (r2));
+			b3.setData((byte) (r2));
+	
+			Block block = Bukkit.getWorld("spawn").getBlockAt(-167, 135, -114);
+            if(!(block.getState() instanceof Sign)) {
+                block.setType(Material.SIGN_POST);
+                Sign sign = (Sign) block.getState();
+                sign.setLine(0, "Blocos Que Mudam");
+                sign.setLine(1, "de Cores");
+                sign.setLine(2, "WOOOOW");
+                sign.update();
+}
+	
+	}}.runTaskTimer(this, 0, 1 * 10L);
+	
 new BukkitRunnable() {
 			
 			@Override

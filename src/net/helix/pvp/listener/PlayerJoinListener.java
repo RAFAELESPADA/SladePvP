@@ -108,6 +108,9 @@ public class PlayerJoinListener implements Listener {
         Scoreboard board = manager.getMainScoreboard();
 		e.getPlayer().setMaximumNoDamageTicks(20);
 		informIfVip(player, player.getUniqueId());
+		if (Jump.recebeu.containsKey(p.getName())) {
+			Jump.recebeu.remove(player.getName());
+		}
 	    player.getActivePotionEffects().forEach(potion -> player.removePotionEffect(potion.getType()));
 		HelixPvP.getInstance().getScoreboardBuilder().build(player);
 	    Location spawnLocation = (HelixBukkit.getInstance().getWarpManager().findWarp("spawn").get()).getLocation();
