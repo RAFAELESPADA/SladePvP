@@ -4,7 +4,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
 
-import net.helix.core.util.HelixCooldown2;
+import net.helix.pvp.cooldown1.HelixCooldown2;
+import net.helix.pvp.cooldown1.HelixCooldownAPI;
+import net.helix.pvp.cooldown1.ItemCooldown;
 
 
 
@@ -26,11 +28,11 @@ protected boolean inCooldown(Player player, String cooldown) {
 }
 
 protected boolean inCooldown(Player player) {
-    return HelixCooldown2.inCooldown(player, "Kit");
+    return HelixCooldown2.inCooldown(player, KitManager.getPlayer(player.getName()).getKit().getName());
 }
 
 protected void sendMessageCooldown(Player player) {
-	HelixCooldown2.sendMessage(player, "Kit");
+	HelixCooldown2.sendMessage(player, KitManager.getPlayer(player.getName()).getKit().getName());
 }
 
 protected void sendMessageCooldown(Player player, String cooldown) {
@@ -41,20 +43,20 @@ protected void addCooldown(Player player, String cooldownName, long time) {
     if (HelixCooldown2.hasCooldown(player, cooldownName)) {
         HelixCooldown2.removeCooldown(player, cooldownName);
     }
-    HelixCooldown2.addCooldown(player, new net.helix.core.util.HelixCooldownAPI(cooldownName, time));
+    HelixCooldown2.addCooldown(player, new net.helix.pvp.cooldown1.HelixCooldownAPI(cooldownName, time));
 }
 
 protected void addCooldown(Player player, long time) {
-    if (HelixCooldown2.hasCooldown(player, "Kit")) {
-        HelixCooldown2.removeCooldown(player, "Kit");
+    if (HelixCooldown2.hasCooldown(player, KitManager.getPlayer(player.getName()).getKit().getName())) {
+        HelixCooldown2.removeCooldown(player, KitManager.getPlayer(player.getName()).getKit().getName());
     }
-    HelixCooldown2.addCooldown(player, new net.helix.core.util.HelixCooldownAPI("Kit", time));
+    HelixCooldown2.addCooldown(player, new  net.helix.pvp.cooldown1.HelixCooldownAPI(KitManager.getPlayer(player.getName()).getKit().getName(), time));
 }
 
 protected void addItemCooldown(Player player, ItemStack item, String cooldownName, long time) {
     if (HelixCooldown2.hasCooldown(player, cooldownName)) {
         HelixCooldown2.removeCooldown(player, cooldownName);
     }
-    HelixCooldown2.addCooldown(player, new net.helix.core.util.ItemCooldown(item, cooldownName, time));
+    HelixCooldown2.addCooldown(player, new  net.helix.pvp.cooldown1.ItemCooldown(item, cooldownName, time));
 }
 }
