@@ -32,15 +32,15 @@ import net.helix.pvp.kit.KitManager;
 	    if (!KitManager.getPlayer(event.getPlayer().getName()).hasKit(this)) {
 	    	return;
 	    }
+	    if (net.helix.pvp.cooldown1.HelixCooldown2.hasCooldown(p, KitManager.getPlayer(p.getName()).getKit().getName())) {
+	        sendMessageCooldown(p);
+	        return;
+	      }
 	    else if (p.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura")) {
 			p.sendMessage("§cNão use o Desh no spawn!");
 			return;
 		 }
 	      event.setCancelled(true);
-	      if (hasCooldown(p)) {
-	        sendMessageCooldown(p);
-	        return;
-	      }
 	      addCooldown(p, 35);
 	      /*  76 */       p.setVelocity(p.getEyeLocation().getDirection().multiply(6).add(new Vector(0, 0, 0)));
 	      for (Entity pertos : p.getNearbyEntities(8.0D, 8.0D, 8.0D)) {

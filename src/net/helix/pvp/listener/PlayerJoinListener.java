@@ -163,6 +163,10 @@ public class PlayerJoinListener implements Listener {
 	    	                .nbt("cancel-drop")
 	    	                .nbt("cancel-click")
 	    	                .toStack());
+	    	        RegisteredServiceProvider<LuckPerms> provider = Bukkit.getServicesManager().getRegistration(LuckPerms.class);
+	    			if (provider != null) {
+	    	        LuckPerms api = provider.getProvider();
+	    			
 	    		HelixBukkit.getExecutorService().submit(() -> {
 	    			new BukkitRunnable() {
 	    				@Override
@@ -206,20 +210,22 @@ public class PlayerJoinListener implements Listener {
 	    						            .toStack());
 	    						    player.sendMessage(ChatColor.GREEN + "Você entrou no spawn.");
 	    				}
+	    			
 	    					}.runTaskTimer(HelixPvP.getInstance(), 0, 1 * 2L);
 	    		});
 	    		HelixBukkit.getExecutorService().submit(() -> {
 	    			new BukkitRunnable() {
 	    				@Override
 	    				public void run() {
-	    					Bukkit.dispatchCommand(p, "spawn");
+	    					Bukkit.dispatchCommand(p, "tag " + api.getUserManager().getUser(player.getName()).getPrimaryGroup().toString());
 	    				}
-					}.runTaskLater(HelixPvP.getInstance(), 10L);
+	    			}.runTaskLater(HelixPvP.getInstance(), 10L);
 		});
 		player.setFlying(false);
 		player.sendMessage(ChatColor.GREEN + "Bem vindo ao kitpvp.");
 		player.setGameMode(GameMode.SURVIVAL);
 		player.setLevel(0);
 		player.setFireTicks(0);
+	}
 	}
 }
