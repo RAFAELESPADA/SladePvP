@@ -10,10 +10,12 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 
 import net.helix.core.bukkit.HelixBukkit;
+import net.helix.core.bukkit.api.HelixActionBar;
 import net.helix.core.bukkit.api.HelixTitle;
 import net.helix.core.bukkit.item.ItemBuilder;
 import net.helix.core.bukkit.warp.HelixWarp;
 import net.helix.pvp.HelixPvP;
+import net.helix.pvp.cooldown2.HelixCooldown2;
 import net.helix.pvp.evento.EventoUtils;
 import net.helix.pvp.kit.KitManager;
 import net.helix.pvp.kit.KitManager2;
@@ -28,13 +30,16 @@ public class Spawn extends WarpHandle {
     player.getInventory().clear();
     Jump.recebeu.remove(player.getName());
     Jump.caiu.remove(player.getName());
-    
+    HelixActionBar.send(player, "");
+    HelixCooldown2.removeCooldown(player, KitManager2.getPlayer(player.getName()).getkit2().getName());
+    net.helix.pvp.cooldown1.HelixCooldown2.removeCooldown(player, KitManager.getPlayer(player.getName()).getKit().getName());
     player.getInventory().setArmorContents(null);
     player.setGameMode(GameMode.ADVENTURE);
     player.setMaxHealth(20.0D);
     if (EventoUtils.game.contains(player.getName())) {
       EventoUtils.setEvento(false, player); 
     }
+    
     player.setHealth(player.getMaxHealth());
     player.getActivePotionEffects().forEach(potion -> player.removePotionEffect(potion.getType()));
     player.setFireTicks(0);

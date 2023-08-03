@@ -21,6 +21,7 @@ import net.helix.core.util.HelixCooldown2;
 import net.helix.pvp.HelixPvP;
 import net.helix.pvp.kit.Habilidade;
 import net.helix.pvp.kit.KitManager;
+import net.helix.pvp.kit.KitManager2;
 import net.helix.pvp.kit.provider.EnderMageReal;
 import net.helix.pvp.kit.provider.GladiatorListener;
 import net.helix.pvp.listener.PlayerJoinListener;
@@ -64,7 +65,8 @@ public class SpawnCMD extends WarpDuoBattleHandle implements Listener, CommandEx
 				p.setFlying(false);
 				indo.remove(p.getName());
 				p.setGameMode(GameMode.SURVIVAL);
-				HelixCooldown2.removeCooldown(p , "Kit");
+			    HelixCooldown2.removeCooldown(player, KitManager2.getPlayer(player.getName()).getkit2().getName());
+			    net.helix.pvp.cooldown1.HelixCooldown2.removeCooldown(player, KitManager.getPlayer(player.getName()).getKit().getName());
 				if (!HelixPvP.euforia) {
 				BossBarAPI.removeAllBars(p);
 				}
@@ -131,7 +133,8 @@ public class SpawnCMD extends WarpDuoBattleHandle implements Listener, CommandEx
 	    	PlayerJoinListener.fall.add(p);
 	    	p.sendMessage(ChatColor.GREEN + "Você recebeu a proteção do spawn");
 	    }
-		HelixCooldown2.removeCooldown(p , "Kit");
+	    HelixCooldown2.removeCooldown(player, KitManager2.getPlayer(player.getName()).getkit2().getName());
+	    net.helix.pvp.cooldown1.HelixCooldown2.removeCooldown(player, KitManager.getPlayer(player.getName()).getKit().getName());
 		BossBarAPI.removeAllBars(p);
 		p.setGameMode(GameMode.SURVIVAL);
 		p.setLevel(0);

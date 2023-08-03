@@ -12,7 +12,9 @@ import org.bukkit.material.Dye;
 import net.helix.core.bukkit.HelixBukkit;
 import net.helix.core.bukkit.account.HelixPlayer;
 import net.helix.core.bukkit.item.ItemBuilder;
-import net.helix.core.util.HelixCooldown2;
+import net.helix.pvp.cooldown2.HelixCooldown2;
+import net.helix.pvp.cooldown2.HelixCooldownAPI;
+import net.helix.pvp.cooldown2.ItemCooldown;
 import net.helix.pvp.evento.SoupTypeGUI;
 
 
@@ -100,7 +102,7 @@ public class KitHandler2 implements Listener {
 	
 
 protected boolean hasCooldown(Player player) {
-    return HelixCooldown2.hasCooldown(player, "Kit");
+    return HelixCooldown2.hasCooldown(player, KitManager2.getPlayer(player.getName()).getkit2().getName());
 }
 
 protected boolean hasCooldown(Player player, String cooldown) {
@@ -112,11 +114,11 @@ protected boolean inCooldown(Player player, String cooldown) {
 }
 
 protected boolean inCooldown(Player player) {
-    return HelixCooldown2.inCooldown(player, "Kit");
+    return HelixCooldown2.inCooldown(player, KitManager2.getPlayer(player.getName()).getkit2().getName());
 }
 
 protected void sendMessageCooldown(Player player) {
-	HelixCooldown2.sendMessage(player, "Kit");
+	HelixCooldown2.sendMessage(player, KitManager2.getPlayer(player.getName()).getkit2().getName());
 }
 
 protected void sendMessageCooldown(Player player, String cooldown) {
@@ -127,20 +129,20 @@ protected void addCooldown(Player player, String cooldownName, long time) {
     if (HelixCooldown2.hasCooldown(player, cooldownName)) {
         HelixCooldown2.removeCooldown(player, cooldownName);
     }
-    HelixCooldown2.addCooldown(player, new net.helix.core.util.HelixCooldownAPI(cooldownName, time));
+    HelixCooldown2.addCooldown(player, new HelixCooldownAPI(cooldownName, time));
 }
 
 protected void addCooldown(Player player, long time) {
-    if (HelixCooldown2.hasCooldown(player, "Kit")) {
-        HelixCooldown2.removeCooldown(player, "Kit");
+    if (HelixCooldown2.hasCooldown(player, KitManager2.getPlayer(player.getName()).getkit2().getName())) {
+        HelixCooldown2.removeCooldown(player, KitManager2.getPlayer(player.getName()).getkit2().getName());
     }
-    HelixCooldown2.addCooldown(player, new net.helix.core.util.HelixCooldownAPI("Kit", time));
+    HelixCooldown2.addCooldown(player, new HelixCooldownAPI(KitManager2.getPlayer(player.getName()).getkit2().getName(), time));
 }
 
 protected void addItemCooldown(Player player, ItemStack item, String cooldownName, long time) {
     if (HelixCooldown2.hasCooldown(player, cooldownName)) {
         HelixCooldown2.removeCooldown(player, cooldownName);
     }
-    HelixCooldown2.addCooldown(player, new net.helix.core.util.ItemCooldown(item, cooldownName, time));
+    HelixCooldown2.addCooldown(player, new ItemCooldown(item, cooldownName, time));
 }
 }

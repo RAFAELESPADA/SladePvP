@@ -30,10 +30,14 @@ import net.helix.core.util.HelixCooldownAPI;
 import net.helix.core.util.ItemCooldown;
 import net.helix.pvp.HelixPvP;
 import net.helix.pvp.command.ServerTimerEvent;
+import net.helix.pvp.command.ServerTimerEvent2;
+import net.helix.pvp.cooldown2.UpdateEvent;
+import net.helix.pvp.cooldown2.UpdateEvent2;
 import net.helix.pvp.kit.Ejectable;
 import net.helix.pvp.kit.HelixKit;
 import net.helix.pvp.kit.KitHandler;
 import net.helix.pvp.kit.KitManager;
+import net.helix.pvp.kit.KitManager2;
 import net.minecraft.server.v1_8_R3.EntityEnderPearl;
 import net.minecraft.server.v1_8_R3.EntityPlayer;
 import net.minecraft.server.v1_8_R3.World;
@@ -119,26 +123,24 @@ public class Jumper extends KitHandler implements Ejectable {
 			next.getWorld().playEffect(next.getLocation(), Effect.INSTANT_SPELL, 10);
 		}
 	}
-	
 	@EventHandler
-	public void onUpdate(ServerTimerEvent event) {
+	public void onUpdate2(ServerTimerEvent2 event) {
 		if (event.getCurrentTick() % 2 > 0)
 			return;
-
-		for (UUID uuid : net.helix.core.util.HelixCooldown2.map.keySet()) {
+		for (UUID uuid : net.helix.pvp.cooldown2.HelixCooldown2.map.keySet()) {
 			Player player = Bukkit.getPlayer(uuid);
 			if (player != null) {
-				List<HelixCooldownAPI> list = HelixCooldown2.map.get(uuid);
-				Iterator<HelixCooldownAPI> it = list.iterator();
+				List<net.helix.pvp.cooldown2.HelixCooldownAPI> list = net.helix.pvp.cooldown2.HelixCooldown2.map.get(uuid);
+				Iterator<net.helix.pvp.cooldown2.HelixCooldownAPI> it = list.iterator();
 
-				HelixCooldownAPI found = null;
+				net.helix.pvp.cooldown2.HelixCooldownAPI found = null;
 				while (it.hasNext()) {
-					HelixCooldownAPI cooldown = it.next();
+					net.helix.pvp.cooldown2.HelixCooldownAPI cooldown = it.next();
 					if (!cooldown.expired()) {
-						if (cooldown instanceof ItemCooldown) {
+						if (cooldown instanceof net.helix.pvp.cooldown2.ItemCooldown) {
 							ItemStack hand = player.getEquipment().getItemInHand();
 							if (hand != null && hand.getType() != Material.AIR) {
-								ItemCooldown item = (ItemCooldown) cooldown;
+								net.helix.pvp.cooldown2.ItemCooldown item = (net.helix.pvp.cooldown2.ItemCooldown) cooldown;
 								if (hand.equals(item.getItem())) {
 									item.setSelected(true);
 									found = item;
@@ -151,23 +153,82 @@ public class Jumper extends KitHandler implements Ejectable {
 						continue;
 					}
 					it.remove();
-					Bukkit.getServer().getPluginManager().callEvent(new CooldownFinishEvent(player, cooldown));
+					Bukkit.getServer().getPluginManager().callEvent(new net.helix.pvp.cooldown2.CooldownFinishEvent(player, cooldown));
 					 player.playSound(player.getLocation(), Sound.LEVEL_UP, 1.0F, 1.0F);
 				}
 
 				if (found != null) {
-					CooldownStartEvent e = new CooldownStartEvent(player, found);
+					net.helix.pvp.cooldown2.CooldownStartEvent e = new net.helix.pvp.cooldown2.CooldownStartEvent(player, found);
 					Bukkit.getPluginManager().callEvent(e);
 					if (!e.isCancelled()) {
-						HelixCooldown2.display(player, found);
+						net.helix.pvp.cooldown2.HelixCooldown2.display(player, found);
+					}
+				} else if (list.isEmpty()) {
+				
+					HelixCooldown2.map.remove(uuid);
+				} else {
+					net.helix.pvp.cooldown2.HelixCooldownAPI cooldown = list.get(0);
+					if (cooldown instanceof net.helix.pvp.cooldown2.ItemCooldown) {
+						net.helix.pvp.cooldown2.ItemCooldown item = (net.helix.pvp.cooldown2.ItemCooldown) cooldown;
+						if (item.isSelected()) {
+							item.setSelected(false);
+							
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	@EventHandler
+	public void onUpdate(ServerTimerEvent event) {
+		if (event.getCurrentTick() % 2 > 0)
+			return;
+
+		for (UUID uuid : net.helix.pvp.cooldown1.HelixCooldown2.map.keySet()) {
+			Player player = Bukkit.getPlayer(uuid);
+			if (player != null) {
+				
+				List<net.helix.pvp.cooldown1.HelixCooldownAPI> list = net.helix.pvp.cooldown1.HelixCooldown2.map.get(uuid);
+				Iterator<net.helix.pvp.cooldown1.HelixCooldownAPI> it = list.iterator();
+
+				net.helix.pvp.cooldown1.HelixCooldownAPI found = null;
+				while (it.hasNext()) {
+					net.helix.pvp.cooldown1.HelixCooldownAPI cooldown = it.next();
+					if (!cooldown.expired()) {
+						if (cooldown instanceof net.helix.pvp.cooldown1.ItemCooldown) {
+							ItemStack hand = player.getEquipment().getItemInHand();
+							if (hand != null && hand.getType() != Material.AIR) {
+								net.helix.pvp.cooldown1.ItemCooldown item = (net.helix.pvp.cooldown1.ItemCooldown) cooldown;
+								if (hand.equals(item.getItem())) {
+									item.setSelected(true);
+									found = item;
+									break;
+								}
+							}
+							continue;
+						}
+						found = cooldown;
+						continue;
+					}
+					it.remove();
+					Bukkit.getServer().getPluginManager().callEvent(new net.helix.pvp.cooldown1.CooldownFinishEvent(player, cooldown));
+					 player.playSound(player.getLocation(), Sound.LEVEL_UP, 1.0F, 1.0F);
+				}
+
+				if (found != null) {
+					net.helix.pvp.cooldown1.CooldownStartEvent e = new net.helix.pvp.cooldown1.CooldownStartEvent(player, found);
+					Bukkit.getPluginManager().callEvent(e);
+					if (!e.isCancelled()) {
+						net.helix.pvp.cooldown1.HelixCooldown2.display(player, found);
 					}
 				} else if (list.isEmpty()) {
 					HelixActionBar.send(player, " ");
-					HelixCooldown2.map.remove(uuid);
+					net.helix.pvp.cooldown1.HelixCooldown2.map.remove(uuid);
 				} else {
-					HelixCooldownAPI cooldown = list.get(0);
-					if (cooldown instanceof ItemCooldown) {
-						ItemCooldown item = (ItemCooldown) cooldown;
+					net.helix.pvp.cooldown1.HelixCooldownAPI cooldown = list.get(0);
+					if (cooldown instanceof net.helix.pvp.cooldown1.ItemCooldown) {
+						net.helix.pvp.cooldown1.ItemCooldown item = (net.helix.pvp.cooldown1.ItemCooldown) cooldown;
 						if (item.isSelected()) {
 							item.setSelected(false);
 							HelixActionBar.send(player, " ");

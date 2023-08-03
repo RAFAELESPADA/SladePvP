@@ -78,6 +78,7 @@ import net.helix.pvp.command.ReportToggle;
 import net.helix.pvp.command.ResetKDR;
 import net.helix.pvp.command.SC;
 import net.helix.pvp.command.ScoreboardCMD;
+import net.helix.pvp.command.ServerTimerEvent2;
 import net.helix.pvp.command.SetArena;
 import net.helix.pvp.command.SetFeast;
 import net.helix.pvp.command.SetHologramCMD;
@@ -94,6 +95,9 @@ import net.helix.pvp.command.VerRank;
 import net.helix.pvp.command.Warp;
 import net.helix.pvp.command.Youtuber;
 import net.helix.pvp.command.b;
+import net.helix.pvp.cooldown2.UpdateEvent2;
+import net.helix.pvp.cooldown2.UpdateScheduler;
+import net.helix.pvp.cooldown2.UpdateScheduler2;
 import net.helix.pvp.evento.EventoComando;
 import net.helix.pvp.evento.EventoListeners;
 import net.helix.pvp.evento.EventoTabComplete;
@@ -159,7 +163,14 @@ public class HelixPvP extends JavaPlugin implements Listener, PluginMessageListe
 	            return null;
 	        }
 	    }
+	 private void startUpdating() {
+
+		    Bukkit.getServer().getScheduler().runTaskTimer(getInstance(), new UpdateScheduler(), 1, 1);
+		  
+		}
+
 	public void onEnable() {
+		 startUpdating();
 		    	 Bukkit.getMessenger().registerIncomingPluginChannel(this, "BungeeCord", this);
 		    		Bukkit.getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
 		this.scoreboardBuilder = new ScoreboardBuilder(this);
@@ -310,10 +321,12 @@ new BukkitRunnable() {
 		new BukkitRunnable() {
 
 			private long tick;
+			private long tick2;
 
 			@Override
 			public void run() {
 				getServer().getPluginManager().callEvent(new net.helix.pvp.command.ServerTimerEvent(++tick));
+				getServer().getPluginManager().callEvent(new ServerTimerEvent2(++tick2));
 			}
 		}.runTaskTimer(this, 1, 1);
 		new net.helix.pvp.papi.PlaceHolderAPIHook(this).register();
