@@ -62,10 +62,12 @@ public class SelectKitListener implements Listener {
 						
 						if (KitManager2.getPlayer(player.getName()).getkit2().getName() == kit.getName()) {
 							player.sendMessage("§cVocê já selecionou esse kit como secundário!");
+							player.closeInventory();
 							return;
 						}
 						if (KitManager.getPlayer(player.getName()).getKit().getName() == kit.getName()) {
 							player.sendMessage("§cVocê já selecionou esse kit como primário!");
+							player.closeInventory();
 							return;
 						}
 						if (KitManager2.getPlayer(player.getName()).getkit2() == HelixKit2.STOMPER && (kitName2 == "Grappler" || kitName2 == "Kangaroo" || kitName2 == "Flash"  || kitName2 == "Neo" || kitName2 == "AntiStomper" || kitName2 == "Ninja")) {
