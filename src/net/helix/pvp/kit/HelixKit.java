@@ -60,6 +60,7 @@ import net.helix.pvp.kit.provider.Tornado;
 import net.helix.pvp.kit.provider.Turtle;
 import net.helix.pvp.kit.provider.Viper;
 import net.helix.pvp.kit.provider.WaterBender;
+import net.helix.pvp.listener.PlayerJoinListener;
 
 public enum HelixKit {
 
@@ -148,6 +149,11 @@ public enum HelixKit {
 	}
 	
 	public void send(Player player) {
+		if (!(player.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura") && PlayerJoinListener.fall.contains(player)  && EnderMageReal.isSpawn(player.getLocation()))) {
+	      	player.sendMessage("§cVocê só pode escolher kits no spawn!");
+	      	player.closeInventory();
+	  		return;
+	  	 }
 		if (KitManager2.getPlayer(player.getName()).getkit2().getName() == KitManager.getPlayer(player.getName()).getKit().getName()) {
 			player.sendMessage("§cVocê já tem esse kit escolhido como secundário!");
 			player.closeInventory();
