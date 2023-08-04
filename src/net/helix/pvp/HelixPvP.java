@@ -232,9 +232,13 @@ new BukkitRunnable() {
 		@Override
 		public void run() {
 		for (Player pinto : Bukkit.getOnlinePlayers()) {
-			pinto.setNoDamageTicks(21);
+			if (pinto.getNoDamageTicks() < 10) {
+			pinto.setNoDamageTicks(20);
 		}
-		}}.runTaskTimer(this, 0, 1 * 5L);
+			else {
+				pinto.setNoDamageTicks(19);
+			}
+		}}}.runTaskTimer(this, 0, 1 * 5L);
 	
 	
 new BukkitRunnable() {
@@ -551,6 +555,7 @@ new BukkitRunnable() {
 		pm.registerEvents(new Cocoa(), this);
 		pm.registerEvents(new ShopGUI(), this);
 		pm.registerEvents(new Tank(), this);
+		pm.registerEvents(new SC(), this);
 		pm.registerEvents(new PlayerJoinListener(), this);
 		pm.registerEvents(new PlayerDeathListener(), this);
 		pm.registerEvents(new Arena(), this);
