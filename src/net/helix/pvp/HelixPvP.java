@@ -238,7 +238,7 @@ new BukkitRunnable() {
 			else {
 				pinto.setNoDamageTicks(19);
 			}
-		}}.runTaskTimer(this, 0, 1 * 5L);
+		}}}.runTaskTimer(this, 0, 1 * 5L);
 	
 	
 new BukkitRunnable() {
