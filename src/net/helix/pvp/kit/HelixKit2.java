@@ -15,6 +15,8 @@ import org.bukkit.inventory.ItemStack;
 import net.helix.core.bukkit.item.ItemBuilder;
 import net.helix.pvp.HelixPvP;
 import net.helix.pvp.command.DarKit;
+import net.helix.pvp.kit.provider.EnderMageReal;
+import net.helix.pvp.listener.PlayerJoinListener;
 import net.helixpvp.kit2.Anchor;
 import net.helixpvp.kit2.AntiStomperReal;
 import net.helixpvp.kit2.Archer;
@@ -114,6 +116,11 @@ public enum HelixKit2  {
 	}
 	
 	public void send(Player player) {
+		if (!(player.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura") && PlayerJoinListener.fall.contains(player)  && EnderMageReal.isSpawn(player.getLocation()))) {
+	      	player.sendMessage("§cVocê só pode escolher kits no spawn!");
+	      	player.closeInventory();
+	  		return;
+	  	 }
 		if (KitManager2.getPlayer(player.getName()).getkit2().getName() == KitManager.getPlayer(player.getName()).getKit().getName()) {
 			player.sendMessage("§cVocê já tem esse kit escolhido como secundário!");
 			player.closeInventory();
