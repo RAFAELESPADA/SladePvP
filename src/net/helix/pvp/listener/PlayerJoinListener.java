@@ -106,7 +106,6 @@ public class PlayerJoinListener implements Listener {
 		}
 		ScoreboardManager manager = Bukkit.getScoreboardManager();
         Scoreboard board = manager.getMainScoreboard();
-		e.getPlayer().setMaximumNoDamageTicks(20);
 		informIfVip(player, player.getUniqueId());
 		if (Jump.recebeu.containsKey(p.getName())) {
 			Jump.recebeu.remove(player.getName());

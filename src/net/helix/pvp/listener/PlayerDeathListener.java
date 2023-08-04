@@ -262,6 +262,5 @@ public class PlayerDeathListener implements Listener {
 	public void onRespawn(PlayerRespawnEvent e) {
 		Player p = e.getPlayer();
 		p.setFireTicks(0);
-		p.setNoDamageTicks(0);
 	}
 }
