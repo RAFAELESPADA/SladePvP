@@ -551,6 +551,7 @@ new BukkitRunnable() {
 		pm.registerEvents(new Cocoa(), this);
 		pm.registerEvents(new ShopGUI(), this);
 		pm.registerEvents(new Tank(), this);
+		pm.registerEvents(new SC(), this);
 		pm.registerEvents(new PlayerJoinListener(), this);
 		pm.registerEvents(new PlayerDeathListener(), this);
 		pm.registerEvents(new Arena(), this);
