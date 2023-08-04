@@ -234,11 +234,9 @@ new BukkitRunnable() {
 		for (Player pinto : Bukkit.getOnlinePlayers()) {
 			if (pinto.getNoDamageTicks() < 10) {
 			pinto.setNoDamageTicks(20);
+			pinto.setMaximumNoDamageTicks(20);
 		}
-			else {
-				pinto.setNoDamageTicks(19);
-			}
-		}}}.runTaskTimer(this, 0, 1 * 5L);
+		}}}.runTaskTimer(this, 0, 20 * 20L);
 	
 	
 new BukkitRunnable() {
