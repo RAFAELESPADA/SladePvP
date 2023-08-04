@@ -232,11 +232,11 @@ new BukkitRunnable() {
 		@Override
 		public void run() {
 		for (Player pinto : Bukkit.getOnlinePlayers()) {
-			if (pinto.getNoDamageTicks() < 10) {
+			if (pinto.getNoDamageTicks() < 18) {
 			pinto.setNoDamageTicks(20);
 			pinto.setMaximumNoDamageTicks(20);
 		}
-		}}}.runTaskTimer(this, 0, 20 * 20L);
+		}}}.runTaskTimer(this, 0, 1 * 10L);
 	
 	
 new BukkitRunnable() {
