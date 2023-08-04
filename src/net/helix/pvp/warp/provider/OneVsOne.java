@@ -10,14 +10,19 @@ import net.helix.pvp.kit.KitManager;
 import net.helix.pvp.kit.KitManager2;
 import net.helix.pvp.warp.HelixWarp;
 import net.helix.pvp.warp.WarpDuoBattleHandle;
+
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.inventory.PrepareItemCraftEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.Optional;
@@ -75,6 +80,21 @@ public class OneVsOne extends WarpDuoBattleHandle {
 		target.sendMessage("§2Seu oponente deslogou e a batalha foi encerrada.");
 
 	}
+	  @EventHandler
+	    public void craftItem(PrepareItemCraftEvent e) {
+	        Material itemType = e.getRecipe().getResult().getType();
+	    
+	        if(itemType==Material.BLAZE_POWDER) {
+	            e.getInventory().setResult(new ItemStack(Material.AIR));
+	            for(HumanEntity he:e.getViewers()) {
+	                if(he instanceof Player) {
+	                	if (HelixWarp.ONE_VS_ONE.hasPlayer(he.getName())) {
+	                    ((Player)he).sendMessage(ChatColor.RED+"Não crafte isso!");
+	                }
+	                }
+	            }
+	        }
+	        }
 	@EventHandler
 	public void onInteract2(EntityDamageByEntityEvent event) {
 		if (!(event.getEntity() instanceof Player)) {
