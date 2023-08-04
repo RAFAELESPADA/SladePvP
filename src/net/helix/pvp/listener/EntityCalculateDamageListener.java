@@ -236,10 +236,9 @@ public class EntityCalculateDamageListener implements Listener {
           if (SoupTypeGUI.blood.containsKey(player.getName())) {
         	  player2.getWorld().playEffect(player2.getLocation(),  Effect.STEP_SOUND, Material.REDSTONE_BLOCK, 15);
           }
-		if (p.getMaximumNoDamageTicks() > 35 || p.getMaximumNoDamageTicks() < 18) {
-			p.setMaximumNoDamageTicks(20);
-		}
-          }
+          
+	}
+	
 
 
 	 
