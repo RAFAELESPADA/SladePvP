@@ -41,7 +41,6 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.inventivetalent.bossbar.BossBar;
 import org.inventivetalent.bossbar.BossBarAPI;
-
 import eu.decentsoftware.holograms.api.DHAPI;
 import eu.decentsoftware.holograms.api.holograms.Hologram;
 import net.helix.core.bukkit.HelixBukkit;
@@ -52,6 +51,9 @@ import net.helix.pvp.command.Aplicar;
 import net.helix.pvp.command.Arena;
 import net.helix.pvp.command.AutoSoup;
 import net.helix.pvp.command.AvisoT;
+import net.helix.pvp.command.BukkitCommandFramework;
+import net.helix.pvp.command.BukkitCommandLoader;
+import net.helix.pvp.command.ChatCommand;
 import net.helix.pvp.command.Crash;
 import net.helix.pvp.command.DarKit;
 import net.helix.pvp.command.DesligarPlugin;
@@ -148,10 +150,14 @@ public class HelixPvP extends JavaPlugin implements Listener, PluginMessageListe
 	public static HelixPvP getInstance() {
 		return getPlugin(HelixPvP.class);
 	}
+	public static HelixPvP getInstance2() {
+		return instance;
+	}
 	public ArrayList<EnchantingInventory> inventories;
 	private ScoreboardBuilder scoreboardBuilder;
 	private Hologram topPlayersHd;
 	public static boolean euforia;
+	private static HelixPvP instance;
 	 public static File file_x1 = new File("plugins/SRKitPvP", "1v1.yml");
 	 public static FileConfiguration cfg_x1 = YamlConfiguration.loadConfiguration(file_x1);
 	 protected String getIpLocalHost() {
@@ -170,6 +176,8 @@ public class HelixPvP extends JavaPlugin implements Listener, PluginMessageListe
 		}
 
 	public void onEnable() {
+		ChatCommand.chat = true;
+		instance = this;
 		 startUpdating();
 		    	 Bukkit.getMessenger().registerIncomingPluginChannel(this, "BungeeCord", this);
 		    		Bukkit.getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
@@ -220,6 +228,14 @@ new BukkitRunnable() {
 }
 	
 	}}.runTaskTimer(this, 0, 1 * 10L);
+	new BukkitRunnable() {
+		@Override
+		public void run() {
+		for (Player pinto : Bukkit.getOnlinePlayers()) {
+			pinto.setNoDamageTicks(21);
+		}
+		}}.runTaskTimer(this, 0, 1 * 5L);
+	
 	
 new BukkitRunnable() {
 			
@@ -455,6 +471,7 @@ new BukkitRunnable() {
 		getCommand("givekit").setExecutor(new DarKit());
 		getCommand("fly").setExecutor(new Fly());
 		getCommand("set1v1").setExecutor(new SetX1());
+		new BukkitCommandLoader(new BukkitCommandFramework(getInstance())).loadCommandsFromPackage("net.helix.pvp.command");
 		getCommand("macrotest").setExecutor(new MacroTest());
 		getCommand("yt").setExecutor(new Youtuber());
 		getCommand("youtuber").setExecutor(new Youtuber());

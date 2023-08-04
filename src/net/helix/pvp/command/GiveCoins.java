@@ -27,7 +27,7 @@ public class GiveCoins implements CommandExecutor {
 		
 		if (cmd.getName().equalsIgnoreCase("givecoins")) {
 			if (!sender.hasPermission("cmd.givecoins")) {
-				sender.sendMessage("Voce n§o tem permissao");
+				sender.sendMessage("Voce não tem permissao");
 			} else {
 				if (args.length == 0) {
 					sender.sendMessage( "§c§l/givecoins [player] [amount]");
