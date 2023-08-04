@@ -114,19 +114,37 @@ public enum HelixKit2  {
 	}
 	
 	public void send(Player player) {
-		if (KitManager.getPlayer(player.getName()).getKit().getName() == KitManager2.getPlayer(player.getName()).getkit2().getName()) {
-			player.sendMessage("§cVocê já tem esse kit escolhido como primário!");
+		if (KitManager2.getPlayer(player.getName()).getkit2().getName() == KitManager.getPlayer(player.getName()).getKit().getName()) {
+			player.sendMessage("§cVocê já tem esse kit escolhido como secundário!");
+			player.closeInventory();
+			return;
+		}
+		if (KitManager2.getPlayer(player.getName()).getkit2().toString() == KitManager.getPlayer(player.getName()).getKit().toString()) {
+			if (KitManager2.getPlayer(player.getName()).getkit2() == HelixKit2.NENHUM && KitManager.getPlayer(player.getName()).getKit() == HelixKit.NENHUM) {
+				KitManager2.getPlayer(player.getName()).setkit2(this);
+				player.sendMessage("§b" + name + " selecionado!");
+				return;
+			}
+			if (KitManager2.getPlayer(player.getName()).getkit2() == HelixKit2.PVP && KitManager.getPlayer(player.getName()).getKit() == HelixKit.PVP) {
+				KitManager2.getPlayer(player.getName()).setkit2(this);
+				player.sendMessage("§b" + name + " selecionado!");
+				return;
+			}
+			player.sendMessage("§cVocê já tem esse kit escolhido como secundário!");
+			player.playSound(player.getLocation(), Sound.GHAST_MOAN, 1f, 1f);
 			player.closeInventory();
 			return;
 		}
 		KitManager2.getPlayer(player.getName()).setkit2(this);
 		if (KitManager2.getPlayer(player.getName()).haskit2(PVP)) {
-			player.sendMessage("§bPvP selecionado!");
+		
+		player.sendMessage("§bPvP selecionado!");
+		} else {
+			player.sendMessage("§b" + name + " selecionado!");
+		
 		}
-		else {
-		player.sendMessage("§b" + name + " selecionado!");
-		}
-		}
+		
+	}
 	
 	public KitHandler2 getHandler() {
 		return handler2;

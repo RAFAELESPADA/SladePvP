@@ -153,6 +153,22 @@ public enum HelixKit {
 			player.closeInventory();
 			return;
 		}
+		if (KitManager2.getPlayer(player.getName()).getkit2().toString() == KitManager.getPlayer(player.getName()).getKit().toString()) {
+			if (KitManager2.getPlayer(player.getName()).getkit2() == HelixKit2.NENHUM && KitManager.getPlayer(player.getName()).getKit() == NENHUM) {
+				KitManager.getPlayer(player.getName()).setKit(this);
+				player.sendMessage("§b" + name + " selecionado!");
+				return;
+			}
+			if (KitManager2.getPlayer(player.getName()).getkit2() == HelixKit2.PVP && KitManager.getPlayer(player.getName()).getKit() == PVP) {
+				KitManager.getPlayer(player.getName()).setKit(this);
+				player.sendMessage("§b" + name + " selecionado!");
+				return;
+			}
+			player.sendMessage("§cVocê já tem esse kit escolhido como secundário!");
+			player.playSound(player.getLocation(), Sound.GHAST_MOAN, 1f, 1f);
+			player.closeInventory();
+			return;
+		}
 		KitManager.getPlayer(player.getName()).setKit(this);
 		player.sendMessage("§b" + name + " selecionado!");
 	
