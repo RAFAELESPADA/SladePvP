@@ -66,9 +66,9 @@ public class Tell extends CommandClass {
 						message += a[i] + " ";
 					}
 
-					player.sendMessage("§a§lTELL §5[§f" + target.getName() + "§7 -> §fVocê] §f" + message);
+					player.sendMessage("§a§lTELL §5[§fVocê -> " + target.getName() + "§7] §f" + message);
 					target.sendMessage(
-							"§a§lTELL §5[§f" + player.getName() + " §7-> §fVocê" + "§f] " + message);
+							"§a§lTELL §f[" + player.getName() + " §7-> §fVocê" + "§f] " + message);
 
 				} else {
 					player.sendMessage("§a§lTELL §fO jogador está com o tell §c§lOFF!");
