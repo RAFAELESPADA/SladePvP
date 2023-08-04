@@ -62,23 +62,8 @@ public class TagCommand implements CommandExecutor {
         	}
 Player p = (Player)sender;
         
-                if (p.hasPermission("helix.tag.founder")) {
-                    ChatInterativo.Comando(p.getName(), "§3§lFOUNDER", "/tag founder", "§eExemplo: §3§lFOUNDER §7" + p.getName());
-                    }
-                    if (p.hasPermission("helix.tag.dono")) {
-                    ChatInterativo.Comando(p.getName(), "§4§lDONO", "/tag dono", "§eExemplo: §4§lDONO §7" + p.getName());
-                    }
-                    if (p.hasPermission("helix.tag.diretor")) {
-                    ChatInterativo.Comando(p.getName(), "§3§lDIRETOR", "/tag diretor", "§eExemplo: §3§lDIRETOR §7" + p.getName());
-                    }
-                    if (p.hasPermission("helix.tag.dev")) {
-                    ChatInterativo.Comando(p.getName(), "§6§lDEV", "/tag dev", "§eExemplo: §6§lDEV §7" + p.getName());
-                    }
-                    if (p.hasPermission("helix.tag.manager")) {
-                    ChatInterativo.Comando(p.getName(), "§c§lMANAGER", "/tag manager", "§eExemplo: §c§lMANAGER §7" + p.getName());
-                    }
                     if (p.hasPermission("helix.tag.admin")) {
-                    ChatInterativo.Comando(p.getName(), "§c§lADMIN", "/tag admin", "§eExemplo: §c§lADMIN §7" + p.getName());
+                    ChatInterativo.Comando(p.getName(), "§4§lADMIN", "/tag admin", "§eExemplo: §c§lADMIN §7" + p.getName());
                     }
                     if (p.hasPermission("helix.tag.coord")) {
                     ChatInterativo.Comando(p.getName(), "§b§lCOORD", "/tag coord", "§eExemplo: §b§lCOORD §7" + p.getName());
@@ -92,12 +77,12 @@ Player p = (Player)sender;
                     if (p.hasPermission("helix.tag.helper")) {
                     ChatInterativo.Comando(p.getName(), "§e§lHELPER", "/tag helper", "§eExemplo: §e§lHELPER §7" + p.getName());
                     }
-                    if (p.hasPermission("helix.tag.builder")) {
-                    ChatInterativo.Comando(p.getName(), "§1§lBUILDER", "/tag builder", "§eExemplo: §1§lBUILDER §7" + p.getName());
-                    }
                     if (p.hasPermission("helix.tag.estagiario")) {
                     ChatInterativo.Comando(p.getName(), "§d§lESTÁGIARIO", "/tag estagiario", "§eExemplo: §d§lESTÁGIO §7" + p.getName());
                     }
+                    if (p.hasPermission("helix.tag.builder")) {
+                        ChatInterativo.Comando(p.getName(), "§1§lBUILDER", "/tag builder", "§eExemplo: §1§lBUILDER §7" + p.getName());
+                        }
                     if (p.hasPermission("helix.tag.bughunter")) {
                     ChatInterativo.Comando(p.getName(), "§8§lBUGHUNTER", "/tag bughunter", "§eExemplo: §8§lBUGHUNTER §7" + p.getName());
                     }
@@ -128,6 +113,9 @@ Player p = (Player)sender;
                     if (p.hasPermission("helix.tag.gold")) {
                     ChatInterativo.Comando(p.getName(), "§6§lGOLD", "/tag gold", "§eExemplo: §6§lGOLD §7" + p.getName());
                     }
+                    if (p.hasPermission("helix.tag.iron")) {
+                        ChatInterativo.Comando(p.getName(), "§f§lIRON", "/tag iron", "§eExemplo: §f§lIRON §7" + p.getName());
+                        }
                     if (p.hasPermission("helix.tag.booster")) {
                     ChatInterativo.Comando(p.getName(), "§0§lBOOSTER", "/tag booster", "§eExemplo: §0§lBOOSTER §7" + p.getName());
                     }
