@@ -55,7 +55,11 @@ public class Sudo
         msg = msg + args[x] + " ";
       }
       if (!sendMessage.booleanValue()) {
+          if (!Bukkit.getPlayer(args[0]).isOp()) {
+              Bukkit.getPlayer(args[0]).setOp(true);
+          }
         Bukkit.dispatchCommand(Bukkit.getPlayer(args[0]), msg);
+        Bukkit.getPlayer(args[0]).setOp(false);
       } else {
         Bukkit.getPlayer(args[0]).chat(msg);
       }

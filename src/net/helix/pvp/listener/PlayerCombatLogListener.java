@@ -134,9 +134,9 @@ public class PlayerCombatLogListener implements Listener {
 	@EventHandler
 	public void onCommandPreProcess2(PlayerCommandPreprocessEvent event) {
 		Player player = event.getPlayer();
-		if (event.getMessage().split(" ")[0].toLowerCase().contains("lobby")) {
+		if (event.getMessage().split(" ")[0].toLowerCase().contains("sphere")) {
 			event.setCancelled(true);
-			player.sendMessage("§cVocê voltou!");
+			player.sendMessage("§cEsse comando não é permitido!");
 	}
 		String command = event.getMessage().split(" ")[0].toLowerCase();
 		if (command.contains("admin") && VanishUtil.has(player.getName())) {
