@@ -87,14 +87,15 @@ public class Avatar extends KitHandler {
       	player.sendMessage("§cNão use o seu poder no spawn!");
   		return;
   	 }
+   
       if (e.getAction() == Action.LEFT_CLICK_AIR || e.getAction() == Action.LEFT_CLICK_BLOCK) {
         player.setItemInHand(getItem(player.getItemInHand()));
         
       } else {
-        if (hasCooldown(player)) {
-         sendMessageCooldown(player);
-          return;
-        } 
+    	  if (net.helix.pvp.cooldown1.HelixCooldown2.hasCooldown(player, KitManager.getPlayer(player.getName()).getKit().getName())) {
+  	        sendMessageCooldown(player);
+  	        return;
+  	      }
         addCooldown(player, 30);
         e.setCancelled(true);
         Material item = player.getItemInHand().getType();
