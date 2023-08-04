@@ -11,12 +11,14 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.Item;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Snowball;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.FixedMetadataValue;
@@ -66,7 +68,24 @@ public class Avatar extends KitHandler {
     itemmanager.setNome("§aAvatar");
     return item;
   }
-  
+  @EventHandler
+  public void asd(PlayerDropItemEvent e) {
+	  if (KitManager.getPlayer(e.getPlayer().getName()).hasKit(this)) {
+		  Item item = e.getItemDrop();
+		  if (item == new ItemStack(Material.LAPIS_BLOCK)) {
+			  e.setCancelled(true);
+		  }
+		  if (item == new ItemStack(Material.REDSTONE_BLOCK)) {
+			  e.setCancelled(true);
+		  }
+		  if (item == new ItemStack(Material.GRASS)) {
+			  e.setCancelled(true);
+		  }
+		  if (item == new ItemStack(Material.WOOL)) {
+			  e.setCancelled(true);
+		  }
+	  }
+  }
   @EventHandler
   public void asd(PlayerInteractEvent e) {
     Player player = e.getPlayer();

@@ -137,7 +137,7 @@ public final class GladiatorListener extends KitHandler2
                         final Location newLoc = new Location(p1.getWorld(), loc2.getBlockX() + x, y > 110 ? 146.0 : 100, loc2.getBlockZ() + z);
                         return newGladiatorListenerArena(p1, p2, newLoc);
                     }
-                    if (blockY == 7) {
+                    if (blockY == 9) {
                         location.add(loc2.clone().add((double)blockX, (double)blockY, (double)blockZ));
                     }
                     else if (blockY == -1) {
