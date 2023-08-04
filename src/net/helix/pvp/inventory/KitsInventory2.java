@@ -244,7 +244,7 @@ public class KitsInventory2 {
 				);
 		}
 		
-		inventory.setItem(10 , new ItemBuilder("§a" + HelixKit2.PVP.getName(), HelixKit2.PVP.getIcon())
+		inventory.setItem(10 , new ItemBuilder("§a" + HelixKit2.PVP.toString(), HelixKit2.PVP.getIcon())
 				.lore("§f" + HelixKit2.PVP.getDescription())
 						.addFlags(ItemFlag.HIDE_ATTRIBUTES,
 								ItemFlag.HIDE_DESTROYS,

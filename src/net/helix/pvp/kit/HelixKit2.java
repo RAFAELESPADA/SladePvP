@@ -114,9 +114,18 @@ public enum HelixKit2  {
 	}
 	
 	public void send(Player player) {
+		if (KitManager.getPlayer(player.getName()).getKit().getName() == KitManager2.getPlayer(player.getName()).getkit2().getName()) {
+			player.sendMessage("§cVocê já tem esse kit escolhido como primário!");
+			player.closeInventory();
+			return;
+		}
 		KitManager2.getPlayer(player.getName()).setkit2(this);
+		if (KitManager2.getPlayer(player.getName()).haskit2(PVP)) {
+			player.sendMessage("§bPvP selecionado!");
+		}
+		else {
 		player.sendMessage("§b" + name + " selecionado!");
-		
+		}
 		}
 	
 	public KitHandler2 getHandler() {
