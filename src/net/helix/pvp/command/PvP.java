@@ -13,6 +13,7 @@ public class PvP implements CommandExecutor {
     if (cmd.getName().equalsIgnoreCase("pvp")) {
     	if (!sender.hasPermission("tag.admin")) {
     		sender.sendMessage("§cVocê não tem permissão para executar esse comando!");
+    		return true;
     	}
       if (p.getWorld().getPVP()) {
         p.getWorld().setPVP(false);

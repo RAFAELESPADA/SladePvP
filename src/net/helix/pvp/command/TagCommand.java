@@ -127,7 +127,7 @@ if (p.hasPermission("helix.tag.diretor")) {
                     if (p.hasPermission("helix.tag.top1")) {
                     ChatInterativo.Comando(p.getName(), "§9§lTOP1", "/tag top1", "§eExemplo: §9§lTOP1 §7" + p.getName());
                     }
-                    ChatInterativo.Comando(p.getName(), "§7§lMEMBRO", "/tag default", "§eExemplo: §7" + p.getName());
+                    ChatInterativo.Comando(p.getName(), "§7§lMEMBRO", p.hasPermission("helix.tag.membro") ? "/tag membro" : "/tag default", "§eExemplo: §7" + p.getName());
                     return true;
               }
 
