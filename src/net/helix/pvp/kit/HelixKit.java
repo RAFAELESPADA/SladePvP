@@ -150,7 +150,12 @@ public enum HelixKit {
 	
 	public void send(Player player) {
 		if (!(player.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura") && PlayerJoinListener.fall.contains(player)  && EnderMageReal.isSpawn(player.getLocation()))) {
-	      	player.sendMessage("§cVocê só pode escolher kits no spawn!");
+			if (KitManager2.getPlayer(player.getName()).getkit2() == HelixKit2.NENHUM && KitManager.getPlayer(player.getName()).getKit() == NENHUM) {
+				KitManager.getPlayer(player.getName()).setKit(PVP);
+				KitManager2.getPlayer(player.getName()).setkit2(HelixKit2.PVP);
+				player.sendMessage("§b" + name + " selecionado!");
+				return;
+			}
 	      	player.closeInventory();
 	  		return;
 	  	 }

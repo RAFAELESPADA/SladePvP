@@ -61,12 +61,17 @@ public class TagCommand implements CommandExecutor {
         	    groupsList.add(group.getName());
         	}
 Player p = (Player)sender;
-        
+if (p.hasPermission("helix.tag.dono")) {
+    ChatInterativo.Comando(p.getName(), "§4§lDONO", "/tag dono", "§eExemplo: §4§lDONO §7" + p.getName());
+    }        
+if (p.hasPermission("helix.tag.diretor")) {
+    ChatInterativo.Comando(p.getName(), "§9§lDIRETOR", "/tag diretor", "§eExemplo: §9§lDIRETOR §7" + p.getName());
+    }
                     if (p.hasPermission("helix.tag.admin")) {
-                    ChatInterativo.Comando(p.getName(), "§4§lADMIN", "/tag admin", "§eExemplo: §c§lADMIN §7" + p.getName());
+                    ChatInterativo.Comando(p.getName(), "§b§lADMIN", "/tag admin", "§eExemplo: §b§lADMIN §7" + p.getName());
                     }
                     if (p.hasPermission("helix.tag.coord")) {
-                    ChatInterativo.Comando(p.getName(), "§b§lCOORD", "/tag coord", "§eExemplo: §b§lCOORD §7" + p.getName());
+                    ChatInterativo.Comando(p.getName(), "§3§lCOORD", "/tag coord", "§eExemplo: §3§lCOORD §7" + p.getName());
                     }
                     if (p.hasPermission("helix.tag.invest")) {
                     ChatInterativo.Comando(p.getName(), "§a§lINVEST", "/tag invest", "§eExemplo: §a§lINVEST §7" + p.getName());

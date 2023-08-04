@@ -117,7 +117,6 @@ public enum HelixKit2  {
 	
 	public void send(Player player) {
 		if (!(player.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura") && PlayerJoinListener.fall.contains(player)  && EnderMageReal.isSpawn(player.getLocation()))) {
-	      	player.sendMessage("§cVocê só pode escolher kits no spawn!");
 	      	player.closeInventory();
 	  		return;
 	  	 }
