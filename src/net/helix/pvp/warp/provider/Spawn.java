@@ -19,6 +19,7 @@ import net.helix.pvp.cooldown2.HelixCooldown2;
 import net.helix.pvp.evento.EventoUtils;
 import net.helix.pvp.kit.KitManager;
 import net.helix.pvp.kit.KitManager2;
+import net.helix.pvp.kit.provider.Ninja;
 import net.helix.pvp.listener.Jump;
 import net.helix.pvp.listener.PlayerDeathListener;
 import net.helix.pvp.warp.WarpHandle;
@@ -39,7 +40,12 @@ public class Spawn extends WarpHandle {
     if (EventoUtils.game.contains(player.getName())) {
       EventoUtils.setEvento(false, player); 
     }
-    
+    if (net.helixpvp.kit2.Ninja.map.containsValue(player.getName())) {
+    	net.helixpvp.kit2.Ninja.map.entrySet().removeIf(entry -> entry.getValue().equalsIgnoreCase(player.getName()));
+	}
+    if (Ninja.map.containsValue(player.getName())) {
+    	Ninja.map.entrySet().removeIf(entry -> entry.getValue().equalsIgnoreCase(player.getName()));
+	}
     player.setHealth(player.getMaxHealth());
     player.getActivePotionEffects().forEach(potion -> player.removePotionEffect(potion.getType()));
     player.setFireTicks(0);

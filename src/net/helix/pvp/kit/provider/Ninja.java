@@ -21,7 +21,7 @@ import net.md_5.bungee.api.ChatColor;
 
 public class Ninja extends KitHandler {
 	
-	protected static final HashMap<String, String> map = new HashMap<>();
+	public static final HashMap<String, String> map = new HashMap<>();
 	
 	@EventHandler(ignoreCancelled = true)
 	public void onDamage(EntityDamageByEntityEvent event) {
