@@ -25,7 +25,9 @@ public class Sight extends KitHandler2 {
 		if (!KitManager2.getPlayer(damager.getName()).haskit2(this)) {
 			return;
 		}
-		
+		if (event.isCancelled()) {
+			return;
+		}
 		Player victim = (Player) event.getEntity();
 		int percentage = new Random().nextInt(100);
 		

@@ -48,6 +48,10 @@ public class Stomper extends KitHandler {
 			event.setCancelled(true);
 			return;
 		}
+		Player mage = (Player) event.getEntity();
+		if (mage.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura") && EnderMageReal.isSpawn(mage.getLocation())) {
+			return;
+		 }
 		if (fall.contains(player.getName())) {
 			event.setCancelled(true);
 			return;

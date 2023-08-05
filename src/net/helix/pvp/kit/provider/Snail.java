@@ -22,7 +22,9 @@ public class Snail extends KitHandler {
 		if (!KitManager.getPlayer(damager.getName()).hasKit(this)) {
 			return;
 		}
-		
+		if (event.isCancelled()) {
+			return;
+		}
 		Player victim = (Player) event.getEntity();
 		int percentage = new Random().nextInt(100);
 		
