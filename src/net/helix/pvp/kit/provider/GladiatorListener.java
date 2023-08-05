@@ -11,11 +11,13 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
+import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.potion.PotionEffect;
 
@@ -217,7 +219,7 @@ public final class GladiatorListener extends KitHandler
     }
     
     public static final void resetGladiatorListenerByQuit(final Player winner, final Player loser) {
-        for (int i = 1; i < 5; ++i) {
+      {
         	if (winner != null) {
             winner.teleport((Location)GladiatorListener.oldLocation.get(winner.getName()));
             winner.getActivePotionEffects().forEach(potion -> winner.removePotionEffect(potion.getType()));	
@@ -250,8 +252,19 @@ public final class GladiatorListener extends KitHandler
         winner.sendMessage(String.valueOf(GladiatorListener.prefix) + "§fO player §e" +  loser.getName() + " §fdeslogou.");
     }
         }
-        
-        
+        }
+        @EventHandler
+        public void PlayerMove(PlayerMoveEvent event) {
+            if (event.isCancelled()) return;
+            Player player = event.getPlayer();
+            if (!combateGlad.containsKey(player)) {
+            	return;
+            }
+            Block block = event.getTo().getBlock().getRelative(BlockFace.DOWN);
+            if (!block.toString().contains("GLASS")) {
+            final Player winner = GladiatorListener.combateGlad.get(player);
+            resetGladiatorListenerBySpawn(winner , player);
+            }
     }
     
     public static final void resetGladiatorListenerBySpawn(final Player winner, final Player loser) {
