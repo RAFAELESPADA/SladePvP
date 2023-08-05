@@ -44,7 +44,10 @@ public class Ninja extends KitHandler2 {
 	public void onSneaking(PlayerToggleSneakEvent event) {
 		if (event.isSneaking()) return;
 		Player player = event.getPlayer();
-
+		Player mage = event.getPlayer();
+		if (mage.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura")) {
+			return;
+		 }
 		if (KitManager2.getPlayer(player.getName()).haskit2(this) 
 				&& map.containsKey(player.getName())) {
 			
