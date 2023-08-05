@@ -122,7 +122,7 @@ public class EventoComando implements CommandExecutor {
                             return true;
                         }
                         if (!EventoUtils.specs) {
-                            player.sendMessage("§cOs espectadores est§o desativados no momento.");
+                            player.sendMessage("§cOs espectadores estão desativados no momento.");
                             return true;
                         }
                         player.teleport(EventoUtils.specLoc);
@@ -174,7 +174,7 @@ public class EventoComando implements CommandExecutor {
                     switch (args[0].toLowerCase()) {
                         case "entrar":
                             if (EventoUtils.game.contains(player.getName())) {
-                                player.sendMessage("§cVocê j§ estáno evento.");
+                                player.sendMessage("§cVocê já está no evento.");
                                 return true;
                             }
                             if (!EventoUtils.tp) {

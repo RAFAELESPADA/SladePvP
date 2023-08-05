@@ -5,8 +5,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
 
 import net.helix.pvp.cooldown1.HelixCooldown2;
-import net.helix.pvp.cooldown1.HelixCooldownAPI;
-import net.helix.pvp.cooldown1.ItemCooldown;
 
 
 
@@ -16,7 +14,7 @@ public class KitHandler implements Listener {
 	}
 
 protected boolean hasCooldown(Player player) {
-    return HelixCooldown2.hasCooldown(player, "Kit");
+    return HelixCooldown2.hasCooldown(player, KitManager.getPlayer(player.getName()).getKit().getName());
 }
 
 protected boolean hasCooldown(Player player, String cooldown) {
