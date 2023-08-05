@@ -13,6 +13,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
+import net.helix.pvp.listener.Medals;
+
 
 
 
@@ -55,7 +57,7 @@ public class SC
         {
           Player staff = arrayOfPlayer;
           if (staff.hasPermission("kombo.cmd.sc")) {
-            staff.sendMessage("§6§l[STAFFCHAT] §a" + sender.getName() + ": §f" + mensagem.replace("&", "§"));
+        	  staff.sendMessage("§c§l[SC] §c- §f" + sender.getName() + " §8> §f" + mensagem.replace("&", "§"));
           }
         }
       }
@@ -67,6 +69,9 @@ public class SC
 	@EventHandler
 	public void onChat(AsyncPlayerChatEvent event) {
 		Player player = event.getPlayer();
+		  Medals[] values;
+		  Medals medal = Medals.getMedals(player);
+		
 		if (staffchat.contains(player.getName())) {
 			for (Player staff : Bukkit.getOnlinePlayers()) {
 				if (staff.hasPermission("kombo.cmd.sc")) {

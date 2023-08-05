@@ -2,10 +2,12 @@ package net.helix.pvp.command;
 
 
 
+import java.security.AllPermission;
 import java.util.ArrayList;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
+import org.bukkit.command.defaults.TellCommand;
 import org.bukkit.entity.Player;
 
 
@@ -69,6 +71,16 @@ public class Tell extends CommandClass {
 					player.sendMessage("§a§lTELL §5[§fVocê -> " + target.getName() + "§7] §f" + message);
 					target.sendMessage(
 							"§a§lTELL §f[" + player.getName() + " §7-> §fVocê" + "§f] " + message);
+					  
+				            for (Player all : Bukkit.getOnlinePlayers()) {
+			                if (!all.hasPermission("kombo.cmd.report") || SocialSpy.toggle.containsKey(all.getName())) {
+			                	return;
+			                }
+			              
+			                    all.sendMessage("§7§o(TELL SPY) §8§o[§7§o" + player.getName() + " §f» §7§o" + target.getName() +
+			                            "§8§o] §e§o" + message);
+			                }
+			
 
 				} else {
 					player.sendMessage("§a§lTELL §fO jogador está com o tell §c§lOFF!");
