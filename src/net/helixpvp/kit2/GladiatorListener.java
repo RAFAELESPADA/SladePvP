@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
+import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -21,6 +22,7 @@ import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 import net.helix.core.bukkit.item.ItemBuilder;
 import net.helix.pvp.HelixPvP;
@@ -31,6 +33,7 @@ import net.helix.pvp.kit.KitHandler2;
 import net.helix.pvp.kit.KitManager;
 import net.helix.pvp.kit.KitManager2;
 import net.helix.pvp.kit.provider.EnderMageReal;
+import net.helix.pvp.kit.provider.Kangaroo;
 import net.md_5.bungee.api.ChatColor;
 
 
@@ -163,6 +166,15 @@ public final class GladiatorListener extends KitHandler2
         p1.sendMessage(String.valueOf(GladiatorListener.prefix) + "§fVoce desafiou o player §e" + p2.getName() + " §fpara uma batalha 1v1!");
         p2.sendMessage(String.valueOf(GladiatorListener.prefix) + "§fVoce foi desafiado pelo player §e" + p1.getName() + " §fpara uma batalha 1v1!");
         showPlayer(p1, p2);
+        Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnable() {
+        	public void run() {
+        		if (combateGlad.containsKey(p1) && combateGlad.containsKey(p2)) {
+        		Kangaroo.darEfeito(p1, PotionEffectType.HARM, 999999999, 1);
+        		Kangaroo.darEfeito(p2, PotionEffectType.HARM, 999999999, 1);
+        	}
+        	}
+    }, 20 * 60 *5L);
+        
         return null;
     }
     
@@ -202,7 +214,7 @@ public final class GladiatorListener extends KitHandler2
         	return;
         }
         Block block = event.getTo().getBlock().getRelative(BlockFace.DOWN);
-        if (!block.toString().contains("GLASS")) {
+        if (!block.toString().contains("GLASS") || !block.toString().contains("AIR")) {
         final Player winner = GladiatorListener.combateGlad.get(player);
         resetGladiatorListenerBySpawn(winner , player);
         }
