@@ -34,6 +34,7 @@ import net.helixpvp.kit2.Kangaroo;
 import net.helixpvp.kit2.Leech;
 import net.helixpvp.kit2.Meteor;
 import net.helixpvp.kit2.Sight;
+import net.helixpvp.kit2.Snail;
 import net.helixpvp.kit2.MilkMan;
 import net.helixpvp.kit2.Gaara;
 import net.helixpvp.kit2.Monk;
@@ -72,7 +73,7 @@ public enum HelixKit2  {
 	GLADIATOR("Gladiator", 15000, 0, new GladiatorListener() , new ItemStack(Material.IRON_FENCE), "Puxe seu inimigo.", 1),
 	CAMEL("Camel", 9000, 9000, new Camel() , new ItemStack(Material.SAND), "Ganhe poderes na areia.", 1),
 	BARBARIAN("Barbarian", 18000, 0, new Barbarian(), new ItemStack(Material.WOOD_SWORD), "Sua espada aumenta a cada kill!", 1),
-	SNAIL("Snail", 10000, 0, new Scout() , new ItemStack(Material.FERMENTED_SPIDER_EYE), "De lentidao a cada hit.", 1),
+	SNAIL("Snail", 10000, 0, new Snail() , new ItemStack(Material.FERMENTED_SPIDER_EYE), "De lentidao a cada hit.", 1),
 	FIREMAN("Fireman", 10000, 0, new Fireman() , new ItemStack(Material.LAVA_BUCKET), "De fogo a cada hit.", 1),
 	MONK("Monk", 9000, 0, new Monk() , new ItemStack(Material.BLAZE_ROD), "Embaralhe o inventario do inimigo.", 1),
 	FISHERMAN("Fisherman", 9000, 0, new Fisherman() , new ItemStack(Material.FISHING_ROD), "Pesque players.", 1),

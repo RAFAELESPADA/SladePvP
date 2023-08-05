@@ -26,7 +26,7 @@ public class SocialSpy implements CommandExecutor {
 		if (!(sender instanceof Player)) {
 			return true;
 		}
-		if (!sender.hasPermission("kombo.cmd.report")) {
+		if (!sender.hasPermission("cmd.socialspy")) {
     		sender.sendMessage("§cVocê não tem permissão para executar esse comando!");
     		return true;
     	}

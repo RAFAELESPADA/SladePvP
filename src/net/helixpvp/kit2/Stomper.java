@@ -18,6 +18,7 @@ import net.helix.pvp.kit.HelixKit2;
 import net.helix.pvp.kit.KitHandler2;
 import net.helix.pvp.kit.KitManager;
 import net.helix.pvp.kit.KitManager2;
+import net.helix.pvp.kit.provider.EnderMageReal;
 import net.md_5.bungee.api.ChatColor;
 
 
@@ -50,6 +51,10 @@ public class Stomper extends KitHandler2 {
 			event.setCancelled(true);
 			return;
 		}
+		Player mage = (Player) event.getEntity();
+		if (mage.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura") && EnderMageReal.isSpawn(mage.getLocation())) {
+			return;
+		 }
 		else if (!KitManager.getPlayer(plr.getName()).hasKit()) {
 			return;
 		}

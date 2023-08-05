@@ -167,6 +167,11 @@ public class SelectKitListener implements Listener {
 							player.closeInventory();
 							return;
 						}
+						if (KitManager.getPlayer(player.getName()).getKit() == HelixKit.DESHFIRE && (kitName2 == "Stomper")) {
+							player.sendMessage("§c" + kitName2 + " é incompátivel com Tornado");
+							player.closeInventory();
+							return;
+						}
 						if ((KitManager.getPlayer(player.getName()).getKit() == HelixKit.FLASH || KitManager.getPlayer(player.getName()).getKit() == HelixKit.NINJA) && (kitName22 == "Grappler" || kitName22 == "Gladiator")) {
 							player.sendMessage("§c" + kitName22 + " é incompátivel com Flash");
 							player.closeInventory();
@@ -406,6 +411,11 @@ public class SelectKitListener implements Listener {
 				return;
 			}
 			if (KitManager.getPlayer(player.getName()).getKit() == HelixKit.TORNADO && (kitName2 == "Grappler" || kitName2 == "Kangaroo" || kitName2 == "Monk"  || kitName2 == "Ninja")) {
+				player.sendMessage("§c" + kitName2 + " é incompátivel com Tornado");
+				player.closeInventory();
+				return;
+			}
+			if (KitManager.getPlayer(player.getName()).getKit() == HelixKit.DESHFIRE && (kitName2 == "Stomper")) {
 				player.sendMessage("§c" + kitName2 + " é incompátivel com Tornado");
 				player.closeInventory();
 				return;
