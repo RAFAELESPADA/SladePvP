@@ -82,7 +82,7 @@ public void onKitEndermage(Location portal, Player p1, Player p2) {
     final Material material = b.getType();
     final BlockState bs = b.getState();
           for (Player target : Bukkit.getOnlinePlayers()) {
-            if (target != mage && !target.isDead()) {
+            if (target != mage && !target.isDead() && !GladiatorListener.combateGlad.containsKey(target) && !net.helixpvp.kit2.GladiatorListener.combateGlad.containsKey(target)) {
               if (!isEnderable(bLoc, target.getLocation())) {
             	    e.setCancelled(true);
             	  mage.sendMessage("§cUse o endermage em torres ou lugares altos!");
