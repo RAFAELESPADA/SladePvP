@@ -33,6 +33,7 @@ import net.helix.pvp.kit.KitHandler2;
 import net.helix.pvp.kit.KitManager;
 import net.helix.pvp.kit.KitManager2;
 import net.helix.pvp.kit.provider.EnderMageReal;
+import net.helix.pvp.kit.provider.GladiatorListener;
 import net.helix.pvp.kit.provider.Kangaroo;
 import net.md_5.bungee.api.ChatColor;
 
@@ -210,15 +211,17 @@ public final class GladiatorListener extends KitHandler2
     public void PlayerMove(PlayerMoveEvent event) {
         if (event.isCancelled()) return;
         Player player = event.getPlayer();
-        if (!combateGlad.containsKey(player)) {
+        Block block = event.getTo().getBlock().getRelative(BlockFace.DOWN);
+        final Player winner = GladiatorListener.combateGlad.get(player);
+        if (!combateGlad.containsKey(player) || !combateGlad.containsKey(winner)) {
         	return;
         }
-        Block block = event.getTo().getBlock().getRelative(BlockFace.DOWN);
         if (!block.toString().contains("GLASS") || !block.toString().contains("AIR")) {
-        final Player winner = GladiatorListener.combateGlad.get(player);
+        	return;
+        }
         resetGladiatorListenerBySpawn(winner , player);
         }
-}
+
     
     public static final void resetGladiatorListenerByScreenshare(final Player winner, final Player loser) {
         for (int i = 1; i < 5; ++i) {

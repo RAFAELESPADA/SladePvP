@@ -172,6 +172,7 @@ public final class GladiatorListener extends KitHandler
         	}
         	}
     }, 20 * 60 *5L);
+        return null;
         }
     
     public static final void resetGladiatorListenerByKill(final Player winner, final Player loser) {
@@ -266,15 +267,17 @@ public final class GladiatorListener extends KitHandler
         public void PlayerMove(PlayerMoveEvent event) {
             if (event.isCancelled()) return;
             Player player = event.getPlayer();
-            if (!combateGlad.containsKey(player)) {
+            Block block = event.getTo().getBlock().getRelative(BlockFace.DOWN);
+            final Player winner = GladiatorListener.combateGlad.get(player);
+            if (!combateGlad.containsKey(player) || !combateGlad.containsKey(winner)) {
             	return;
             }
-            Block block = event.getTo().getBlock().getRelative(BlockFace.DOWN);
             if (!block.toString().contains("GLASS") || !block.toString().contains("AIR")) {
-            final Player winner = GladiatorListener.combateGlad.get(player);
+            	return;
+            }
             resetGladiatorListenerBySpawn(winner , player);
             }
-    }
+    
     
     public static final void resetGladiatorListenerBySpawn(final Player winner, final Player loser) {
         for (int i = 1; i < 5; ++i) {
