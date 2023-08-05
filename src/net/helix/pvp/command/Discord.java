@@ -24,6 +24,7 @@ public boolean onCommand(CommandSender sender, Command cmd, String label, String
       textComponent.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder("§aClique aqui").create()));
       textComponent.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, HelixPvP.getInstance().getConfig().getString("DiscordLink").replace("&", "§")));
     p.playSound(p.getLocation(), Sound.BLAZE_HIT, 12.0F, 12.0F);
+    p.spigot().sendMessage(textComponent);
   }
   return false;
 }
