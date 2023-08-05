@@ -8,6 +8,7 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
+import org.bukkit.scoreboard.DisplaySlot;
 
 import net.helix.core.bukkit.HelixBukkit;
 import net.helix.core.bukkit.api.HelixActionBar;

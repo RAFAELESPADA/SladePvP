@@ -11,17 +11,24 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.scoreboard.DisplaySlot;
 
 import net.helix.pvp.HelixPvP;
 
 public class EventoUtils {
+	
 
+	public EventoUtils(HelixPvP plugin) {
+		this.plugin = plugin;
+	}
+	private final HelixPvP plugin;
     public static boolean evento = false;
     public static boolean eventoplayer = false;
     public static boolean specs = false;
     public static boolean build = false;
     public static boolean damage = false;
     public static boolean pvp = false;
+   
     public static boolean tp = false;
     public static boolean started = false;
     public static Location mainArena = new Location(Bukkit.getWorld(HelixPvP.getInstance().getConfig().getString("EVENTOSPAWNMUNDO")), HelixPvP.getInstance().getConfig().getInt("EVENTOSPAWNX"), HelixPvP.getInstance().getConfig().getInt("EVENTOSPAWNY"), HelixPvP.getInstance().getConfig().getInt("EVENTOSPAWNZ"));
@@ -29,7 +36,7 @@ public class EventoUtils {
     public static ArrayList<String> game = new ArrayList();
     public static List<UUID> whitelist = new ArrayList<>();
     public static List<Location> blocks = new ArrayList<>();
-
+    
     public static List<String> getEventoPlayersNames() {
         List<String> players = new ArrayList<>();
         Bukkit.getOnlinePlayers().forEach(p -> {
@@ -97,12 +104,16 @@ public class EventoUtils {
 			EventoUtils.game.add(player.getName());
 			if (player != null) {
 				player.sendMessage(ChatColor.GREEN + "Te adicionando no evento");
+				player.getScoreboard().clearSlot(DisplaySlot.SIDEBAR);
+				HelixPvP.getInstance().getScoreboardBuilder().build(player);
 			}
 		}
 		else if (game.contains(player.getName())) {
 			EventoUtils.game.remove(player.getName());
 			if (player != null) {
 			player.sendMessage(ChatColor.GREEN + "Te removendo do evento");
+			player.getScoreboard().clearSlot(DisplaySlot.SIDEBAR);
+			HelixPvP.getInstance().getScoreboardBuilder().build(player);
 		}
 		}
 		

@@ -169,8 +169,8 @@ public final class GladiatorListener extends KitHandler2
         Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnable() {
         	public void run() {
         		if (combateGlad.containsKey(p1) && combateGlad.containsKey(p2)) {
-        		Kangaroo.darEfeito(p1, PotionEffectType.HARM, 999999999, 1);
-        		Kangaroo.darEfeito(p2, PotionEffectType.HARM, 999999999, 1);
+        		Kangaroo.darEfeito(p1, PotionEffectType.WITHER, 999999999, 1);
+        		Kangaroo.darEfeito(p2, PotionEffectType.WITHER, 999999999, 1);
         	}
         	}
     }, 20 * 60 *5L);
