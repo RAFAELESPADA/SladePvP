@@ -7,18 +7,22 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
+import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
+import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 import net.helix.core.bukkit.item.ItemBuilder;
 import net.helix.pvp.HelixPvP;
@@ -29,6 +33,7 @@ import net.helix.pvp.kit.KitHandler2;
 import net.helix.pvp.kit.KitManager;
 import net.helix.pvp.kit.KitManager2;
 import net.helix.pvp.kit.provider.EnderMageReal;
+import net.helix.pvp.kit.provider.Kangaroo;
 import net.md_5.bungee.api.ChatColor;
 
 
@@ -161,6 +166,15 @@ public final class GladiatorListener extends KitHandler2
         p1.sendMessage(String.valueOf(GladiatorListener.prefix) + "§fVoce desafiou o player §e" + p2.getName() + " §fpara uma batalha 1v1!");
         p2.sendMessage(String.valueOf(GladiatorListener.prefix) + "§fVoce foi desafiado pelo player §e" + p1.getName() + " §fpara uma batalha 1v1!");
         showPlayer(p1, p2);
+        Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnable() {
+        	public void run() {
+        		if (combateGlad.containsKey(p1) && combateGlad.containsKey(p2)) {
+        		Kangaroo.darEfeito(p1, PotionEffectType.HARM, 999999999, 1);
+        		Kangaroo.darEfeito(p2, PotionEffectType.HARM, 999999999, 1);
+        	}
+        	}
+    }, 20 * 60 *5L);
+        
         return null;
     }
     
@@ -192,6 +206,21 @@ public final class GladiatorListener extends KitHandler2
         winner.sendMessage(String.valueOf(GladiatorListener.prefix) + "§fVoce venceu a batalha contra §e" + loser.getName());
         loser.sendMessage(String.valueOf(GladiatorListener.prefix) + "§fVoce perdeu a batalha contra §e" +  winner.getName());
     }
+    @EventHandler
+    public void PlayerMove(PlayerMoveEvent event) {
+        if (event.isCancelled()) return;
+        Player player = event.getPlayer();
+        Block block = event.getTo().getBlock().getRelative(BlockFace.DOWN);
+        final Player winner = GladiatorListener.combateGlad.get(player);
+        if (!combateGlad.containsKey(player) || !combateGlad.containsKey(winner)) {
+        	return;
+        }
+        if (!block.toString().contains("GLASS") || !block.toString().contains("AIR")) {
+        	return;
+        }
+        resetGladiatorListenerBySpawn(winner , player);
+        }
+
     
     public static final void resetGladiatorListenerByScreenshare(final Player winner, final Player loser) {
         for (int i = 1; i < 5; ++i) {
@@ -218,7 +247,7 @@ public final class GladiatorListener extends KitHandler2
     }
     
     public static final void resetGladiatorListenerByQuit(final Player winner, final Player loser) {
-        for (int i = 1; i < 5; ++i) {
+         {
         	if (winner != null) {
             winner.teleport((Location)GladiatorListener.oldLocation.get(winner.getName()));
             winner.getActivePotionEffects().forEach(potion -> winner.removePotionEffect(potion.getType()));	
