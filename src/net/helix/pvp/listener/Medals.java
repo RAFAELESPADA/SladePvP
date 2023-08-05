@@ -13,13 +13,14 @@ import lombok.Getter;
 @Getter
 public enum Medals {
 
-    NENHUM("§7Nenhuma", "", "§7Sem medalhas."),
-    DEV("§eCafe", "§e\u2615", "§7Medalha Vip."),
-    REI("§6Rei", "§6\u269C", "§7Medalha Vip."),
-    KAWAII("§dPorquinho", "§d\u267E", "§7Para quem é fofinho."),
-    HOMIE("§bHomies", "§b$", "§7Para quem Ã© casa."),
-    YIN_YANG("§fYin Yang", "§f\u262F", "§7Para quem é controlado."),
-    SOL("§6Sol", "§6\u263C", "§7Medalha Vip."),
+    NENHUM("Â§7Nenhuma", "", "Â§7Sem medalhas."),
+    DEV("Â§eCafe", "Â§e\u2615", "ï¿½7Medalha Vip."),
+    REI("Â§6Rei", "Â§6\u269C", "Â§7Medalha Vip."),
+    KAWAII("Â§dPorquinho", "Â§d\u267E", "Â§7Para quem Ã© fofinho."),
+    HOMIE("Â§bHomies", "Â§b$", "Â§7Para quem Ã© casa."),
+    YIN_YANG("Â§fYin Yang", "Â§f\u262F", "Â§7Para quem Ã© controlado."),
+    SOL("Â§6Sol", "Â§6\u263C", "Â§7Medalha Vip."),
+    AMOR("Â§cAmor", "Â§4\u2764", "Â§7Medalha Vip."),
     ;
 
     private final String name;
@@ -75,4 +76,4 @@ public enum Medals {
 }
 
 
-// š”
+// ï¿½ï¿½

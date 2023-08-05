@@ -13,9 +13,12 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerToggleSneakEvent;
 
 import net.helix.pvp.HelixPvP;
+import net.helix.pvp.kit.HelixKit;
+import net.helix.pvp.kit.HelixKit2;
 import net.helix.pvp.kit.KitHandler2;
 import net.helix.pvp.kit.KitManager;
 import net.helix.pvp.kit.KitManager2;
+import net.md_5.bungee.api.ChatColor;
 
 
 public class Ninja extends KitHandler2 {
@@ -57,6 +60,11 @@ public class Ninja extends KitHandler2 {
 					player.sendMessage("§cO jogador está muito longe (50+ blocos).");
 					return;
 				}
+				if (KitManager.getPlayer(targetPlayer.getName()).hasKit(HelixKit.NEO) || KitManager2.getPlayer(targetPlayer.getName()).haskit2(HelixKit2.NEO)) {
+					 event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.NOTE_BASS_DRUM, 15.0f, 15.0f);
+					 event.getPlayer().sendMessage(ChatColor.AQUA + "Você não pode usar o ninja em " + targetPlayer.getName() + " porque ele está com o kit NEO");
+						return;
+					}
 				addCooldown(event.getPlayer(), HelixPvP.getInstance().getConfig().getInt("NinjaCooldown"));
 				player.teleport(targetPlayer);
 				player.sendMessage("§aTeleportado para §f" + targetName);

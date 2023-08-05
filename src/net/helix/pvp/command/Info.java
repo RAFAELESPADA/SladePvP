@@ -10,6 +10,7 @@ import org.bukkit.entity.Player;
 import net.helix.core.bukkit.HelixBukkit;
 import net.helix.core.bukkit.account.HelixPlayer;
 import net.helix.pvp.kit.KitManager;
+import net.helix.pvp.kit.KitManager2;
 
 public class Info implements CommandExecutor {
 
@@ -35,7 +36,9 @@ public class Info implements CommandExecutor {
                         player.sendMessage("§aInformações sobre o player §e" + target.getName() + "§a:");
                         player.sendMessage("§aNick: §f" + target.getName());
                         String kit = KitManager.getPlayer(helixPlayer.getName()).getKit().toString();
+                        String kit2 = KitManager2.getPlayer(helixPlayer.getName()).getkit2().toString();
                         player.sendMessage("§aKit: §f" + kit);
+                        player.sendMessage("§aKit2: §f" + kit2);
                         player.sendMessage("§aGameMode: §f" + target.getGameMode().name());
                         player.sendMessage("§aFly: §f" + (target.getAllowFlight() ? "§fSim" : "§cNão"));
                        

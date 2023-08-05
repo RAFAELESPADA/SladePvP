@@ -20,6 +20,11 @@ commands:
    req:
    tag:
    money:
+   lastlogin:
+   ll:
+   head:
+   socialspy:
+   removekit:
    dinheiro:
    aplicar:
    warp:

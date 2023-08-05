@@ -70,21 +70,23 @@ public class Avatar extends KitHandler {
   }
   @EventHandler
   public void asd(PlayerDropItemEvent e) {
-	  if (KitManager.getPlayer(e.getPlayer().getName()).hasKit(this)) {
-		  Item item = e.getItemDrop();
-		  if (item == new ItemStack(Material.LAPIS_BLOCK)) {
-			  e.setCancelled(true);
-		  }
-		  if (item == new ItemStack(Material.REDSTONE_BLOCK)) {
-			  e.setCancelled(true);
-		  }
-		  if (item == new ItemStack(Material.GRASS)) {
-			  e.setCancelled(true);
-		  }
-		  if (item == new ItemStack(Material.WOOL)) {
-			  e.setCancelled(true);
-		  }
+	  if (!KitManager.getPlayer(e.getPlayer().getName()).hasKit(this)) {
+		  return;
 	  }
+		
+	  else  if (e.getItemDrop().getItemStack().getType() == Material.LAPIS_BLOCK) {
+			  e.setCancelled(true);
+		  }
+	  else  if (e.getItemDrop().getItemStack().getType() == Material.REDSTONE_BLOCK) {
+			  e.setCancelled(true);
+		  }
+	  else if (e.getItemDrop().getItemStack().getType() == Material.GRASS) {
+			  e.setCancelled(true);
+		  }
+	  else		  if (e.getItemDrop().getItemStack().getType() == Material.WOOL) {
+			  e.setCancelled(true);
+		  }
+	  
   }
   @EventHandler
   public void asd(PlayerInteractEvent e) {
