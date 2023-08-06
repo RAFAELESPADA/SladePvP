@@ -95,7 +95,7 @@ public class PlayerJoinListener implements Listener {
 	    		if (provider != null) {
 	    		    LuckPerms api2 = provider.getProvider();
 	        	HelixPlayer hp = HelixBukkit.getInstance().getPlayerManager().getPlayer(p.getName());
-	          Bukkit.broadcastMessage(api2.getUserManager().getUser(p.getName()).getCachedData().getMetaData().getPrefix().replace("§", "&") + "§e " + p.getName() + " entrou no Servidor!");
+	          Bukkit.broadcastMessage(api2.getUserManager().getUser(p.getName()).getCachedData().getMetaData().getPrefix().replace("&", "§") + "§7" + p.getName() + " §6entrou no Servidor!");
 	    		}
 	        }});
 	    
