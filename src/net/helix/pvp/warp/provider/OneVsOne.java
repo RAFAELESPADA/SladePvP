@@ -195,9 +195,9 @@ public class OneVsOne extends WarpDuoBattleHandle {
 		
 		Random random = new Random();
 		HelixPlayer loserHelixPlayer = HelixBukkit.getInstance().getPlayerManager().getPlayer(loser.getName());
-
+		HelixPlayer victimHelixPlayer = HelixBukkit.getInstance().getPlayerManager().getPlayer(loser.getName());
 		int loserWithdrawnCoins = random.nextInt(20 + 1 - 5) + 5;
-		loserHelixPlayer.getPvp().addDeaths(1);
+		loserHelixPlayer.getPvp().adddeathsX1(1);
 		loserHelixPlayer.getPvp().setKillstreak(0);
 
 		loser.sendMessage("§cVocê perdeu a batalha contra " + winner.getName() + "§c.");
@@ -207,6 +207,13 @@ public class OneVsOne extends WarpDuoBattleHandle {
 			loser.sendMessage("§c§l[-] §c" + loserWithdrawnCoins + " coins");
 		}else {
 			loserHelixPlayer.getPvp().setCoins(0);
+		}
+		if ((victimHelixPlayer.getPvp().getXp() - 8) >= 0) {
+			victimHelixPlayer.getPvp().setXp(victimHelixPlayer.getPvp().getXp() - 8);
+			loser.sendMessage("§c§l[-] §c8 XP");
+		}else {
+			victimHelixPlayer.getPvp().setXp(0);
+			loser.sendMessage("§c§l[-] " + victimHelixPlayer.getPvp().getXp() + " XP");
 		}
 
 		HelixBukkit.getInstance().getPlayerManager().getController().save(loserHelixPlayer);
@@ -225,12 +232,15 @@ public class OneVsOne extends WarpDuoBattleHandle {
 		if (event.isValidKill()) {
 			HelixPlayer winnerHelixPlayer = HelixBukkit.getInstance().getPlayerManager().getPlayer(winner.getName());
 			int winnerAddCoins = random.nextInt(20 + 1 - 10) + 10;
-
 			winnerHelixPlayer.getPvp().addKills(1);
+			victimHelixPlayer.getPvp().addDeaths(1);
 			winnerHelixPlayer.getPvp().addKillstreak(1);
+			winnerHelixPlayer.getPvp().addwinsX1(1);
+			winnerHelixPlayer.getPvp().addWinstreakX1(1);
 			winnerHelixPlayer.getPvp().addCoins(winnerAddCoins);
-
+			winnerHelixPlayer.getPvp().setXp(winnerHelixPlayer.getPvp().getXp() + 10);
 			winner.sendMessage("§6§l[+] §6" + winnerAddCoins + " coins");
+			winner.sendMessage("§6§l[+] §a10XP");
 			HelixBukkit.getInstance().getPlayerManager().getController().save(winnerHelixPlayer);
 		}
 	}

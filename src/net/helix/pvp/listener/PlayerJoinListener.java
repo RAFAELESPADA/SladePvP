@@ -43,7 +43,7 @@ public class PlayerJoinListener implements Listener {
 		    return api.getUserManager().loadUser(who)
 			        .thenApplyAsync(user -> {
 			            Collection<Group> inheritedGroups = user.getInheritedGroups(user.getQueryOptions());
-			            return inheritedGroups.stream().anyMatch(g -> g.getName().equals("vip") || g.getName().equals("mvp") || g.getName().equals("mvp_plus") || g.getName().equals("mvp+") || g.getName().equals("beta") || g.getName().equals("youtuber") || g.getName().equals("yt") || g.getName().equals("streamer") || g.getName().equals("pro") && !g.getName().equals("superior") && !g.getName().equals("desenvolvedor") && !g.getName().equals("staff") && !g.getName().equals("desenvolvedor"));
+			            return inheritedGroups.stream().anyMatch(g -> g.getName().equals("iron") || g.getName().equals("gold") || g.getName().equals("diamond") || g.getName().equals("emerald") || g.getName().equals("beta") || g.getName().equals("yt")  || g.getName().equals("builder")  || g.getName().equals("helper")  || g.getName().equals("mod")  || g.getName().equals("estagiario")  || g.getName().equals("coord")  || g.getName().equals("admin")  || g.getName().equals("diretor")  || g.getName().equals("dono")  || g.getName().equals("miniyt") || g.getName().equals("yt+") || g.getName().equals("streamer") || g.getName().equals("yt+") || g.getName().equals("apoiador"));
 			        });
 			}
 		return null;
@@ -89,9 +89,14 @@ public class PlayerJoinListener implements Listener {
 	public void informIfVip(Player p, UUID who) {
 	    isVip(who).thenAcceptAsync(result -> {
 	        if (result) {
+	        	
+	        
+	        	RegisteredServiceProvider<LuckPerms> provider = Bukkit.getServicesManager().getRegistration(LuckPerms.class);
+	    		if (provider != null) {
+	    		    LuckPerms api2 = provider.getProvider();
 	        	HelixPlayer hp = HelixBukkit.getInstance().getPlayerManager().getPlayer(p.getName());
-	          
-
+	          Bukkit.broadcastMessage(api2.getUserManager().getUser(p.getName()).getCachedData().getMetaData().getPrefix().replace("§", "&") + "§e " + p.getName() + " entrou no Servidor!");
+	    		}
 	        }});
 	    
 	}
@@ -111,7 +116,6 @@ public class PlayerJoinListener implements Listener {
 			Jump.recebeu.remove(player.getName());
 		}
 	    player.getActivePotionEffects().forEach(potion -> player.removePotionEffect(potion.getType()));
-		HelixPvP.getInstance().getScoreboardBuilder().build(player);
 	    Location spawnLocation = (HelixBukkit.getInstance().getWarpManager().findWarp("spawn").get()).getLocation();
 	    	    player.teleport(spawnLocation);
 	    	    KitManager.getPlayer(player.getName()).removeKit();
@@ -127,6 +131,7 @@ public class PlayerJoinListener implements Listener {
 	    	    	fall.add(p);
 	    	    	p.sendMessage(ChatColor.GREEN + "Você recebeu a proteção do spawn");
 	    	    }
+	    	    HelixWarp.SPAWN.send(player);
 	    	    player.setHealth(player.getMaxHealth());
 	    	    player.getActivePotionEffects().forEach(potion -> player.removePotionEffect(potion.getType()));
 	    	    player.setFireTicks(0);

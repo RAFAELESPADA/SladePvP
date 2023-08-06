@@ -8,6 +8,7 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
+import org.bukkit.scoreboard.DisplaySlot;
 
 import net.helix.core.bukkit.HelixBukkit;
 import net.helix.core.bukkit.api.HelixActionBar;
@@ -86,6 +87,7 @@ public class Spawn extends WarpHandle {
     	KitManager2.getPlayer(player.getName()).setkit2(PlayerDeathListener.lastKit2.get(player.getName()));
     	player.sendMessage("§aSeus kits anteriores foram re-equipados.");
     }
+	HelixPvP.getInstance().getScoreboardBuilder().build(player);
   }
   public static ItemStack getHead(Player player) {
       ItemStack item = new ItemStack(Material.SKULL_ITEM, 1, (short) 3);

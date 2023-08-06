@@ -132,9 +132,6 @@ import net.helix.pvp.listener.Ranking;
 	    if (indentifier.equals("player_coins")) {
 		      return String.valueOf(helixPlayer.getPvp().getCoins());
 		    }
-	    if (indentifier.equals("player_color")) {
-		      return String.valueOf(helixPlayer.getRole().getColor());
-		    }
 	    if (indentifier.equals("player_killsfps")) {
 		      return String.valueOf(helixPlayer.getPvp().getKillsfps());
 		    }
