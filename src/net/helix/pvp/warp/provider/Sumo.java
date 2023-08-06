@@ -209,7 +209,6 @@ public class Sumo extends WarpDuoBattleHandle2 {
 
         HelixPlayer loserUser = HelixBukkit.getInstance().getPlayerManager().getPlayer(player.getName());
         HelixWarp.SUMO.send(player);
-        player.sendMessage("§c§lSUMO §cVocê perdeu a luta contra " + target.getName());
 
         int loserWithdrawnCoins = random.nextInt(20 + 1 - 8) + 8;
         if ((loserUser.getPvp().getCoins() - loserWithdrawnCoins) >= 0) {
@@ -218,10 +217,6 @@ public class Sumo extends WarpDuoBattleHandle2 {
         }else {
             loserUser.getPvp().setCoins(0);
         }
-loserUser.getPvp().addDeathsSumo(1);
-        HelixBukkit.getInstance().getPlayerManager().getController().save(loserUser);
-
-
         HelixPlayer killerUser = HelixBukkit.getInstance().getPlayerManager().getPlayer(target.getName());
         int winnerCoins = random.nextInt(80 + 1 - 25) + 25;
         HelixWarp.SUMO.send(target);
@@ -233,9 +228,12 @@ loserUser.getPvp().addDeathsSumo(1);
         killerUser.getPvp().addWinstreakSumo(1);
         killerUser.getPvp().addXP(25);
         killerUser.getPvp().addKills(1);
-        loserUser.getPvp().addDeaths(1);
         target.sendMessage("§6§l[+] §6" + winnerCoins + " coins");
         target.sendMessage("§6§l[+] §a25XP");
+        
+        loserUser.getPvp().addDeathsSumo(1);
+        player.sendMessage("§c§lSUMO §cVocê perdeu a luta contra " + target.getName());
+        HelixBukkit.getInstance().getPlayerManager().getController().save(loserUser);
         HelixBukkit.getInstance().getPlayerManager().getController().save(killerUser);
     }
 
