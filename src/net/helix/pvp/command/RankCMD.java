@@ -33,16 +33,16 @@ public class RankCMD implements CommandExecutor {
             for (int length = (values = Ranking.values()).length, i = 0; i < length; ++i) {
                 Ranking rank = values[i];
                 if (Ranking.getRank(helixPlayer).getName().equals(rank.getName())) {
-                    player.sendMessage("§7(" + rank.getColoredSymbol() + "§7) " + rank.getColoredName() + " §a" + new DecimalFormat().format(rank.getXp()) + " KILLS   §e< Seu rank");
+                    player.sendMessage("§7(" + rank.getColoredSymbol() + "§7) " + rank.getColoredName() + " §a" + new DecimalFormat().format(rank.getXp()) + " XP   §e< Seu rank");
                 } else {
-                    player.sendMessage("§7(" + rank.getColoredSymbol() + "§7) " + rank.getColoredName() + " §a" + new DecimalFormat().format(rank.getXp()) + " KILLS");
+                    player.sendMessage("§7(" + rank.getColoredSymbol() + "§7) " + rank.getColoredName() + " §a" + new DecimalFormat().format(rank.getXp()) + " XP");
                 }
             }
             player.sendMessage("§7Seu rank atual é: " + Ranking.getRank(helixPlayer).getColoredName() + "§7.");
             if (Ranking.getRank(helixPlayer) != Ranking.GOD) {
                 player.sendMessage("§7Proxímo rank é: " + Ranking.getRank(helixPlayer).next().getColoredName() + "§7.");
-                int pontos_necessarios = Ranking.getRank(helixPlayer).next().getXp() - pvp.getKills();
-                player.sendMessage("§7Você tem §a" + pvp.getKills() + " KILLS §7e restam §a" + pontos_necessarios + " KILLS §7para o próximo §6rank§7.");
+                int pontos_necessarios = Ranking.getRank(helixPlayer).next().getXp() - pvp.getXp();
+                player.sendMessage("§7Você tem §a" + pvp.getKills() + " XP §7e restam §a" + pontos_necessarios + " XP §7para o próximo §6rank§7.");
                 player.sendMessage(" ");
                 player.sendMessage("§7Progresso para o proximo §6rank§7:");
                 int diff = Ranking.getRank(helixPlayer).next().getXp() - Ranking.getRank(helixPlayer).getXp();

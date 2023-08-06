@@ -208,6 +208,7 @@ public class Sumo extends WarpDuoBattleHandle2 {
         finalizeBattle(player);
 
         HelixPlayer loserUser = HelixBukkit.getInstance().getPlayerManager().getPlayer(player.getName());
+        HelixPlayer victimHelixPlayer = HelixBukkit.getInstance().getPlayerManager().getPlayer(player.getName());
         HelixWarp.SUMO.send(player);
 
         int loserWithdrawnCoins = random.nextInt(20 + 1 - 8) + 8;
@@ -217,6 +218,13 @@ public class Sumo extends WarpDuoBattleHandle2 {
         }else {
             loserUser.getPvp().setCoins(0);
         }
+        if ((victimHelixPlayer.getPvp().getXp() - 10) >= 0) {
+			victimHelixPlayer.getPvp().setXp(victimHelixPlayer.getPvp().getXp() - 10);
+			player.sendMessage("§c§l[-] §c10 XP");
+		}else {
+			victimHelixPlayer.getPvp().setXp(0);
+			player.sendMessage("§c§l[-] " + victimHelixPlayer.getPvp().getXp() + " XP");
+		}
         HelixPlayer killerUser = HelixBukkit.getInstance().getPlayerManager().getPlayer(target.getName());
         int winnerCoins = random.nextInt(80 + 1 - 25) + 25;
         HelixWarp.SUMO.send(target);

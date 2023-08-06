@@ -63,7 +63,7 @@ public enum Ranking {
     }
 
     public static Ranking getRank(HelixPlayer playerData) {
-        int xp = playerData.getPvp().getKills();
+        int xp = playerData.getPvp().getXp();
         for (Ranking rank : Ranking.values()) {
             if (xp >= rank.getXp())
                 return rank;
@@ -77,7 +77,7 @@ public enum Ranking {
 	        if(helixPlayer == null) return;
 			PlayerPvP pvp = helixPlayer.getPvp();
 
-			if (pvp.getKills() == HelixPvP.getInstance().getConfig().getInt("InicianteKills")) {
+			if (pvp.getXp() == HelixPvP.getInstance().getConfig().getInt("InicianteKills")) {
 		        p.sendMessage("Você upou para o rank " + HelixPvP.getInstance().getConfig().getString("InicianteRank").toUpperCase());
 	        Bukkit.broadcastMessage("§a" + p.getName() + " §fupou do rank " + HelixPvP.getInstance().getConfig().getString("UnrankedRank").toUpperCase() +  " para o Rank " + HelixPvP.getInstance().getConfig().getString("InicianteRank").toUpperCase());
 	        PlayerDeathListener.throwRandomFirework(p);
@@ -86,7 +86,7 @@ public enum Ranking {
 	        	  HelixActionBar.send(p1, "§a" + p.getName() + " §fupou para o Ranking " + HelixPvP.getInstance().getConfig().getString("InicianteRank").toUpperCase());
 	        }
 			}
-	    else if (pvp.getKills() == HelixPvP.getInstance().getConfig().getInt("AvancadoKills")) {
+	    else if (pvp.getXp() == HelixPvP.getInstance().getConfig().getInt("AvancadoKills")) {
 	    	   p.sendMessage("Você upou para o rank " + HelixPvP.getInstance().getConfig().getString("AvancadoRank").toUpperCase());
 		        Bukkit.broadcastMessage("§a" + p.getName() + " §fupou do rank " + HelixPvP.getInstance().getConfig().getString("InicianteRank").toUpperCase() +  " para o Rank " + HelixPvP.getInstance().getConfig().getString("AvancadoRank").toUpperCase());
 		        PlayerDeathListener.throwRandomFirework(p);
@@ -96,7 +96,7 @@ public enum Ranking {
 	        	
 	        }	        
 	        }
-	        else if (pvp.getKills() == HelixPvP.getInstance().getConfig().getInt("ExperienteKills")) {
+	        else if (pvp.getXp() == HelixPvP.getInstance().getConfig().getInt("ExperienteKills")) {
 	        	   p.sendMessage("Você upou para o rank " + HelixPvP.getInstance().getConfig().getString("ExperienteRank").toUpperCase());
 	   	        Bukkit.broadcastMessage("§a" + p.getName() + " §fupou do rank " + HelixPvP.getInstance().getConfig().getString("AvancadoRank").toUpperCase() +  " para o Rank " + HelixPvP.getInstance().getConfig().getString("ExperienteRank").toUpperCase());
 	   	        PlayerDeathListener.throwRandomFirework(p);
@@ -105,7 +105,7 @@ public enum Ranking {
 	   	        	  HelixActionBar.send(p1, "§a" + p.getName() + " §fupou para o Ranking " + HelixPvP.getInstance().getConfig().getString("ExperienteRank").toUpperCase());
 	        }
 	        }
-	        else if (pvp.getKills() == HelixPvP.getInstance().getConfig().getInt("VeteranoKills")) {
+	        else if (pvp.getXp() == HelixPvP.getInstance().getConfig().getInt("VeteranoKills")) {
 	        	   p.sendMessage("Você upou para o rank " + HelixPvP.getInstance().getConfig().getString("VeteranoRank").toUpperCase());
 		   	        Bukkit.broadcastMessage("§a" + p.getName() + " §fupou do rank " + HelixPvP.getInstance().getConfig().getString("ExperienteRank").toUpperCase() +  " para o Rank " + HelixPvP.getInstance().getConfig().getString("VeteranoRank").toUpperCase());
 		   	        PlayerDeathListener.throwRandomFirework(p);
@@ -114,7 +114,7 @@ public enum Ranking {
 		   	        	  HelixActionBar.send(p1, "§a" + p.getName() + " §fupou para o Ranking " + HelixPvP.getInstance().getConfig().getString("VeteranoRank").toUpperCase());
 		        }
 	        }
-	        else if (pvp.getKills() == HelixPvP.getInstance().getConfig().getInt("PrataKills")) {
+	        else if (pvp.getXp() == HelixPvP.getInstance().getConfig().getInt("PrataKills")) {
 	        	   p.sendMessage("Você upou para o rank " + HelixPvP.getInstance().getConfig().getString("PrataRank").toUpperCase());
 		   	        Bukkit.broadcastMessage("§a" + p.getName() + " §fupou do rank " + HelixPvP.getInstance().getConfig().getString("VeteranoRank").toUpperCase() +  " para o Rank " + HelixPvP.getInstance().getConfig().getString("PrataRank").toUpperCase());
 		   	        PlayerDeathListener.throwRandomFirework(p);
@@ -123,7 +123,7 @@ public enum Ranking {
 		   	        	  HelixActionBar.send(p1, "§a" + p.getName() + " §fupou para Ranking " + HelixPvP.getInstance().getConfig().getString("PrataRank").toUpperCase());
 		        }
 	        }
-	        else if (pvp.getKills() == HelixPvP.getInstance().getConfig().getInt("OuroKills")) {
+	        else if (pvp.getXp() == HelixPvP.getInstance().getConfig().getInt("OuroKills")) {
 	        	 p.sendMessage("Você upou para o rank " + HelixPvP.getInstance().getConfig().getString("OuroRank").toUpperCase());
 		   	        Bukkit.broadcastMessage("§a" + p.getName() + " §fupou do rank " + HelixPvP.getInstance().getConfig().getString("PrataRank").toUpperCase() +  " para o Rank " + HelixPvP.getInstance().getConfig().getString("OuroRank").toUpperCase());
 		   	        PlayerDeathListener.throwRandomFirework(p);
@@ -132,7 +132,7 @@ public enum Ranking {
 		   	        	  HelixActionBar.send(p1, "§a" + p.getName() + " §fupou para o Ranking " + HelixPvP.getInstance().getConfig().getString("OuroRank").toUpperCase());
 		        }
 	        }
-	        else if (pvp.getKills() == HelixPvP.getInstance().getConfig().getInt("DiamanteKills")) {
+	        else if (pvp.getXp() == HelixPvP.getInstance().getConfig().getInt("DiamanteKills")) {
 	        	 p.sendMessage("Você upou para o rank " + HelixPvP.getInstance().getConfig().getString("DiamanteRank").toUpperCase());
 		   	        Bukkit.broadcastMessage("§a" + p.getName() + " §fupou do rank " + HelixPvP.getInstance().getConfig().getString("OuroRank").toUpperCase() +  " para o Rank " + HelixPvP.getInstance().getConfig().getString("DiamanteRank").toUpperCase());
 		   	        PlayerDeathListener.throwRandomFirework(p);
@@ -141,7 +141,7 @@ public enum Ranking {
 		   	        	  HelixActionBar.send(p1, "§a" + p.getName() + " §fupou para o Ranking " + HelixPvP.getInstance().getConfig().getString("DiamanteRank").toUpperCase());
 		        }
 	        }
-	        else if (pvp.getKills() == HelixPvP.getInstance().getConfig().getInt("EsmeraldaKills")) {
+	        else if (pvp.getXp() == HelixPvP.getInstance().getConfig().getInt("EsmeraldaKills")) {
 	        	 p.sendMessage("Você upou para o rank " + HelixPvP.getInstance().getConfig().getString("EsmeraldaRank").toUpperCase());
 		   	        Bukkit.broadcastMessage("§a" + p.getName() + " §fupou do rank " + HelixPvP.getInstance().getConfig().getString("DiamanteRank").toUpperCase() +  " para o Rank " + HelixPvP.getInstance().getConfig().getString("EsmeraldaRank").toUpperCase());
 		   	        PlayerDeathListener.throwRandomFirework(p);
@@ -150,7 +150,7 @@ public enum Ranking {
 		   	        	  HelixActionBar.send(p1, "§a" + p.getName() + " §fupou para o Ranking " + HelixPvP.getInstance().getConfig().getString("EsmeraldaRank").toUpperCase());
 		        }
 	        }
-	        else if (pvp.getKills() == HelixPvP.getInstance().getConfig().getInt("CristalKills")) {
+	        else if (pvp.getXp() == HelixPvP.getInstance().getConfig().getInt("CristalKills")) {
 	        	 p.sendMessage("Você upou para o rank " + HelixPvP.getInstance().getConfig().getString("CristalRank").toUpperCase());
 		   	        Bukkit.broadcastMessage("§a" + p.getName() + " §fupou do rank " + HelixPvP.getInstance().getConfig().getString("EsmeraldaRank").toUpperCase() +  " para o Rank " + HelixPvP.getInstance().getConfig().getString("CristalRank").toUpperCase());
 		   	        PlayerDeathListener.throwRandomFirework(p);
@@ -159,7 +159,7 @@ public enum Ranking {
 		   	        	  HelixActionBar.send(p1, "§a" + p.getName() + " §fupou para o Ranking " + HelixPvP.getInstance().getConfig().getString("CristalRank").toUpperCase());
 		        }
 	        }
-	        else if (pvp.getKills() == HelixPvP.getInstance().getConfig().getInt("SafiraKills")) {
+	        else if (pvp.getXp() == HelixPvP.getInstance().getConfig().getInt("SafiraKills")) {
 	        	p.sendMessage("Você upou para o rank " + HelixPvP.getInstance().getConfig().getString("SafiraRank").toUpperCase());
 	   	        Bukkit.broadcastMessage("§a" + p.getName() + " §fupou do rank " + HelixPvP.getInstance().getConfig().getString("CristalRank").toUpperCase() +  " para o Rank " + HelixPvP.getInstance().getConfig().getString("SafiraRank").toUpperCase());
 	   	        PlayerDeathListener.throwRandomFirework(p);
@@ -168,7 +168,7 @@ public enum Ranking {
 	   	        	  HelixActionBar.send(p1, "§a" + p.getName() + " §fupou para o Ranking " + HelixPvP.getInstance().getConfig().getString("SafiraRank").toUpperCase());
 	        }
         }
-	        else if (pvp.getKills() == HelixPvP.getInstance().getConfig().getInt("RubyKills")) {
+	        else if (pvp.getXp() == HelixPvP.getInstance().getConfig().getInt("RubyKills")) {
 	        	p.sendMessage("Você upou para o rank " + HelixPvP.getInstance().getConfig().getString("RubyRank").toUpperCase());
 	   	        Bukkit.broadcastMessage("§a" + p.getName() + " §fupou do rank " + HelixPvP.getInstance().getConfig().getString("SafiraRank").toUpperCase() +  " para o Rank " + HelixPvP.getInstance().getConfig().getString("RubyRank").toUpperCase());
 	   	        PlayerDeathListener.throwRandomFirework(p);
@@ -177,7 +177,7 @@ public enum Ranking {
 	   	        	  HelixActionBar.send(p1, "§a" + p.getName() + " §fupou para o Ranking " + HelixPvP.getInstance().getConfig().getString("RubyRank").toUpperCase());
 	        }
         }
-	        else if (pvp.getKills() == HelixPvP.getInstance().getConfig().getInt("LendarioKills")) {
+	        else if (pvp.getXp() == HelixPvP.getInstance().getConfig().getInt("LendarioKills")) {
 	        	p.sendMessage("Você upou para o rank " + HelixPvP.getInstance().getConfig().getString("LendarioRank").toUpperCase());
 	   	        Bukkit.broadcastMessage("§a" + p.getName() + " §fupou do rank " + HelixPvP.getInstance().getConfig().getString("RubyRank").toUpperCase() +  " para o Rank " + HelixPvP.getInstance().getConfig().getString("LendarioRank").toUpperCase());
 	   	        PlayerDeathListener.throwRandomFirework(p);
@@ -187,7 +187,7 @@ public enum Ranking {
 	        }
         }
 	        	
-	        else if (pvp.getKills() == HelixPvP.getInstance().getConfig().getInt("GodKills")) {
+	        else if (pvp.getXp() == HelixPvP.getInstance().getConfig().getInt("GodKills")) {
 	        	p.sendMessage("Você upou para o rank " + HelixPvP.getInstance().getConfig().getString("GodRank").toUpperCase());
 	   	        Bukkit.broadcastMessage("§a" + p.getName() + " §fupou do rank " + HelixPvP.getInstance().getConfig().getString("LendarioRank").toUpperCase() +  " para o Rank " + HelixPvP.getInstance().getConfig().getString("GodRank").toUpperCase());
 	   	        PlayerDeathListener.throwRandomFirework(p);
