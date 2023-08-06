@@ -219,7 +219,7 @@ public class Sumo extends WarpDuoBattleHandle2 {
             loserUser.getPvp().setCoins(0);
         }
 loserUser.getPvp().addDeathsSumo(1);
-        HelixBukkit.getInstance().getPlayerManager().getController().save(loserUser);
+       
 
 
         HelixPlayer killerUser = HelixBukkit.getInstance().getPlayerManager().getPlayer(target.getName());
@@ -236,6 +236,7 @@ loserUser.getPvp().addDeathsSumo(1);
         loserUser.getPvp().addDeaths(1);
         target.sendMessage("§6§l[+] §6" + winnerCoins + " coins");
         target.sendMessage("§6§l[+] §a25XP");
+        HelixBukkit.getInstance().getPlayerManager().getController().save(loserUser);
         HelixBukkit.getInstance().getPlayerManager().getController().save(killerUser);
     }
 
