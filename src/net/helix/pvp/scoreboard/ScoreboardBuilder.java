@@ -71,7 +71,7 @@ public static void init() {
               Objective objective = score.getObjective(DisplaySlot.SIDEBAR);
               if (objective == null)
                 continue; 
-              if (HelixWarp.SPAWN.hasPlayer(onlines.getName())) {
+              if (HelixWarp.SPAWN.hasPlayer(onlines.getName()) && !EventoUtils.game.contains(onlines.getName())) {
               objective.setDisplayName(ScoreboardBuilder.text);
               }
               else if (HelixWarp.FPS.hasPlayer(onlines.getName())) {
@@ -86,7 +86,7 @@ public static void init() {
               else if (HelixWarp.SUMO.hasPlayer(onlines.getName())) {
                   objective.setDisplayName(ScoreboardBuilder.text6);
                   }
-              else  if (EventoUtils.game.contains(onlines.getName())) {
+              else  if (EventoUtils.game.contains(onlines.getName()) && HelixWarp.SPAWN.hasPlayer(onlines.getName())) {
             	  objective.setDisplayName(ScoreboardBuilder.text2); 
               }
              
@@ -99,8 +99,8 @@ public static void init() {
 	public void build(Player player) {
 		 {
 			 
-			 if (HelixWarp.SPAWN.hasPlayer(player.getName())) {
-					
+			 if (HelixWarp.SPAWN.hasPlayer(player.getName()) && !EventoUtils.game.contains(player.getName())) {
+				 player.getScoreboard().clearSlot(DisplaySlot.SIDEBAR);
 					Scoreboard scoreboard = Bukkit.getScoreboardManager().getNewScoreboard();
 					Objective objective = scoreboard.registerNewObjective("pvp", "dummy");
 					
@@ -147,14 +147,14 @@ public static void init() {
 					player.setScoreboard(scoreboard);
 					update(player);
 					
-			 } else if (EventoUtils.game.contains(player.getName())) {
+			 } else if (EventoUtils.game.contains(player.getName()) && HelixWarp.SPAWN.hasPlayer(player.getName())) {
 					player.getScoreboard().clearSlot(DisplaySlot.SIDEBAR);
 				 Scoreboard scoreboard2 = Bukkit.getScoreboardManager().getNewScoreboard();
 					Objective objective2 = scoreboard2.registerNewObjective("pvp2", "dummy2");
 					
 					objective2.setDisplayName(text2);
 					objective2.setDisplaySlot(DisplaySlot.SIDEBAR);
-					
+					String l9 = "§a";
 					String l8 = "§bVocê está no Evento";
 					String ll = "§c";
 					String l7 = "§fSala Aberta: ";
@@ -163,13 +163,14 @@ public static void init() {
 					String l4 = "§fCoins: §a";
 					String l3 = "§fLiga: ";
 					String l2 = "§0";
-					String l1 = HelixPvP.getInstance().getConfig().getString("IPScore").replace("&", "§"); 
-					objective2.getScore(l8).setScore(8);
+					String l1 = HelixPvP.getInstance().getConfig().getString("IPScore").replace("&", "§");
 					scoreboard2.registerNewTeam("coins").addEntry(l4);
 					scoreboard2.registerNewTeam("sala").addEntry(l7);
 					scoreboard2.registerNewTeam("pvp").addEntry(l6);
 					scoreboard2.registerNewTeam("dano").addEntry(l5);
 					scoreboard2.registerNewTeam("rank").addEntry(l3);
+					objective2.getScore(l9).setScore(9);
+					objective2.getScore(l8).setScore(8);
 					objective2.getScore(ll).setScore(7);
 					objective2.getScore(l7).setScore(6);
 					objective2.getScore(l6).setScore(5);
@@ -333,23 +334,14 @@ public static void init() {
 		if (player.getScoreboard().getObjective("pvp") == null && player.getScoreboard().getObjective("pvp2") == null && player.getScoreboard().getObjective("pvp3") == null && player.getScoreboard().getObjective("pvp4") == null && player.getScoreboard().getObjective("pvp5") == null && player.getScoreboard().getObjective("pvp6") == null) {
 			return;
 		}
-		 if (EventoUtils.game.contains(player.getName())) {
+	
+			
+		  else if (HelixWarp.SPAWN.hasPlayer(player.getName()) && !EventoUtils.game.contains(player.getName())) {
 			 HelixPlayer helixPlayer = HelixBukkit.getInstance().getPlayerManager()
 						.getPlayer(player.getName());
 				PlayerPvP pvp = helixPlayer.getPvp();
 				Scoreboard scoreboard = player.getScoreboard();
-			scoreboard.getTeam("coins").setSuffix((String.valueOf(HelixDecimalFormat.format(pvp.getCoins()))));
-			scoreboard.getTeam("dano").setSuffix((String.valueOf(EventoUtils.damage ? "§aAtivado" : "§cDesativado")));
-			scoreboard.getTeam("sala").setSuffix((String.valueOf((EventoUtils.tp ? "§aSim" : "§cNão"))));
-			scoreboard.getTeam("pvp").setSuffix((String.valueOf((EventoUtils.pvp ? "§aAtivado" : "§cDesativado"))));
-			scoreboard.getTeam("rank").setSuffix((String.valueOf(Ranking.getRank(helixPlayer).getColoredName())));
-		
-		 } else if (HelixWarp.SPAWN.hasPlayer(player.getName())) {
-			 HelixPlayer helixPlayer = HelixBukkit.getInstance().getPlayerManager()
-						.getPlayer(player.getName());
-				PlayerPvP pvp = helixPlayer.getPvp();
-				Scoreboard scoreboard = player.getScoreboard();
-				 LuckPerms api = LuckPermsProvider.get();
+	
 				scoreboard.getTeam("kills").setSuffix(HelixDecimalFormat.format(pvp.getKills()));
 				scoreboard.getTeam("deaths").setSuffix(HelixDecimalFormat.format(pvp.getDeaths()));
 				scoreboard.getTeam("killstreak").setSuffix(HelixDecimalFormat.format(pvp.getKillstreak()));
@@ -404,6 +396,17 @@ public static void init() {
 				scoreboard.getTeam("xp").setSuffix(HelixDecimalFormat.format(pvp.getXp()));
 				scoreboard.getTeam("rank").setSuffix((String.valueOf(Ranking.getRank(helixPlayer).getColoredName())));
 		}
+		 else if (EventoUtils.game.contains(player.getName())) {
+			 HelixPlayer helixPlayer = HelixBukkit.getInstance().getPlayerManager()
+						.getPlayer(player.getName());
+				PlayerPvP pvp = helixPlayer.getPvp();
+				Scoreboard scoreboard = player.getScoreboard();
+			scoreboard.getTeam("coins").setSuffix((String.valueOf(HelixDecimalFormat.format(pvp.getCoins()))));
+			scoreboard.getTeam("dano").setSuffix((String.valueOf(EventoUtils.damage ? "§aAtivado" : "§cDesativado")));
+			scoreboard.getTeam("sala").setSuffix((String.valueOf((EventoUtils.tp ? "§aSim" : "§cNão"))));
+			scoreboard.getTeam("pvp").setSuffix((String.valueOf((EventoUtils.pvp ? "§aAtivado" : "§cDesativado"))));
+			scoreboard.getTeam("rank").setSuffix((String.valueOf(Ranking.getRank(helixPlayer).getColoredName())));
+		 }
 	}
 	}
 

@@ -144,16 +144,8 @@ public class PlayerCombatLogListener implements Listener {
 			player.sendMessage("§cSaia do vanish antes de entrar no modo admin!");
 		}
 	}
-	@EventHandler
-	public void onCommandPreProcess5(PlayerCommandPreprocessEvent event) {
-		Player player = event.getPlayer();
-		String command = event.getMessage().toLowerCase();
-		if (command.contains("evento entrar") && (!(HelixWarp.SPAWN.hasPlayer(player.getName())) && !player.hasPermission("kombo.cmd.evento"))) {
-			event.setCancelled(true);
-			player.sendMessage("§cPara entrar no evento você precisa estar no spawn!");
-		}
 	
-	}
+	
 	
 	
 	@EventHandler

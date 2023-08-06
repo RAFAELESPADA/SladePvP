@@ -8,8 +8,10 @@ import net.helix.core.bukkit.HelixBukkit;
 import net.helix.core.bukkit.account.HelixPlayer;
 import net.helix.pvp.Feast;
 import net.helix.pvp.HelixPvP;
+import net.helix.pvp.PlayerGroup;
 import net.helix.pvp.listener.Medals;
 import net.helix.pvp.listener.Ranking;
+import net.md_5.bungee.api.ChatColor;
 
 	
 	/**
@@ -124,6 +126,13 @@ import net.helix.pvp.listener.Ranking;
 		    }
 	    if (indentifier.equals("player_ks")) {
 		      return String.valueOf(helixPlayer.getPvp().getKillstreak());
+		    }
+	    if (indentifier.equals("player_color")) {
+	    	  PlayerGroup medal = PlayerGroup.getGroup(p);
+	    	  if (p.getName() == "Rafael_Melo") {
+	    		    return "§4";  
+	    	  }
+		      return p != null ? String.valueOf(medal.getColor()) : "§7";
 		    }
 	    if (indentifier.equals("player_rank")) {
 	    	  Ranking medal = Ranking.getRank(helixPlayer);

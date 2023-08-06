@@ -15,6 +15,7 @@ import org.bukkit.potion.PotionEffectType;
 
 import net.helix.pvp.kit.Habilidade;
 import net.helix.pvp.kit.KitManager;
+import net.helix.pvp.kit.KitManager2;
 import net.helix.pvp.warp.HelixWarp;
 
 
@@ -79,14 +80,20 @@ public class EventoComando implements CommandExecutor {
                             player.sendMessage("§cVocê já está no evento.");
                             return true;
                         }
+                        if (!HelixWarp.SPAWN.hasPlayer(player.getName())) {
+                            player.sendMessage("§cVocê precisa estar no spawn para entrar no evento.");
+                            player.sendMessage("§cEscreva /spawn.");
+                            return true;
+                        }
                         if (!EventoUtils.tp) {
                             if (EventoUtils.whitelist.contains(player.getUniqueId())) {
      
                                 player.teleport(EventoUtils.mainArena);
-                                player.sendMessage("§aVocê entrou pela whitelist. §7(j§ foi retirado)");
+                                player.sendMessage("§aVocê entrou pela whitelist. §7(já foi retirado)");
                                 EventoUtils.whitelist.remove(player.getUniqueId());
                                 player.getInventory().clear();
                                 KitManager.getPlayer(player.getName()).removeKit();
+                                KitManager2.getPlayer(player.getName()).removekit2();
                                 Habilidade.removeAbility(player);
                             } else {
                                 player.sendMessage("§cA sala do evento já foi fechada. Fique ligado para quando for aberta para espectadores.");
@@ -140,9 +147,15 @@ public class EventoComando implements CommandExecutor {
                         return true;
                     }
                     EventoUtils.evento = true;
+                    EventoUtils.damage = false;
                     player.sendMessage("§aVocê abriu a sala de eventos.");
                     EventoUtils.whitelist.add(player.getUniqueId());
-                    player.chat("/evento entrar");
+                    EventoUtils.setEvento(true, player);
+                    player.teleport(EventoUtils.mainArena);
+                    player.getInventory().clear();
+                    player.sendMessage("§aVocê entrou no evento.");
+                    KitManager.getPlayer(player.getName()).removeKit();
+                    KitManager2.getPlayer(player.getName()).removekit2();
                     Bukkit.broadcastMessage("§cUm evento acabou de iniciar.");
                     Bukkit.broadcastMessage("§cUtilize /evento entrar");
                     for (Player p : Bukkit.getOnlinePlayers()) {
@@ -168,7 +181,7 @@ public class EventoComando implements CommandExecutor {
                 }
                 else {
                     if (!EventoUtils.evento) {
-                        player.sendMessage("§cA sala de eventos Não estáaberta.");
+                        player.sendMessage("§cA sala de eventos Não está aberta.");
                         return true;
                     }
                     switch (args[0].toLowerCase()) {
@@ -177,14 +190,20 @@ public class EventoComando implements CommandExecutor {
                                 player.sendMessage("§cVocê já está no evento.");
                                 return true;
                             }
+                            if (!HelixWarp.SPAWN.hasPlayer(player.getName())) {
+                                player.sendMessage("§cVocê precisa estar no spawn para entrar no evento.");
+                                player.sendMessage("§cEscreva /spawn.");
+                                return true;
+                            }
                             if (!EventoUtils.tp) {
                                 if (EventoUtils.whitelist.contains(player.getUniqueId())) {
                                     EventoUtils.setEvento(true, player);
                                     player.teleport(EventoUtils.mainArena);
-                                    player.sendMessage("§aVocê entrou pela whitelist. §7(j§ foi retirado)");
+                                    player.sendMessage("§aVocê entrou pela whitelist. §7(já foi retirado)");
                                     player.getInventory().clear();
                                     EventoUtils.whitelist.remove(player.getUniqueId());
                                     KitManager.getPlayer(player.getName()).removeKit();
+                                    KitManager2.getPlayer(player.getName()).removekit2();
                                 } else {
                                     player.sendMessage("§cA sala do evento já foi fechada. Fique ligado para quando for aberta para espectadores.");
                                 }
@@ -195,6 +214,7 @@ public class EventoComando implements CommandExecutor {
                             player.getInventory().clear();
                             player.sendMessage("§aVocê entrou no evento.");
                             KitManager.getPlayer(player.getName()).removeKit();
+                            KitManager2.getPlayer(player.getName()).removekit2();
                             break;
                         case "sair":
                             if (!EventoUtils.game.contains(player.getName())) {

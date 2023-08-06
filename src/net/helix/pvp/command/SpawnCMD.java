@@ -19,6 +19,7 @@ import net.helix.core.bukkit.HelixBukkit;
 import net.helix.core.bukkit.account.HelixPlayer;
 import net.helix.core.util.HelixCooldown2;
 import net.helix.pvp.HelixPvP;
+import net.helix.pvp.evento.EventoUtils;
 import net.helix.pvp.kit.Habilidade;
 import net.helix.pvp.kit.KitManager;
 import net.helix.pvp.kit.KitManager2;
@@ -46,7 +47,7 @@ public class SpawnCMD extends WarpDuoBattleHandle implements Listener, CommandEx
 		}
 		Player p = (Player) sender;
 		Player player = (Player) sender;
-		if (HelixWarp.SPAWN.hasPlayer(p.getName()) && !KitManager.getPlayer(p.getName()).hasKit()) {
+		if (HelixWarp.SPAWN.hasPlayer(p.getName()) && !KitManager.getPlayer(p.getName()).hasKit() && !EventoUtils.game.contains(player.getName())) {
 			p.sendMessage(ChatColor.RED + "Você já está no spawn.");
 			return true;
 		}
