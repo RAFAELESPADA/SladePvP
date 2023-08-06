@@ -218,7 +218,7 @@ public class Sumo extends WarpDuoBattleHandle2 {
         }else {
             loserUser.getPvp().setCoins(0);
         }
-
+loserUser.getPvp().addDeathsSumo(1);
         HelixBukkit.getInstance().getPlayerManager().getController().save(loserUser);
 
 
@@ -229,9 +229,13 @@ public class Sumo extends WarpDuoBattleHandle2 {
 
         target.sendMessage("§a§lSUMO §aVocê ganhou a luta conta " + player.getName());
         killerUser.getPvp().addCoins(winnerCoins);
+        killerUser.getPvp().addWinsSumo(1);;
+        killerUser.getPvp().addWinstreakSumo(1);
+        killerUser.getPvp().addXP(25);
         killerUser.getPvp().addKills(1);
-        killerUser.getPvp().addKillstreak(1);
+        loserUser.getPvp().addDeaths(1);
         target.sendMessage("§6§l[+] §6" + winnerCoins + " coins");
+        target.sendMessage("§6§l[+] §a25XP");
         HelixBukkit.getInstance().getPlayerManager().getController().save(killerUser);
     }
 

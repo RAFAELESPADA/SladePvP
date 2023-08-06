@@ -9,6 +9,7 @@ import java.util.Set;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.scoreboard.DisplaySlot;
 
 import net.helix.core.bukkit.HelixBukkit;
 import net.helix.pvp.HelixPvP;
@@ -80,8 +81,11 @@ public enum HelixWarp {
 		players.add(player.getName());
 		handler.execute(player);
 		player.teleport(warpOptional.get().getLocation());
+		player.getScoreboard().clearSlot(DisplaySlot.SIDEBAR);
+		HelixPvP.getInstance().getScoreboardBuilder().build(player);
 		if (!silent) {
 			player.sendMessage("§7Enviado para warp §b" + this.name);
+			player.sendMessage("§eOBS: Status de warps são contabilizados no seu perfil no spawn");
 		}
 	}
 	

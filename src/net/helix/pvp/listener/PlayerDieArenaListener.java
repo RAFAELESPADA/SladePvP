@@ -98,24 +98,33 @@ public class PlayerDieArenaListener implements Listener {
 			}
 			HelixPlayer killerHelixPlayer = HelixBukkit.getInstance().getPlayerManager().getPlayer(killer.getName());
 			killer.playSound(killer.getLocation(), Sound.LEVEL_UP, 10.0f, 10.0f);
-			killer.sendMessage("§3Você matou " + player.getName() + ". §8(" + (event.isValidKill() ? "Conta" : "N�o Conta" + ")"));
+			killer.sendMessage("§3Você matou " + player.getName() + ". §8(" + (event.isValidKill() ? "Conta" : "Não Conta" + ")"));
 			if (event.isValidKill()) {
 				int killerAddCoins = !killer.hasPermission("kombo.doublexp") ? random.nextInt(15) + 15 : random.nextInt(30) + 20;
 				killerHelixPlayer.getPvp().addKills(1);
 				killerHelixPlayer.getPvp().addKillstreak(1);
 				killerHelixPlayer.getPvp().addCoins(killerAddCoins);
+				killerHelixPlayer.getPvp().addXP(25);
 				killer.sendMessage("§6§l[+] §6" + killerAddCoins + " coins" + (killer.hasPermission("kombo.doublexp") ? " [2X]" : "!"));
+				killer.sendMessage("§6§l[+] §a25XP");
 			}
 			HelixPlayer victimHelixPlayer = HelixBukkit.getInstance().getPlayerManager().getPlayer(player.getName());
 			int victimWithdrawnCoins = random.nextInt(25 + 1 - 8) + 8;
-			victimHelixPlayer.getPvp().addDeaths(1);
+			
 			if ((victimHelixPlayer.getPvp().getCoins() - victimWithdrawnCoins) >= 0) {
 				victimHelixPlayer.getPvp().removeCoins(victimWithdrawnCoins);
 				player.sendMessage("§c§l[-] §c" + victimWithdrawnCoins + " coins");
 			}else {
 				victimHelixPlayer.getPvp().setCoins(0);
 			}
-			
+			if ((victimHelixPlayer.getPvp().getXp() - 10) >= 0) {
+				victimHelixPlayer.getPvp().setXp(victimHelixPlayer.getPvp().getXp() - 10);
+				player.sendMessage("§c§l[-] §c10 XP");
+			}else {
+				victimHelixPlayer.getPvp().setXp(0);
+				player.sendMessage("§c§l[-] " + victimHelixPlayer.getPvp().getXp() + " XP");
+			}
+			victimHelixPlayer.getPvp().addDeaths(1);
 			player.sendMessage("§cVocê morreu para " + killer.getName());
 			player.playSound(player.getLocation(), Sound.BAT_DEATH, 10f, 10f);
 					HelixBukkit.getInstance().getPlayerManager().getController().save(victimHelixPlayer);
@@ -204,24 +213,36 @@ public class PlayerDieArenaListener implements Listener {
 			}
 			HelixPlayer killerHelixPlayer = HelixBukkit.getInstance().getPlayerManager().getPlayer(killer.getName());
 			killer.playSound(killer.getLocation(), Sound.LEVEL_UP, 10.0f, 10.0f);
-			killer.sendMessage("§3Você matou " + player.getName() + ". §8(" + (event.isValidKill() ? "Conta" : "N�o Conta" + ")"));
+			killer.sendMessage("§3Você matou " + player.getName() + ". §8(" + (event.isValidKill() ? "Conta" : "Não Conta" + ")"));
 			if (event.isValidKill()) {
 				int killerAddCoins = !killer.hasPermission("kombo.doublexp") ? random.nextInt(15) + 15 : random.nextInt(30) + 20;
-				killerHelixPlayer.getPvp().addKills(1);
+				killerHelixPlayer.getPvp().addKillsFPS(1);
 				killerHelixPlayer.getPvp().addKillstreak(1);
+				killerHelixPlayer.getPvp().addXP(25);
+			
 				killerHelixPlayer.getPvp().addCoins(killerAddCoins);
 				killer.sendMessage("§6§l[+] §6" + killerAddCoins + " coins" + (killer.hasPermission("kombo.doublexp") ? " [2X]" : "!"));
+				killer.sendMessage("§6§l[+] §a25XP");
 			}
 			HelixPlayer victimHelixPlayer = HelixBukkit.getInstance().getPlayerManager().getPlayer(player.getName());
 			int victimWithdrawnCoins = random.nextInt(25 + 1 - 8) + 8;
-			victimHelixPlayer.getPvp().addDeaths(1);
+			victimHelixPlayer.getPvp().addDeathsFPS(1);
 			if ((victimHelixPlayer.getPvp().getCoins() - victimWithdrawnCoins) >= 0) {
 				victimHelixPlayer.getPvp().removeCoins(victimWithdrawnCoins);
 				player.sendMessage("§c§l[-] §c" + victimWithdrawnCoins + " coins");
 			}else {
 				victimHelixPlayer.getPvp().setCoins(0);
 			}
-			
+			if ((victimHelixPlayer.getPvp().getXp() - 10) >= 0) {
+				victimHelixPlayer.getPvp().setXp(victimHelixPlayer.getPvp().getXp() - 10);
+				player.sendMessage("§c§l[-] §c10 XP");
+			}else {
+				victimHelixPlayer.getPvp().setXp(0);
+				player.sendMessage("§c§l[-] " + victimHelixPlayer.getPvp().getXp() + " XP");
+			}
+			killerHelixPlayer.getPvp().addKills(1);
+			victimHelixPlayer.getPvp().addDeaths(1);
+			killerHelixPlayer.getPvp().addKillstreak(1);
 			player.sendMessage("§cVocê morreu para " + killer.getName());
 			player.playSound(player.getLocation(), Sound.BAT_DEATH, 10f, 10f);
 					HelixBukkit.getInstance().getPlayerManager().getController().save(victimHelixPlayer);
