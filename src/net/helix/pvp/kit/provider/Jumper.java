@@ -83,12 +83,12 @@ public class Jumper extends KitHandler implements Ejectable {
 			return;
 			}
 		
-			else if (event.getPlayer().getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura") && KitManager.getPlayer(event.getPlayer().getName()).hasKit(this) && EnderMageReal.isSpawn(event.getPlayer().getLocation())) {
+		if (event.getPlayer().getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura") && KitManager.getPlayer(event.getPlayer().getName()).hasKit(this) && EnderMageReal.isSpawn(event.getPlayer().getLocation())) {
 	        	event.getPlayer().sendMessage("§cNão use o jumper no spawn!");
 	        	event.setCancelled(true);
 				return;
-				
-			
+		
+		
 	} else {
 			launchEnderPearl(player);
 			event.setCancelled(true);
