@@ -493,6 +493,8 @@ new BukkitRunnable() {
 		getCommand("sealend123").setExecutor(new DesligarPlugin(this));
 		getCommand("tpall").setExecutor(new TPALL());
 		getCommand("verrank").setExecutor(new VerRank());
+		getCommand("stats").setExecutor(new VerRank());
+		getCommand("status").setExecutor(new VerRank());
 		getCommand("medalha").setExecutor(new Medal());
 		getCommand("medalhas").setExecutor(new Medal());
 		getCommand("pinfo").setExecutor(new Info());

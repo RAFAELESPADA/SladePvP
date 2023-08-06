@@ -17,6 +17,8 @@ commands:
    crash:
    setarena:
    regras:
+   stats:
+   status:
    req:
    tag:
    money:

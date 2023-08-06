@@ -32,6 +32,7 @@ public class Milkman extends KitHandler {
 
       
         if (inCooldown(event.getPlayer()) && KitManager.getPlayer(event.getPlayer().getName()).hasKit(this)) {
+        	   event.setCancelled(true);
 			sendMessageCooldown(event.getPlayer());
 			return;
 		}

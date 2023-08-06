@@ -42,7 +42,7 @@ public class RankCMD implements CommandExecutor {
             if (Ranking.getRank(helixPlayer) != Ranking.GOD) {
                 player.sendMessage("§7Proxímo rank é: " + Ranking.getRank(helixPlayer).next().getColoredName() + "§7.");
                 int pontos_necessarios = Ranking.getRank(helixPlayer).next().getXp() - pvp.getXp();
-                player.sendMessage("§7Você tem §a" + pvp.getKills() + " XP §7e restam §a" + pontos_necessarios + " XP §7para o próximo §6rank§7.");
+                player.sendMessage("§7Você tem §a" + pvp.getXp() + " XP §7e restam §a" + pontos_necessarios + " XP §7para o próximo §6rank§7.");
                 player.sendMessage(" ");
                 player.sendMessage("§7Progresso para o proximo §6rank§7:");
                 int diff = Ranking.getRank(helixPlayer).next().getXp() - Ranking.getRank(helixPlayer).getXp();
