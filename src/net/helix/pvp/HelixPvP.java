@@ -128,6 +128,7 @@ import net.helix.pvp.listener.Cocoa;
 import net.helix.pvp.listener.EntityCalculateDamageListener;
 import net.helix.pvp.listener.Jump;
 import net.helix.pvp.listener.LAVA;
+import net.helix.pvp.listener.OnevsOneKS;
 import net.helix.pvp.listener.OpenSpawnItemsListener;
 import net.helix.pvp.listener.PlayerCombatLogListener;
 import net.helix.pvp.listener.PlayerCompassListener;
@@ -540,6 +541,7 @@ new BukkitRunnable() {
 		pm.registerEvents(new EventoListeners(), this);
 		pm.registerEvents(new Grappler(), this);
 		pm.registerEvents(new SumoKillStreak(), this);
+		pm.registerEvents(new OnevsOneKS(), this);
 		pm.registerEvents(new AntiProxyListener(), this);
 		pm.registerEvents(new NoBreakEvent(), this);
 		pm.registerEvents(new SelectWarpListener(), this);
