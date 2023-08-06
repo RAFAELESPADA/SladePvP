@@ -13,6 +13,7 @@ import org.bukkit.World;
 import org.bukkit.block.Chest;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -128,6 +129,7 @@ public class Feast extends BukkitRunnable {
             }      
 
             if (seconds <= 0) {
+            	
                 Bukkit.broadcastMessage(ChatColor.GREEN +"Feast nasceu!");
                 // Durado feast (em segundos)
                 int spawnDurationSeconds = 20;
@@ -136,11 +138,11 @@ public class Feast extends BukkitRunnable {
                 spawned = true;
 
                 chests.forEach((chest) -> {
-               
+                   
                     chest.getBlock().setType(Material.CHEST);
-                	
+                    chest.getBlock().setMetadata("PlacedBlock", new FixedMetadataValue(HelixPvP.getInstance(), true));
                     Random random = new Random();
-
+                   
                     Inventory inventory = ((Chest)chest.getBlock().getState()).getInventory();
                     int itemsAmount = random.nextInt(chestItemMaxAmount + 1 - chestItemMinAmount) + chestItemMaxAmount;
                     for (int i = 0; i < itemsAmount; i++) {

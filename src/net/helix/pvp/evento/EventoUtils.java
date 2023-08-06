@@ -103,17 +103,16 @@ public class EventoUtils {
 		if (b) {
 			EventoUtils.game.add(player.getName());
 			if (player != null) {
-				player.sendMessage(ChatColor.GREEN + "Te adicionando no evento");
-				player.getScoreboard().clearSlot(DisplaySlot.SIDEBAR);
+				
 				HelixPvP.getInstance().getScoreboardBuilder().build(player);
+				player.sendMessage(ChatColor.GREEN + "Te adicionando no evento");
 			}
 		}
 		else if (game.contains(player.getName())) {
 			EventoUtils.game.remove(player.getName());
 			if (player != null) {
+				HelixPvP.getInstance().getScoreboardBuilder().build(player);
 			player.sendMessage(ChatColor.GREEN + "Te removendo do evento");
-			player.getScoreboard().clearSlot(DisplaySlot.SIDEBAR);
-			HelixPvP.getInstance().getScoreboardBuilder().build(player);
 		}
 		}
 		

@@ -11,6 +11,7 @@ import org.bukkit.event.Listener;
 import net.helix.core.bukkit.HelixBukkit;
 import net.helix.core.bukkit.account.HelixPlayer;
 import net.helix.pvp.event.HelixPlayerDeathEvent;
+import net.helix.pvp.warp.HelixWarp;
 
 
 public class OnevsOneKS implements Listener {
@@ -22,6 +23,9 @@ public class OnevsOneKS implements Listener {
 		}
 		
 		Player killer = event.getKiller();
+		if (!HelixWarp.ONE_VS_ONE.hasPlayer(killer.getName())) {
+			return;
+		}
 		HelixPlayer killerAccount = HelixBukkit.getInstance().getPlayerManager().getPlayer(killer.getName());
 		
 		int killstreak = killerAccount.getPvp().getWinstreakx1();

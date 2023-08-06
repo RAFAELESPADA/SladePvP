@@ -16,6 +16,7 @@ import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
@@ -23,7 +24,10 @@ import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.metadata.MetadataValue;
 import org.bukkit.scheduler.BukkitRunnable;
+
+import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -188,6 +192,79 @@ public class Sumo extends WarpDuoBattleHandle2 {
         if (target.equals(victim)) {
             event.setDamage(0);
         }
+    }
+    
+    @EventHandler
+    public void onInteracct(PlayerInteractEvent event){
+        if(event.getAction() == Action.RIGHT_CLICK_BLOCK){
+            Block block = event.getClickedBlock();
+            if(block.getType().equals(Material.CHEST) || block.getType().equals(Material.TRAPPED_CHEST))  {
+            	if (!block.hasMetadata("PlacedBlock")) {
+                event.setCancelled(true);
+                event.getPlayer().sendMessage("Você só pode abrir o feast!");
+            }
+            }
+        }
+            }
+        
+       
+    
+    
+    @EventHandler
+    public void onMoveF(PlayerMoveEvent event) {
+        Player player = event.getPlayer();
+      
+
+        if (!HelixWarp.SUMO.hasPlayer(player.getName())) {
+            return;
+        }
+
+        if (!findOpponent(player).isPresent()) {
+            return;
+        }
+        if (!(player.getLocation().getY() < 55 && player.getLocation().getX() > 38000)) {
+        	return;
+        }
+        Player target = findOpponent(player).get();
+        Random random = new Random();
+        finalizeBattle(player);
+
+        HelixPlayer loserUser = HelixBukkit.getInstance().getPlayerManager().getPlayer(player.getName());
+        HelixPlayer victimHelixPlayer = HelixBukkit.getInstance().getPlayerManager().getPlayer(player.getName());
+        HelixWarp.SUMO.send(player);
+
+        int loserWithdrawnCoins = random.nextInt(20 + 1 - 8) + 8;
+        if ((loserUser.getPvp().getCoins() - loserWithdrawnCoins) >= 0) {
+            loserUser.getPvp().removeCoins(loserWithdrawnCoins);
+            player.sendMessage("§c§l[-] §c" + loserWithdrawnCoins + " coins");
+        }else {
+            loserUser.getPvp().setCoins(0);
+        }
+        if ((victimHelixPlayer.getPvp().getXp() - 10) >= 0) {
+			victimHelixPlayer.getPvp().setXp(victimHelixPlayer.getPvp().getXp() - 10);
+			player.sendMessage("§c§l[-] §c10 XP");
+		}else {
+			victimHelixPlayer.getPvp().setXp(0);
+			player.sendMessage("§c§l[-] " + victimHelixPlayer.getPvp().getXp() + " XP");
+		}
+        HelixPlayer killerUser = HelixBukkit.getInstance().getPlayerManager().getPlayer(target.getName());
+        int winnerCoins = random.nextInt(80 + 1 - 25) + 25;
+        HelixWarp.SUMO.send(target);
+        target.playSound(target.getLocation(), Sound.LEVEL_UP, 10.0f, 10.0f);
+
+        target.sendMessage("§6§lSUMO §eVocê ganhou a luta conta " + player.getName());
+        killerUser.getPvp().addCoins(winnerCoins);
+        killerUser.getPvp().addWinsSumo(1);;
+        killerUser.getPvp().addWinstreakSumo(1);
+        killerUser.getPvp().addXP(25);
+        killerUser.getPvp().addKills(1);
+        target.sendMessage("§6§l[+] §6" + winnerCoins + " coins");
+        target.sendMessage("§6§l[+] §a25XP");
+        
+        loserUser.getPvp().addDeathsSumo(1);
+        player.sendMessage("§4§lSUMO §4Você perdeu a luta contra " + target.getName());
+        HelixBukkit.getInstance().getPlayerManager().getController().save(loserUser);
+        HelixBukkit.getInstance().getPlayerManager().getController().save(killerUser);
     }
 
     @EventHandler
