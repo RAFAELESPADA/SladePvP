@@ -242,7 +242,6 @@ public class PlayerDieArenaListener implements Listener {
 			}
 			killerHelixPlayer.getPvp().addKills(1);
 			victimHelixPlayer.getPvp().addDeaths(1);
-			killerHelixPlayer.getPvp().addKillstreak(1);
 			player.sendMessage("§cVocê morreu para " + killer.getName());
 			player.playSound(player.getLocation(), Sound.BAT_DEATH, 10f, 10f);
 					HelixBukkit.getInstance().getPlayerManager().getController().save(victimHelixPlayer);
