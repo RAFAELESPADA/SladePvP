@@ -718,6 +718,10 @@ public void Items(Player player) {
 				.toStack()
 		);
 	}
+	if (KitManager2.getPlayer(player.getName()).haskit2(HelixKit2.BARBARIAN)) {
+		Habilidade.setAbility(player, "Barbarian2");
+		Bukkit.getConsoleSender().sendMessage(player.getName() + " recebeu a habilidade do barbarian kit 2");
+		}
 	
 	 if (!KitManager.getPlayer(player.getName()).hasKit(HelixKit.NEO)) {
 		 Habilidade.removeAbility(player);
