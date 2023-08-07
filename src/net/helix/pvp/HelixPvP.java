@@ -64,6 +64,7 @@ import net.helix.pvp.command.Fly;
 import net.helix.pvp.command.GiveCoins;
 import net.helix.pvp.command.GiveDeaths;
 import net.helix.pvp.command.GiveKills;
+import net.helix.pvp.command.GiveXP;
 import net.helix.pvp.command.GladInfo;
 import net.helix.pvp.command.Head;
 import net.helix.pvp.command.Info;
@@ -502,6 +503,7 @@ new BukkitRunnable() {
 		getCommand("req").setExecutor(new Youtuber());
 		getCommand("sortearplayer").setExecutor(new SortearPlayer());
 		getCommand("sorteio").setExecutor(new Sorteio());
+		getCommand("givexp").setExecutor(new GiveXP());
 		getCommand("vanish").setExecutor(new Vanish());
 		getCommand("v").setExecutor(new Vanish());
 		getCommand("kitpvp").setExecutor(new KITPVP(this));

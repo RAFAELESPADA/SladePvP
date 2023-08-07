@@ -19,6 +19,7 @@ commands:
    regras:
    stats:
    status:
+   givexp:
    req:
    tag:
    money:
