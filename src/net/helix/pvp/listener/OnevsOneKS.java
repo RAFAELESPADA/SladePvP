@@ -37,7 +37,7 @@ public class OnevsOneKS implements Listener {
 		HelixPlayer victimA = HelixBukkit.getInstance().getPlayerManager().getPlayer(victim.getName());
 		int killstreak2 = victimA.getPvp().getWinstreakx1();
 		if (killstreak2 >= 3) {
-			Bukkit.getOnlinePlayers().forEach(p -> p.sendMessage("§6" + victimA.getName() + " §eperdeu seu winstreak de §6" + victimA.getPvp().getKillstreak() + " §e na 1V1 para §6" +
+			Bukkit.getOnlinePlayers().forEach(p -> p.sendMessage("§6" + victimA.getName() + " §eperdeu seu winstreak de §6" + victimA.getPvp().getWinstreakx1() + " §e na 1V1 para §6" +
 	                killer.getName() + "§e!"));
 		}
 		victimA.getPvp().setWinstreaksumo(0);
