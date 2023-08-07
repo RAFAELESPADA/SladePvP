@@ -124,12 +124,34 @@ if (p.hasPermission("helix.tag.diretor")) {
                     if (p.hasPermission("helix.tag.booster")) {
                     ChatInterativo.Comando(p.getName(), "§0§lBOOSTER", "/tag booster", "§eExemplo: §0§lBOOSTER §7" + p.getName());
                     }
+                    if (p.hasPermission("helix.tag.friend")) {
+                        ChatInterativo.Comando(p.getName(), "§6§lFRIEND", "/tag friend", "§eExemplo: §6§lFRIEND §7" + p.getName());
+                        }
+                    if (p.hasPermission("helix.tag.2025")) {
+                        ChatInterativo.Comando(p.getName(), "§a§l2025", "/tag 2025", "§eExemplo: §a§l2025 §7" + p.getName());
+                        }
+                    if (p.hasPermission("helix.tag.2024")) {
+                        ChatInterativo.Comando(p.getName(), "§1§l2024", "/tag 2024", "§eExemplo: §1§l2024 §7" + p.getName());
+                        }
+                    if (p.hasPermission("helix.tag.2023")) {
+                        ChatInterativo.Comando(p.getName(), "§b§l2023", "/tag 2023", "§eExemplo: §b§l2023 §7" + p.getName());
+                        }
+                    if (p.hasPermission("helix.tag.natal")) {
+                        ChatInterativo.Comando(p.getName(), "§c§lNATAL", "/tag natal", "§eExemplo: §c§lNATAL §7" + p.getName());
+                        }
+                    if (p.hasPermission("helix.tag.winner")) {
+                        ChatInterativo.Comando(p.getName(), "§6§lWINNER", "/tag winner", "§eExemplo: §6§lWINNER §7" + p.getName());
+                        }
                     if (p.hasPermission("helix.tag.top1")) {
                     ChatInterativo.Comando(p.getName(), "§9§lTOP1", "/tag top1", "§eExemplo: §9§lTOP1 §7" + p.getName());
                     }
                     if (p.hasPermission("helix.tag.apoiador")) {
                         ChatInterativo.Comando(p.getName(), "§b§lAPOIADOR", "/tag apoiador", "§eExemplo: §b§lAPOIADOR §7" + p.getName());
                         }
+                    if (p.hasPermission("helix.tag.loser")) {
+                        ChatInterativo.Comando(p.getName(), "§8§lLOSER", "/tag loser", "§eExemplo: §8§lLOSER §7" + p.getName());
+                        }
+                    
                     ChatInterativo.Comando(p.getName(), "§7§lMEMBRO", p.hasPermission("helix.tag.membro") ? "/tag membro" : "/tag default", "§eExemplo: §7" + p.getName());
                     return true;
               }

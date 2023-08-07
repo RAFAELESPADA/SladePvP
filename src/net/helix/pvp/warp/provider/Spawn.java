@@ -18,6 +18,7 @@ import net.helix.core.bukkit.warp.HelixWarp;
 import net.helix.pvp.HelixPvP;
 import net.helix.pvp.cooldown2.HelixCooldown2;
 import net.helix.pvp.evento.EventoUtils;
+import net.helix.pvp.kit.Habilidade;
 import net.helix.pvp.kit.KitManager;
 import net.helix.pvp.kit.KitManager2;
 import net.helix.pvp.kit.provider.Ninja;
@@ -47,6 +48,9 @@ public class Spawn extends WarpHandle {
     if (Ninja.map.containsValue(player.getName())) {
     	Ninja.map.entrySet().removeIf(entry -> entry.getValue().equalsIgnoreCase(player.getName()));
 	}
+    if (Habilidade.ContainsAbility(player)) {
+		Habilidade.removeAbility(player);
+		}
     player.setHealth(player.getMaxHealth());
     player.getActivePotionEffects().forEach(potion -> player.removePotionEffect(potion.getType()));
     player.setFireTicks(0);
