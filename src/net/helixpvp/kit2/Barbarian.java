@@ -2,6 +2,7 @@ package net.helixpvp.kit2;
 
 
 import net.helix.core.bukkit.item.ItemBuilder;
+import net.helix.pvp.kit.Habilidade;
 import net.helix.pvp.kit.HelixKit;
 import net.helix.pvp.kit.HelixKit2;
 import net.helix.pvp.kit.KitHandler;
@@ -27,6 +28,7 @@ public class Barbarian extends KitHandler2 {
 		player.getInventory().setItem(0, new ItemBuilder("§fEspada", Material.WOOD_SWORD)
 				.nbt("cancel-drop")
 				.toStack());
+		Habilidade.setAbility(player, "Barbarian2");
 		}
 		  @EventHandler
 	  public void onKill(PlayerDeathEvent e) {
@@ -35,9 +37,9 @@ public class Barbarian extends KitHandler2 {
 	      if (!(e.getEntity().getKiller() instanceof Player)) {
 	      	return;
 	      }
-	      if (!KitManager2.getPlayer(k.getName()).haskit2(this)) {
-	    	  return;
-	      }
+	      if (Habilidade.getAbility(k) != "Barbarian2") {
+          	return;
+          }
 	       k.sendMessage(ChatColor.DARK_AQUA + "Você fez uma kill usando o barbarian");
 	        if (k.getInventory().getItemInHand().getType() == Material.WOOD_SWORD) {
 	          k.setItemInHand(new ItemStack(Material.STONE_SWORD));

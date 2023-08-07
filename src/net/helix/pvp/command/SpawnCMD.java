@@ -47,7 +47,7 @@ public class SpawnCMD extends WarpDuoBattleHandle implements Listener, CommandEx
 		}
 		Player p = (Player) sender;
 		Player player = (Player) sender;
-		if (HelixWarp.SPAWN.hasPlayer(p.getName()) && !KitManager.getPlayer(p.getName()).hasKit() && !EventoUtils.game.contains(player.getName())) {
+		if (HelixWarp.SPAWN.hasPlayer(p.getName()) && !KitManager.getPlayer(p.getName()).hasKit() && !KitManager2.getPlayer(p.getName()).haskit2() && !EventoUtils.game.contains(player.getName())) {
 			p.sendMessage(ChatColor.RED + "Você já está no spawn.");
 			return true;
 		}
