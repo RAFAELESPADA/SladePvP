@@ -18,6 +18,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
@@ -33,6 +34,7 @@ import net.helix.pvp.command.VanishUtil;
 import net.helix.pvp.evento.EventoUtils;
 import net.helix.pvp.evento.SoupTypeGUI;
 import net.helix.pvp.kit.Habilidade;
+import net.helix.pvp.kit.Habilidade2;
 import net.helix.pvp.kit.HelixKit;
 import net.helix.pvp.kit.HelixKit2;
 import net.helix.pvp.kit.KitHandler;
@@ -718,14 +720,14 @@ public void Items(Player player) {
 				.toStack()
 		);
 	}
-	if (KitManager2.getPlayer(player.getName()).haskit2(HelixKit2.BARBARIAN)) {
-		Habilidade.setAbility(player, "Barbarian2");
-		Bukkit.getConsoleSender().sendMessage(player.getName() + " recebeu a habilidade do barbarian kit 2");
-		}
 	
 	 if (!KitManager.getPlayer(player.getName()).hasKit(HelixKit.NEO)) {
 		 Habilidade.removeAbility(player);
 		}
+	 if (KitManager2.getPlayer(player.getName()).haskit2(HelixKit2.BARBARIAN)) {
+			Habilidade2.setAbility(player, "Barbarian2");
+			Bukkit.getConsoleSender().sendMessage(player.getName() + " recebeu a habilidade do barbarian kit 2");
+			}
 	 if (!SoupTypeGUI.compass.containsKey(player.getName())) {
 	player.getInventory().setItem(8, new ItemBuilder("§9Compass", Material.COMPASS)
 			.nbt("kit-handler", "search-players")
@@ -846,6 +848,16 @@ public void RemoverDanoEspomka(EntityDamageEvent e)
 				this.fall.remove(p.getName());
 			}
 		}
-		
-	}
+
+	   @EventHandler
+		  public void onKill(PlayerDeathEvent e) {
+		      Player k = (Player)e.getEntity().getKiller();
+		      Player p = (Player)e.getEntity();
+		      if (p == null || k == null) {
+		    	  Bukkit.getConsoleSender().sendMessage("[KILLS] UM PLAYER FOI MORTO MAS É NULO!");
+		      } 
+}
+}
+	   
+	
 

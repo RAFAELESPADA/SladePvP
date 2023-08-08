@@ -15,6 +15,7 @@ import net.helix.core.bukkit.HelixBukkit;
 import net.helix.pvp.HelixPvP;
 import net.helix.pvp.command.DarKit;
 import net.helix.pvp.kit.Habilidade;
+import net.helix.pvp.kit.Habilidade2;
 import net.helix.pvp.kit.KitManager;
 import net.helix.pvp.kit.KitManager2;
 import net.helix.pvp.warp.provider.OneVsOne;
@@ -83,6 +84,9 @@ public enum HelixWarp {
 		handler.execute(player);
 		if (Habilidade.ContainsAbility(player)) {
 			Habilidade.removeAbility(player);
+			}
+		if (Habilidade2.ContainsAbility(player)) {
+			Habilidade2.removeAbility(player);
 			}
 		player.teleport(warpOptional.get().getLocation());
 		player.getScoreboard().clearSlot(DisplaySlot.SIDEBAR);
