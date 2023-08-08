@@ -3,6 +3,7 @@ package net.helixpvp.kit2;
 
 import net.helix.core.bukkit.item.ItemBuilder;
 import net.helix.pvp.kit.Habilidade;
+import net.helix.pvp.kit.Habilidade2;
 import net.helix.pvp.kit.HelixKit;
 import net.helix.pvp.kit.HelixKit2;
 import net.helix.pvp.kit.KitHandler;
@@ -10,6 +11,7 @@ import net.helix.pvp.kit.KitHandler2;
 import net.helix.pvp.kit.KitManager;
 import net.helix.pvp.kit.KitManager2;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Effect;
 import org.bukkit.Material;
@@ -19,6 +21,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.inventory.ItemStack;
+
+import com.sk89q.worldedit.entity.Entity;
 
 public class Barbarian extends KitHandler2 {
 	@Override
@@ -33,13 +37,12 @@ public class Barbarian extends KitHandler2 {
 		  @EventHandler
 	  public void onKill(PlayerDeathEvent e) {
 	    if (e.getEntity().getKiller() instanceof Player) {
+	    	if (e.getEntity() instanceof Player) {
 	      Player k = e.getEntity().getKiller();
-	      if (!(e.getEntity().getKiller() instanceof Player)) {
-	      	return;
+	      if (Habilidade2.getAbility(k) != "Barbarian2") {
+	    	  Bukkit.getConsoleSender().sendMessage(k.getName() + " matou " + e.getEntity().getName());
+	    	  return;
 	      }
-	      if (Habilidade.getAbility(k) != "Barbarian2") {
-          	return;
-          }
 	       k.sendMessage(ChatColor.DARK_AQUA + "Você fez uma kill usando o barbarian");
 	        if (k.getInventory().getItemInHand().getType() == Material.WOOD_SWORD) {
 	          k.setItemInHand(new ItemStack(Material.STONE_SWORD));
@@ -84,5 +87,5 @@ public class Barbarian extends KitHandler2 {
 	          } 
 	        }  
 	    } 
-	    }
-	  }
+	    }}}
+	  

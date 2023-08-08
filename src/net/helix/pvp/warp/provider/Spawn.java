@@ -19,6 +19,7 @@ import net.helix.pvp.HelixPvP;
 import net.helix.pvp.cooldown2.HelixCooldown2;
 import net.helix.pvp.evento.EventoUtils;
 import net.helix.pvp.kit.Habilidade;
+import net.helix.pvp.kit.Habilidade2;
 import net.helix.pvp.kit.KitManager;
 import net.helix.pvp.kit.KitManager2;
 import net.helix.pvp.kit.provider.Ninja;
@@ -50,6 +51,9 @@ public class Spawn extends WarpHandle {
 	}
     if (Habilidade.ContainsAbility(player)) {
 		Habilidade.removeAbility(player);
+		}
+    if (Habilidade2.ContainsAbility(player)) {
+		Habilidade2.removeAbility(player);
 		}
     player.setHealth(player.getMaxHealth());
     player.getActivePotionEffects().forEach(potion -> player.removePotionEffect(potion.getType()));

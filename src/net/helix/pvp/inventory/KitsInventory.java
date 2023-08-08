@@ -302,12 +302,12 @@ public class KitsInventory {
 		ItemStack i =  new ItemStack(KitManager.getPlayer(player.getName()).getKit().getIcon());
 		ItemMeta i2 = i.getItemMeta();
 	    ArrayList<String> lore = new ArrayList<String>();
-	    lore.add("§f" + KitManager.getPlayer(player.getName()).getKit().getDescription());
-		i2.setDisplayName(KitManager.getPlayer(player.getName()).getKit().getName());
+	    i2.setDisplayName(KitManager.getPlayer(player.getName()).getKit().getName());
+	    lore.add("§e" + KitManager.getPlayer(player.getName()).getKit().getDescription());
 		i2.setLore(lore);
 		i.setItemMeta(i2);
-		if (KitManager2.getPlayer(player.getName()).getkit2() != HelixKit2.NENHUM) {
-			i2.setDisplayName(KitManager2.getPlayer(player.getName()).getkit2().getName());
+		if (KitManager.getPlayer(player.getName()).getKit() != HelixKit.NENHUM) {
+			i2.setDisplayName(KitManager.getPlayer(player.getName()).getKit().getName());
 		    }
 			else {
 				i2.setDisplayName("§eNenhum kit selecionado.");	

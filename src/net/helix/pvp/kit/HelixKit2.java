@@ -51,7 +51,7 @@ import net.helixpvp.kit2.WaterBender;
 
 
 public enum HelixKit2  {
-	NENHUM("Nenhum2", 0, 0 , new Nenhum() , new ItemStack(Material.BARRIER), "Sem habilidade" , 1),
+	NENHUM("Nenhum2", 0, 0 , new Nenhum() , new ItemStack(Material.BARRIER), "Sem habilidades" , 1),
 	PVP("PvP-2", 0, 0 , new PvP() , new ItemStack(Material.STONE_SWORD), "Receba espada afiada 1" , 1),
 	ANCHOR("Anchor", 10000, 0, new Anchor() , new ItemStack(Material.ANVIL), "Não de ou receba KB" , 1),
 	ANTISTOMPER("AntiStomper", 8000, 0, new AntiStomperReal() , new ItemStack(Material.DIAMOND_HELMET), "Imune a stompers" , 1),
