@@ -40,7 +40,7 @@ public class SelectKitListener implements Listener {
 		if (event.getCurrentItem() == null) {
 			return;
 		}
-		if(event.getClick() == ClickType.RIGHT) {
+	{
 			   if (event.getSlot() >= 45 && event.getSlot() <= 54)
 				   event.setCancelled(true);
 			   else {
@@ -215,12 +215,12 @@ public class SelectKitListener implements Listener {
 						player.closeInventory();
 						kit.send(player);
 					});  
+					return;
 			   }
-			  return;
-			    
-			    }
+			  
+	}
 	
-		event.setCancelled(true);
+		
 		if (ItemBuilder.has(event.getCurrentItem(), "visuali")) {
 			TodosOsKits.open(player);
 			return;
@@ -230,7 +230,7 @@ public class SelectKitListener implements Listener {
 		}
 		
 		String kitName = ItemBuilder.getString(event.getCurrentItem(), "kit-gui");
-
+event.setCancelled(true);
 		HelixKit.findKit(kitName).ifPresent(kit -> {
 			if (KitManager2.getPlayer(player.getName()).getkit2().getName() == kit.getName()) {
 				player.sendMessage("§cVocê já selecionou esse kit como secundário!");
@@ -239,7 +239,8 @@ public class SelectKitListener implements Listener {
 			player.closeInventory();
 			kit.send(player);
 		});
-}
+	}
+
 	@EventHandler
 	public void onInvClick55(InventoryClickEvent event) {
 		Player player = (Player) event.getWhoClicked();

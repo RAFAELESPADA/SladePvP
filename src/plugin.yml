@@ -18,6 +18,7 @@ commands:
    setarena:
    regras:
    stats:
+   1v1iniciar:
    status:
    givexp:
    req:

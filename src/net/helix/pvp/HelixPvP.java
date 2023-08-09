@@ -60,6 +60,7 @@ import net.helix.pvp.command.DesligarPlugin;
 import net.helix.pvp.command.DesligarServidor;
 import net.helix.pvp.command.Discord;
 import net.helix.pvp.command.Euforia;
+import net.helix.pvp.command.EventManager;
 import net.helix.pvp.command.Fly;
 import net.helix.pvp.command.GiveCoins;
 import net.helix.pvp.command.GiveDeaths;
@@ -75,7 +76,9 @@ import net.helix.pvp.command.MacroTest;
 import net.helix.pvp.command.Medal;
 import net.helix.pvp.command.Money;
 import net.helix.pvp.command.NoBreakEvent;
+import net.helix.pvp.command.OneVsOneIniciar;
 import net.helix.pvp.command.PvP;
+import net.helix.pvp.command.RDMAutomatic;
 import net.helix.pvp.command.RankCMD;
 import net.helix.pvp.command.Regras;
 import net.helix.pvp.command.RemoveKit;
@@ -163,6 +166,8 @@ public class HelixPvP extends JavaPlugin implements Listener, PluginMessageListe
 	public ArrayList<EnchantingInventory> inventories;
 	private ScoreboardBuilder scoreboardBuilder;
 	private Hologram topPlayersHd;
+
+	  private EventManager eventManager;
 	public static boolean euforia;
 	private static HelixPvP instance;
 	 public static File file_x1 = new File("plugins/SRKitPvP", "1v1.yml");
@@ -244,7 +249,7 @@ new BukkitRunnable() {
 			public void run() {
 				if (euforia) {
 					for (Player player : Bukkit.getOnlinePlayers()) {
-						if (net.helix.pvp.warp.HelixWarp.SPAWN.hasPlayer(player.getName())) {
+						if (net.helix.pvp.warp.HelixWarp.SPAWN.hasPlayer(player.getName()) && !EventoUtils.game.contains(player.getName())) {
 					player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 120*20, 0));
 						}
 						else {
@@ -269,6 +274,9 @@ new BukkitRunnable() {
 				if (!euforia) {
 				Bukkit.getWorlds().forEach(world -> world.setTime(1000));
 			}
+				else {
+					   Bukkit.getWorld("spawn").setTime(18000);
+				}
 			}
 		}.runTaskTimer(this, 0, 25 * 20L);
 		
@@ -455,12 +463,15 @@ new BukkitRunnable() {
 		
 	}
 	
-
+	 public EventManager getEventManager() {
+		    return this.eventManager;
+		  }
 	
 	public void loadCommands() {
 		getCommand("spawn").setExecutor(new SpawnCMD());
 		getCommand("skit").setExecutor(new SkitCMD());
 		getCommand("crash").setExecutor(new Crash());
+		RDMAutomatic.iniciou = false;
 		getCommand("sethologram").setExecutor(new SetHologramCMD());
 		getCommand("scoreboard").setExecutor(new ScoreboardCMD(this));
 		getCommand("rank").setExecutor(new RankCMD());
@@ -523,11 +534,13 @@ new BukkitRunnable() {
 		getCommand("site").setExecutor(new Site());
 		getCommand("loja").setExecutor(new Site());
 		getCommand("money").setExecutor(new Money());
+		  (getInstance()).eventManager = new EventManager();
 		getCommand("dinheiro").setExecutor(new Money());
 		getCommand("warp").setExecutor(new Warp());
 		getCommand("aplicar").setExecutor(new Aplicar());
 		getCommand("sendtitle").setExecutor(new AvisoT());
 		getCommand("evento").setExecutor(new EventoComando());
+		getCommand("1v1iniciar").setExecutor(new OneVsOneIniciar());
 		getCommand("evento").setTabCompleter(new EventoTabComplete());
 		if (this.getConfig().getBoolean("ReportAtivado")) {
 		getCommand("report").setExecutor(new Report());
@@ -542,6 +555,7 @@ new BukkitRunnable() {
 		pm.registerEvents(new Flash(), this);
 		pm.registerEvents(new RecraftGeral(), this);
 		pm.registerEvents(new Jumper(), this);
+		pm.registerEvents(new RDMAutomatic(), this);
 		pm.registerEvents(new EventoListeners(), this);
 		pm.registerEvents(new Grappler(), this);
 		pm.registerEvents(new SumoKillStreak(), this);

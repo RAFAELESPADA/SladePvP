@@ -30,12 +30,14 @@ private static String text3 = "";
 private static String text4 = "";
 private static String text5 = "";
 private static String text6 = "";
+private static String text7 = "";
 private static WaveAnimation waveAnimation;
 private static WaveAnimation waveAnimation2;
 private static WaveAnimation waveAnimation3;
 private static WaveAnimation waveAnimation4;
 private static WaveAnimation waveAnimation5;
 private static WaveAnimation waveAnimation6;
+private static WaveAnimation waveAnimation7;
 public static void init() {
 	
     waveAnimation = new WaveAnimation("KITPVP" , "§6§l" , "§f§l" , "§e§l");
@@ -44,10 +46,12 @@ public static void init() {
     waveAnimation4 = new WaveAnimation("1V1" , "§6§l" , "§f§l" , "§e§l");
     waveAnimation5 = new WaveAnimation("LAVA" , "§6§l" , "§f§l" , "§e§l");
     waveAnimation6 = new WaveAnimation("SUMO" , "§6§l" , "§f§l" , "§e§l");
+    waveAnimation7 = new WaveAnimation("KNOCKBACK" , "§3§l" , "§f§l" , "§b§l");
     text = "KITPVP";
     text2 = "EVENTO";
     text3 = "FPS";
     text6 = "SUMO";
+    text7 = "KNOCKBACK";
     text5 = "LAVA";
     text4 = "1V1";
     Bukkit.getScheduler().runTaskTimer(HelixPvP.getInstance(), new Runnable() {
@@ -58,6 +62,7 @@ public static void init() {
             ScoreboardBuilder.text4 = ScoreboardBuilder.waveAnimation4.next();
             ScoreboardBuilder.text5 = ScoreboardBuilder.waveAnimation5.next();
             ScoreboardBuilder.text6 = ScoreboardBuilder.waveAnimation6.next();
+            ScoreboardBuilder.text7 = ScoreboardBuilder.waveAnimation7.next();
             for (Player onlines : Bukkit.getOnlinePlayers()) {
               if (onlines == null)
                 continue; 
@@ -85,6 +90,9 @@ public static void init() {
                   }
               else if (HelixWarp.SUMO.hasPlayer(onlines.getName())) {
                   objective.setDisplayName(ScoreboardBuilder.text6);
+                  }
+              else if (HelixWarp.KNOCKBACK.hasPlayer(onlines.getName())) {
+                  objective.setDisplayName(ScoreboardBuilder.text7);
                   }
               else  if (EventoUtils.game.contains(onlines.getName()) && HelixWarp.SPAWN.hasPlayer(onlines.getName())) {
             	  objective.setDisplayName(ScoreboardBuilder.text2); 
@@ -222,6 +230,44 @@ public static void init() {
 					update(player);
 				
 			 }
+			 else if (HelixWarp.KNOCKBACK.hasPlayer(player.getName())) {
+					player.getScoreboard().clearSlot(DisplaySlot.SIDEBAR);
+				 Scoreboard scoreboard2 = Bukkit.getScoreboardManager().getNewScoreboard();
+					Objective objective2 = scoreboard2.registerNewObjective("pvp7", "dummy7");
+					
+					objective2.setDisplayName(text7);
+					objective2.setDisplaySlot(DisplaySlot.SIDEBAR);
+					
+					String l10 = "§eWarp knockback";
+					String l9 = "§c";
+					String l8 = "§fKills: §a";
+					String l7 = "§fDeaths: §c";
+					String l6 = "§fKillStreak: §3";
+					String l5 = "§fCoins: §a";
+					String l4 = "§fLiga: ";
+					String l3 = "§fXP: §a";
+					String l2 = "§0";
+					String l1 = HelixPvP.getInstance().getConfig().getString("IPScore").replace("&", "§"); 
+					scoreboard2.registerNewTeam("kills").addEntry(l8);
+					scoreboard2.registerNewTeam("deaths").addEntry(l7);
+					scoreboard2.registerNewTeam("killstreak").addEntry(l6);
+					scoreboard2.registerNewTeam("coins").addEntry(l5);
+					scoreboard2.registerNewTeam("rank").addEntry(l4);
+					scoreboard2.registerNewTeam("xp").addEntry(l3);
+					objective2.getScore(l10).setScore(9);
+					objective2.getScore(l9).setScore(8);
+					objective2.getScore(l8).setScore(7);
+					objective2.getScore(l7).setScore(6);
+					objective2.getScore(l6).setScore(5);
+					objective2.getScore(l5).setScore(4);
+					objective2.getScore(l4).setScore(3);
+					objective2.getScore(l3).setScore(2);
+					objective2.getScore(l2).setScore(1);
+					objective2.getScore(l1).setScore(0);
+					player.setScoreboard(scoreboard2);
+					update(player);
+				
+			 }
 			 else if (HelixWarp.LAVACHALLENGE.hasPlayer(player.getName())) {
 					player.getScoreboard().clearSlot(DisplaySlot.SIDEBAR);
 				 Scoreboard scoreboard2 = Bukkit.getScoreboardManager().getNewScoreboard();
@@ -331,7 +377,7 @@ public static void init() {
 	
 	public void update(Player player) {
 		
-		if (player.getScoreboard().getObjective("pvp") == null && player.getScoreboard().getObjective("pvp2") == null && player.getScoreboard().getObjective("pvp3") == null && player.getScoreboard().getObjective("pvp4") == null && player.getScoreboard().getObjective("pvp5") == null && player.getScoreboard().getObjective("pvp6") == null) {
+		if (player.getScoreboard().getObjective("pvp") == null && player.getScoreboard().getObjective("pvp2") == null && player.getScoreboard().getObjective("pvp3") == null && player.getScoreboard().getObjective("pvp4") == null && player.getScoreboard().getObjective("pvp5") == null && player.getScoreboard().getObjective("pvp6") == null  && player.getScoreboard().getObjective("pvp7") == null) {
 			return;
 		}
 	
@@ -360,6 +406,20 @@ public static void init() {
 			 scoreboard.getTeam("killfps").setSuffix(HelixDecimalFormat.format(pvp.getKillsfps()));
 				scoreboard.getTeam("deathfps").setSuffix(HelixDecimalFormat.format(pvp.getDeathsfps()));
 				scoreboard.getTeam("ks").setSuffix(HelixDecimalFormat.format(pvp.getKillstreak()));
+				scoreboard.getTeam("coins").setSuffix(HelixDecimalFormat.format(pvp.getCoins()));
+				scoreboard.getTeam("xp").setSuffix(HelixDecimalFormat.format(pvp.getXp()));
+				scoreboard.getTeam("rank").setSuffix((String.valueOf(Ranking.getRank(helixPlayer).getColoredName())));
+				}
+else if (HelixWarp.KNOCKBACK.hasPlayer(player.getName())) {
+			 
+			 HelixPlayer helixPlayer = HelixBukkit.getInstance().getPlayerManager()
+						.getPlayer(player.getName());
+				PlayerPvP pvp = helixPlayer.getPvp();
+				Scoreboard scoreboard = player.getScoreboard();
+		
+				scoreboard.getTeam("kills").setSuffix(HelixDecimalFormat.format(pvp.getKills()));
+				scoreboard.getTeam("deaths").setSuffix(HelixDecimalFormat.format(pvp.getDeaths()));
+				scoreboard.getTeam("killstreak").setSuffix(HelixDecimalFormat.format(pvp.getKillstreak()));
 				scoreboard.getTeam("coins").setSuffix(HelixDecimalFormat.format(pvp.getCoins()));
 				scoreboard.getTeam("xp").setSuffix(HelixDecimalFormat.format(pvp.getXp()));
 				scoreboard.getTeam("rank").setSuffix((String.valueOf(Ranking.getRank(helixPlayer).getColoredName())));
