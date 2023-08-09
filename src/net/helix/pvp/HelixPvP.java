@@ -200,15 +200,40 @@ public class HelixPvP extends JavaPlugin implements Listener, PluginMessageListe
 		ScoreboardBuilder.init();
 		loadListeners();
 		this.inventories = new ArrayList<>();
-		ItemStack Resultado = new ItemStack(Material.MUSHROOM_SOUP, 1);
-		ShapelessRecipe CraftCocoa = new ShapelessRecipe(Resultado);
-		Dye d = new Dye();
-	    d.setColor(DyeColor.BROWN);
-		CraftCocoa.addIngredient(1, d);
-		CraftCocoa.addIngredient(1, Material.BOWL);
-		Bukkit.getServer().addRecipe(CraftCocoa);
-		ItemMeta Flores = Resultado.getItemMeta();
-		Resultado.setItemMeta(Flores);
+		ItemStack flower = new ItemStack(Material.MUSHROOM_SOUP, 1);
+	    ItemMeta flowers = flower.getItemMeta();
+	    flower.setItemMeta(flowers);
+	    ShapelessRecipe flowersoup = new ShapelessRecipe(flower);
+	    flowersoup.addIngredient(Material.YELLOW_FLOWER);
+	    flowersoup.addIngredient(Material.RED_ROSE);
+	    flowersoup.addIngredient(Material.BOWL);
+
+	      getServer().addRecipe(flowersoup); 
+	    ItemStack seed = new ItemStack(Material.MUSHROOM_SOUP, 1);
+	    ItemMeta seeds = seed.getItemMeta();
+	    seed.setItemMeta(seeds);
+	    ShapelessRecipe seedsoup = new ShapelessRecipe(seed);
+	    seedsoup.addIngredient(1, Material.SEEDS);
+	    seedsoup.addIngredient(1, Material.BOWL);
+	      getServer().addRecipe(seedsoup); 
+	    ItemStack cocoab = new ItemStack(Material.MUSHROOM_SOUP, 1);
+	    ItemMeta cocoa = cocoab.getItemMeta();
+	    cocoab.setItemMeta(cocoa);
+	    ShapelessRecipe cocoamilk = new ShapelessRecipe(cocoab);
+	    cocoamilk.addIngredient(1, Material.INK_SACK, 3);
+	    cocoamilk.addIngredient(1, Material.BOWL);
+
+	      getServer().addRecipe(cocoamilk); 
+	    ItemStack cacto = new ItemStack(Material.MUSHROOM_SOUP, 1);
+	    ItemMeta cactos = cacto.getItemMeta();
+	    cacto.setItemMeta(cactos);
+	    ShapelessRecipe cactojuice = new ShapelessRecipe(cacto);
+	    cactojuice.addIngredient(2, Material.CACTUS);
+	    cactojuice.addIngredient(1, Material.BOWL);
+	   
+	      getServer().addRecipe(cactojuice); 
+	  
+
 new BukkitRunnable() {
 			
 			@SuppressWarnings("deprecation")
