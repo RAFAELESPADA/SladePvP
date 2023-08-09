@@ -30,10 +30,19 @@ public boolean onCommand(CommandSender sender, Command cmd, String label, String
       textComponent.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder("§aVocê limpou o cache").create()));
     p.playSound(p.getLocation(), Sound.BLAZE_HIT, 12.0F, 12.0F);
     EventoUtils.resetEventoClass();
-    HelixPvP.getInstance().getEventManager().getRdmAutomatic().getPlayers().clear();
     p.spigot().sendMessage(textComponent);
-    if (HelixPvP.getInstance().getEventManager().getRdmAutomatic().getPlayers().size() > 0) {
-    p.sendMessage("Lista que foi retirada: " + HelixPvP.getInstance().getEventManager().getRdmAutomatic().getPlayers());
+    if (HelixPvP.getInstance().getEventManager().getRdmAutomatic() == null) {
+    	p.sendMessage("§cEvento 1V1 não rodando. ninguém removido");
+    	return true;
+    }
+   else if (HelixPvP.getInstance().getEventManager().getRdmAutomatic().getPlayers() == null) {
+    	p.sendMessage("§cNinguém removido do evento 1v1");
+    	return true;
+    }
+   else if (HelixPvP.getInstance().getEventManager().getRdmAutomatic().getPlayers().size() > 0) {
+    	p.sendMessage("§c" + HelixPvP.getInstance().getEventManager().getRdmAutomatic().getPlayers().size() + " removidos do evento 1v1");
+    p.sendMessage("§cLista que foi retirada: §e" + HelixPvP.getInstance().getEventManager().getRdmAutomatic().getPlayers());
+    HelixPvP.getInstance().getEventManager().getRdmAutomatic().getPlayers().clear();
   }
   }
   return false;
