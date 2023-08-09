@@ -27,6 +27,8 @@ import org.inventivetalent.bossbar.BossBarAPI;
 import net.helix.core.bukkit.HelixBukkit;
 import net.helix.core.bukkit.account.HelixPlayer;
 import net.helix.core.util.HelixCooldown2;
+import net.helix.pvp.HelixPvP;
+import net.helix.pvp.command.RDMAutomatic;
 import net.helix.pvp.event.HelixPlayerDeathEvent;
 import net.helix.pvp.event.HelixPlayerDeathEvent.Reason;
 import net.helix.pvp.evento.EventoUtils;
@@ -229,6 +231,13 @@ public class PlayerDeathListener implements Listener {
 	            	Bukkit.broadcastMessage("§6Vencedor do evento §a§ §C§l " + EventoUtils.getEventoPlayersNames());
 	            	Bukkit.broadcastMessage("§6Vencedor do evento §a§ §C§l " + EventoUtils.getEventoPlayersNames());
 	            	p.setHealth(20);
+	            	if (RDMAutomatic.iniciou) {
+	            		RDMAutomatic.iniciou = false;
+	            		if (HelixPvP.getInstance().getEventManager().isRunningRDM()) {
+	            		HelixPvP.getInstance().getEventManager().setRdmAutomatic(null);
+	            		Bukkit.broadcastMessage("§6O Evento 1V1 foi finalizado!");
+	            		}
+	            	}
 	                p.getWorld().strikeLightning(p.getLocation());
 	                p.getWorld().strikeLightning(p.getLocation());
 	            	p.getWorld().strikeLightning(p.getLocation());
@@ -254,6 +263,13 @@ public class PlayerDeathListener implements Listener {
 		            	Bukkit.broadcastMessage("§6Vencedor do evento §a§ §C§l " + EventoUtils.getEventoPlayersNames());
 		            	Bukkit.broadcastMessage("§6Vencedor do evento §a§ §C§l " + EventoUtils.getEventoPlayersNames());
 		            	p.setHealth(20);
+		            	if (RDMAutomatic.iniciou) {
+		            		RDMAutomatic.iniciou = false;
+		            		if (HelixPvP.getInstance().getEventManager().isRunningRDM()) {
+		            		HelixPvP.getInstance().getEventManager().setRdmAutomatic(null);
+		            		Bukkit.broadcastMessage("§6O Evento 1V1 foi finalizado!");
+		            		}
+		            	}
 		                p.getWorld().strikeLightning(p.getLocation());
 		                p.getWorld().strikeLightning(p.getLocation());
 		            	p.getWorld().strikeLightning(p.getLocation());

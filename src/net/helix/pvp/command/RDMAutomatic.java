@@ -143,12 +143,13 @@ public class RDMAutomatic implements Listener {
               playersInPvp.remove(p);
               players.remove(p);
               RDMAutomatic.this.pvp = false;
-              p.sendMessage("§e§lEVENTO §fVocê foi eliminado do evento pelo"  + d.getName() + "!");
-              RDMAutomatic.this.broadcast("§bO jogador" + p.getName() + " foi eliminado do evento pelo"  + d.getName() + "!");
+              p.sendMessage("§e§lEVENTO §fVocê foi eliminado do evento pelo "  + d.getName() + "!");
+              RDMAutomatic.this.broadcast("§bO jogador" + p.getName() + " foi eliminado do evento pelo "  + d.getName() + "!");
               RDMAutomatic.this.broadcast("§b"+ players.size() + "jogadores restantes.");
               EventoType ev = EventoType.getEventoByName("1v1");
 			 	 Location evt = ev.getLocation();
 			 	 d.teleport(evt);
+			 	playersInPvp.remove(d);
 			 	 d.getInventory().clear();
 			 	 d.getInventory().setArmorContents(null);
               RDMAutomatic.this.broadcast("§bProcurando proximo jogador...");
