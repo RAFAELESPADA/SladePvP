@@ -20,6 +20,7 @@ import net.helix.core.bukkit.account.HelixPlayer;
 import net.helix.pvp.HelixPvP;
 import net.helix.pvp.event.HelixPlayerDeathEvent;
 import net.helix.pvp.event.HelixPlayerDeathEvent.Reason;
+import net.helix.pvp.evento.EventoUtils;
 import net.helix.pvp.evento.SoupTypeGUI;
 import net.helix.pvp.warp.HelixWarp;
 
@@ -83,11 +84,11 @@ public class PlayerDieArenaListener implements Listener {
 				w.dropItemNaturally(deathLocation, event.getPlayer().getInventory().getBoots());
 			}
 			for (int i = 0; i < 64; i++) {
-				if (!SoupTypeGUI.savecocoa.containsKey(killer.getName())) {
+				if (!SoupTypeGUI.savecocoa.containsKey(killer.getName()) && !EventoUtils.game.contains(killer.getName())) {
 				w.dropItemNaturally(deathLocation, capacete1);
 				w.dropItemNaturally(deathLocation, capacete2);
 				w.dropItemNaturally(deathLocation, capacete3);
-				} else {
+				} else if (!EventoUtils.game.contains(killer.getName())) {
 					w.dropItemNaturally(deathLocation, capacete1);
 					w.dropItemNaturally(deathLocation, capacete4);
 					w.dropItemNaturally(deathLocation, capacete4);

@@ -15,6 +15,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Difficulty;
 import org.bukkit.DyeColor;
+import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -72,6 +73,7 @@ import net.helix.pvp.command.Info;
 import net.helix.pvp.command.KITPVP;
 import net.helix.pvp.command.LastLogin;
 import net.helix.pvp.command.LavaIniciar;
+import net.helix.pvp.command.LimparCache;
 import net.helix.pvp.command.MacroTest;
 import net.helix.pvp.command.Medal;
 import net.helix.pvp.command.Money;
@@ -319,6 +321,20 @@ new BukkitRunnable() {
 			new BukkitRunnable() {
 				@Override
 				public void run() {
+					Bukkit.getWorlds().forEach(world -> {
+						world.getEntities().stream().filter(entity -> entity instanceof Item && entity.getLocation().getX() > 654100 && entity.getLocation().getX() < 654150)
+						.forEach(en -> en.remove());
+					
+						
+					    
+					});
+					}}.runTaskTimer(this, 0, 1 * 5L);
+		});
+		
+		HelixBukkit.getExecutorService().submit(() -> {
+			new BukkitRunnable() {
+				@Override
+				public void run() {
 					for (Player player : Bukkit.getOnlinePlayers()) {
 						if (Bukkit.getOnlinePlayers().size() < 3) {
 							return;
@@ -520,6 +536,7 @@ new BukkitRunnable() {
 		getCommand("youtuber").setExecutor(new Youtuber());
 		getCommand("pvp").setExecutor(new PvP());
 		getCommand("euforia").setExecutor(new Euforia());
+		getCommand("limparcache").setExecutor(new LimparCache());
 		getCommand("autosoup").setExecutor(new AutoSoup(this));
 		getCommand("warpinfo").setExecutor(new GladInfo());
 		if (this.getConfig().getBoolean("ReportAtivado")) {
