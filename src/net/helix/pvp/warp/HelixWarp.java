@@ -18,6 +18,7 @@ import net.helix.pvp.kit.Habilidade;
 import net.helix.pvp.kit.Habilidade2;
 import net.helix.pvp.kit.KitManager;
 import net.helix.pvp.kit.KitManager2;
+import net.helix.pvp.warp.provider.Knockback;
 import net.helix.pvp.warp.provider.OneVsOne;
 import net.helix.pvp.warp.provider.Spawn;
 import net.helix.pvp.warp.provider.Sumo;
@@ -28,6 +29,7 @@ public enum HelixWarp {
 	FPS("FPS", new net.helix.pvp.warp.provider.FPS(), Material.GLASS),
     LAVACHALLENGE("Lava", new LavaChallenge(), Material.LAVA_BUCKET),
     SUMO("Sumo", new Sumo(), Material.APPLE),
+    KNOCKBACK("Knockback", new Knockback(), Material.STICK),
 	ONE_VS_ONE("1v1", new OneVsOne(), Material.BLAZE_ROD);
 	
 	static {

@@ -249,10 +249,103 @@ public class PlayerDieArenaListener implements Listener {
 		}else {
 			player.sendMessage("§cVocê morreu por causas desconhecidas e seus status não foram alterados.");
 		}
+	}
+	@EventHandler
+	public void onPlayerDieInArena23(HelixPlayerDeathEvent event) {
+		if (event.getReason() != Reason.KNOCKBACK) {
+			return;
+		}
+		Player player = event.getPlayer();
+		World w = player.getWorld();
+		List<ItemStack> drops = new ArrayList<>(event.getDrops());
+		Location deathLocation = event.getDeathLocation();
+		if (drops.size() > 0) {
+			deathLocation.getWorld().playEffect(deathLocation, Effect.CLICK1, 4);
+		}
+		player.spigot().respawn();
+		ItemStack capacete0 = new ItemStack(Material.MUSHROOM_SOUP);
+		ItemStack capacete1 = new ItemStack(Material.BOWL);
+		ItemStack capacete2 = new ItemStack(Material.BROWN_MUSHROOM);
+		ItemStack capacete3 = new ItemStack(Material.RED_MUSHROOM);
+		ItemStack capacete4 = new ItemStack(Material.INK_SACK, 1 ,(short)3);
+		event.getDrops().clear();
+		drops.clear();
+		new BukkitRunnable() {
+			@Override
+			public void run() {
+				HelixWarp.KNOCKBACK.send(player, true);
+			}
+		}.runTaskLater(HelixPvP.getInstance(), 20);
 		
-		Location spawnLocation = HelixBukkit.getInstance().getWarpManager().findWarp("spawn").isPresent() ?
-				HelixBukkit.getInstance().getWarpManager().findWarp("spawn").get().getLocation() : player.getLocation().getWorld().getSpawnLocation();
-		player.teleport(spawnLocation);
+		if (event.hasKiller()) {
+			Player killer = event.getKiller();
+			if (player == killer) {
+				HelixPlayer victimHelixPlayer2 = HelixBukkit.getInstance().getPlayerManager().getPlayer(player.getName());
+				player.sendMessage("§cVocê cometeu suicídio e por isso não ganhou coins nem abates.");
+				victimHelixPlayer2.getPvp().addDeaths(1);
+				victimHelixPlayer2.getPvp().removeCoins(15);
+				if ((victimHelixPlayer2.getPvp().getCoins()) >= 15) {
+					victimHelixPlayer2.getPvp().removeCoins(15);
+					player.sendMessage("§c§l[-] §c15 coins");
+				}else {
+					player.sendMessage("§c§l[-] §c" + victimHelixPlayer2.getPvp().getCoins() + "coins");
+					victimHelixPlayer2.getPvp().setCoins(0);
+				}
+				return;
+			}
+			Random random = new Random();
+			for (int i = 0; i < 64; i++) {
+				if (!SoupTypeGUI.savecocoa.containsKey(killer.getName())) {
+				w.dropItemNaturally(deathLocation, capacete1);
+				w.dropItemNaturally(deathLocation, capacete2);
+				w.dropItemNaturally(deathLocation, capacete3);
+				} else {
+					w.dropItemNaturally(deathLocation, capacete1);
+					w.dropItemNaturally(deathLocation, capacete4);
+					w.dropItemNaturally(deathLocation, capacete4);
+				}
+			}
+			for (int i = 0; i < 33; i++) {
+			w.dropItemNaturally(deathLocation, capacete0);
+			}
+			HelixPlayer killerHelixPlayer = HelixBukkit.getInstance().getPlayerManager().getPlayer(killer.getName());
+			killer.playSound(killer.getLocation(), Sound.LEVEL_UP, 10.0f, 10.0f);
+			killer.sendMessage("§3Você matou " + player.getName() + ". §8(" + (event.isValidKill() ? "Conta" : "Não Conta" + ")"));
+			if (event.isValidKill()) {
+				int killerAddCoins = !killer.hasPermission("kombo.doublexp") ? random.nextInt(15) + 15 : random.nextInt(30) + 20;
+				killerHelixPlayer.getPvp().addKillsFPS(1);
+				killerHelixPlayer.getPvp().addKillstreak(1);
+				killerHelixPlayer.getPvp().addXP(25);
+			
+				killerHelixPlayer.getPvp().addCoins(killerAddCoins);
+				killer.sendMessage("§6§l[+] §6" + killerAddCoins + " coins" + (killer.hasPermission("kombo.doublexp") ? " [2X]" : "!"));
+				killer.sendMessage("§6§l[+] §a25XP");
+			}
+			HelixPlayer victimHelixPlayer = HelixBukkit.getInstance().getPlayerManager().getPlayer(player.getName());
+			int victimWithdrawnCoins = random.nextInt(25 + 1 - 8) + 8;
+			victimHelixPlayer.getPvp().addDeathsFPS(1);
+			if ((victimHelixPlayer.getPvp().getCoins() - victimWithdrawnCoins) >= 0) {
+				victimHelixPlayer.getPvp().removeCoins(victimWithdrawnCoins);
+				player.sendMessage("§c§l[-] §c" + victimWithdrawnCoins + " coins");
+			}else {
+				victimHelixPlayer.getPvp().setCoins(0);
+			}
+			if ((victimHelixPlayer.getPvp().getXp() - 10) >= 0) {
+				victimHelixPlayer.getPvp().setXp(victimHelixPlayer.getPvp().getXp() - 10);
+				player.sendMessage("§c§l[-] §c10 XP");
+			}else {
+				victimHelixPlayer.getPvp().setXp(0);
+				player.sendMessage("§c§l[-] " + victimHelixPlayer.getPvp().getXp() + " XP");
+			}
+			killerHelixPlayer.getPvp().addKills(1);
+			victimHelixPlayer.getPvp().addDeaths(1);
+			player.sendMessage("§cVocê morreu para " + killer.getName());
+			player.playSound(player.getLocation(), Sound.BAT_DEATH, 10f, 10f);
+					HelixBukkit.getInstance().getPlayerManager().getController().save(victimHelixPlayer);
+					HelixBukkit.getInstance().getPlayerManager().getController().save(killerHelixPlayer);
+		}else {
+			player.sendMessage("§cVocê morreu por causas desconhecidas e seus status não foram alterados.");
+		}
 	}
 
 }

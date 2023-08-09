@@ -84,7 +84,7 @@ public class Jump implements Listener {
 		Player player = e.getPlayer();
 		Atirar(p);
 		Atirar2(p);	
-		if (player.getLocation().getBlockY() < HelixPvP.getInstance().getConfig().getInt("SpawnAltura") && (!KitManager.getPlayer(player.getName()).hasKit() && !KitManager2.getPlayer(player.getName()).haskit2()) && !EventoUtils.game.contains(player.getName()) && !HelixWarp.ONE_VS_ONE.hasPlayer(p.getName()) && !HelixWarp.FPS.hasPlayer(p.getName()) && !HelixWarp.SUMO.hasPlayer(p.getName()) && !HelixWarp.LAVACHALLENGE.hasPlayer(p.getName()) && !recebeu.containsKey(player.getName()) && !AdminUtil.has(player.getName()) && !VanishUtil.has(player.getName())) {
+		if (player.getLocation().getBlockY() < HelixPvP.getInstance().getConfig().getInt("SpawnAltura") && (!KitManager.getPlayer(player.getName()).hasKit() && !KitManager2.getPlayer(player.getName()).haskit2()) && !EventoUtils.game.contains(player.getName()) && !HelixWarp.ONE_VS_ONE.hasPlayer(p.getName()) && !HelixWarp.FPS.hasPlayer(p.getName()) && !HelixWarp.SUMO.hasPlayer(p.getName()) && !HelixWarp.KNOCKBACK.hasPlayer(p.getName()) && !HelixWarp.LAVACHALLENGE.hasPlayer(p.getName()) && !recebeu.containsKey(player.getName()) && !AdminUtil.has(player.getName()) && !VanishUtil.has(player.getName())) {
 			HelixKit.findKit("PvP").ifPresent(kit -> {
 				player.closeInventory();
 				kit.send(player);
@@ -97,7 +97,7 @@ public class Jump implements Listener {
 Bukkit.getConsoleSender().sendMessage(player.getName() + " Choosed pvp kit! (Pulou do spawn)");
 						recebeu.put(player.getName(), true);
 						}			
-						else if (player.getLocation().getBlockY() < HelixPvP.getInstance().getConfig().getInt("SpawnAltura") && (KitManager.getPlayer(player.getName()).hasKit() && !KitManager2.getPlayer(player.getName()).haskit2()) && !EventoUtils.game.contains(player.getName()) && !HelixWarp.ONE_VS_ONE.hasPlayer(p.getName()) && !HelixWarp.FPS.hasPlayer(p.getName()) && !HelixWarp.SUMO.hasPlayer(p.getName()) && !HelixWarp.LAVACHALLENGE.hasPlayer(p.getName())  && !recebeu.containsKey(player.getName()) && !AdminUtil.has(player.getName()) && !VanishUtil.has(player.getName())) {
+						else if (player.getLocation().getBlockY() < HelixPvP.getInstance().getConfig().getInt("SpawnAltura") && (KitManager.getPlayer(player.getName()).hasKit() && !KitManager2.getPlayer(player.getName()).haskit2()) && !EventoUtils.game.contains(player.getName()) && !HelixWarp.ONE_VS_ONE.hasPlayer(p.getName()) && !HelixWarp.FPS.hasPlayer(p.getName()) && !HelixWarp.SUMO.hasPlayer(p.getName()) && !HelixWarp.KNOCKBACK.hasPlayer(p.getName()) && !HelixWarp.LAVACHALLENGE.hasPlayer(p.getName())  && !recebeu.containsKey(player.getName()) && !AdminUtil.has(player.getName()) && !VanishUtil.has(player.getName())) {
 							HelixKit2.findKit("PvP").ifPresent(kit -> {
 								player.closeInventory();
 								kit.send(player);
@@ -106,7 +106,7 @@ Bukkit.getConsoleSender().sendMessage(player.getName() + " Choosed pvp kit! (Pul
 	recebeu.put(player.getName(), true);					
 }
 		
-						else if (player.getLocation().getBlockY() < HelixPvP.getInstance().getConfig().getInt("SpawnAltura") && (!KitManager.getPlayer(player.getName()).hasKit() && KitManager2.getPlayer(player.getName()).haskit2()) && !EventoUtils.game.contains(player.getName()) && !HelixWarp.ONE_VS_ONE.hasPlayer(p.getName()) && !HelixWarp.FPS.hasPlayer(p.getName()) && !HelixWarp.SUMO.hasPlayer(p.getName()) && !HelixWarp.LAVACHALLENGE.hasPlayer(p.getName())  && !recebeu.containsKey(player.getName()) && !AdminUtil.has(player.getName()) && !VanishUtil.has(player.getName())) {
+						else if (player.getLocation().getBlockY() < HelixPvP.getInstance().getConfig().getInt("SpawnAltura") && (!KitManager.getPlayer(player.getName()).hasKit() && KitManager2.getPlayer(player.getName()).haskit2()) && !EventoUtils.game.contains(player.getName()) && !HelixWarp.ONE_VS_ONE.hasPlayer(p.getName()) && !HelixWarp.FPS.hasPlayer(p.getName()) && !HelixWarp.SUMO.hasPlayer(p.getName()) && !HelixWarp.KNOCKBACK.hasPlayer(p.getName()) && !HelixWarp.LAVACHALLENGE.hasPlayer(p.getName())  && !recebeu.containsKey(player.getName()) && !AdminUtil.has(player.getName()) && !VanishUtil.has(player.getName())) {
 							
 							HelixKit.findKit("PvP").ifPresent(kit -> {
 								player.closeInventory();
@@ -119,7 +119,7 @@ Bukkit.getConsoleSender().sendMessage(player.getName() + " Choosed pvp kit! (Pul
 							recebeu.put(player.getName(), true);
 										Bukkit.getConsoleSender().sendMessage(player.getName() + " Escolheu apenas o kit secundário " + KitManager2.getPlayer(player.getName()).getkit2().getName());
 						}
-						else if (player.getLocation().getBlockY() < HelixPvP.getInstance().getConfig().getInt("SpawnAltura") && (KitManager.getPlayer(player.getName()).hasKit() && KitManager2.getPlayer(player.getName()).haskit2()) && !EventoUtils.game.contains(player.getName()) && !HelixWarp.ONE_VS_ONE.hasPlayer(p.getName()) && !HelixWarp.FPS.hasPlayer(p.getName()) && !HelixWarp.SUMO.hasPlayer(p.getName()) && !HelixWarp.LAVACHALLENGE.hasPlayer(p.getName())  && !recebeu.containsKey(player.getName()) && !AdminUtil.has(player.getName()) && !VanishUtil.has(player.getName())) {
+						else if (player.getLocation().getBlockY() < HelixPvP.getInstance().getConfig().getInt("SpawnAltura") && (KitManager.getPlayer(player.getName()).hasKit() && KitManager2.getPlayer(player.getName()).haskit2()) && !EventoUtils.game.contains(player.getName()) && !HelixWarp.ONE_VS_ONE.hasPlayer(p.getName()) && !HelixWarp.FPS.hasPlayer(p.getName()) && !HelixWarp.SUMO.hasPlayer(p.getName()) && !HelixWarp.KNOCKBACK.hasPlayer(p.getName()) && !HelixWarp.LAVACHALLENGE.hasPlayer(p.getName())  && !recebeu.containsKey(player.getName()) && !AdminUtil.has(player.getName()) && !VanishUtil.has(player.getName())) {
 		                Items(player);
 		                if (KitManager.getPlayer(player.getName()).hasKit(HelixKit.JUMPER) && KitManager2.getPlayer(player.getName()).haskit2(HelixKit2.GLADIATOR)) {
 		                	HelixWarp.SPAWN.send(player);

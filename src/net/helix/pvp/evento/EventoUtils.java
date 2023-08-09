@@ -14,6 +14,7 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scoreboard.DisplaySlot;
 
 import net.helix.pvp.HelixPvP;
+import net.helix.pvp.command.RDMAutomatic;
 
 public class EventoUtils {
 	
@@ -92,6 +93,7 @@ public class EventoUtils {
         build = false;
         damage = false;
         pvp = false;
+        RDMAutomatic.iniciou = false;
         started = false;
         tp = false;
         specLoc = null;

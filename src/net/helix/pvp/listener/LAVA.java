@@ -60,8 +60,9 @@ public class LAVA implements Listener {
 			@Override
 			public void run() {
 				HelixWarp.LAVACHALLENGE.send(player, true);
+				player.setFireTicks(0);
 			}
-		}.runTaskLater(HelixPvP.getInstance(), 20);
+		}.runTaskLater(HelixPvP.getInstance(), 30);
 		player.setFireTicks(0);
 
 		
