@@ -30,11 +30,11 @@ public boolean onCommand(CommandSender sender, Command cmd, String label, String
       textComponent.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder("§aVocê limpou o cache").create()));
     p.playSound(p.getLocation(), Sound.BLAZE_HIT, 12.0F, 12.0F);
     EventoUtils.resetEventoClass();
-    int ps =  HelixPvP.getInstance().getEventManager().getRdmAutomatic().getPlayers().size();
     HelixPvP.getInstance().getEventManager().getRdmAutomatic().getPlayers().clear();
     p.spigot().sendMessage(textComponent);
-    p.sendMessage(ps + " players removidos do cache do evento 1v1");
+    if (HelixPvP.getInstance().getEventManager().getRdmAutomatic().getPlayers().size() > 0) {
     p.sendMessage("Lista que foi retirada: " + HelixPvP.getInstance().getEventManager().getRdmAutomatic().getPlayers());
+  }
   }
   return false;
 }
