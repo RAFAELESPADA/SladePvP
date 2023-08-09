@@ -122,11 +122,11 @@ public class RDMAutomatic implements Listener {
                 e.getPlayer().damage(9999.0D);
                 playersInPvp.remove(e.getPlayer());
                 RDMAutomatic.this.pvp = false;
-                RDMAutomatic.this.broadcast("§bO jogador" + e.getPlayer().getName() + " §bfoi eliminado do evento por combate log!");
+                RDMAutomatic.this.broadcast("§bO jogador " + e.getPlayer().getName() + " §bfoi eliminado do evento por combate log!");
                 return;
               } 
               if (RDMAutomatic.this.getGameType() == RDMAutomatic.GameType.GAMIMG)
-                RDMAutomatic.this.broadcast("§bO jogador" + e.getPlayer().getName() + "saiu do servidor e foi desclassificado do evento!"); 
+                RDMAutomatic.this.broadcast("§bO jogador" + e.getPlayer().getName() + " saiu do servidor e foi desclassificado do evento!"); 
             } 
           }
           
@@ -144,8 +144,8 @@ public class RDMAutomatic implements Listener {
               players.remove(p);
               RDMAutomatic.this.pvp = false;
               p.sendMessage("§e§lEVENTO §fVocê foi eliminado do evento pelo "  + d.getName() + "!");
-              RDMAutomatic.this.broadcast("§bO jogador" + p.getName() + " foi eliminado do evento pelo "  + d.getName() + "!");
-              RDMAutomatic.this.broadcast("§b"+ players.size() + "jogadores restantes.");
+              RDMAutomatic.this.broadcast("§bO jogador " + p.getName() + " foi eliminado do evento pelo "  + d.getName() + "!");
+              RDMAutomatic.this.broadcast("§b"+ players.size() + " jogadores restantes.");
               EventoType ev = EventoType.getEventoByName("1v1");
 			 	 Location evt = ev.getLocation();
 			 	 d.teleport(evt);
@@ -329,6 +329,8 @@ public class RDMAutomatic implements Listener {
       setGameType(GameType.STOPPED);
       iniciou = false;
       players.clear();
+    		Bukkit.broadcastMessage("§6O Evento 1V1 foi finalizado!");
+    		
       players2.setAllowFlight(false);
       Bukkit.getConsoleSender().sendMessage("PARANDO EVENTO 1V1");
     } 

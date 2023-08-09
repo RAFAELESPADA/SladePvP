@@ -220,7 +220,7 @@ public class PlayerDeathListener implements Listener {
 	 @EventHandler
 		public void onDeath2(PlayerDeathEvent event) {
 		 EventoUtils.setEvento(false, event.getEntity());
-			if (EventoUtils.evento && EventoUtils.getEventoPlayers().size() == 1  && EventoUtils.getEventoPlayers().size() != 0 && EventoUtils.started)
+			if (EventoUtils.evento && EventoUtils.getEventoPlayers().size() == 1  && EventoUtils.getEventoPlayers().size() != 0 && EventoUtils.started && !RDMAutomatic.iniciou)
 		       EventoUtils.getEventoPlayers().forEach(p -> {
 		    	   Bukkit.broadcastMessage("§6Vencedor do evento §a§ §C§l " + EventoUtils.getEventoPlayersNames());
 		    	   Bukkit.broadcastMessage("§6Vencedor do evento §a§ §C§l " + EventoUtils.getEventoPlayersNames());
@@ -231,13 +231,8 @@ public class PlayerDeathListener implements Listener {
 	            	Bukkit.broadcastMessage("§6Vencedor do evento §a§ §C§l " + EventoUtils.getEventoPlayersNames());
 	            	Bukkit.broadcastMessage("§6Vencedor do evento §a§ §C§l " + EventoUtils.getEventoPlayersNames());
 	            	p.setHealth(20);
-	            	if (RDMAutomatic.iniciou) {
-	            		RDMAutomatic.iniciou = false;
-	            		if (HelixPvP.getInstance().getEventManager().isRunningRDM()) {
-	            		HelixPvP.getInstance().getEventManager().setRdmAutomatic(null);
-	            		Bukkit.broadcastMessage("§6O Evento 1V1 foi finalizado!");
-	            		}
-	            	}
+	         
+	            	
 	                p.getWorld().strikeLightning(p.getLocation());
 	                p.getWorld().strikeLightning(p.getLocation());
 	            	p.getWorld().strikeLightning(p.getLocation());
@@ -253,7 +248,7 @@ public class PlayerDeathListener implements Listener {
 	 @EventHandler
 		public void onDeath2(PlayerQuitEvent event) {
 		 EventoUtils.setEvento(false, event.getPlayer());
-				if (EventoUtils.evento && EventoUtils.getEventoPlayers().size() == 1 && EventoUtils.getEventoPlayers().size() != 0 && EventoUtils.started)
+				if (EventoUtils.evento && EventoUtils.getEventoPlayers().size() == 1 && EventoUtils.getEventoPlayers().size() != 0 && EventoUtils.started && !RDMAutomatic.iniciou)
 			       EventoUtils.getEventoPlayers().forEach(p -> {
 			    	   Bukkit.broadcastMessage("§6Vencedor do evento §a§ §C§l " + EventoUtils.getEventoPlayersNames());
 		            	Bukkit.broadcastMessage("§6Vencedor do evento §a§ §C§l " + EventoUtils.getEventoPlayersNames());
