@@ -15,6 +15,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Firework;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerPickupItemEvent;
@@ -29,6 +30,7 @@ import net.helix.core.bukkit.account.HelixPlayer;
 import net.helix.core.util.HelixCooldown2;
 import net.helix.pvp.HelixPvP;
 import net.helix.pvp.command.RDMAutomatic;
+import net.helix.pvp.command.RDMAutomatic.GameType;
 import net.helix.pvp.event.HelixPlayerDeathEvent;
 import net.helix.pvp.event.HelixPlayerDeathEvent.Reason;
 import net.helix.pvp.evento.EventoUtils;
@@ -258,13 +260,7 @@ public class PlayerDeathListener implements Listener {
 		            	Bukkit.broadcastMessage("§6Vencedor do evento §a§ §C§l " + EventoUtils.getEventoPlayersNames());
 		            	Bukkit.broadcastMessage("§6Vencedor do evento §a§ §C§l " + EventoUtils.getEventoPlayersNames());
 		            	p.setHealth(20);
-		            	if (RDMAutomatic.iniciou) {
-		            		RDMAutomatic.iniciou = false;
-		            		if (HelixPvP.getInstance().getEventManager().isRunningRDM()) {
-		            		HelixPvP.getInstance().getEventManager().setRdmAutomatic(null);
-		            		Bukkit.broadcastMessage("§6O Evento 1V1 foi finalizado!");
-		            		}
-		            	}
+		            
 		                p.getWorld().strikeLightning(p.getLocation());
 		                p.getWorld().strikeLightning(p.getLocation());
 		            	p.getWorld().strikeLightning(p.getLocation());
@@ -273,6 +269,92 @@ public class PlayerDeathListener implements Listener {
 		        		EventoUtils.resetEventoClass();
 			       });
 			}
+	 @EventHandler
+		public void onDeath3(PlayerQuitEvent event) {
+		 EventoUtils.setEvento(false, event.getPlayer());
+				if (EventoUtils.evento && EventoUtils.getEventoPlayers().size() == 1 && EventoUtils.getEventoPlayers().size() != 0 && EventoUtils.started && RDMAutomatic.iniciou)
+			       EventoUtils.getEventoPlayers().forEach(p -> {
+			    	   Bukkit.broadcastMessage("§6Vencedor do evento §a§ §C§l " + EventoUtils.getEventoPlayersNames());
+		            	Bukkit.broadcastMessage("§6Vencedor do evento §a§ §C§l " + EventoUtils.getEventoPlayersNames());
+		            	Bukkit.broadcastMessage("§6Vencedor do evento §a§ §C§l " + EventoUtils.getEventoPlayersNames());
+		            	Bukkit.broadcastMessage("§6Vencedor do evento §a§ §C§l " + EventoUtils.getEventoPlayersNames());
+		            	Bukkit.broadcastMessage("§6Vencedor do evento §a§ §C§l " + EventoUtils.getEventoPlayersNames());
+		            	Bukkit.broadcastMessage("§6Vencedor do evento §a§ §C§l " + EventoUtils.getEventoPlayersNames());
+		            	Bukkit.broadcastMessage("§6Vencedor do evento §a§ §C§l " + EventoUtils.getEventoPlayersNames());
+		            	p.setHealth(20);
+		
+		            	    
+		            	   
+		            	      p.setAllowFlight(false);
+		            	      p.setFlying(false);
+		            	      HelixWarp.SPAWN.send(p , true);
+		            	      p.setFlying(false);
+		            	      HelixPvP.getInstance().getEventManager().getRdmAutomatic().setGameType(RDMAutomatic.GameType.STOPPED);
+		            	      RDMAutomatic.iniciou = false;
+		            	      	net.helix.pvp.evento.EventoUtils.setEvento(false, p);
+		            	          p.sendMessage("§cO evento foi finalizado.");
+		            	          p.getActivePotionEffects().forEach(ef -> p.removePotionEffect(ef.getType()));
+		            	          Bukkit.broadcastMessage("§eO jogador " + p.getName() + " ganhou o evento!");
+	            	    	      HelixPlayer player = HelixBukkit.getInstance().getPlayerManager().getPlayer(p.getName());
+	            	    	      p.sendMessage("§aVocê ganhou 200 de xp");
+	            	    	      p.sendMessage("§aVocê ganhou 1000 de coins");
+	            	    	      player.getPvp().addCoins(1000);
+	            	    	      player.getPvp().addXP(200);
+	            	    		  HelixBukkit.getInstance().getPlayerManager().getController().save(player);
+		            	      EventoUtils.resetEventoClass();
+		            	    		Bukkit.broadcastMessage("§6O Evento 1V1 foi finalizado!");
+		            	    		 HelixPvP.getInstance().getEventManager().getRdmAutomatic().removeFromEvent(p);
+		            	      p.setAllowFlight(false);
+		            	      
+		            	      Bukkit.getConsoleSender().sendMessage("PARANDO EVENTO 1V1");
+		            	    
+		            	   HelixPvP.getInstance().getEventManager().setRdmAutomatic(null);
+			       });
+			       };
+			       @EventHandler
+					public void onDeath3(PlayerDeathEvent event) {
+					 EventoUtils.setEvento(false, event.getEntity());
+							if (EventoUtils.evento && EventoUtils.getEventoPlayers().size() == 1 && EventoUtils.getEventoPlayers().size() != 0 && EventoUtils.started && RDMAutomatic.iniciou)
+						       EventoUtils.getEventoPlayers().forEach(p -> {
+						    	   Bukkit.broadcastMessage("§6Vencedor do evento §C§l " + EventoUtils.getEventoPlayersNames());
+					            	Bukkit.broadcastMessage("§6Vencedor do evento §C§l " + EventoUtils.getEventoPlayersNames());
+					            	Bukkit.broadcastMessage("§6Vencedor do evento §C§l " + EventoUtils.getEventoPlayersNames());
+					            	Bukkit.broadcastMessage("§6Vencedor do evento §C§l " + EventoUtils.getEventoPlayersNames());
+					            	Bukkit.broadcastMessage("§6Vencedor do evento §C§l " + EventoUtils.getEventoPlayersNames());
+					            	Bukkit.broadcastMessage("§6Vencedor do evento §C§l " + EventoUtils.getEventoPlayersNames());
+					            	Bukkit.broadcastMessage("§6Vencedor do evento §C§l " + EventoUtils.getEventoPlayersNames());
+					            	p.setHealth(20);
+					
+					            	    
+					            	   
+					            	      p.setAllowFlight(false);
+					            	      p.setFlying(false);
+					            	      HelixWarp.SPAWN.send(p , true);
+					            	      p.setFlying(false);
+					            	      HelixPvP.getInstance().getEventManager().getRdmAutomatic().setGameType(RDMAutomatic.GameType.STOPPED);
+					            	      RDMAutomatic.iniciou = false;
+					            	      	net.helix.pvp.evento.EventoUtils.setEvento(false, p);
+					            	          p.sendMessage("§cO evento foi finalizado.");
+					            	          p.getActivePotionEffects().forEach(ef -> p.removePotionEffect(ef.getType()));
+						       
+					            	      EventoUtils.resetEventoClass();
+					            	      HelixPvP.getInstance().getEventManager().getRdmAutomatic().removeFromEvent(p);
+					            	    		Bukkit.broadcastMessage("§6O Evento 1V1 foi finalizado!");
+					            	    	      Bukkit.broadcastMessage("§eO jogador " + p.getName() + " ganhou o evento!");
+					            	    	      HelixPlayer player = HelixBukkit.getInstance().getPlayerManager().getPlayer(p.getName());
+					            	    	      p.sendMessage("§aVocê ganhou 200 de xp");
+					            	    	      p.sendMessage("§aVocê ganhou 1000 de coins");
+					            	    	      player.getPvp().addCoins(1000);
+					            	    	      player.getPvp().addXP(200);
+					            	    		  HelixBukkit.getInstance().getPlayerManager().getController().save(player);
+					            	      p.setAllowFlight(false);
+					            	      
+					            	      Bukkit.getConsoleSender().sendMessage("PARANDO EVENTO 1V1");
+					            	    
+					            	   HelixPvP.getInstance().getEventManager().setRdmAutomatic(null);
+						       });
+						       };
+	 
 	 
 	 
 				

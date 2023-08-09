@@ -23,6 +23,7 @@ commands:
    givexp:
    req:
    tag:
+   limparcache:
    money:
    lastlogin:
    ll:
