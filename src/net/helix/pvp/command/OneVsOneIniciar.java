@@ -88,16 +88,21 @@ public boolean onCommand(CommandSender sender, Command cmd, String label, String
 				Bukkit.broadcastMessage("§c§lO Evento irá começar!");
 				Bukkit.broadcastMessage("§c§lBoa Sorte!");
 			 	 EventoUtils.getEventoPlayers().forEach(p2 -> {
-			 		
-			 		HelixPvP.getInstance().getEventManager().setRdmAutomatic(new RDMAutomatic());	
-			 		  HelixPvP.getInstance().getEventManager().getRdmAutomatic().putInEvent(p2);
-			 		HelixPvP.getInstance().getEventManager().getRdmAutomatic().setGameType(RDMAutomatic.GameType.STARTING);
+			 		 
+			 		 if (!RDMAutomatic.iniciou) {
 			 		RDMAutomatic.iniciou = true;
+			 		Bukkit.getConsoleSender().sendMessage("Variavel de inicio do evento 1v1 setada como true");
+			 		 }
+			 		
+			 		
+			 		
               
 			 	 
 			
 			 	 });
-			}}, 2400L);
+			 	HelixPvP.getInstance().getEventManager().setRdmAutomatic(new RDMAutomatic());	
+		 		Bukkit.getConsoleSender().sendMessage("RDM Automatic iniciado");
+			}}, 1800L);
 	}
   
   Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnable() {
