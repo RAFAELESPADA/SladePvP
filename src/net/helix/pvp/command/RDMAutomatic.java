@@ -4,8 +4,8 @@ package net.helix.pvp.command;
 import net.helix.core.bukkit.HelixBukkit;
 import net.helix.core.bukkit.account.HelixPlayer;
 import net.helix.core.bukkit.item.ItemBuilder;
-import net.helix.core.util.UpdateEvent;
 import net.helix.pvp.HelixPvP;
+import net.helix.pvp.cooldown2.UpdateEvent;
 import net.helix.pvp.evento.EventoType;
 import net.helix.pvp.evento.EventoUtils;
 import net.helix.pvp.warp.HelixWarp;
@@ -64,10 +64,8 @@ public class RDMAutomatic implements Listener {
   }
           @EventHandler
           public void onUpdate(UpdateEvent e) {
-            if (e.getType() != UpdateEvent.UpdateType.SEGUNDO)
+            if (e.getType() != UpdateEvent.UpdateType.SEGUNDO) {
               return; 
-            if (RDMAutomatic.this.getGameType() == RDMAutomatic.GameType.STOPPED) {
-            	return;
             }
             if (!iniciou) {
             	return;
@@ -77,10 +75,9 @@ public class RDMAutomatic implements Listener {
             	  EventoUtils.getEventoPlayers().forEach(p2 -> {
             		  if (!players.contains(p2)) {
   			 		players.add(p2);
-  	        	    Bukkit.getConsoleSender().sendMessage(p2.getName() + " teve a variável setada novamente! Players no evento: " + players.size());
+  	        	    Bukkit.getConsoleSender().sendMessage(p2.getName() + " teve a variável setada no evento! Players no evento: " + players.size());
             		  }
             	  });
-               Bukkit.broadcastMessage("§b" + players.size() + " jogadores de " + this.maxPlayers + " no evento.");
               } 
               if (time == 30) {
                   Bukkit.broadcastMessage("§bO evento da 1v1 irá iniciar em 30 segundos");
@@ -149,7 +146,6 @@ public class RDMAutomatic implements Listener {
               playersInPvp.remove(p);
               players.remove(p);
               e.getDrops().clear();
-           
               RDMAutomatic.this.pvp = false;
               p.sendMessage("§e§lEVENTO §fVocê foi eliminado do evento pelo "  + d.getName() + "!");
               RDMAutomatic.this.broadcast("§bO jogador " + p.getName() + " foi eliminado do evento pelo "  + d.getName() + "!");
@@ -184,6 +180,7 @@ public class RDMAutomatic implements Listener {
               return; 
             if (RDMAutomatic.this.isInPvP(p) && iniciou) {
               e.setCancelled(true);
+              p.sendMessage(String.valueOf("§eNão use comandos enquanto no duelo do evento 1v1."));
               return;
             } 
             if (e.getMessage().toLowerCase().startsWith("/") && !e.getMessage().toLowerCase().contains("/tell") && !e.getMessage().toLowerCase().contains("/spawn") && !p.hasPermission("kombo.cmd.report") && iniciou) {
@@ -203,21 +200,26 @@ public class RDMAutomatic implements Listener {
 	    Bukkit.getConsoleSender().sendMessage(player + " foi retirado do evento 1v1!");
 	  }
   }
+
   
   public void queuedPlayers() {
     Player firstPlayer = null;
     Player secondPlayer = null;
     for (Player players : players) {
-      if (!players.isOnline())
+      if (!players.isOnline()) {
         this.players.remove(players); 
     } 
+    }
     firstPlayer = null;
+    {
+    	if (!players.isEmpty()) {
     secondPlayer = players.get((new Random()).nextInt(players.size()));
       firstPlayer = players.get((new Random()).nextInt(players.size()));
       playersInPvp.clear();
-    
+    	}
+    }
     while (!secondPlayer.getUniqueId().equals(firstPlayer.getUniqueId())) {
-      secondPlayer = players.get((new Random()).nextInt(players.size())); 
+    	{
       if (firstPlayer != secondPlayer) {
     firstPlayer.closeInventory();
     secondPlayer.closeInventory();
@@ -225,10 +227,13 @@ public class RDMAutomatic implements Listener {
     return;
   }
       else {
+    	  {
     	  secondPlayer = players.get((new Random()).nextInt(players.size()));
           firstPlayer = players.get((new Random()).nextInt(players.size())); 
           queuedPlayers();
+    	  }
       }
+    	}
     }
   }
   
@@ -315,7 +320,7 @@ public class RDMAutomatic implements Listener {
   }
   
   public void destroy() {
-      setGameType(GameType.STOPPED);
+      setGameType(GameType.STARTING);
       iniciou = false;
       players.clear();
       Bukkit.getConsoleSender().sendMessage("PARANDO EVENTO 1V1");

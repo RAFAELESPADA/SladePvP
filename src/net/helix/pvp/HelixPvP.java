@@ -185,7 +185,7 @@ public class HelixPvP extends JavaPlugin implements Listener, PluginMessageListe
 	    }
 	 private void startUpdating() {
 
-		    Bukkit.getServer().getScheduler().runTaskTimer(getInstance(), new UpdateScheduler(), 1, 1);
+		    Bukkit.getServer().getScheduler().runTaskTimer(getInstance(), new UpdateScheduler(), 20, 20);
 		  
 		}
 
