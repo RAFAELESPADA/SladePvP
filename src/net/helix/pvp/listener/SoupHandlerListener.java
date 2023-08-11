@@ -10,6 +10,9 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
+import net.helix.core.bukkit.HelixBukkit;
+import net.helix.core.bukkit.account.HelixPlayer;
+import net.helix.pvp.HelixPvP;
 import net.helix.pvp.kit.HelixKit;
 import net.helix.pvp.kit.HelixKit2;
 import net.helix.pvp.kit.KitManager;
@@ -19,42 +22,26 @@ import net.helix.pvp.kit.provider.HelixActionBar;
 public class SoupHandlerListener implements Listener {
 
 	
-	@EventHandler(priority = EventPriority.LOW)
-    public void onPlayerInteract(final PlayerInteractEvent event) {
-		if (event.getItem() == null) {
-			return;
-		}
-        if (event.getItem().getType() != Material.MUSHROOM_SOUP) {
-            return;
-        }
+
         
-        event.setCancelled(true);
+        
+	@EventHandler(priority = EventPriority.HIGH)
+    private void onPlayerInteract(final PlayerInteractEvent event) {
         final Player player = event.getPlayer();
-        final double beforeHealth = player.getHealth();
-        if (beforeHealth < player.getMaxHealth()) {
-            if (beforeHealth + 7.0 > player.getMaxHealth()) {
-                player.setHealth(player.getMaxHealth());
-                if (player.getFoodLevel() < 20) {
-                    final int i = this.toInt(beforeHealth) + 7 - this.toInt(player.getMaxHealth());
-                    player.setFoodLevel(Math.min(player.getFoodLevel() + i, 20));
-                    player.setSaturation(3.0f);
-             
-                }
+        HelixPlayer playerData = HelixBukkit.getInstance().getPlayerManager().getPlayer(player.getName());
+        if (playerData == null) {
+        	return;
+        }
+        if (event.hasItem()) {
+            if (event.getMaterial() == Material.MUSHROOM_SOUP && player.getHealth() != player.getMaxHealth()) {
+                player.setHealth((player.getHealth() < player.getMaxHealth() - 7.0) ? (player.getHealth() + 7.0) : player.getMaxHealth());
+                player.getItemInHand().setType(Material.BOWL);
+                player.setItemInHand(KitManager.getPlayer(player.getName()).hasKit(HelixKit.QUICKDROPPER) || (KitManager2.getPlayer(player.getName()).haskit2(HelixKit2.QUICKDROPPER)) ?  new ItemStack(Material.AIR) : new ItemStack(Material.BOWL));
+                player.updateInventory();
+                HelixActionBar.send(player, "§c+3,5 §4\u2764");
             }
-            else {
-                player.setHealth(player.getHealth() + 7.0);
-            }
-            HelixActionBar.send(player, "§c+3,5 §4\u2764");   
-            player.setItemInHand(KitManager.getPlayer(player.getName()).hasKit(HelixKit.QUICKDROPPER) || (KitManager2.getPlayer(player.getName()).haskit2(HelixKit2.QUICKDROPPER)) ?  new ItemStack(Material.AIR) : new ItemStack(Material.BOWL));
         }
-        else if (player.getFoodLevel() < 20) {
-            event.getPlayer().setFoodLevel(event.getPlayer().getFoodLevel() + 7);
-            player.setSaturation(3.0f);
-            player.setItemInHand(new ItemStack(Material.BOWL));
-        }
-        
-        
-        }
+	}
 
        
 		

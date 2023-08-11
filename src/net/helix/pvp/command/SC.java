@@ -8,12 +8,18 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
+import org.bukkit.plugin.RegisteredServiceProvider;
 
+import net.helix.core.bukkit.HelixBukkit;
+import net.helix.core.bukkit.account.HelixPlayer;
 import net.helix.pvp.listener.Medals;
+import net.helix.pvp.listener.Ranking;
+import net.luckperms.api.LuckPerms;
 
 
 
@@ -55,14 +61,19 @@ public class SC
         String mensagem = string.toString();
         for (Player arrayOfPlayer : Bukkit.getOnlinePlayers())
         {
+        	  RegisteredServiceProvider<LuckPerms> provider = Bukkit.getServicesManager().getRegistration(LuckPerms.class);
+  			if (provider != null) {
+  				LuckPerms api = provider.getProvider();
           Player staff = arrayOfPlayer;
           if (staff.hasPermission("kombo.cmd.sc")) {
-        	  staff.sendMessage("§c§l[SC] §c- §f" + sender.getName() + " §8> §f" + mensagem.replace("&", "§"));
+        	  staff.sendMessage("§c§l[SC] §c- §f" +  api.getUserManager().getUser(((Player) sender).getUniqueId()).getCachedData().getMetaData().getPrefix().replace("&", "§") + sender.getName() + " §8> §f" + mensagem.replace("&", "§"));
           }
         }
       }
     }
     return false;
+  }
+	return false;
   }
 
  
@@ -70,12 +81,22 @@ public class SC
 	public void onChat(AsyncPlayerChatEvent event) {
 		Player player = event.getPlayer();
 		  Medals[] values;
+		  RegisteredServiceProvider<LuckPerms> provider = Bukkit.getServicesManager().getRegistration(LuckPerms.class);
+			if (provider != null) {
+	        LuckPerms api = provider.getProvider();
+		  HelixPlayer hp = HelixBukkit.getInstance().getPlayerManager().getPlayer(player.getName());
 		  Medals medal = Medals.getMedals(player);
-		
+		  Ranking rank = Ranking.getRank(hp);
+		if (player.hasPermission("kombo.doublexp")) {
+			event.setFormat("§7[" + rank.getColoredSymbol() + "§7] " + api.getUserManager().getUser(player.getUniqueId()).getCachedData().getMetaData().getPrefix().replace("&", "§") + player.getName() + "§f: " + event.getMessage().replace("&", "§").replace("%", "%%"));
+		}
+		else {
+			event.setFormat("§7[" + rank.getColoredSymbol() + "§7] " + api.getUserManager().getUser(player.getUniqueId()).getCachedData().getMetaData().getPrefix().replace("&", "§") + player.getName() + "§7: " + event.getMessage().replace("%", "%%"));
+		}
 		if (staffchat.contains(player.getName())) {
 			for (Player staff : Bukkit.getOnlinePlayers()) {
 				if (staff.hasPermission("kombo.cmd.sc")) {
-					staff.sendMessage("§c§l[SC] §c- §f" + player.getName() + " §8> §f" + event.getMessage().replace("%", "%%").replace("&", "§"));
+					staff.sendMessage("§c§l[SC] §c- §f" +  api.getUserManager().getUser(player.getUniqueId()).getCachedData().getMetaData().getPrefix().replace("&", "§") + player.getName() + " §8> §f" + event.getMessage().replace("%", "%%").replace("&", "§"));
 					event.setCancelled(true);
 				}
 			}
@@ -84,7 +105,9 @@ public class SC
 			if (!player.hasPermission("kombo.cmd.report")) {
 				player.sendMessage("§fO chat está §cdesabilitado§f!");
 				event.setCancelled(true);
+				return;
 			}
 }
   }
-  }
+	}
+}

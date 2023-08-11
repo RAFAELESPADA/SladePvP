@@ -35,6 +35,6 @@ public class Boxer extends KitHandler2 {
 		}
 		 if (!KitManager2.getPlayer(event.getDamager().getName()).haskit2(this) || event.getCause() == EntityDamageEvent.DamageCause.VOID)
 		      return; 
-	     event.setDamage(event.getDamage() + 1.8);
+	     event.setDamage(event.getDamage() + 0.5);
 	}
 }

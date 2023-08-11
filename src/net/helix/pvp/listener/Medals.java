@@ -13,8 +13,8 @@ import lombok.Getter;
 @Getter
 public enum Medals {
 
-    NENHUM("§7Nenhuma", "", "§7Sem medalhas."),
-    DEV("§eCafe", "§e\u2615", "�7Medalha Vip."),
+    NENHUM("§7Nenhuma", "§7✗", "§7Sem medalhas."),
+    DEV("§eCafe", "§e\u2615", "§7Medalha Vip."),
     REI("§6Rei", "§6\u269C", "§7Medalha Vip."),
     KAWAII("§dPorquinho", "§d\u267E", "§7Para quem é fofinho."),
     HOMIE("§bHomies", "§b$", "§7Para quem é casa."),
