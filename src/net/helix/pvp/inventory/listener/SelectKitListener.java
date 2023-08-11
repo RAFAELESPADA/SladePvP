@@ -46,6 +46,7 @@ public class SelectKitListener implements Listener {
 			   else {
 				   if (ItemBuilder.has(event.getCurrentItem(), "visuali")) {
 						TodosOsKits.open(player);
+						 event.setCancelled(true);
 						return;
 					}
 				   if (!ItemBuilder.has(event.getCurrentItem(), "kit-gui")) {
@@ -223,6 +224,7 @@ public class SelectKitListener implements Listener {
 		
 		if (ItemBuilder.has(event.getCurrentItem(), "visuali")) {
 			TodosOsKits.open(player);
+			 event.setCancelled(true);
 			return;
 		}
 		if (!ItemBuilder.has(event.getCurrentItem(), "kit-gui")) {
@@ -522,6 +524,7 @@ event.setCancelled(true);
 		if (event.getCurrentItem() == null) {
 			return;
 		}
+		event.setCancelled(true);
 		if (!ItemBuilder.has(event.getCurrentItem(), "visao")) {
 			return;
 		}

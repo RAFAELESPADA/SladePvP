@@ -29,7 +29,6 @@ import net.helix.pvp.kit.provider.Firebender;
 import net.helix.pvp.kit.provider.Fireman;
 import net.helix.pvp.kit.provider.Fisherman;
 import net.helix.pvp.kit.provider.Flash;
-import net.helix.pvp.kit.provider.Gaara;
 import net.helix.pvp.kit.provider.GladiatorListener;
 import net.helix.pvp.kit.provider.Grandpa;
 import net.helix.pvp.kit.provider.Grappler;

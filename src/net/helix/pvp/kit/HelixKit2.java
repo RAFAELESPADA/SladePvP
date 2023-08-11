@@ -36,7 +36,6 @@ import net.helixpvp.kit2.Meteor;
 import net.helixpvp.kit2.Sight;
 import net.helixpvp.kit2.Snail;
 import net.helixpvp.kit2.MilkMan;
-import net.helixpvp.kit2.Gaara;
 import net.helixpvp.kit2.Monk;
 import net.helixpvp.kit2.Nenhum;
 import net.helixpvp.kit2.Ninja;
