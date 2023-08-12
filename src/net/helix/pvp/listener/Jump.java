@@ -78,17 +78,24 @@ public class Jump implements Listener {
 			this.fall.add(p.getName());
 		}
 	}
+	
+	
+
+	
+	
 	@EventHandler
 	private void Jumps(PlayerMoveEvent e) {
 		Player p = e.getPlayer();
 		Player player = e.getPlayer();
-		Atirar(p);
+		Atirar(p); // Mane isso ta em boolean to quero pegar o nome do kit que ele ta usando
 		Atirar2(p);	
 		if (player.getLocation().getBlockY() < HelixPvP.getInstance().getConfig().getInt("SpawnAltura") && (!KitManager.getPlayer(player.getName()).hasKit() && !KitManager2.getPlayer(player.getName()).haskit2()) && !EventoUtils.game.contains(player.getName()) && !HelixWarp.ONE_VS_ONE.hasPlayer(p.getName()) && !HelixWarp.FPS.hasPlayer(p.getName()) && !HelixWarp.SUMO.hasPlayer(p.getName()) && !HelixWarp.KNOCKBACK.hasPlayer(p.getName()) && !HelixWarp.LAVACHALLENGE.hasPlayer(p.getName()) && !recebeu.containsKey(player.getName()) && !AdminUtil.has(player.getName()) && !VanishUtil.has(player.getName())) {
 			HelixKit.findKit("PvP").ifPresent(kit -> {
 				player.closeInventory();
 				kit.send(player);
 			});
+			
+			// HelixKit2.findKit("PvP").ifPresent(kit -> { ok mais como eu verifico o kit do jogador
 			HelixKit2.findKit("PvP").ifPresent(kit -> {
 				player.closeInventory();
 				kit.send(player);

@@ -197,7 +197,8 @@ public class HelixPvP extends JavaPlugin implements Listener, PluginMessageListe
 	        getServer().addRecipe(soupRecipe);
 	    }
 	public void onEnable() {
-		ChatCommand.chat = true;
+		ChatCommand.chat = true; // aumenta o texto pra nao lagar 
+		
 		instance = this;
 		 startUpdating();
 		    	 Bukkit.getMessenger().registerIncomingPluginChannel(this, "BungeeCord", this);
@@ -269,7 +270,7 @@ new BukkitRunnable() {
 						      120, // Timeout
 						      2);
 			}
-			}
+			} 
 			}}.runTaskTimer(this, 0, 3 * 20L);
 		new BukkitRunnable() {
 			
@@ -307,9 +308,15 @@ new BukkitRunnable() {
 					});
 					}}.runTaskTimer(this, 0, 1 * 5L);
 		});
-		
+	    Bukkit.getWorld("spawn").setTime(18000);
+		Bukkit.broadcastMessage("§cO evento §4§lEUFORIA §cacabou de começar");
+		Bukkit.broadcastMessage("§cPor dois minutos estará de noite e players teram força 1");
+		Bukkit.broadcastMessage("§cTodos os kits primários e secundários liberados durante o evento");
 		HelixBukkit.getExecutorService().submit(() -> {
+			
 			new BukkitRunnable() {
+
+				
 				@Override
 				public void run() {
 					for (Player player : Bukkit.getOnlinePlayers()) {
@@ -323,10 +330,10 @@ new BukkitRunnable() {
 					player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 120*20, 0));
 					player.playSound(player.getLocation(), Sound.ANVIL_BREAK, 1F, 10F);
 					euforia = true;
-				    Bukkit.getWorld("spawn").setTime(18000);
-					Bukkit.broadcastMessage("§cO evento §4§lEUFORIA §cacabou de começar");
-					Bukkit.broadcastMessage("§cPor dois minutos estará de noite e players teram força 1");
-					Bukkit.broadcastMessage("§cTodos os kits primários e secundários liberados durante o evento");
+//				    Bukkit.getWorld("spawn").setTime(18000);
+//					Bukkit.broadcastMessage("§cO evento §4§lEUFORIA §cacabou de começar");
+//					Bukkit.broadcastMessage("§cPor dois minutos estará de noite e players teram força 1");
+//					Bukkit.broadcastMessage("§cTodos os kits primários e secundários liberados durante o evento");
 					  Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnable() {
 							public void run() {
 								if (!euforia) {

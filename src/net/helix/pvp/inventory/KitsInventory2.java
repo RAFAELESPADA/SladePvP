@@ -331,7 +331,6 @@ public class KitsInventory2 {
 		player.openInventory(inventory);
 					}
 				
-					
 
 				
 	
