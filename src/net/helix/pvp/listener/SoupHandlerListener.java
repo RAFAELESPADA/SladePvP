@@ -34,14 +34,20 @@ public class SoupHandlerListener implements Listener {
         }
         if (event.hasItem()) {
             if (event.getMaterial() == Material.MUSHROOM_SOUP && player.getHealth() != player.getMaxHealth()) {
-                player.setHealth((player.getHealth() < player.getMaxHealth() - 7.0) ? (player.getHealth() + 7.0) : player.getMaxHealth());
-                player.getItemInHand().setType(Material.BOWL);
+                event.setCancelled(true);
+            	player.setHealth((player.getHealth() < player.getMaxHealth() - 7.0) ? (player.getHealth() + 7.0) : player.getMaxHealth());
+                if (KitManager.getPlayer(player.getName()).hasKit(HelixKit.QUICKDROPPER) || (KitManager2.getPlayer(player.getName()).haskit2(HelixKit2.QUICKDROPPER))) {
+                    player.getItemInHand().setType(Material.AIR);
+                    }   else {
+                    	player.getItemInHand().setType(Material.BOWL);	
+                    }
                 player.setItemInHand(KitManager.getPlayer(player.getName()).hasKit(HelixKit.QUICKDROPPER) || (KitManager2.getPlayer(player.getName()).haskit2(HelixKit2.QUICKDROPPER)) ?  new ItemStack(Material.AIR) : new ItemStack(Material.BOWL));
                 player.updateInventory();
                 HelixActionBar.send(player, "§c+3,5 §4\u2764");
             }
-        }
-	}
+
+            	}}     
+	
 
        
 		

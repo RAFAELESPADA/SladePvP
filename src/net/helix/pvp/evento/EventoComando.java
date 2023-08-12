@@ -115,7 +115,7 @@ public class EventoComando implements CommandExecutor {
                             player.sendMessage("§cVocê Não está no evento.");
                             return true;
                         }
-                        EventoUtils.setEvento(false, player);
+                        EventoUtils.setEvento(false, player); // OLHA DC
                         HelixWarp.SPAWN.send(player);
                         player.sendMessage("§cVocê saiu do evento.");
                         break;
