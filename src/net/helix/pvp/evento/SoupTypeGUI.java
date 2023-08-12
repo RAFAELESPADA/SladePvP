@@ -22,13 +22,8 @@ public class SoupTypeGUI implements Listener {
 	public static HashMap<String, Boolean> blood = new HashMap();
     public static final ItemStack ICON = ItemUtils.getCustomItemStack(Material.valueOf(HelixPvP.getInstance().getConfig().getString("OptionsItem")), "§6Opções", (String) null);
 
-    @EventHandler
-    private void onInteractSoupType(PlayerInteractEvent event) {
-        Player player = event.getPlayer();
-        if (event.hasItem() && event.getItem().isSimilar(SoupTypeGUI.ICON)) {
-            SoupTypeGUI.openGUI(player);
-        }
-    }
+
+    
 
     @EventHandler
     private void onInventoryClick(InventoryClickEvent event) {

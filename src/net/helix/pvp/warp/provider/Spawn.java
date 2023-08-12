@@ -76,7 +76,7 @@ public class Spawn extends WarpHandle {
         .nbt("cancel-click")
         .toStack());
     player.getInventory().setItem(6, (new ItemBuilder("§6Opções", Material.valueOf(HelixPvP.getInstance().getConfig().getString("OptionsItem"))))
-            .nbt("spawn-item", "status")
+            .nbt("spawn-item", "status2")
             .nbt("cancel-drop")
             .nbt("cancel-click")
             .toStack());
