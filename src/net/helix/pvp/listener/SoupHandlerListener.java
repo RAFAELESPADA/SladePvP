@@ -1,6 +1,7 @@
 package net.helix.pvp.listener;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -25,28 +26,32 @@ public class SoupHandlerListener implements Listener {
 
         
         
-	@EventHandler(priority = EventPriority.HIGH)
+	@EventHandler(priority = EventPriority.MONITOR)
     private void onPlayerInteract(final PlayerInteractEvent event) {
         final Player player = event.getPlayer();
         HelixPlayer playerData = HelixBukkit.getInstance().getPlayerManager().getPlayer(player.getName());
         if (playerData == null) {
+        	player.kickPlayer(ChatColor.RED + "UM ERRO OCORREU! RELOGUE PARA ARRUMAR");
         	return;
         }
         if (event.hasItem()) {
             if (event.getMaterial() == Material.MUSHROOM_SOUP && player.getHealth() != player.getMaxHealth()) {
+            	if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
                 event.setCancelled(true);
             	player.setHealth((player.getHealth() < player.getMaxHealth() - 7.0) ? (player.getHealth() + 7.0) : player.getMaxHealth());
                 if (KitManager.getPlayer(player.getName()).hasKit(HelixKit.QUICKDROPPER) || (KitManager2.getPlayer(player.getName()).haskit2(HelixKit2.QUICKDROPPER))) {
-                    player.getItemInHand().setType(Material.AIR);
+                    player.setItemInHand(new ItemStack(Material.AIR));
+                    player.getWorld().dropItem(player.getEyeLocation().multiply(3), new ItemStack(Material.BOWL));
                     }   else {
                     	player.getItemInHand().setType(Material.BOWL);	
                     }
-                player.setItemInHand(KitManager.getPlayer(player.getName()).hasKit(HelixKit.QUICKDROPPER) || (KitManager2.getPlayer(player.getName()).haskit2(HelixKit2.QUICKDROPPER)) ?  new ItemStack(Material.AIR) : new ItemStack(Material.BOWL));
                 player.updateInventory();
                 HelixActionBar.send(player, "§c+3,5 §4\u2764");
             }
+            }
+        }
 
-            	}}     
+            	}   
 	
 
        

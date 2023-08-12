@@ -22,13 +22,6 @@ public class ServerEssentialsListener implements Listener {
 	public void onChuva(WeatherChangeEvent e) {
 		e.setCancelled(e.toWeatherState());
 	}
-	@EventHandler
-	public void onChuvat(PlayerDropItemEvent e) {
-	      ItemStack item = new ItemStack(Material.SKULL_ITEM, 1, (short) 3);
-		if (e.getPlayer().getItemInHand() == item && !KitManager.getPlayer(e.getPlayer().getName()).hasKit()) {
-			e.setCancelled(true);
-		}
-	}
 
 	@EventHandler
 	public void onSpawner(CreatureSpawnEvent e) {

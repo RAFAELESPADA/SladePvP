@@ -25,10 +25,12 @@ import net.helix.pvp.kit.KitManager;
 	  @EventHandler
 	  public void onDeshfireClick(PlayerInteractEvent event) {
 	    final Player p = event.getPlayer();
-	    if (p.getItemInHand() == null)
+	    if (p.getItemInHand() == null) {
 	      return; 
-	    if (p.getItemInHand().getType() != Material.REDSTONE_BLOCK)
+	    }
+	    if (p.getItemInHand().getType() != Material.REDSTONE_BLOCK) {
 	      return; 
+	    }
 	    if (!KitManager.getPlayer(event.getPlayer().getName()).hasKit(this)) {
 	    	return;
 	    }

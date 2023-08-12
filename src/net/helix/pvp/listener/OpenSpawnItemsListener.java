@@ -1,5 +1,6 @@
 package net.helix.pvp.listener;
 
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
@@ -11,9 +12,11 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.inventory.ItemStack;
 
+import net.helix.core.bukkit.api.HelixActionBar;
 import net.helix.core.bukkit.item.ItemBuilder;
 import net.helix.core.bukkit.util.BuildUtil;
 import net.helix.pvp.HelixPvP;
+import net.helix.pvp.evento.SoupTypeGUI;
 import net.helix.pvp.inventory.KitsInventory;
 import net.helix.pvp.inventory.KitsInventory2;
 import net.helix.pvp.inventory.ShopGUI;
@@ -48,6 +51,9 @@ public class OpenSpawnItemsListener implements Listener {
 			case "status":
 				StatusGUI.openGUI(player, player);
 				break;
+			case "status2":
+			     SoupTypeGUI.openGUI(player);
+				break;
 			case "1v1":
 				WarpsInventory.open(player);
 				break;
@@ -59,6 +65,7 @@ public void onInteractt(PlayerPickupItemEvent event) {
 	Player player = event.getPlayer();
 	if (HelixWarp.SPAWN.hasPlayer(player.getName()) && EnderMageReal.isSpawn(player.getLocation()) && player.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura")) {
 	event.setCancelled(true);
+	HelixActionBar.send(player, ChatColor.RED + "Não pegue esse item!");
 	}
 }
 	@EventHandler
@@ -66,6 +73,7 @@ public void onInteractt(PlayerPickupItemEvent event) {
 		Player player = event.getPlayer();
 		if (HelixWarp.SPAWN.hasPlayer(player.getName()) && EnderMageReal.isSpawn(player.getLocation()) && player.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura")) {
 		event.setCancelled(true);
+		HelixActionBar.send(player, ChatColor.RED + "Não drope esse item!");
 		}
 	}
 		@EventHandler
@@ -73,6 +81,7 @@ public void onInteractt(PlayerPickupItemEvent event) {
 			Item player = event.getEntity();
 			if (EnderMageReal.isSpawn(player.getLocation()) && player.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura")) {
 			event.setCancelled(true);
+			player.remove();
 			}
 }}
 

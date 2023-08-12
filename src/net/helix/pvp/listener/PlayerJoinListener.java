@@ -153,7 +153,7 @@ public class PlayerJoinListener implements Listener {
 	    	            .nbt("cancel-click")
 	    	            .toStack());
 	    	        player.getInventory().setItem(6, (new ItemBuilder("§6Opções", Material.valueOf(HelixPvP.getInstance().getConfig().getString("OptionsItem"))))
-	    	                .nbt("spawn-item", "status")
+	    	                .nbt("spawn-item", "status2")
 	    	                .nbt("cancel-drop")
 	    	                .nbt("cancel-click")
 	    	                .toStack());
@@ -187,31 +187,36 @@ public class PlayerJoinListener implements Listener {
 	    					    Location spawnLocation = (HelixBukkit.getInstance().getWarpManager().findWarp("spawn").get()).getLocation();
 	    			    	    player.teleport(spawnLocation);
 	    						p.getActivePotionEffects().forEach(potion -> p.removePotionEffect(potion.getType()));
-	    						player.getInventory().setItem(0, (new ItemBuilder("§aKits primários", Material.valueOf(HelixPvP.getInstance().getConfig().getString("KitsItem"))))
-	    						        .nbt("spawn-item", "kits")
-	    						        .nbt("cancel-drop")
-	    						        .nbt("cancel-click")
-	    						        .toStack());
-	    						    player.getInventory().setItem(1, (new ItemBuilder("§aKits secundários", Material.CHEST))
-	    						            .nbt("spawn-item", "kits2")
-	    						            .nbt("cancel-drop")
-	    						            .nbt("cancel-click")
-	    						            .toStack());
-	    						    player.getInventory().setItem(8, (new ItemBuilder("§eLoja", Material.valueOf(HelixPvP.getInstance().getConfig().getString("ShopItemMAT"))))
-	    						        .nbt("spawn-item", "shop")
-	    						        .nbt("cancel-drop")
-	    						        .nbt("cancel-click")
-	    						        .toStack());
-	    						    player.getInventory().setItem(4, (new ItemBuilder("§eStatus", Material.SKULL_ITEM)
-	    						            .nbt("spawn-item", "status")
-	    						            .nbt("cancel-drop")
-	    						            .nbt("cancel-click")
-	    						            .toStack()));
-	    						    player.getInventory().setItem(7, (new ItemBuilder("§eWarps", Material.COMPASS))
-	    						            .nbt("spawn-item", "1v1")
-	    						            .nbt("cancel-drop")
-	    						            .nbt("cancel-click")
-	    						            .toStack());
+	    						 player.getInventory().setItem(0, (new ItemBuilder("§aKits primários", Material.valueOf(HelixPvP.getInstance().getConfig().getString("KitsItem"))))
+	    							        .nbt("spawn-item", "kits")
+	    							        .nbt("cancel-drop")
+	    							        .nbt("cancel-click")
+	    							        .toStack());
+	    							    player.getInventory().setItem(1, (new ItemBuilder("§aKits secundários", Material.CHEST))
+	    							            .nbt("spawn-item", "kits2")
+	    							            .nbt("cancel-drop")
+	    							            .nbt("cancel-click")
+	    							            .toStack());
+	    							    player.getInventory().setItem(2, (new ItemBuilder("§eLoja", Material.valueOf(HelixPvP.getInstance().getConfig().getString("ShopItemMAT"))))
+	    							        .nbt("spawn-item", "shop")
+	    							        .nbt("cancel-drop")
+	    							        .nbt("cancel-click")
+	    							        .toStack());
+	    							    player.getInventory().setItem(6, (new ItemBuilder("§6Opções", Material.valueOf(HelixPvP.getInstance().getConfig().getString("OptionsItem"))))
+	    							            .nbt("spawn-item", "status2")
+	    							            .nbt("cancel-drop")
+	    							            .nbt("cancel-click")
+	    							            .toStack());
+	    							    player.getInventory().setItem(7, (new ItemBuilder("§eStatus", Material.SKULL_ITEM)
+	    							            .nbt("spawn-item", "status")
+	    							            .nbt("cancel-drop")
+	    							            .nbt("cancel-click")
+	    							            .toStack()));
+	    							    player.getInventory().setItem(8, (new ItemBuilder("§eWarps", Material.COMPASS))
+	    							            .nbt("spawn-item", "1v1")
+	    							            .nbt("cancel-drop")
+	    							            .nbt("cancel-click")
+	    							            .toStack());
 	    						    player.sendMessage(ChatColor.GREEN + "Você entrou no spawn.");
 	    				}
 	    			
