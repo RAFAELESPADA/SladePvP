@@ -254,21 +254,8 @@ public class KitsInventory2 {
 						.nbt("kit-gui2", HelixKit2.PVP.getName()).addEnchant(Enchantment.DAMAGE_ALL, 1)					
 						.toStack()
 				);
-		if (player.hasPermission("kombo.kit2.quickdropper")) {
-		inventory.setItem(31 , new ItemBuilder("§a" + HelixKit2.QUICKDROPPER.getName(), HelixKit2.QUICKDROPPER.getIcon())
-				.lore("§f" + HelixKit2.QUICKDROPPER.getDescription())
-						.addFlags(ItemFlag.HIDE_ATTRIBUTES,
-								ItemFlag.HIDE_DESTROYS,
-								ItemFlag.HIDE_ENCHANTS,
-								ItemFlag.HIDE_PLACED_ON,
-								ItemFlag.HIDE_POTION_EFFECTS,
-								ItemFlag.HIDE_UNBREAKABLE)
-						.nbt("kit-gui2", HelixKit2.QUICKDROPPER.getName())
-						.toStack()
-				);
-		}
 		if (player.hasPermission("kombo.kit2.sight")) {
-		inventory.setItem(32 , new ItemBuilder("§a" + HelixKit2.SIGHT.getName(), HelixKit2.SIGHT.getIcon())
+		inventory.setItem(31 , new ItemBuilder("§a" + HelixKit2.SIGHT.getName(), HelixKit2.SIGHT.getIcon())
 				.lore("§f" + HelixKit2.SIGHT.getDescription())
 						.addFlags(ItemFlag.HIDE_ATTRIBUTES,
 								ItemFlag.HIDE_DESTROYS,
@@ -281,7 +268,7 @@ public class KitsInventory2 {
 				);
 		}
 		if (player.hasPermission("kombo.kit2.snail")) {
-		inventory.setItem(33 , new ItemBuilder("§a" + HelixKit2.SNAIL.getName(), HelixKit2.SNAIL.getIcon())
+		inventory.setItem(32 , new ItemBuilder("§a" + HelixKit2.SNAIL.getName(), HelixKit2.SNAIL.getIcon())
 				.lore("§f" + HelixKit2.SNAIL.getDescription())
 						.addFlags(ItemFlag.HIDE_ATTRIBUTES,
 								ItemFlag.HIDE_DESTROYS,
@@ -294,7 +281,7 @@ public class KitsInventory2 {
 				);
 		}
 		if (player.hasPermission("kombo.kit2.stomper")) {
-		inventory.setItem(34 , new ItemBuilder("§a" + HelixKit2.STOMPER.getName(), HelixKit2.STOMPER.getIcon())
+		inventory.setItem(33 , new ItemBuilder("§a" + HelixKit2.STOMPER.getName(), HelixKit2.STOMPER.getIcon())
 				.lore("§f" + HelixKit2.STOMPER.getDescription())
 						.addFlags(ItemFlag.HIDE_ATTRIBUTES,
 								ItemFlag.HIDE_DESTROYS,
