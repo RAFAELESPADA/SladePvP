@@ -6,9 +6,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Random;
 
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
@@ -17,6 +19,8 @@ import org.bukkit.event.player.PlayerJoinEvent;
 
 import net.helix.core.bukkit.HelixBukkit;
 import net.helix.core.bukkit.util.AdminUtil;
+import net.helix.core.bukkit.util.BuildUtil;
+import net.helix.pvp.kit.provider.GladiatorListener;
 
 public abstract class WarpDuoBattleHandle3 extends WarpHandle {
 
@@ -42,7 +46,7 @@ public abstract class WarpDuoBattleHandle3 extends WarpHandle {
 
     public final void finalizeBattle(Player player) {
         show(player);
-
+BuildUtil.deny(player.getName());
 
         findOpponent(player).ifPresent(target -> {
             show(target);
@@ -67,18 +71,19 @@ public abstract class WarpDuoBattleHandle3 extends WarpHandle {
         fastChallenge.remove(p1); fastChallenge.remove(p2);
         p1.setHealth(p1.getMaxHealth());
         p2.setHealth(p2.getMaxHealth());
+if (p1.getLocation().distance(p2.getLocation()) > 80) {
+	finalizeBattle(p1);
+	p1.sendMessage("BATALHA FOI FINALIZADA PORQUE VOCÃŠ ESTAVA SOZINHO NO GLAD!");
+	return;
+}
+        Random ran = new Random();
 
-        Optional<net.helix.core.bukkit.warp.HelixWarp> pos1 = HelixBukkit.getInstance().getWarpManager().findWarp(warpPos1);
-        Optional<net.helix.core.bukkit.warp.HelixWarp> pos2 = HelixBukkit.getInstance().getWarpManager().findWarp(warpPos2);
-        if (!pos1.isPresent() || !pos2.isPresent()) {
-            setItems(p1); setItems(p2);
-            p1.sendMessage("§cOcorreu um erro ao iniciar a batalha. (LOC-404)");
-            p2.sendMessage("§cOcorreu um erro ao iniciar a batalha. (LOC-404)");
-            return;
-        }
+        int x = ran.nextInt(1561);
+        int y = ran.nextInt(76);
+        int z = ran.nextInt(2585);
 
-        p1.teleport(pos1.get().getLocation());
-        p2.teleport(pos2.get().getLocation());
+        Location newloc = new Location(p1.getWorld(), x, y, z);
+        GladiatorListener.newGladiatorListenerArena(p1, p2, newloc);
 
         sendBattleItems(p1); sendBattleItems(p2);
         hide(p1, p2);
@@ -127,7 +132,7 @@ public abstract class WarpDuoBattleHandle3 extends WarpHandle {
 
         if (findOpponent(player).isPresent()) {
             event.setCancelled(true);
-            player.sendMessage("§eVocê não pode digitar comandos enquanto está batalhando");
+            player.sendMessage("Â§eVocÃª nÃ£o pode digitar comandos enquanto estÃ¡ batalhando");
         }
     }
 
