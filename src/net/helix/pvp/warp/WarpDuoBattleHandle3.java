@@ -45,14 +45,8 @@ public abstract class WarpDuoBattleHandle3 extends WarpHandle {
     }
 
     public final void finalizeBattle(Player player) {
-        show(player);
-BuildUtil.deny(player.getName());
-
-        findOpponent(player).ifPresent(target -> {
-            show(target);
-
-        });
-
+        player.sendMessage("BATALHA FOI FINALIZADA!");
+      
         fastChallenge.remove(player);
         battlingPlayers.entrySet().removeIf(entry -> entry.getKey().equals(player) || entry.getValue().equals(player));
     }
@@ -87,8 +81,7 @@ if (p1.getLocation().distance(p2.getLocation()) > 80) {
 
         sendBattleItems(p1); sendBattleItems(p2);
         hide(p1, p2);
-
-
+        battlingPlayers.put(p1, p2);
     }
 
     public void hide(Player p1, Player p2) {

@@ -95,7 +95,7 @@ public class Gladiator extends WarpDuoBattleHandle3 {
 		Player target = targetOptional.get();
 		findOpponent(target);
 		finalizeBattle(target);
-
+		GladiatorListener.resetGladiatorListenerByQuit(target, player);
 		HelixWarp.GLADIATOR.send(target);
 		target.sendMessage("§2Seu oponente deslogou e a batalha foi encerrada.");
 
@@ -149,7 +149,6 @@ public class Gladiator extends WarpDuoBattleHandle3 {
 			return;
 		}
 		event.setCancelled(true);
-		
 		Player target = (Player) event.getRightClicked();
 		
 		if (findOpponent(target).isPresent()) {
@@ -176,13 +175,12 @@ public class Gladiator extends WarpDuoBattleHandle3 {
 	
 	@EventHandler
 	public void onDeath(HelixPlayerDeathEvent event) {
-		if (event.getReason() != HelixPlayerDeathEvent.Reason.GLADIATOR || !event.hasKiller()) {
+		if (!HelixWarp.GLADIATOR.hasPlayer(event.getPlayer().getName())) {
 			return;
 		}
 		Player loser = event.getPlayer();
 		Player winner = findOpponent(loser).isPresent() ? findOpponent(loser).get() : event.getKiller();
 		finalizeBattle(winner);
-		
 		Random random = new Random();
 		HelixPlayer loserHelixPlayer = HelixBukkit.getInstance().getPlayerManager().getPlayer(loser.getName());
 		HelixPlayer victimHelixPlayer = HelixBukkit.getInstance().getPlayerManager().getPlayer(loser.getName());
@@ -211,12 +209,15 @@ public class Gladiator extends WarpDuoBattleHandle3 {
 			@Override
 			public void run() {
 				HelixWarp.GLADIATOR.send(loser, true);
+				HelixWarp.GLADIATOR.send(winner, true);
 			}
 		}.runTaskLater(HelixPvP.getInstance(), 10);
-
+GladiatorListener.resetGladiatorListenerByKill(winner, loser);
 		winner.setHealth(winner.getMaxHealth());
+	GladiatorListener.combateGlad.remove(winner);
+	GladiatorListener.combateGlad.remove(loser);
+	winner.getInventory().clear();
 		winner.sendMessage("§aVocê ganhou a batalha contra " + loser.getName() + " §7(" + (event.isValidKill() ? "Conta" : "Não conta") + ")");
-		HelixWarp.GLADIATOR.send(winner, true);
 
 		if (event.isValidKill()) {
 			HelixPlayer winnerHelixPlayer = HelixBukkit.getInstance().getPlayerManager().getPlayer(winner.getName());
