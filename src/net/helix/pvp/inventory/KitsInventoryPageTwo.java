@@ -139,21 +139,8 @@ public class KitsInventoryPageTwo {
 						.toStack()
 				);
 		}
-		if (player.hasPermission("kombo.kit.quickdropper")) {
-		inventory.setItem(21 , new ItemBuilder("§a" + HelixKit.QUICKDROPPER.getName(), HelixKit.QUICKDROPPER.getIcon())
-				.lore("§f" + HelixKit.QUICKDROPPER.getDescription())
-						.addFlags(ItemFlag.HIDE_ATTRIBUTES,
-								ItemFlag.HIDE_DESTROYS,
-								ItemFlag.HIDE_ENCHANTS,
-								ItemFlag.HIDE_PLACED_ON,
-								ItemFlag.HIDE_POTION_EFFECTS,
-								ItemFlag.HIDE_UNBREAKABLE)
-						.nbt("kit-gui", HelixKit.QUICKDROPPER.getName())
-						.toStack()
-				);
-		}
 		if (player.hasPermission("kombo.kit.scout")) {
-		inventory.setItem(22 , new ItemBuilder("§a" + HelixKit.SCOUT.getName(), HelixKit.SCOUT.getIcon())
+		inventory.setItem(21 , new ItemBuilder("§a" + HelixKit.SCOUT.getName(), HelixKit.SCOUT.getIcon())
 				.lore("§f" + HelixKit.SCOUT.getDescription())
 						.addFlags(ItemFlag.HIDE_ATTRIBUTES,
 								ItemFlag.HIDE_DESTROYS,
@@ -166,7 +153,7 @@ public class KitsInventoryPageTwo {
 				);
 		}
 		if (player.hasPermission("kombo.kit.sight")) {
-		inventory.setItem(23 , new ItemBuilder("§a" + HelixKit.SIGHT.getName(), HelixKit.SIGHT.getIcon())
+		inventory.setItem(22 , new ItemBuilder("§a" + HelixKit.SIGHT.getName(), HelixKit.SIGHT.getIcon())
 				.lore("§f" + HelixKit.SCOUT.getDescription())
 						.addFlags(ItemFlag.HIDE_ATTRIBUTES,
 								ItemFlag.HIDE_DESTROYS,
@@ -179,7 +166,7 @@ public class KitsInventoryPageTwo {
 				);
 		}
 		if (player.hasPermission("kombo.kit.snail")) {
-		inventory.setItem(24 , new ItemBuilder("§a" + HelixKit.SNAIL.getName(), HelixKit.SNAIL.getIcon())
+		inventory.setItem(23 , new ItemBuilder("§a" + HelixKit.SNAIL.getName(), HelixKit.SNAIL.getIcon())
 				.lore("§f" + HelixKit.SNAIL.getDescription())
 						.addFlags(ItemFlag.HIDE_ATTRIBUTES,
 								ItemFlag.HIDE_DESTROYS,
@@ -192,7 +179,7 @@ public class KitsInventoryPageTwo {
 				);
 		}
 		if (player.hasPermission("kombo.kit.sonic")) {
-		inventory.setItem(25 , new ItemBuilder("§a" + HelixKit.SONIC.getName(), HelixKit.SONIC.getIcon())
+		inventory.setItem(24 , new ItemBuilder("§a" + HelixKit.SONIC.getName(), HelixKit.SONIC.getIcon())
 				.lore("§f" + HelixKit.SNAIL.getDescription())
 						.addFlags(ItemFlag.HIDE_ATTRIBUTES,
 								ItemFlag.HIDE_DESTROYS,
@@ -205,7 +192,7 @@ public class KitsInventoryPageTwo {
 				);
 		}
 		if (player.hasPermission("kombo.kit.stomper")) {
-		inventory.setItem(28 , new ItemBuilder("§a" + HelixKit.STOMPER.getName(), HelixKit.STOMPER.getIcon())
+		inventory.setItem(25 , new ItemBuilder("§a" + HelixKit.STOMPER.getName(), HelixKit.STOMPER.getIcon())
 				.lore("§f" + HelixKit.STOMPER.getDescription())
 						.addFlags(ItemFlag.HIDE_ATTRIBUTES,
 								ItemFlag.HIDE_DESTROYS,
@@ -218,7 +205,7 @@ public class KitsInventoryPageTwo {
 				);
 		}
 		if (player.hasPermission("kombo.kit.switcher")) {
-		inventory.setItem(29 , new ItemBuilder("§a" + HelixKit.SWITCHER.getName(), HelixKit.SWITCHER.getIcon())
+		inventory.setItem(28 , new ItemBuilder("§a" + HelixKit.SWITCHER.getName(), HelixKit.SWITCHER.getIcon())
 				.lore("§f" + HelixKit.SWITCHER.getDescription())
 						.addFlags(ItemFlag.HIDE_ATTRIBUTES,
 								ItemFlag.HIDE_DESTROYS,
@@ -230,7 +217,7 @@ public class KitsInventoryPageTwo {
 						.toStack()
 				);
 		}
-		inventory.setItem(30 , new ItemBuilder("§a" + HelixKit.THOR.getName(), HelixKit.THOR.getIcon())
+		inventory.setItem(29 , new ItemBuilder("§a" + HelixKit.THOR.getName(), HelixKit.THOR.getIcon())
 				.lore("§f" + HelixKit.THOR.getDescription())
 						.addFlags(ItemFlag.HIDE_ATTRIBUTES,
 								ItemFlag.HIDE_DESTROYS,
@@ -242,7 +229,7 @@ public class KitsInventoryPageTwo {
 						.toStack()
 				);
 		if (player.hasPermission("kombo.kit.thresh")) {
-		inventory.setItem(31 , new ItemBuilder("§a" + HelixKit.THRESH.getName(), HelixKit.THRESH.getIcon())
+		inventory.setItem(30 , new ItemBuilder("§a" + HelixKit.THRESH.getName(), HelixKit.THRESH.getIcon())
 				.lore("§f" + HelixKit.THRESH.getDescription())
 						.addFlags(ItemFlag.HIDE_ATTRIBUTES,
 								ItemFlag.HIDE_DESTROYS,
@@ -255,7 +242,7 @@ public class KitsInventoryPageTwo {
 				);
 		}
 		if (player.hasPermission("kombo.kit.timelord")) {
-		inventory.setItem(32 , new ItemBuilder("§a" + HelixKit.TIMELORD.getName(), HelixKit.TIMELORD.getIcon())
+		inventory.setItem(31 , new ItemBuilder("§a" + HelixKit.TIMELORD.getName(), HelixKit.TIMELORD.getIcon())
 				.lore("§f" + HelixKit.TIMELORD.getDescription())
 						.addFlags(ItemFlag.HIDE_ATTRIBUTES,
 								ItemFlag.HIDE_DESTROYS,
@@ -268,7 +255,7 @@ public class KitsInventoryPageTwo {
 				);
 		}
 		if (player.hasPermission("kombo.kit.tornado")) {
-		inventory.setItem(33 , new ItemBuilder("§a" + HelixKit.TORNADO.getName(), HelixKit.TORNADO.getIcon())
+		inventory.setItem(32 , new ItemBuilder("§a" + HelixKit.TORNADO.getName(), HelixKit.TORNADO.getIcon())
 				.lore("§f" + HelixKit.TORNADO.getDescription())
 						.addFlags(ItemFlag.HIDE_ATTRIBUTES,
 								ItemFlag.HIDE_DESTROYS,
@@ -281,7 +268,7 @@ public class KitsInventoryPageTwo {
 				);
 		}
 		if (player.hasPermission("kombo.kit.turtle")) {
-		inventory.setItem(34 , new ItemBuilder("§a" + HelixKit.TURTLE.getName(), HelixKit.TURTLE.getIcon())
+		inventory.setItem(33 , new ItemBuilder("§a" + HelixKit.TURTLE.getName(), HelixKit.TURTLE.getIcon())
 				.lore("§f" + HelixKit.TURTLE.getDescription())
 						.addFlags(ItemFlag.HIDE_ATTRIBUTES,
 								ItemFlag.HIDE_DESTROYS,

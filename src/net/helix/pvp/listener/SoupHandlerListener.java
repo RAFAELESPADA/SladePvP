@@ -26,32 +26,21 @@ public class SoupHandlerListener implements Listener {
 
         
         
-	@EventHandler(priority = EventPriority.MONITOR)
-    private void onPlayerInteract(final PlayerInteractEvent event) {
-        final Player player = event.getPlayer();
-        HelixPlayer playerData = HelixBukkit.getInstance().getPlayerManager().getPlayer(player.getName());
-        if (playerData == null) {
-        	player.kickPlayer(ChatColor.RED + "UM ERRO OCORREU! RELOGUE PARA ARRUMAR");
-        	return;
-        }
-        if (event.hasItem()) {
-            if (event.getMaterial() == Material.MUSHROOM_SOUP && player.getHealth() != player.getMaxHealth()) {
-            	if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
-                event.setCancelled(true);
-            	player.setHealth((player.getHealth() < player.getMaxHealth() - 7.0) ? (player.getHealth() + 7.0) : player.getMaxHealth());
-                if (KitManager.getPlayer(player.getName()).hasKit(HelixKit.QUICKDROPPER) || (KitManager2.getPlayer(player.getName()).haskit2(HelixKit2.QUICKDROPPER))) {
-                    player.setItemInHand(new ItemStack(Material.AIR));
-                    player.getWorld().dropItem(player.getEyeLocation().multiply(3), new ItemStack(Material.BOWL));
-                    }   else {
-                    	player.getItemInHand().setType(Material.BOWL);	
-                    }
-                player.updateInventory();
-                HelixActionBar.send(player, "§c+3,5 §4\u2764");
-            }
-            }
+	@EventHandler
+	  public void SoupAbility(PlayerInteractEvent e) {
+	    Player p = e.getPlayer();
+	    {
+	      if (p.getHealth() == p.getMaxHealth())
+	        return; 
+	      if (p.getItemInHand().getType() == Material.MUSHROOM_SOUP) { 
+	         
+	        p.setHealth((p.getHealth() + 7.0D > p.getMaxHealth()) ? p.getMaxHealth() : (p.getHealth() + 7.0D));
+	        p.getItemInHand().setType(Material.BOWL);
+	      } 
+	    }
         }
 
-            	}   
+            	 
 	
 
        
