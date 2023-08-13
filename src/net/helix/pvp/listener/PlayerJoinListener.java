@@ -55,9 +55,9 @@ public class PlayerJoinListener implements Listener {
 	    if (!(e.getEntity() instanceof Player))
 	      return; 
 	    Player p = (Player)e.getEntity();
-	    if (e.getCause() == EntityDamageEvent.DamageCause.VOID && !KitManager.getPlayer(p.getName()).hasKit() && !HelixWarp.KNOCKBACK.hasPlayer(p.getName())) {
+	    if (e.getCause() == EntityDamageEvent.DamageCause.VOID && !KitManager.getPlayer(p.getName()).hasKit() && !HelixWarp.KNOCKBACK.hasPlayer(p.getName()) && !HelixWarp.FISHERMAN.hasPlayer(p.getName())) {
 	      HelixWarp.SPAWN.send(p, true);
-	    } else if (e.getCause() == EntityDamageEvent.DamageCause.VOID && (KitManager.getPlayer(p.getName()).hasKit() || HelixWarp.KNOCKBACK.hasPlayer(p.getName()))) {
+	    } else if (e.getCause() == EntityDamageEvent.DamageCause.VOID && (KitManager.getPlayer(p.getName()).hasKit() || HelixWarp.KNOCKBACK.hasPlayer(p.getName()) || HelixWarp.FISHERMAN.hasPlayer(p.getName()))) {
 	      e.setDamage(p.getHealth());
 	    } 
 	  }

@@ -19,6 +19,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 
 import net.helix.pvp.kit.HelixKit;
 import net.helix.pvp.kit.KitManager;
+import net.helix.pvp.warp.HelixWarp;
 
 public class EventoListeners implements Listener {
 
@@ -40,6 +41,14 @@ public class EventoListeners implements Listener {
         if (event.getBlock().getType() == Material.HOPPER) {
         	event.getPlayer().sendMessage(ChatColor.RED + "Não ponha o tornado no chão!");
         	event.setCancelled(true);
+        }
+    }
+    @EventHandler(priority = EventPriority.HIGHEST)
+    public void BlockBreak5(BlockBreakEvent event) {
+        if (!HelixWarp.GLADIATOR.hasPlayer(event.getPlayer().getName())) return;       
+        if (event.getBlock().getType() == Material.GLASS) {
+        	event.setCancelled(true);
+        	event.getPlayer().sendMessage(ChatColor.RED + "Não quebre o vidro do Glad!");
         }
     }
     @EventHandler

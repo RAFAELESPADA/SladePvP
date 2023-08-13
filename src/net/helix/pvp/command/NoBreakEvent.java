@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -20,6 +21,7 @@ import org.bukkit.event.player.PlayerBucketEmptyEvent;
 
 import net.helix.core.bukkit.util.BuildUtil;
 import net.helix.pvp.evento.EventoUtils;
+import net.helix.pvp.warp.HelixWarp;
 
 public final class NoBreakEvent
   implements Listener, CommandExecutor
@@ -83,6 +85,10 @@ public final class NoBreakEvent
     		e.setCancelled(false);
     		return;
     	}
+    	if (HelixWarp.GLADIATOR.hasPlayer(e.getPlayer().getName()) && e.getBlock().getType() != Material.GLASS) {
+    		e.setCancelled(false);
+    		return;
+    	}
       e.setCancelled(true);
     }
   }
@@ -93,6 +99,10 @@ public final class NoBreakEvent
       if (!BuildUtil.has(e.getPlayer().getName())) {
     	  if (EventoUtils.build && EventoUtils.game.contains(p.getName())) {
     		  e.setCancelled(false);
+      		return;
+      	}
+    	  if (HelixWarp.GLADIATOR.hasPlayer(e.getPlayer().getName())) {
+      		e.setCancelled(false);
       		return;
       	}
         e.setCancelled(true);
@@ -106,6 +116,10 @@ public final class NoBreakEvent
     if (!BuildUtil.has(e.getPlayer().getName())) {
     	if (EventoUtils.build && EventoUtils.game.contains(p.getName())) {
     		  e.setCancelled(false);
+    		return;
+    	}
+    	if (HelixWarp.GLADIATOR.hasPlayer(e.getPlayer().getName()) && e.getBlock().getType() != Material.GLASS) {
+    		e.setCancelled(false);
     		return;
     	}
       e.setCancelled(true);

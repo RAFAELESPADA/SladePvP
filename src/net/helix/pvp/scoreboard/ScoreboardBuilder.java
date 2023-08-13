@@ -1,6 +1,7 @@
 package net.helix.pvp.scoreboard;
 
 import org.bukkit.Bukkit;
+import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
@@ -15,6 +16,7 @@ import net.helix.pvp.evento.EventoUtils;
 import net.helix.pvp.kit.HelixKit2;
 import net.helix.pvp.kit.KitManager;
 import net.helix.pvp.kit.KitManager2;
+import net.helix.pvp.kit.provider.GladiatorListener;
 import net.helix.pvp.listener.Ranking;
 import net.helix.pvp.warp.HelixWarp;
 import net.luckperms.api.LuckPerms;
@@ -32,6 +34,7 @@ private static String text4 = "";
 private static String text5 = "";
 private static String text6 = "";
 private static String text7 = "";
+private static String textg = "";
 private static WaveAnimation waveAnimation;
 private static WaveAnimation waveAnimation2;
 private static WaveAnimation waveAnimation3;
@@ -39,6 +42,7 @@ private static WaveAnimation waveAnimation4;
 private static WaveAnimation waveAnimation5;
 private static WaveAnimation waveAnimation6;
 private static WaveAnimation waveAnimation7;
+private static WaveAnimation waveAnimation8;
 public static void init() {
 	
     waveAnimation = new WaveAnimation("KITPVP" , "§6§l" , "§f§l" , "§e§l");
@@ -48,11 +52,13 @@ public static void init() {
     waveAnimation5 = new WaveAnimation("LAVA" , "§6§l" , "§f§l" , "§e§l");
     waveAnimation6 = new WaveAnimation("SUMO" , "§6§l" , "§f§l" , "§e§l");
     waveAnimation7 = new WaveAnimation("KNOCKBACK" , "§3§l" , "§f§l" , "§b§l");
+    waveAnimation8 = new WaveAnimation("GLADIATOR" , "§3§l" , "§f§l" , "§b§l");
     text = "KITPVP";
     text2 = "EVENTO";
     text3 = "FPS";
     text6 = "SUMO";
     text7 = "KNOCKBACK";
+    textg = "GLADIATOR";
     text5 = "LAVA";
     text4 = "1V1";
     Bukkit.getScheduler().runTaskTimer(HelixPvP.getInstance(), new Runnable() {
@@ -64,6 +70,7 @@ public static void init() {
             ScoreboardBuilder.text5 = ScoreboardBuilder.waveAnimation5.next();
             ScoreboardBuilder.text6 = ScoreboardBuilder.waveAnimation6.next();
             ScoreboardBuilder.text7 = ScoreboardBuilder.waveAnimation7.next();
+            ScoreboardBuilder.textg = ScoreboardBuilder.waveAnimation8.next();
             for (Player onlines : Bukkit.getOnlinePlayers()) {
               if (onlines == null)
                 continue; 
@@ -91,6 +98,9 @@ public static void init() {
                   }
               else if (HelixWarp.SUMO.hasPlayer(onlines.getName())) {
                   objective.setDisplayName(ScoreboardBuilder.text6);
+                  }
+              else if (HelixWarp.GLADIATOR.hasPlayer(onlines.getName())) {
+                  objective.setDisplayName(ScoreboardBuilder.textg);
                   }
               else if (HelixWarp.KNOCKBACK.hasPlayer(onlines.getName())) {
                   objective.setDisplayName(ScoreboardBuilder.text7);
@@ -219,6 +229,42 @@ public static void init() {
 					objective2.getScore(l8).setScore(7);
 					objective2.getScore(l7).setScore(6);
 					objective2.getScore(l6).setScore(5);
+					objective2.getScore(l5).setScore(4);
+					objective2.getScore(l4).setScore(3);
+					objective2.getScore(l3).setScore(2);
+					objective2.getScore(l2).setScore(1);
+					objective2.getScore(l1).setScore(0);
+					player.setScoreboard(scoreboard2);
+					update(player);
+				
+			 }
+			 else if (HelixWarp.GLADIATOR.hasPlayer(player.getName())) {
+					player.getScoreboard().clearSlot(DisplaySlot.SIDEBAR);
+				 Scoreboard scoreboard2 = Bukkit.getScoreboardManager().getNewScoreboard();
+					Objective objective2 = scoreboard2.registerNewObjective("pvpg", "dummyg");
+					
+					objective2.setDisplayName(textg);
+					objective2.setDisplaySlot(DisplaySlot.SIDEBAR);
+					
+					String l10 = "§eVocê está no Gladiator";
+					String l9 = "§c";
+					String l8 = "§fOponente:";
+					String l7 = "§fPing:";
+					String l5 = "§fCoins: §a";
+					String l4 = "§fLiga: ";
+					String l3 = "§fXP: §a";
+					String l2 = "§0";
+					String l1 = HelixPvP.getInstance().getConfig().getString("IPScore").replace("&", "§"); 
+					objective2.getScore(l8).setScore(8);
+					scoreboard2.registerNewTeam("oponente").addEntry(l8);
+					scoreboard2.registerNewTeam("ping").addEntry(l7);
+					scoreboard2.registerNewTeam("coins").addEntry(l5);
+					scoreboard2.registerNewTeam("rank").addEntry(l4);
+					scoreboard2.registerNewTeam("xp").addEntry(l3);
+					objective2.getScore(l10).setScore(8);
+					objective2.getScore(l9).setScore(7);
+					objective2.getScore(l8).setScore(6);
+					objective2.getScore(l7).setScore(5);
 					objective2.getScore(l5).setScore(4);
 					objective2.getScore(l4).setScore(3);
 					objective2.getScore(l3).setScore(2);
@@ -375,7 +421,7 @@ public static void init() {
 	
 	public void update(Player player) {
 		
-		if (player.getScoreboard().getObjective("pvp") == null && player.getScoreboard().getObjective("pvp2") == null && player.getScoreboard().getObjective("pvp3") == null && player.getScoreboard().getObjective("pvp4") == null && player.getScoreboard().getObjective("pvp5") == null && player.getScoreboard().getObjective("pvp6") == null  && player.getScoreboard().getObjective("pvp7") == null) {
+		if (player.getScoreboard().getObjective("pvp") == null && player.getScoreboard().getObjective("pvp2") == null && player.getScoreboard().getObjective("pvpg") == null && player.getScoreboard().getObjective("pvp3") == null && player.getScoreboard().getObjective("pvp4") == null && player.getScoreboard().getObjective("pvp5") == null && player.getScoreboard().getObjective("pvp6") == null  && player.getScoreboard().getObjective("pvp7") == null) {
 			return;
 		}
 	
@@ -448,6 +494,20 @@ else if (HelixWarp.KNOCKBACK.hasPlayer(player.getName())) {
 				scoreboard.getTeam("xp").setSuffix(HelixDecimalFormat.format(pvp.getXp()));
 				scoreboard.getTeam("rank").setSuffix((String.valueOf(Ranking.getRank(helixPlayer).getColoredName())));
 				}
+else if (HelixWarp.GLADIATOR.hasPlayer(player.getName())) {
+	 
+	 HelixPlayer helixPlayer = HelixBukkit.getInstance().getPlayerManager()
+				.getPlayer(player.getName());
+		PlayerPvP pvp = helixPlayer.getPvp();
+		Scoreboard scoreboard = player.getScoreboard();
+
+		final Player winner = GladiatorListener.combateGlad.get(player);
+		scoreboard.getTeam("oponente").setSuffix(winner == null ? " §7Nenhum" : "§b " + winner.getName());
+		scoreboard.getTeam("ping").setSuffix(" §a" + ((CraftPlayer) player).getHandle().ping + " ms");
+		scoreboard.getTeam("coins").setSuffix(HelixDecimalFormat.format(pvp.getCoins()));
+		scoreboard.getTeam("xp").setSuffix(HelixDecimalFormat.format(pvp.getXp()));
+		scoreboard.getTeam("rank").setSuffix((String.valueOf(Ranking.getRank(helixPlayer).getColoredName())));
+		}
 	 	else if (HelixWarp.LAVACHALLENGE.hasPlayer(player.getName())) {
 	 		HelixPlayer helixPlayer = HelixBukkit.getInstance().getPlayerManager()
 					.getPlayer(player.getName());

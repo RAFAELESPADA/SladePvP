@@ -23,23 +23,6 @@ import net.helix.pvp.kit.provider.HelixActionBar;
 public class SoupHandlerListener implements Listener {
 
 	
-
-        
-        
-	@EventHandler
-	  public void SoupAbility(PlayerInteractEvent e) {
-	    Player p = e.getPlayer();
-	    {
-	      if (p.getHealth() == p.getMaxHealth())
-	        return; 
-	      if (p.getItemInHand().getType() == Material.MUSHROOM_SOUP) { 
-	         
-	        p.setHealth((p.getHealth() + 7.0D > p.getMaxHealth()) ? p.getMaxHealth() : (p.getHealth() + 7.0D));
-	        p.getItemInHand().setType(Material.BOWL);
-	      } 
-	    }
-        }
-
             	 
 	
 
