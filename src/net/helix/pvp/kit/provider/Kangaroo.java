@@ -24,6 +24,7 @@ import net.helix.core.util.HelixCooldown;
 import net.helix.pvp.HelixPvP;
 import net.helix.pvp.kit.KitHandler;
 import net.helix.pvp.kit.KitManager;
+import net.helix.pvp.warp.HelixWarp;
 
 public class Kangaroo extends KitHandler {
 	
@@ -128,7 +129,14 @@ public class Kangaroo extends KitHandler {
 		 @EventHandler
 		 /*     */   public void onDrop(PlayerDropItemEvent event)
 		 /*     */   {
-		 /* 116 */     if (event.getItemDrop().getItemStack().getType() == Material.STONE_SWORD || event.getItemDrop().getItemStack().getType() == Material.STONE_PICKAXE) {
+		 /* 116 */     if (event.getItemDrop().getItemStack().getType() == Material.STONE_SWORD) {
+		 /* 117 */       event.setCancelled(true);
+		 /*     */     }
+		 }
+		 @EventHandler
+		 /*     */   public void onDrop2(PlayerDropItemEvent event)
+		 /*     */   {
+		 /* 116 */     if (event.getItemDrop().getItemStack().getType() == Material.DIAMOND_SWORD && HelixWarp.GLADIATOR.hasPlayer(event.getPlayer().getName())) {
 		 /* 117 */       event.setCancelled(true);
 		 /*     */     }
 		 }

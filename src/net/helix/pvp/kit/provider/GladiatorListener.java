@@ -31,6 +31,7 @@ import net.helix.pvp.kit.HelixKit2;
 import net.helix.pvp.kit.KitHandler;
 import net.helix.pvp.kit.KitManager;
 import net.helix.pvp.kit.KitManager2;
+import net.helix.pvp.warp.HelixWarp;
 import net.md_5.bungee.api.ChatColor;
 
 
@@ -176,6 +177,27 @@ public final class GladiatorListener extends KitHandler
         }
     
     public static final void resetGladiatorListenerByKill(final Player winner, final Player loser) {
+    	if (HelixWarp.GLADIATOR.hasPlayer(winner.getName())) {
+    		HelixWarp.GLADIATOR.send(winner, true);
+    		HelixWarp.GLADIATOR.send(loser, true);
+    		for (final PotionEffect pot : winner.getActivePotionEffects()) {
+                winner.removePotionEffect(pot.getType());
+            }
+            for (final PotionEffect pot : loser.getActivePotionEffects()) {
+                loser.removePotionEffect(pot.getType());
+            }
+            for (final Location loc : GladiatorListener.blocks.get(winner.getName())) {
+                loc.getBlock().setType(Material.AIR);
+            }
+            for (final Location loc : GladiatorListener.blocks.get(loser.getName())) {
+                loc.getBlock().setType(Material.AIR);
+            }
+            GladiatorListener.blocks.remove(winner.getName());
+            GladiatorListener.oldLocation.remove(winner.getName());
+            GladiatorListener.blocks.remove(loser.getName());
+            GladiatorListener.oldLocation.remove(loser.getName());
+    		return;
+    	}
         for (int i = 1; i < 5; ++i) {
             winner.teleport((Location)GladiatorListener.oldLocation.get(winner.getName()));
         }
@@ -205,6 +227,11 @@ public final class GladiatorListener extends KitHandler
     }
     
     public static final void resetGladiatorListenerByScreenshare(final Player winner, final Player loser) {
+    	if (HelixWarp.GLADIATOR.hasPlayer(winner.getName())) {
+    		HelixWarp.GLADIATOR.send(winner, true);
+    		HelixWarp.GLADIATOR.send(loser, true);
+    		return;
+    	}
         for (int i = 1; i < 5; ++i) {
             winner.teleport((Location)GladiatorListener.oldLocation.get(winner.getName()));
         }
@@ -230,6 +257,11 @@ public final class GladiatorListener extends KitHandler
     
     public static final void resetGladiatorListenerByQuit(final Player winner, final Player loser) {
       {
+    	  if (HelixWarp.GLADIATOR.hasPlayer(winner.getName())) {
+      		HelixWarp.GLADIATOR.send(winner, true);
+      		HelixWarp.GLADIATOR.send(loser, true);
+      		return;
+      	}
         	if (winner != null) {
             winner.teleport((Location)GladiatorListener.oldLocation.get(winner.getName()));
             winner.getActivePotionEffects().forEach(potion -> winner.removePotionEffect(potion.getType()));	
@@ -280,6 +312,11 @@ public final class GladiatorListener extends KitHandler
     
     
     public static final void resetGladiatorListenerBySpawn(final Player winner, final Player loser) {
+    	if (HelixWarp.GLADIATOR.hasPlayer(winner.getName())) {
+    		HelixWarp.GLADIATOR.send(winner, true);
+    		HelixWarp.GLADIATOR.send(loser, true);
+    		return;
+    	}
         for (int i = 1; i < 5; ++i) {
             winner.teleport((Location)GladiatorListener.oldLocation.get(winner.getName()));
         }
