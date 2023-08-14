@@ -73,7 +73,7 @@ public class Tell extends CommandClass {
 							"§a§lTELL §f[" + player.getName() + " §7-> §fVocê" + "§f] " + message);
 					  
 				            for (Player all : Bukkit.getOnlinePlayers()) {
-			                if (!all.hasPermission("cmd.socialspy") || SocialSpy.toggle.containsKey(all.getName())) {
+			                if (!all.hasPermission("cmd.socialspy")) {
 			                	return;
 			                }
 			              

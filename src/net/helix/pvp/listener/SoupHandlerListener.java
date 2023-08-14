@@ -22,7 +22,20 @@ import net.helix.pvp.kit.provider.HelixActionBar;
 
 public class SoupHandlerListener implements Listener {
 
-	
+	 @EventHandler
+	  public void onTomarSopa(PlayerInteractEvent e) {
+	    Player p = e.getPlayer();
+	    if ((e.getAction().equals(Action.RIGHT_CLICK_AIR) || e.getAction().equals(Action.RIGHT_CLICK_BLOCK)) && 
+	      p.getItemInHand().getType() == Material.MUSHROOM_SOUP && 
+	      p.getHealth() < 20.0D && p.getItemInHand().getType() == Material.MUSHROOM_SOUP) {
+	      e.setCancelled(true);
+	      p.setHealth((p.getHealth() + 7.0D >= 20.0D) ? 20.0D : (p.getHealth() + 7.0D));
+	      p.setFoodLevel(20);
+	      p.setItemInHand((KitManager.getPlayer(p.getName()).hasKit(HelixKit.QUICKDROPPER) || KitManager2.getPlayer(p.getName()).haskit2(HelixKit2.QUICKDROPPER)) ? new ItemStack(Material.AIR) : new ItemStack(Material.BOWL));
+	      p.updateInventory();
+	    } 
+	  }
+
             	 
 	
 
