@@ -181,6 +181,7 @@ public class Gladiator extends WarpDuoBattleHandle3 {
 		Player loser = event.getPlayer();
 		Player winner = findOpponent(loser).isPresent() ? findOpponent(loser).get() : event.getKiller();
 		finalizeBattle(winner);
+		GladiatorListener.resetGladiatorListenerByGlad(winner , loser);
 		Random random = new Random();
 		HelixPlayer loserHelixPlayer = HelixBukkit.getInstance().getPlayerManager().getPlayer(loser.getName());
 		HelixPlayer victimHelixPlayer = HelixBukkit.getInstance().getPlayerManager().getPlayer(loser.getName());
@@ -188,7 +189,6 @@ public class Gladiator extends WarpDuoBattleHandle3 {
 		loserHelixPlayer.getPvp().adddeathsX1(1);
 		loserHelixPlayer.getPvp().setKillstreak(0);
 		loser.sendMessage("§cVocê perdeu a batalha contra " + winner.getName() + "§c.");
-		GladiatorListener.resetGladiatorListenerByKill(winner, loser);
 		if ((loserHelixPlayer.getPvp().getCoins() - loserWithdrawnCoins) >= 0) {
 			loserHelixPlayer.getPvp().removeCoins(loserWithdrawnCoins);
 			loser.sendMessage("§c§l[-] §c" + loserWithdrawnCoins + " coins");

@@ -177,27 +177,6 @@ public final class GladiatorListener extends KitHandler
         }
     
     public static final void resetGladiatorListenerByKill(final Player winner, final Player loser) {
-    	if (HelixWarp.GLADIATOR.hasPlayer(winner.getName())) {
-    		HelixWarp.GLADIATOR.send(winner, true);
-    		HelixWarp.GLADIATOR.send(loser, true);
-    		for (final PotionEffect pot : winner.getActivePotionEffects()) {
-                winner.removePotionEffect(pot.getType());
-            }
-            for (final PotionEffect pot : loser.getActivePotionEffects()) {
-                loser.removePotionEffect(pot.getType());
-            }
-            for (final Location loc : GladiatorListener.blocks.get(winner.getName())) {
-                loc.getBlock().setType(Material.AIR);
-            }
-            for (final Location loc : GladiatorListener.blocks.get(loser.getName())) {
-                loc.getBlock().setType(Material.AIR);
-            }
-            GladiatorListener.blocks.remove(winner.getName());
-            GladiatorListener.oldLocation.remove(winner.getName());
-            GladiatorListener.blocks.remove(loser.getName());
-            GladiatorListener.oldLocation.remove(loser.getName());
-    		return;
-    	}
         for (int i = 1; i < 5; ++i) {
             winner.teleport((Location)GladiatorListener.oldLocation.get(winner.getName()));
         }
@@ -293,7 +272,42 @@ public final class GladiatorListener extends KitHandler
         if (winner != null) {
         winner.sendMessage(String.valueOf(GladiatorListener.prefix) + "§fO player §e" +  loser.getName() + " §fdeslogou.");
     }
+      }
         }
+      public static final void resetGladiatorListenerByGlad(final Player winner, final Player loser) {
+          {
+            	if (winner != null) {
+                winner.getActivePotionEffects().forEach(potion -> winner.removePotionEffect(potion.getType()));	
+            }  
+            	if (loser != null) {
+            		loser.getActivePotionEffects().forEach(potion -> loser.removePotionEffect(potion.getType()));	
+            }
+            	
+            	if (blocks.get(winner.getName()) != null) {
+            for (final Location loc : GladiatorListener.blocks.get(winner.getName())) {
+            	if (winner != null) {
+                loc.getBlock().setType(Material.AIR);
+            	}
+            }
+            }
+            	if (blocks.get(loser.getName()) != null) {
+            for (final Location loc : GladiatorListener.blocks.get(loser.getName())) {
+            	if (loser != null) {
+                loc.getBlock().setType(Material.AIR);
+            }
+            }
+            }
+            GladiatorListener.blocks.remove(winner.getName());
+            GladiatorListener.oldLocation.remove(winner.getName());
+            GladiatorListener.blocks.remove(loser.getName());
+            GladiatorListener.oldLocation.remove(loser.getName());
+            GladiatorListener.combateGlad.remove(winner);
+            GladiatorListener.combateGlad.remove(loser);
+            if (winner != null) {
+            winner.sendMessage(String.valueOf(GladiatorListener.prefix) + "§fVocê ganhou a batalha contra §e" +  loser.getName() + " §fno Gladiator.");
+        }
+            }
+            
         }
         @EventHandler
         public void PlayerMove(PlayerMoveEvent event) {

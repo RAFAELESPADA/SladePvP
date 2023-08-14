@@ -20,6 +20,7 @@ commands:
    stats:
    1v1iniciar:
    status:
+   finalizarbatalhas:
    givexp:
    req:
    tag:

@@ -84,6 +84,7 @@ import net.helix.pvp.command.RDMAutomatic;
 import net.helix.pvp.command.RankCMD;
 import net.helix.pvp.command.Regras;
 import net.helix.pvp.command.RemoveKit;
+import net.helix.pvp.command.RemoverGlads;
 import net.helix.pvp.command.Report;
 import net.helix.pvp.command.ReportToggle;
 import net.helix.pvp.command.ResetKDR;
@@ -511,6 +512,7 @@ new BukkitRunnable() {
 		getCommand("shutdownserver").setExecutor(new DesligarServidor());
 		getCommand("resetkdr").setExecutor(new ResetKDR());
 		getCommand("lastlogin").setExecutor(new LastLogin());
+				getCommand("finalizarbatalhas").setExecutor(new RemoverGlads());
 		getCommand("ll").setExecutor(new LastLogin());
 		getCommand("lastlogin").setExecutor(new LastLogin());
 		getCommand("socialspy").setExecutor(new SocialSpy(this));
