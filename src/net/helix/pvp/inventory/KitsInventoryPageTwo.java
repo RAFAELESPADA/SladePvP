@@ -280,6 +280,19 @@ public class KitsInventoryPageTwo {
 						.toStack()
 				);
 		}
+		if (player.hasPermission("kombo.kit.quickdropper")) {
+			inventory.setItem(34 , new ItemBuilder("§a" + HelixKit.QUICKDROPPER.getName(), HelixKit.QUICKDROPPER.getIcon())
+					.lore("§f" + HelixKit.QUICKDROPPER.getDescription())
+							.addFlags(ItemFlag.HIDE_ATTRIBUTES,
+									ItemFlag.HIDE_DESTROYS,
+									ItemFlag.HIDE_ENCHANTS,
+									ItemFlag.HIDE_PLACED_ON,
+									ItemFlag.HIDE_POTION_EFFECTS,
+									ItemFlag.HIDE_UNBREAKABLE)
+							.nbt("kit-gui", HelixKit.QUICKDROPPER.getName())
+							.toStack()
+					);
+			}
 				inventory.setItem(53, new ItemBuilder("§aPróximo", Material.ARROW).nbt("prox")
 						.toStack()
 				);
