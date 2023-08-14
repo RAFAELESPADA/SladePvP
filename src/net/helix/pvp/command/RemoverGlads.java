@@ -26,7 +26,13 @@ public class RemoverGlads
 	    	}
 //if (GladiatorListener.combateGlad.containsKey(p)) {
 			for (Player p2 : Bukkit.getOnlinePlayers()) {	  
+				if (GladiatorListener.blocks.get(p2.getName()) == null || net.helixpvp.kit2.GladiatorListener.blocks.get(p2.getName()) == null) {
+					p.sendMessage(ChatColor.RED + "Não há batalhas rodando.");
+					return true;
+				}
 for (final Location loc : GladiatorListener.blocks.get(p2.getName())) {
+	
+	if (net.helixpvp.kit2.GladiatorListener.blocks.get(p2.getName()) != null) {
 	for (final Location loc2 : net.helixpvp.kit2.GladiatorListener.blocks.get(p2.getName())) {
 	if (loc == null && loc2 == null) {
 		p.sendMessage(ChatColor.RED + "Não há batalhas rodando.");
@@ -52,6 +58,9 @@ if (net.helixpvp.kit2.GladiatorListener.combateGlad.containsKey(p2)) {
 	  }
 	}
 }
+	return false;
+	}
+
 	return false;
 	}
 }
