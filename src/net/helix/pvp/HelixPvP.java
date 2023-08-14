@@ -326,7 +326,12 @@ new BukkitRunnable() {
 						
 						player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 120*20, 0));
 						player.playSound(player.getLocation(), Sound.ANVIL_BREAK, 1F, 10F);
-						
+						Bukkit.broadcastMessage("§cO evento §4§lEUFORIA §cacabou de começar");
+						Bukkit.broadcastMessage("§cPor dois minutos estará de noite e players teram força 1");
+						Bukkit.broadcastMessage("§cTodos os kits primários e secundários liberados durante o evento");
+						euforia = true;
+						Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp group default permission settemp kombo.kit.* true 2m");
+						Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp group default permission settemp kombo.kit2.* true 2m");
 //					    Bukkit.getWorld("spawn").setTime(18000);
 //						Bukkit.broadcastMessage("§cO evento §4§lEUFORIA §cacabou de começar");
 //						Bukkit.broadcastMessage("§cPor dois minutos estará de noite e players teram força 1");
@@ -351,12 +356,6 @@ new BukkitRunnable() {
 							}, 2400L);
 					}
 						 
-							Bukkit.broadcastMessage("§cO evento §4§lEUFORIA §cacabou de começar");
-							Bukkit.broadcastMessage("§cPor dois minutos estará de noite e players teram força 1");
-							Bukkit.broadcastMessage("§cTodos os kits primários e secundários liberados durante o evento");
-							euforia = true;
-							Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp group default permission settemp kombo.kit.* true 2m");
-							Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp group default permission settemp kombo.kit2.* true 2m");
 					
 				}}.runTaskTimer(this, 0, 40 * 60 * 20L);
 		});
