@@ -180,6 +180,22 @@ public final class GladiatorListener extends KitHandler
     	if (HelixWarp.GLADIATOR.hasPlayer(winner.getName())) {
     		HelixWarp.GLADIATOR.send(winner, true);
     		HelixWarp.GLADIATOR.send(loser, true);
+    		for (final PotionEffect pot : winner.getActivePotionEffects()) {
+                winner.removePotionEffect(pot.getType());
+            }
+            for (final PotionEffect pot : loser.getActivePotionEffects()) {
+                loser.removePotionEffect(pot.getType());
+            }
+            for (final Location loc : GladiatorListener.blocks.get(winner.getName())) {
+                loc.getBlock().setType(Material.AIR);
+            }
+            for (final Location loc : GladiatorListener.blocks.get(loser.getName())) {
+                loc.getBlock().setType(Material.AIR);
+            }
+            GladiatorListener.blocks.remove(winner.getName());
+            GladiatorListener.oldLocation.remove(winner.getName());
+            GladiatorListener.blocks.remove(loser.getName());
+            GladiatorListener.oldLocation.remove(loser.getName());
     		return;
     	}
         for (int i = 1; i < 5; ++i) {

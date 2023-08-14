@@ -46,7 +46,13 @@ public abstract class WarpDuoBattleHandle3 extends WarpHandle {
 
     public final void finalizeBattle(Player player) {
         player.sendMessage("BATALHA FOI FINALIZADA!");
-      
+        show(player);
+
+
+        findOpponent(player).ifPresent(target -> {
+            show(target);
+
+        });
         fastChallenge.remove(player);
         battlingPlayers.entrySet().removeIf(entry -> entry.getKey().equals(player) || entry.getValue().equals(player));
     }

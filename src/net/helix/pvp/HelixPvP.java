@@ -309,9 +309,6 @@ new BukkitRunnable() {
 					}}.runTaskTimer(this, 0, 1 * 5L);
 		});
 	    Bukkit.getWorld("spawn").setTime(18000);
-		Bukkit.broadcastMessage("§cO evento §4§lEUFORIA §cacabou de começar");
-		Bukkit.broadcastMessage("§cPor dois minutos estará de noite e players teram força 1");
-		Bukkit.broadcastMessage("§cTodos os kits primários e secundários liberados durante o evento");
 		HelixBukkit.getExecutorService().submit(() -> {
 			
 			new BukkitRunnable() {
@@ -323,36 +320,44 @@ new BukkitRunnable() {
 						if (Bukkit.getOnlinePlayers().size() < 3) {
 							return;
 						}
-					DarKit.sendTitle(player, "§c§lEUFORIA", "§fTodos ficaram fortes");
-				
-					Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp group default permission settemp kombo.kit.* true 2m");
-					Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp group default permission settemp kombo.kit2.* true 2m");
-					player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 120*20, 0));
-					player.playSound(player.getLocation(), Sound.ANVIL_BREAK, 1F, 10F);
-					euforia = true;
-//				    Bukkit.getWorld("spawn").setTime(18000);
-//					Bukkit.broadcastMessage("§cO evento §4§lEUFORIA §cacabou de começar");
-//					Bukkit.broadcastMessage("§cPor dois minutos estará de noite e players teram força 1");
-//					Bukkit.broadcastMessage("§cTodos os kits primários e secundários liberados durante o evento");
-					  Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnable() {
-							public void run() {
-								if (!euforia) {
-									  return;
-								  }
-								
-								Bukkit.broadcastMessage("§aO evento Euforia foi finalizado!");
-								euforia = false;
-								
-								 Bukkit.getWorld("spawn").setTime(100);
-								 for (Player p1 : Bukkit.getOnlinePlayers()) {
-									 BossBarAPI.removeAllBars(p1);
-									 DarKit.sendTitle(p1, "§c§lEUFORIA", "§aFinalizado!");
-								      	p1.playSound(p1.getLocation(), Sound.LEVEL_UP, 1f, 1f);
-								        p1.getActivePotionEffects().forEach(potion -> p1.removePotionEffect(potion.getType()));
-								      }
-							}
-						}, 2400L);
-				}}}.runTaskTimer(this, 0, 40 * 60 * 20L);
+
+						DarKit.sendTitle(player, "§c§lEUFORIA", "§fTodos ficaram fortes");
+						
+						player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 120*20, 0));
+						player.playSound(player.getLocation(), Sound.ANVIL_BREAK, 1F, 10F);
+						
+//					    Bukkit.getWorld("spawn").setTime(18000);
+//						Bukkit.broadcastMessage("§cO evento §4§lEUFORIA §cacabou de começar");
+//						Bukkit.broadcastMessage("§cPor dois minutos estará de noite e players teram força 1");
+//						Bukkit.broadcastMessage("§cTodos os kits primários e secundários liberados durante o evento");
+						  Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnable() {
+								public void run() {
+									if (!euforia) {
+										  return;
+									  }
+									
+									Bukkit.broadcastMessage("§aO evento Euforia foi finalizado!");
+									euforia = false;
+									
+									 Bukkit.getWorld("spawn").setTime(100);
+									 for (Player p1 : Bukkit.getOnlinePlayers()) {
+										 BossBarAPI.removeAllBars(p1);
+										 DarKit.sendTitle(p1, "§c§lEUFORIA", "§aFinalizado!");
+									      	p1.playSound(p1.getLocation(), Sound.LEVEL_UP, 1f, 1f);
+									        p1.getActivePotionEffects().forEach(potion -> p1.removePotionEffect(potion.getType()));
+									      }
+								}
+							}, 2400L);
+					}
+						 
+							Bukkit.broadcastMessage("§cO evento §4§lEUFORIA §cacabou de começar");
+							Bukkit.broadcastMessage("§cPor dois minutos estará de noite e players teram força 1");
+							Bukkit.broadcastMessage("§cTodos os kits primários e secundários liberados durante o evento");
+							euforia = true;
+							Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp group default permission settemp kombo.kit.* true 2m");
+							Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp group default permission settemp kombo.kit2.* true 2m");
+					
+				}}.runTaskTimer(this, 0, 40 * 60 * 20L);
 		});
 		
 		Bukkit.getWorld("spawn").setDifficulty(Difficulty.HARD);
