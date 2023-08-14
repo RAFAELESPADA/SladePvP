@@ -30,6 +30,8 @@ import net.helix.pvp.kit.KitManager2;
 
 public class SelectKitListener implements Listener {
 	
+	
+	
 	@EventHandler
 	public void onInvClick(InventoryClickEvent event) {
 		Player player = (Player) event.getWhoClicked();
@@ -40,12 +42,15 @@ public class SelectKitListener implements Listener {
 		if (event.getCurrentItem() == null) {
 			return;
 		}
-	{
-			   if (event.getSlot() >= 45 && event.getSlot() <= 54)
-				   event.setCancelled(true);
-			   else {
+	
+			 
+			    
 				   if (ItemBuilder.has(event.getCurrentItem(), "visuali")) {
 						TodosOsKits.open(player);
+						 event.setCancelled(true);
+						return;
+					}
+				   if (ItemBuilder.has(event.getCurrentItem(), "visual")) {
 						 event.setCancelled(true);
 						return;
 					}
@@ -55,7 +60,24 @@ public class SelectKitListener implements Listener {
 				   
 				   
 				   String kitName3 = ItemBuilder.getString(event.getCurrentItem(), "kit-gui");
+				   if (ItemBuilder.has(event.getCurrentItem(), "visuali")) {
+						TodosOsKits.open(player);
+						 event.setCancelled(true);
+						return;
+					}
+					if (!ItemBuilder.has(event.getCurrentItem(), "kit-gui")) {
+						return;
+					}
 					
+					String kitName = ItemBuilder.getString(event.getCurrentItem(), "kit-gui");
+			event.setCancelled(true);
+					HelixKit.findKit(kitName).ifPresent(kit -> {
+						if (KitManager2.getPlayer(player.getName()).getkit2().getName() == kit.getName()) {
+							player.sendMessage("§cVocê já selecionou esse kit como secundário!");
+							return;
+						}
+						player.closeInventory();
+					});
 					String kitName22 = ItemBuilder.getString(event.getCurrentItem(), "kit-gui2");
 					HelixKit.findKit(kitName3).ifPresent(kit ->
 					{
@@ -66,48 +88,43 @@ public class SelectKitListener implements Listener {
 							player.closeInventory();
 							return;
 						}
-						if (KitManager.getPlayer(player.getName()).getKit().getName() == kit.getName()) {
-							player.sendMessage("§cVocê já selecionou esse kit como primário!");
-							player.closeInventory();
-							return;
-						}
-						if (KitManager2.getPlayer(player.getName()).getkit2() == HelixKit2.STOMPER && (kitName2 == "Grappler" || kitName2 == "Kangaroo" || kitName2 == "Flash"  || kitName2 == "Neo" || kitName2 == "AntiStomper" || kitName2 == "Ninja")) {
+						if (KitManager2.getPlayer(player.getName()).getkit2() == HelixKit2.STOMPER && (kitName22 == "Grappler" || kitName22 == "Kangaroo" || kitName22 == "Flash"  || kitName22 == "Neo" || kitName22 == "AntiStomper" || kitName22 == "Ninja")) {
 							player.sendMessage("§c" + kitName2 + " é incompátivel com Stomper");
 							player.closeInventory();
 							return;
 						}
-						if (KitManager2.getPlayer(player.getName()).getkit2() == HelixKit2.ARCHER && (kitName2 == "Grappler" || kitName2 == "Kangaroo")) {
+						if (KitManager2.getPlayer(player.getName()).getkit2() == HelixKit2.ARCHER && (kitName22 == "Grappler" || kitName22 == "Kangaroo")) {
 							player.sendMessage("§c" + kitName2 + " é incompátivel com Archer");
 							player.closeInventory();
 							return;
 						}
-						if (KitManager2.getPlayer(player.getName()).getkit2() == HelixKit2.VACUUM && (kitName2 == "Avatar")) {
+						if (KitManager2.getPlayer(player.getName()).getkit2() == HelixKit2.VACUUM && (kitName22 == "Avatar")) {
 							player.sendMessage("§c" + kitName2 + " é incompátivel com Archer");
 							player.closeInventory();
 							return;
 						}
-						if (KitManager2.getPlayer(player.getName()).getkit2() == HelixKit2.KANGAROO && (kitName2 == "Archer")) {
+						if (KitManager2.getPlayer(player.getName()).getkit2() == HelixKit2.KANGAROO && (kitName22 == "Archer")) {
 							player.sendMessage("§c" + kitName2 + " é incompátivel com Kangaroo");
 							player.closeInventory();
 							return;
 						}
-						if (KitManager2.getPlayer(player.getName()).getkit2() == HelixKit2.METEOR && (kitName2 == "Stomper")) {
+						if (KitManager2.getPlayer(player.getName()).getkit2() == HelixKit2.METEOR && (kitName22 == "Stomper")) {
 							player.sendMessage("§c" + kitName2 + " é incompátivel com Meteor");
 							player.closeInventory();
 							return;
 						}
 						
-						if (KitManager2.getPlayer(player.getName()).getkit2() == HelixKit2.STOMPER && (kitName2 == "Meteor")) {
+						if (KitManager2.getPlayer(player.getName()).getkit2() == HelixKit2.STOMPER && (kitName22 == "Meteor")) {
 							player.sendMessage("§c" + kitName2 + " é incompátivel com Stomper");
 							player.closeInventory();
 							return;
 						}
-						if (KitManager2.getPlayer(player.getName()).getkit2() == HelixKit2.GRAPPLER && (kitName2 == "Archer")) {
+						if (KitManager2.getPlayer(player.getName()).getkit2() == HelixKit2.GRAPPLER && (kitName22 == "Archer")) {
 							player.sendMessage("§c" + kitName2 + " é incompátivel com Grappler");
 							player.closeInventory();
 							return;
 						}
-						if (KitManager2.getPlayer(player.getName()).getkit2() == HelixKit2.STOMPER && (kitName2 == "Grappler")) {
+						if (KitManager2.getPlayer(player.getName()).getkit2() == HelixKit2.STOMPER && (kitName22 == "Grappler")) {
 							player.sendMessage("§c" + kitName2 + " é incompátivel com Grappler");
 							player.closeInventory();
 							return;
@@ -118,33 +135,33 @@ public class SelectKitListener implements Listener {
 							return;
 						}
 						///erfgh
-						if (KitManager.getPlayer(player.getName()).getKit() == HelixKit.STOMPER && (kitName22 == "Grappler" || kitName22 == "Kangaroo" || kitName22 == "Flash"  || kitName22 == "Neo" || kitName22 == "AntiStomper" || kitName2 == "Ninja")) {
-							player.sendMessage("§c" + kitName2 + " é incompátivel com Stomper");
+						if (KitManager.getPlayer(player.getName()).getKit() == HelixKit.STOMPER && (kitName22 == "Grappler" || kitName22 == "Kangaroo" || kitName22 == "Flash"  || kitName22 == "Neo" || kitName22 == "AntiStomper" || kitName22 == "Ninja")) {
+							player.sendMessage("§c" + kitName22 + " é incompátivel com Stomper");
 							player.closeInventory();
 							return;
 						}
 						if (KitManager.getPlayer(player.getName()).getKit() == HelixKit.TORNADO && (kitName22 == "Grappler" || kitName22 == "Kangaroo" || kitName22 == "Monk"  || kitName22 == "Ninja")) {
-							player.sendMessage("§c" + kitName2 + " é incompátivel com Tornado");
+							player.sendMessage("§c" + kitName22 + " é incompátivel com Tornado");
 							player.closeInventory();
 							return;
 						}
 						if (KitManager.getPlayer(player.getName()).getKit() == HelixKit.HULK && (event.getCurrentItem().getType() == Material.IRON_FENCE)) {
-							player.sendMessage("§c" + kitName2 + " é incompátivel com Hulk");
+							player.sendMessage("§c" + kitName22 + " é incompátivel com Hulk");
 							player.closeInventory();
 							return;
 						}
 						if (KitManager.getPlayer(player.getName()).getKit() == HelixKit.METEOR && (kitName22 == "Stomper")) {
-							player.sendMessage("§c" + kitName2 + " é incompátivel com Meteor");
+							player.sendMessage("§c" + kitName22 + " é incompátivel com Meteor");
 							player.closeInventory();
 							return;
 						}
 						if (KitManager.getPlayer(player.getName()).getKit() == HelixKit.STOMPER && (kitName22 == "Meteor")) {
-							player.sendMessage("§c" + kitName2 + " é incompátivel com Stomper");
+							player.sendMessage("§c" + kitName22 + " é incompátivel com Stomper");
 							player.closeInventory();
 							return;
 						}
 						if (KitManager.getPlayer(player.getName()).getKit() == HelixKit.PHANTOM && (kitName22 == "Grappler" || kitName22 == "Kangaroo" || kitName22 == "Fisherman" || kitName22 == "Ninja" || kitName22 == "Flash" || kitName22 == "Stomper")) {
-							player.sendMessage("§c" + kitName2 + " é incompátivel com Phantom");
+							player.sendMessage("§c" + kitName22 + " é incompátivel com Phantom");
 							player.closeInventory();
 							return;
 						}
@@ -217,31 +234,19 @@ public class SelectKitListener implements Listener {
 						kit.send(player);
 					});  
 					return;
+	
+					
+					
 			   }
-			  
-	}
+
+			   
+	
+	
+	
 	
 		
-		if (ItemBuilder.has(event.getCurrentItem(), "visuali")) {
-			TodosOsKits.open(player);
-			 event.setCancelled(true);
-			return;
-		}
-		if (!ItemBuilder.has(event.getCurrentItem(), "kit-gui")) {
-			return;
-		}
 		
-		String kitName = ItemBuilder.getString(event.getCurrentItem(), "kit-gui");
-event.setCancelled(true);
-		HelixKit.findKit(kitName).ifPresent(kit -> {
-			if (KitManager2.getPlayer(player.getName()).getkit2().getName() == kit.getName()) {
-				player.sendMessage("§cVocê já selecionou esse kit como secundário!");
-				return;
-			}
-			player.closeInventory();
-			kit.send(player);
-		});
-	}
+	
 
 	@EventHandler
 	public void onInvClick55(InventoryClickEvent event) {

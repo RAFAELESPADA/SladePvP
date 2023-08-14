@@ -30,12 +30,12 @@ public class BloodGun extends KitHandler {
 	    	return;
 	    }
 	    			
-	      if ((event.getAction() == Action.RIGHT_CLICK_BLOCK || 
-	        event.getAction() == Action.RIGHT_CLICK_AIR || 
-	        event.getAction() == Action.LEFT_CLICK_AIR || 
-	        event.getAction() == Action.LEFT_CLICK_BLOCK) && KitManager.getPlayer(event.getPlayer().getName()).hasKit(this)) {
-	        event.setCancelled(true); 
-	      }
+	    if (event.getPlayer().getItemInHand().getType() == Material.WOOD_HOE && (
+	    	      event.getAction() == Action.RIGHT_CLICK_BLOCK || 
+	    	      event.getAction() == Action.RIGHT_CLICK_AIR || 
+	    	      event.getAction() == Action.LEFT_CLICK_AIR || 
+	    	      event.getAction() == Action.LEFT_CLICK_BLOCK))
+	    	      event.setCancelled(true); 
 	      if (inCooldown(p)) {
 		       sendMessageCooldown(p);
 		       return;
