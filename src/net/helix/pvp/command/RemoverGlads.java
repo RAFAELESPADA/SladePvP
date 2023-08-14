@@ -25,17 +25,22 @@ public class RemoverGlads
 	    		return true;
 	    	}
 //if (GladiatorListener.combateGlad.containsKey(p)) {
-for (final Location loc : GladiatorListener.blocks.get(p.getName())) {
-	
+			for (Player p2 : Bukkit.getOnlinePlayers()) {	  
+for (final Location loc : GladiatorListener.blocks.get(p2.getName())) {
+	for (final Location loc2 : net.helixpvp.kit2.GladiatorListener.blocks.get(p2.getName())) {
+	if (loc == null && loc2 == null) {
+		p.sendMessage(ChatColor.RED + "Não há batalhas rodando.");
+		return true;
+	}
 Bukkit.getConsoleSender().sendMessage("[KITPVP] Removendo Glad de " + p.getName());
+if (loc != null) {
     loc.getBlock().setType(Material.AIR);
 }
-if (net.helixpvp.kit2.GladiatorListener.combateGlad.containsKey(p)) {
-	for (final Location loc : net.helixpvp.kit2.GladiatorListener.blocks.get(p.getName())) {
-		Bukkit.getConsoleSender().sendMessage("[KITPVP] Removendo Glad Secundário de " + p.getName());				
-        loc.getBlock().setType(Material.AIR);
+if (net.helixpvp.kit2.GladiatorListener.combateGlad.containsKey(p2)) {
+		Bukkit.getConsoleSender().sendMessage("[KITPVP] Removendo Glad Secundário de " + p2.getName());		
+		if (loc2 != null) {
+        loc2.getBlock().setType(Material.AIR);
     }
-	for (Player p2 : Bukkit.getOnlinePlayers()) {
 		if (GladiatorListener.combateGlad.containsKey(p2) || net.helixpvp.kit2.GladiatorListener.combateGlad.containsKey(p2)) {
 			p2.damage(p2.getHealth());
 			p2.sendMessage("SUA BATALHA FOI FINALIZADA POR UM STAFF");
@@ -45,6 +50,8 @@ if (net.helixpvp.kit2.GladiatorListener.combateGlad.containsKey(p)) {
 	Bukkit.broadcast(p.getName() + " finalizou todas as batalhas do gladiator", "kombo.cmd.report");
 }
 	  }
+	}
+}
 	return false;
 	}
 }
