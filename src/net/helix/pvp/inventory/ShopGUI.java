@@ -30,6 +30,9 @@ public class ShopGUI implements Listener {
 		inventory.setItem(32, new ItemBuilder("§cLoja de Kits secundários", Material.EMERALD).nbt("shop2")
 				.toStack()
 		);
+		inventory.setItem(31, new ItemBuilder("§cReset de KDR", Material.REDSTONE).nbt("shop3")
+				.toStack()
+		);
 		
 		player.openInventory(inventory);
 	}
@@ -46,6 +49,20 @@ public class ShopGUI implements Listener {
 			return;
 		}
 		ShopInventory.open(player);
+	}
+	@EventHandler
+	public void onInvClCck2(InventoryClickEvent event) {
+		Player player = (Player) event.getWhoClicked();
+		
+		if (!event.getView().getTitle().equals(ShopGUI.getInventoryName())) {
+			return;
+		}
+		
+		event.setCancelled(true);
+		if (!ItemBuilder.has(event.getCurrentItem(), "shop3")) {
+			return;
+		}
+		ShopKDRGUI.openGUI(player);
 	}
 	@EventHandler
 	public void onInvClick(InventoryClickEvent event) {
