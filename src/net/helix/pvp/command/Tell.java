@@ -55,41 +55,48 @@ public class Tell extends CommandClass {
 		if (a.length > 1) {
 			Player target = Bukkit.getPlayer(a[0]);
 
-			if (target != null) {
-				if (player == target) {
+			if (target == null) {
+				player.sendMessage("§a§lTELL §fJogador offline!");
+				return;
+			}
+			
+			else if (player == target) {
 					player.sendMessage("§cVocê não pode falar sozinho!");
 					return;
 				}
-				if (!tell.contains(target.getUniqueId())) {
-
+				else if (tell.contains(target.getUniqueId())) {
+					player.sendMessage("§a§lTELL §fO jogador está com o tell §c§lOFF!");
+					return;
+				}
 					String message = "";
 
 					for (int i = 1; i < a.length; i++) {
 						message += a[i] + " ";
 					}
-
+						final String tiCopy = message;
 					player.sendMessage("§a§lTELL §5[§fVocê -> " + target.getName() + "§7] §f" + message);
 					target.sendMessage(
 							"§a§lTELL §f[" + player.getName() + " §7-> §fVocê" + "§f] " + message);
-					  
-				            for (Player all : Bukkit.getOnlinePlayers()) {
-			                if (!all.hasPermission("cmd.socialspy")) {
-			                	return;
-			                }
+				        
+					
+					Bukkit.getOnlinePlayers().stream()
+			        .filter(p -> !SocialSpy.toggle.containsKey(p.getName()) && p.hasPermission("kombo.cmd.report"))
+			        .forEach(p ->
+			                   p.sendMessage("§7§o(TELL SPY) §8§o[§7§o" + player.getName() + " §f» §7§o" + target.getName() +
+			                            "§8§o] §e§o" + tiCopy));
+				
+					     
 			              
-			                    all.sendMessage("§7§o(TELL SPY) §8§o[§7§o" + player.getName() + " §f» §7§o" + target.getName() +
-			                            "§8§o] §e§o" + message);
-			                }
+					        
 			
 
-				} else {
-					player.sendMessage("§a§lTELL §fO jogador está com o tell §c§lOFF!");
+					}
 				}
 
-			} else {
-				player.sendMessage("§a§lTELL §fJogador offline!");
+			
 			}
-		}
-	}
+		
+	
 
-}
+
+
