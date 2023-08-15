@@ -90,7 +90,7 @@ public boolean onCommand(CommandSender sender, Command cmd, String label, String
 			 	 EventoUtils.getEventoPlayers().forEach(p2 -> {
 			 		 if (!RDMAutomatic.iniciou) {
 			 		RDMAutomatic.iniciou = true;
-			 		HelixPvP.getInstance().getEventManager().getRdmAutomatic().players.add(p2);
+			 		RDMAutomatic.playersIN.add(p2.getName());
 			 		Bukkit.getConsoleSender().sendMessage("Variavel de inicio do evento 1v1 setada como true");
 			 		 }
 			 		

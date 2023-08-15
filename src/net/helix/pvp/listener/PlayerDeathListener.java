@@ -63,8 +63,8 @@ public class PlayerDeathListener implements Listener {
 		HelixCooldown2.removeCooldown(player , "Kit");
 		BossBarAPI.removeAllBars(player);
 		player.getActivePotionEffects().forEach(it -> player.removePotionEffect(it.getType()));
-		if (HelixPvP.getInstance().getEventManager().getRdmAutomatic().players.contains(p)) {
-	      HelixPvP.getInstance().getEventManager().getRdmAutomatic().players.remove(p);
+		if (RDMAutomatic.playersIN.contains(p.getName())) {
+			RDMAutomatic.playersIN.remove(p.getName());
 	      player.sendMessage(ChatColor.DARK_RED + "Você foi eliminado do Evento 1X1!");
 	      player.playSound(player.getLocation(), Sound.GHAST_SCREAM, 10, 10);
 		}
