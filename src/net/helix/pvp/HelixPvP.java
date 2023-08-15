@@ -287,6 +287,21 @@ new BukkitRunnable() {
 				}
 			}
 		}.runTaskTimer(this, 0, 25 * 20L);
+new BukkitRunnable() {
+			
+			@Override
+			public void run() {
+				for (Player p : Bukkit.getOnlinePlayers()) {
+			if (getInstance().getEventManager().getRdmAutomatic().players.contains(p)) {
+				getInstance().getEventManager().getRdmAutomatic().putInEvent(p);
+				Bukkit.getConsoleSender().sendMessage("[DEBUG - EVENTO] Setando variável para " + p.getName());
+				}
+			else {
+				getInstance().getEventManager().getRdmAutomatic().removeFromEvent(p);
+				Bukkit.getConsoleSender().sendMessage("[DEBUG - EVENTO] Removendo variável para " + p.getName());
+			}
+			}}
+		}.runTaskTimer(this, 0, 1 * 20L);
 		
 		HelixBukkit.getExecutorService().submit(() -> {
 			new BukkitRunnable() {

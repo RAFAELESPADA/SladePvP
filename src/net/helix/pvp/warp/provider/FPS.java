@@ -20,7 +20,7 @@ public class FPS extends WarpHandle {
 				.toStack()
 		);
 		KitManager.getPlayer(player.getName()).removeKit();
-		KitManager2.getPlayer(player.getName()).removekit2();
+		KitManager2.getPlayer(player.getName()).removekit2(); 
 		player.getInventory().setHelmet(new ItemBuilder("§6§lPVP", Material.IRON_HELMET).toStack());
 		player.getInventory().setChestplate(new ItemBuilder("§6PVP", Material.IRON_CHESTPLATE).toStack());
 		player.getInventory().setLeggings(new ItemBuilder("§6PVP", Material.IRON_LEGGINGS).toStack());

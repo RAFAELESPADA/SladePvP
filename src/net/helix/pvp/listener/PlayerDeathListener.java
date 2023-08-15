@@ -11,6 +11,7 @@ import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Firework;
 import org.bukkit.entity.Player;
@@ -62,7 +63,11 @@ public class PlayerDeathListener implements Listener {
 		HelixCooldown2.removeCooldown(player , "Kit");
 		BossBarAPI.removeAllBars(player);
 		player.getActivePotionEffects().forEach(it -> player.removePotionEffect(it.getType()));
-		
+		if (HelixPvP.getInstance().getEventManager().getRdmAutomatic().players.contains(p)) {
+	      HelixPvP.getInstance().getEventManager().getRdmAutomatic().players.remove(p);
+	      player.sendMessage(ChatColor.DARK_RED + "Você foi eliminado do Evento 1X1!");
+	      player.playSound(player.getLocation(), Sound.GHAST_SCREAM, 10, 10);
+		}
 		player.spigot().respawn();
 		event.setDeathMessage(null);
 		event.setDroppedExp(0);
@@ -318,6 +323,7 @@ public class PlayerDeathListener implements Listener {
 	            	    	      p.sendMessage("§aVocê ganhou 1000 de coins");
 	            	    	      player.getPvp().addCoins(1000);
 	            	    	      player.getPvp().addXP(200);
+	            	    	      HelixPvP.getInstance().getEventManager().getRdmAutomatic().players.remove(p);
 	            	    		  HelixBukkit.getInstance().getPlayerManager().getController().save(player);
 		            	      EventoUtils.resetEventoClass();
 		            	    		Bukkit.broadcastMessage("§6O Evento 1V1 foi finalizado!");
@@ -358,6 +364,7 @@ public class PlayerDeathListener implements Listener {
 					            	      EventoUtils.resetEventoClass();
 					            	      HelixPvP.getInstance().getEventManager().getRdmAutomatic().removeFromEvent(p);
 					            	    		Bukkit.broadcastMessage("§6O Evento 1V1 foi finalizado!");
+					            	    	      HelixPvP.getInstance().getEventManager().getRdmAutomatic().players.remove(p);
 					            	    	      Bukkit.broadcastMessage("§eO jogador " + p.getName() + " ganhou o evento!");
 					            	    	      HelixPlayer player = HelixBukkit.getInstance().getPlayerManager().getPlayer(p.getName());
 					            	    	      p.sendMessage("§aVocê ganhou 200 de xp");
