@@ -26,7 +26,6 @@ public class Scout extends KitHandler {
         );
     }
 
-
 @EventHandler
 public void onInteract(PlayerInteractEvent event) {
     if (!event.hasItem() || !ItemBuilder.has(event.getItem(), "kit-handler", "scout")) return;
