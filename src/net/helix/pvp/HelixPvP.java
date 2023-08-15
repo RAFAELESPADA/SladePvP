@@ -292,9 +292,8 @@ new BukkitRunnable() {
 			@Override
 			public void run() {
 				for (Player p : Bukkit.getOnlinePlayers()) {
-			if (RDMAutomatic.playersIN.contains(p.getName())) {
+					if (EventoUtils.game.contains(p.getName()) && RDMAutomatic.iniciou) {
 				getInstance().getEventManager().getRdmAutomatic().putInEvent(p);
-				Bukkit.getConsoleSender().sendMessage("[DEBUG - EVENTO] Setando variável para " + p.getName());
 			}
 			}}
 		}.runTaskTimer(this, 0, 1 * 20L);

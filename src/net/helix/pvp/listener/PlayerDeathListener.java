@@ -64,7 +64,7 @@ public class PlayerDeathListener implements Listener {
 		BossBarAPI.removeAllBars(player);
 		player.getActivePotionEffects().forEach(it -> player.removePotionEffect(it.getType()));
 		if (RDMAutomatic.playersIN.contains(p.getName())) {
-			RDMAutomatic.playersIN.remove(p.getName());
+		  RDMAutomatic.playersIN.remove(p.getName());
 	      player.sendMessage(ChatColor.DARK_RED + "Você foi eliminado do Evento 1X1!");
 	      player.playSound(player.getLocation(), Sound.GHAST_SCREAM, 10, 10);
 		}
