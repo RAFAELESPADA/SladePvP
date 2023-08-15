@@ -50,7 +50,7 @@ public class RDMAutomatic implements Listener {
   private List<Player> playersInPvp;
   
   private List<Player> specs;
-  private static final List<String> playersIN = new ArrayList<>();
+  public static final List<String> playersIN = new ArrayList<>();
   public RDMAutomatic() {
     this.main = HelixPvP.getInstance();
     time = 32;
@@ -107,6 +107,8 @@ public class RDMAutomatic implements Listener {
           }
           public void putInEvent(Player player) {
         	  if (players.contains(player)) {
+        		  return;
+        	  }
         	    players.add(player);
         	    Bukkit.getConsoleSender().sendMessage(player.getName() + " teve a variável setada! Players no evento: " + players.size());
         	    player.getInventory().clear();
@@ -114,7 +116,7 @@ public class RDMAutomatic implements Listener {
         	    for (PotionEffect pot : player.getActivePotionEffects())
         	      player.removePotionEffect(pot.getType()); 
         	  }
-          }
+          
           
           @EventHandler
           public void onPlayerQuit(PlayerQuitEvent e) {

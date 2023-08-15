@@ -10,6 +10,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 
 import net.helix.core.bukkit.HelixBukkit;
 import net.helix.core.bukkit.account.HelixPlayer;
+import net.helix.pvp.command.RDMAutomatic;
 import net.helix.pvp.kit.Habilidade;
 import net.helix.pvp.kit.KitManager;
 import net.helix.pvp.kit.provider.GladiatorListener;
@@ -33,6 +34,9 @@ public class PlayerQuitListener implements Listener {
              GladiatorListener.combateGlad.remove(winner);
              GladiatorListener.combateGlad.remove(loser);
          }
+		 if (RDMAutomatic.playersIN.contains(player.getName())) {
+				RDMAutomatic.playersIN.remove(player.getName());
+			}
 		 else if (net.helixpvp.kit2.GladiatorListener.combateGlad.containsKey(player)) {
              final Player winner = GladiatorListener.combateGlad.get(player);
              Bukkit.broadcast(player.getName() + " deslogou no gladiator secundário!" , "kombo.cmd.report");
