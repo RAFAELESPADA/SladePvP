@@ -94,6 +94,7 @@ public class EventoUtils {
         damage = false;
         pvp = false;
         RDMAutomatic.iniciou = false;
+        RDMAutomatic.star = false;
         started = false;
         tp = false;
         specLoc = null;

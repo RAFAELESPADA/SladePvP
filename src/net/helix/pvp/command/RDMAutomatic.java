@@ -43,6 +43,7 @@ public class RDMAutomatic implements Listener {
   
   private int maxPlayers;
   public static boolean iniciou;
+  public static boolean star;
   private boolean full;
   
   private boolean pvp;
@@ -70,8 +71,8 @@ public class RDMAutomatic implements Listener {
             if (!iniciou) {
             	return;
             }
-            if (this.getGameType() == GameType.STARTING) {
-              if (time == 31) {
+     
+              if (time == 31 && !star) {
             	  EventoUtils.getEventoPlayers().forEach(p2 -> {
             		  if (!players.contains(p2)) {
   			 		players.add(p2);
@@ -79,31 +80,47 @@ public class RDMAutomatic implements Listener {
             		  }
             	  });
               } 
-              if (time == 30) {
+              if (time == 30 && !star) {
                   Bukkit.broadcastMessage("§bO evento da 1v1 irá iniciar em 30 segundos");
                   Bukkit.broadcastMessage("§b" + players.size() + " jogadores de " + this.maxPlayers + " no evento.");
               }
-              if (time == 15) {
+              if (time == 15 && !star) {
                   Bukkit.broadcastMessage("§bO evento da 1v1 irá iniciar em 15 segundos");
                   Bukkit.broadcastMessage("§b" + players.size() + " jogadores de " + this.maxPlayers + " no evento.");
               } 
-              if (time == 10) {
+              if (time == 10 && !star) {
                   Bukkit.broadcastMessage("§bO evento da 1v1 irá iniciar em 10 segundos");
                   Bukkit.broadcastMessage("§b" + players.size() + " jogadores de " + this.maxPlayers + " no evento.");
               } 
-              if (players.size() == 50 && time >= 50 && !this.full) {
+              if (players.size() == 50 && time >= 50 && !this.full && !star) {
                 time = 30;
                Bukkit.broadcastMessage("§bO tempo foi alterado para 30 segundos porque o evento está quase cheio!");
                 this.full = true;
               } 
-              if (time <= 0) {
+              if (time <= 0 && !star) {
                 this.gameType = GameType.GAMIMG;
                Bukkit.broadcastMessage("§aO evento da 1v1 iniciou!");
+               star = true;
+               queuedPlayers();
+               time = 32;
               } 
+              if (!star) {
+            	  if (time > 0) {
              time = time - 1;
-            } else if (!this.pvp && this.getGameType() == GameType.GAMIMG) {
-              this.queuedPlayers();
+             Bukkit.getConsoleSender().sendMessage("[DEBUG] EVENTO COMECARA EM " + time + " SEGUNDOS");
+              }
+             if (!pvp && star) {
+            	 Bukkit.getConsoleSender().sendMessage("[DEBUG] ENVIADO DOIS JOGADORES PARA O COMBATE!");
+             queuedPlayers();
+             }
             } 
+          }
+          public void putInEvent2(Player player) {
+        	  if (players.contains(player)) {
+        		  return;
+        	  }
+        	    players.add(player);
+        	    Bukkit.getConsoleSender().sendMessage(player.getName() + " teve a variável setada 2! Players no evento: " + players.size());
           }
           public void putInEvent(Player player) {
         	  if (players.contains(player)) {
@@ -125,12 +142,13 @@ public class RDMAutomatic implements Listener {
               if (playersInPvp.contains(e.getPlayer())) {
                 e.getPlayer().damage(9999.0D);
                 playersInPvp.remove(e.getPlayer());
-                RDMAutomatic.this.pvp = false;
+                pvp = false;
                 RDMAutomatic.this.broadcast("§bO jogador " + e.getPlayer().getName() + " §bfoi eliminado do evento por combate log!");
                 return;
               } 
               if (RDMAutomatic.this.getGameType() == RDMAutomatic.GameType.GAMIMG)
                 RDMAutomatic.this.broadcast("§bO jogador" + e.getPlayer().getName() + " saiu do servidor e foi desclassificado do evento!"); 
+              queuedPlayers();
             } 
           }
           
@@ -150,7 +168,7 @@ public class RDMAutomatic implements Listener {
               playersInPvp.remove(p);
               players.remove(p);
               e.getDrops().clear();
-              RDMAutomatic.this.pvp = false;
+              pvp = false;
               p.sendMessage("§e§lEVENTO §fVocê foi eliminado do evento pelo "  + d.getName() + "!");
               RDMAutomatic.this.broadcast("§bO jogador " + p.getName() + " foi eliminado do evento pelo "  + d.getName() + "!");
               RDMAutomatic.this.broadcast("§b"+ players.size() + " jogadores restantes.");
@@ -162,6 +180,8 @@ public class RDMAutomatic implements Listener {
 			 	 d.getInventory().setArmorContents(null);
 			 	   Bukkit.getConsoleSender().sendMessage(d.getName() + " matou " + p.getName() + " no evento 1v1");
               RDMAutomatic.this.broadcast("§bProcurando proximo jogador...");
+             
+              queuedPlayers();
             } 
           }
           
@@ -187,9 +207,9 @@ public class RDMAutomatic implements Listener {
               p.sendMessage(String.valueOf("§eNão use comandos enquanto no duelo do evento 1v1."));
               return;
             } 
-            if (e.getMessage().toLowerCase().startsWith("/") && !e.getMessage().toLowerCase().contains("/tell") && !e.getMessage().toLowerCase().contains("/spawn") && !p.hasPermission("kombo.cmd.report") && iniciou) {
+            if (e.getMessage().toLowerCase().startsWith("/") && !e.getMessage().toLowerCase().contains("/tell") && !p.hasPermission("kombo.cmd.report") && iniciou) {
               e.setCancelled(true);
-              p.sendMessage(String.valueOf("§bUse /spawn para sair do evento!"));
+              p.sendMessage(String.valueOf("§bPara sair do evento relogue no servidor!"));
               return;
             } 
           }
@@ -212,6 +232,7 @@ public class RDMAutomatic implements Listener {
     for (Player players : players) {
       if (!players.isOnline()) {
         this.players.remove(players); 
+        System.out.println("players off, removendo variaveis de: " + players.getName());
     } 
     }
     firstPlayer = null;
@@ -219,27 +240,32 @@ public class RDMAutomatic implements Listener {
     	if (!players.isEmpty()) {
     secondPlayer = players.get((new Random()).nextInt(players.size()));
       firstPlayer = players.get((new Random()).nextInt(players.size()));
+      System.out.println("[EVENTO] PRIMEIRO PLAYER: " + firstPlayer.getName() + " VS SEGUNDO PLAYER: " + secondPlayer.getName());
       playersInPvp.clear();
     	}
     }
-    while (!secondPlayer.getUniqueId().equals(firstPlayer.getUniqueId())) {
-    	{
       if (firstPlayer != secondPlayer) {
     firstPlayer.closeInventory();
     secondPlayer.closeInventory();
+    System.out.println("[EVENTO] " + firstPlayer.getName() + " VS " + secondPlayer.getName());
     send1v1(firstPlayer, secondPlayer);
     return;
   }
       else {
     	  {
-    	  secondPlayer = players.get((new Random()).nextInt(players.size()));
-          firstPlayer = players.get((new Random()).nextInt(players.size())); 
+    		  if (players.size() == 1) {
+    			  System.out.println("[EVENTO] " + firstPlayer.getName() + " é o ganhador!");
+    			  destroy();
+    			  HelixWarp.SPAWN.send(firstPlayer);
+    			  EventoUtils.setEvento(false, firstPlayer);
+    			  EventoUtils.resetEventoClass();
+    			  return;
+    		  }
+          System.out.println("[EVENTO] " + firstPlayer.getName() + " e " + secondPlayer.getName() + " SÃO IGUAIS! RODANDO TASK NOVAMENTE");
           queuedPlayers();
     	  }
       }
     	}
-    }
-  }
   
   public void broadcast(String message) {
     for (Player players : players)
@@ -252,7 +278,6 @@ public class RDMAutomatic implements Listener {
     playersInPvp.clear();
     playersInPvp.add(firstPlayer);
     playersInPvp.add(secondPlayer);
-    System.out.println("[EVENTO] " + firstPlayer.getName() + " VS " + secondPlayer.getName());
     broadcast("§cO jogador §e" + firstPlayer.getName() + " §cirá lutar contra o §e" +  secondPlayer.getName());
     firstPlayer.setHealth(20.0D);
     secondPlayer.setHealth(20.0D);
@@ -326,7 +351,11 @@ public class RDMAutomatic implements Listener {
   public void destroy() {
       setGameType(GameType.STARTING);
       iniciou = false;
+      star = false;
       players.clear();
+      time = 32;
+      pvp = false;
+      playersInPvp.clear();
       Bukkit.getConsoleSender().sendMessage("PARANDO EVENTO 1V1");
       getPlayers().clear();
     HandlerList.unregisterAll(this.listener);

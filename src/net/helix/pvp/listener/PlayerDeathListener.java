@@ -314,6 +314,7 @@ public class PlayerDeathListener implements Listener {
 		            	      p.setFlying(false);
 		            	      HelixPvP.getInstance().getEventManager().getRdmAutomatic().setGameType(RDMAutomatic.GameType.STOPPED);
 		            	      RDMAutomatic.iniciou = false;
+		            	      RDMAutomatic.star = false;
 		            	      	net.helix.pvp.evento.EventoUtils.setEvento(false, p);
 		            	          p.sendMessage("§cO evento foi finalizado.");
 		            	          p.getActivePotionEffects().forEach(ef -> p.removePotionEffect(ef.getType()));
@@ -355,8 +356,8 @@ public class PlayerDeathListener implements Listener {
 					            	      p.setFlying(false);
 					            	      HelixWarp.SPAWN.send(p , true);
 					            	      p.setFlying(false);
-					            	      HelixPvP.getInstance().getEventManager().getRdmAutomatic().setGameType(RDMAutomatic.GameType.STOPPED);
 					            	      RDMAutomatic.iniciou = false;
+					            	      RDMAutomatic.star = false;
 					            	      	net.helix.pvp.evento.EventoUtils.setEvento(false, p);
 					            	          p.sendMessage("§cO evento foi finalizado.");
 					            	          p.getActivePotionEffects().forEach(ef -> p.removePotionEffect(ef.getType()));
