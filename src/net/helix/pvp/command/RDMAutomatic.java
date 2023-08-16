@@ -16,6 +16,7 @@ import java.util.Random;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -259,6 +260,41 @@ public class RDMAutomatic implements Listener {
     			  HelixWarp.SPAWN.send(firstPlayer);
     			  EventoUtils.setEvento(false, firstPlayer);
     			  EventoUtils.resetEventoClass();
+    			  Player p = firstPlayer;
+    			  Bukkit.broadcastMessage("§6Vencedor do evento §a§ §C§l " + EventoUtils.getEventoPlayersNames());
+	            	Bukkit.broadcastMessage("§6Vencedor do evento §a§ §C§l " + EventoUtils.getEventoPlayersNames());
+	            	Bukkit.broadcastMessage("§6Vencedor do evento §a§ §C§l " + EventoUtils.getEventoPlayersNames());
+	            	Bukkit.broadcastMessage("§6Vencedor do evento §a§ §C§l " + EventoUtils.getEventoPlayersNames());
+	            	Bukkit.broadcastMessage("§6Vencedor do evento §a§ §C§l " + EventoUtils.getEventoPlayersNames());
+	            	Bukkit.broadcastMessage("§6Vencedor do evento §a§ §C§l " + EventoUtils.getEventoPlayersNames());
+	            	Bukkit.broadcastMessage("§6Vencedor do evento §a§ §C§l " + EventoUtils.getEventoPlayersNames());
+	            	p.setHealth(20);
+	
+	            	    
+	            	   
+	            	      p.setAllowFlight(false);
+	            	      p.setFlying(false);
+	            	      HelixWarp.SPAWN.send(p , true);
+	            	      p.setFlying(false);
+	            	      RDMAutomatic.iniciou = false;
+	            	      RDMAutomatic.star = false;
+	            	      	net.helix.pvp.evento.EventoUtils.setEvento(false, p);
+	            	          p.sendMessage("§cO evento foi finalizado.");
+	            	          p.getActivePotionEffects().forEach(ef -> p.removePotionEffect(ef.getType()));
+	            	          Bukkit.broadcastMessage("§eO jogador " + p.getName() + " ganhou o evento!");
+          	    	      HelixPlayer player = HelixBukkit.getInstance().getPlayerManager().getPlayer(p.getName());
+          	    	      p.sendMessage("§aVocê ganhou 200 de xp");
+          	    	      p.sendMessage("§aVocê ganhou 1000 de coins");
+          	    	      player.getPvp().addCoins(1000);
+          	    	      player.getPvp().addXP(200);
+          	    	      HelixPvP.getInstance().getEventManager().getRdmAutomatic().players.remove(p);
+          	    		  HelixBukkit.getInstance().getPlayerManager().getController().save(player);
+	            	      EventoUtils.resetEventoClass();
+	            	    		Bukkit.broadcastMessage("§6O Evento 1V1 foi finalizado!");
+	            	    		for (Player pg : Bukkit.getOnlinePlayers()) {
+	            	    			pg.playSound(pg.getLocation(), Sound.GHAST_SCREAM, 10f, 10f);
+	            	    		}
+	            	      p.setAllowFlight(false);
     			  return;
     		  }
           System.out.println("[EVENTO] " + firstPlayer.getName() + " e " + secondPlayer.getName() + " SÃO IGUAIS! RODANDO TASK NOVAMENTE");
