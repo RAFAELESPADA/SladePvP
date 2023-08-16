@@ -287,7 +287,6 @@ public class RDMAutomatic implements Listener {
           	    	      p.sendMessage("§aVocê ganhou 1000 de coins");
           	    	      player.getPvp().addCoins(1000);
           	    	      player.getPvp().addXP(200);
-          	    	      HelixPvP.getInstance().getEventManager().getRdmAutomatic().players.remove(p);
           	    		  HelixBukkit.getInstance().getPlayerManager().getController().save(player);
 	            	      EventoUtils.resetEventoClass();
 	            	    		Bukkit.broadcastMessage("§6O Evento 1V1 foi finalizado!");
