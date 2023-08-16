@@ -293,10 +293,16 @@ new BukkitRunnable() {
 			public void run() {
 				for (Player p : Bukkit.getOnlinePlayers()) {
 					if (EventoUtils.game.contains(p.getName()) && RDMAutomatic.iniciou) {
-				getInstance().getEventManager().getRdmAutomatic().putInEvent(p);
+						if (!getInstance().getEventManager().getRdmAutomatic().players.contains(p)) {
+				getInstance().getEventManager().getRdmAutomatic().putInEvent2(p);
+						}
+				else if (!EventoUtils.game.contains(p.getName()) && RDMAutomatic.iniciou) {
+					getInstance().getEventManager().getRdmAutomatic().removeFromEvent(p);
+				}
 			}
+					}
 			}}
-		}.runTaskTimer(this, 0, 1 * 20L);
+		.runTaskTimer(this, 0, 1 * 20L);
 		
 		HelixBukkit.getExecutorService().submit(() -> {
 			new BukkitRunnable() {
