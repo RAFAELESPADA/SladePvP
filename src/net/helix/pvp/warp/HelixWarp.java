@@ -22,6 +22,7 @@ import net.helix.pvp.warp.provider.Fisherman;
 import net.helix.pvp.warp.provider.Gladiator;
 import net.helix.pvp.warp.provider.Knockback;
 import net.helix.pvp.warp.provider.OneVsOne;
+import net.helix.pvp.warp.provider.PotPvP;
 import net.helix.pvp.warp.provider.Spawn;
 import net.helix.pvp.warp.provider.Sumo;
 
@@ -33,6 +34,7 @@ public enum HelixWarp {
     SUMO("Sumo", new Sumo(), Material.APPLE),
     GLADIATOR("Gladiator", new Gladiator(), Material.IRON_FENCE),
     KNOCKBACK("Knockback", new Knockback(), Material.STICK),
+    POTPVP("PotionPvP", new PotPvP(), Material.POTION),
     FISHERMAN("Fisherman", new Fisherman(), Material.FISHING_ROD),
 	ONE_VS_ONE("1v1", new OneVsOne(), Material.BLAZE_ROD);
 	

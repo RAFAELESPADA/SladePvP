@@ -95,6 +95,17 @@ public class EventoListeners implements Listener {
         }
         EventoUtils.blocks.add(event.getBlock().getLocation());
     }
+    
+    @EventHandler(priority = EventPriority.HIGHEST)
+    public void BlockPlaceV(BlockPlaceEvent event) {
+     
+        
+        Player player = event.getPlayer();
+
+        if (!HelixWarp.GLADIATOR.hasPlayer(player.getName())) return;
+        EventoUtils.blocksV.add(event.getBlock().getLocation());
+    }
+
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void BucketFill(PlayerBucketFillEvent event) {

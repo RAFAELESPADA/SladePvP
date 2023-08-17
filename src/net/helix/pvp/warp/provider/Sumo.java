@@ -10,6 +10,7 @@ import net.helix.pvp.warp.HelixWarp;
 import net.helix.pvp.warp.WarpDuoBattleHandle;
 import net.helix.pvp.warp.WarpDuoBattleHandle2;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
@@ -222,7 +223,7 @@ public class Sumo extends WarpDuoBattleHandle2 {
         if (!findOpponent(player).isPresent()) {
             return;
         }
-        if (!(player.getLocation().getY() < 42 && player.getLocation().getX() > 1615500)) {
+        if (!(player.getLocation().getY() < 33 && player.getLocation().getX() > 1615500)) {
         	return;
         }
         Player target = findOpponent(player).get();
@@ -251,7 +252,6 @@ public class Sumo extends WarpDuoBattleHandle2 {
         int winnerCoins = random.nextInt(80 + 1 - 25) + 25;
         HelixWarp.SUMO.send(target);
         target.playSound(target.getLocation(), Sound.LEVEL_UP, 10.0f, 10.0f);
-
         target.sendMessage("§6§lSUMO §eVocê ganhou a luta conta " + player.getName());
         killerUser.getPvp().addCoins(winnerCoins);
         killerUser.getPvp().addWinsSumo(1);;
@@ -263,6 +263,19 @@ public class Sumo extends WarpDuoBattleHandle2 {
         
         loserUser.getPvp().addDeathsSumo(1);
         player.sendMessage("§4§lSUMO §4Você perdeu a luta contra " + target.getName());
+HelixPlayer killerAccount = HelixBukkit.getInstance().getPlayerManager().getPlayer(target.getName());
+		
+		int killstreak = killerAccount.getPvp().getWinstreaksumo();
+		if (String.valueOf(killstreak).contains("5") || (String.valueOf(killstreak).contains("0") || (String.valueOf(killstreak).contains("3")) && killstreak != 0)) {
+			Bukkit.broadcastMessage("§6§lWINS §e" + target.getName() + " tem um winstreak de §b" + killstreak + "§e na Sumo!");
+		}
+		HelixPlayer victimA = HelixBukkit.getInstance().getPlayerManager().getPlayer(player.getName());
+		int killstreak2 = victimA.getPvp().getWinstreaksumo();
+		if (killstreak2 >= 3) {
+			Bukkit.getOnlinePlayers().forEach(p -> p.sendMessage("§6" + victimA.getName() + " §eperdeu seu winstreak de §6" + victimA.getPvp().getWinstreaksumo() + " §e na Sumo para §6" +
+	                killerAccount.getName() + "§e!"));
+			victimA.getPvp().setWinstreaksumo(0);
+		}
         HelixBukkit.getInstance().getPlayerManager().getController().save(loserUser);
         HelixBukkit.getInstance().getPlayerManager().getController().save(killerUser);
     }
@@ -318,8 +331,21 @@ public class Sumo extends WarpDuoBattleHandle2 {
         
         loserUser.getPvp().addDeathsSumo(1);
         player.sendMessage("§c§lSUMO §cVocê perdeu a luta contra " + target.getName());
+HelixPlayer killerAccount = HelixBukkit.getInstance().getPlayerManager().getPlayer(target.getName());
+		
+		int killstreak = killerAccount.getPvp().getWinstreaksumo();
+		if (String.valueOf(killstreak).contains("5") || (String.valueOf(killstreak).contains("0") || (String.valueOf(killstreak).contains("3")) && killstreak != 0)) {
+			Bukkit.broadcastMessage("§6§lWINS §e" + target.getName() + " tem um winstreak de §b" + killstreak + "§e na Sumo!");
+		}
+		HelixPlayer victimA = HelixBukkit.getInstance().getPlayerManager().getPlayer(player.getName());
+		int killstreak2 = victimA.getPvp().getWinstreaksumo();
+		if (killstreak2 >= 3) {
+			Bukkit.getOnlinePlayers().forEach(p -> p.sendMessage("§6" + victimA.getName() + " §eperdeu seu winstreak de §6" + victimA.getPvp().getWinstreaksumo() + " §e na Sumo para §6" +
+	                killerAccount.getName() + "§e!"));
+			victimA.getPvp().setWinstreaksumo(0);
         HelixBukkit.getInstance().getPlayerManager().getController().save(loserUser);
         HelixBukkit.getInstance().getPlayerManager().getController().save(killerUser);
+    }
     }
 
     @EventHandler

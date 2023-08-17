@@ -37,7 +37,7 @@ public class EventoUtils {
     public static ArrayList<String> game = new ArrayList();
     public static List<UUID> whitelist = new ArrayList<>();
     public static List<Location> blocks = new ArrayList<>();
-    
+    public static List<Location> blocksV = new ArrayList<>();
     public static List<String> getEventoPlayersNames() {
         List<String> players = new ArrayList<>();
         Bukkit.getOnlinePlayers().forEach(p -> {
