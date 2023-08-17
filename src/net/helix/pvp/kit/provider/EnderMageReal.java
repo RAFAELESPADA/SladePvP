@@ -42,7 +42,7 @@ public void onKitEndermage(Location portal, Player p1, Player p2) {
       Math.abs(portal.getY() - player.getY()) > 3.0D);
   }
   public static boolean isSpawn(Location player) {
-	    return (player.getZ() > -195 && player.getZ() < -84);
+	    return (player.getZ() > -59 && player.getZ() < -28);
 	  }
 	 @EventHandler
 	 public void flash(PlayerDropItemEvent e) {

@@ -316,9 +316,9 @@ public class RDMAutomatic implements Listener {
     broadcast("§cO jogador §e" + firstPlayer.getName() + " §cirá lutar contra o §e" +  secondPlayer.getName());
     firstPlayer.setHealth(20.0D);
     secondPlayer.setHealth(20.0D);
-    firstPlayer.teleport(new Location(Bukkit.getWorld("spawn"), 654131.732D, 75.00000000D, 6161616.726D));
+    firstPlayer.teleport(new Location(Bukkit.getWorld("spawn"), -44.492D, 109.00000000D, -430.454D));
     firstPlayer.getEyeLocation().setYaw(180.0F);
-    secondPlayer.teleport(new Location(Bukkit.getWorld("spawn"), 654131.732D, 75.00000000D, 6161583.726D));
+    secondPlayer.teleport(new Location(Bukkit.getWorld("spawn"), -44.550D, 109.0000000000D, -358.578D));
     secondPlayer.getEyeLocation().setYaw(0.0F);
     firstPlayer.sendMessage("§eVocê irá batalhar contra o "  + secondPlayer.getName());
     secondPlayer.sendMessage("§eVocê irá batalhar contra o " + firstPlayer.getName());

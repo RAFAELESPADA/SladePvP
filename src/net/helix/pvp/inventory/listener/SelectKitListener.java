@@ -3,6 +3,7 @@ package net.helix.pvp.inventory.listener;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+import java.util.UUID;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -15,6 +16,9 @@ import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.server.ServerListPingEvent;
 
+import com.comphenix.protocol.events.PacketEvent;
+import com.comphenix.protocol.wrappers.WrappedGameProfile;
+import com.comphenix.protocol.wrappers.WrappedServerPing;
 import net.helix.core.bukkit.item.ItemBuilder;
 import net.helix.pvp.HelixPvP;
 import net.helix.pvp.inventory.KitInventory22;
@@ -30,7 +34,7 @@ import net.helix.pvp.kit.KitManager2;
 
 public class SelectKitListener implements Listener {
 	
-	
+    protected Object motdPingInstance;
 	
 	@EventHandler
 	public void onInvClick(InventoryClickEvent event) {
@@ -640,8 +644,18 @@ public class SelectKitListener implements Listener {
 		
 			
 	}
-	
-	 private static final List<String> motds = Arrays.asList("§fSistemas inovadores", "§fVeja as atualizações no §9Discord§f!" , "§4§lNOVO: §b§lEVENTO EUFORIA§f!" , "§a§lATUALIZAÇÕES MASSIVAS!"  , "§e§lBUGS CORRIGIDOS!", "§fCheque o novo kit §6Meteor§f!", "§fNovo sistema de §6ranks §fe §6eventos§f!");
+	 protected void setHoverMotd(List<String> hoverMotdLines) {
+         int hoverMotdLinesAmount = hoverMotdLines.size();
+         WrappedGameProfile[] profiles = new WrappedGameProfile[hoverMotdLinesAmount];
+         for (int i = 0; i < hoverMotdLinesAmount; ++i) {
+             profiles[i] = new WrappedGameProfile(new UUID(0,0), hoverMotdLines.get(i));
+         }
+         ((WrappedServerPing) motdPingInstance).setPlayers(Arrays.asList(profiles));
+     }
+	 public void setMotdPingInstance(Object motdPingInstance) {
+	        this.motdPingInstance = motdPingInstance;
+	    }
+	 private static final List<String> motds = Arrays.asList("§fMapa alterado!" , "§eSeason 1 iniciada!");
 
 	    private static String getMotdMessage(String motd) {
 	        float y = (float) motd.length();
@@ -659,6 +673,19 @@ public class SelectKitListener implements Listener {
 	        return "§6§lSLADEMC";
 	    }
 
+	  
+	  
+	    public void onPacketSending(final PacketEvent event) {
+	        try {
+	            WrappedServerPing ping = event.getPacket().getServerPings().read(0);
+	            setMotdPingInstance(ping);
+	            setHoverMotd(Arrays.asList("§fMapa alterado!" , "§eSeason 1 iniciada!"));
+	            event.getPacket().getServerPings().write(0, ping);
+	        } catch (Exception err) {
+	            Bukkit.getConsoleSender().sendMessage("ERRO NO MOTD");
+	            err.printStackTrace();
+	        }
+	        }
 	    public static String getPrefix() {
 	        return (getName()) + " §7»";
 	    }

@@ -120,7 +120,7 @@ public class EntityCalculateDamageListener implements Listener {
 	    @EventHandler
 		  public void onMove2ght(EntityDamageEvent e) {
 	    	if (e.getEntity().getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura") && EnderMageReal.isSpawn(e.getEntity().getLocation())) {
-	    		if (e.getEntity().getLocation().getZ() > 50) {
+	    		if (e.getEntity().getLocation().getZ() > -30) {
 	    			return;
 	    		}
 	    		e.setCancelled(true);
@@ -134,7 +134,7 @@ public class EntityCalculateDamageListener implements Listener {
 	    		if (!(e.getEntity() instanceof Player)) {
 	    			return;
 	    		}
-	    		if (e.getEntity().getLocation().getZ() > 50) {
+	    		if (e.getEntity().getLocation().getZ() > -30) {
 	    			return;
 	    		}
 		    	if (e.getEntity().getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura") && EnderMageReal.isSpawn(e.getEntity().getLocation())) {
