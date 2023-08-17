@@ -553,4 +553,3 @@ else if (HelixWarp.GLADIATOR.hasPlayer(player.getName())) {
 		 }
 	}
 	}
-

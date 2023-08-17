@@ -122,6 +122,7 @@ import net.helix.pvp.inventory.ShopKDRGUI;
 import net.helix.pvp.inventory.StatusGUI;
 import net.helix.pvp.inventory.listener.BuyKitListener;
 import net.helix.pvp.inventory.listener.Lapis;
+import net.helix.pvp.inventory.listener.PingListener;
 import net.helix.pvp.inventory.listener.SelectKitListener;
 import net.helix.pvp.inventory.listener.SelectWarpListener;
 import net.helix.pvp.kit.provider.Barbarian;
@@ -250,7 +251,7 @@ new BukkitRunnable() {
 	}}.runTaskTimer(this, 0, 1 * 10L);
 
 	
-	
+	new PingListener();
 new BukkitRunnable() {
 			
 			@Override
