@@ -153,7 +153,6 @@ import net.helix.pvp.listener.ServerEssentialsListener;
 import net.helix.pvp.listener.ShowPlayerInfoListener;
 import net.helix.pvp.listener.SignListener;
 import net.helix.pvp.listener.SoupHandlerListener;
-import net.helix.pvp.listener.SumoKillStreak;
 import net.helix.pvp.scoreboard.ScoreboardBuilder;
 import net.helix.pvp.warp.provider.SetX1;
 import net.helixpvp.kit2.AntiProxyListener;
@@ -611,7 +610,6 @@ new BukkitRunnable() {
 		pm.registerEvents(new ShopKDRGUI(), this);
 		pm.registerEvents(new EventoListeners(), this);
 		pm.registerEvents(new Grappler(), this);
-		pm.registerEvents(new SumoKillStreak(), this);
 		pm.registerEvents(new OnevsOneKS(), this);
 		pm.registerEvents(new AntiProxyListener(), this);
 		pm.registerEvents(new NoBreakEvent(), this);

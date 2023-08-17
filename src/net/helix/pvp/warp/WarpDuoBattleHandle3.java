@@ -78,10 +78,9 @@ if (p1.getLocation().distance(p2.getLocation()) > 80) {
 }
         Random ran = new Random();
 
-        int x = ran.nextInt(6561);
-        int y = ran.nextInt(76);
-        int z = ran.nextInt(7585);
-
+        int x = ran.nextInt(400);
+        int y = ran.nextInt(130);
+        int z = ran.nextInt(400);
         Location newloc = new Location(p1.getWorld(), x, y, z);
         GladiatorListener.newGladiatorListenerArena(p1, p2, newloc);
 

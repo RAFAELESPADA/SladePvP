@@ -150,6 +150,12 @@ public class PlayerDeathListener implements Listener {
 				Reason.GLADIATOR,
 				validKill
 		);
+		HelixPlayerDeathEvent helixPlayerDeathEventkbVv2 = new HelixPlayerDeathEvent(
+				player, killer, deathLocation,
+				new ArrayList<>(event.getDrops()),
+				Reason.POT,
+				validKill
+		);
 		HelixPlayerDeathEvent helixPlayerDeathEvent4 = new HelixPlayerDeathEvent(
 				player, killer, deathLocation,
 				new ArrayList<>(event.getDrops()),
@@ -175,6 +181,9 @@ public class PlayerDeathListener implements Listener {
 		 }
 		 else if (HelixWarp.FPS.hasPlayer(player.getName())) {
 			 Bukkit.getPluginManager().callEvent(helixPlayerDeathEvent5);	 
+		 }
+		 else if (HelixWarp.POTPVP.hasPlayer(player.getName())) {
+			 Bukkit.getPluginManager().callEvent(helixPlayerDeathEventkbVv2);	 
 		 }
 		 else if (HelixWarp.LAVACHALLENGE.hasPlayer(player.getName())) {
 			 Bukkit.getPluginManager().callEvent(helixPlayerDeathEvent4);	 

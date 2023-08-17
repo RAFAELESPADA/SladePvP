@@ -8,6 +8,7 @@ import net.helix.core.bukkit.util.BuildUtil;
 import net.helix.core.util.HelixCooldown;
 import net.helix.pvp.HelixPvP;
 import net.helix.pvp.event.HelixPlayerDeathEvent;
+import net.helix.pvp.evento.EventoUtils;
 import net.helix.pvp.kit.KitManager;
 import net.helix.pvp.kit.KitManager2;
 import net.helix.pvp.kit.provider.GladiatorListener;
@@ -172,7 +173,15 @@ public class Gladiator extends WarpDuoBattleHandle3 {
 		target.sendMessage("§e§lGLAD §eVocê foi convidado por " + player.getName() + " para uma batalha");
 		player.sendMessage("§6§lGLAD §6Você convidou " + target.getName() + " para uma batalha");
 	}
-	
+	 public static void clearBlocks() {
+	        EventoUtils.blocksV.forEach(blockLoc -> {
+	            if (blockLoc.getBlock().getType() != Material.AIR) {
+	                blockLoc.getBlock().setType(Material.AIR);
+	            }
+	        });
+	        EventoUtils.blocksV.clear();
+	    }
+
 	@EventHandler
 	public void onDeath(HelixPlayerDeathEvent event) {
 		if (!HelixWarp.GLADIATOR.hasPlayer(event.getPlayer().getName())) {
@@ -188,6 +197,7 @@ public class Gladiator extends WarpDuoBattleHandle3 {
 		int loserWithdrawnCoins = random.nextInt(20 + 1 - 5) + 5;
 		loserHelixPlayer.getPvp().adddeathsX1(1);
 		loserHelixPlayer.getPvp().setKillstreak(0);
+		
 		loser.sendMessage("§cVocê perdeu a batalha contra " + winner.getName() + "§c.");
 		if ((loserHelixPlayer.getPvp().getCoins() - loserWithdrawnCoins) >= 0) {
 			loserHelixPlayer.getPvp().removeCoins(loserWithdrawnCoins);
@@ -202,7 +212,7 @@ public class Gladiator extends WarpDuoBattleHandle3 {
 			victimHelixPlayer.getPvp().setXp(0);
 			loser.sendMessage("§c§l[-] " + victimHelixPlayer.getPvp().getXp() + " XP");
 		}
-
+		 clearBlocks();
 		HelixBukkit.getInstance().getPlayerManager().getController().save(loserHelixPlayer);
 		
 		new BukkitRunnable() {

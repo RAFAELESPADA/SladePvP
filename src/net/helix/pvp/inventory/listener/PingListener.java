@@ -49,10 +49,6 @@ public class PingListener{
             ReflectedObject playerSample = ping.get("b");
             playerSample.setField("c",new GameProfile[] {new GameProfile(new UUID(0,0)/*Not sure what will hapen if set to null*/, ChatColor.RED + "Venha jogar no melhor Servidor")});
 
-            ReflectedObject serverData = ping.get("c");
-            serverData.setField("b",1); // so it will show the version.
-            serverData.setField("a", ChatColor.GREEN + "KITPVP"); // if we do not set the chat color, it will be red
-
             return super.a(serverPing, type, jsonSerializationContext);
         }
     }
