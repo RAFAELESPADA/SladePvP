@@ -562,7 +562,11 @@ else if (HelixWarp.GLADIATOR.hasPlayer(player.getName())) {
 		Scoreboard scoreboard = player.getScoreboard();
 
 		final Player winner = GladiatorListener.combateGlad.get(player);
-		scoreboard.getTeam("oponente").setSuffix(winner == null ? " §7Nenhum" : "§b " + winner.getName());
+		String srt = winner == null ? " §7Nenhum" : "§b " + winner.getName();
+		if(srt.length() > 13) {
+		   srt = srt.substring(0,12);
+		} 
+		scoreboard.getTeam("oponente").setSuffix(srt);
 		scoreboard.getTeam("ping").setSuffix(" §a" + ((CraftPlayer) player).getHandle().ping + " ms");
 		scoreboard.getTeam("coins").setSuffix(HelixDecimalFormat.format(pvp.getCoins()));
 		scoreboard.getTeam("xp").setSuffix(HelixDecimalFormat.format(pvp.getXp()));

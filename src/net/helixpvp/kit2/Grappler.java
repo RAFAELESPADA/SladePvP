@@ -7,6 +7,7 @@ import net.helix.pvp.kit.KitHandler2;
 import net.helix.pvp.kit.KitManager;
 import net.helix.pvp.kit.KitManager2;
 import net.helix.pvp.kit.provider.EnderMageReal;
+import net.helix.pvp.kit.provider.GladiatorListener;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -92,7 +93,8 @@ public void onPlayerInteract(PlayerInteractEvent event) {
 		sendMessageCooldown(p);
 		return;
 	}
-	if ((p.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura") - 12) && EnderMageReal.isSpawn(p.getLocation())) {
+	Player target = p;
+	if ((p.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura") - 12) && EnderMageReal.isSpawn(p.getLocation()) && !GladiatorListener.combateGlad.containsKey(target) && !net.helixpvp.kit2.GladiatorListener.combateGlad.containsKey(target)) {
 			p.sendMessage("§cNão use o grappler perto no spawn!");
 			Location tp = p.getLocation();
 
