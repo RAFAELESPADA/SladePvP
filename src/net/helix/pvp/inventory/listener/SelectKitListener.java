@@ -655,7 +655,7 @@ public class SelectKitListener implements Listener {
 	 public void setMotdPingInstance(Object motdPingInstance) {
 	        this.motdPingInstance = motdPingInstance;
 	    }
-	 private static final List<String> motds = Arrays.asList("§fMapa alterado!" , "§eSeason 1 iniciada!");
+	 private static final List<String> motds = Arrays.asList("§a§lMAPAS §eALTERADOS!" , "§b§lSeason 1 §eINICIADA!" , "§3§lSISTEMAS §eALTERADOS!");
 
 	    private static String getMotdMessage(String motd) {
 	        float y = (float) motd.length();

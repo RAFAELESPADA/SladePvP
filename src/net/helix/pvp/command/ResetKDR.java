@@ -37,13 +37,22 @@ public class ResetKDR
               return true;  
     	  }
     	  HelixPlayer pk = HelixBukkit.getInstance().getPlayerManager().getPlayer(t.getName());
+    	  HelixPlayer playerData = HelixBukkit.getInstance().getPlayerManager().getPlayer(t.getName());
 			pk.getPvp().setDeaths(0);
 			pk.getPvp().setKills(0);
 			pk.getPvp().setCoins(0);
 			pk.getPvp().setKillstreak(0);
+			 playerData.getPvp().setXp(0);
+             playerData.getPvp().setWinstreakx1(0);
+             playerData.getPvp().setWinsx1(0);
+             playerData.getPvp().setKillsfps(0);
+             playerData.getPvp().setDeathssumo(0);
+             playerData.getPvp().setKillsfps(0);
+             playerData.getPvp().setDeathsx1(0);
+             playerData.getPvp().setWinstreaksumo(0);
 			Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "ajl removeplayer " + t.getName() + " helixpvp2_player_kills");
 			if (t != null) {
-			t.kickPlayer("§cYour kdr gets reseted!");
+			t.kickPlayer("§cSeu kdr foi resetado por um staff!");
 			}
 			Bukkit.broadcast("§4§lRESETKDR §a" + p.getName() + " §fresetou o KDR do Jogador " + t.getName(), "kombo.cmd.report");
       }
