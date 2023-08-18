@@ -36,6 +36,11 @@ public class Fisherman extends KitHandler {
 				|| !ItemBuilder.has(event.getPlayer().getItemInHand(), "kit-handler", "fisherman")) {
 			return;
 		}
+		 if (hasCooldown(event.getPlayer())) {
+		        sendMessageCooldown(event.getPlayer());
+		        event.setCancelled(true);
+		        return;
+		      }
 		Entity caught = event.getCaught();
 		 if (KitManager.getPlayer(caught.getName()).hasKit(HelixKit.NEO) || KitManager2.getPlayer(caught.getName()).haskit2(HelixKit2.NEO)) {
 			 event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.NOTE_BASS_DRUM, 15.0f, 15.0f);
@@ -45,5 +50,6 @@ public class Fisherman extends KitHandler {
 		caught.teleport(event.getPlayer());
 		caught.sendMessage("§c§lFISHERMAN: §fVocê foi puxado por " + event.getPlayer().getName());
 		event.getPlayer().sendMessage("§c§lFISHERMAN: §fVocê puxou " + caught.getName());
+		addCooldown(event.getPlayer() , 6);
 	}
 }
