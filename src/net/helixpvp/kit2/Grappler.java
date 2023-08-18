@@ -63,8 +63,9 @@ public void usarf(PlayerMoveEvent e) {
 	if ((p.getItemInHand().getType().equals(Material.LEASH))) {
  			if (KitManager2.getPlayer(e.getPlayer().getName()).haskit2(this)) {
  				
- 	   if ((p.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura") - 12) && EnderMageReal.isSpawn(p.getLocation())) {
-			p.sendMessage("§cNão use o grappler perto no spawn!");
+ 				Player target = p;
+ 		 	   if ((p.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura") - 12) && EnderMageReal.isSpawn(p.getLocation())  && !GladiatorListener.combateGlad.containsKey(target) && !net.helixpvp.kit2.GladiatorListener.combateGlad.containsKey(target)) {
+ 					p.sendMessage("§cNão use o grappler perto no spawn!");
 			Location tp = p.getLocation();
 
 			tp.setY(tp.getY()-getDistance(p));
