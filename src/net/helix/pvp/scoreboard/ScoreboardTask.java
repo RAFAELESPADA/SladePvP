@@ -14,7 +14,7 @@ public class ScoreboardTask extends BukkitRunnable {
 	@Override
 	public void run() {
 		Bukkit.getOnlinePlayers().stream().filter(
-				online -> online.getScoreboard().getObjective("pvp") != null || online.getScoreboard().getObjective("pvp2") != null || online.getScoreboard().getObjective("pvp3") != null || online.getScoreboard().getObjective("pvp4") != null || online.getScoreboard().getObjective("pvp5") != null || online.getScoreboard().getObjective("pvp6") != null || online.getScoreboard().getObjective("pvp7")  != null || online.getScoreboard().getObjective("pvpg")  != null
+				online -> online.getScoreboard().getObjective("pvp") != null || online.getScoreboard().getObjective("pvp2") != null || online.getScoreboard().getObjective("pvppt") != null || online.getScoreboard().getObjective("pvp3") != null || online.getScoreboard().getObjective("pvp4") != null || online.getScoreboard().getObjective("pvp5") != null || online.getScoreboard().getObjective("pvp6") != null || online.getScoreboard().getObjective("pvp7")  != null || online.getScoreboard().getObjective("pvpg")  != null
 		).forEach(builder::update);
 	}
 }
