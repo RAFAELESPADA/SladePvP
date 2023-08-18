@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
@@ -21,16 +22,16 @@ public class ShopGUI implements Listener {
 		return new ItemStack(Material.VINE, 1);
 	}
 	public static void open(Player player) {
-		Inventory inventory = Bukkit.createInventory(null, 54, inventoryName);
+		Inventory inventory = Bukkit.createInventory(player, InventoryType.HOPPER, inventoryName);
 		
 
-		inventory.setItem(30, new ItemBuilder("§cLoja de Kits primários", Material.EMERALD).nbt("shop")
+		inventory.setItem(1, new ItemBuilder("§cLoja de Kits primários", Material.CHEST).nbt("shop")
 				.toStack()
 		);
-		inventory.setItem(32, new ItemBuilder("§cLoja de Kits secundários", Material.EMERALD).nbt("shop2")
+		inventory.setItem(3, new ItemBuilder("§cLoja de Kits secundários", Material.CHEST).nbt("shop2")
 				.toStack()
 		);
-		inventory.setItem(31, new ItemBuilder("§cReset de KDR", Material.REDSTONE).nbt("shop3")
+		inventory.setItem(2, new ItemBuilder("§cReset de KDR", Material.NETHER_STAR).nbt("shop3")
 				.toStack()
 		);
 		
