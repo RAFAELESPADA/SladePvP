@@ -41,6 +41,7 @@ import net.helix.pvp.kit.KitHandler;
 import net.helix.pvp.kit.KitHandler2;
 import net.helix.pvp.kit.KitManager;
 import net.helix.pvp.kit.KitManager2;
+import net.helix.pvp.kit.provider.Surprise;
 import net.helix.pvp.warp.HelixWarp;
 
 
@@ -150,6 +151,14 @@ Bukkit.getConsoleSender().sendMessage(player.getName() + " Choosed pvp kit! (Pul
 		                	return;
 		                }
 		                if (KitManager.getPlayer(player.getName()).hasKit(HelixKit.DESHFIRE) && KitManager2.getPlayer(player.getName()).haskit2(HelixKit2.STOMPER)) {
+		                	HelixWarp.SPAWN.send(player);
+		                	KitManager.getPlayer(player.getName()).removeKit();
+		            		KitManager2.getPlayer(player.getName()).removekit2();
+		                	p.sendMessage(ChatColor.RED + "Você estava com uma combinação proibida e foi mandado de volta pro spawn");
+		                	p.sendMessage(ChatColor.RED + "Kit Deshfire e Stomper é proibido.");
+		                	return;
+		                }
+		                if (KitManager.getPlayer(player.getName()).hasKit(HelixKit.STOMPER) && KitManager2.getPlayer(player.getName()).haskit2(HelixKit2.DESHFIRE)) {
 		                	HelixWarp.SPAWN.send(player);
 		                	KitManager.getPlayer(player.getName()).removeKit();
 		            		KitManager2.getPlayer(player.getName()).removekit2();
@@ -367,6 +376,12 @@ public void Items(Player player) {
 	player.getActivePotionEffects().forEach(potion -> player.removePotionEffect(potion.getType()));
 	player.getInventory().setHeldItemSlot(0);
 	/* 348 */  
+	if (KitManager.getPlayer(player.getName()).hasKit(HelixKit.SURPRISE)) {
+		KitManager.getPlayer(player.getName()).setKit(Surprise.getRandomKit());
+		
+		player.sendMessage(ChatColor.BLUE + "Surprise selecionou " + KitManager.getPlayer(player.getName()).getKit());
+		Bukkit.getConsoleSender().sendMessage(player.getName() + " Choosed surprise kit! ("  +  KitManager.getPlayer(player.getName()).getKit() + ")");
+	}
 	if (KitManager.getPlayer(player.getName()).hasKit(HelixKit.SONIC)) {
 		player.getInventory().setItem(1, new ItemBuilder("§aSonic!", Material.LAPIS_BLOCK)
 				.nbt("kit-handler", "sonic")
@@ -704,6 +719,13 @@ public void Items(Player player) {
 										player.getInventory().setItem(2, new ItemBuilder("§eCaboom!", Material.GOLD_AXE)
 												.nbt("cancel-drop")
 												.nbt("kit-handler", "thor")
+												.toStack()
+										);
+										}
+									if (KitManager2.getPlayer(player.getName()).haskit2(HelixKit2.DESHFIRE)) {
+										player.getInventory().setItem(2, new ItemBuilder("§cDesh!", Material.REDSTONE_BLOCK)
+												.nbt("cancel-drop")
+												.nbt("kit-handler", "deshfire")
 												.toStack()
 										);
 										}
