@@ -722,6 +722,13 @@ public void Items(Player player) {
 												.toStack()
 										);
 										}
+									if (KitManager2.getPlayer(player.getName()).haskit2(HelixKit2.DESHFIRE)) {
+										player.getInventory().setItem(2, new ItemBuilder("§cDesh!", Material.REDSTONE_BLOCK)
+												.nbt("cancel-drop")
+												.nbt("kit-handler", "deshfire")
+												.toStack()
+										);
+										}
 									if (KitManager2.getPlayer(player.getName()).haskit2(HelixKit2.WATERBENDER)) {
 									player.getInventory().setItem(2, new ItemBuilder("§bWaterBender!", Material.LAPIS_BLOCK)
 								            .addEnchant(Enchantment.KNOCKBACK, 1)
