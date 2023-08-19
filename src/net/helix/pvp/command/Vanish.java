@@ -20,7 +20,7 @@ public class Vanish implements CommandExecutor {
         Player player = (Player) sender;
         if (command.getName().equalsIgnoreCase("vanish") || command.getName().equalsIgnoreCase("v")) {
             if (!player.hasPermission("kombo.cmd.report")) {
-                player.sendMessage("§cVocê não tem permiss§o");
+                player.sendMessage("§cVocê não tem permissão");
                 return true;
             }
             if (!VanishUtil.has(player.getName())) {

@@ -13,11 +13,11 @@ commands:
    evento:
    tpall:
    sc:
-   report:
    crash:
    setarena:
    regras:
    stats:
+   sendcredits:
    1v1iniciar:
    status:
    grant:
@@ -52,7 +52,6 @@ commands:
    warpinfo:
    fly:
    kitpvp:
-   reporttoggle:
    sealend123:
    lavainiciar:
    arenainiciar:
