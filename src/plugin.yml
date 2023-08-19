@@ -18,6 +18,7 @@ commands:
    setarena:
    regras:
    stats:
+   sendcredits:
    1v1iniciar:
    status:
    grant:

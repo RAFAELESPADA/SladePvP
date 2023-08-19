@@ -91,6 +91,7 @@ import net.helix.pvp.command.ReportToggle;
 import net.helix.pvp.command.ResetKDR;
 import net.helix.pvp.command.SC;
 import net.helix.pvp.command.ScoreboardCMD;
+import net.helix.pvp.command.SendCredits;
 import net.helix.pvp.command.ServerTimerEvent2;
 import net.helix.pvp.command.SetArena;
 import net.helix.pvp.command.SetFeast;
@@ -222,7 +223,7 @@ new BukkitRunnable() {
 			@SuppressWarnings("deprecation")
 			@Override
 			public void run() {
-				Location loc = new Location(Bukkit.getWorld("spawn"), -167.435, 135.00000000000, -110.615);
+				Location loc = new Location(Bukkit.getWorld("spawn"), -244.595, 238.0000000, -49.225);
 				Location loc2 = new Location(Bukkit.getWorld("spawn") , -166.642, 136.000000000, -110.830);
 				Location loc3 = new Location(Bukkit.getWorld("spawn") , -168.410, 136.000000000, -110.611);
 				Block b = loc.getBlock();
@@ -588,6 +589,7 @@ new BukkitRunnable() {
 		getCommand("dinheiro").setExecutor(new Money());
 		getCommand("warp").setExecutor(new Warp());
 		getCommand("grant").setExecutor(new Grant());
+		getCommand("sendcredits").setExecutor(new SendCredits());
 		getCommand("aplicar").setExecutor(new Aplicar());
 		getCommand("sendtitle").setExecutor(new AvisoT());
 		getCommand("evento").setExecutor(new EventoComando());
