@@ -223,7 +223,7 @@ public class Sumo extends WarpDuoBattleHandle2 {
         if (!findOpponent(player).isPresent()) {
             return;
         }
-        if (!(player.getLocation().getY() < 34 && player.getLocation().getX() > 1615500)) {
+        if (!(player.getLocation().getY() <= 34 && player.getLocation().getX() < 1615500)) {
         	return;
         }
         Player target = findOpponent(player).get();
