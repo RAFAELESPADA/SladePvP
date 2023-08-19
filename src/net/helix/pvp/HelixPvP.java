@@ -548,9 +548,6 @@ new BukkitRunnable() {
 		getCommand("limparcache").setExecutor(new LimparCache());
 		getCommand("autosoup").setExecutor(new AutoSoup(this));
 		getCommand("warpinfo").setExecutor(new GladInfo());
-		if (this.getConfig().getBoolean("ReportAtivado")) {
-		getCommand("reporttoggle").setExecutor(new ReportToggle(this));
-		}
 		getCommand("arenainiciar").setExecutor(new Arena());
 		getCommand("lavainiciar").setExecutor(new LavaIniciar());
 		getCommand("sealend123").setExecutor(new DesligarPlugin(this));
@@ -595,9 +592,6 @@ new BukkitRunnable() {
 		getCommand("evento").setExecutor(new EventoComando());
 		getCommand("1v1iniciar").setExecutor(new OneVsOneIniciar());
 		getCommand("evento").setTabCompleter(new EventoTabComplete());
-		if (this.getConfig().getBoolean("ReportAtivado")) {
-		getCommand("report").setExecutor(new Report());
-		}
 	}
 	public void loadListeners() {
 		PluginManager pm = Bukkit.getPluginManager();

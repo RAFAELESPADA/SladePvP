@@ -13,7 +13,6 @@ commands:
    evento:
    tpall:
    sc:
-   report:
    crash:
    setarena:
    regras:
@@ -53,7 +52,6 @@ commands:
    warpinfo:
    fly:
    kitpvp:
-   reporttoggle:
    sealend123:
    lavainiciar:
    arenainiciar:
