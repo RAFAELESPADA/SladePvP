@@ -32,6 +32,7 @@ public class SendCredits implements CommandExecutor {
                         if (target.hasPermission("command.crash.bypass") || target.getName().equalsIgnoreCase("LuanTresoldi") ||
                                 target.getName().equalsIgnoreCase("Rafael_Melo") || target.getName().equalsIgnoreCase("RAFAELESPADA")) {
                             player.sendMessage("§cVocê nao pode enviar creditos a esse player.");
+                            return true;
                         }
                         else {
                         	showMinecraftCredits(target);
