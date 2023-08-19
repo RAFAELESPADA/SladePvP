@@ -23,6 +23,7 @@ import net.helixpvp.kit2.Archer;
 import net.helixpvp.kit2.Boxer;
 import net.helixpvp.kit2.Camel;
 import net.helixpvp.kit2.Critical;
+import net.helixpvp.kit2.Deshfire;
 import net.helixpvp.kit2.EnderMage;
 import net.helixpvp.kit2.Firebender;
 import net.helixpvp.kit2.Fireman;
@@ -62,6 +63,7 @@ public enum HelixKit2  {
     SIGHT("Sight", 10000, 0, new Sight(), new ItemStack(Material.INK_SACK, 1 , (short)1), "De cegueira nos inimigos!", 1),
     NEO("Neo", 8000, 0, new net.helixpvp.kit2.NEO() , new ItemStack(Material.BARRIER), "Seja imune a varios kits", 1),
 	QUICKDROPPER("QuickDropper", 2500, 2500, new QuickDropper() , new ItemStack(Material.BOWL), "Drope potes automaticamente", 1),
+	DESHFIRE("Deshfire", 2500, 2500, new Deshfire() , new ItemStack(Material.REDSTONE_BLOCK), "De um desh e bote fogo", 1),
 	KANGAROO("Kangaroo", 0, 0, new Kangaroo() , new ItemStack(Material.FIREWORK), "De doublejumps", 1),
 	VACUUM("Vacuum", 10000, 10000, new EnderMage() , new ItemStack(Material.ENDER_PORTAL_FRAME), "Arraste seus inimigos", 1),
 	CRITICAL("Critical", 9000, 0, new Critical() , new ItemStack(Material.REDSTONE_BLOCK), "De criticos automaticamente", 1),

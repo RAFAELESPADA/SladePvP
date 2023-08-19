@@ -3,6 +3,7 @@ package net.helix.pvp.kit;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -51,6 +52,7 @@ import net.helix.pvp.kit.provider.Sight;
 import net.helix.pvp.kit.provider.Snail;
 import net.helix.pvp.kit.provider.Sonic;
 import net.helix.pvp.kit.provider.Stomper;
+import net.helix.pvp.kit.provider.Surprise;
 import net.helix.pvp.kit.provider.Switcher;
 import net.helix.pvp.kit.provider.Thor;
 import net.helix.pvp.kit.provider.Thresh;
@@ -66,6 +68,7 @@ public enum HelixKit {
 
 	NENHUM("Nenhum", 0, 0 , new Nenhum(), new ItemStack(Material.BARRIER), "Sem habilidades" , 1),
 	PVP("PvP", HelixPvP.getInstance().getConfig().getInt("PvPPrice"), 0, new PvP(), new ItemStack(Material.STONE_SWORD), HelixPvP.getInstance().getConfig().getString("PvPLore") , 1),
+	SURPRISE("Surprise", 0, 0, new Surprise(), new ItemStack(Material.CAKE), "Receba uma habilidade aleatória" , 1),
 	KANGAROO("Kangaroo", HelixPvP.getInstance().getConfig().getInt("KangarooPrice"), 0,  new Kangaroo(), new ItemStack( Material.FIREWORK), HelixPvP.getInstance().getConfig().getString("KangarooLore") ,1),
 	THOR("Thor", HelixPvP.getInstance().getConfig().getInt("ThorPrice"), 0, new Thor(), new ItemStack(Material.GOLD_AXE), HelixPvP.getInstance().getConfig().getString("ThorLore") , 1),
 	ARCHER("Archer",HelixPvP.getInstance().getConfig().getInt("ArcherPrice"), 0, new Archer(), new ItemStack(Material.BOW), HelixPvP.getInstance().getConfig().getString("ArcherLore") , 1),

@@ -28,6 +28,7 @@ import net.helix.pvp.kit.provider.GladiatorListener;
 import net.helix.pvp.listener.PlayerJoinListener;
 import net.helix.pvp.warp.HelixWarp;
 import net.helix.pvp.warp.WarpDuoBattleHandle;
+import net.helix.pvp.warp.provider.Gladiator;
 import net.helix.pvp.warp.provider.OneVsOne;
 import net.helix.pvp.warp.provider.Sumo;
 
@@ -97,6 +98,10 @@ public class SpawnCMD extends WarpDuoBattleHandle implements Listener, CommandEx
 		 if (OneVsOne.fastChallenge.contains(p)) {
 			 OneVsOne.fastChallenge.remove(p);
 			 p.sendMessage(ChatColor.GREEN + "Você saiu da fila da 1v1");
+		 }
+		 if (Gladiator.fastChallenge.contains(p)) {
+			 Gladiator.fastChallenge.remove(p);
+			 p.sendMessage(ChatColor.DARK_RED + "Você saiu da fila do gladiator");
 		 }
 		 if (KitManager.getPlayer(p.getName()).hasKit() && !p.hasPermission("kombo.cmd.report")) {
 			 indo.add(p.getName());

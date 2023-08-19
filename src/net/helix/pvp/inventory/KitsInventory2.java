@@ -63,16 +63,16 @@ public class KitsInventory2 {
 						.nbt("kit-gui2", HelixKit2.ARCHER.getName())
 						.toStack()
 				);
-		if (player.hasPermission("kombo.kit2.barbarian")) {
-		inventory.setItem(12 , new ItemBuilder("§a" + HelixKit2.BARBARIAN.getName(), HelixKit2.BARBARIAN.getIcon())
-				.lore("§f" + HelixKit2.BARBARIAN.getDescription())
+		if (player.hasPermission("kombo.kit2.deshfire")) {
+		inventory.setItem(12 , new ItemBuilder("§a" + HelixKit2.DESHFIRE.getName(), HelixKit2.DESHFIRE.getIcon())
+				.lore("§f" + HelixKit2.DESHFIRE.getDescription())
 						.addFlags(ItemFlag.HIDE_ATTRIBUTES,
 								ItemFlag.HIDE_DESTROYS,
 								ItemFlag.HIDE_ENCHANTS,
 								ItemFlag.HIDE_PLACED_ON,
 								ItemFlag.HIDE_POTION_EFFECTS,
 								ItemFlag.HIDE_UNBREAKABLE)
-						.nbt("kit-gui2", HelixKit2.BARBARIAN.getName())
+						.nbt("kit-gui2", HelixKit2.DESHFIRE.getName())
 						.toStack()
 				);
 		}

@@ -293,6 +293,18 @@ public class KitsInventory {
 					.toStack()
 			);
 	}
+		inventory.setItem(40 , new ItemBuilder("§a" + HelixKit.SURPRISE.getName(), HelixKit.SURPRISE.getIcon())
+				.lore("§f" + HelixKit.SURPRISE.getDescription())
+						.addFlags(ItemFlag.HIDE_ATTRIBUTES,
+								ItemFlag.HIDE_DESTROYS,
+								ItemFlag.HIDE_ENCHANTS,
+								ItemFlag.HIDE_PLACED_ON,
+								ItemFlag.HIDE_POTION_EFFECTS,
+								ItemFlag.HIDE_UNBREAKABLE)
+						.nbt("kit-gui", HelixKit.SURPRISE.getName())
+						.toStack()
+				);
+		
 		inventory.setItem(53, new ItemBuilder("§aPróximo", Material.ARROW).nbt("prox")
 				.toStack()
 		);

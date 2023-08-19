@@ -154,7 +154,7 @@ public class KitsInventoryPageTwo {
 		}
 		if (player.hasPermission("kombo.kit.sight")) {
 		inventory.setItem(22 , new ItemBuilder("§a" + HelixKit.SIGHT.getName(), HelixKit.SIGHT.getIcon())
-				.lore("§f" + HelixKit.SCOUT.getDescription())
+				.lore("§f" + HelixKit.SIGHT.getDescription())
 						.addFlags(ItemFlag.HIDE_ATTRIBUTES,
 								ItemFlag.HIDE_DESTROYS,
 								ItemFlag.HIDE_ENCHANTS,
@@ -180,7 +180,7 @@ public class KitsInventoryPageTwo {
 		}
 		if (player.hasPermission("kombo.kit.sonic")) {
 		inventory.setItem(24 , new ItemBuilder("§a" + HelixKit.SONIC.getName(), HelixKit.SONIC.getIcon())
-				.lore("§f" + HelixKit.SNAIL.getDescription())
+				.lore("§f" + HelixKit.SONIC.getDescription())
 						.addFlags(ItemFlag.HIDE_ATTRIBUTES,
 								ItemFlag.HIDE_DESTROYS,
 								ItemFlag.HIDE_ENCHANTS,
