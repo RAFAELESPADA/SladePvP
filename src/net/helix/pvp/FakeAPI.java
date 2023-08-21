@@ -18,13 +18,19 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.scoreboard.DisplaySlot;
+import org.bukkit.scoreboard.NameTagVisibility;
+import org.bukkit.scoreboard.Scoreboard;
+import org.bukkit.scoreboard.Team;
 
 import me.neznamy.tab.api.TabAPI;
+import me.neznamy.tab.api.nametag.UnlimitedNameTagManager;
 import net.helix.core.bukkit.HelixBukkit;
 import net.helix.core.bukkit.account.HelixPlayer;
 import net.helix.core.util.HelixCooldown;
 import net.helix.pvp.command.Fake;
 import net.helix.pvp.listener.PlayerJoinListener;
+import net.helix.pvp.warp.HelixWarp;
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.LuckPermsProvider;
 import net.luckperms.api.model.user.User;
@@ -87,6 +93,46 @@ public class FakeAPI {
         "RondoniaPvP", 
         "YumiiiPvP", 
         "MinhaMaldicao", 
+        "Viniciusgf",
+        "BachMen",
+        "Vexionm",
+        "Rarutggv",
+        "Kaption",
+        "Hideengg",
+        "BlackPU",
+        "RafaelALindo",
+        "BemLindiin",
+        "LagartoKA",
+        "MeuCaoNegro",
+        "Biiiling",
+        "ShingechiY",
+        "PelejaDoMal",
+        "QQuuu",
+        "QueQueFoi3",
+        "makapaka",
+        "UmBananinha",
+        "Binjii",
+        "LegalTYT",
+        "JackRipper",
+        "NarakuMal",
+        "Carneeeee",
+        "LugarPvP",
+        "CasaTorta",
+        "Veiiin55",
+        "MuitiProxyt",
+        "SouSmartBR",
+        "IsabelaLinda",
+        "AmoGarotas4",
+        "PessoaGay3",
+        "ThalesRoberto",
+        "MuitaMaldito",
+        "MilagreJesus",
+        "DioDoBem",
+        "Rafffff",
+        "Araujo175",
+        "Logaritmo5",
+        "HeeyCap",
+        "Quantyo", 
         "Devesry", 
         "Salgado99", 
         "Azar99", 
@@ -106,6 +152,20 @@ public class FakeAPI {
         "AlvimCott", 
         "DefeatAsuma", 
         "DefeatCali", 
+        "FinnHumano",
+        "MeDesculpee",
+        "EuCOPII",
+        "UmaLingua", 
+        "Retaliado", 
+        "VariacaoK",
+        "LerdoNao",
+        "Kuryama99",
+        "RobustoMuito",
+        "Vem1v1L",
+        "LauraLinn",
+        "PapelPedra6",
+        "Reitorrt", 
+        "Yuuuuim", 
         "BinaryPvP", 
         "FinnHuman", 
         "JakeDog", 
@@ -156,10 +216,18 @@ public class FakeAPI {
         "Ravioli", 
         "MorteRitual", 
         "LindaPvP", 
+        "sdcfvb",
+        "kjtgfv",
+        "45tghg",
+        "sxdcfgh",
+        "lytgv5", 
+        "6yhgg",
+        "56hgtf",
+        "dddd4", 
         "UrsimDODO", 
         "PinnDyt", 
         "TorsoQuebrou", 
-        "Tecnica" });
+        "Tecnicagh" });
   
   private static void addFakeCooldown(Player playerData) {
     HelixCooldown.create(playerData.getName(), "fake", TimeUnit.SECONDS, 15L);
@@ -182,13 +250,22 @@ public class FakeAPI {
       TabAPI apitab = TabAPI.getInstance();
       try {
           String prefix = api.getGroupManager().getGroup("default").getCachedData().getMetaData().getPrefix();
-
+      	Fake.playerfakename.put(player, fake);
+      	changeGamerProfileName(fake, player);
+      	hideNametags(player);
+ 		 Bukkit.getConsoleSender().sendMessage("" + player.getName() + " teve a nametag escondida!");
           // Get an OfflinePlayer object for the player
-
-         
-
-        	Fake.playerfakename.put(player, fake);
-        	changeGamerProfileName(fake, player);
+          player.getScoreboard().clearSlot(DisplaySlot.SIDEBAR);
+  		if (apitab.getNameTagManager() instanceof UnlimitedNameTagManager) {
+  			if (player != null) {
+  		    UnlimitedNameTagManager unm = (UnlimitedNameTagManager) TabAPI.getInstance().getNameTagManager();
+  		    unm.enableArmorStands(apitab.getPlayer(player.getUniqueId()));
+  		    unm.setPrefix(apitab.getPlayer(player.getUniqueId()), prefix);
+  		  apitab.getPlayer(player.getUniqueId()).setTemporaryGroup("default");
+  		 Bukkit.getConsoleSender().sendMessage("" + player.getName() + " teve o fake setado!");
+  		    //do stuff
+  		}  
+  		}
           // Load, modify & save the user in LuckPerms.
           api.getUserManager().modifyUser(player.getUniqueId(), (User user) -> {
 
@@ -206,22 +283,42 @@ public class FakeAPI {
 
               // Add the node to the user.
               user.data().add(node);
-
+              Bukkit.getConsoleSender().sendMessage(player.getName() + " teve o node adicionado! Node:" + node);
               // Tell the sender.
               Bukkit.getConsoleSender().sendMessage(player.getName() + " colocou o fake " + fake);
              
-              apitab.getPlayer(player.getName()).setTemporaryGroup("default");
-              addFakeCooldown(playerData);
           });
+          Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance() , new BukkitRunnable() {
+              @Override
+              public void run() {
+            	  if (player != null) {
+            	  apitab.getPlayer(player.getUniqueId()).setTemporaryGroup("default");
+            	  Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "tab reload");
+            	  Bukkit.getConsoleSender().sendMessage("" + player.getName() + " foi organizado no tablist!");
+            	  HelixWarp.SPAWN.send(player);
+                  }
+              }
+              }
+          , 20 * 3);
   } catch (NullPointerException e) {
   	player.sendMessage(ChatColor.RED + "§4§lFAKE: §cUm erro ocorreu!");
+  	e.printStackTrace();
   }
-
-      // Load, modify & save the user in LuckPerms.
-
-      changeGamerProfileName(fake, player);
-    
-      addFakeCooldown(playerData);
+      
+  }
+  private static void hideNametags(Player p) {
+	  Player player = p;
+	  Scoreboard s = p.getScoreboard();
+	  if (player.getScoreboard().getObjective("pvp") == null && player.getScoreboard().getObjective("pvp2") == null && player.getScoreboard().getObjective("pvpg") == null && player.getScoreboard().getObjective("pvppt") == null && player.getScoreboard().getObjective("pvp3") == null && player.getScoreboard().getObjective("pvp4") == null && player.getScoreboard().getObjective("pvp5") == null && player.getScoreboard().getObjective("pvp6") == null  && player.getScoreboard().getObjective("pvp7") == null) {
+			return;
+		}
+	  if (s.getTeam("nhide") == null) {
+      Team t = s.registerNewTeam("nhide");
+      t.setNameTagVisibility(NameTagVisibility.NEVER);
+      if (!t.hasEntry(p.getName())) {
+      t.addEntry(p.getName());
+      }
+	  }
   }
   public static boolean hasFake(Player playerData) {
       Player player = playerData.getPlayer();

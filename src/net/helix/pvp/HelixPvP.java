@@ -63,6 +63,7 @@ import net.helix.pvp.command.Discord;
 import net.helix.pvp.command.Euforia;
 import net.helix.pvp.command.EventManager;
 import net.helix.pvp.command.Fake;
+import net.helix.pvp.command.FakeList;
 import net.helix.pvp.command.Fly;
 import net.helix.pvp.command.GiveCoins;
 import net.helix.pvp.command.GiveDeaths;
@@ -557,6 +558,7 @@ new BukkitRunnable() {
 		getCommand("stats").setExecutor(new VerRank());
 		getCommand("status").setExecutor(new VerRank());
 		getCommand("medalha").setExecutor(new Medal());
+		getCommand("fakelist").setExecutor(new FakeList());
 		getCommand("fake").setExecutor(new Fake());
 		getCommand("medalhas").setExecutor(new Medal());
 		getCommand("pinfo").setExecutor(new Info());

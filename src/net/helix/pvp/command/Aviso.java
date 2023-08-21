@@ -13,7 +13,7 @@ import net.helix.pvp.command.BukkitCommandFramework.CommandArgs;
 
 public class Aviso extends CommandClass {
 	
-	@Command(name = "aviso")
+	@Command(name = "bc")
 	public void onGamemode(CommandArgs args) {
 		if (!args.isPlayer())
 			return;
