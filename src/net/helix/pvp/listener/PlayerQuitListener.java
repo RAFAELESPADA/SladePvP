@@ -8,6 +8,10 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.scoreboard.NameTagVisibility;
+import org.bukkit.scoreboard.Scoreboard;
+import org.bukkit.scoreboard.Team;
+
 import  net.helix.pvp.FakeAPI;
 import net.helix.core.bukkit.HelixBukkit;
 import net.helix.core.bukkit.account.HelixPlayer;
@@ -27,6 +31,18 @@ public class PlayerQuitListener implements Listener {
 
 		 FakeAPI.applyFake(PlayerJoinListener.playerrealname.get(player), player);
 		 Fake.playerfakename.remove(player);
+		 Scoreboard s = player.getScoreboard();
+		  if (player.getScoreboard().getObjective("pvp") == null && player.getScoreboard().getObjective("pvp2") == null && player.getScoreboard().getObjective("pvpg") == null && player.getScoreboard().getObjective("pvppt") == null && player.getScoreboard().getObjective("pvp3") == null && player.getScoreboard().getObjective("pvp4") == null && player.getScoreboard().getObjective("pvp5") == null && player.getScoreboard().getObjective("pvp6") == null  && player.getScoreboard().getObjective("pvp7") == null) {
+				return;
+			}
+		  if (s.getTeam("nhide") == null) {
+	      Team t = s.registerNewTeam("nhide");
+		  
+	      t.setNameTagVisibility(NameTagVisibility.NEVER);
+	      if (t.hasEntry(player.getName())) {
+	      t.removeEntry(player.getName());
+	      }
+		  }
 		HelixWarp.removeHandle(player.getName());
 		KitManager.remove(player.getName());
 		Habilidade.removeAbility(player);

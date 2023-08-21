@@ -25,14 +25,16 @@ public boolean onCommand(CommandSender sender, Command cmd, String label, String
 	  p.sendMessage("§eLista de fakes");
 	  for (Player p2 : Bukkit.getOnlinePlayers()) {
 		 if (FakeAPI.hasFake(p2)) {
-			 p.sendMessage("§eNick Real: " + PlayerJoinListener.playerrealname.get(p) + " §eFake:" + Fake.playerfakename.get(p));
-		 } else {
+			 p.sendMessage("§eNick Real: " + PlayerJoinListener.playerrealname.get(p2) + " §aFake: " + Fake.playerfakename.get(p2));
+		 }
+		 }} else {
 			 p.sendMessage("§cNão há players de /fake online!"); 
 	  }
     p.playSound(p.getLocation(), Sound.GHAST_SCREAM, 12.0F, 12.0F);
+	return false;
   }
+{
+
 }
 
-return false;
-}
 }

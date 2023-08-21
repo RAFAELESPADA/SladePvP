@@ -21,6 +21,8 @@ import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.ScoreboardManager;
 
+import me.neznamy.tab.api.TabAPI;
+import me.neznamy.tab.api.nametag.UnlimitedNameTagManager;
 import net.helix.core.bukkit.HelixBukkit;
 import net.helix.core.bukkit.account.HelixPlayer;
 import net.helix.core.bukkit.api.HelixTitle;
@@ -108,10 +110,12 @@ public class PlayerJoinListener implements Listener {
 	public void onJoin(PlayerJoinEvent e) {
 		Player player = e.getPlayer();
 		Player p = e.getPlayer();
+		   TabAPI apitab = TabAPI.getInstance();
 		if (VanishUtil.has(player.getName())) {
 			VanishUtil.remove(player.getName());
 			player.sendMessage("§c§lVANISH §fVocê saiu do modo invísivel.");
 		}
+		
 		if (!playerrealname.containsKey(player)) {
 		playerrealname.put(player, player.getName());
 		player.sendMessage("§c§lINFORMAÇÕES §fSuas informações foram salvas com sucesso.");
@@ -177,7 +181,13 @@ public class PlayerJoinListener implements Listener {
 	    	        RegisteredServiceProvider<LuckPerms> provider = Bukkit.getServicesManager().getRegistration(LuckPerms.class);
 	    			if (provider != null) {
 	    	        LuckPerms api = provider.getProvider();
-	    			
+	    	        if (apitab.getNameTagManager() instanceof UnlimitedNameTagManager) {
+	    	            String prefix = api.getGroupManager().getGroup(api.getUserManager().getUser(player.getName()).getPrimaryGroup()).getCachedData().getMetaData().getPrefix();
+	    	  		    UnlimitedNameTagManager unm = (UnlimitedNameTagManager) TabAPI.getInstance().getNameTagManager();
+	    	  		    unm.enableArmorStands(apitab.getPlayer(player.getUniqueId()));
+	    	  		    unm.setPrefix(apitab.getPlayer(player.getUniqueId()), prefix);
+	    	  		    //do stuff
+	    	  		} 
 	    		HelixBukkit.getExecutorService().submit(() -> {
 	    			new BukkitRunnable() {
 	    				@Override

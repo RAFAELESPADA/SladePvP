@@ -176,6 +176,11 @@ if (p.hasPermission("helix.tag.diretor")) {
         }
 
 try {
+	if (FakeAPI.hasFake(player)) {
+		player.sendMessage("Você só pode usar a tag MEMBRO enquanto estiver de FAKE");
+		player.sendMessage("Use /fake reset para tirar");
+		return true;
+	}
         String prefix = api.getGroupManager().getGroup(args[0]).getCachedData().getMetaData().getPrefix();
 
         // Get an OfflinePlayer object for the player
