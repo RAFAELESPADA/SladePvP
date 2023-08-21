@@ -13,6 +13,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.plugin.Plugin;
 
+import net.helix.core.bukkit.api.FakeAPI;
 import net.helix.pvp.HelixPvP;
 
 public class AntiProxyListener implements Listener {
@@ -26,15 +27,19 @@ public class AntiProxyListener implements Listener {
 		  Bukkit.getConsoleSender().sendMessage("[ANTIVPN] " + "Não verificando...");
 		  return;
 	  }
-	  else if (count > 2) {
+	 if (count > 2) {
 		  event.disallow(PlayerLoginEvent.Result.KICK_OTHER, "\n§cVocê só pode ter duas contas logadas ao mesmo tempo");
 		  return;
 	  }
-	  else if (ttt.contains(event.getPlayer())) {
+	 if (FakeAPI.randomNicks.contains(event.getPlayer().getName())) {
+		  event.disallow(PlayerLoginEvent.Result.KICK_OTHER, "\n§cTroque de nick.");
+		  return;
+	  }
+	  if (ttt.contains(event.getPlayer())) {
 		return;
 	}
 	  
-	else if (ttt2.contains(event.getPlayer())) {
+	if (ttt2.contains(event.getPlayer())) {
 		 event.disallow(PlayerLoginEvent.Result.KICK_OTHER, "\n§4VPN ou Proxy Detectada!\n§aDesative para se conectar ao Servidor!\n§ePeça ajuda em nosso Discord: §b" + HelixPvP.getInstance().getConfig().getString("DiscordLink"));
 		return;
 	}

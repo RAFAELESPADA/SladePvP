@@ -13,6 +13,7 @@ commands:
    evento:
    tpall:
    sc:
+   fake:
    crash:
    setarena:
    regras:

@@ -5,11 +5,13 @@ import org.bukkit.ChatColor;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
-
+import  net.helix.pvp.FakeAPI;
 import net.helix.core.bukkit.HelixBukkit;
 import net.helix.core.bukkit.account.HelixPlayer;
+import net.helix.pvp.command.Fake;
 import net.helix.pvp.command.RDMAutomatic;
 import net.helix.pvp.kit.Habilidade;
 import net.helix.pvp.kit.KitManager;
@@ -18,12 +20,13 @@ import net.helix.pvp.warp.HelixWarp;
 
 public class PlayerQuitListener implements Listener {
 	
-	@EventHandler
+	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onQuit(PlayerQuitEvent event) {
 		Player player = event.getPlayer();
 		 
 
-			
+		 FakeAPI.applyFake(PlayerJoinListener.playerrealname.get(player), player);
+		 Fake.playerfakename.remove(player);
 		HelixWarp.removeHandle(player.getName());
 		KitManager.remove(player.getName());
 		Habilidade.removeAbility(player);

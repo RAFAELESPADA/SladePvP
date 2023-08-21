@@ -9,8 +9,10 @@ import org.bukkit.entity.Player;
 
 import net.helix.core.bukkit.HelixBukkit;
 import net.helix.core.bukkit.account.HelixPlayer;
+import net.helix.pvp.FakeAPI;
 import net.helix.pvp.kit.KitManager;
 import net.helix.pvp.kit.KitManager2;
+import net.helix.pvp.listener.PlayerJoinListener;
 
 public class Info implements CommandExecutor {
 
@@ -29,12 +31,14 @@ public class Info implements CommandExecutor {
                     player.sendMessage("§cUtilize §e/pinfo <player>");
                     return true;
                 }
+                
                     final Player target = Bukkit.getPlayer(args[0]);
                     if (target != null) {
                     	HelixPlayer helixPlayer = HelixBukkit.getInstance().getPlayerManager()
                 				.getPlayer(target.getName());
+                        String fake = FakeAPI.hasFake(target) ? " §e[" + PlayerJoinListener.playerrealname.get(target) + "]" : "";
                         player.sendMessage("§aInformações sobre o player §e" + target.getName() + "§a:");
-                        player.sendMessage("§aNick: §f" + target.getName());
+                        player.sendMessage("§aNick: §f" + target.getName() + fake);
                         String kit = KitManager.getPlayer(helixPlayer.getName()).getKit().toString();
                         String kit2 = KitManager2.getPlayer(helixPlayer.getName()).getkit2().toString();
                         player.sendMessage("§aKit: §f" + kit);
