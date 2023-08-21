@@ -7,6 +7,7 @@ import net.helix.core.bukkit.account.HelixPlayer;
 import net.helix.core.bukkit.api.NameTagAPI;
 import net.helix.core.util.HelixCooldown;
 import net.helix.core.util.HelixCooldown2;
+import net.helix.pvp.FakeAPI;
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.LuckPermsProvider;
 import net.luckperms.api.model.group.Group;
@@ -61,6 +62,11 @@ public class TagCommand implements CommandExecutor {
         	    groupsList.add(group.getName());
         	}
 Player p = (Player)sender;
+if (FakeAPI.hasFake(player)) {
+	player.sendMessage("Você só pode usar a tag MEMBRO enquanto estiver de FAKE");
+	player.sendMessage("Use /fake reset para tirar");
+	return true;
+}
 if (p.hasPermission("helix.tag.dono")) {
     ChatInterativo.Comando(p.getName(), "§4§lDONO", "/tag dono", "§eExemplo: §4§lDONO §7" + p.getName());
     }        

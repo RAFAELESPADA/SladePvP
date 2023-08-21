@@ -9,7 +9,9 @@ import net.helix.core.bukkit.account.HelixPlayer;
 import net.helix.pvp.Feast;
 import net.helix.pvp.HelixPvP;
 import net.helix.pvp.PlayerGroup;
+import net.helix.pvp.command.Fake;
 import net.helix.pvp.listener.Medals;
+import net.helix.pvp.listener.PlayerJoinListener;
 import net.helix.pvp.listener.Ranking;
 import net.md_5.bungee.api.ChatColor;
 
@@ -121,6 +123,12 @@ import net.md_5.bungee.api.ChatColor;
 	    if (indentifier.equals("player_kills")) {
 	      return String.valueOf(helixPlayer.getPvp().getKills());
 	    }
+	    if (indentifier.equals("player_realname")) {
+		      return String.valueOf(PlayerJoinListener.playerrealname.get(p));
+		    }
+	    if (indentifier.equals("player_fakename")) {
+		      return String.valueOf(Fake.playerfakename.get(p) != null ? Fake.playerfakename.get(p) : PlayerJoinListener.playerrealname.get(p));
+		    }
 	    if (indentifier.equals("player_deaths")) {
 		      return String.valueOf(helixPlayer.getPvp().getDeaths());
 		    }

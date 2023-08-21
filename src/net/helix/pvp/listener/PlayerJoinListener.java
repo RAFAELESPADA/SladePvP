@@ -2,6 +2,7 @@ package net.helix.pvp.listener;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
@@ -25,6 +26,7 @@ import net.helix.core.bukkit.account.HelixPlayer;
 import net.helix.core.bukkit.api.HelixTitle;
 import net.helix.core.bukkit.item.ItemBuilder;
 import net.helix.pvp.HelixPvP;
+import net.helix.pvp.command.Fake;
 import net.helix.pvp.command.VanishUtil;
 import net.helix.pvp.evento.EventoUtils;
 import net.helix.pvp.kit.KitManager;
@@ -34,6 +36,7 @@ import net.luckperms.api.model.group.Group;
 
 public class PlayerJoinListener implements Listener {
 	  public static ArrayList<String> game = new ArrayList();
+	  public static HashMap<Player , String> playerrealname = new HashMap();
 	  public static ArrayList<Player> fall = new ArrayList();
 	public CompletableFuture<Boolean> isVip(UUID who) {
 		
@@ -108,6 +111,10 @@ public class PlayerJoinListener implements Listener {
 		if (VanishUtil.has(player.getName())) {
 			VanishUtil.remove(player.getName());
 			player.sendMessage("§c§lVANISH §fVocê saiu do modo invísivel.");
+		}
+		if (!playerrealname.containsKey(player)) {
+		playerrealname.put(player, player.getName());
+		player.sendMessage("§c§lINFORMAÇÕES §fSuas informações foram salvas com sucesso.");
 		}
 		ScoreboardManager manager = Bukkit.getScoreboardManager();
         Scoreboard board = manager.getMainScoreboard();
