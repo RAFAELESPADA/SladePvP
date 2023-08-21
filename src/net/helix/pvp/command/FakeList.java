@@ -18,6 +18,10 @@ public boolean onCommand(CommandSender sender, Command cmd, String label, String
   Player p = (Player)sender;
   if (label.equalsIgnoreCase("fakelist"))
   {
+	  if (!p.hasPermission("kombo.cmd.report")) {
+	        p.sendMessage("Você não tem permissão.");
+	        return true;
+	      } 
 	  p.sendMessage("§eLista de fakes");
 	  for (Player p2 : Bukkit.getOnlinePlayers()) {
 		 if (FakeAPI.hasFake(p2)) {
