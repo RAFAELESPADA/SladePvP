@@ -129,6 +129,9 @@ import net.md_5.bungee.api.ChatColor;
 	    if (indentifier.equals("player_fakename")) {
 		      return String.valueOf(Fake.playerfakename.get(p) != null ? Fake.playerfakename.get(p) : PlayerJoinListener.playerrealname.get(p));
 		    }
+	    if (indentifier.equals("player_hasfakename")) {
+		      return String.valueOf(Fake.playerfakename.get(p) != null ? true : false);
+		    }
 	    if (indentifier.equals("player_deaths")) {
 		      return String.valueOf(helixPlayer.getPvp().getDeaths());
 		    }
