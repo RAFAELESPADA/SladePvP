@@ -87,6 +87,46 @@ public class FakeAPI {
         "RondoniaPvP", 
         "YumiiiPvP", 
         "MinhaMaldicao", 
+        "Viniciusgf",
+        "BachMen",
+        "Vexionm",
+        "Rarutggv",
+        "Kaption",
+        "Hideengg",
+        "BlackPU",
+        "RafaelALindo",
+        "BemLindiin",
+        "LagartoKA",
+        "MeuCaoNegro",
+        "Biiiling",
+        "ShingechiY",
+        "PelejaDoMal",
+        "QQuuu",
+        "QueQueFoi3",
+        "makapaka",
+        "UmBananinha",
+        "Binjii",
+        "LegalTYT",
+        "JackRipper",
+        "NarakuMal",
+        "Carneeeee",
+        "LugarPvP",
+        "CasaTorta",
+        "Veiiin55",
+        "MuitiProxyt",
+        "SouSmartBR",
+        "IsabelaLinda",
+        "AmoGarotas4",
+        "PessoaGay3",
+        "ThalesRoberto",
+        "MuitaMaldito",
+        "MilagreJesus",
+        "DioDoBem",
+        "Rafffff",
+        "Araujo175",
+        "Logaritmo5",
+        "HeeyCap",
+        "Quantyo", 
         "Devesry", 
         "Salgado99", 
         "Azar99", 
@@ -106,6 +146,20 @@ public class FakeAPI {
         "AlvimCott", 
         "DefeatAsuma", 
         "DefeatCali", 
+        "FinnHumano",
+        "MeDesculpee",
+        "EuCOPII",
+        "UmaLingua", 
+        "Retaliado", 
+        "VariacaoK",
+        "LerdoNao",
+        "Kuryama99",
+        "RobustoMuito",
+        "Vem1v1L",
+        "LauraLinn",
+        "PapelPedra6",
+        "Reitorrt", 
+        "Yuuuuim", 
         "BinaryPvP", 
         "FinnHuman", 
         "JakeDog", 
@@ -156,10 +210,18 @@ public class FakeAPI {
         "Ravioli", 
         "MorteRitual", 
         "LindaPvP", 
+        "sdcfvb",
+        "kjtgfv",
+        "45tghg",
+        "sxdcfgh",
+        "lytgv5", 
+        "6yhgg",
+        "56hgtf",
+        "dddd4", 
         "UrsimDODO", 
         "PinnDyt", 
         "TorsoQuebrou", 
-        "Tecnica" });
+        "Tecnicagh" });
   
   private static void addFakeCooldown(Player playerData) {
     HelixCooldown.create(playerData.getName(), "fake", TimeUnit.SECONDS, 15L);
@@ -216,12 +278,6 @@ public class FakeAPI {
   } catch (NullPointerException e) {
   	player.sendMessage(ChatColor.RED + "§4§lFAKE: §cUm erro ocorreu!");
   }
-
-      // Load, modify & save the user in LuckPerms.
-
-      changeGamerProfileName(fake, player);
-    
-      addFakeCooldown(playerData);
   }
   public static boolean hasFake(Player playerData) {
       Player player = playerData.getPlayer();

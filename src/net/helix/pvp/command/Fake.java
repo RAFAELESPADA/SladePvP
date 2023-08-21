@@ -54,9 +54,13 @@ public class Fake implements CommandExecutor {
                 if (args[0].equalsIgnoreCase("random")) {
                 	String ms = System.currentTimeMillis() - timeBefore + " ms";
                 	Random r = new Random();
-     
                     player.sendMessage("§9Alterando seu nick para §eum nick aleatório §a...");
-                    FakeAPI.applyFake(FakeAPI.randomNicks.get(r.nextInt(FakeAPI.randomNicks.size())), player);
+                    Player newfake = Bukkit.getPlayer(FakeAPI.randomNicks.get(r.nextInt(FakeAPI.randomNicks.size())));
+                    if (newfake.isOnline()) {
+                 newfake = Bukkit.getPlayer(FakeAPI.randomNicks.get(r.nextInt(FakeAPI.randomNicks.size())));
+                 player.sendMessage("§aO Fake gerado já está online! Gerando outro fake para você!");
+                    }
+                    FakeAPI.applyFake(newfake.getName(), player);
                     player.sendMessage("§aSeu nick foi alterado§e!" + "§a. §8[" + ms + "]\n" +
                             "§7Você poderá pegar outro fake aleatório novamente em 15 segundos.");
                     return false;

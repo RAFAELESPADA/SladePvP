@@ -21,6 +21,7 @@ commands:
    sendcredits:
    1v1iniciar:
    status:
+   fakelist:
    grant:
    finalizarbatalhas:
    givexp:
