@@ -30,6 +30,7 @@ import net.helix.core.bukkit.account.HelixPlayer;
 import net.helix.core.util.HelixCooldown;
 import net.helix.pvp.command.Fake;
 import net.helix.pvp.listener.PlayerJoinListener;
+import net.helix.pvp.warp.HelixWarp;
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.LuckPermsProvider;
 import net.luckperms.api.model.user.User;
@@ -251,21 +252,20 @@ public class FakeAPI {
           String prefix = api.getGroupManager().getGroup("default").getCachedData().getMetaData().getPrefix();
       	Fake.playerfakename.put(player, fake);
       	changeGamerProfileName(fake, player);
-		hideNametags(player);
+      	hideNametags(player);
  		 Bukkit.getConsoleSender().sendMessage("" + player.getName() + " teve a nametag escondida!");
-         apitab.getPlayer(player.getName()).setTemporaryGroup("default");
-		 Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "tab reload");
           // Get an OfflinePlayer object for the player
           player.getScoreboard().clearSlot(DisplaySlot.SIDEBAR);
-          HelixPvP.getInstance().getScoreboardBuilder().build(player);
   		if (apitab.getNameTagManager() instanceof UnlimitedNameTagManager) {
+  			if (player != null) {
   		    UnlimitedNameTagManager unm = (UnlimitedNameTagManager) TabAPI.getInstance().getNameTagManager();
   		    unm.enableArmorStands(apitab.getPlayer(player.getUniqueId()));
   		    unm.setPrefix(apitab.getPlayer(player.getUniqueId()), prefix);
-  		  apitab.getPlayer(player.getName()).setTemporaryGroup("default");
+  		  apitab.getPlayer(player.getUniqueId()).setTemporaryGroup("default");
   		 Bukkit.getConsoleSender().sendMessage("" + player.getName() + " teve o fake setado!");
   		    //do stuff
-  		}   
+  		}  
+  		}
           // Load, modify & save the user in LuckPerms.
           api.getUserManager().modifyUser(player.getUniqueId(), (User user) -> {
 
@@ -288,8 +288,21 @@ public class FakeAPI {
               Bukkit.getConsoleSender().sendMessage(player.getName() + " colocou o fake " + fake);
              
           });
+          Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance() , new BukkitRunnable() {
+              @Override
+              public void run() {
+            	  if (player != null) {
+            	  apitab.getPlayer(player.getUniqueId()).setTemporaryGroup("default");
+            	  Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "tab reload");
+            	  Bukkit.getConsoleSender().sendMessage("" + player.getName() + " foi organizado no tablist!");
+            	  HelixWarp.SPAWN.send(player);
+                  }
+              }
+              }
+          , 20 * 3);
   } catch (NullPointerException e) {
   	player.sendMessage(ChatColor.RED + "§4§lFAKE: §cUm erro ocorreu!");
+  	e.printStackTrace();
   }
       
   }

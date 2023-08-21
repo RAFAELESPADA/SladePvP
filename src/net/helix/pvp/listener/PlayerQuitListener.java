@@ -28,9 +28,10 @@ public class PlayerQuitListener implements Listener {
 	public void onQuit(PlayerQuitEvent event) {
 		Player player = event.getPlayer();
 		 
-
+if (FakeAPI.hasFake(player)) {
 		 FakeAPI.applyFake(PlayerJoinListener.playerrealname.get(player), player);
 		 Fake.playerfakename.remove(player);
+}
 		 Scoreboard s = player.getScoreboard();
 		  if (player.getScoreboard().getObjective("pvp") == null && player.getScoreboard().getObjective("pvp2") == null && player.getScoreboard().getObjective("pvpg") == null && player.getScoreboard().getObjective("pvppt") == null && player.getScoreboard().getObjective("pvp3") == null && player.getScoreboard().getObjective("pvp4") == null && player.getScoreboard().getObjective("pvp5") == null && player.getScoreboard().getObjective("pvp6") == null  && player.getScoreboard().getObjective("pvp7") == null) {
 				return;

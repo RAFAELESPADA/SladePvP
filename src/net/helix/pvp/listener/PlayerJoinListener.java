@@ -186,6 +186,7 @@ public class PlayerJoinListener implements Listener {
 	    	  		    UnlimitedNameTagManager unm = (UnlimitedNameTagManager) TabAPI.getInstance().getNameTagManager();
 	    	  		    unm.enableArmorStands(apitab.getPlayer(player.getUniqueId()));
 	    	  		    unm.setPrefix(apitab.getPlayer(player.getUniqueId()), prefix);
+	    	  		    Bukkit.getConsoleSender().sendMessage(player.getName() + " SETADO NO TABLIST");
 	    	  		    //do stuff
 	    	  		} 
 	    		HelixBukkit.getExecutorService().submit(() -> {
