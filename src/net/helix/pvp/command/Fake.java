@@ -51,6 +51,7 @@ public class Fake implements CommandExecutor {
                 String ms = System.currentTimeMillis() - timeBefore + " ms";
                 player.sendMessage("§9Alterando seu nick para §e" + PlayerJoinListener.playerrealname.get(player) + "§a...");
                 FakeAPI.applyFake(PlayerJoinListener.playerrealname.get(player), player);
+            	Fake.playerfakename.remove(player);
                 player.sendMessage("§aSeu nick foi alterado para §e" + PlayerJoinListener.playerrealname.get(player) + "§a. §8[" + ms + "]\n" +
                         "§7Você poderá escolher outro fake novamente em 15 segundos.");
                 return false;

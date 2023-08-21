@@ -87,7 +87,10 @@ public class SC
 		  HelixPlayer hp = HelixBukkit.getInstance().getPlayerManager().getPlayer(player.getName());
 		  Medals medal = Medals.getMedals(player);
 		  Ranking rank = Ranking.getRank(hp);
-		if (player.hasPermission("kombo.doublexp")) {
+		  if (Fake.playerfakename.get(player) != null) {
+			  event.setFormat("§7[" + rank.getColoredSymbol() + "§7] " + "§7" + player.getName() + "§7: " + event.getMessage().replace("&", "§"));
+		  }	  
+		  else if (player.hasPermission("kombo.doublexp")) {
 			event.setFormat("§7[" + rank.getColoredSymbol() + "§7] " + api.getUserManager().getUser(player.getUniqueId()).getCachedData().getMetaData().getPrefix().replace("&", "§") + player.getName() + "§f: " + event.getMessage().replace("&", "§").replace("%", "%%"));
 		}
 		else {
