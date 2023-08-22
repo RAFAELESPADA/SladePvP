@@ -251,7 +251,6 @@ public class FakeAPI {
       try {
           String prefix = api.getGroupManager().getGroup("default").getCachedData().getMetaData().getPrefix();
       	Fake.playerfakename.put(player, fake);
-      	changeGamerProfileName(fake, player);
       	hideNametags(player);
  		 Bukkit.getConsoleSender().sendMessage("" + player.getName() + " teve a nametag escondida!");
           // Get an OfflinePlayer object for the player
