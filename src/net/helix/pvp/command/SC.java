@@ -88,7 +88,7 @@ public class SC
 		  Medals medal = Medals.getMedals(player);
 		  Ranking rank = Ranking.getRank(hp);
 		  if (Fake.playerfakename.get(player) != null) {
-			  event.setFormat("§7[" + rank.getColoredSymbol() + "§7] " + "§7" + player.getName() + "§7: " + event.getMessage().replace("&", "§"));
+			  event.setFormat("§7[" + rank.getColoredSymbol() + "§7] " + "§7" + Fake.playerfakename.get(player) + "§7: " + event.getMessage().replace("&", "§"));
 		  }	  
 		  else if (player.hasPermission("kombo.doublexp")) {
 			event.setFormat("§7[" + rank.getColoredSymbol() + "§7] " + api.getUserManager().getUser(player.getUniqueId()).getCachedData().getMetaData().getPrefix().replace("&", "§") + player.getName() + "§f: " + event.getMessage().replace("&", "§").replace("%", "%%"));
