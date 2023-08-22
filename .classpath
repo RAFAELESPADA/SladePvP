@@ -19,7 +19,6 @@
 	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Desktop/area de trabalho 1 (1)/NOVO SLADE V2/ARENA/plugins/ProtocolLib.jar"/>
 	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Desktop/area de trabalho 1 (1)/NOVO SLADE V2/ARENA/plugins/Vault (2).jar"/>
 	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Desktop/area de trabalho 1 (1)/NOVO SLADE V2/ARENA/plugins/ViaVersion-4.7.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Desktop/area de trabalho 1 (1)/NOVO SLADE V2/ARENA/plugins/TAB.v4.0.3.jar"/>
 	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Desktop/area de trabalho 1 (1)/NOVO SLADE V2/ARENA/plugins/ajLeaderboards-2.7.0 (2).jar"/>
 	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Desktop/area de trabalho 1 (1)/NOVO SLADE V2/ARENA/plugins/DecentHolograms-2.8.3.jar"/>
 	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Desktop/plugins nescessarios para dependencias/spigot-1.8.8-R0.1-SNAPSHOT-latest.jar"/>
@@ -27,5 +26,6 @@
 	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Desktop/area de trabalho 1 (1)/NOVO SLADE V2/ARENA/plugins/PlaceholderAPI-2.11.3.jar"/>
 	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Desktop/area de trabalho 1 (1)/NOVO SLADE V2/ARENA/plugins/LuckPerms-Bukkit-5.4.98.jar"/>
 	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Desktop/SLADEPVP BACKUP/plugins/CORE-NEW.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Home/Desktop/SLADE MAPA KOMBO/plugins/TAB-4.0.4-SNAPSHOT.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

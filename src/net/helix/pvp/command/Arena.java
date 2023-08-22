@@ -18,6 +18,8 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.material.Dye;
 
+import me.neznamy.tab.api.TabPlayer;
+import me.neznamy.tab.api.event.player.PlayerLoadEvent;
 import net.helix.core.bukkit.item.ItemBuilder;
 import net.helix.pvp.HelixPvP;
 import net.helix.pvp.evento.EventoType;
@@ -223,8 +225,12 @@ return false;
     	  e.getPlayer().sendMessage("§cVocê esta participando de um Evento e não pode falar no chat.");
     	  e.setCancelled(true);
       }
-}
-{
+      }
+      
+      }
 
-}
-}
+
+
+
+
+
