@@ -40,8 +40,8 @@ public class Fake implements CommandExecutor {
                 player.sendMessage("§cVocê não tem permissão para usar esse comando!");
                 return true;
             }
-            if (!player.getName().equals("Rafael_Melo")) {
-            player.sendMessage("§cComando em manutenção");
+           if (!player.getName().equals("Rafael_Melo")) {
+           player.sendMessage("§cComando em manutenção");
             Bukkit.getConsoleSender().sendMessage("Tentou usar o /fake mas ele ta em manutenção.");
       	  return true;
       }
