@@ -197,11 +197,11 @@ public class EntityCalculateDamageListener implements Listener {
 				|| e.getMessage().contains(",pro")
 				|| e.getMessage().contains(",nu")
 				|| e.getMessage().contains(",tk"))) {
-			if (e.getMessage().contains("youtube") || e.getMessage().contains("twitch") || e.getMessage().contains("sladepvp.com")) {
+			if (e.getMessage().contains("youtube") || e.getMessage().contains("twitch") || e.getMessage().contains("kombopvp.net")) {
 				return;
 			}
 			e.setCancelled(true);
-			p.sendMessage(ChatColor.RED + "Divulgação de servidores/links é proibida! ");
+			p.sendMessage(ChatColor.RED + "Advertisiting is forbidden! ");
 		}
 		
 	}

@@ -20,7 +20,7 @@ import net.helix.pvp.kit.KitManager2;
 
 public class ShopInventory2 {
 	
-	private final static String inventoryName = "Loja de kits secundários";
+	private final static String inventoryName = "Secondary kits shop";
 	private static ItemStack randomGlass() {
 		int randomId = new Random().nextInt(14);
 		return new ItemStack(Material.STAINED_GLASS_PANE, 1, (short)randomId);
@@ -54,7 +54,7 @@ public class ShopInventory2 {
 			
 			availableKits2.forEach(kit -> {
 				inventory.addItem(new ItemBuilder("§c" + kit.getName(), kit.getIcon())
-						.lore("§7Compre por §e" + HelixDecimalFormat.format(kit.getPrice()) + " Coins")
+						.lore("§7Buy for §e" + HelixDecimalFormat.format(kit.getPrice()) + " Coins")
 						.addFlags(ItemFlag.HIDE_ATTRIBUTES,
 								ItemFlag.HIDE_DESTROYS,
 								ItemFlag.HIDE_ENCHANTS,
@@ -65,7 +65,7 @@ public class ShopInventory2 {
 						.toStack());
 			});
 		}else {
-			inventory.setItem(31, new ItemBuilder("§cVocê já tem todos os kits secundários", Material.REDSTONE_BLOCK)
+			inventory.setItem(31, new ItemBuilder("§cYou already has all kits", Material.REDSTONE_BLOCK)
 					.toStack()
 			);
 		}

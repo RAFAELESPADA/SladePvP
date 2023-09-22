@@ -46,7 +46,7 @@ public class EnderMage extends KitHandler {
 	    		/*  64 */        Kangaroo.darEfeito(p, org.bukkit.potion.PotionEffectType.SPEED, 10, 1);
 	    		/*     */       }
 	      else if (p.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura") && EnderMageReal.isSpawn(p.getLocation())) {
-				p.sendMessage("§cNão use o vacuum no spawn!");
+				p.sendMessage("§cDont use the vacuum on spawn!");
 				return;
 			 }
 	    
@@ -59,8 +59,8 @@ public class EnderMage extends KitHandler {
 	      	 per.damage(12);
 	         pertos.setFireTicks(55);
 	         e.setCancelled(true);
-	         p.sendMessage(ChatColor.GREEN + "Players arrastados pelo seu vacuum!");
-	         per.sendMessage(ChatColor.RED + "Você foi atingido pelo Vacuum de " + p.getName());
+	         p.sendMessage(ChatColor.GREEN + "Players arrasted by your vacuum!");
+	         per.sendMessage(ChatColor.RED + "You get hit by the vacuum of " + p.getName());
 	         p.playSound(p.getLocation(), Sound.ENDERMAN_TELEPORT, 10.0F, 10.0F);
 	        addCooldown(p, 45);
 	        return;

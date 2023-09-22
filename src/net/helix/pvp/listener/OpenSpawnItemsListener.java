@@ -65,7 +65,7 @@ public void onInteractt(PlayerPickupItemEvent event) {
 	Player player = event.getPlayer();
 	if (HelixWarp.SPAWN.hasPlayer(player.getName()) && EnderMageReal.isSpawn(player.getLocation()) && player.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura")) {
 	event.setCancelled(true);
-	HelixActionBar.send(player, ChatColor.RED + "Não pegue esse item!");
+	HelixActionBar.send(player, ChatColor.RED + "Dont pickup this!");
 	}
 }
 	@EventHandler
@@ -73,7 +73,7 @@ public void onInteractt(PlayerPickupItemEvent event) {
 		Player player = event.getPlayer();
 		if (HelixWarp.SPAWN.hasPlayer(player.getName()) && EnderMageReal.isSpawn(player.getLocation()) && player.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura")) {
 		event.setCancelled(true);
-		HelixActionBar.send(player, ChatColor.RED + "Não drope esse item!");
+		HelixActionBar.send(player, ChatColor.RED + "Dont drop this!");
 		}
 	}
 		@EventHandler

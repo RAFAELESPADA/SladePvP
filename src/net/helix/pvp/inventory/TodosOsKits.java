@@ -14,7 +14,7 @@ import org.bukkit.entity.Player;
 
 public class TodosOsKits {
 
-	private final static String inventoryName = "Todos os Kits do servidor";
+	private final static String inventoryName = "ALL SERVER KITS";
 	public static void open(Player player) {
 		Inventory inventory = Bukkit.createInventory(null, 6 * 9, inventoryName);
 	

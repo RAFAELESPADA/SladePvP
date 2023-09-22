@@ -39,7 +39,7 @@ import net.helix.pvp.kit.KitManager;
 	        return;
 	      }
 	    else if (p.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura")) {
-			p.sendMessage("§cNão use o Desh no spawn!");
+			p.sendMessage("§cDont use your power on spawn!");
 			return;
 		 }
 	      event.setCancelled(true);

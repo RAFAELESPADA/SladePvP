@@ -49,7 +49,7 @@ if (inCooldown(p) && KitManager.getPlayer(p.getName()).hasKit(this)) {
 /* 34 */     if (KitManager.getPlayer(p.getName()).hasKit(this) && ((e.getAction() == Action.RIGHT_CLICK_AIR) || (e.getAction() == Action.RIGHT_CLICK_BLOCK)) && (p.getInventory().getItemInHand().getType() == org.bukkit.Material.WATCH)) {
 
 /* 39 */       addCooldown(p, HelixPvP.getInstance().getConfig().getInt("TimeLordCooldown"));
-/* 40 */       p.sendMessage("§aVocê congelou os players em volta de você!");
+/* 40 */       p.sendMessage("§aYou freeze players nearby you!");
 /* 41 */       for (final Entity pertos : p.getNearbyEntities(6.0, 6.0, 6.0)) {
 	if (pertos instanceof Player) {
 	    if (!KitManager.getPlayer(pertos.getName()).hasKit()) {
@@ -57,20 +57,20 @@ if (inCooldown(p) && KitManager.getPlayer(p.getName()).hasKit(this)) {
 	    }
 	    p.playSound(p.getLocation(), Sound.WITHER_SHOOT, 1f, 1f);
 /* 42 */         playercongelados.add(((Player)pertos).getName());
-/* 43 */         ((Player)pertos).sendMessage("§cVocê foi congelado por um timelord.");
+/* 43 */         ((Player)pertos).sendMessage("§cYou got frozen by a timelord.");
 ((Player) pertos).playSound((Location)pertos.getLocation(), Sound.WITHER_SHOOT, 1f, 1f);
 /* 45 */         org.bukkit.Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnable()
 /*    */         {
 /*    */           public void run() {
 /* 48 */             TimeLord.playercongelados.remove(((Player)pertos).getName());
-/* 49 */             ((Player)pertos).sendMessage("§aVocê foi descongelado.");
+/* 49 */             ((Player)pertos).sendMessage("§aYou got unfrozen.");
 /*    */           }
 /* 51 */         }, 80L);
 /*    */       {
 /* 53 */       org.bukkit.Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnable()
 /*    */       {
 /*    */         public void run() {
-/* 56 */           p.sendMessage("§cSeu Cooldown do TimeLord acabou");
+/* 56 */           p.sendMessage("§cCooldown ended");
 /*    */         }
 /* 58 */       }, 30 * 20);
 /*    */     }

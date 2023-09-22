@@ -17,7 +17,7 @@ public class Fisherman extends WarpHandle {
 	public void execute(Player player) {
 		super.execute(player);
 		
-		player.getInventory().setItem(0, new ItemBuilder("§fVara", Material.FISHING_ROD)
+		player.getInventory().setItem(0, new ItemBuilder("§eFisherman", Material.FISHING_ROD)
 				.nbt("cancel-drop").nbt("fishermanwarp")
 				.toStack()
 		);

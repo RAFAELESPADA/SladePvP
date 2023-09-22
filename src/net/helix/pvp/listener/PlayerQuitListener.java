@@ -27,7 +27,7 @@ public class PlayerQuitListener implements Listener {
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onQuit(PlayerQuitEvent event) {
 		Player player = event.getPlayer();
-		 
+		Bukkit.broadcastMessage(ChatColor.AQUA + player.getName() + " left the server!"); 
 if (FakeAPI.hasFake(player)) {
 		 FakeAPI.applyFake(PlayerJoinListener.playerrealname.get(player), player);
 		 Fake.playerfakename.remove(player);

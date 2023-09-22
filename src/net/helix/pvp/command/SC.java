@@ -46,10 +46,10 @@ public class SC
           }
   			if (!staffchat.contains(sender.getName())) {
   				staffchat.add(sender.getName());
-  				sender.sendMessage("§aChat travado no staffchat!");
+  				sender.sendMessage("§aChat toggled on staffchat!");
   			} else {
   				staffchat.remove(sender.getName());
-  				sender.sendMessage("§aChat destravado no staffchat!");
+  				sender.sendMessage("§aStaffChat untoggled!");
   			}
       }
       if (args.length > 0)
@@ -106,7 +106,7 @@ public class SC
 		}
 		if (!ChatCommand.chat) {
 			if (!player.hasPermission("kombo.cmd.report")) {
-				player.sendMessage("§fO chat está §cdesabilitado§f!");
+				player.sendMessage("§fThe chat is currently §cdisabled§f!");
 				event.setCancelled(true);
 				return;
 			}

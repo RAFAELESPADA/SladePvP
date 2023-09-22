@@ -49,11 +49,11 @@ public class SpawnCMD extends WarpDuoBattleHandle implements Listener, CommandEx
 		Player p = (Player) sender;
 		Player player = (Player) sender;
 		if (HelixWarp.SPAWN.hasPlayer(p.getName()) && !KitManager.getPlayer(p.getName()).hasKit() && !KitManager2.getPlayer(p.getName()).haskit2() && !EventoUtils.game.contains(player.getName())) {
-			p.sendMessage(ChatColor.RED + "Você já está no spawn.");
+			p.sendMessage(ChatColor.RED + "You are already on spawn.");
 			return true;
 		}
 		else if (player.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura") && PlayerJoinListener.fall.contains(player)  && EnderMageReal.isSpawn(p.getLocation())) {
-	      	player.sendMessage("§cVocê já está no spawn!");
+	      	player.sendMessage("§cYou are already on spawn!");
 	  		return true;
 	  	 }
 		 if (GladiatorListener.combateGlad.containsKey(p)) {
@@ -74,7 +74,7 @@ public class SpawnCMD extends WarpDuoBattleHandle implements Listener, CommandEx
 				}
 				if (!PlayerJoinListener.fall.contains(p)) {
 			    	PlayerJoinListener.fall.add(p);
-			    	p.sendMessage(ChatColor.GREEN + "Você recebeu a proteção do spawn");
+			    	p.sendMessage(ChatColor.GREEN + "You received spawn protection");
 			    }
 				  HelixPlayer ph = HelixBukkit.getInstance().getPlayerManager().getPlayer(p.getName());
 				  HelixPlayer pk = HelixBukkit.getInstance().getPlayerManager().getPlayer(winner.getName());
@@ -83,8 +83,8 @@ public class SpawnCMD extends WarpDuoBattleHandle implements Listener, CommandEx
 				p.setLevel(0);
 				HelixBukkit.getInstance().getPlayerManager().getController().save(ph);
 				HelixBukkit.getInstance().getPlayerManager().getController().save(pk);
-				p.sendMessage("§cVoce recebeu uma morte por ter dado /spawn no Gladiator!");
-				winner.sendMessage("§cVoce recebeu uma kill por seu oponente ter dado /spawn no Gladiator!");
+				p.sendMessage("§cYou received a death for doing /spawn while in gladiator!");
+				winner.sendMessage("§cYou received a kill because your opponent writes /spawn while in Gladiator!");
          }
 		 if (net.helixpvp.kit2.GladiatorListener.combateGlad.containsKey(p)) {
 				p.sendMessage("§eComando bloqueado no Gladiator!");
@@ -93,32 +93,32 @@ public class SpawnCMD extends WarpDuoBattleHandle implements Listener, CommandEx
          }
 		 if (Sumo.fastChallenge.contains(p)) {
 			 Sumo.fastChallenge.remove(p);
-			 p.sendMessage(ChatColor.GREEN + "Você saiu da fila da Sumo");
+			 p.sendMessage(ChatColor.GREEN + "You left sumo queue");
 		 }
 		 if (OneVsOne.fastChallenge.contains(p)) {
 			 OneVsOne.fastChallenge.remove(p);
-			 p.sendMessage(ChatColor.GREEN + "Você saiu da fila da 1v1");
+			 p.sendMessage(ChatColor.GREEN + "You left 1v1 queue");
 		 }
 		 if (Gladiator.fastChallenge.contains(p)) {
 			 Gladiator.fastChallenge.remove(p);
-			 p.sendMessage(ChatColor.DARK_RED + "Você saiu da fila do gladiator");
+			 p.sendMessage(ChatColor.DARK_RED + "You left gladiator queye");
 		 }
 		 if (KitManager.getPlayer(p.getName()).hasKit() && !p.hasPermission("kombo.cmd.report")) {
 			 indo.add(p.getName());
-			 p.sendMessage("§eTeleportando em 3 segundos!");
-			 p.sendMessage("§eNão se mova!");
+			 p.sendMessage("§eTeleporting in 3 seconds");
+			 p.sendMessage("§eDont move!");
 			 Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnable()
  			{
        public void run()
        {
 			 if (!indo.contains(p.getName())) {
-				 p.sendMessage("§cVocê se moveu e o teleporte foi cancelado!");
+				 p.sendMessage("§cYou move and your teleport is cancelled!");
 				 return;
 			 }
 			 else {
 				 if (!PlayerJoinListener.fall.contains(p)) {
 				    	PlayerJoinListener.fall.add(p);
-				    	p.sendMessage(ChatColor.GREEN + "Você recebeu a proteção do spawn");
+				    	p.sendMessage(ChatColor.GREEN + "You received spawn protection");
 				    }
 				Habilidade.removeAbility(p);
 				HelixWarp.SPAWN.send(p, true);
@@ -137,7 +137,7 @@ public class SpawnCMD extends WarpDuoBattleHandle implements Listener, CommandEx
 		p.setFlying(false);
 		if (!PlayerJoinListener.fall.contains(p)) {
 	    	PlayerJoinListener.fall.add(p);
-	    	p.sendMessage(ChatColor.GREEN + "Você recebeu a proteção do spawn");
+	    	p.sendMessage(ChatColor.GREEN + "You received spawn protection");
 	    }
 	    HelixCooldown2.removeCooldown(player, KitManager2.getPlayer(player.getName()).getkit2().getName());
 	    net.helix.pvp.cooldown1.HelixCooldown2.removeCooldown(player, KitManager.getPlayer(player.getName()).getKit().getName());

@@ -105,7 +105,7 @@ public class Avatar extends KitHandler {
       if (!player.getItemInHand().getItemMeta().getDisplayName().equals("§bAvatar!"))
         return;
       else if (player.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura")) {
-      	player.sendMessage("§cNão use o seu poder no spawn!");
+      	player.sendMessage("§cDont use your power on spawn !");
   		return;
   	 }
    

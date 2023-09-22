@@ -18,7 +18,7 @@ public class TPALL
     Player p = (Player)sender;
     if (!p.hasPermission("kombo.cmd.tpall"))
     {
-    	p.sendMessage("§c§lERRO §fVoc§ nao tem permiss§o para executar esse comando");
+    	p.sendMessage("§c§lERRO §fYou do not have permission");
       return true;
     }
     for (Player p2 : Bukkit.getOnlinePlayers()) {
@@ -28,7 +28,7 @@ public class TPALL
         p2.sendMessage("§7 " + p.getName() + " puxou todos ate ele !");
       }
     }
-    p.sendMessage("§aTodos os jogadores agora estao na sua localizacao !");
+    p.sendMessage("§aEveryone is at your location !");
     return false;
   }
 }

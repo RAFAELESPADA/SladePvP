@@ -43,7 +43,7 @@ public void snowball(final ProjectileLaunchEvent e) {
             	return;
             }
             if (GladiatorListener.combateGlad.containsKey(p) || net.helixpvp.kit2.GladiatorListener.combateGlad.containsKey(p)) {
-                p.sendMessage("§cVoc\u00ea não pode usar o switcher no gladiator!");
+                p.sendMessage("§cYou cant use this on gladiator!");
                 e.setCancelled(true);
                 return;
             }
@@ -77,7 +77,7 @@ public void snowball(final ProjectileLaunchEvent e) {
                 	return;
                 }
     	        else if (shooter.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura") && EnderMageReal.isSpawn(shooter.getLocation())) {
-    	        	shooter.sendMessage("§cNão use o seu poder no spawn!");
+    	        	shooter.sendMessage("§cDont use your power on spawn!");
     	    		return;
     	       }
     	        Player p = (Player)e.getEntity();

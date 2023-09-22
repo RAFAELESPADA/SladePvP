@@ -78,7 +78,7 @@ public enum Ranking {
 			PlayerPvP pvp = helixPlayer.getPvp();
 
 			if (pvp.getXp() == HelixPvP.getInstance().getConfig().getInt("InicianteKills")) {
-		        p.sendMessage("Você upou para o rank " + HelixPvP.getInstance().getConfig().getString("InicianteRank").toUpperCase());
+		        p.sendMessage("You ranked up to the rank " + HelixPvP.getInstance().getConfig().getString("InicianteRank").toUpperCase());
 	        Bukkit.broadcastMessage("§a" + p.getName() + " §fupou do rank " + HelixPvP.getInstance().getConfig().getString("UnrankedRank").toUpperCase() +  " para o Rank " + HelixPvP.getInstance().getConfig().getString("InicianteRank").toUpperCase());
 	        PlayerDeathListener.throwRandomFirework(p);
 	        for (Player p1 : Bukkit.getOnlinePlayers()) {
@@ -87,7 +87,7 @@ public enum Ranking {
 	        }
 			}
 	    else if (pvp.getXp() == HelixPvP.getInstance().getConfig().getInt("AvancadoKills")) {
-	    	   p.sendMessage("Você upou para o rank " + HelixPvP.getInstance().getConfig().getString("AvancadoRank").toUpperCase());
+	    	   p.sendMessage("You ranked up to the rank " + HelixPvP.getInstance().getConfig().getString("AvancadoRank").toUpperCase());
 		        Bukkit.broadcastMessage("§a" + p.getName() + " §fupou do rank " + HelixPvP.getInstance().getConfig().getString("InicianteRank").toUpperCase() +  " para o Rank " + HelixPvP.getInstance().getConfig().getString("AvancadoRank").toUpperCase());
 		        PlayerDeathListener.throwRandomFirework(p);
 		        for (Player p1 : Bukkit.getOnlinePlayers()) {
@@ -97,7 +97,7 @@ public enum Ranking {
 	        }	        
 	        }
 	        else if (pvp.getXp() == HelixPvP.getInstance().getConfig().getInt("ExperienteKills")) {
-	        	   p.sendMessage("Você upou para o rank " + HelixPvP.getInstance().getConfig().getString("ExperienteRank").toUpperCase());
+	        	   p.sendMessage("You ranked up to the rank " + HelixPvP.getInstance().getConfig().getString("ExperienteRank").toUpperCase());
 	   	        Bukkit.broadcastMessage("§a" + p.getName() + " §fupou do rank " + HelixPvP.getInstance().getConfig().getString("AvancadoRank").toUpperCase() +  " para o Rank " + HelixPvP.getInstance().getConfig().getString("ExperienteRank").toUpperCase());
 	   	        PlayerDeathListener.throwRandomFirework(p);
 	   	        for (Player p1 : Bukkit.getOnlinePlayers()) {
@@ -106,7 +106,7 @@ public enum Ranking {
 	        }
 	        }
 	        else if (pvp.getXp() == HelixPvP.getInstance().getConfig().getInt("VeteranoKills")) {
-	        	   p.sendMessage("Você upou para o rank " + HelixPvP.getInstance().getConfig().getString("VeteranoRank").toUpperCase());
+	        	   p.sendMessage("You ranked up to the rank " + HelixPvP.getInstance().getConfig().getString("VeteranoRank").toUpperCase());
 		   	        Bukkit.broadcastMessage("§a" + p.getName() + " §fupou do rank " + HelixPvP.getInstance().getConfig().getString("ExperienteRank").toUpperCase() +  " para o Rank " + HelixPvP.getInstance().getConfig().getString("VeteranoRank").toUpperCase());
 		   	        PlayerDeathListener.throwRandomFirework(p);
 		   	        for (Player p1 : Bukkit.getOnlinePlayers()) {
@@ -115,7 +115,7 @@ public enum Ranking {
 		        }
 	        }
 	        else if (pvp.getXp() == HelixPvP.getInstance().getConfig().getInt("PrataKills")) {
-	        	   p.sendMessage("Você upou para o rank " + HelixPvP.getInstance().getConfig().getString("PrataRank").toUpperCase());
+	        	   p.sendMessage("You ranked up to the rank " + HelixPvP.getInstance().getConfig().getString("PrataRank").toUpperCase());
 		   	        Bukkit.broadcastMessage("§a" + p.getName() + " §fupou do rank " + HelixPvP.getInstance().getConfig().getString("VeteranoRank").toUpperCase() +  " para o Rank " + HelixPvP.getInstance().getConfig().getString("PrataRank").toUpperCase());
 		   	        PlayerDeathListener.throwRandomFirework(p);
 		   	        for (Player p1 : Bukkit.getOnlinePlayers()) {
@@ -124,7 +124,7 @@ public enum Ranking {
 		        }
 	        }
 	        else if (pvp.getXp() == HelixPvP.getInstance().getConfig().getInt("OuroKills")) {
-	        	 p.sendMessage("Você upou para o rank " + HelixPvP.getInstance().getConfig().getString("OuroRank").toUpperCase());
+	        	 p.sendMessage("You ranked up to the rank " + HelixPvP.getInstance().getConfig().getString("OuroRank").toUpperCase());
 		   	        Bukkit.broadcastMessage("§a" + p.getName() + " §fupou do rank " + HelixPvP.getInstance().getConfig().getString("PrataRank").toUpperCase() +  " para o Rank " + HelixPvP.getInstance().getConfig().getString("OuroRank").toUpperCase());
 		   	        PlayerDeathListener.throwRandomFirework(p);
 		   	        for (Player p1 : Bukkit.getOnlinePlayers()) {
@@ -133,7 +133,7 @@ public enum Ranking {
 		        }
 	        }
 	        else if (pvp.getXp() == HelixPvP.getInstance().getConfig().getInt("DiamanteKills")) {
-	        	 p.sendMessage("Você upou para o rank " + HelixPvP.getInstance().getConfig().getString("DiamanteRank").toUpperCase());
+	        	 p.sendMessage("You ranked up to the rank " + HelixPvP.getInstance().getConfig().getString("DiamanteRank").toUpperCase());
 		   	        Bukkit.broadcastMessage("§a" + p.getName() + " §fupou do rank " + HelixPvP.getInstance().getConfig().getString("OuroRank").toUpperCase() +  " para o Rank " + HelixPvP.getInstance().getConfig().getString("DiamanteRank").toUpperCase());
 		   	        PlayerDeathListener.throwRandomFirework(p);
 		   	        for (Player p1 : Bukkit.getOnlinePlayers()) {
@@ -142,7 +142,7 @@ public enum Ranking {
 		        }
 	        }
 	        else if (pvp.getXp() == HelixPvP.getInstance().getConfig().getInt("EsmeraldaKills")) {
-	        	 p.sendMessage("Você upou para o rank " + HelixPvP.getInstance().getConfig().getString("EsmeraldaRank").toUpperCase());
+	        	 p.sendMessage("You ranked up to the rank " + HelixPvP.getInstance().getConfig().getString("EsmeraldaRank").toUpperCase());
 		   	        Bukkit.broadcastMessage("§a" + p.getName() + " §fupou do rank " + HelixPvP.getInstance().getConfig().getString("DiamanteRank").toUpperCase() +  " para o Rank " + HelixPvP.getInstance().getConfig().getString("EsmeraldaRank").toUpperCase());
 		   	        PlayerDeathListener.throwRandomFirework(p);
 		   	        for (Player p1 : Bukkit.getOnlinePlayers()) {
@@ -151,7 +151,7 @@ public enum Ranking {
 		        }
 	        }
 	        else if (pvp.getXp() == HelixPvP.getInstance().getConfig().getInt("CristalKills")) {
-	        	 p.sendMessage("Você upou para o rank " + HelixPvP.getInstance().getConfig().getString("CristalRank").toUpperCase());
+	        	 p.sendMessage("You ranked up to the rank " + HelixPvP.getInstance().getConfig().getString("CristalRank").toUpperCase());
 		   	        Bukkit.broadcastMessage("§a" + p.getName() + " §fupou do rank " + HelixPvP.getInstance().getConfig().getString("EsmeraldaRank").toUpperCase() +  " para o Rank " + HelixPvP.getInstance().getConfig().getString("CristalRank").toUpperCase());
 		   	        PlayerDeathListener.throwRandomFirework(p);
 		   	        for (Player p1 : Bukkit.getOnlinePlayers()) {
@@ -160,7 +160,7 @@ public enum Ranking {
 		        }
 	        }
 	        else if (pvp.getXp() == HelixPvP.getInstance().getConfig().getInt("SafiraKills")) {
-	        	p.sendMessage("Você upou para o rank " + HelixPvP.getInstance().getConfig().getString("SafiraRank").toUpperCase());
+	        	p.sendMessage("You ranked up to the rank " + HelixPvP.getInstance().getConfig().getString("SafiraRank").toUpperCase());
 	   	        Bukkit.broadcastMessage("§a" + p.getName() + " §fupou do rank " + HelixPvP.getInstance().getConfig().getString("CristalRank").toUpperCase() +  " para o Rank " + HelixPvP.getInstance().getConfig().getString("SafiraRank").toUpperCase());
 	   	        PlayerDeathListener.throwRandomFirework(p);
 	   	        for (Player p1 : Bukkit.getOnlinePlayers()) {
@@ -169,7 +169,7 @@ public enum Ranking {
 	        }
         }
 	        else if (pvp.getXp() == HelixPvP.getInstance().getConfig().getInt("RubyKills")) {
-	        	p.sendMessage("Você upou para o rank " + HelixPvP.getInstance().getConfig().getString("RubyRank").toUpperCase());
+	        	p.sendMessage("You ranked up to the rank " + HelixPvP.getInstance().getConfig().getString("RubyRank").toUpperCase());
 	   	        Bukkit.broadcastMessage("§a" + p.getName() + " §fupou do rank " + HelixPvP.getInstance().getConfig().getString("SafiraRank").toUpperCase() +  " para o Rank " + HelixPvP.getInstance().getConfig().getString("RubyRank").toUpperCase());
 	   	        PlayerDeathListener.throwRandomFirework(p);
 	   	        for (Player p1 : Bukkit.getOnlinePlayers()) {
@@ -178,7 +178,7 @@ public enum Ranking {
 	        }
         }
 	        else if (pvp.getXp() == HelixPvP.getInstance().getConfig().getInt("LendarioKills")) {
-	        	p.sendMessage("Você upou para o rank " + HelixPvP.getInstance().getConfig().getString("LendarioRank").toUpperCase());
+	        	p.sendMessage("You ranked up to the rank " + HelixPvP.getInstance().getConfig().getString("LendarioRank").toUpperCase());
 	   	        Bukkit.broadcastMessage("§a" + p.getName() + " §fupou do rank " + HelixPvP.getInstance().getConfig().getString("RubyRank").toUpperCase() +  " para o Rank " + HelixPvP.getInstance().getConfig().getString("LendarioRank").toUpperCase());
 	   	        PlayerDeathListener.throwRandomFirework(p);
 	   	        for (Player p1 : Bukkit.getOnlinePlayers()) {
@@ -188,7 +188,7 @@ public enum Ranking {
         }
 	        	
 	        else if (pvp.getXp() == HelixPvP.getInstance().getConfig().getInt("GodKills")) {
-	        	p.sendMessage("Você upou para o rank " + HelixPvP.getInstance().getConfig().getString("GodRank").toUpperCase());
+	        	p.sendMessage("You ranked up to the rank " + HelixPvP.getInstance().getConfig().getString("GodRank").toUpperCase());
 	   	        Bukkit.broadcastMessage("§a" + p.getName() + " §fupou do rank " + HelixPvP.getInstance().getConfig().getString("LendarioRank").toUpperCase() +  " para o Rank " + HelixPvP.getInstance().getConfig().getString("GodRank").toUpperCase());
 	   	        PlayerDeathListener.throwRandomFirework(p);
 	   	        for (Player p1 : Bukkit.getOnlinePlayers()) {

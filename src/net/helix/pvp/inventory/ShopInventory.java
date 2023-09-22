@@ -19,7 +19,7 @@ import net.helix.pvp.kit.KitManager;
 
 public class ShopInventory {
 	
-	private final static String inventoryName = "Loja de Kits Primários";
+	private final static String inventoryName = "PRIMARY KITS SHOP";
 	private static ItemStack randomGlass() {
 		int randomId = new Random().nextInt(14);
 		return new ItemStack(Material.STAINED_GLASS_PANE, 1, (short)randomId);
@@ -52,7 +52,7 @@ public class ShopInventory {
 			
 			availableKits.forEach(kit -> {
 				inventory.addItem(new ItemBuilder("§c" + kit.getName(), kit.getIcon())
-						.lore("§7Compre por §e" + HelixDecimalFormat.format(kit.getPrice()) + " Coins")
+						.lore("§7Buy for §e" + HelixDecimalFormat.format(kit.getPrice()) + " Coins")
 						.addFlags(ItemFlag.HIDE_ATTRIBUTES,
 								ItemFlag.HIDE_DESTROYS,
 								ItemFlag.HIDE_ENCHANTS,
@@ -63,7 +63,7 @@ public class ShopInventory {
 						.toStack());
 			});
 		}else {
-			inventory.setItem(31, new ItemBuilder("§cVocê já tem todos os kits primários", Material.REDSTONE_BLOCK)
+			inventory.setItem(31, new ItemBuilder("§cYou already has all kits", Material.REDSTONE_BLOCK)
 					.toStack()
 			);
 		}

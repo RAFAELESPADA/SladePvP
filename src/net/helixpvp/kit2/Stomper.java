@@ -42,8 +42,8 @@ public class Stomper extends KitHandler2 {
 		/*     */           {
 		/*  52 */             Player plr = (Player)ent;
 		if (KitManager.getPlayer(plr.getName()).hasKit(HelixKit.ANTISTOMPER) || KitManager2.getPlayer(plr.getName()).haskit2(HelixKit2.ANTISTOMPER)) {
-			plr.sendMessage(ChatColor.RED + "Seu antistomper te protegeu.");
-			player.sendMessage(ChatColor.RED + "Seu kit stomper falhou porque um inimigo estava de antistomper.");
+			plr.sendMessage(ChatColor.RED + "Your antistomper protected you.");
+			player.sendMessage(ChatColor.RED + "Your stomper failed because you stomper a person with antistomper kit.");
 			event.setCancelled(true);
 			return;
 		}
@@ -61,13 +61,13 @@ public class Stomper extends KitHandler2 {
 		/*  58 */             if (plr.isSneaking())
 		/*     */             {
 		/*  60 */               plr.damage(6.0D, player);
-		/*  61 */               plr.sendMessage(ChatColor.GRAY + "Você foi stompado por: " + ChatColor.AQUA + player.getName());
+		/*  61 */               plr.sendMessage(ChatColor.GRAY + "You got stomped by: " + ChatColor.AQUA + player.getName());
 		/*     */             }
 		/*     */             else
 		/*     */             {
 			plr.damage(event.getDamage(), player);
 		    plr.damage(player.getFallDistance());
-		/*  66 */               plr.sendMessage(ChatColor.GRAY + "Você foi stompado por: " + ChatColor.AQUA +  player.getName());
+		/*  66 */               plr.sendMessage(ChatColor.GRAY + "You got stomped by: " + ChatColor.AQUA +  player.getName());
 		/*     */             }
 		/*     */           }
 		/*     */         }
