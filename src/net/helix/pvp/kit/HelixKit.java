@@ -66,9 +66,9 @@ import net.helix.pvp.listener.PlayerJoinListener;
 public enum HelixKit {
 
 
-	NENHUM("Nenhum", 0, 0 , new Nenhum(), new ItemStack(Material.BARRIER), "Sem habilidades" , 1),
+	NENHUM("None", 0, 0 , new Nenhum(), new ItemStack(Material.BARRIER), "No habilities" , 1),
 	PVP("PvP", HelixPvP.getInstance().getConfig().getInt("PvPPrice"), 0, new PvP(), new ItemStack(Material.STONE_SWORD), HelixPvP.getInstance().getConfig().getString("PvPLore") , 1),
-	SURPRISE("Surprise", 0, 0, new Surprise(), new ItemStack(Material.CAKE), "Receba uma habilidade aleatória" , 1),
+	SURPRISE("Surprise", 0, 0, new Surprise(), new ItemStack(Material.CAKE), "Receives a random hability" , 1),
 	KANGAROO("Kangaroo", HelixPvP.getInstance().getConfig().getInt("KangarooPrice"), 0,  new Kangaroo(), new ItemStack( Material.FIREWORK), HelixPvP.getInstance().getConfig().getString("KangarooLore") ,1),
 	THOR("Thor", HelixPvP.getInstance().getConfig().getInt("ThorPrice"), 0, new Thor(), new ItemStack(Material.GOLD_AXE), HelixPvP.getInstance().getConfig().getString("ThorLore") , 1),
 	ARCHER("Archer",HelixPvP.getInstance().getConfig().getInt("ArcherPrice"), 0, new Archer(), new ItemStack(Material.BOW), HelixPvP.getInstance().getConfig().getString("ArcherLore") , 1),
@@ -104,16 +104,16 @@ public enum HelixKit {
 	BOXER("Boxer", HelixPvP.getInstance().getConfig().getInt("BoxerPrice"), 1500, new Boxer(), new ItemStack(Material.QUARTZ), HelixPvP.getInstance().getConfig().getString("BoxerLore"), 2),
 	HULK("Hulk", HelixPvP.getInstance().getConfig().getInt("HulkPrice"), 420, new Hulk(), new ItemStack(Material.DROPPER), HelixPvP.getInstance().getConfig().getString("HulkLore"), 2),
 	SWITCHER("Switcher", HelixPvP.getInstance().getConfig().getInt("SwitcherPrice"), 0, new Switcher(), new ItemStack(Material.SNOW_BALL), HelixPvP.getInstance().getConfig().getString("SwitcherLore"), 2),
-	WATERBENDER("Waterbender", 12000, 0, new WaterBender(), new ItemStack(Material.LAPIS_ORE), "Coloque o inimigo em uma prisão de água", 2),
-	FIREBENDER("Firebender", 12000, 0, new Firebender(), new ItemStack(Material.REDSTONE_ORE), "Coloque o inimigo em uma prisão de fogo", 2),
-	AVATAR("Avatar", 17500, 0, new Avatar(), new ItemStack(Material.BEACON), "Controle os 4 elementos.", 2),
-	DESHFIRE("DeshFire", 15000, 0, new Deshfire(), new ItemStack(Material.NETHER_BRICK_STAIRS), "De um desh e bote fogo.", 2),
-	ENDERMAGE("EnderMage", 10000, 0, new EnderMageReal(), new ItemStack(Material.ENDER_STONE), "Puxe jogadores para sua torre.", 2),
+	WATERBENDER("Waterbender", 12000, 0, new WaterBender(), new ItemStack(Material.LAPIS_ORE), "Create a fire prison", 2),
+	FIREBENDER("Firebender", 12000, 0, new Firebender(), new ItemStack(Material.REDSTONE_ORE), "Create a water prison", 2),
+	AVATAR("Avatar", 17500, 0, new Avatar(), new ItemStack(Material.BEACON), "Control the 4 elements.", 2),
+	DESHFIRE("DeshFire", 15000, 0, new Deshfire(), new ItemStack(Material.NETHER_BRICK_STAIRS), "Gives a desh and put fire.", 2),
+	ENDERMAGE("EnderMage", 10000, 0, new EnderMageReal(), new ItemStack(Material.ENDER_STONE), "Pulls enemies to your tower.", 2),
 	JUMPER("Jumper", HelixPvP.getInstance().getConfig().getInt("JumperPrice"), 250, new Jumper(), new ItemStack(Material.EYE_OF_ENDER), HelixPvP.getInstance().getConfig().getString("JumperLore"), 2),
-	FLASH("Flash", 15000, 500, new Flash(), new ItemStack(Material.REDSTONE_TORCH_ON), "Teleporte para onde você clicar", 2),
-    GLADIATOR("Gladiator", 15000, 500, new GladiatorListener(), new ItemStack(Material.IRON_FENCE), "Faça 1v1 nos inimigos", 2),
-    METEOR("Meteor", 15000, 500, new Meteor(), new ItemStack(Material.FIREBALL), "Seja um meteoro", 2),
-	SONIC("Sonic", 15000, 500, new Sonic(), new ItemStack(Material.LAPIS_BLOCK), "De um desh e coloque veneno", 2);
+	FLASH("Flash", 15000, 500, new Flash(), new ItemStack(Material.REDSTONE_TORCH_ON), "Teleport to everywhere you click", 2),
+    GLADIATOR("Gladiator", 15000, 500, new GladiatorListener(), new ItemStack(Material.IRON_FENCE), "Challenge your enemies", 2),
+    METEOR("Meteor", 15000, 500, new Meteor(), new ItemStack(Material.FIREBALL), "Be a meteoro", 2),
+	SONIC("Sonic", 15000, 500, new Sonic(), new ItemStack(Material.LAPIS_BLOCK), "Give a desh and give poison", 2);
 	
 	private final String name;
 	private final String description;
@@ -155,35 +155,35 @@ public enum HelixKit {
 			if (KitManager2.getPlayer(player.getName()).getkit2() == HelixKit2.NENHUM && KitManager.getPlayer(player.getName()).getKit() == NENHUM) {
 				KitManager.getPlayer(player.getName()).setKit(PVP);
 				KitManager2.getPlayer(player.getName()).setkit2(HelixKit2.PVP);
-				player.sendMessage("§b" + name + " selecionado!");
+				player.sendMessage("§b" + name + " selected!");
 				return;
 			}
 	      	player.closeInventory();
 	  		return;
 	  	 }
 		if (KitManager2.getPlayer(player.getName()).getkit2().getName() == KitManager.getPlayer(player.getName()).getKit().getName()) {
-			player.sendMessage("§cVocê já tem esse kit escolhido como secundário!");
+			player.sendMessage("§cYou already has this kit was primary!");
 			player.closeInventory();
 			return;
 		}
 		if (KitManager2.getPlayer(player.getName()).getkit2().toString() == KitManager.getPlayer(player.getName()).getKit().toString()) {
 			if (KitManager2.getPlayer(player.getName()).getkit2() == HelixKit2.NENHUM && KitManager.getPlayer(player.getName()).getKit() == NENHUM) {
 				KitManager.getPlayer(player.getName()).setKit(this);
-				player.sendMessage("§b" + name + " selecionado!");
+				player.sendMessage("§b" + name + " selected!");
 				return;
 			}
 			if (KitManager2.getPlayer(player.getName()).getkit2() == HelixKit2.PVP && KitManager.getPlayer(player.getName()).getKit() == PVP) {
 				KitManager.getPlayer(player.getName()).setKit(this);
-				player.sendMessage("§b" + name + " selecionado!");
+				player.sendMessage("§b" + name + " selected!");
 				return;
 			}
-			player.sendMessage("§cVocê já tem esse kit escolhido como secundário!");
+			player.sendMessage("§cYou already has this kit was primary!");
 			player.playSound(player.getLocation(), Sound.GHAST_MOAN, 1f, 1f);
 			player.closeInventory();
 			return;
 		}
 		KitManager.getPlayer(player.getName()).setKit(this);
-		player.sendMessage("§b" + name + " selecionado!");
+		player.sendMessage("§b" + name + " selected!");
 	
 	}
 	

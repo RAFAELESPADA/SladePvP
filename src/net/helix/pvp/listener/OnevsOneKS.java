@@ -30,14 +30,14 @@ public class OnevsOneKS implements Listener {
 		
 		int killstreak = killerAccount.getPvp().getWinstreakx1();
 		if (String.valueOf(killstreak).contains("5") || (String.valueOf(killstreak).contains("0")) && killstreak != 0) {
-			Bukkit.broadcastMessage("§6§lWINS §e" + killer.getName() + " tem um winstreak de §b" + killstreak + "§e na 1v1!");
+			Bukkit.broadcastMessage("§6§lWINS §e" + killer.getName() + " has a winstreak of §b" + killstreak + "§e na 1v1!");
 		}
 		
 		Player victim = event.getPlayer();
 		HelixPlayer victimA = HelixBukkit.getInstance().getPlayerManager().getPlayer(victim.getName());
 		int killstreak2 = victimA.getPvp().getWinstreakx1();
 		if (killstreak2 >= 3) {
-			Bukkit.getOnlinePlayers().forEach(p -> p.sendMessage("§6" + victimA.getName() + " §eperdeu seu winstreak de §6" + victimA.getPvp().getWinstreakx1() + " §e na 1V1 para §6" +
+			Bukkit.getOnlinePlayers().forEach(p -> p.sendMessage("§6" + victimA.getName() + " §elost his winstreak of §6" + victimA.getPvp().getWinstreakx1() + " §e in 1V1 to §6" +
 	                killer.getName() + "§e!"));
 		}
 		victimA.getPvp().setWinstreakx1(0);

@@ -22,12 +22,12 @@ public class Euforia implements CommandExecutor {
         if (sender instanceof Player) {
             final Player player2 = (Player)sender;
             if (!player2.hasPermission("command.euforia")) {
-                player2.sendMessage(ChatColor.RED + "Você não tem autorizacão");
+                player2.sendMessage(ChatColor.RED + "No acess");
                 return true;
                 }
             if (!HelixPvP.euforia) {
             	 for (Player player : Bukkit.getOnlinePlayers()) {
-				DarKit.sendTitle(player, "§c§lEUFORIA", "§fTodos ficaram fortes");
+				DarKit.sendTitle(player, "§c§lEUFORIA", "§fEveryone get stronger");
 				player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 120*20, 0));
 				player.playSound(player.getLocation(), Sound.ANVIL_BREAK, 1F, 10F);
             	 }
@@ -37,10 +37,9 @@ public class Euforia implements CommandExecutor {
 				Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp group default permission settemp kombo.kit2.* true 30m");
 			    Bukkit.getWorld("spawn").setTime(18000);
 			    Bukkit.broadcast("§4§lEUFORIA §7Ativado manualmente por " + player2.getName(), "kombo.cmd.report");
-				Bukkit.broadcastMessage("§cO evento §4§lEUFORIA §cacabou de começar");
-				Bukkit.broadcastMessage("§cPor tempo indeterminado estará de noite e players teram força 1");
-				Bukkit.broadcastMessage("§cTodos os kits primários e secundários liberados durante o evento");
-            	Bukkit.broadcastMessage("§aO evento Euforia foi finalizado!");
+			    Bukkit.broadcastMessage("§cThe §4§lEUFORIA event §cstarted");
+				Bukkit.broadcastMessage("§cFor two minutes everyone will get strenght 2");
+				Bukkit.broadcastMessage("§cAll kits released during the event");
             	 }
          else {
         	
@@ -52,7 +51,7 @@ public class Euforia implements CommandExecutor {
 						Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp group default permission unsettemp kombo.kit.*");
 						Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp group default permission unsettemp kombo.kit2.*");
 					 for (Player p1 : Bukkit.getOnlinePlayers()) {
-						 DarKit.sendTitle(p1, "§c§lEUFORIA", "§aFinalizado!");
+						 DarKit.sendTitle(p1, "§c§lEUFORIA", "§aFinished!");
 						 BossBarAPI.removeAllBars(p1);
 					      	p1.playSound(p1.getLocation(), Sound.LEVEL_UP, 1f, 1f);
 					        p1.getActivePotionEffects().forEach(potion -> p1.removePotionEffect(potion.getType()));

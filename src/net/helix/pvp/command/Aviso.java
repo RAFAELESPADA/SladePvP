@@ -40,7 +40,7 @@ public class Aviso extends CommandClass {
 				message += a[i] + " ";
 			}
 			
-			Bukkit.broadcastMessage("§b§lAVISO: " + " §f" + message.replace("&", "§"));
+			Bukkit.broadcastMessage("§b§lBROADCAST:" + " §f" + message.replace("&", "§"));
 			for (Player p : Bukkit.getOnlinePlayers()) {
 				p.playSound(p.getLocation(), Sound.ARROW_HIT, 1f, 1f);
 			}

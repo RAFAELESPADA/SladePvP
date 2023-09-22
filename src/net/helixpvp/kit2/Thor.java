@@ -39,7 +39,7 @@ public class Thor extends KitHandler2 {
 			return;
 		}
 		else if (player.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura")) {
-			player.sendMessage("§cNão use o thor no spawn!");
+			player.sendMessage("§cDont use the thor on spawn!");
 			return;
 		}
 		

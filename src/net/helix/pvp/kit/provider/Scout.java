@@ -39,6 +39,6 @@ public void onInteract(PlayerInteractEvent event) {
 	}
     addCooldown(event.getPlayer(), HelixPvP.getInstance().getConfig().getInt("ScoutCooldown"));
     event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 30 * 20, 1));
-    event.getPlayer().sendMessage("§aScout aplicado!");
+    event.getPlayer().sendMessage("§aScout applied!");
 }
 }

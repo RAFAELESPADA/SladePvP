@@ -1,49 +1,34 @@
 package net.helix.pvp.command;
 
 
-import net.helix.core.account.HelixRole;
-import net.helix.core.bukkit.HelixBukkit;
-import net.helix.core.bukkit.account.HelixPlayer;
-import net.helix.core.bukkit.api.NameTagAPI;
-import net.helix.core.util.HelixCooldown;
-import net.helix.core.util.HelixCooldown2;
-import net.helix.pvp.FakeAPI;
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.LuckPermsProvider;
 import net.luckperms.api.model.group.Group;
 import net.luckperms.api.model.user.User;
 import net.luckperms.api.node.Node;
 import net.luckperms.api.node.NodeType;
-import net.luckperms.api.node.types.MetaNode;
 import net.luckperms.api.node.types.PrefixNode;
 import net.luckperms.api.query.QueryOptions;
 
-import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import lombok.AllArgsConstructor;
 import me.neznamy.tab.api.TabAPI;
-import me.neznamy.tab.api.TabPlayer;
 import me.neznamy.tab.api.tablist.SortingManager;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
-
 
 public class TagCommand implements CommandExecutor {
 
-
+	Map<String, Long> cooldowns = new HashMap<String, Long>();
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!(sender instanceof Player)) {
@@ -62,103 +47,89 @@ public class TagCommand implements CommandExecutor {
         	    groupsList.add(group.getName());
         	}
 Player p = (Player)sender;
-if (FakeAPI.hasFake(player)) {
-	player.sendMessage("Você só pode usar a tag MEMBRO enquanto estiver de FAKE");
-	player.sendMessage("Use /fake reset para tirar");
-	return true;
-}
-if (p.hasPermission("helix.tag.dono")) {
-    ChatInterativo.Comando(p.getName(), "§4§lDONO", "/tag dono", "§eExemplo: §4§lDONO §7" + p.getName());
-    }        
-if (p.hasPermission("helix.tag.diretor")) {
-    ChatInterativo.Comando(p.getName(), "§9§lDIRETOR", "/tag diretor", "§eExemplo: §9§lDIRETOR §7" + p.getName());
-    }
                     if (p.hasPermission("helix.tag.admin")) {
-                    ChatInterativo.Comando(p.getName(), "§b§lADMIN", "/tag admin", "§eExemplo: §b§lADMIN §7" + p.getName());
+                    ChatInterativo.Comando(p.getName(), "§4§lADMIN", "/tag admin", "§eExample: §4§lADMIN §7" + p.getName());
                     }
                     if (p.hasPermission("helix.tag.coord")) {
-                    ChatInterativo.Comando(p.getName(), "§3§lCOORD", "/tag coord", "§eExemplo: §3§lCOORD §7" + p.getName());
+                    ChatInterativo.Comando(p.getName(), "§3§lMOD+", "/tag mod+", "§eExample: §3§lMOD+ §7" + p.getName());
                     }
                     if (p.hasPermission("helix.tag.invest")) {
-                    ChatInterativo.Comando(p.getName(), "§a§lINVEST", "/tag invest", "§eExemplo: §a§lINVEST §7" + p.getName());
+                    ChatInterativo.Comando(p.getName(), "§a§lINVEST", "/tag invest", "§eExample: §a§lINVEST §7" + p.getName());
                     }
                     if (p.hasPermission("helix.tag.mod")) {
-                    ChatInterativo.Comando(p.getName(), "§2§lMOD", "/tag mod", "§eExemplo: §2§lMOD §7" + p.getName());
+                    ChatInterativo.Comando(p.getName(), "§2§lMOD", "/tag mod", "§eExample: §2§lMOD §7" + p.getName());
                     }
                     if (p.hasPermission("helix.tag.helper")) {
-                    ChatInterativo.Comando(p.getName(), "§e§lHELPER", "/tag helper", "§eExemplo: §e§lHELPER §7" + p.getName());
-                    }
-                    if (p.hasPermission("helix.tag.estagiario")) {
-                    ChatInterativo.Comando(p.getName(), "§d§lESTÁGIARIO", "/tag estagiario", "§eExemplo: §d§lESTÁGIO §7" + p.getName());
+                    ChatInterativo.Comando(p.getName(), "§e§lHELPER", "/tag helper", "§eExample: §e§lHELPER §7" + p.getName());
                     }
                     if (p.hasPermission("helix.tag.builder")) {
-                        ChatInterativo.Comando(p.getName(), "§1§lBUILDER", "/tag builder", "§eExemplo: §1§lBUILDER §7" + p.getName());
+                        ChatInterativo.Comando(p.getName(), "§1§lBUILDER", "/tag builder", "§eExample: §1§lBUILDER §7" + p.getName());
                         }
                     if (p.hasPermission("helix.tag.bughunter")) {
-                    ChatInterativo.Comando(p.getName(), "§8§lBUGHUNTER", "/tag bughunter", "§eExemplo: §8§lBUGHUNTER §7" + p.getName());
+                    ChatInterativo.Comando(p.getName(), "§8§lBUGHUNTER", "/tag bughunter", "§eExample: §8§lBUGHUNTER §7" + p.getName());
                     }
                     if (p.hasPermission("helix.tag.yt+")) {
-                    ChatInterativo.Comando(p.getName(), "§b§lYT§6§l+", "/tag yt+", "§eExemplo: §b§lYT§6§l+ §7" + p.getName());
+                    ChatInterativo.Comando(p.getName(), "§b§lYT§6§l+", "/tag yt+", "§eExample: §b§lYT§6§l+ §7" + p.getName());
                     }
                     if (p.hasPermission("helix.tag.yt")) {
-                    ChatInterativo.Comando(p.getName(), "§c§lYT", "/tag yt", "§eExemplo: §c§lYT §7" + p.getName());
+                    ChatInterativo.Comando(p.getName(), "§c§lYT", "/tag yt", "§eExample: §c§lYT §7" + p.getName());
                     }
                     if (p.hasPermission("helix.tag.streamer")) {
-                    ChatInterativo.Comando(p.getName(), "§5§lSTREAMER", "/tag streamer", "§eExemplo: §5§lSTREAMER §7" + p.getName());
+                    ChatInterativo.Comando(p.getName(), "§5§lSTREAMER", "/tag streamer", "§eExample: §5§lSTREAMER §7" + p.getName());
                     }
                     if (p.hasPermission("helix.tag.creator")) {
-                    ChatInterativo.Comando(p.getName(), "§b§lCREATOR", "/tag creator", "§eExemplo: §b§lCREATOR §7" + p.getName());
+                    ChatInterativo.Comando(p.getName(), "§b§lCREATOR", "/tag creator", "§eExample: §b§lCREATOR §7" + p.getName());
                     }
                     if (p.hasPermission("helix.tag.miniyt")) {
-                    ChatInterativo.Comando(p.getName(), "§c§lMINIYT", "/tag miniyt", "§eExemplo: §c§lMINIYT §7" + p.getName());
+                    ChatInterativo.Comando(p.getName(), "§c§lMINIYT", "/tag miniyt", "§eExample: §c§lMINIYT §7" + p.getName());
                     }
                     if (p.hasPermission("helix.tag.beta")) {
-                    ChatInterativo.Comando(p.getName(), "§e§lBETA", "/tag beta", "§eExemplo: §e§lBETA §7" + p.getName());
+                    ChatInterativo.Comando(p.getName(), "§e§lBETA", "/tag beta", "§eExample: §e§lBETA §7" + p.getName());
                     }
                     if (p.hasPermission("helix.tag.diamond")) {
-                    ChatInterativo.Comando(p.getName(), "§3§lDIAMOND", "/tag diamond", "§eExemplo: §3§lDIAMOND §7" + p.getName());
+                    ChatInterativo.Comando(p.getName(), "§3§lDIAMOND", "/tag diamond", "§eExample: §3§lDIAMOND §7" + p.getName());
                     }
                     if (p.hasPermission("helix.tag.emerald")) {
-                    ChatInterativo.Comando(p.getName(), "§a§lEMERALD", "/tag emerald", "§eExemplo: §a§lEMERALD §7" + p.getName());
+                    ChatInterativo.Comando(p.getName(), "§a§lEMERALD", "/tag emerald", "§eExample: §a§lEMERALD §7" + p.getName());
                     }
                     if (p.hasPermission("helix.tag.gold")) {
-                    ChatInterativo.Comando(p.getName(), "§6§lGOLD", "/tag gold", "§eExemplo: §6§lGOLD §7" + p.getName());
+                    ChatInterativo.Comando(p.getName(), "§6§lGOLD", "/tag gold", "§eExample: §6§lGOLD §7" + p.getName());
                     }
-                    if (p.hasPermission("helix.tag.iron")) {
-                        ChatInterativo.Comando(p.getName(), "§f§lIRON", "/tag iron", "§eExemplo: §f§lIRON §7" + p.getName());
+                    if (p.hasPermission("helix.tag.slade")) {
+                        ChatInterativo.Comando(p.getName(), "§6§lSLADE", "/tag slade", "§eExample: §6§lSLADE §7" + p.getName());
                         }
                     if (p.hasPermission("helix.tag.booster")) {
-                    ChatInterativo.Comando(p.getName(), "§0§lBOOSTER", "/tag booster", "§eExemplo: §0§lBOOSTER §7" + p.getName());
+                    ChatInterativo.Comando(p.getName(), "§0§lBOOSTER", "/tag booster", "§eExample: §0§lBOOSTER §7" + p.getName());
                     }
                     if (p.hasPermission("helix.tag.friend")) {
-                        ChatInterativo.Comando(p.getName(), "§6§lFRIEND", "/tag friend", "§eExemplo: §6§lFRIEND §7" + p.getName());
+                        ChatInterativo.Comando(p.getName(), "§6§lFRIEND", "/tag friend", "§eExample: §6§lFRIEND §7" + p.getName());
                         }
                     if (p.hasPermission("helix.tag.2025")) {
-                        ChatInterativo.Comando(p.getName(), "§a§l2025", "/tag 2025", "§eExemplo: §a§l2025 §7" + p.getName());
+                        ChatInterativo.Comando(p.getName(), "§a§l2025", "/tag 2025", "§eExample: §a§l2025 §7" + p.getName());
                         }
                     if (p.hasPermission("helix.tag.2024")) {
-                        ChatInterativo.Comando(p.getName(), "§1§l2024", "/tag 2024", "§eExemplo: §1§l2024 §7" + p.getName());
+                        ChatInterativo.Comando(p.getName(), "§1§l2024", "/tag 2024", "§eExample: §1§l2024 §7" + p.getName());
                         }
                     if (p.hasPermission("helix.tag.2023")) {
-                        ChatInterativo.Comando(p.getName(), "§b§l2023", "/tag 2023", "§eExemplo: §b§l2023 §7" + p.getName());
+                        ChatInterativo.Comando(p.getName(), "§b§l2023", "/tag 2023", "§eExample: §b§l2023 §7" + p.getName());
                         }
                     if (p.hasPermission("helix.tag.natal")) {
-                        ChatInterativo.Comando(p.getName(), "§c§lNATAL", "/tag natal", "§eExemplo: §c§lNATAL §7" + p.getName());
+                        ChatInterativo.Comando(p.getName(), "§c§lNATAL", "/tag natal", "§eExample: §c§lNATAL §7" + p.getName());
                         }
                     if (p.hasPermission("helix.tag.winner")) {
-                        ChatInterativo.Comando(p.getName(), "§6§lWINNER", "/tag winner", "§eExemplo: §6§lWINNER §7" + p.getName());
+                        ChatInterativo.Comando(p.getName(), "§6§lWINNER", "/tag winner", "§eExample: §6§lWINNER §7" + p.getName());
                         }
                     if (p.hasPermission("helix.tag.top1")) {
-                    ChatInterativo.Comando(p.getName(), "§9§lTOP1", "/tag top1", "§eExemplo: §9§lTOP1 §7" + p.getName());
+                    ChatInterativo.Comando(p.getName(), "§9§lTOP1", "/tag top1", "§eExample: §9§lTOP1 §7" + p.getName());
                     }
                     if (p.hasPermission("helix.tag.apoiador")) {
-                        ChatInterativo.Comando(p.getName(), "§b§lAPOIADOR", "/tag apoiador", "§eExemplo: §b§lAPOIADOR §7" + p.getName());
+                        ChatInterativo.Comando(p.getName(), "§b§lAPOIADOR", "/tag apoiador", "§eExample: §b§lAPOIADOR §7" + p.getName());
                         }
                     if (p.hasPermission("helix.tag.loser")) {
-                        ChatInterativo.Comando(p.getName(), "§8§lLOSER", "/tag loser", "§eExemplo: §8§lLOSER §7" + p.getName());
+                        ChatInterativo.Comando(p.getName(), "§8§lLOSER", "/tag loser", "§eExample: §8§lLOSER §7" + p.getName());
                         }
                     
-                    ChatInterativo.Comando(p.getName(), "§7§lMEMBRO", p.hasPermission("helix.tag.membro") ? "/tag membro" : "/tag default", "§eExemplo: §7" + p.getName());
+                    ChatInterativo.Comando(p.getName(), "§7§lMEMBRO", p.hasPermission("helix.tag.membro") ? "/tag membro" : "/tag default", "§eExample: §7" + p.getName());
                     return true;
               }
 
@@ -170,17 +141,16 @@ if (p.hasPermission("helix.tag.diretor")) {
             player.sendMessage("§cVocê não tem permissão.");
             return true;
         }
-        if (HelixCooldown.inCooldown(player.getName(), "tag")) {
-            sender.sendMessage("§cVocê está trocando de tag muito rápido, aguarde alguns intantes.");
-            return true;
+        if (cooldowns.containsKey(player.getName() + "EPT")) {
+            if (cooldowns.get(player.getName() + "EPT") > System.currentTimeMillis()) {
+                long timeleft = (cooldowns.get(player.getName() + "EPT") - System.currentTimeMillis()) / 1000;
+                player.sendMessage(ChatColor.RED + "Wait " + timeleft +" seconds to change your tag again!");
+                return true;
+            }
         }
 
 try {
-	if (FakeAPI.hasFake(player)) {
-		player.sendMessage("Você só pode usar a tag MEMBRO enquanto estiver de FAKE");
-		player.sendMessage("Use /fake reset para tirar");
-		return true;
-	}
+	
         String prefix = api.getGroupManager().getGroup(args[0]).getCachedData().getMetaData().getPrefix();
 
         // Get an OfflinePlayer object for the player
@@ -207,13 +177,13 @@ try {
             user.data().add(node);
 
             // Tell the sender.
-            HelixCooldown.create(player.getName(), "tag", TimeUnit.SECONDS, 7);
-            sender.sendMessage("§a§lTAG: §fa sua tag foi alterada para " + (args[0].equalsIgnoreCase("Membro") || (args[0].equalsIgnoreCase("default")) ? "§7§lMEMBRO" : ChatColor.RESET + prefix.replace("&", "§")));
+            cooldowns.put(player.getName() + "EPT", System.currentTimeMillis() + 7 * 1000);
+            sender.sendMessage("§a§lTAG: §fYour tag has been changed to " + (args[0].equalsIgnoreCase("Membro") || (args[0].equalsIgnoreCase("default")) ? "§7§lMEMBER" : ChatColor.RESET + prefix.replace("&", "§")));
             apitab.getPlayer(player.getName()).setTemporaryGroup(args[0]);
             Bukkit.getConsoleSender().sendMessage(player.getName() + " alterou a tag para " + args[0]);
         });
 } catch (NullPointerException e) {
-	sender.sendMessage(ChatColor.RED + "§4§lTAG: Tag não encontrada!");
+	sender.sendMessage(ChatColor.RED + "§4§lTAG: Tag not found!");
 }
 
         return true;

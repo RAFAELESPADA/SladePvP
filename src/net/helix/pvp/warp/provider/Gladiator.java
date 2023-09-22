@@ -98,7 +98,7 @@ public class Gladiator extends WarpDuoBattleHandle3 {
 		finalizeBattle(target);
 		GladiatorListener.resetGladiatorListenerByQuit(target, player);
 		HelixWarp.GLADIATOR.send(target);
-		target.sendMessage("§2Seu oponente deslogou e a batalha foi encerrada.");
+		target.sendMessage("§2Your opponent logged out and the battle ended.");
 
 	}
 
@@ -123,7 +123,7 @@ public class Gladiator extends WarpDuoBattleHandle3 {
 		event.setCancelled(true);
 		
 		if (HelixCooldown.inCooldown(player.getName(), "1v1g-fast-challenge")) {
-			player.sendMessage("§cAguarde...");
+			player.sendMessage("§cWait...");
 			return;
 		}
 		
@@ -135,7 +135,7 @@ public class Gladiator extends WarpDuoBattleHandle3 {
 		}
 
 		setItems(player);
-		player.sendMessage(fastChallenge.contains(player) ? "§aVocê entrou na fila do 1v1" : "§eVocê saiu da fila do 1v1");
+		player.sendMessage(fastChallenge.contains(player) ? "§aYou enter the queue" : "§eYou left the queue");
 	}
 	
 	@EventHandler
@@ -153,7 +153,7 @@ public class Gladiator extends WarpDuoBattleHandle3 {
 		Player target = (Player) event.getRightClicked();
 		
 		if (findOpponent(target).isPresent()) {
-			player.sendMessage("§c§lGLAD §cEste jogador já está batalhando");
+			player.sendMessage("§c§lGLAD §cThis player is already fighting");
 			return;
 		}
 		
@@ -165,13 +165,13 @@ public class Gladiator extends WarpDuoBattleHandle3 {
 		}
 		
 		if (HelixCooldown.inCooldown(player.getName(), "1v1g-challenge-" + target.getName())) {
-			player.sendMessage("§e§lGLAD §eVocê já convidou este jogador recentemente");
+			player.sendMessage("§e§lGLAD §eYou already invited this player recently");
 			return;
 		}
 		
 		HelixCooldown.create(player.getName(), "1v1g-challenge-" + target.getName(), TimeUnit.SECONDS, 15);
-		target.sendMessage("§e§lGLAD §eVocê foi convidado por " + player.getName() + " para uma batalha");
-		player.sendMessage("§6§lGLAD §6Você convidou " + target.getName() + " para uma batalha");
+		target.sendMessage("§e§lGLAD §eYou get challenged by " + player.getName() + " to a fight");
+		player.sendMessage("§6§lGLAD §6You challenged " + target.getName() + " to a fight");
 	}
 	 public static void clearBlocks() {
 	        EventoUtils.blocksV.forEach(blockLoc -> {
@@ -198,7 +198,7 @@ public class Gladiator extends WarpDuoBattleHandle3 {
 		loserHelixPlayer.getPvp().adddeathsX1(1);
 		loserHelixPlayer.getPvp().setKillstreak(0);
 		
-		loser.sendMessage("§cVocê perdeu a batalha contra " + winner.getName() + "§c.");
+		loser.sendMessage("§cYou lost the battle against " + winner.getName() + "§c.");
 		if ((loserHelixPlayer.getPvp().getCoins() - loserWithdrawnCoins) >= 0) {
 			loserHelixPlayer.getPvp().removeCoins(loserWithdrawnCoins);
 			loser.sendMessage("§c§l[-] §c" + loserWithdrawnCoins + " coins");
@@ -226,7 +226,7 @@ public class Gladiator extends WarpDuoBattleHandle3 {
 	GladiatorListener.combateGlad.remove(winner);
 	GladiatorListener.combateGlad.remove(loser);
 	winner.getInventory().clear();
-		winner.sendMessage("§aVocê ganhou a batalha contra " + loser.getName() + " §7(" + (event.isValidKill() ? "Conta" : "Não conta") + ")");
+		winner.sendMessage("§aYou win the battle against " + loser.getName() + " §7(" + (event.isValidKill() ? "Count" : "Dont count") + ")");
 
 		if (event.isValidKill()) {
 			HelixPlayer winnerHelixPlayer = HelixBukkit.getInstance().getPlayerManager().getPlayer(winner.getName());
@@ -304,14 +304,14 @@ public class Gladiator extends WarpDuoBattleHandle3 {
 	public void setItems(Player player) {
 		super.setItems(player);
 
-		player.getInventory().setItem(3, new ItemBuilder("§bDesafiar §7(Clique)", Material.IRON_FENCE)
+		player.getInventory().setItem(3, new ItemBuilder("§bChallenge §7(Click)", Material.IRON_FENCE)
 				.nbt("cancel-drop")
 				.nbt("cancel-click")
 				.nbt("1v1g", "challenge")
 				.toStack()
 		);
 		
-		player.getInventory().setItem(5, new ItemBuilder("§bProcurar jogadores: " + (fastChallenge.contains(player) ? "§aON" : "§cOFF"), Material.INK_SACK, fastChallenge.contains(player) ? 10 : 8)
+		player.getInventory().setItem(5, new ItemBuilder("§bSearch Players: " + (fastChallenge.contains(player) ? "§aON" : "§cOFF"), Material.INK_SACK, fastChallenge.contains(player) ? 10 : 8)
 				.nbt("cancel-drop")
 				.nbt("cancel-click")
 				.nbt("1v1g", "fast-challenge")

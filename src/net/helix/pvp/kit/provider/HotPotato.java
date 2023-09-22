@@ -37,19 +37,19 @@ public class HotPotato extends KitHandler {
     	 	   	return;
     	 	   }
     	  else if (p.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura")) {
-  			p.sendMessage("§cNão use o hotpotato no spawn!");
+  			p.sendMessage("§cDont use the hotpotato on spawn!");
   			return;
   		}
     	  else if (KitManager.getPlayer(k.getName()).hasKit(HelixKit.NEO) || KitManager2.getPlayer(k.getName()).haskit2(HelixKit2.NEO)) {
 				p.playSound(p.getLocation(), Sound.NOTE_BASS_DRUM, 15.0f, 15.0f);
-				p.sendMessage(ChatColor.RED + "Você nao pode usar hotpotato em " + ChatColor.DARK_RED + k.getName() + ChatColor.RED + " porque ele esta com o kit" + ChatColor.DARK_RED + " NEO");
+				p.sendMessage(ChatColor.RED + "You cant use hotpotato on " + ChatColor.DARK_RED + k.getName() + ChatColor.RED + " because he has the kit" + ChatColor.DARK_RED + " NEO");
 				return;
 			}
     	  addCooldown(e.getPlayer(), 25);
         emhotpotato.add(k.getName());
-        p.sendMessage("§eHotPotato Colocada");
-        k.sendMessage("§eVocê está com a tnt do hotpotato tire ou ira explodir em 5 segundos!");
-        k.sendMessage("§eClique com o botao direito na hotpotato para tira-la.");
+        p.sendMessage("§eHotPotat placed in the player.");
+        k.sendMessage("§eYou are with the hotpotato!");
+        k.sendMessage("§eRight click on it to remove.");
         ItemStack tnt = new ItemStack(Material.TNT);
         ItemMeta tntmeta = tnt.getItemMeta();
         k.playSound(k.getLocation(), Sound.CREEPER_HISS, 1F, 1F);
@@ -60,28 +60,28 @@ public class HotPotato extends KitHandler {
         (new BukkitRunnable() {
             public void run() {
               if (HotPotato.emhotpotato.contains(k.getName()))
-                  k.sendMessage("Você está com a tnt, ela sera explodida em 4 segundos");
+                  k.sendMessage("You are with the potato, it will explode in 4 seconds");
           	k.playSound(k.getLocation(), Sound.CREEPER_HISS, 1F, 1F);
             }
           }).runTaskLater((Plugin)HelixPvP.getInstance(), 0L);
         (new BukkitRunnable() {
             public void run() {
               if (HotPotato.emhotpotato.contains(k.getName()))
-                  k.sendMessage("Você está com a tnt, ela sera explodida em 3 segundos");
+            	  k.sendMessage("You are with the potato, it will explode in 3 seconds");
               k.playSound(k.getLocation(), Sound.CREEPER_HISS, 1F, 1F);
             }
           }).runTaskLater((Plugin)HelixPvP.getInstance(), 20L);
         (new BukkitRunnable() {
             public void run() {
               if (HotPotato.emhotpotato.contains(k.getName()))
-                k.sendMessage("Você está com a tnt, ela sera explodida em 2 segundos");
+            	  k.sendMessage("You are with the potato, it will explode in 2 seconds");
               k.playSound(k.getLocation(), Sound.CREEPER_HISS, 1F, 1F);
             }
           }).runTaskLater((Plugin)HelixPvP.getInstance(), 40L);
         (new BukkitRunnable() {
             public void run() {
               if (HotPotato.emhotpotato.contains(k.getName()))
-                  k.sendMessage("Você está com a tnt, ela sera explodida em 1 segundos"); 
+            	  k.sendMessage("You are with the potato, it will explode in 1 seconds");
               k.playSound(k.getLocation(), Sound.CREEPER_HISS, 1F, 1F);
             }
           }).runTaskLater((Plugin)HelixPvP.getInstance(), 60L);
@@ -101,7 +101,7 @@ public class HotPotato extends KitHandler {
           }).runTaskLater((Plugin)HelixPvP.getInstance(), 80L);
         Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnable() {
               public void run() {
-            	  p.sendMessage(ChatColor.GREEN + "Você pode usar novamente o kit HotPotato!"); 
+            	  p.sendMessage(ChatColor.GREEN + "You can use the hotpotato again!"); 
               }
             },  600L);
       } 
@@ -116,7 +116,7 @@ public class HotPotato extends KitHandler {
       e.setCancelled(true);
       p.getInventory().setHelmet(null);
       p.playSound(p.getLocation(), Sound.CREEPER_HISS, 2.0F, 2.0F);
-      p.sendMessage("§eVocê desarmou a hotpotato.");
+      p.sendMessage("§eYou removed the hot potato.");
       p.closeInventory();
     } 
   }

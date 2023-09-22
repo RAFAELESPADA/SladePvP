@@ -71,7 +71,7 @@ public class PlayerCombatLogListener implements Listener {
 		String command = event.getMessage().split(" ")[0].toLowerCase();
 		if (HelixCooldown.inCooldown(player.getName(), "combat") && !allowCommands.contains(command) && !player.hasPermission("kombo.cmd.report")) {
 			event.setCancelled(true);
-			player.sendMessage("§cEspere " + HelixCooldown.getTime(player.getName(), "combat") + " segundos para usar comandos");
+			player.sendMessage("§cWait " + HelixCooldown.getTime(player.getName(), "combat") + " seconds to use this command again");
 		}
 	}
 	@EventHandler
@@ -88,17 +88,10 @@ public class PlayerCombatLogListener implements Listener {
 		Player player = event.getPlayer();
 		if (event.getMessage().split(" ")[0].toLowerCase().equals("l")) {
 			event.setCancelled(true);
-			player.sendMessage("§eVocê voltou!");
+			player.sendMessage("§eCommand canceled!");
 		}
 	}
-		@EventHandler
-		public void onCommandPreProcesst24(PlayerCommandPreprocessEvent event) {
-			Player player = event.getPlayer();
-			if (event.getMessage().split(" ")[0].toLowerCase().contains("ban") && !player.hasPermission("helix.tag.admin")) {
-				event.setCancelled(true);
-				player.sendMessage("§cVocê precisa ser Admin ou superior para executar esse comando!");
-			}
-		}
+		
 
 				
 			
@@ -114,23 +107,9 @@ public class PlayerCombatLogListener implements Listener {
 			 
 
 		
-					@EventHandler
-			public void onCommandPreProttcgtgesst24(PlayerCommandPreprocessEvent event) {
-				Player player = event.getPlayer();
-				if (event.getMessage().split(" ")[0].toLowerCase().contains("mute") && !player.hasPermission("helix.tag.admin")) {
-					event.setCancelled(true);
-					player.sendMessage("§cVocê precisa ser Admin ou superior para executar esse comando!");
-				}
-	}
-			@EventHandler
-			public void onCommandPreProtctgesst24n(PlayerCommandPreprocessEvent event) {
-				Player player = event.getPlayer();
-				if (event.getMessage().split(" ")[0].toLowerCase().contains("litebans:") && !player.hasPermission("helix.tag.admin")) {
-					event.setCancelled(true);
-					player.sendMessage("§cVocê precisa ser Admin ou superior para executar esse comando!");
-				}
+		
 
-	}
+	
 	@EventHandler
 	public void onCommandPreProcess2(PlayerCommandPreprocessEvent event) {
 		Player player = event.getPlayer();
@@ -141,7 +120,7 @@ public class PlayerCombatLogListener implements Listener {
 		String command = event.getMessage().split(" ")[0].toLowerCase();
 		if (command.contains("admin") && VanishUtil.has(player.getName())) {
 			event.setCancelled(true);
-			player.sendMessage("§cSaia do vanish antes de entrar no modo admin!");
+			player.sendMessage("§cLeave the vanish before entering admin mode!");
 		}
 	}
 	
@@ -163,7 +142,7 @@ public class PlayerCombatLogListener implements Listener {
 			HelixCooldown.delete(player.getName(), "combat");
 			player.setHealth(0);
 			HelixWarp.SPAWN.send(player);
-			Bukkit.broadcastMessage(ChatColor.RED + player.getName() + " deslogou em combate.");
+			Bukkit.broadcastMessage(ChatColor.RED + player.getName() + " logged out in combat.");
 		}
 	
 	}

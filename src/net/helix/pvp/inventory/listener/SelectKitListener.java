@@ -655,7 +655,7 @@ public class SelectKitListener implements Listener {
 	 public void setMotdPingInstance(Object motdPingInstance) {
 	        this.motdPingInstance = motdPingInstance;
 	    }
-	 private static final List<String> motds = Arrays.asList("§a§lMAPAS §e§lALTERADOS!" , "§b§lSeason 1 §e§lINICIADA!" , "§3§lSISTEMAS §e§lALTERADOS!");
+	 private static final List<String> motds = Arrays.asList("§a§lCHANGED MAPS!" , "§b§lSeason 1 §e§lSTARTED!" , "§3§lNEW SYSTEMS!");
 
 	    private static String getMotdMessage(String motd) {
 	        float y = (float) motd.length();
@@ -670,7 +670,7 @@ public class SelectKitListener implements Listener {
 	        return space + motd;
 	    }
 	    public static String getName() {
-	        return "§6§lSLADEMC";
+	        return "§6§lKOMBOPVP";
 	    }
 
 	  
@@ -679,7 +679,7 @@ public class SelectKitListener implements Listener {
 	        try {
 	            WrappedServerPing ping = event.getPacket().getServerPings().read(0);
 	            setMotdPingInstance(ping);
-	            setHoverMotd(Arrays.asList("§fMapa alterado!" , "§eSeason 1 iniciada!"));
+	            setHoverMotd(Arrays.asList("§fChanged maps!" , "§eNew kitpvp server!"));
 	            event.getPacket().getServerPings().write(0, ping);
 	        } catch (Exception err) {
 	            Bukkit.getConsoleSender().sendMessage("ERRO NO MOTD");

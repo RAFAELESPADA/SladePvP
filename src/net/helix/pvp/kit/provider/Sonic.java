@@ -96,7 +96,7 @@ if (inCooldown(event.getPlayer()) && KitManager.getPlayer(event.getPlayer().getN
 /*  80 */         if ((pertos instanceof Player))
 /*     */         {
 	if (pertos.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura") || !KitManager.getPlayer(pertos.getName()).hasKit()) {
-		p.sendMessage("Não use o sonic no spawn!");
+		p.sendMessage("Dont use the sonic on spawn!");
 		return;
 	}
 /*  82 */           Player perto = (Player)pertos;

@@ -30,7 +30,7 @@ public class Sight extends KitHandler {
 		int percentage = new Random().nextInt(100);
 		
 		if (percentage < 27) {
-			victim.sendMessage(ChatColor.RED + "Um sight tirou sua visão");
+			victim.sendMessage(ChatColor.RED + "A sight removed your vision");
 			victim.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 4 * 20, 1));
 		}
 	}

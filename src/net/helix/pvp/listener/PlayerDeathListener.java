@@ -58,14 +58,14 @@ public class PlayerDeathListener implements Listener {
 		boolean validKill = false;
 		if (!PlayerJoinListener.fall.contains(p)) {
 	    	PlayerJoinListener.fall.add(p);
-	    	p.sendMessage(ChatColor.GREEN + "Você recebeu a proteção do spawn");
+	    	p.sendMessage(ChatColor.GREEN + "You received spawn protection");
 	    }
 		HelixCooldown2.removeCooldown(player , "Kit");
 		BossBarAPI.removeAllBars(player);
 		player.getActivePotionEffects().forEach(it -> player.removePotionEffect(it.getType()));
 		if (RDMAutomatic.playersIN.contains(p.getName())) {
 		  RDMAutomatic.playersIN.remove(p.getName());
-	      player.sendMessage(ChatColor.DARK_RED + "Você foi eliminado do Evento 1X1!");
+	      player.sendMessage(ChatColor.DARK_RED + "You got eliminated from 1X1!");
 	      player.playSound(player.getLocation(), Sound.GHAST_SCREAM, 10, 10);
 		}
 		player.spigot().respawn();
@@ -256,14 +256,14 @@ public class PlayerDeathListener implements Listener {
 		 EventoUtils.setEvento(false, event.getEntity());
 			if (EventoUtils.evento && EventoUtils.getEventoPlayers().size() == 1  && EventoUtils.getEventoPlayers().size() != 0 && EventoUtils.started && !RDMAutomatic.iniciou)
 		       EventoUtils.getEventoPlayers().forEach(p -> {
-		    	   Bukkit.broadcastMessage("§6Vencedor do evento §a§ §C§l " + EventoUtils.getEventoPlayersNames());
-		    	   Bukkit.broadcastMessage("§6Vencedor do evento §a§ §C§l " + EventoUtils.getEventoPlayersNames());
-	            	Bukkit.broadcastMessage("§6Vencedor do evento §a§ §C§l " + EventoUtils.getEventoPlayersNames());
-	            	Bukkit.broadcastMessage("§6Vencedor do evento §a§ §C§l " + EventoUtils.getEventoPlayersNames());
-	            	Bukkit.broadcastMessage("§6Vencedor do evento §a§ §C§l " + EventoUtils.getEventoPlayersNames());
-	            	Bukkit.broadcastMessage("§6Vencedor do evento §a§ §C§l " + EventoUtils.getEventoPlayersNames());
-	            	Bukkit.broadcastMessage("§6Vencedor do evento §a§ §C§l " + EventoUtils.getEventoPlayersNames());
-	            	Bukkit.broadcastMessage("§6Vencedor do evento §a§ §C§l " + EventoUtils.getEventoPlayersNames());
+		    	   Bukkit.broadcastMessage("§6Event winner §a§ §C§l " + EventoUtils.getEventoPlayersNames());
+		    	   Bukkit.broadcastMessage("§6Event winner §a§ §C§l " + EventoUtils.getEventoPlayersNames());
+	            	Bukkit.broadcastMessage("§6Event winner §a§ §C§l " + EventoUtils.getEventoPlayersNames());
+	            	Bukkit.broadcastMessage("§6Event winner §a§ §C§l " + EventoUtils.getEventoPlayersNames());
+	            	Bukkit.broadcastMessage("§6Event winner §a§ §C§l " + EventoUtils.getEventoPlayersNames());
+	            	Bukkit.broadcastMessage("§6Event winner §a§ §C§l " + EventoUtils.getEventoPlayersNames());
+	            	Bukkit.broadcastMessage("§6Event winner §a§ §C§l " + EventoUtils.getEventoPlayersNames());
+	            	Bukkit.broadcastMessage("§6Event winner §a§ §C§l " + EventoUtils.getEventoPlayersNames());
 	            	p.setHealth(20);
 	         
 	            	
@@ -284,13 +284,13 @@ public class PlayerDeathListener implements Listener {
 		 EventoUtils.setEvento(false, event.getPlayer());
 				if (EventoUtils.evento && EventoUtils.getEventoPlayers().size() == 1 && EventoUtils.getEventoPlayers().size() != 0 && EventoUtils.started && !RDMAutomatic.iniciou)
 			       EventoUtils.getEventoPlayers().forEach(p -> {
-			    	   Bukkit.broadcastMessage("§6Vencedor do evento §a§ §C§l " + EventoUtils.getEventoPlayersNames());
-		            	Bukkit.broadcastMessage("§6Vencedor do evento §a§ §C§l " + EventoUtils.getEventoPlayersNames());
-		            	Bukkit.broadcastMessage("§6Vencedor do evento §a§ §C§l " + EventoUtils.getEventoPlayersNames());
-		            	Bukkit.broadcastMessage("§6Vencedor do evento §a§ §C§l " + EventoUtils.getEventoPlayersNames());
-		            	Bukkit.broadcastMessage("§6Vencedor do evento §a§ §C§l " + EventoUtils.getEventoPlayersNames());
-		            	Bukkit.broadcastMessage("§6Vencedor do evento §a§ §C§l " + EventoUtils.getEventoPlayersNames());
-		            	Bukkit.broadcastMessage("§6Vencedor do evento §a§ §C§l " + EventoUtils.getEventoPlayersNames());
+			    	   Bukkit.broadcastMessage("§6Event winner §a§ §C§l " + EventoUtils.getEventoPlayersNames());
+		            	Bukkit.broadcastMessage("§6Event winner §a§ §C§l " + EventoUtils.getEventoPlayersNames());
+		            	Bukkit.broadcastMessage("§6Event winner §a§ §C§l " + EventoUtils.getEventoPlayersNames());
+		            	Bukkit.broadcastMessage("§6Event winner §a§ §C§l " + EventoUtils.getEventoPlayersNames());
+		            	Bukkit.broadcastMessage("§6Event winner §a§ §C§l " + EventoUtils.getEventoPlayersNames());
+		            	Bukkit.broadcastMessage("§6Event winner §a§ §C§l " + EventoUtils.getEventoPlayersNames());
+		            	Bukkit.broadcastMessage("§6Event winner §a§ §C§l " + EventoUtils.getEventoPlayersNames());
 		            	p.setHealth(20);
 		            
 		                p.getWorld().strikeLightning(p.getLocation());
@@ -306,13 +306,13 @@ public class PlayerDeathListener implements Listener {
 		 EventoUtils.setEvento(false, event.getPlayer());
 				if (EventoUtils.evento && EventoUtils.getEventoPlayers().size() == 1 && EventoUtils.getEventoPlayers().size() != 0 && EventoUtils.started && RDMAutomatic.iniciou)
 			       EventoUtils.getEventoPlayers().forEach(p -> {
-			    	   Bukkit.broadcastMessage("§6Vencedor do evento §a§ §C§l " + EventoUtils.getEventoPlayersNames());
-		            	Bukkit.broadcastMessage("§6Vencedor do evento §a§ §C§l " + EventoUtils.getEventoPlayersNames());
-		            	Bukkit.broadcastMessage("§6Vencedor do evento §a§ §C§l " + EventoUtils.getEventoPlayersNames());
-		            	Bukkit.broadcastMessage("§6Vencedor do evento §a§ §C§l " + EventoUtils.getEventoPlayersNames());
-		            	Bukkit.broadcastMessage("§6Vencedor do evento §a§ §C§l " + EventoUtils.getEventoPlayersNames());
-		            	Bukkit.broadcastMessage("§6Vencedor do evento §a§ §C§l " + EventoUtils.getEventoPlayersNames());
-		            	Bukkit.broadcastMessage("§6Vencedor do evento §a§ §C§l " + EventoUtils.getEventoPlayersNames());
+			    	   Bukkit.broadcastMessage("§6Event winner §a§ §C§l " + EventoUtils.getEventoPlayersNames());
+		            	Bukkit.broadcastMessage("§6Event winner §a§ §C§l " + EventoUtils.getEventoPlayersNames());
+		            	Bukkit.broadcastMessage("§6Event winner §a§ §C§l " + EventoUtils.getEventoPlayersNames());
+		            	Bukkit.broadcastMessage("§6Event winner §a§ §C§l " + EventoUtils.getEventoPlayersNames());
+		            	Bukkit.broadcastMessage("§6Event winner §a§ §C§l " + EventoUtils.getEventoPlayersNames());
+		            	Bukkit.broadcastMessage("§6Event winner §a§ §C§l " + EventoUtils.getEventoPlayersNames());
+		            	Bukkit.broadcastMessage("§6Event winner §a§ §C§l " + EventoUtils.getEventoPlayersNames());
 		            	p.setHealth(20);
 		
 		            	    
@@ -325,12 +325,12 @@ public class PlayerDeathListener implements Listener {
 		            	      RDMAutomatic.iniciou = false;
 		            	      RDMAutomatic.star = false;
 		            	      	net.helix.pvp.evento.EventoUtils.setEvento(false, p);
-		            	          p.sendMessage("§cO evento foi finalizado.");
+		            	          p.sendMessage("§cThe event ended.");
 		            	          p.getActivePotionEffects().forEach(ef -> p.removePotionEffect(ef.getType()));
-		            	          Bukkit.broadcastMessage("§eO jogador " + p.getName() + " ganhou o evento!");
+		            	          Bukkit.broadcastMessage("§eThe player " + p.getName() + " wins the event!");
 	            	    	      HelixPlayer player = HelixBukkit.getInstance().getPlayerManager().getPlayer(p.getName());
-	            	    	      p.sendMessage("§aVocê ganhou 200 de xp");
-	            	    	      p.sendMessage("§aVocê ganhou 1000 de coins");
+	            	    	      p.sendMessage("§aYou gain 200 of xp");
+	            	    	      p.sendMessage("§aYou gain 1000 of coins");
 	            	    	      player.getPvp().addCoins(1000);
 	            	    	      player.getPvp().addXP(200);
 	            	    	      HelixPvP.getInstance().getEventManager().getRdmAutomatic().players.remove(p);
@@ -350,13 +350,13 @@ public class PlayerDeathListener implements Listener {
 					 EventoUtils.setEvento(false, event.getEntity());
 							if (EventoUtils.evento && EventoUtils.getEventoPlayers().size() == 1 && EventoUtils.getEventoPlayers().size() != 0 && EventoUtils.started && RDMAutomatic.iniciou)
 						       EventoUtils.getEventoPlayers().forEach(p -> {
-						    	   Bukkit.broadcastMessage("§6Vencedor do evento §C§l " + EventoUtils.getEventoPlayersNames());
-					            	Bukkit.broadcastMessage("§6Vencedor do evento §C§l " + EventoUtils.getEventoPlayersNames());
-					            	Bukkit.broadcastMessage("§6Vencedor do evento §C§l " + EventoUtils.getEventoPlayersNames());
-					            	Bukkit.broadcastMessage("§6Vencedor do evento §C§l " + EventoUtils.getEventoPlayersNames());
-					            	Bukkit.broadcastMessage("§6Vencedor do evento §C§l " + EventoUtils.getEventoPlayersNames());
-					            	Bukkit.broadcastMessage("§6Vencedor do evento §C§l " + EventoUtils.getEventoPlayersNames());
-					            	Bukkit.broadcastMessage("§6Vencedor do evento §C§l " + EventoUtils.getEventoPlayersNames());
+						    	   Bukkit.broadcastMessage("§6Event winner §C§l " + EventoUtils.getEventoPlayersNames());
+					            	Bukkit.broadcastMessage("§6Event winner §C§l " + EventoUtils.getEventoPlayersNames());
+					            	Bukkit.broadcastMessage("§6Event winner §C§l " + EventoUtils.getEventoPlayersNames());
+					            	Bukkit.broadcastMessage("§6Event winner §C§l " + EventoUtils.getEventoPlayersNames());
+					            	Bukkit.broadcastMessage("§6Event winner §C§l " + EventoUtils.getEventoPlayersNames());
+					            	Bukkit.broadcastMessage("§6Event winner §C§l " + EventoUtils.getEventoPlayersNames());
+					            	Bukkit.broadcastMessage("§6Event winner §C§l " + EventoUtils.getEventoPlayersNames());
 					            	p.setHealth(20);
 					
 					            	    
@@ -368,14 +368,14 @@ public class PlayerDeathListener implements Listener {
 					            	      RDMAutomatic.iniciou = false;
 					            	      RDMAutomatic.star = false;
 					            	      	net.helix.pvp.evento.EventoUtils.setEvento(false, p);
-					            	          p.sendMessage("§cO evento foi finalizado.");
+					            	          p.sendMessage("§cThe event ended.");
 					            	          p.getActivePotionEffects().forEach(ef -> p.removePotionEffect(ef.getType()));
 						       
 					            	      EventoUtils.resetEventoClass();
 					            	      HelixPvP.getInstance().getEventManager().getRdmAutomatic().removeFromEvent(p);
-					            	    		Bukkit.broadcastMessage("§6O Evento 1V1 foi finalizado!");
+					            	    		Bukkit.broadcastMessage("§6The 1v1 event ended!");
 					            	    	      HelixPvP.getInstance().getEventManager().getRdmAutomatic().players.remove(p);
-					            	    	      Bukkit.broadcastMessage("§eO jogador " + p.getName() + " ganhou o evento!");
+					            	    	      Bukkit.broadcastMessage("§eThe player " + p.getName() + " wins the event!");
 					            	    	      HelixPlayer player = HelixBukkit.getInstance().getPlayerManager().getPlayer(p.getName());
 					            	    	      p.sendMessage("§aVocê ganhou 200 de xp");
 					            	    	      p.sendMessage("§aVocê ganhou 1000 de coins");

@@ -52,7 +52,7 @@ public class Tornado extends KitHandler {
 				return;
 			}
 			if (p.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura")) {
-				p.sendMessage("NÃO USE O TORNADO NO SPAWN.");
+				p.sendMessage("DONT USE THE TORNADO HERE.");
 				return;
 			}
 float max_height = 15;
@@ -61,7 +61,7 @@ float lines = 4;
 int angle = 0;
 float height_increasement = (float)0.5;
 float radius_increasement = max_radius / max_height; {
-	Bukkit.broadcastMessage(ChatColor.BLUE + p.getName() + " Spawnou um tornado!");
+	Bukkit.broadcastMessage(ChatColor.BLUE + p.getName() + " Spawned a tornado!");
 for (int l = 0; l < lines; l++) {
       for (float y = 0; y < max_height; y+=height_increasement ) {
           float radius = y * radius_increasement;

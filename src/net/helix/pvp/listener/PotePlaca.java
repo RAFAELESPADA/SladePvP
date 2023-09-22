@@ -47,10 +47,10 @@ public class PotePlaca
     
     ItemStack sopa = new ItemStack(Material.POTION, 1, (short)16421);
     ItemMeta sopas = sopa.getItemMeta();
-    sopas.setDisplayName("§ePotinho Magico");
+    sopas.setDisplayName("§ePotion");
     sopa.setItemMeta(sopas);
     
-    Inventory inve = Bukkit.getServer().createInventory(p, 36, "§bPoçoes de Cura");
+    Inventory inve = Bukkit.getServer().createInventory(p, 36, "§bPotions");
     
     inve.setItem(0, sopa);
     inve.setItem(1, sopa);

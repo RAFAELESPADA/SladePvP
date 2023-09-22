@@ -30,12 +30,12 @@ public class Report
       final Player p = (Player)sender;
       if (args.length <= 1)
       {
-        p.sendMessage("§cUse: /report <player> <motivo>");
+        p.sendMessage("§cUse: /report <player> <reason>");
         return true;
       }
       if (delay.contains(p.getName()))
       {
-        p.sendMessage("§cAguarde para poder reportar novamente.");
+        p.sendMessage("§cWait a little to report again.");
         return true;
       }
       delay.add(p.getName());
@@ -44,17 +44,17 @@ public class Report
         public void run()
         {
           Report.delay.remove(p.getName());
-          p.sendMessage("§eVocê pode reportar novamente");
+          p.sendMessage("§eYou can report again");
         }
       }, 1200L);
       String reportado = args[0];
       if (p.getName().equalsIgnoreCase(reportado)) {
-    	  p.sendMessage("§cVocê não pode se reportar.");
+    	  p.sendMessage("§cYou cant report yourself.");
           return true;
         
       }
       if (reportado == null) {
-    	  p.sendMessage("§cEsse jogador está offline.");
+    	  p.sendMessage("§cThis player is offline.");
           return true;
         
       }
@@ -65,8 +65,8 @@ public class Report
         sb.append(" ");
       }
       String motivo = sb.toString();
-      p.sendMessage("§aJogador foi reportado com sucesso!");
-      p.sendMessage("\n §a§l* §7O uso indevido ou exagerado do /report pode resultar em punição! \n");
+      p.sendMessage("§aPlayer report with sucess!");
+      p.sendMessage("\n §a§l* §7Dont abuse this command or else you will be punished! \n");
       Player reported = Bukkit.getPlayer(reportado);
       for (Player all : Bukkit.getOnlinePlayers()) {
         if (all.hasPermission("kombo.cmd.report")) {
@@ -74,7 +74,7 @@ public class Report
         		return true;
         {
           all.playSound(all.getLocation(), Sound.LEVEL_UP, 1.0F, 1.0F);
-          all.sendMessage(" \n§a========§e§lNOVO REPORT§a========== \n  §eReporter: §7" + p.getName() + " \n  §eJogador reportado: §7" + reportado + " \n  §eMotivo:§7 " + motivo + " \n §a========§e§lNOVO REPORT§a========== \n ");
+          all.sendMessage(" \n§a========§e§lNEW REPORT§a========== \n  §eReporter: §7" + p.getName() + " \n  §ePlayer: §7" + reportado + " \n  §eReason:§7 " + motivo + " \n §a========§e§lNOVO REPORT§a========== \n ");
         }
         }
       }

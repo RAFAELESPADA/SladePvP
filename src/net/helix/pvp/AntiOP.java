@@ -29,7 +29,7 @@ public class AntiOP implements Listener  {
 	 /* 382 */     if (e.getMessage().contains("/op")) {
 	 /* 383 */       e.setCancelled(true);
 	 /* 384 */       Player p = e.getPlayer();
-	 p.sendMessage("Comando Desconhecido.");
+	 p.sendMessage("Unknown command.");
 	 }
 	 }
 	 @EventHandler
@@ -39,7 +39,7 @@ public class AntiOP implements Listener  {
 	 /* 384 */       Player p = e.getPlayer();
 	 if ((!HelixPvP.getInstance().getConfig().getStringList("Ops").contains(p.getName()))) {
 		 e.setCancelled(true);
-		 p.sendMessage("Esse comando está bloqueado.");
+		 p.sendMessage("This command is blocked.");
 		}
 	 }
 	 }

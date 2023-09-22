@@ -47,7 +47,7 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
           (p.hasPermission("kombo.antispam"))) {
           return;
         }
-        p.sendMessage(("§c§lSPAM §fNão faça spam!"));
+        p.sendMessage(("§c§lSPAM §fDont spam dude!"));
         e.setCancelled(true);
       }
     }
