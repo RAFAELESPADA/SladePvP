@@ -9,7 +9,7 @@ O motivo de eu ter vazado foi porque a pessoa chamada LuanTresoldi que é dono d
 fazer eu trabalhar pra ele nesse kitpvp e depois simplesmente me demotar e me banir do grupo dele.
 Então vazei o servidor todo na net e recomendo que não trabalhem na equipe desse individuo.
 
-Download da rede configurada: https://www.mediafire.com/file/hqx8smr5fcvc12n/NOVO_SLADE_NOVA_NETWORK.zip/file
+Download da rede configurada: RETIREI O DOWNLOAD MAS A SOURCE CONTINUARÁ PUBLICA
 
 Como instalar a rede
 1) Coloque todos os arquivos em uma hospedagem
