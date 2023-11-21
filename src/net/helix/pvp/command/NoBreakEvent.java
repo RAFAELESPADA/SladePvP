@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -18,6 +19,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerBucketEmptyEvent;
+import org.bukkit.inventory.ItemStack;
 
 import net.helix.core.bukkit.util.BuildUtil;
 import net.helix.pvp.evento.EventoUtils;
@@ -114,6 +116,11 @@ public final class NoBreakEvent
   {
     Player p = e.getPlayer();
     if (!BuildUtil.has(e.getPlayer().getName())) {
+        if (EventoUtils.staff && (!(e.getBlock() == new ItemStack(Material.WOOD) || e.getBlock() == new ItemStack(Material.COBBLE_WALL) || e.getBlock() == new ItemStack(Material.WEB)))) {
+    		  e.setCancelled(true);
+    		  p.playSound(p.getLocation(), Sound.PISTON_EXTEND, 10, 10);
+      		return;
+      	}	
     	if (EventoUtils.build && EventoUtils.game.contains(p.getName())) {
     		  e.setCancelled(false);
     		return;
@@ -126,3 +133,4 @@ public final class NoBreakEvent
     }
   }
 }
+

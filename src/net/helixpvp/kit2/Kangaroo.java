@@ -58,7 +58,7 @@ public class Kangaroo extends KitHandler2 {
 			return;
 		}
 		else if (p.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura") && EnderMageReal.isSpawn(p.getLocation())) {
-			p.sendMessage("§cNão use o kangaroo no spawn!");
+			p.sendMessage("§cDo not use kangaroo on spawn!");
 			event.setCancelled(true);
 			return;
 		}
@@ -66,7 +66,7 @@ public class Kangaroo extends KitHandler2 {
 		/*  60 */      
 
 		/*  61 */       if (GladiatorListener.combateGlad.containsKey(p)) {
-		/*  62 */         p.sendMessage(String.valueOf("§cVocê esta no Gladiator e recebeu efeito de speed"));
+		/*  62 */         p.sendMessage(String.valueOf("§cYou are on gladiator and received a speed effect!"));
 		/*     */         
 		/*  64 */         darEfeito(p, org.bukkit.potion.PotionEffectType.SPEED, 10, 1);
 		/*     */       }

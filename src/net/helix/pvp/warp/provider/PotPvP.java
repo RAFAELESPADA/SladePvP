@@ -18,7 +18,7 @@ public class PotPvP extends WarpHandle {
 	public void execute(Player player) {
 		super.execute(player);
 		
-		player.getInventory().setItem(0, new ItemBuilder("§fEspada de Diamante", Material.DIAMOND_SWORD)
+		player.getInventory().setItem(0, new ItemBuilder("§bSword", Material.DIAMOND_SWORD)
 				.nbt("cancel-drop").addEnchant(Enchantment.DAMAGE_ALL, 1)
 				.toStack()
 		);

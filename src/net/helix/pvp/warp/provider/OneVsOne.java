@@ -256,7 +256,7 @@ public class OneVsOne extends WarpDuoBattleHandle {
 	public void sendBattleItems(Player player) {
 		super.sendBattleItems(player);
 		
-		player.getInventory().setItem(0, new ItemBuilder("§fEspada de Diamante", Material.DIAMOND_SWORD)
+		player.getInventory().setItem(0, new ItemBuilder("§bSword", Material.DIAMOND_SWORD)
 				.nbt("cancel-drop")
 				.toStack()
 		);

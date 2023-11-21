@@ -1,5 +1,6 @@
 package net.helix.pvp.listener;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Item;
@@ -53,6 +54,9 @@ public class OpenSpawnItemsListener implements Listener {
 				break;
 			case "status2":
 			     SoupTypeGUI.openGUI(player);
+				break;
+			case "crates":
+			     Bukkit.dispatchCommand(player, "crates");
 				break;
 			case "1v1":
 				WarpsInventory.open(player);

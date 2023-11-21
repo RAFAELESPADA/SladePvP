@@ -43,13 +43,13 @@ public class Fisherman extends KitHandler2 {
 		Entity caught = event.getCaught();
 		 if (KitManager.getPlayer(caught.getName()).hasKit(HelixKit.NEO) || KitManager2.getPlayer(caught.getName()).haskit2(HelixKit2.NEO)) {
 			 event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.NOTE_BASS_DRUM, 15.0f, 15.0f);
-			 event.getPlayer().sendMessage(ChatColor.AQUA + "Você não pode usar o fisherman em " + caught.getName() + " porque ele está com o kit NEO");
+			 event.getPlayer().sendMessage(ChatColor.AQUA + "You cant use fisherman on " + caught.getName() + " because he has kit NEO");
 				return;
 			}
 addCooldown(event.getPlayer() , 6);
 		caught.teleport(event.getPlayer());
-		caught.sendMessage("§c§lFISHERMAN: §fVocê foi puxado por " + event.getPlayer().getName());
-		event.getPlayer().sendMessage("§c§lFISHERMAN: §fVocê puxou " + caught.getName());
+		caught.sendMessage("§c§lFISHERMAN: §fYou get pulled by " + event.getPlayer().getName());
+		event.getPlayer().sendMessage("§c§lFISHERMAN: §fYou pulled " + caught.getName());
 	}
 }
 

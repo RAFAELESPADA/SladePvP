@@ -1,8 +1,12 @@
-package net.helix.pvp.kit.provider;
+package net.helixpvp.kit2;
+
 
 import net.helix.pvp.HelixPvP;
+import net.helix.pvp.cooldown2.HelixCooldown2;
 import net.helix.pvp.kit.KitHandler;
+import net.helix.pvp.kit.KitHandler2;
 import net.helix.pvp.kit.KitManager;
+import net.helix.pvp.kit.KitManager2;
 import net.helixpvp.kit2.ItemManager;
 
 import java.util.Arrays;
@@ -31,7 +35,7 @@ import org.bukkit.util.Vector;
 
 
 
-public class Avatar extends KitHandler {
+public class Avatar extends KitHandler2 {
   
   public static ItemStack getItem(ItemStack item) {
     ItemManager itemmanager = new ItemManager(Material.WOOL, "§aAvatar");
@@ -70,7 +74,7 @@ public class Avatar extends KitHandler {
   }
   @EventHandler
   public void asd(PlayerDropItemEvent e) {
-	  if (!KitManager.getPlayer(e.getPlayer().getName()).hasKit(this)) {
+	  if (!KitManager2.getPlayer(e.getPlayer().getName()).haskit2(this)) {
 		  return;
 	  }
 		
@@ -91,7 +95,7 @@ public class Avatar extends KitHandler {
   @EventHandler
   public void asd(PlayerInteractEvent e) {
     Player player = e.getPlayer();
-    if (KitManager.getPlayer(player.getName()).hasKit(this)) {
+    if (KitManager2.getPlayer(player.getName()).haskit2(this)) {
       if (player.getItemInHand().getType() == Material.AIR)
         return; 
       if (player.getItemInHand() == null)
@@ -113,7 +117,7 @@ public class Avatar extends KitHandler {
         player.setItemInHand(getItem(player.getItemInHand()));
         
       } else {
-    	  if (net.helix.pvp.cooldown1.HelixCooldown2.hasCooldown(player, KitManager.getPlayer(player.getName()).getKit().getName())) {
+    	  if (HelixCooldown2.hasCooldown(player, KitManager2.getPlayer(player.getName()).getkit2().getName())) {
   	        sendMessageCooldown(player);
   	        return;
   	      }

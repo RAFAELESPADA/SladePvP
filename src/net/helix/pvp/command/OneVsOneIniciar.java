@@ -38,19 +38,19 @@ public boolean onCommand(CommandSender sender, Command cmd, String label, String
 		  return true;
 	  }
 	  else if (EventoUtils.evento) {
-		  p.sendMessage("Um evento ja esta ocorrendo!");
+		  p.sendMessage("A event is already occouring!");
 		  return true;
 	  }
 	  else if (HelixPvP.getInstance().getEventManager().isRunningRDM()) {
-       p.sendMessage("O evento 1v1 já está ocorrendo");
+       p.sendMessage("The 1v1 event is already occouring");
        return true;
 	  
   } else {
-	  p.sendMessage("§aIniciando evento 1v1"); 
+	  p.sendMessage("§aStarting event 1v1"); 
 	  EventoUtils.evento = true;
 	  EventoUtils.tp = true;
 	  Bukkit.broadcastMessage("§cThe 1v1 event started.");
-      Bukkit.broadcastMessage("§cUse /evento join to join");
+      Bukkit.broadcastMessage("§cUse /event join to join");
       Bukkit.broadcastMessage("§cThe event will start on 5 minutes");
       for (Player p1 : Bukkit.getOnlinePlayers()) {
       	p1.playSound(p1.getLocation(), Sound.LEVEL_UP, 1f, 1f);
@@ -118,13 +118,13 @@ public boolean onCommand(CommandSender sender, Command cmd, String label, String
                 p.getActivePotionEffects().forEach(ef -> p.removePotionEffect(ef.getType()));
                 
                 if (EventoUtils.getEventoPlayers().size() == 1) {
-                	Bukkit.broadcastMessage("§aVencedor do Evento: " + EventoUtils.getEventoPlayersNames());
-                	Bukkit.broadcastMessage("§aVencedor do Evento: " + EventoUtils.getEventoPlayersNames());
-                	Bukkit.broadcastMessage("§aVencedor do Evento: " + EventoUtils.getEventoPlayersNames());
-                	Bukkit.broadcastMessage("§aVencedor do Evento: " + EventoUtils.getEventoPlayersNames());
-                	Bukkit.broadcastMessage("§aVencedor do Evento: " + EventoUtils.getEventoPlayersNames());
-                	Bukkit.broadcastMessage("§aVencedor do Evento: " + EventoUtils.getEventoPlayersNames());
-                	Bukkit.broadcastMessage("§aVencedor do Evento: " + EventoUtils.getEventoPlayersNames());
+                	Bukkit.broadcastMessage("§aEvent winner: " + EventoUtils.getEventoPlayersNames());
+                	Bukkit.broadcastMessage("§aEvent winner: " + EventoUtils.getEventoPlayersNames());
+                	Bukkit.broadcastMessage("§aEvent winner: " + EventoUtils.getEventoPlayersNames());
+                	Bukkit.broadcastMessage("§aEvent winner: " + EventoUtils.getEventoPlayersNames());
+                	Bukkit.broadcastMessage("§aEvent winner: " + EventoUtils.getEventoPlayersNames());
+                	Bukkit.broadcastMessage("§aEvent winner: " + EventoUtils.getEventoPlayersNames());
+                	Bukkit.broadcastMessage("§aEvent winner: " + EventoUtils.getEventoPlayersNames());
                 	p.setHealth(20);
                 	p.getWorld().strikeLightning(p.getLocation());
             		p.getWorld().strikeLightning(p.getLocation());
@@ -134,8 +134,8 @@ public boolean onCommand(CommandSender sender, Command cmd, String label, String
                 if (HelixPvP.getInstance().getEventManager().isRunningRDM()) {
                 	HelixPvP.getInstance().getEventManager().setRdmAutomatic(null);
                 }
-                p.sendMessage("§cO evento foi finalizado automaticamente porque o tempo expirou.");
-                p.sendMessage("§cO evento durou: §a1 hora e 20 minutos");
+                p.sendMessage("§cThe event ended automatically because timer runs out.");
+                p.sendMessage("§cThe event runs for: §a1 hour and 20 minutes");
 			}
             });;
             EventoUtils.resetEventoClass();

@@ -77,7 +77,7 @@ public class StatusGUI implements Listener {
         Ranking[] values = Ranking.values();
         for (int i = values.length - 1; i >= 0; i--) {
         	Ranking rank = values[i];
-            if (pvp.getKills() >= rank.getXp())
+            if (pvp.getXp() >= rank.getXp())
                 inv.addItem(ItemUtils.editItemStack(new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 5), "§7(" + rank.getColoredSymbol() + "§7) " + rank.getColoredName(), Collections.singletonList("§a" + player.getName() + " you reached this rank")));
             else
                 inv.addItem(ItemUtils.editItemStack(new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 14), "§7(" + rank.getColoredSymbol() + "§7) " + rank.getColoredName(), Collections.singletonList("§c" + player.getName() + " dont reached this rank yet.")));

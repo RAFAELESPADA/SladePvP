@@ -44,7 +44,7 @@ public class Monk extends KitHandler2 {
 			return;
 		}
 		if (!KitManager.getPlayer(jogadorClicado.getName()).hasKit() && KitManager2.getPlayer(player.getName()).haskit2(this)   && EnderMageReal.isSpawn(player.getLocation())) {
-			player.sendMessage(ChatColor.RED + "Você não pode usar o kit em um jogador no spawn.");
+			player.sendMessage(ChatColor.RED + "You cant use your kit in a player on spawn.");
         	return;
         }
 		if (!KitManager2.getPlayer(player.getName()).haskit2(this) 
@@ -56,13 +56,13 @@ public class Monk extends KitHandler2 {
            final ItemStack ItemMudado = jogadorClicado.getItemInHand();
            jogadorClicado.setItemInHand(ItemSelecionado);
            jogadorClicado.getInventory().setItem(random, ItemMudado);
-           jogadorClicado.sendMessage("§6Você teve o inventário embaralhado §f" + player.getName());
-   		player.sendMessage("§6Você embaralhou o inventário de §f" + jogadorClicado.getName());
+           jogadorClicado.sendMessage("§6Your inventory has been messed up by §f" + player.getName());
+   		player.sendMessage("§6You messed up the inventory of §f" + jogadorClicado.getName());
            addCooldown(player, 10);
            Bukkit.getScheduler().scheduleSyncDelayedTask((Plugin)HelixPvP.getInstance(), (Runnable)new Runnable() {
                @Override
                public void run() {
-                   player.sendMessage("§aO cooldown acabou.");
+                   player.sendMessage("§aThe cooldown ended.");
                }
            }, 20L * 10);
        }

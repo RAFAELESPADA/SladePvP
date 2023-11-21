@@ -40,13 +40,13 @@ public class BuyKitListener implements Listener {
 			player.closeInventory();
 			if (player.hasPermission("kombo.kit." + kit.getName())) {
 				player.playSound(player.getLocation(), Sound.NOTE_BASS_DRUM, 10.0f, 10.0f);
-				player.sendMessage("§cVocê já possui este kit!");
+				player.sendMessage("§cYou arealdy has this kit!");
 				return;
 			}
 			if (helixPlayer.getPvp().getCoins() < kit.getPrice()) {
 				int remaingCoins = kit.getPrice() - helixPlayer.getPvp().getCoins();
 				player.playSound(player.getLocation(), Sound.NOTE_BASS_DRUM, 10.0f, 10.0f);
-				player.sendMessage("§cVocê precisa de " + HelixDecimalFormat.format(remaingCoins) + " coins para comprar esse kit primário");
+				player.sendMessage("§cYou need " + HelixDecimalFormat.format(remaingCoins) + " coins to buy this primary kit!");
 				return;
 			}
 			
@@ -56,7 +56,7 @@ public class BuyKitListener implements Listener {
 			player.playSound(player.getLocation(), Sound.LEVEL_UP, 10.0f, 10.0f);
 			Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + player.getName() + " permission set kombo.kit." + kit.toString().toLowerCase() + " pvp");
 
-			player.sendMessage("§aVocê comprou o kit" + kit.getName() + " por " + kit.getPrice() + " coins");
+			player.sendMessage("§aYou buy the kit " + kit.getName() + " for " + kit.getPrice() + " coins");
 		});
 	}
 
@@ -87,7 +87,7 @@ public void onInvClick2(InventoryClickEvent event) {
 		}
 		if (helixPlayer.getPvp().getCoins() < kit.getPrice()) {
 			int remaingCoins = kit.getPrice() - helixPlayer.getPvp().getCoins();
-			player.sendMessage("§cVocê precisa de " + HelixDecimalFormat.format(remaingCoins) + " coins para comprar esse kit secundário");
+			player.sendMessage("§cYou need " + HelixDecimalFormat.format(remaingCoins) + " coins to purchase this secondary kit!");
 			player.playSound(player.getLocation(), Sound.NOTE_BASS_DRUM, 10.0f, 10.0f);
 			return;
 		}
@@ -97,7 +97,7 @@ public void onInvClick2(InventoryClickEvent event) {
 		player.playSound(player.getLocation(), Sound.LEVEL_UP, 10.0f, 10.0f);
 		Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + player.getName() + " permission set kombo.kit2." + kit.toString().toLowerCase() + " pvp");
 
-		player.sendMessage("§aVocê comprou o kit " + kit.getName() + " por " + kit.getPrice() + " coins");
+		player.sendMessage("§aYou buy the kit " + kit.getName() + " for " + kit.getPrice() + " coins");
 	});
 }
 }

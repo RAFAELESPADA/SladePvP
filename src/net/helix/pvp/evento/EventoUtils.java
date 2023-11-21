@@ -29,7 +29,7 @@ public class EventoUtils {
     public static boolean build = false;
     public static boolean damage = false;
     public static boolean pvp = false;
-   
+    public static boolean staff = false;
     public static boolean tp = false;
     public static boolean started = false;
     public static Location mainArena = new Location(Bukkit.getWorld(HelixPvP.getInstance().getConfig().getString("EVENTOSPAWNMUNDO")), HelixPvP.getInstance().getConfig().getInt("EVENTOSPAWNX"), HelixPvP.getInstance().getConfig().getInt("EVENTOSPAWNY"), HelixPvP.getInstance().getConfig().getInt("EVENTOSPAWNZ"));
@@ -97,6 +97,7 @@ public class EventoUtils {
         RDMAutomatic.star = false;
         started = false;
         tp = false;
+        staff = false;
         specLoc = null;
         whitelist.clear();
         blocks.clear();

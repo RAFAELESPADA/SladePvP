@@ -1,9 +1,11 @@
 package net.helix.pvp;
 
+import net.helix.pvp.command.DarKit;
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.LuckPermsProvider;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
+import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -35,7 +37,12 @@ public class Group implements CommandExecutor {
     Bukkit.getServer().dispatchCommand((CommandSender)Bukkit.getConsoleSender(), "lp user " + target + " parent set " + args[1]);
     Player targetPlayer;
     if ((targetPlayer = Bukkit.getPlayer(target)) != null)
-      targetPlayer.sendMessage(ChatColor.RED + "Your group gets updated to " + args[1]); 
+      targetPlayer.sendMessage(ChatColor.RED + "Your group gets changed to " + args[1]); 
+    for (Player p4 : Bukkit.getOnlinePlayers()) {
+    	DarKit.sendTitle(p4, "§c§lGROUP CHANGED", "§f" + target + " gets his/her group changed to " + args[1].toUpperCase());
+    	p4.playSound(p4.getLocation(), Sound.GHAST_SCREAM, 10, 10);
+    	p4.sendMessage("§c§lGROUP CHANGED" + "§f" + target + " gets his/her group changed to " + args[1].toUpperCase());
+    }
     sender.sendMessage(ChatColor.RED + "You updated the group of the player " + target + " to " + args[1] + " !");
     return true;
   }

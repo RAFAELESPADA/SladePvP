@@ -127,7 +127,7 @@ public class PlayerDieArenaListener implements Listener {
 				player.sendMessage("§c§l[-] " + victimHelixPlayer.getPvp().getXp() + " XP");
 			}
 			victimHelixPlayer.getPvp().addDeaths(1);
-			player.sendMessage("§cVocê morreu para " + killer.getName());
+			player.sendMessage("§cYou died to the player " + killer.getName());
 			player.playSound(player.getLocation(), Sound.BAT_DEATH, 10f, 10f);
 					HelixBukkit.getInstance().getPlayerManager().getController().save(victimHelixPlayer);
 					HelixBukkit.getInstance().getPlayerManager().getController().save(killerHelixPlayer);
@@ -234,7 +234,7 @@ public class PlayerDieArenaListener implements Listener {
 				player.sendMessage("§c§l[-] " + victimHelixPlayer.getPvp().getXp() + " XP");
 			}
 			victimHelixPlayer.getPvp().addDeaths(1);
-			player.sendMessage("§cVocê morreu para " + killer.getName());
+			player.sendMessage("§cYou died to the player " + killer.getName());
 			player.playSound(player.getLocation(), Sound.BAT_DEATH, 10f, 10f);
 					HelixBukkit.getInstance().getPlayerManager().getController().save(victimHelixPlayer);
 					HelixBukkit.getInstance().getPlayerManager().getController().save(killerHelixPlayer);
@@ -351,7 +351,7 @@ public class PlayerDieArenaListener implements Listener {
 			}
 			killerHelixPlayer.getPvp().addKills(1);
 			victimHelixPlayer.getPvp().addDeaths(1);
-			player.sendMessage("§cVocê morreu para " + killer.getName());
+			player.sendMessage("§cYou died to the player " + killer.getName());
 			player.playSound(player.getLocation(), Sound.BAT_DEATH, 10f, 10f);
 					HelixBukkit.getInstance().getPlayerManager().getController().save(victimHelixPlayer);
 					HelixBukkit.getInstance().getPlayerManager().getController().save(killerHelixPlayer);

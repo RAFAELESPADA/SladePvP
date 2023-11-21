@@ -1,5 +1,6 @@
 package net.helix.pvp.command;
 
+
 import org.bukkit.Bukkit;
 import org.bukkit.DyeColor;
 import org.bukkit.GameMode;
@@ -26,13 +27,13 @@ import net.helix.pvp.evento.EventoType;
 import net.helix.pvp.evento.EventoUtils;
 import net.helix.pvp.warp.HelixWarp;
 
-public class Arena
+public class StaffVsPlayers
 implements CommandExecutor, Listener
 {
 public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args)
 {
   Player p = (Player)sender;
-  if (label.equalsIgnoreCase("arenainiciar"))
+  if (label.equalsIgnoreCase("svpiniciar"))
   {
 	  if (!p.hasPermission("kombo.cmd.evento")) {
 		  p.sendMessage("§cYou dont have permission!");
@@ -42,10 +43,10 @@ public boolean onCommand(CommandSender sender, Command cmd, String label, String
 		  p.sendMessage("A event is already occouring!");
 		  return true;
 	  }
-	  p.sendMessage("§aStarting arena event"); 
+	  p.sendMessage("§aStarting staff vs players event"); 
 	  EventoUtils.evento = true;
 	  EventoUtils.tp = true;
-	  Bukkit.broadcastMessage("§cThe arena event will start soon.");
+	  Bukkit.broadcastMessage("§cThe Staff vs Players event will start soon.");
       Bukkit.broadcastMessage("§cUse /event join to join it");
   	Bukkit.broadcastMessage("§cThe arena event will start in 5 minutes");
       for (Player p1 : Bukkit.getOnlinePlayers()) {
@@ -56,7 +57,19 @@ public boolean onCommand(CommandSender sender, Command cmd, String label, String
 				  if (!EventoUtils.evento) {
 					  return;
 				  }
-					Bukkit.broadcastMessage("§cThe arena event will start in 4 minutes");
+					Bukkit.broadcastMessage("§cThe Staff vs Players event will start in 4 minutes");
+				Bukkit.broadcastMessage("§cPlayers in the event: " + EventoUtils.getEventoPlayers().size());
+				 for (Player p1 : Bukkit.getOnlinePlayers()) {
+				      	p1.playSound(p1.getLocation(), Sound.LEVEL_UP, 1f, 1f);
+				      }
+			}
+		}, 600L);
+      Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnable() {
+			public void run() {
+				if (!EventoUtils.evento) {
+					  return;
+				  }
+				Bukkit.broadcastMessage("§cThe Staff vs Players event will start in 3 minutes");
 				Bukkit.broadcastMessage("§cPlayers in the event: " + EventoUtils.getEventoPlayers().size());
 				 for (Player p1 : Bukkit.getOnlinePlayers()) {
 				      	p1.playSound(p1.getLocation(), Sound.LEVEL_UP, 1f, 1f);
@@ -68,37 +81,25 @@ public boolean onCommand(CommandSender sender, Command cmd, String label, String
 				if (!EventoUtils.evento) {
 					  return;
 				  }
-				Bukkit.broadcastMessage("§cThe arena event will start in 3 minutes");
+				Bukkit.broadcastMessage("§cThe Staff vs Players event will start in 2 minutes");
 				Bukkit.broadcastMessage("§cPlayers in the event: " + EventoUtils.getEventoPlayers().size());
-				 for (Player p1 : Bukkit.getOnlinePlayers()) {
-				      	p1.playSound(p1.getLocation(), Sound.LEVEL_UP, 1f, 1f);
-				      }
+			}
+		}, 1800L);
+      Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnable() {
+			public void run() {
+				if (!EventoUtils.evento) {
+					  return;
+				  }
+				Bukkit.broadcastMessage("§cThe Staff vs Players event will start in 1 minute");
+				Bukkit.broadcastMessage("§cPlayers in the event: " + EventoUtils.getEventoPlayers().size());
 			}
 		}, 2400L);
-      Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnable() {
-			public void run() {
-				if (!EventoUtils.evento) {
-					  return;
-				  }
-				Bukkit.broadcastMessage("§cThe arena event will start in 2 minutes");
-				Bukkit.broadcastMessage("§cPlayers in the event: " + EventoUtils.getEventoPlayers().size());
-			}
-		}, 3600L);
-      Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnable() {
-			public void run() {
-				if (!EventoUtils.evento) {
-					  return;
-				  }
-				Bukkit.broadcastMessage("§cThe arena event will start in 1 minute");
-				Bukkit.broadcastMessage("§cPlayers in the event: " + EventoUtils.getEventoPlayers().size());
-			}
-		}, 4800L);
 		Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnable() {
 			public void run() {
 				if (!EventoUtils.evento) {
 					  return;
 				  }
-				 EventoType ev = EventoType.getEventoByName("ArenaPvP");
+				 EventoType ev = EventoType.getEventoByName("StaffVsPlayers");
 			 	 Location evt = ev.getLocation();
 			 	 EventoUtils.getEventoPlayers().forEach(p2 -> {
                  	p2.teleport(evt);
@@ -107,11 +108,11 @@ public boolean onCommand(CommandSender sender, Command cmd, String label, String
 			        }
 			});
 			 	Bukkit.broadcastMessage("§cTeleporting people to the event!");
-			 	EventoType evento = EventoType.getEventoByName("ArenaPvP");
+			 	EventoType evento = EventoType.getEventoByName("StaffVsPlayers");
 			    Bukkit.broadcastMessage("§aStarting explanation of the event §e" + evento.getName().toUpperCase() + "§a...");
                 EventoType.explicarEvento(evento);
                 EventoUtils.started = true;
-			}}, 6000L);
+			}}, 3000L);
 		Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnable() {
 			public void run() {
 				if (!EventoUtils.evento) {
@@ -124,16 +125,21 @@ public boolean onCommand(CommandSender sender, Command cmd, String label, String
 		p2.playSound(p2.getLocation(), Sound.ENDERDRAGON_GROWL, 1f, 1f);
      	EventoUtils.damage = true;
      	EventoUtils.build = true;
+     	EventoUtils.staff = true;
      	EventoUtils.tp = false;
      	ItemStack helmet = new ItemStack(Material.IRON_HELMET);
 		ItemStack chest = new ItemStack(Material.IRON_CHESTPLATE);
 		ItemStack leg = new ItemStack(Material.IRON_LEGGINGS);
 		ItemStack boost = new ItemStack(Material.IRON_BOOTS);
+		ItemStack helmet2 = new ItemStack(Material.DIAMOND_HELMET);
+		ItemStack chest2 = new ItemStack(Material.DIAMOND_CHESTPLATE);
+		ItemStack leg2 = new ItemStack(Material.DIAMOND_LEGGINGS);
+		ItemStack boost2 = new ItemStack(Material.DIAMOND_BOOTS);
     		
-    		
+    		if (!p2.hasPermission("kombo.cmd.report")) {
     		p2.getInventory().setHeldItemSlot(0);
     		/* 348 */       
-    		p2.getInventory().setItem(0, new ItemBuilder("§7Sword", Material.DIAMOND_SWORD).addEnchant(Enchantment.DAMAGE_ALL, 1)
+    		p2.getInventory().setItem(0, new ItemBuilder("§7Sword", Material.DIAMOND_SWORD).addEnchant(Enchantment.DAMAGE_ALL, 1).addEnchant(Enchantment.DURABILITY, 3)
     				.nbt("cancel-drop")
     				.toStack()
     		);
@@ -150,6 +156,8 @@ public boolean onCommand(CommandSender sender, Command cmd, String label, String
     		p2.getInventory().setItem(20, leg);
     		p2.getInventory().setItem(21, boost);
     		Dye d = new Dye();
+    		p2.teleport(new Location(p2.getWorld(), 156155.510, 66, 158182.357));
+    		
     	    d.setColor(DyeColor.BROWN);
     	    ItemStack di = d.toItemStack();
     	    di.setAmount(64);
@@ -157,10 +165,6 @@ public boolean onCommand(CommandSender sender, Command cmd, String label, String
     		p2.getInventory().setItem(22, new ItemStack(Material.BOWL, 64));
     		p2.getInventory().setItem(14, di);
     		p2.getInventory().setItem(23, di);
-    		p2.getInventory().setItem(15, new ItemStack(Material.WATER_BUCKET, 1));
-    		p2.getInventory().setItem(24, new ItemStack(Material.LAVA_BUCKET, 1));
-    		p2.getInventory().setItem(3, new ItemStack(Material.WATER_BUCKET, 1));
-    		p2.getInventory().setItem(4, new ItemStack(Material.LAVA_BUCKET, 1));
     		p2.getInventory().setItem(16, new ItemStack(Material.COBBLE_WALL, 64));
     		p2.getInventory().setItem(2, new ItemStack(Material.WOOD, 64));
     		p2.getInventory().setItem(8, new ItemStack(Material.WEB, 8));
@@ -178,8 +182,52 @@ public boolean onCommand(CommandSender sender, Command cmd, String label, String
     			p2.getInventory().addItem(new ItemStack(Material.MUSHROOM_SOUP));    			
     		}
     		p2.updateInventory();
-			}); {
-			}}}, 7200L);
+    		} else {
+    			p2.getInventory().setHeldItemSlot(0);
+        		/* 348 */  
+    			p2.teleport(new Location(p2.getWorld(), 156155.049, 66, 158122.259));
+        		p2.getInventory().setItem(0, new ItemBuilder("§7Sword", Material.DIAMOND_SWORD).addEnchant(Enchantment.DAMAGE_ALL, 1)
+        				.nbt("cancel-drop")
+        				.toStack()
+        		);
+        		p2.getInventory().setHelmet(helmet2);
+        		p2.getInventory().setChestplate(chest2);
+        		p2.getInventory().setLeggings(leg2);
+        		p2.getInventory().setBoots(boost2);
+        		p2.getInventory().setItem(9, helmet2);
+        		p2.getInventory().setItem(10, chest2);
+        		p2.getInventory().setItem(11, leg2);
+        		p2.getInventory().setItem(18, helmet2);
+        		p2.getInventory().setItem(19, chest2);
+        		p2.getInventory().setItem(20, leg2);
+        		p2.getInventory().setItem(21, boost2);
+        		Dye d = new Dye();
+        	    d.setColor(DyeColor.BROWN);
+        	    ItemStack di = d.toItemStack();
+        	    di.setAmount(64);
+        		p2.getInventory().setItem(13, new ItemStack(Material.BOWL, 64));
+        		p2.getInventory().setItem(22, new ItemStack(Material.BOWL, 64));
+        		p2.getInventory().setItem(14, di);
+        		p2.getInventory().setItem(23, di);
+        		p2.getInventory().setItem(16, new ItemStack(Material.COBBLE_WALL, 64));
+        		p2.getInventory().setItem(2, new ItemStack(Material.WOOD, 64));
+        		p2.getInventory().setItem(8, new ItemStack(Material.WEB, 8));
+        		p2.getInventory().setItem(17, new ItemStack(Material.STONE_PICKAXE, 1));
+        		p2.getInventory().setItem(26, new ItemStack(Material.STONE_AXE, 1));
+        		p2.getInventory().setItem(10, chest);
+        		p2.getInventory().setItem(11, leg);
+        		p2.getInventory().setItem(12, boost);
+        		p2.getInventory().setItem(18, helmet);
+        		p2.getInventory().setItem(19, chest);
+        		p2.getInventory().setItem(20, leg);
+        		p2.getInventory().setItem(21, boost);
+    		}
+    		for (int i = 0; i < 17; i++) {
+    			p2.getInventory().addItem(new ItemStack(Material.MUSHROOM_SOUP));    			
+    		}
+			});
+				{
+			}}}, 3600L);
 	}
   Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnable() {
 		public void run() {
@@ -208,24 +256,19 @@ public boolean onCommand(CommandSender sender, Command cmd, String label, String
             		p.getWorld().strikeLightning(p.getLocation());
                 }
                 p.sendMessage("§cThe event ended because the timer runs out.");
-                p.sendMessage("§cEvent duration: §a40 minutes");
+                p.sendMessage("§cEvent duration: §a50 minutes");
 			}
             });;
             EventoUtils.resetEventoClass();
-		}}, 48000L);
+		}}, 64000L);
   
 return false;
       };
       {
 
 }
-      @EventHandler(priority=EventPriority.HIGHEST, ignoreCancelled=false)
-      public void aAntiSpam(AsyncPlayerChatEvent e) {
-      if (EventoUtils.started && EventoUtils.game.contains(e.getPlayer().getName()) && !e.getPlayer().hasPermission("kombo.cmd.report")) {
-    	  e.getPlayer().sendMessage("§cYou are in a event and cant talk.");
-    	  e.setCancelled(true);
-      }
-      }
+ 
+      
       
       }
 

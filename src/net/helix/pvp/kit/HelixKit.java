@@ -66,7 +66,7 @@ import net.helix.pvp.listener.PlayerJoinListener;
 public enum HelixKit {
 
 
-	NENHUM("None", 0, 0 , new Nenhum(), new ItemStack(Material.BARRIER), "No habilities" , 1),
+	NENHUM("None", 0, 0 , new Nenhum(), new ItemStack(Material.BARRIER), "No abilities" , 1),
 	PVP("PvP", HelixPvP.getInstance().getConfig().getInt("PvPPrice"), 0, new PvP(), new ItemStack(Material.STONE_SWORD), HelixPvP.getInstance().getConfig().getString("PvPLore") , 1),
 	SURPRISE("Surprise", 0, 0, new Surprise(), new ItemStack(Material.CAKE), "Receives a random hability" , 1),
 	KANGAROO("Kangaroo", HelixPvP.getInstance().getConfig().getInt("KangarooPrice"), 0,  new Kangaroo(), new ItemStack( Material.FIREWORK), HelixPvP.getInstance().getConfig().getString("KangarooLore") ,1),
@@ -75,10 +75,10 @@ public enum HelixKit {
     NEO("Neo", HelixPvP.getInstance().getConfig().getInt("NeoPrice"), 8000, new AntiStomper(), new ItemStack(Material.BARRIER), HelixPvP.getInstance().getConfig().getString("NeoLore"), 1),
     QUICKDROPPER("QuickDropper", HelixPvP.getInstance().getConfig().getInt("QuickDropperPrice"), 0, new QuickDropper(), new ItemStack(Material.BOWL), HelixPvP.getInstance().getConfig().getString("QuickDropperLore") ,1),
     ANTISTOMPER("AntiStomper", HelixPvP.getInstance().getConfig().getInt("AntiStomperPrice"), 8000, new AntiStomperReal(), new ItemStack(Material.DIAMOND_HELMET), HelixPvP.getInstance().getConfig().getString("AntiStomperLore") ,1),
-    BARBARIAN("Barbarian", 18000, 0, new Barbarian(), new ItemStack(Material.WOOD_SWORD), "Sua espada aumenta a cada kill!" , 1),
-    VACUUM("Vacuum", 15000, 10000, new EnderMage(), new ItemStack(Material.ENDER_PORTAL_FRAME), "Arraste seus inimigos!" , 1),
-    BLOODGUN("BloodGun", 10000, 0, new BloodGun(), new ItemStack(Material.WOOD_HOE), "Atire tiros de sangue!" , 1),
-    SIGHT("Sight", 10000, 0, new Sight(), new ItemStack(Material.INK_SACK, 1 , (short)1), "De cegueira nos inimigos!" , 1),
+    BARBARIAN("Barbarian", 18000, 0, new Barbarian(), new ItemStack(Material.WOOD_SWORD), "Your sword upgrade on each kill!" , 1),
+    VACUUM("Vacuum", 15000, 10000, new EnderMage(), new ItemStack(Material.ENDER_PORTAL_FRAME), "Pull your enemies!" , 1),
+    BLOODGUN("BloodGun", 10000, 0, new BloodGun(), new ItemStack(Material.WOOD_HOE), "Shoot blood bullets!" , 1),
+    SIGHT("Sight", 10000, 0, new Sight(), new ItemStack(Material.INK_SACK, 1 , (short)1), "Gives blidness on each hit!" , 1),
 	FISHERMAN("Fisherman", HelixPvP.getInstance().getConfig().getInt("FishermanPrice"), 150, new Fisherman(), new ItemStack(Material.FISHING_ROD), HelixPvP.getInstance().getConfig().getString("FishermanLore"), 1),
 	ANCHOR("Anchor", HelixPvP.getInstance().getConfig().getInt("AnchorPrice"), 250, new Anchor(), new ItemStack(Material.ANVIL), HelixPvP.getInstance().getConfig().getString("AnchorLore"), 1),
 	TORNADO("Tornado", HelixPvP.getInstance().getConfig().getInt("TornadoPrice"), 1500, new Tornado(), new ItemStack(Material.HOPPER), HelixPvP.getInstance().getConfig().getString("TornadoLore"), 1),
@@ -95,8 +95,8 @@ public enum HelixKit {
 	CAMEL("Camel", HelixPvP.getInstance().getConfig().getInt("CamelPrice"), 200, new Camel(), new ItemStack(Material.SAND), HelixPvP.getInstance().getConfig().getString("CamelLore") , 1),
 	GRANDPA("Grandpa", HelixPvP.getInstance().getConfig().getInt("GrandpaPrice"), 150, new Grandpa(), new ItemStack(Material.STICK), HelixPvP.getInstance().getConfig().getString("GrandpaLore"), 1),
 	SCOUT("Scout", HelixPvP.getInstance().getConfig().getInt("ScoutPrice"), 150, new Scout(), new ItemStack(Material.POTION , 1 ,(short)16418), HelixPvP.getInstance().getConfig().getString("ScoutLore"), 1),
-	HOTPOTATO("HotPotato", 17650, 150, new HotPotato(), new ItemStack(Material.BAKED_POTATO), "Exploda o inimigo com sua batata" , 2),
-	THRESH("Thresh", 15000, 150, new Thresh(), new ItemStack(Material.LEVER), "Atire uma flecha poderosa" , 2),
+	HOTPOTATO("HotPotato", 17650, 150, new HotPotato(), new ItemStack(Material.BAKED_POTATO), "Explode your enemy with your potato" , 2),
+	THRESH("Thresh", 15000, 150, new Thresh(), new ItemStack(Material.LEVER), "Leash a powerful arrow" , 2),
 	CRITICAL("Critical", HelixPvP.getInstance().getConfig().getInt("CriticalPrice"), 150, new Critical(), new ItemStack(Material.REDSTONE), HelixPvP.getInstance().getConfig().getString("CriticalLore") , 2),
 	MILKMAN("Milkman", HelixPvP.getInstance().getConfig().getInt("MilkmanPrice"), 250, new Milkman(), new ItemStack(Material.MILK_BUCKET), HelixPvP.getInstance().getConfig().getString("MilkmanLore"), 2),
 	TURTLE("Turtle", HelixPvP.getInstance().getConfig().getInt("TurtlePrice"), 200, new Turtle(), new ItemStack(Material.DIAMOND_CHESTPLATE), HelixPvP.getInstance().getConfig().getString("TurtleLore"), 2),
@@ -112,7 +112,7 @@ public enum HelixKit {
 	JUMPER("Jumper", HelixPvP.getInstance().getConfig().getInt("JumperPrice"), 250, new Jumper(), new ItemStack(Material.EYE_OF_ENDER), HelixPvP.getInstance().getConfig().getString("JumperLore"), 2),
 	FLASH("Flash", 15000, 500, new Flash(), new ItemStack(Material.REDSTONE_TORCH_ON), "Teleport to everywhere you click", 2),
     GLADIATOR("Gladiator", 15000, 500, new GladiatorListener(), new ItemStack(Material.IRON_FENCE), "Challenge your enemies", 2),
-    METEOR("Meteor", 15000, 500, new Meteor(), new ItemStack(Material.FIREBALL), "Be a meteoro", 2),
+    METEOR("Meteor", 15000, 500, new Meteor(), new ItemStack(Material.FIREBALL), "Be a meteor", 2),
 	SONIC("Sonic", 15000, 500, new Sonic(), new ItemStack(Material.LAPIS_BLOCK), "Give a desh and give poison", 2);
 	
 	private final String name;

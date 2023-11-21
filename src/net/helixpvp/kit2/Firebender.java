@@ -52,7 +52,7 @@ public class Firebender extends KitHandler2 {
         return;
       } 
       else if (p.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura")) {
-      	p.sendMessage("§cNão use o seu poder no spawn!");
+      	p.sendMessage("§cDont use your power on spawn!");
   		return;
   	 }
       fireattack.add(ent.getName());

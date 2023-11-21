@@ -28,14 +28,14 @@ public boolean onCommand(CommandSender sender, Command cmd, String label, String
 		  return true;
 	  }
 	  else if (EventoUtils.evento) {
-		  p.sendMessage("Um evento ja esta ocorrendo!");
+		  p.sendMessage("A event is already occouring!");
 		  return true;
 	  }
-	  p.sendMessage("§aIniciando evento Lava"); 
+	  p.sendMessage("§aStarting lava event"); 
 	  EventoUtils.evento = true;
 	  EventoUtils.tp = true;
 	  Bukkit.broadcastMessage("§cThe lava event started.");
-      Bukkit.broadcastMessage("§cUse /evento join to join");
+      Bukkit.broadcastMessage("§cUse /event join to join");
       Bukkit.broadcastMessage("§cThe event will start in 5 minutes");
       for (Player p1 : Bukkit.getOnlinePlayers()) {
       	p1.playSound(p1.getLocation(), Sound.LEVEL_UP, 1f, 1f);

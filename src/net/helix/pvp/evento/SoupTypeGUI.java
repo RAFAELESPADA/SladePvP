@@ -51,18 +51,18 @@ public class SoupTypeGUI implements Listener {
                     }
                          else if (event.getCurrentItem().getItemMeta().getDisplayName().contains("Compass")) { 
                 	  if (!compass.containsKey(player.getName())) {
-                		  player.sendMessage("§cThe compass has been enabled.");
+                		  player.sendMessage("§cThe compass has been disabled.");
                 		  compass.put(player.getName(), true);
                 	  } else {
-                		  player.sendMessage("§aThe compass has been disabled.");
+                		  player.sendMessage("§aThe compass has been enabled.");
                 		  compass.remove(player.getName());
                 }
                          }  else if (event.getCurrentItem().getItemMeta().getDisplayName().contains("Blood")) { 
                     	  if (!blood.containsKey(player.getName())) {
-                    		  player.sendMessage("§cThe blood has been disabled.");
+                    		  player.sendMessage("§aThe blood has been enabled.");
                     		  blood.put(player.getName(), true);
                     	  } else {
-                    		  player.sendMessage("§aThe blood has been enabled.");
+                    		  player.sendMessage("§cThe blood has been disabled.");
                     		  blood.remove(player.getName());
                     }
             }

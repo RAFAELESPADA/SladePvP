@@ -23,11 +23,22 @@ import org.bukkit.scheduler.BukkitRunnable;
 import net.helix.pvp.HelixPvP;
 import net.helix.pvp.evento.SoupTypeGUI;
 import net.helix.pvp.kit.provider.EnderMageReal;
+import net.helix.pvp.kit.provider.GladiatorListener;
 import net.helix.pvp.warp.HelixWarp;
 import net.md_5.bungee.api.ChatColor;
 
 public class EntityCalculateDamageListener implements Listener {
-
+	 @EventHandler(priority = EventPriority.HIGHEST)
+	    public void onDamageWoodword(final EntityDamageByEntityEvent event) {
+		  if (event.isCancelled() || !(event.getDamager() instanceof Player) || !(event.getEntity() instanceof Player)) {
+	            return;
+	        }
+	        final Player p = (Player)event.getDamager();
+		 if (!Jump.caiu.containsKey(p.getName())) {
+				Jump.caiu.put(p.getName(), true);
+				p.sendMessage(ChatColor.DARK_RED + "You now can receive fall damage again!");
+												}	
+	 }
 	    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
 	    public void onDamageWoodSword(final EntityDamageByEntityEvent event) {
 	        if (event.isCancelled() || !(event.getDamager() instanceof Player) || !(event.getEntity() instanceof Player)) {
@@ -35,6 +46,14 @@ public class EntityCalculateDamageListener implements Listener {
 	        }
 	        final Player p = (Player)event.getDamager();
 	        final ItemStack item = ((Player)event.getDamager()).getItemInHand();
+					if (!Jump.caiu.containsKey(p.getName())) {
+					Jump.caiu.put(p.getName(), true);
+					p.sendMessage(ChatColor.AQUA + "You now can receive fall damage again!");
+													}							
+				
+	  
+			
+		
 	        if (item != null) {
 	            if (item.getType().equals((Object)Material.MUSHROOM_SOUP)) {
 	                event.setDamage(1.0);
@@ -119,7 +138,7 @@ public class EntityCalculateDamageListener implements Listener {
 	    }
 	    @EventHandler
 		  public void onMove2ght(EntityDamageEvent e) {
-	    	if (e.getEntity().getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura") && EnderMageReal.isSpawn(e.getEntity().getLocation())) {
+	    	if (e.getEntity().getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura") && EnderMageReal.isSpawn(e.getEntity().getLocation()) && !GladiatorListener.combateGlad.containsKey(e.getEntity()) && !net.helixpvp.kit2.GladiatorListener.combateGlad.containsKey(e.getEntity())) {
 	    		if (e.getEntity().getLocation().getZ() > -30) {
 	    			return;
 	    		}
@@ -137,7 +156,7 @@ public class EntityCalculateDamageListener implements Listener {
 	    		if (e.getEntity().getLocation().getZ() > -30) {
 	    			return;
 	    		}
-		    	if (e.getEntity().getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura") && EnderMageReal.isSpawn(e.getEntity().getLocation())) {
+		    	if (e.getEntity().getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura") && EnderMageReal.isSpawn(e.getEntity().getLocation()) && !GladiatorListener.combateGlad.containsKey(e.getEntity()) && !net.helixpvp.kit2.GladiatorListener.combateGlad.containsKey(e.getEntity())) {
 	    		e.setCancelled(true);
 		    } 
 	    	}
@@ -150,7 +169,7 @@ public class EntityCalculateDamageListener implements Listener {
 			    if (!HelixWarp.SPAWN.hasPlayer(p.getName())) {
 			    	return;
 			    }
-			    	if (p.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura") && EnderMageReal.isSpawn(e.getEntity().getLocation())) {
+			    	if (p.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura") && EnderMageReal.isSpawn(e.getEntity().getLocation()) && !GladiatorListener.combateGlad.containsKey(e.getEntity()) && !net.helixpvp.kit2.GladiatorListener.combateGlad.containsKey(e.getEntity())) {
 			    	e.setCancelled(true);
 			    	}
 			    }
@@ -270,7 +289,7 @@ public class EntityCalculateDamageListener implements Listener {
 								
 									if (health != 20.0) {	
 										
-										shooter.sendMessage(ChatColor.AQUA + damagedPlayer.getName() + ChatColor.YELLOW + " está com " + health + " de vida!");									
+										shooter.sendMessage(ChatColor.AQUA + damagedPlayer.getName() + ChatColor.YELLOW + " is with " + health + " hearts!");									
 									}						
 																}							
 							}

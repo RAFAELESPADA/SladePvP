@@ -41,7 +41,7 @@ public class Deshfire extends KitHandler2 {
         return;
       }
     else if (p.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura")) {
-		p.sendMessage("§cNão use o Desh no spawn!");
+		p.sendMessage("§cDont use the desh on spawn!");
 		return;
 	 }
       event.setCancelled(true);

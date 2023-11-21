@@ -10,13 +10,16 @@ commands:
      aliases: [lobby]
    skit:
    youtuber:
-   evento:
+   event:
    tpall:
    sc:
    fake:
    crash:
    setarena:
    regras:
+   crates:
+   svpiniciar:
+   mdriniciar:
    stats:
    sendcredits:
    1v1iniciar:
@@ -47,6 +50,7 @@ commands:
    macrotest:
    yt:
    grupo:
+   group:
    setfeast:
    loja:
    raikiri21:

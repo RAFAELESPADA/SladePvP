@@ -85,6 +85,11 @@ public class Spawn extends WarpHandle {
             .nbt("cancel-drop")
             .nbt("cancel-click")
             .toStack()));
+    player.getInventory().setItem(4, (new ItemBuilder("§eCrates", Material.STORAGE_MINECART)
+            .nbt("spawn-item", "crates")
+            .nbt("cancel-drop")
+            .nbt("cancel-click")
+            .toStack()));
     player.getInventory().setItem(8, (new ItemBuilder("§eWarps", Material.COMPASS))
             .nbt("spawn-item", "1v1")
             .nbt("cancel-drop")

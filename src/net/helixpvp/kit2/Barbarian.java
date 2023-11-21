@@ -43,7 +43,7 @@ public class Barbarian extends KitHandler2 {
 	    	  Bukkit.getConsoleSender().sendMessage(k.getName() + " matou " + e.getEntity().getName());
 	    	  return;
 	      }
-	       k.sendMessage(ChatColor.DARK_AQUA + "Você fez uma kill usando o barbarian");
+	       k.sendMessage(ChatColor.DARK_AQUA + "You killed a player using barbarian");
 	        if (k.getInventory().getItemInHand().getType() == Material.WOOD_SWORD) {
 	          k.setItemInHand(new ItemStack(Material.STONE_SWORD));
 	          k.playSound(k.getLocation(), Sound.LEVEL_UP, 1.0F, 1.0F);

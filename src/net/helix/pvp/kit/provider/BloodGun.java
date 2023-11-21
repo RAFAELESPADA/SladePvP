@@ -73,7 +73,7 @@ public class BloodGun extends KitHandler {
 	  	    {
 	  	      Fireball s = (Fireball)e.getDamager();
 	  	      if (s.hasMetadata("hadouken")) {
-	  	        e.setDamage(e.getDamage() + 5.0D);
+	  	        e.setDamage(e.getDamage() + 3.5D);
 	  	      }
 	      }
 	    }

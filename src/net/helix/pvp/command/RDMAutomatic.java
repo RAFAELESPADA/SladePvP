@@ -344,11 +344,11 @@ public class RDMAutomatic implements Listener {
     secondPlayer.getInventory().setChestplate(chest);
     secondPlayer.getInventory().setBoots(boost);
     secondPlayer.getInventory().setLeggings(leg);
-    firstPlayer.getInventory().setItem(0, new ItemBuilder("§7Espada de Diamante", Material.DIAMOND_SWORD).addEnchant(Enchantment.DAMAGE_ALL, 1)
+    firstPlayer.getInventory().setItem(0, new ItemBuilder("§7Sword", Material.DIAMOND_SWORD).addEnchant(Enchantment.DAMAGE_ALL, 1)
 			.nbt("cancel-drop")
 			.toStack()
 	);
-    secondPlayer.getInventory().setItem(0, new ItemBuilder("§7Espada de Diamante", Material.DIAMOND_SWORD).addEnchant(Enchantment.DAMAGE_ALL, 1)
+    secondPlayer.getInventory().setItem(0, new ItemBuilder("§7Sword", Material.DIAMOND_SWORD).addEnchant(Enchantment.DAMAGE_ALL, 1)
 			.nbt("cancel-drop")
 			.toStack()
 	);

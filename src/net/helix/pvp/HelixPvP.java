@@ -76,6 +76,7 @@ import net.helix.pvp.command.KITPVP;
 import net.helix.pvp.command.LastLogin;
 import net.helix.pvp.command.LavaIniciar;
 import net.helix.pvp.command.LimparCache;
+import net.helix.pvp.command.MDRIniciar;
 import net.helix.pvp.command.MacroTest;
 import net.helix.pvp.command.Medal;
 import net.helix.pvp.command.Money;
@@ -103,6 +104,7 @@ import net.helix.pvp.command.SocialSpy;
 import net.helix.pvp.command.SortearPlayer;
 import net.helix.pvp.command.Sorteio;
 import net.helix.pvp.command.SpawnCMD;
+import net.helix.pvp.command.StaffVsPlayers;
 import net.helix.pvp.command.Sudo;
 import net.helix.pvp.command.TPALL;
 import net.helix.pvp.command.TagCommand;
@@ -277,18 +279,7 @@ new BukkitRunnable() {
 			}
 			} 
 			}}.runTaskTimer(this, 0, 3 * 20L);
-		new BukkitRunnable() {
-			
-			@Override
-			public void run() {
-				if (!euforia) {
-				Bukkit.getWorlds().forEach(world -> world.setTime(1000));
-			}
-				else {
-					   Bukkit.getWorld("spawn").setTime(18000);
-				}
-			}
-		}.runTaskTimer(this, 0, 25 * 20L);
+		
 new BukkitRunnable() {
 			
 			@Override
@@ -347,7 +338,7 @@ new BukkitRunnable() {
 						player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 120*20, 0));
 						player.playSound(player.getLocation(), Sound.ANVIL_BREAK, 1F, 10F);
 						Bukkit.broadcastMessage("§cThe §4§lEUFORIA event §cstarted");
-						Bukkit.broadcastMessage("§cFor two minutes everyone will get strenght 2");
+						Bukkit.broadcastMessage("§cFor two minutes everyone will get strength 2");
 						Bukkit.broadcastMessage("§cAll kits released during the event");
 						euforia = true;
 						Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp group default permission settemp kombo.kit.* true 2m");
@@ -368,7 +359,7 @@ new BukkitRunnable() {
 									 Bukkit.getWorld("spawn").setTime(100);
 									 for (Player p1 : Bukkit.getOnlinePlayers()) {
 										 BossBarAPI.removeAllBars(p1);
-										 DarKit.sendTitle(p1, "§c§lEUFORIA", "§aFinalizado!");
+										 DarKit.sendTitle(p1, "§c§lEUFORIA", "§aEvent ended!");
 									      	p1.playSound(p1.getLocation(), Sound.LEVEL_UP, 1f, 1f);
 									        p1.getActivePotionEffects().forEach(potion -> p1.removePotionEffect(potion.getType()));
 									      }
@@ -487,7 +478,7 @@ new BukkitRunnable() {
 	
 	public void onDisable() {
 		for (Player p : Bukkit.getOnlinePlayers()) {
-			p.kickPlayer("§cO server está reiniciando.");
+			p.kickPlayer("§cServer is restarting.");
 		}
 		for (Player p : Bukkit.getOnlinePlayers()) {
 			if (GladiatorListener.combateGlad.containsKey(p)) {
@@ -540,6 +531,9 @@ new BukkitRunnable() {
 		getCommand("givekit").setExecutor(new DarKit());
 		getCommand("fly").setExecutor(new Fly());
 		getCommand("set1v1").setExecutor(new SetX1());
+		getCommand("svpiniciar").setExecutor(new StaffVsPlayers());
+		getCommand("mdriniciar").setExecutor(new MDRIniciar());
+		getCommand("group").setExecutor(new Group());
 		new BukkitCommandLoader(new BukkitCommandFramework(getInstance())).loadCommandsFromPackage("net.helix.pvp.command");
 		getCommand("macrotest").setExecutor(new MacroTest());
 		getCommand("yt").setExecutor(new Youtuber());
@@ -557,6 +551,7 @@ new BukkitRunnable() {
 		getCommand("stats").setExecutor(new VerRank());
 		getCommand("status").setExecutor(new VerRank());
 		getCommand("medalha").setExecutor(new Medal());
+		getCommand("crates").setExecutor(new Caixas());
 		getCommand("fakelist").setExecutor(new FakeList());
 		getCommand("fake").setExecutor(new Fake());
 		getCommand("medalhas").setExecutor(new Medal());
@@ -592,9 +587,9 @@ new BukkitRunnable() {
 		getCommand("sendcredits").setExecutor(new SendCredits());
 		getCommand("aplicar").setExecutor(new Aplicar());
 		getCommand("sendtitle").setExecutor(new AvisoT());
-		getCommand("evento").setExecutor(new EventoComando());
+		getCommand("event").setExecutor(new EventoComando());
 		getCommand("1v1iniciar").setExecutor(new OneVsOneIniciar());
-		getCommand("evento").setTabCompleter(new EventoTabComplete());
+		getCommand("event").setTabCompleter(new EventoTabComplete());
 	}
 	public void loadListeners() {
 		PluginManager pm = Bukkit.getPluginManager();
@@ -618,6 +613,7 @@ new BukkitRunnable() {
 		pm.registerEvents(new OpenSpawnItemsListener(), this);
 		pm.registerEvents(new ServerEssentialsListener(), this);
 		pm.registerEvents(new Youtuber(), this);
+		pm.registerEvents(new Caixas(), this);
 		pm.registerEvents(new Barbarian(), this);
 		pm.registerEvents(new Tornado(), this);
 		pm.registerEvents(new Sonic(), this);

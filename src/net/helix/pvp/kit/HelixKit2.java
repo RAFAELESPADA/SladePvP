@@ -20,6 +20,7 @@ import net.helix.pvp.listener.PlayerJoinListener;
 import net.helixpvp.kit2.Anchor;
 import net.helixpvp.kit2.AntiStomperReal;
 import net.helixpvp.kit2.Archer;
+import net.helixpvp.kit2.Avatar;
 import net.helixpvp.kit2.Boxer;
 import net.helixpvp.kit2.Camel;
 import net.helixpvp.kit2.Critical;
@@ -40,6 +41,7 @@ import net.helixpvp.kit2.MilkMan;
 import net.helixpvp.kit2.Monk;
 import net.helixpvp.kit2.Nenhum;
 import net.helixpvp.kit2.Ninja;
+import net.helixpvp.kit2.Poseidon;
 import net.helixpvp.kit2.PvP;
 import net.helixpvp.kit2.QuickDropper;
 import net.helixpvp.kit2.Scout;
@@ -56,6 +58,8 @@ public enum HelixKit2  {
 	ANCHOR("Anchor", 10000, 0, new Anchor() , new ItemStack(Material.ANVIL), "Dont receive knockback" , 1),
 	ANTISTOMPER("AntiStomper", 8000, 0, new AntiStomperReal() , new ItemStack(Material.DIAMOND_HELMET), "Immune to stompers" , 1),
 	NINJA("Ninja", 10000, 0, new Ninja() , new ItemStack(Material.EMERALD), "Teleport to enemies", 1),
+	POSEIDON("Poseidon", 4000, 0, new Poseidon() , new ItemStack(Material.WATER_BUCKET), "Stronger on water", 1),
+	AVATAR("Avatar", 12000, 0, new Avatar() , new ItemStack(Material.BEACON), "Control the four elements", 1),
 	LEECH("Leech", 10000, 0, new Leech() , new ItemStack(Material.REDSTONE), "Steal life from enemies", 1),
 	ARCHER("Archer", 0, 0, new Archer() , new ItemStack(Material.BOW), "Receives bow and arrow!", 1),
 	BOXER("Boxer", 15000, 0, new Boxer() , new ItemStack(Material.QUARTZ), "Gives more damage.", 1),

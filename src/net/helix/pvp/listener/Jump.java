@@ -41,6 +41,7 @@ import net.helix.pvp.kit.KitHandler;
 import net.helix.pvp.kit.KitHandler2;
 import net.helix.pvp.kit.KitManager;
 import net.helix.pvp.kit.KitManager2;
+import net.helix.pvp.kit.provider.EnderMageReal;
 import net.helix.pvp.kit.provider.Surprise;
 import net.helix.pvp.warp.HelixWarp;
 
@@ -697,6 +698,13 @@ public void Items(Player player) {
 								if (KitManager2.getPlayer(player.getName()).haskit2(HelixKit2.MONK)) {
 									player.getInventory().setItem(2, new ItemBuilder("§eEmbaralhar!", Material.BLAZE_ROD)
 											.nbt("kit-handler", "monk")
+											.nbt("cancel-drop")
+											.toStack()
+									);
+									}
+								if (KitManager2.getPlayer(player.getName()).haskit2(HelixKit2.AVATAR)) {
+									player.getInventory().setItem(2, new ItemBuilder("§bAvatar!", Material.BEACON)
+											.nbt("kit-handler", "avatar")
 											.nbt("cancel-drop")
 											.toStack()
 									);

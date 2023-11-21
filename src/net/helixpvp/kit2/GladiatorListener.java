@@ -88,26 +88,26 @@ public final class GladiatorListener extends KitHandler2
                     return;
                 }
                 if (bp.getLocation().getY() > (HelixPvP.getInstance().getConfig().getInt("GladAltura")) && EnderMageReal.isSpawn(bp.getLocation())) {
-                    bp.sendMessage(String.valueOf(prefix) + " §cVocê não pode puxar esse jogador no Spawn!");
+                    bp.sendMessage(String.valueOf(prefix) + " §cYou cant challenge this player here!");
                     return;
                 }
                 Entity passenger = toGlad.getPassenger();
                 if (passenger != null) {
-                	bp.sendMessage(String.valueOf(prefix) + " §cVocê não pode puxar esse jogador!");
+                	bp.sendMessage(String.valueOf(prefix) + " §cYou cant challenge this player!");
                 	return;
                 }
                 if (net.helix.pvp.kit.provider.GladiatorListener.combateGlad.containsKey(bp) || GladiatorListener.combateGlad.containsKey(bp)) {
-					bp.sendMessage("§cVocê já está no gladiator.");
+					bp.sendMessage("§cYou are already fighting.");
 					return;
 				}
                 if (KitManager.getPlayer(toGlad.getName()).hasKit(HelixKit.NEO) || KitManager2.getPlayer(toGlad.getName()).haskit2(HelixKit2.NEO)) {
 					bp.playSound(bp.getLocation(), Sound.NOTE_BASS_DRUM, 15.0f, 15.0f);
-					bp.sendMessage(ChatColor.RED + "Você nao pode puxar " + ChatColor.DARK_RED + toGlad.getName() + ChatColor.RED + " porque ele esta com o kit" + ChatColor.DARK_RED + " NEO");
+					bp.sendMessage(ChatColor.RED + "You cant challenge " + ChatColor.DARK_RED + toGlad.getName() + ChatColor.RED + " because he has " + ChatColor.DARK_RED + " NEO kit");
 					return;
 				}
 				if (KitManager.getPlayer(toGlad.getName()).hasKit(HelixKit.JUMPER)) {
 					bp.playSound(bp.getLocation(), Sound.NOTE_BASS_DRUM, 15.0f, 15.0f);
-					bp.sendMessage(ChatColor.RED + "Você nao pode puxar " + ChatColor.DARK_RED + toGlad.getName() + ChatColor.RED + " porque ele esta com o kit" + ChatColor.DARK_RED + " JUMPER");
+					bp.sendMessage(ChatColor.RED + "You cant challenge " + ChatColor.DARK_RED + toGlad.getName() + ChatColor.RED + " because he has" + ChatColor.DARK_RED + " JUMPER kit");
 					return;
 				}
                 GladiatorListener.combateGlad.put(bp, toGlad);
@@ -163,8 +163,8 @@ public final class GladiatorListener extends KitHandler2
         GladiatorListener.blocks.put(p2.getName(), location);
         p1.teleport(new Location(p1.getWorld(), loc3.getX() + 5.5, loc3.getY() + 1.0, loc3.getZ() + 5.5, 140.0f, 0.0f));
         p2.teleport(new Location(p2.getWorld(), loc4.getX() - 5.5, loc4.getY() + 1.0, loc2.getZ() - 5.5, -40.0f, 0.0f));
-        p1.sendMessage(String.valueOf(GladiatorListener.prefix) + "§fVoce desafiou o player §e" + p2.getName() + " §fpara uma batalha 1v1!");
-        p2.sendMessage(String.valueOf(GladiatorListener.prefix) + "§fVoce foi desafiado pelo player §e" + p1.getName() + " §fpara uma batalha 1v1!");
+        p1.sendMessage(String.valueOf(GladiatorListener.prefix) + "§fYou challenged §e" + p2.getName() + " §fto a 1v1!");
+        p2.sendMessage(String.valueOf(GladiatorListener.prefix) + "§fYou get challenged §e" + p1.getName() + " §fto a 1v1!");
         showPlayer(p1, p2);
         Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnable() {
         	public void run() {
@@ -203,8 +203,8 @@ public final class GladiatorListener extends KitHandler2
         GladiatorListener.oldLocation.remove(loser.getName());
         GladiatorListener.combateGlad.remove(winner);
         GladiatorListener.combateGlad.remove(loser);
-        winner.sendMessage(String.valueOf(GladiatorListener.prefix) + "§fVoce venceu a batalha contra §e" + loser.getName());
-        loser.sendMessage(String.valueOf(GladiatorListener.prefix) + "§fVoce perdeu a batalha contra §e" +  winner.getName());
+        winner.sendMessage(String.valueOf(GladiatorListener.prefix) + "§fYou win the fight against §e" + loser.getName());
+        loser.sendMessage(String.valueOf(GladiatorListener.prefix) + "§fYou lost the fight against §e" +  winner.getName());
     }
     @EventHandler
     public void PlayerMove(PlayerMoveEvent event) {
@@ -277,7 +277,7 @@ public final class GladiatorListener extends KitHandler2
         GladiatorListener.combateGlad.remove(winner);
         GladiatorListener.combateGlad.remove(loser);
         if (winner != null) {
-        winner.sendMessage(String.valueOf(GladiatorListener.prefix) + "§fO player §e" +  loser.getName() + " §fdeslogou.");
+        winner.sendMessage(String.valueOf(GladiatorListener.prefix) + "§fThe player §e" +  loser.getName() + " §flogget out.");
     }
         }
         
@@ -306,6 +306,6 @@ public final class GladiatorListener extends KitHandler2
         GladiatorListener.oldLocation.remove(loser.getName());
         GladiatorListener.combateGlad.remove(winner);
         GladiatorListener.combateGlad.remove(loser);
-        winner.sendMessage(String.valueOf(GladiatorListener.prefix) + "§fO player §e" +  loser.getName() + " §fSaiu correndo para o spawn.");
+        winner.sendMessage(String.valueOf(GladiatorListener.prefix) + "§fThe player §e" +  loser.getName() + " §fgoes back to spawn.");
     }
 }

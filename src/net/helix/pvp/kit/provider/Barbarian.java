@@ -27,7 +27,7 @@ public class Barbarian extends KitHandler {
       if (!KitManager.getPlayer(k.getName()).hasKit(HelixKit.BARBARIAN)) {
     	  return;
       }
-       k.sendMessage(ChatColor.DARK_AQUA + "Você fez uma kill usando o barbarian");
+       k.sendMessage(ChatColor.DARK_AQUA + "You killed someone with barbarian");
         if (k.getInventory().getItemInHand().getType() == Material.WOOD_SWORD) {
           k.setItemInHand(new ItemStack(Material.STONE_SWORD));
           k.playSound(k.getLocation(), Sound.LEVEL_UP, 1.0F, 1.0F);
@@ -61,8 +61,8 @@ public class Barbarian extends KitHandler {
             } else {
             	 k.setItemInHand(new ItemStack(Material.WOOD_SWORD));
                  k.playSound(k.getLocation(), Sound.LEVEL_UP, 1.0F, 1.0F);
-              k.sendMessage(ChatColor.GOLD + "Voce esta no level maximo!");
-              k.sendMessage(ChatColor.GOLD + "Sua espada resetou!");
+              k.sendMessage(ChatColor.GOLD + "You are on max level!");
+              k.sendMessage(ChatColor.GOLD + "Your sword reseted!");
             } 
           } else {
             k.getInventory().getItemInHand().addEnchantment(Enchantment.DAMAGE_ALL, 1);

@@ -31,7 +31,7 @@ public class MilkMan extends KitHandler2 {
         super.execute(player);
 
         player.getInventory().setItem(2, new ItemBuilder(Material.MILK_BUCKET)
-                .displayName("§fBalde de Leite")
+                .displayName("§fMilk")
                 .nbt("cancel-drop")
                 .nbt("kit-handler", "milkman")
                 .toStack()
@@ -48,7 +48,7 @@ public class MilkMan extends KitHandler2 {
 			return;
 		}
         if (HelixCooldown.has(event.getPlayer().getName(), "milk-ability")) {
-        	event.getPlayer().sendMessage("§cAguarde para usar novamente");
+        	event.getPlayer().sendMessage("§cWait to use again");
         	return;
         }
         event.setCancelled(true);
@@ -57,6 +57,6 @@ public class MilkMan extends KitHandler2 {
         event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.ABSORPTION, 5 * 20, 0));
         event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 10 * 20, 0));
         event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 5 * 20, 0));
-        event.getPlayer().sendMessage("§aMilkman aplicado!");
+        event.getPlayer().sendMessage("§aMilkman applied!");
     }
 }

@@ -28,23 +28,23 @@ public class RankCMD implements CommandExecutor {
             if (helixPlayer == null) {
             	return true;
             }
-            player.sendMessage(HelixPvP.getInstance().getConfig().getString("Prefix").replace("&", "§") + " §7- §eSistema de Ranks");
+            player.sendMessage(HelixPvP.getInstance().getConfig().getString("Prefix").replace("&", "§") + " §7- §eRanking System");
             Ranking[] values;
             for (int length = (values = Ranking.values()).length, i = 0; i < length; ++i) {
                 Ranking rank = values[i];
                 if (Ranking.getRank(helixPlayer).getName().equals(rank.getName())) {
-                    player.sendMessage("§7(" + rank.getColoredSymbol() + "§7) " + rank.getColoredName() + " §a" + new DecimalFormat().format(rank.getXp()) + " XP   §e< Seu rank");
+                    player.sendMessage("§7(" + rank.getColoredSymbol() + "§7) " + rank.getColoredName() + " §a" + new DecimalFormat().format(rank.getXp()) + " XP   §e< Your rank");
                 } else {
                     player.sendMessage("§7(" + rank.getColoredSymbol() + "§7) " + rank.getColoredName() + " §a" + new DecimalFormat().format(rank.getXp()) + " XP");
                 }
             }
-            player.sendMessage("§7Seu rank atual é: " + Ranking.getRank(helixPlayer).getColoredName() + "§7.");
+            player.sendMessage("§7Your current rank is: " + Ranking.getRank(helixPlayer).getColoredName() + "§7.");
             if (Ranking.getRank(helixPlayer) != Ranking.GOD) {
-                player.sendMessage("§7Proxímo rank é: " + Ranking.getRank(helixPlayer).next().getColoredName() + "§7.");
+                player.sendMessage("§7Your next rank is: " + Ranking.getRank(helixPlayer).next().getColoredName() + "§7.");
                 int pontos_necessarios = Ranking.getRank(helixPlayer).next().getXp() - pvp.getXp();
-                player.sendMessage("§7Você tem §a" + pvp.getXp() + " XP §7e restam §a" + pontos_necessarios + " XP §7para o próximo §6rank§7.");
+                player.sendMessage("§7You have §a" + pvp.getXp() + " XP §7and you need more §a" + pontos_necessarios + " XP §7to the next §6rank§7.");
                 player.sendMessage(" ");
-                player.sendMessage("§7Progresso para o proximo §6rank§7:");
+                player.sendMessage("§7Progress to the next §6rank§7:");
                 int diff = Ranking.getRank(helixPlayer).next().getXp() - Ranking.getRank(helixPlayer).getXp();
                 getProgressBar(pontos_necessarios, diff, player);
             }
@@ -69,7 +69,7 @@ public class RankCMD implements CommandExecutor {
                 bar.append("§7§m-§r");
             }
         }
-        player.sendMessage(bar + "§r §7(" + realPorcent + "% concluído)");
+        player.sendMessage(bar + "§r §7(" + realPorcent + "% done)");
     }
 
 }

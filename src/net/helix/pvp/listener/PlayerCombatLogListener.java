@@ -59,6 +59,10 @@ public class PlayerCombatLogListener implements Listener {
 		
 		HelixCooldown.create(victim.getName(), "combat", timeUnit, time);
 		HelixCooldown.create(damager.getName(), "combat", timeUnit, time);
+		if (!HelixCooldown.has(victim.getName(), "combat")) {
+		damager.sendMessage(ChatColor.RED + "You are now in combat with " + victim.getName());
+		victim.sendMessage(ChatColor.RED + "You are now in combat with " + damager.getName());
+		}
 		if (victim.isFlying()) {
 		victim.setAllowFlight(victim.hasPermission("kombo.cmd.report"));
 		victim.setFlying(victim.hasPermission("kombo.cmd.report"));
@@ -78,7 +82,7 @@ public class PlayerCombatLogListener implements Listener {
     public void aosair(PlayerQuitEvent e) {
         final Player p = e.getPlayer();
         if (HelixCooldown.inCooldown(p.getName(), "combat")) {
-            p.setHealth(0.0);
+            p.setLastDamage(p.getHealth());
             HelixWarp.SPAWN.send(p);
             HelixCooldown.delete(p.getName(), "combat");
         }

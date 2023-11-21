@@ -19,9 +19,9 @@ import net.helix.pvp.inventory.WarpsInventory;
 				  {
 					  if (net.helix.pvp.warp.HelixWarp.SPAWN.hasPlayer(p.getName())) {
 				   WarpsInventory.open(p);
-				  }
+				  
 				  } else {
-					  p.sendMessage("§cVocê precisa estar no spawn");
+					  p.sendMessage("§cYou need to be on spawn");
 					  
 				  return true;
 				  }
@@ -29,4 +29,4 @@ import net.helix.pvp.inventory.WarpsInventory;
 			return false;
 		}
 
-		}
+		}}
