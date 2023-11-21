@@ -49,9 +49,9 @@ public boolean onCommand(CommandSender sender, Command cmd, String label, String
 	  p.sendMessage("§aIniciando evento 1v1"); 
 	  EventoUtils.evento = true;
 	  EventoUtils.tp = true;
-	  Bukkit.broadcastMessage("§cO evento 1v1 acabou de iniciar.");
-      Bukkit.broadcastMessage("§cUtilize /evento entrar");
-      Bukkit.broadcastMessage("§cO evento começara automaticamente em 2 minutos e 30 segundos");
+	  Bukkit.broadcastMessage("§cThe 1v1 event started.");
+      Bukkit.broadcastMessage("§cUse /evento join to join");
+      Bukkit.broadcastMessage("§cThe event will start on 5 minutes");
       for (Player p1 : Bukkit.getOnlinePlayers()) {
       	p1.playSound(p1.getLocation(), Sound.LEVEL_UP, 1f, 1f);
       }
@@ -67,12 +67,12 @@ public boolean onCommand(CommandSender sender, Command cmd, String label, String
 			      for (Player p1 : Bukkit.getOnlinePlayers()) {
 			        	p1.playSound(p1.getLocation(), Sound.LEVEL_UP, 1f, 1f);
 			        }
-			      p2.sendMessage("Evento já vai começar");
+			      p2.sendMessage("Event will start");
 			});
-			 	Bukkit.broadcastMessage("§cTeleportando as pessoas para o Evento!");
+			 	Bukkit.broadcastMessage("§cTeleporting people to the event!");
 			 	EventoType evento = EventoType.getEventoByName("1v1");
 			 
-			    Bukkit.broadcastMessage("§aIniciando explicação do evento §e" + evento.getName().toUpperCase() + "§a...");
+			    Bukkit.broadcastMessage("§aStarting explanation of the event §e" + evento.getName().toUpperCase() + "§a...");
                 EventoType.explicarEvento(evento);
                 EventoUtils.started = true;
 			}}, 1200L);
@@ -85,8 +85,8 @@ public boolean onCommand(CommandSender sender, Command cmd, String label, String
 				 EventoUtils.damage = true;
 				 EventoUtils.build = false;
 				 EventoUtils.tp = false;
-				Bukkit.broadcastMessage("§c§lO Evento irá começar!");
-				Bukkit.broadcastMessage("§c§lBoa Sorte!");
+				Bukkit.broadcastMessage("§c§lThe event will start!");
+				Bukkit.broadcastMessage("§c§lGood luck!");
 			 	HelixPvP.getInstance().getEventManager().setRdmAutomatic(new RDMAutomatic());	
 		 		Bukkit.getConsoleSender().sendMessage("RDM Automatic iniciado");
 			 	 EventoUtils.getEventoPlayers().forEach(p2 -> {

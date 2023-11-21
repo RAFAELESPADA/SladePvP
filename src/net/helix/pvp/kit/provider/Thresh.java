@@ -48,7 +48,7 @@ public void disparar(PlayerInteractEvent e) {
 		return;
 	}
   else if (e.getPlayer().getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura") && KitManager.getPlayer(e.getPlayer().getName()).hasKit(this)) {
-      	e.getPlayer().sendMessage("§cNão use o thresh no spawn!");
+      	e.getPlayer().sendMessage("§cDont use the thresh on spawn!");
       	e.setCancelled(true);
 			return;
 		}
@@ -61,7 +61,7 @@ public void disparar(PlayerInteractEvent e) {
       tiros.put(p.getName(), tiro);
       addCooldown(p , 15);
       p.playSound(p.getLocation(), Sound.GLASS, 1.0F, 1.0F);
-      p.sendMessage(ChatColor.GREEN + "Você usou seu Thresh.");
+      p.sendMessage(ChatColor.GREEN + "You used the Thresh.");
     } 
 	  else {
 		  sendMessageCooldown(e.getPlayer());
@@ -91,7 +91,7 @@ public void onEntityDamagerByEntity(EntityDamageByEntityEvent e) {
         hit.teleport(ploc);
         hit.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 100, 1));
         hit.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 100, 1));
-        hit.sendMessage(ChatColor.RED + "Você foi pego por um Thresh.");
+        hit.sendMessage(ChatColor.RED + "You get targeted by a Thresh.");
       } 
     }
   }

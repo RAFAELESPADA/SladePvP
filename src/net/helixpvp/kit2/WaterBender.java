@@ -54,7 +54,7 @@ public void PlayerInteractEvt(PlayerInteractEntityEvent e) {
       return;
     } 
     else if (p.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura")) {
-    	p.sendMessage("§cNão use o seu poder no spawn!");
+    	p.sendMessage("§cDont use the power on spawn!");
 		return;
 	 }
     wateratack.add(ent.getName());

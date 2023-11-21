@@ -60,22 +60,22 @@ public class Spawn extends WarpHandle {
     player.setFireTicks(0);
     player.setFoodLevel(20);
     player.getInventory().setHeldItemSlot(0);
-    player.getInventory().setItem(0, (new ItemBuilder("§aKits primários", Material.valueOf(HelixPvP.getInstance().getConfig().getString("KitsItem"))))
+    player.getInventory().setItem(0, (new ItemBuilder("§aPrimary Kits", Material.valueOf(HelixPvP.getInstance().getConfig().getString("KitsItem"))))
         .nbt("spawn-item", "kits")
         .nbt("cancel-drop")
         .nbt("cancel-click")
         .toStack());
-    player.getInventory().setItem(1, (new ItemBuilder("§aKits secundários", Material.CHEST))
+    player.getInventory().setItem(1, (new ItemBuilder("§aSecondary kits", Material.CHEST))
             .nbt("spawn-item", "kits2")
             .nbt("cancel-drop")
             .nbt("cancel-click")
             .toStack());
-    player.getInventory().setItem(2, (new ItemBuilder("§eLoja", Material.valueOf(HelixPvP.getInstance().getConfig().getString("ShopItemMAT"))))
+    player.getInventory().setItem(2, (new ItemBuilder("§eShop", Material.valueOf(HelixPvP.getInstance().getConfig().getString("ShopItemMAT"))))
         .nbt("spawn-item", "shop")
         .nbt("cancel-drop")
         .nbt("cancel-click")
         .toStack());
-    player.getInventory().setItem(6, (new ItemBuilder("§6Opções", Material.valueOf(HelixPvP.getInstance().getConfig().getString("OptionsItem"))))
+    player.getInventory().setItem(6, (new ItemBuilder("§6Options", Material.valueOf(HelixPvP.getInstance().getConfig().getString("OptionsItem"))))
             .nbt("spawn-item", "status2")
             .nbt("cancel-drop")
             .nbt("cancel-click")
@@ -93,7 +93,7 @@ public class Spawn extends WarpHandle {
     if (PlayerDeathListener.lastKit.containsKey(player.getName())) {
     	KitManager.getPlayer(player.getName()).setKit(PlayerDeathListener.lastKit.get(player.getName()));
     	KitManager2.getPlayer(player.getName()).setkit2(PlayerDeathListener.lastKit2.get(player.getName()));
-    	player.sendMessage("§aSeus kits anteriores foram re-equipados.");
+    	player.sendMessage("§aYour old kits has been requipped.");
     }
 	HelixPvP.getInstance().getScoreboardBuilder().build(player);
   }

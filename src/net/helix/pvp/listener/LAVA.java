@@ -67,6 +67,6 @@ public class LAVA implements Listener {
 
 		
 		HelixWarp.LAVACHALLENGE.send(player, true);
-		player.sendMessage(ChatColor.YELLOW + "Você respawnou na warp Lava. Para voltar use /spawn");
+		player.sendMessage(ChatColor.YELLOW + "You respawned in lava warp. To go back write /spawn");
 		}
 }

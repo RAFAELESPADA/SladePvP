@@ -44,9 +44,9 @@ public class GiveCoins implements CommandExecutor {
 				    pk.getPvp().addCoins(coins);	    
 					sender.sendMessage( "§eVocê deu para " + target.getName() + " " + coins
 							+ "§bCoins");
-					target.sendMessage( "§eVocê recebeu " + coins
+					target.sendMessage( "§eYou received " + coins
 							+ " §bCoins");
-					target.sendMessage( "§6Sua conta foi atualizada!");
+					target.sendMessage( "§6Your account has been updated!");
 					
 				}
 			}

@@ -44,9 +44,9 @@ public class GiveXP implements CommandExecutor {
 				    pk.getPvp().addXP(coins);	    
 					sender.sendMessage( "§eVocê deu para " + target.getName() + " " + coins
 							+ "§bXP");
-					target.sendMessage( "§eVocê recebeu " + coins
-							+ " §bde XP");
-					target.sendMessage( "§6Sua conta foi atualizada!");
+					target.sendMessage( "§eYou received " + coins
+							+ " §bof XP");
+					target.sendMessage( "§6Your acc has been updated!");
 					
 				}
 			}

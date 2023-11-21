@@ -70,7 +70,7 @@ commands:
    medalha:
    consolesudo:
    requisitos:
-   discord:
+   report:
    sethologram:
    rank:
       aliases: [ranks]

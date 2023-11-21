@@ -34,9 +34,9 @@ public boolean onCommand(CommandSender sender, Command cmd, String label, String
 	  p.sendMessage("§aIniciando evento Lava"); 
 	  EventoUtils.evento = true;
 	  EventoUtils.tp = true;
-	  Bukkit.broadcastMessage("§cO evento Lava acabou de iniciar.");
-      Bukkit.broadcastMessage("§cUtilize /evento entrar");
-      Bukkit.broadcastMessage("§cO evento começara automaticamente em 5 minutos");
+	  Bukkit.broadcastMessage("§cThe lava event started.");
+      Bukkit.broadcastMessage("§cUse /evento join to join");
+      Bukkit.broadcastMessage("§cThe event will start in 5 minutes");
       for (Player p1 : Bukkit.getOnlinePlayers()) {
       	p1.playSound(p1.getLocation(), Sound.LEVEL_UP, 1f, 1f);
       }
@@ -45,8 +45,8 @@ public boolean onCommand(CommandSender sender, Command cmd, String label, String
 				if (!EventoUtils.evento) {
 					  return;
 				  }
-				Bukkit.broadcastMessage("§cO evento Lava começara automaticamente em 4 minutos");
-				Bukkit.broadcastMessage("§cPlayers no evento: " + EventoUtils.getEventoPlayers().size());
+				Bukkit.broadcastMessage("§cThe event will start in 4 minutes");
+				Bukkit.broadcastMessage("§cPlayers in event: " + EventoUtils.getEventoPlayers().size());
 				 for (Player p1 : Bukkit.getOnlinePlayers()) {
 				      	p1.playSound(p1.getLocation(), Sound.LEVEL_UP, 1f, 1f);
 				      }
@@ -57,8 +57,8 @@ public boolean onCommand(CommandSender sender, Command cmd, String label, String
 				if (!EventoUtils.evento) {
 					  return;
 				  }
-				Bukkit.broadcastMessage("§cO evento Lava começara automaticamente em 3 minutos");
-				Bukkit.broadcastMessage("§cPlayers no evento: " + EventoUtils.getEventoPlayers().size());
+				Bukkit.broadcastMessage("§cThe event will start in 3 minutes");
+				Bukkit.broadcastMessage("§cPlayers in event: " + EventoUtils.getEventoPlayers().size());
 				 for (Player p1 : Bukkit.getOnlinePlayers()) {
 				      	p1.playSound(p1.getLocation(), Sound.LEVEL_UP, 1f, 1f);
 				      }
@@ -69,8 +69,8 @@ public boolean onCommand(CommandSender sender, Command cmd, String label, String
 				if (!EventoUtils.evento) {
 					  return;
 				  }
-				Bukkit.broadcastMessage("§cO evento Lava começara automaticamente em 2 minutos");
-				Bukkit.broadcastMessage("§cPlayers no evento: " + EventoUtils.getEventoPlayers().size());
+				Bukkit.broadcastMessage("§cThe event will start in 2 minutes");
+				Bukkit.broadcastMessage("§cPlayers in event: " + EventoUtils.getEventoPlayers().size());
 			}
 		}, 3600L);
       Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnable() {
@@ -78,8 +78,8 @@ public boolean onCommand(CommandSender sender, Command cmd, String label, String
 				if (!EventoUtils.evento) {
 					  return;
 				  }
-				Bukkit.broadcastMessage("§cO evento Lava começara automaticamente em 1 minuto");
-				Bukkit.broadcastMessage("§cPlayers no evento: " + EventoUtils.getEventoPlayers().size());
+				Bukkit.broadcastMessage("§cThe event will start in 1 minutes");
+				Bukkit.broadcastMessage("§cPlayers in event: " + EventoUtils.getEventoPlayers().size());
 			}
 		}, 4800L);
 		Bukkit.getScheduler().scheduleSyncDelayedTask(HelixPvP.getInstance(), new Runnable() {
@@ -95,9 +95,9 @@ public boolean onCommand(CommandSender sender, Command cmd, String label, String
 			        	p1.playSound(p1.getLocation(), Sound.LEVEL_UP, 1f, 1f);
 			        }
 			});
-			 	Bukkit.broadcastMessage("§cTeleportando as pessoas para o Evento!");
+			 	Bukkit.broadcastMessage("§cTeleporting people to the event!");
 			 	EventoType evento = EventoType.getEventoByName("Lava");
-			    Bukkit.broadcastMessage("§aIniciando explicação do evento §e" + evento.getName().toUpperCase() + "§a...");
+			    Bukkit.broadcastMessage("§aStarting the explanation of the event §e" + evento.getName().toUpperCase() + "§a...");
                 EventoType.explicarEvento(evento);
                 EventoUtils.started = true;
 			}}, 6000L);
@@ -106,8 +106,8 @@ public boolean onCommand(CommandSender sender, Command cmd, String label, String
 				if (!EventoUtils.evento) {
 					  return;
 				  }
-				Bukkit.broadcastMessage("§c§lO Evento Começou!");
-				Bukkit.broadcastMessage("§c§lBoa Sorte!");
+				Bukkit.broadcastMessage("§c§lThe event started!");
+				Bukkit.broadcastMessage("§c§lGood luck!");
 				EventoUtils.getEventoPlayers().forEach(p2 -> {
 		EventoUtils.pvp = false;
      	EventoUtils.damage = true;
@@ -151,27 +151,27 @@ public boolean onCommand(CommandSender sender, Command cmd, String label, String
                 if (EventoUtils.getEventoPlayers().size() == 1) {
 
 					for(Player p1 : Bukkit.getOnlinePlayers()){
-						p1.sendMessage("               §b§lEVENTO               ");
+						p1.sendMessage("               §b§lEVENT               ");
 						p1.sendMessage("");
-						p1.sendMessage("§aJogador: " + EventoUtils.getEventoPlayersNames() + " venceu o evento");
+						p1.sendMessage("§aPLAYER: " + EventoUtils.getEventoPlayersNames() + " wins the event");
 						p1.sendMessage("");
-						p1.sendMessage("               §b§lEVENTO               ");
+						p1.sendMessage("               §b§lEVENT               ");
 					}
-                	Bukkit.broadcastMessage("§aVencedor do Evento: " + EventoUtils.getEventoPlayersNames());
-                	Bukkit.broadcastMessage("§aVencedor do Evento: " + EventoUtils.getEventoPlayersNames());
-                	Bukkit.broadcastMessage("§aVencedor do Evento: " + EventoUtils.getEventoPlayersNames());
-                	Bukkit.broadcastMessage("§aVencedor do Evento: " + EventoUtils.getEventoPlayersNames());
-                	Bukkit.broadcastMessage("§aVencedor do Evento: " + EventoUtils.getEventoPlayersNames());
-                	Bukkit.broadcastMessage("§aVencedor do Evento: " + EventoUtils.getEventoPlayersNames());
-                	Bukkit.broadcastMessage("§aVencedor do Evento: " + EventoUtils.getEventoPlayersNames());
+                	Bukkit.broadcastMessage("§aEvent winner: " + EventoUtils.getEventoPlayersNames());
+                	Bukkit.broadcastMessage("§aEvent winner: " + EventoUtils.getEventoPlayersNames());
+                	Bukkit.broadcastMessage("§aEvent winner: " + EventoUtils.getEventoPlayersNames());
+                	Bukkit.broadcastMessage("§aEvent winner: " + EventoUtils.getEventoPlayersNames());
+                	Bukkit.broadcastMessage("§aEvent winner: " + EventoUtils.getEventoPlayersNames());
+                	Bukkit.broadcastMessage("§aEvent winner: " + EventoUtils.getEventoPlayersNames());
+                	Bukkit.broadcastMessage("§aEvent winner: " + EventoUtils.getEventoPlayersNames());
                 	p.setHealth(20);
                 	p.getWorld().strikeLightning(p.getLocation());
             		p.getWorld().strikeLightning(p.getLocation());
             		p.getWorld().strikeLightning(p.getLocation());
             		p.getWorld().strikeLightning(p.getLocation());
                 }
-                p.sendMessage("§cO evento foi finalizado automaticamente porque o tempo expirou.");
-                p.sendMessage("§cO evento durou: §a40 minutos");
+                p.sendMessage("§cThe event ended because the timer runs out.");
+                p.sendMessage("§cEvent duration: §a40 minutes");
 			}
             });;
             EventoUtils.resetEventoClass();

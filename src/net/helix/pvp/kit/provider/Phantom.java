@@ -58,7 +58,7 @@ if (!KitManager.getPlayer(event.getPlayer().getName()).hasKit(this)) {
 	return;
 }
         if (HelixCooldown.inCooldown(event.getPlayer().getName(), "kit-phantom")) {
-            event.getPlayer().sendMessage("§cO kit Phantom está em cooldown.");
+            event.getPlayer().sendMessage("§cThe kit is on Cooldown.");
             return;
         }
         event.setCancelled(true);
@@ -98,37 +98,37 @@ if (!KitManager.getPlayer(event.getPlayer().getName()).hasKit(this)) {
         Bukkit.getScheduler().scheduleSyncDelayedTask((Plugin)HelixPvP.getInstance(), (Runnable)new Runnable() {
             @Override
             public void run() {
-            	p.sendMessage("§eRestam 5 segundos.");
+            	p.sendMessage("§e5 seconds left.");
             }
         }, 0L);
         Bukkit.getScheduler().scheduleSyncDelayedTask((Plugin)HelixPvP.getInstance(), (Runnable)new Runnable() {
             @Override
             public void run() {
-            	p.sendMessage("§eRestam 4 segundos.");
+            	p.sendMessage("§e4 seconds left.");
             }
         }, 20L);
         Bukkit.getScheduler().scheduleSyncDelayedTask((Plugin)HelixPvP.getInstance(), (Runnable)new Runnable() {
             @Override
             public void run() {
-            	p.sendMessage("§eRestam 3 segundos.");
+            	p.sendMessage("§e3 seconds left.");
             }
         }, 40L);
         Bukkit.getScheduler().scheduleSyncDelayedTask((Plugin)HelixPvP.getInstance(), (Runnable)new Runnable() {
             @Override
             public void run() {
-            	p.sendMessage("§eRestam 2 segundos.");
+            	p.sendMessage("§e2 seconds left.");
             }
         }, 60L);
         Bukkit.getScheduler().scheduleSyncDelayedTask((Plugin)HelixPvP.getInstance(), (Runnable)new Runnable() {
             @Override
             public void run() {
-            	p.sendMessage("§eRestam 1 segundo.");
+            	p.sendMessage("§e1 seconds left.");
             }
         }, 80L);
         Bukkit.getScheduler().scheduleSyncDelayedTask((Plugin)HelixPvP.getInstance(), (Runnable)new Runnable() {
             @Override
             public void run() {
-            	p.sendMessage("§eO seu Fly acabou");
+            	p.sendMessage("§eYour fly ended.");
                 Phantom.emphantom.remove(p.getName());
                 p.getInventory().setArmorContents((ItemStack[])Phantom.salvararmor.get(p.getName()));
                 p.updateInventory();

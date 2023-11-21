@@ -20,7 +20,7 @@ import java.text.DecimalFormat;
 
 	    @EventHandler
 	    private void onInventoryClick(InventoryClickEvent event) {
-	        if (event.getWhoClicked() instanceof Player && event.getInventory().getName().equals("§eMenu de Compras §7(KDR)") && event.getCurrentItem() != null && event.getCurrentItem().hasItemMeta()) {
+	        if (event.getWhoClicked() instanceof Player && event.getInventory().getName().equals("§eMenu §7(KDR)") && event.getCurrentItem() != null && event.getCurrentItem().hasItemMeta()) {
 	            String display = event.getCurrentItem().getItemMeta().getDisplayName();
 	            Player player = (Player) event.getWhoClicked();
 	           HelixPlayer playerData = HelixBukkit.getInstance().getPlayerManager().getPlayer(player.getName());
@@ -41,12 +41,12 @@ import java.text.DecimalFormat;
 	                    playerData.getPvp().setKillstreak(0);
 	                    playerData.getPvp().setWinstreaksumo(0);
                         HelixBukkit.getInstance().getPlayerManager().getController().save(playerData);
-	                    player.sendMessage("§aVocê resetou seu KDR.");
+	                    player.sendMessage("§aYou reseted your kdr.");
 	                } else {
-	                    player.sendMessage("§cVocê não possui moedas suficientes.");
+	                    player.sendMessage("§cYou dont have enought money.");
 	                }
 	                player.closeInventory();
-	            } else if (display.equals("§7Voltar para a página anterior")) {
+	            } else if (display.equals("§7Return back")) {
 	                ShopGUI.open(player);
 	            }
 	        }
@@ -57,10 +57,10 @@ import java.text.DecimalFormat;
 	            if (playerData == null) return;
 	        int coins = playerData.getPvp().getCoins();
 	        String money = new DecimalFormat("###,###.##").format(coins);
-	        Inventory inv = Bukkit.createInventory(null, 36, "§eMenu de Compras §7(KDR)");
-	        inv.setItem(4, ItemUtils.getCustomItemStack(Material.GOLD_INGOT, "§6Carteira", "§fVocê possui §a" + money + " §fmoedas!"));
-	        inv.setItem(22, ItemUtils.getCustomItemStack(Material.REDSTONE, "§cReset KDR", Arrays.asList("§aReinicie suas estatísticas", "§fValor: §a$10.000")));
-	        inv.setItem(27, ItemUtils.getCustomItemStack(Material.ARROW, "§7Voltar para a página anterior", ""));
+	        Inventory inv = Bukkit.createInventory(null, 36, "§eMenu §7(KDR)");
+	        inv.setItem(4, ItemUtils.getCustomItemStack(Material.GOLD_INGOT, "§6Wallet", "§fYou have §a" + money + " §fcoins!"));
+	        inv.setItem(22, ItemUtils.getCustomItemStack(Material.REDSTONE, "§cReset KDR", Arrays.asList("§aRestart your stats", "§fPrice: §a$10.000")));
+	        inv.setItem(27, ItemUtils.getCustomItemStack(Material.ARROW, "§7Return back", ""));
 	        player.openInventory(inv);
 	    }
 	}

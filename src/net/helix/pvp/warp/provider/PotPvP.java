@@ -31,7 +31,7 @@ public class PotPvP extends WarpHandle {
 		
 		  ItemStack sopa = new ItemStack(Material.POTION, 1, (short)16421);
 		    ItemMeta sopas = sopa.getItemMeta();
-		    sopas.setDisplayName("§ePotinho Magico");
+		    sopas.setDisplayName("§ePotion");
 		    sopa.setItemMeta(sopas);
 		KitManager.getPlayer(player.getName()).removeKit();
 		KitManager2.getPlayer(player.getName()).removekit2();

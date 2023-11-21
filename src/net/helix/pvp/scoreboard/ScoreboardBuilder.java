@@ -142,7 +142,7 @@ public static void init() {
 				
 					String l5 = "§1";
 					String l4 = "§fCoins: §a";
-					String l3 = "§fLiga: ";
+					String l3 = "§fRank: ";
 					String lx = "§fXP: §a";
 					String l2 = "§0";
 					String l1 = HelixPvP.getInstance().getConfig().getString("IPScore").replace("&", "§");
@@ -179,13 +179,13 @@ public static void init() {
 					objective2.setDisplayName(text2);
 					objective2.setDisplaySlot(DisplaySlot.SIDEBAR);
 					String l9 = "§a";
-					String l8 = "§bVocê está no Evento";
+					String l8 = "§bYou are in the event";
 					String ll = "§c";
-					String l7 = "§fSala Aberta: ";
+					String l7 = "§fRoom open: ";
 					String l6 = "§fPvP: ";
-					String l5 = "§fDano: ";
+					String l5 = "§fDamage: ";
 					String l4 = "§fCoins: §a";
-					String l3 = "§fLiga: ";
+					String l3 = "§fRank: ";
 					String l2 = "§0";
 					String l1 = HelixPvP.getInstance().getConfig().getString("IPScore").replace("&", "§");
 					scoreboard2.registerNewTeam("coins").addEntry(l4);
@@ -215,13 +215,13 @@ public static void init() {
 					objective2.setDisplayName(text3);
 					objective2.setDisplaySlot(DisplaySlot.SIDEBAR);
 					
-					String l10 = "§eStatus da FPS";
+					String l10 = "§eStats of FPS";
 					String l9 = "§c";
 					String l8 = "§fKills: §a";
 					String l7 = "§fDeaths: §c";
 					String l6 = "§fKillStreak: §3";
 					String l5 = "§fCoins: §a";
-					String l4 = "§fLiga: ";
+					String l4 = "§fRank: ";
 					String l3 = "§fXP: §a";
 					String l2 = "§0";
 					String l1 = HelixPvP.getInstance().getConfig().getString("IPScore").replace("&", "§"); 
@@ -254,12 +254,12 @@ public static void init() {
 					objective2.setDisplayName(textg);
 					objective2.setDisplaySlot(DisplaySlot.SIDEBAR);
 					
-					String l10 = "§eVocê está no Gladiator";
+					String l10 = "§eGladiator";
 					String l9 = "§c";
-					String l8 = "§fOponente:";
+					String l8 = "§fOponnent:";
 					String l7 = "§fPing:";
 					String l5 = "§fCoins: §a";
-					String l4 = "§fLiga: ";
+					String l4 = "§fRank: ";
 					String l3 = "§fXP: §a";
 					String l2 = "§0";
 					String l1 = HelixPvP.getInstance().getConfig().getString("IPScore").replace("&", "§"); 
@@ -296,7 +296,7 @@ public static void init() {
 					String l7 = "§fDeaths: §c";
 					String l6 = "§fKillStreak: §3";
 					String l5 = "§fCoins: §a";
-					String l4 = "§fLiga: ";
+					String l4 = "§fRank: ";
 					String l3 = "§fXP: §a";
 					String l2 = "§0";
 					String l1 = HelixPvP.getInstance().getConfig().getString("IPScore").replace("&", "§"); 
@@ -334,7 +334,7 @@ public static void init() {
 					String l7 = "§fDeaths: §c";
 					String l6 = "§fKillStreak: §3";
 					String l5 = "§fCoins: §a";
-					String l4 = "§fLiga: ";
+					String l4 = "§fRank: ";
 					String l3 = "§fXP: §a";
 					String l2 = "§0";
 					String l1 = HelixPvP.getInstance().getConfig().getString("IPScore").replace("&", "§"); 
@@ -368,9 +368,9 @@ public static void init() {
 					
 					String l10 = "§eLava Challenge";
 					String l9 = "§c";
-					String l8 = "§fVida: §c";
+					String l8 = "§fHealth: §c";
 					String l5 = "§fCoins: §a";
-					String l4 = "§fLiga: ";
+					String l4 = "§fRank: ";
 					String l3 = "§fXP: §a";
 					String l2 = "§0";
 					String l1 = HelixPvP.getInstance().getConfig().getString("IPScore").replace("&", "§"); 
@@ -404,7 +404,7 @@ public static void init() {
 					String l5 = "§fLoses: §c";
 					String l4 = "§fWinStreak: §3";
 					String l3 = "§fXP: §a";
-					String l22 = "§fLiga: ";
+					String l22 = "§fRank: ";
 					String l2 = "§0";
 					String l1 = HelixPvP.getInstance().getConfig().getString("IPScore").replace("&", "§"); 
 					objective2.getScore(l8).setScore(8);
@@ -438,7 +438,7 @@ public static void init() {
 					String l5 = "§fLoses: §c";
 					String l4 = "§fWinStreak: §3";
 					String l3 = "§fXP: §a";
-					String l22 = "§fLiga: ";
+					String l22 = "§fRank: ";
 					String l2 = "§0";
 					String l1 = HelixPvP.getInstance().getConfig().getString("IPScore").replace("&", "§"); 
 					objective2.getScore(l8).setScore(8);
@@ -562,7 +562,7 @@ else if (HelixWarp.GLADIATOR.hasPlayer(player.getName())) {
 		Scoreboard scoreboard = player.getScoreboard();
 
 		final Player winner = GladiatorListener.combateGlad.get(player);
-		String srt = winner == null ? " §7Nenhum" : "§b " + winner.getName();
+		String srt = winner == null ? " §7None" : "§b " + winner.getName();
 		if(srt.length() > 13) {
 		   srt = srt.substring(0,12);
 		} 
@@ -610,9 +610,9 @@ else if (HelixWarp.GLADIATOR.hasPlayer(player.getName())) {
 				PlayerPvP pvp = helixPlayer.getPvp();
 				Scoreboard scoreboard = player.getScoreboard();
 			scoreboard.getTeam("coins").setSuffix((String.valueOf(HelixDecimalFormat.format(pvp.getCoins()))));
-			scoreboard.getTeam("dano").setSuffix((String.valueOf(EventoUtils.damage ? "§aAtivado" : "§cDesativado")));
-			scoreboard.getTeam("sala").setSuffix((String.valueOf((EventoUtils.tp ? "§aSim" : "§cNão"))));
-			scoreboard.getTeam("pvp").setSuffix((String.valueOf((EventoUtils.pvp ? "§aAtivado" : "§cDesativado"))));
+			scoreboard.getTeam("dano").setSuffix((String.valueOf(EventoUtils.damage ? "§aEnabled" : "§cDisabled")));
+			scoreboard.getTeam("sala").setSuffix((String.valueOf((EventoUtils.tp ? "§aYes" : "§cNo"))));
+			scoreboard.getTeam("pvp").setSuffix((String.valueOf((EventoUtils.pvp ? "§aEnabled" : "§cDisabled"))));
 			scoreboard.getTeam("rank").setSuffix((String.valueOf(Ranking.getRank(helixPlayer).getColoredName())));
 		 }
 	}

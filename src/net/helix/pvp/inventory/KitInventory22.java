@@ -21,7 +21,7 @@ import net.helix.pvp.kit.KitManager2;
 
 public class KitInventory22 {
 
-	private final static String inventoryName = "Kits Secundários 2";
+	private final static String inventoryName = "Secondary Kits 2";
 	public static void open(Player player) {
 		Inventory inventory = Bukkit.createInventory(null, 6 * 9, inventoryName);
 	
@@ -116,10 +116,10 @@ public class KitInventory22 {
 							.toStack()
 					);
 			}
-		inventory.setItem(45, new ItemBuilder("§aVoltar", Material.ARROW).nbt("voltar")
+		inventory.setItem(45, new ItemBuilder("§aReturn", Material.ARROW).nbt("voltar")
 				.toStack()
 		);
-		inventory.setItem(4, new ItemBuilder("§aVisualizar todos os kits", Material.CHEST).nbt("visuali")
+		inventory.setItem(4, new ItemBuilder("§aView all kits", Material.CHEST).nbt("visuali")
 				.toStack()
 		);
 		ItemStack i =  new ItemStack(KitManager2.getPlayer(player.getName()).getkit2().getIcon());
@@ -130,7 +130,7 @@ public class KitInventory22 {
 		i2.setDisplayName(KitManager2.getPlayer(player.getName()).getkit2().getName());
 	    }
 		else {
-			i2.setDisplayName("§eNenhum kit selecionado.");	
+			i2.setDisplayName("§eNo kits selected.");	
 		}
 		i2.setLore(lore);
 		i.setItemMeta(i2);

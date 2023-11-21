@@ -58,21 +58,21 @@ public class Ninja extends KitHandler {
 			}
 			if ((targetPlayer = Bukkit.getPlayer(targetName)) != null) {
 				if (player.getLocation().distance(targetPlayer.getLocation()) >= 50) {
-					player.sendMessage("§cO jogador está muito longe (50+ blocos).");
+					player.sendMessage("§cThe player is too far away (50+ blocks).");
 					return;
 				}
 				if (GladiatorListener.combateGlad.containsKey(targetPlayer) || net.helixpvp.kit2.GladiatorListener.combateGlad.containsKey(targetPlayer)) {
-					player.sendMessage("§cO jogador está no gladiator.");
+					player.sendMessage("§cThis player is on gladiator.");
 					return;
 				}
 				 if (KitManager.getPlayer(targetPlayer.getName()).hasKit(HelixKit.NEO) || KitManager2.getPlayer(targetPlayer.getName()).haskit2(HelixKit2.NEO)) {
 					 event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.NOTE_BASS_DRUM, 15.0f, 15.0f);
-					 event.getPlayer().sendMessage(ChatColor.AQUA + "Você não pode usar o ninja em " + targetPlayer.getName() + " porque ele está com o kit NEO");
+					 event.getPlayer().sendMessage(ChatColor.AQUA + "You cant use the ninja on " + targetPlayer.getName() + " because he has kit NEO");
 						return;
 					}
 				addCooldown(event.getPlayer(), HelixPvP.getInstance().getConfig().getInt("NinjaCooldown"));
 				player.teleport(targetPlayer);
-				player.sendMessage("§aTeleportado para §f" + targetName);
+				player.sendMessage("§aTeleported to §f" + targetName);
 				player.playSound(player.getLocation(), Sound.ENDERMAN_TELEPORT, 10, 10);
 			}
 		}

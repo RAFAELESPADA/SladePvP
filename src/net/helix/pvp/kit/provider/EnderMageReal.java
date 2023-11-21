@@ -74,7 +74,7 @@ public void onKitEndermage(Location portal, Player p1, Player p2) {
       return; 
     }
     else if (mage.getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura")) {
-    	mage.sendMessage("§cNão use o EnderMage no spawn!");
+    	mage.sendMessage("§cDont use the endermage on spawn!");
 		return;
 	 }
     final Block b = e.getClickedBlock();
@@ -85,7 +85,7 @@ public void onKitEndermage(Location portal, Player p1, Player p2) {
             if (target != mage && !target.isDead() && !GladiatorListener.combateGlad.containsKey(target) && !net.helixpvp.kit2.GladiatorListener.combateGlad.containsKey(target)) {
               if (!isEnderable(bLoc, target.getLocation())) {
             	    e.setCancelled(true);
-            	  mage.sendMessage("§cUse o endermage em torres ou lugares altos!");
+            	  mage.sendMessage("§cOnly use the endermage on high places like towers!");
             	
             	  return;
               }

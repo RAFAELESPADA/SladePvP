@@ -70,7 +70,7 @@ import net.helix.pvp.kit.*;
 		
 		KitManager.getPlayer(player.getName()).setKit(getRandomKit());
 	
-		player.sendMessage(ChatColor.BLUE + "Surprise selecionou " + KitManager.getPlayer(player.getName()).getKit());
+		player.sendMessage(ChatColor.BLUE + "Surprise selected " + KitManager.getPlayer(player.getName()).getKit());
 	}
 	 public static HelixKit getRandomKit() {
          Random random = new Random();

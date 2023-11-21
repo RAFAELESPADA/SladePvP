@@ -35,10 +35,10 @@ public class PlayerCompassListener implements Listener {
 		).collect(Collectors.toList());
 		
 		if (entities.size() == 0) {
-			player.sendMessage("§eSem players próximos.");
+			player.sendMessage("§eNo players nearby.");
 			HelixBukkit.getInstance().getWarpManager().findWarp("arena").ifPresent(warp -> {
 				player.setCompassTarget(warp.getLocation());
-				player.sendMessage("§eApontando para o spawn");
+				player.sendMessage("§eCompass pointing to spawn");
 			});
 			return;
 		}
@@ -47,7 +47,7 @@ public class PlayerCompassListener implements Listener {
 		Player pe = (Player) entity;
 		player.setCompassTarget(entity.getLocation());
 		event.setCancelled(true);
-		player.sendMessage("§eSua bússola está apontando para §2" + entity.getName());
+		player.sendMessage("§eCompass pointing to §2" + entity.getName());
 	}
 
 }

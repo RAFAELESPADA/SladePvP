@@ -45,7 +45,7 @@ public void onInteract(PlayerInteractEvent event) {
 		return; {
 			event.setCancelled(true);
 			if (GladiatorListener.combateGlad.containsKey(p) || net.helixpvp.kit2.GladiatorListener.combateGlad.containsKey(p)) {
-				p.sendMessage("§cVocê está no Gladiator e não pode usar o flash.");
+				p.sendMessage("§cYou cant use flash on gladiator.");
 				event.setCancelled(true);
 				return;
 			}
@@ -53,8 +53,8 @@ public void onInteract(PlayerInteractEvent event) {
 				Block target = p.getTargetBlock((HashSet<Byte>) null, 200);
 				if (target.getType() != Material.AIR && target.getType() != Material.GLASS) {
 					if (target.getRelative(BlockFace.UP).getLocation().getY() > HelixPvP.getInstance().getConfig().getInt("SpawnAltura") - 8) {
-						p.sendMessage("§cMire seu flash mais em baixo.");
-						p.sendMessage("§cEle vai atingir a altura do spawn.");
+						p.sendMessage("§cPoint the flash more below.");
+						p.sendMessage("§cIt will reach spawn.");
 						return;
 					}
 					addCooldown(p, 35);
